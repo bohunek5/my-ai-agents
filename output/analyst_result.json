@@ -1,0 +1,20 @@
+[
+    {
+        "Company": "TechBud Sp. z o.o.",
+        "DaysSincePurchase": 120,
+        "LastPurchaseDate": "2025-10-03",
+        "FavoriteProduct": "Betoniarka X5"
+    },
+    {
+        "Company": "Auto-Serwis Max",
+        "DaysSincePurchase": 150,
+        "LastPurchaseDate": "2025-09-03",
+        "FavoriteProduct": "Olej Silnikowy 5L"
+    },
+    {
+        "Company": "Eko-Warzywa",
+        "DaysSincePurchase": 200,
+        "LastPurchaseDate": "2025-07-15",
+        "FavoriteProduct": "Nawóz Bio"
+    }
+]
