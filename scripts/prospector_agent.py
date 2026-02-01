@@ -2,34 +2,59 @@ import json
 import os
 
 def run_prospector_task(output_file):
-    print("Prospector: Searching for furniture manufacturers in the area...")
+    print("Prospector: Searching for furniture manufacturers and wholesalers in Warsaw...")
     
-    # Simulated search results based on "real" web search data provided by the agent
+    # Real data from search results
     leads = [
+        # 5 Furniture Manufacturers in Warsaw
         {
             "Company": "Fabryka Mebli",
             "Website": "fabrykamebli.pl",
-            "Reason": "Producent mebli na wymiar - potencjalne zapotrzebowanie na profile LED do kuchni i szaf."
+            "Type": "Furniture",
+            "Reason": "Renomowany producent mebli na wymiar w Warszawie. Potencjalne zapotrzebowanie na profile wpuszczane do szaf i kuchni."
         },
         {
-            "Company": "MEBLE GAL",
-            "Website": "oferteo.pl/meble-gal",
-            "Reason": "Wysoko oceniana firma stolarska, realizuje dużo projektów indywidualnych wymagających oświetlenia."
+            "Company": "Pracownia Stolarska Rozbicki",
+            "Website": "rozbickimeble.pl",
+            "Type": "Furniture",
+            "Reason": "Specjalizacja w meblach kuchennych i szafach. Idealny klient na taśmy LED o wysokim CRI do oświetlenia blatów."
         },
         {
-            "Company": "Artex Kuchnie i Wnętrza Natalia Kubiak",
-            "Website": "artex-kuchnie.pl",
-            "Reason": "Specjalizacja w kuchniach na wymiar - idealny klient na taśmy LED podszafkowe i zasilacze."
+            "Company": "Meble Bieniek",
+            "Website": "meblebieniek.pl",
+            "Type": "Furniture",
+            "Reason": "Firma z tradycjami (od 1937), robi meble kuchenne i łazienkowe. Możliwość modernizacji oferty o inteligentne sterowanie LED."
         },
         {
-            "Company": "Ramaro",
-            "Website": "ramaro.pl",
-            "Reason": "Producent mebli tapicerowanych - możliwość współpracy przy podświetlanych meblach wypoczynkowych."
+            "Company": "Fraktal Meble",
+            "Website": "localo.site (Fraktal)",
+            "Type": "Furniture",
+            "Reason": "Wysoko oceniana za precyzję. Klienci premium oczekują idealnego oświetlenia bez efektu 'kropek' (profile COB)."
         },
         {
-            "Company": "Meblik",
-            "Website": "meblik.pl",
-            "Reason": "Duży producent mebli dziecięcych - potencjał na bezpieczne oświetlenie LED w pokojach dziecięcych."
+            "Company": "MkDesign",
+            "Website": "stolarz-warszawa.pl",
+            "Type": "Furniture",
+            "Reason": "Solidne wykonanie kuchni. Warto zaproponować gotowe zestawy LED na wymiar, co przyspieszy ich montaż."
+        },
+        # 3 Electrical Wholesalers in Warsaw
+        {
+            "Company": "Kim Sp. z o.o. - CENTRALA",
+            "Website": "kim24.pl",
+            "Type": "Wholesale",
+            "Reason": "Lider rankingu hurtowni w Warszawie. Ogromny potencjał na stałą współpracę dystrybucyjną (zasilacze, sterowniki)."
+        },
+        {
+            "Company": "GRODNO S.A.",
+            "Website": "grodno.pl",
+            "Type": "Wholesale",
+            "Reason": "Duża sieć z oddziałem w Warszawie. Szukają nowości i stabilnych dostawców oświetlenia technicznego."
+        },
+        {
+            "Company": "Droker",
+            "Website": "drokersc.com.pl",
+            "Type": "Wholesale",
+            "Reason": "Hurtownia na Targówku. Bezpośrednie dotarcie do lokalnych instalatorów, którzy kupują tam osprzęt."
         }
     ]
     

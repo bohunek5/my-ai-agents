@@ -2,8 +2,8 @@ import json
 import os
 from datetime import datetime
 
-def run_writer_task(input_file, output_file):
-    print(f"Writer: Reading {input_file}...")
+def run_writer_strategy_task(input_file, output_file):
+    print(f"Writer: Reading leads from {input_file}...")
     try:
         with open(input_file, 'r', encoding='utf-8') as f:
             leads = json.load(f)
@@ -11,55 +11,61 @@ def run_writer_task(input_file, output_file):
         print(f"Error reading file: {e}")
         return
 
-    print(f"Writer: Generating scenarios for {len(leads)} leads...")
+    print("Writer: Developing strategy for each lead...")
     
-    report_lines = []
-    report_lines.append("# SCENARIUSZE ROZMÓW HANDLOWYCH")
-    report_lines.append(f"Data generacji: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
-    report_lines.append("")
-
+    strategies = []
+    
     for lead in leads:
         company = lead['Company']
-        days = lead['DaysSincePurchase']
-        product = lead['FavoriteProduct']
-        last_date = lead['LastPurchaseDate']
-
-        report_lines.append(f"## FIRMA: {company}")
-        report_lines.append(f"**Status**: Nieaktywny od {days} dni.")
-        report_lines.append("")
+        lead_type = lead.get('Type', 'Unknown')
+        reason = lead['Reason']
+        website = lead['Website']
         
-        # Icebreaker
-        report_lines.append("### 1. Lodołamacz")
-        report_lines.append(f"- \"Dzień dobry, dzwonię, ponieważ widzę, że ostatnio ({last_date}) zamawialiście u nas **{product}**.")
-        report_lines.append(f"- Jak się sprawował ten produkt? Czy wszystko z nim w porządku?\"")
-        report_lines.append("")
+        strategy = {
+            "Company": company,
+            "Type": lead_type,
+            "Website": website,
+            "Context": reason,
+            "Strategy": {},
+        }
 
-        # Value Proposition
-        report_lines.append("### 2. Propozycja Wartości")
-        report_lines.append(f"- \"Zauważyłem, że minęło już {days} dni od ostatnich zakupów.")
-        report_lines.append("- Chciałbym zaproponować specjalny rabat powrotny na asortyment z kategorii " + product.split()[0] + "...")
-        report_lines.append("- Mamy teraz nową dostawę, która charakteryzuje się wyższą wydajnością.\"")
-        report_lines.append("")
+        # Strategy Logic based on Type
+        if lead_type == 'Furniture':
+            strategy["Strategy"] = {
+                "Angle": "Jakość i łatwość montażu",
+                "PainPoint": "Reklamacje na migające taśmy i trudny montaż profili",
+                "ValueProp": "Profile LED idealnie pasujące do płyty 16/18mm + taśmy COB (efekt ciągłej linii światła).",
+                "KeySellingPoint": "Wysokie CRI > 90 (naturalne kolory drewna/okleiny).",
+                "WIIFM": "Przyspieszenie montażu i zero reklamacji u klienta końcowego." # What In It For Me
+            }
+        elif lead_type == 'Wholesale':
+            strategy["Strategy"] = {
+                "Angle": "Stabilność i marża",
+                "PainPoint": "Braki towarowe i niska jakość tanich zamienników",
+                "ValueProp": "Pełna dostępność magazynowa (wysyłka 24h) i wsparcie marketingowe (stojaki ekspozycyjne).",
+                "KeySellingPoint": "Zasilacze z 5-letnią gwarancją i certyfikatami TUV.",
+                "WIIFM": "Produkt, który nie wraca na serwis, a klient wraca po więcej."
+            }
+        else:
+            # Fallback
+            strategy["Strategy"] = {
+                "Angle": "Współpraca B2B",
+                "PainPoint": "Brak solidnego dostawcy",
+                "ValueProp": "Szeroka oferta oświetlenia LED.",
+                "KeySellingPoint": "Korzystne rabaty.",
+                "WIIFM": "Lepsze warunki handlowe."
+            }
+            
+        strategies.append(strategy)
 
-        # Objections
-        report_lines.append("### 3. Zbijanie Obiekcji")
-        report_lines.append("**Klient: \"Mamy już innego dostawcę.\"**")
-        report_lines.append("- \"Rozumiem. Warto jednak mieć sprawdzoną alternatywę na wypadek braków magazynowych. Czy mogę podesłać cennik niezobowiązująco?\"")
-        report_lines.append("")
-        report_lines.append("**Klient: \"Teraz nie potrzebujemy.\"**")
-        report_lines.append("- \"Jasne. A kiedy planujecie kolejne zamówienia? Może warto zabezpieczyć towar wcześniej w starej cenie?\"")
-        report_lines.append("")
-        report_lines.append("---")
-        report_lines.append("")
-
-    # Save to file
+    # Save detailed strategy
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write("\n".join(report_lines))
+        json.dump(strategies, f, indent=4, ensure_ascii=False)
     
-    print(f"Writer: Report saved to {output_file}")
+    print(f"Writer: Strategy generated for {len(strategies)} leads. Saved to {output_file}")
 
 if __name__ == "__main__":
-    input_path = 'output/analyst_result.json'
-    output_path = 'output/sales_scenarios.md'
-    run_writer_task(input_path, output_path)
+    input_path = 'output/nowe_lead_led.json'
+    output_path = 'output/writer_strategy.json'
+    run_writer_strategy_task(input_path, output_path)

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import heroBg from '../assets/hero-bg-2.jpg'; // Assuming this exists from previous file
 import { Link } from 'react-router-dom';

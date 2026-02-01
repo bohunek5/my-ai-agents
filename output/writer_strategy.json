@@ -1,0 +1,106 @@
+[
+    {
+        "Company": "Fabryka Mebli",
+        "Type": "Furniture",
+        "Website": "fabrykamebli.pl",
+        "Context": "Renomowany producent mebli na wymiar w Warszawie. Potencjalne zapotrzebowanie na profile wpuszczane do szaf i kuchni.",
+        "Strategy": {
+            "Angle": "Jakość i łatwość montażu",
+            "PainPoint": "Reklamacje na migające taśmy i trudny montaż profili",
+            "ValueProp": "Profile LED idealnie pasujące do płyty 16/18mm + taśmy COB (efekt ciągłej linii światła).",
+            "KeySellingPoint": "Wysokie CRI > 90 (naturalne kolory drewna/okleiny).",
+            "WIIFM": "Przyspieszenie montażu i zero reklamacji u klienta końcowego."
+        }
+    },
+    {
+        "Company": "Pracownia Stolarska Rozbicki",
+        "Type": "Furniture",
+        "Website": "rozbickimeble.pl",
+        "Context": "Specjalizacja w meblach kuchennych i szafach. Idealny klient na taśmy LED o wysokim CRI do oświetlenia blatów.",
+        "Strategy": {
+            "Angle": "Jakość i łatwość montażu",
+            "PainPoint": "Reklamacje na migające taśmy i trudny montaż profili",
+            "ValueProp": "Profile LED idealnie pasujące do płyty 16/18mm + taśmy COB (efekt ciągłej linii światła).",
+            "KeySellingPoint": "Wysokie CRI > 90 (naturalne kolory drewna/okleiny).",
+            "WIIFM": "Przyspieszenie montażu i zero reklamacji u klienta końcowego."
+        }
+    },
+    {
+        "Company": "Meble Bieniek",
+        "Type": "Furniture",
+        "Website": "meblebieniek.pl",
+        "Context": "Firma z tradycjami (od 1937), robi meble kuchenne i łazienkowe. Możliwość modernizacji oferty o inteligentne sterowanie LED.",
+        "Strategy": {
+            "Angle": "Jakość i łatwość montażu",
+            "PainPoint": "Reklamacje na migające taśmy i trudny montaż profili",
+            "ValueProp": "Profile LED idealnie pasujące do płyty 16/18mm + taśmy COB (efekt ciągłej linii światła).",
+            "KeySellingPoint": "Wysokie CRI > 90 (naturalne kolory drewna/okleiny).",
+            "WIIFM": "Przyspieszenie montażu i zero reklamacji u klienta końcowego."
+        }
+    },
+    {
+        "Company": "Fraktal Meble",
+        "Type": "Furniture",
+        "Website": "localo.site (Fraktal)",
+        "Context": "Wysoko oceniana za precyzję. Klienci premium oczekują idealnego oświetlenia bez efektu 'kropek' (profile COB).",
+        "Strategy": {
+            "Angle": "Jakość i łatwość montażu",
+            "PainPoint": "Reklamacje na migające taśmy i trudny montaż profili",
+            "ValueProp": "Profile LED idealnie pasujące do płyty 16/18mm + taśmy COB (efekt ciągłej linii światła).",
+            "KeySellingPoint": "Wysokie CRI > 90 (naturalne kolory drewna/okleiny).",
+            "WIIFM": "Przyspieszenie montażu i zero reklamacji u klienta końcowego."
+        }
+    },
+    {
+        "Company": "MkDesign",
+        "Type": "Furniture",
+        "Website": "stolarz-warszawa.pl",
+        "Context": "Solidne wykonanie kuchni. Warto zaproponować gotowe zestawy LED na wymiar, co przyspieszy ich montaż.",
+        "Strategy": {
+            "Angle": "Jakość i łatwość montażu",
+            "PainPoint": "Reklamacje na migające taśmy i trudny montaż profili",
+            "ValueProp": "Profile LED idealnie pasujące do płyty 16/18mm + taśmy COB (efekt ciągłej linii światła).",
+            "KeySellingPoint": "Wysokie CRI > 90 (naturalne kolory drewna/okleiny).",
+            "WIIFM": "Przyspieszenie montażu i zero reklamacji u klienta końcowego."
+        }
+    },
+    {
+        "Company": "Kim Sp. z o.o. - CENTRALA",
+        "Type": "Wholesale",
+        "Website": "kim24.pl",
+        "Context": "Lider rankingu hurtowni w Warszawie. Ogromny potencjał na stałą współpracę dystrybucyjną (zasilacze, sterowniki).",
+        "Strategy": {
+            "Angle": "Stabilność i marża",
+            "PainPoint": "Braki towarowe i niska jakość tanich zamienników",
+            "ValueProp": "Pełna dostępność magazynowa (wysyłka 24h) i wsparcie marketingowe (stojaki ekspozycyjne).",
+            "KeySellingPoint": "Zasilacze z 5-letnią gwarancją i certyfikatami TUV.",
+            "WIIFM": "Produkt, który nie wraca na serwis, a klient wraca po więcej."
+        }
+    },
+    {
+        "Company": "GRODNO S.A.",
+        "Type": "Wholesale",
+        "Website": "grodno.pl",
+        "Context": "Duża sieć z oddziałem w Warszawie. Szukają nowości i stabilnych dostawców oświetlenia technicznego.",
+        "Strategy": {
+            "Angle": "Stabilność i marża",
+            "PainPoint": "Braki towarowe i niska jakość tanich zamienników",
+            "ValueProp": "Pełna dostępność magazynowa (wysyłka 24h) i wsparcie marketingowe (stojaki ekspozycyjne).",
+            "KeySellingPoint": "Zasilacze z 5-letnią gwarancją i certyfikatami TUV.",
+            "WIIFM": "Produkt, który nie wraca na serwis, a klient wraca po więcej."
+        }
+    },
+    {
+        "Company": "Droker",
+        "Type": "Wholesale",
+        "Website": "drokersc.com.pl",
+        "Context": "Hurtownia na Targówku. Bezpośrednie dotarcie do lokalnych instalatorów, którzy kupują tam osprzęt.",
+        "Strategy": {
+            "Angle": "Stabilność i marża",
+            "PainPoint": "Braki towarowe i niska jakość tanich zamienników",
+            "ValueProp": "Pełna dostępność magazynowa (wysyłka 24h) i wsparcie marketingowe (stojaki ekspozycyjne).",
+            "KeySellingPoint": "Zasilacze z 5-letnią gwarancją i certyfikatami TUV.",
+            "WIIFM": "Produkt, który nie wraca na serwis, a klient wraca po więcej."
+        }
+    }
+]

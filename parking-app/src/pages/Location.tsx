@@ -1,4 +1,3 @@
-import React from 'react';
 import mapBg from '../assets/map-bg.png';
 
 export const Location = () => {

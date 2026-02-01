@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bezpieczny Parking 24/7</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0056b2",
+                        "tech-navy": "#102a43",
+                        "neutral-gray": "#f0f4f8",
+                        "action-green": "#22c55e",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<!-- Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap bg-tech-navy px-10 py-4 shadow-lg">
+<div class="flex items-center gap-3 text-white">
+<div class="size-8 flex items-center justify-center bg-primary rounded">
+<span class="material-symbols-outlined text-white">local_parking</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">Bezpieczny Parking 24/7</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">O nas</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">Cennik</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">Lokalizacja</a>
+<a class="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#">Kontakt</a>
+</nav>
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 border border-white/30 bg-transparent text-white hover:bg-white/10 text-sm font-bold transition-all">
+<span>Panel Klienta</span>
+</button>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="w-full bg-neutral-gray dark:bg-slate-900/50 py-16 px-4 md:px-20 lg:px-40">
+<div class="max-w-[1200px] mx-auto">
+<div class="flex flex-col items-start gap-6 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-action-green/10 text-action-green text-xs font-bold uppercase tracking-wider border border-action-green/20">
+<span class="flex h-2 w-2 rounded-full bg-action-green"></span>
+                        Monitoring Aktywny
+                    </div>
+<h1 class="text-tech-navy dark:text-white text-4xl md:text-6xl font-black leading-[1.1] tracking-tight">
+                        Twój samochód pod najlepszą opieką
+                    </h1>
+<p class="text-slate-600 dark:text-slate-400 text-lg md:text-xl leading-relaxed">
+                        Profesjonalna ochrona 24/7, pełne ubezpieczenie i bezobsługowy wjazd. Monitoring aktywny i bezpieczny system rezerwacji online dostępny z każdego miejsca.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-2">
+<button class="flex min-w-[200px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold shadow-md hover:bg-primary/90 transition-all">
+                            Rezerwuj Miejsce Online
+                        </button>
+<button class="flex min-w-[150px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-base font-bold hover:bg-slate-50 transition-all">
+                            Zobacz Cennik
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="w-full py-20 px-4 md:px-20 lg:px-40">
+<div class="max-w-[1200px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Feature Card 1 -->
+<div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex size-12 items-center justify-center rounded-lg bg-tech-navy text-white">
+<span class="material-symbols-outlined text-[28px]">security</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-tech-navy dark:text-white text-xl font-bold">24/7 Ochrona</h3>
+<p class="text-slate-500 dark:text-slate-400 text-base leading-normal">Całodobowy monitoring CCTV oraz wykwalifikowana ochrona fizyczna na terenie całego obiektu.</p>
+</div>
+</div>
+<!-- Feature Card 2 -->
+<div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex size-12 items-center justify-center rounded-lg bg-tech-navy text-white">
+<span class="material-symbols-outlined text-[28px]">verified_user</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-tech-navy dark:text-white text-xl font-bold">Ubezpieczenie w cenie</h3>
+<p class="text-slate-500 dark:text-slate-400 text-base leading-normal">Każdy pojazd pozostawiony na naszym parkingu jest objęty pełną polisą ubezpieczeniową OC.</p>
+</div>
+</div>
+<!-- Feature Card 3 -->
+<div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex size-12 items-center justify-center rounded-lg bg-tech-navy text-white">
+<span class="material-symbols-outlined text-[28px]">sensor_door</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-tech-navy dark:text-white text-xl font-bold">Wjazd bezobsługowy</h3>
+<p class="text-slate-500 dark:text-slate-400 text-base leading-normal">Zautomatyzowany system ANPR rozpoznający tablice rejestracyjne dla szybkiego wjazdu.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Status Widget Section -->
+<section class="w-full bg-slate-100 dark:bg-slate-900/30 py-16 px-4 md:px-20 lg:px-40">
+<div class="max-w-[1200px] mx-auto">
+<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-2">
+<h2 class="text-tech-navy dark:text-white text-3xl font-bold tracking-tight">Dostępność miejsc w czasie rzeczywistym</h2>
+<p class="text-slate-500 dark:text-slate-400">Aktualizacja systemu co 60 sekund</p>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+<div class="flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="flex flex-col gap-4 w-full md:w-auto">
+<p class="text-slate-600 dark:text-slate-400 text-lg font-medium">Wolne miejsca parkingowe</p>
+<div class="flex items-baseline gap-2">
+<span class="text-5xl font-black text-tech-navy dark:text-white">42</span>
+<span class="text-2xl text-slate-400 font-medium">/ 100</span>
+</div>
+<div class="flex items-center gap-2 text-action-green font-bold">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span>Miejsca są obecnie dostępne</span>
+</div>
+</div>
+<div class="flex-1 w-full max-w-md">
+<div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-4 overflow-hidden">
+<div class="bg-action-green h-full rounded-full" style="width: 42%;"></div>
+</div>
+<div class="flex justify-between mt-3 text-sm text-slate-500 font-medium">
+<span>Zajęte: 58%</span>
+<span>Wolne: 42%</span>
+</div>
+</div>
+<div class="w-full md:w-auto">
+<button class="w-full md:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-lg shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined">calendar_today</span>
+                                    Zarezerwuj teraz
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Location Section Placeholder -->
+<section class="w-full py-20 px-4 md:px-20 lg:px-40">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col gap-6">
+<h2 class="text-tech-navy dark:text-white text-3xl font-bold tracking-tight">Łatwy dojazd i lokalizacja</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                        Znajdujemy się w bezpośrednim sąsiedztwie głównych węzłów komunikacyjnych, co sprawia, że jesteśmy idealnym wyborem zarówno dla mieszkańców, jak i podróżnych.
+                    </p>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">location_on</span>
+<div>
+<p class="font-bold text-tech-navy dark:text-white">Adres</p>
+<p class="text-slate-500">ul. Bezpieczna 12, 00-001 Warszawa</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">call</span>
+<div>
+<p class="font-bold text-tech-navy dark:text-white">Telefon</p>
+<p class="text-slate-500">+48 123 456 789</p>
+</div>
+</div>
+</div>
+</div>
+<div class="h-80 md:h-[400px] rounded-xl overflow-hidden shadow-inner border border-slate-200 dark:border-slate-800 bg-slate-200">
+<div class="w-full h-full bg-cover bg-center flex items-center justify-center" data-alt="Modern interactive map showing parking location in Warsaw" data-location="Warsaw, Poland" style="background-image: linear-gradient(rgba(16, 42, 67, 0.1), rgba(16, 42, 67, 0.2)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDG1aZ9ex-TCweQIEJdJe5t9yZHgBXkA1tT4VNbkkR1RHRId46UKC3OfWleSQfMjWxHilG__u8JPxvFgPS4gklO3-X6UjzGaG8DSaHsYLXcxu5EOG4MvK79H3P91klvEZYogMj5isvkuKwSaWazaU9GU1HycU6LvRDVhyEl5GW7wt0OQ64_4mE_JsTCz195iGw12pV06ofAlxXxw_WQIYxvrsVWTCe5X0_RhKo5EO9aobwUWU2GIRhfYocCEmVkJAYgFVm_wf5sKgk_');">
+<div class="bg-white dark:bg-slate-900 p-4 rounded-lg shadow-xl flex items-center gap-3">
+<div class="size-6 bg-primary rounded-full animate-pulse"></div>
+<span class="font-bold text-tech-navy dark:text-white">Bezpieczny Parking</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full bg-tech-navy text-slate-400 py-12 px-10 border-t border-white/5">
+<div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-3 text-white">
+<div class="size-6 flex items-center justify-center bg-primary/20 rounded">
+<span class="material-symbols-outlined text-primary text-sm">local_parking</span>
+</div>
+<h2 class="text-white text-lg font-bold">Bezpieczny Parking</h2>
+</div>
+<p class="text-xs">© 2024 Bezpieczny Parking 24/7. Wszelkie prawa zastrzeżone.</p>
+</div>
+<div class="flex gap-8 text-sm">
+<a class="hover:text-white transition-colors" href="#">Regulamin</a>
+<a class="hover:text-white transition-colors" href="#">Polityka Prywatności</a>
+<a class="hover:text-white transition-colors" href="#">Cookies</a>
+</div>
+<div class="flex gap-4">
+<button class="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xl">share</span>
+</button>
+<button class="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xl">mail</span>
+</button>
+</div>
+</div>
+</footer>
+</div>
+</body></html>
