@@ -29,7 +29,7 @@ export const Layout = () => {
     return (
         <div className="relative flex h-auto min-h-screen w-full flex-col font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden transition-colors duration-300">
             {/* Navigation Bar */}
-            <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap bg-tech-navy/95 backdrop-blur-md px-4 md:px-10 py-4 shadow-xl border-b border-white/5 transition-all duration-300">
+            <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between whitespace-nowrap bg-tech-navy/95 backdrop-blur-md px-4 md:px-10 py-4 shadow-xl border-b border-white/5 transition-all duration-300">
                 <Link to="/" className="flex items-center gap-3 group z-50">
                     <div className="size-10 flex items-center justify-center bg-primary rounded-xl shadow-lg shadow-primary/20 group-hover:bg-primary/90 transition-all duration-300 group-hover:scale-105">
                         <span className="material-symbols-outlined text-white text-2xl">local_parking</span>
@@ -128,7 +128,7 @@ export const Layout = () => {
             </header>
 
             {/* Main Content */}
-            <main className="flex-1">
+            <main className="flex-1 pt-[88px]">
                 <Outlet />
             </main>
 

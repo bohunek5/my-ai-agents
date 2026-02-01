@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import heroBg from '../assets/hero-bg-2.jpg';
+import heroBg from '../assets/hero-bg-3.jpg';
 import { Link } from 'react-router-dom';
 import { ReservationForm } from '../components/ReservationForm';
 
