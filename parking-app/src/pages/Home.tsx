@@ -1,8 +1,12 @@
-import { motion } from 'framer-motion';
-import heroBg from '../assets/hero-bg-2.jpg'; // Assuming this exists from previous file
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import heroBg from '../assets/hero-bg-2.jpg';
 import { Link } from 'react-router-dom';
+import { ReservationForm } from '../components/ReservationForm';
 
 export const Home = () => {
+    const [showReservation, setShowReservation] = useState(false);
+
     const offers = [
         { title: 'Jachty', price: '200 PLN', icon: 'directions_boat' },
         { title: 'Autobusy', price: '150 PLN', icon: 'directions_bus' },
@@ -38,12 +42,12 @@ export const Home = () => {
                         </p>
 
                         <div className="flex flex-wrap gap-4">
-                            <Link
-                                to="/rezerwacja"
+                            <button
+                                onClick={() => setShowReservation(true)}
                                 className="px-10 py-4 bg-primary text-white font-bold rounded-xl shadow-[0_10px_30px_-10px_rgba(0,86,179,0.5)] hover:bg-blue-600 hover:scale-105 hover:shadow-[0_15px_40px_-10px_rgba(0,86,179,0.6)] transition-all duration-300 transform"
                             >
                                 Zarezerwuj teraz
-                            </Link>
+                            </button>
                             <Link
                                 to="/oferta"
                                 className="px-10 py-4 bg-white/5 text-white font-semibold rounded-xl border border-white/10 hover:bg-white/10 transition-all backdrop-blur-sm"
@@ -93,6 +97,13 @@ export const Home = () => {
                         </div>
                     </motion.div>
                 </div>
+
+                {/* Reservation Modal */}
+                <AnimatePresence>
+                    {showReservation && (
+                        <ReservationForm onClose={() => setShowReservation(false)} />
+                    )}
+                </AnimatePresence>
             </section>
 
             {/* Offer Grid */}
@@ -127,7 +138,10 @@ export const Home = () => {
                                     <span className="text-slate-400 text-sm">/ dobę</span>
                                 </div>
 
-                                <button className="w-full mt-6 py-3 rounded-lg border border-primary/20 text-primary font-semibold hover:bg-primary hover:text-white transition-colors">
+                                <button
+                                    onClick={() => setShowReservation(true)}
+                                    className="w-full mt-6 py-3 rounded-lg border border-primary/20 text-primary font-semibold hover:bg-primary hover:text-white transition-colors"
+                                >
                                     Wybierz
                                 </button>
                             </motion.div>
