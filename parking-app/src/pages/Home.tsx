@@ -107,11 +107,11 @@ export const Home = () => {
             </section>
 
             {/* Offer Grid */}
-            <section className="py-24 px-6 bg-neutral-gray relative z-10 -mt-10 rounded-t-[3rem]">
+            <section className="py-24 px-6 bg-neutral-gray dark:bg-slate-800 relative z-10 -mt-10 rounded-t-[3rem] transition-colors duration-300">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="font-display font-bold text-4xl text-tech-navy mb-4">Wybierz swój pojazd</h2>
-                        <p className="text-slate-500">Elastyczne plany postojowe dla każdej klasy</p>
+                        <h2 className="font-display font-bold text-4xl text-tech-navy dark:text-white mb-4">Wybierz swój pojazd</h2>
+                        <p className="text-slate-500 dark:text-slate-400">Elastyczne plany postojowe dla każdej klasy</p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -122,7 +122,7 @@ export const Home = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 relative overflow-hidden"
+                                className="group bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 dark:border-slate-800 relative overflow-hidden"
                             >
                                 <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                                     <span className="material-symbols-outlined text-8xl text-primary">{offer.icon}</span>
@@ -132,7 +132,7 @@ export const Home = () => {
                                     <span className="material-symbols-outlined text-3xl">{offer.icon}</span>
                                 </div>
 
-                                <h3 className="font-display font-bold text-xl text-tech-navy mb-2">{offer.title}</h3>
+                                <h3 className="font-display font-bold text-xl text-tech-navy dark:text-white mb-2">{offer.title}</h3>
                                 <div className="flex items-baseline gap-1">
                                     <span className="text-2xl font-bold text-primary">{offer.price}</span>
                                     <span className="text-slate-400 text-sm">/ dobę</span>
@@ -151,35 +151,35 @@ export const Home = () => {
             </section>
 
             {/* Trust Section */}
-            <section className="py-20 px-6 bg-white">
+            <section className="py-20 px-6 bg-white dark:bg-slate-900 transition-colors duration-300">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-slate-100">
-                        <div className="px-6 py-4 flex flex-col items-center md:items-start hover:bg-slate-50 transition-colors rounded-xl">
-                            <div className="p-4 bg-blue-50 text-primary rounded-full mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-slate-100 dark:divide-slate-800">
+                        <div className="px-6 py-4 flex flex-col items-center md:items-start hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-xl">
+                            <div className="p-4 bg-blue-50 dark:bg-blue-900/20 text-primary rounded-full mb-6">
                                 <span className="material-symbols-outlined text-4xl">videocam</span>
                             </div>
-                            <h3 className="font-display font-bold text-xl text-tech-navy mb-3">Monitoring wizyjny</h3>
-                            <p className="text-slate-500 leading-relaxed">
+                            <h3 className="font-display font-bold text-xl text-tech-navy dark:text-white mb-3">Monitoring wizyjny</h3>
+                            <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
                                 Teren pod stałym nadzorem kamer.
                             </p>
                         </div>
 
-                        <div className="px-6 py-4 flex flex-col items-center md:items-start hover:bg-slate-50 transition-colors rounded-xl">
-                            <div className="p-4 bg-green-50 text-action-green rounded-full mb-6">
+                        <div className="px-6 py-4 flex flex-col items-center md:items-start hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-xl">
+                            <div className="p-4 bg-green-50 dark:bg-green-900/20 text-action-green rounded-full mb-6">
                                 <span className="material-symbols-outlined text-4xl">verified_user</span>
                             </div>
-                            <h3 className="font-display font-bold text-xl text-tech-navy mb-3">Ubezpieczenie OC</h3>
-                            <p className="text-slate-500 leading-relaxed">
+                            <h3 className="font-display font-bold text-xl text-tech-navy dark:text-white mb-3">Ubezpieczenie OC</h3>
+                            <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
                                 Polisa chroniąca od zdarzeń losowych w cenie postoju.
                             </p>
                         </div>
 
-                        <div className="px-6 py-4 flex flex-col items-center md:items-start hover:bg-slate-50 transition-colors rounded-xl">
-                            <div className="p-4 bg-purple-50 text-purple-600 rounded-full mb-6">
+                        <div className="px-6 py-4 flex flex-col items-center md:items-start hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors rounded-xl">
+                            <div className="p-4 bg-purple-50 dark:bg-purple-900/20 text-purple-600 rounded-full mb-6">
                                 <span className="material-symbols-outlined text-4xl">fence</span>
                             </div>
-                            <h3 className="font-display font-bold text-xl text-tech-navy mb-3">Teren ogrodzony</h3>
-                            <p className="text-slate-500 leading-relaxed">
+                            <h3 className="font-display font-bold text-xl text-tech-navy dark:text-white mb-3">Teren ogrodzony</h3>
+                            <p className="text-slate-500 dark:text-slate-400 leading-relaxed">
                                 Solidne ogrodzenie i zamknięty teren zapewniający spokój.
                             </p>
                         </div>
