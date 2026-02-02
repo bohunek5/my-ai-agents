@@ -106,19 +106,19 @@ export const Layout = () => {
                             className="fixed inset-0 top-0 left-0 w-full h-screen bg-tech-navy pt-24 px-6 md:hidden z-40 flex flex-col gap-6"
                         >
                             <nav className="flex flex-col gap-2">
-                                <Link to="/" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group">
+                                <Link to="/" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group active:scale-95 transition-transform">
                                     O nas <span className="material-symbols-outlined text-white/50 group-hover:text-primary">arrow_forward_ios</span>
                                 </Link>
-                                <Link to="/oferta" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group">
+                                <Link to="/oferta" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group active:scale-95 transition-transform">
                                     Oferta <span className="material-symbols-outlined text-white/50 group-hover:text-primary">arrow_forward_ios</span>
                                 </Link>
-                                <Link to="/cennik" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group">
+                                <Link to="/cennik" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group active:scale-95 transition-transform">
                                     Cennik <span className="material-symbols-outlined text-white/50 group-hover:text-primary">arrow_forward_ios</span>
                                 </Link>
-                                <Link to="/lokalizacja" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group">
+                                <Link to="/lokalizacja" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group active:scale-95 transition-transform">
                                     Lokalizacja <span className="material-symbols-outlined text-white/50 group-hover:text-primary">arrow_forward_ios</span>
                                 </Link>
-                                <Link to="/kontakt" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group">
+                                <Link to="/kontakt" className="text-white text-xl font-bold py-4 border-b border-white/10 flex items-center justify-between group active:scale-95 transition-transform">
                                     Kontakt <span className="material-symbols-outlined text-white/50 group-hover:text-primary">arrow_forward_ios</span>
                                 </Link>
                             </nav>

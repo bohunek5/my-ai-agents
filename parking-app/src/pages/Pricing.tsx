@@ -21,7 +21,7 @@ export const Pricing = () => {
                             <li className="flex items-center gap-2"><span className="material-symbols-outlined text-action-green text-sm">check</span>Płatność w aplikacji</li>
                             <li className="flex items-center gap-2"><span className="material-symbols-outlined text-action-green text-sm">check</span>Pierwsze 15 min gratis</li>
                         </ul>
-                        <button className="mt-auto w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors">Wybierz</button>
+                        <button className="mt-auto w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 active:scale-95 transition-all transform">Wybierz</button>
                     </div>
 
                     {/* 2. Daily (Popular) */}
@@ -38,7 +38,7 @@ export const Pricing = () => {
                             <li className="flex items-center gap-2"><span className="material-symbols-outlined text-action-green text-sm">check</span>Gwarancja miejsca</li>
                             <li className="flex items-center gap-2"><span className="material-symbols-outlined text-action-green text-sm">check</span>Monitoring 24/7</li>
                         </ul>
-                        <button className="mt-auto w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-md">Rezerwuj Teraz</button>
+                        <button className="mt-auto w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 active:scale-95 transition-all transform shadow-md">Rezerwuj Teraz</button>
                     </div>
 
                     {/* 3. Weekly */}
@@ -69,7 +69,7 @@ export const Pricing = () => {
                             <li className="flex items-center gap-2"><span className="material-symbols-outlined text-action-green text-sm">check</span>Karta wjazdowa</li>
                             <li className="flex items-center gap-2"><span className="material-symbols-outlined text-action-green text-sm">check</span>Faktura VAT</li>
                         </ul>
-                        <button className="mt-auto w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors">Zamów</button>
+                        <button className="mt-auto w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 active:scale-95 transition-all transform">Zamów</button>
                     </div>
 
                     {/* 5. Motorcycle */}
@@ -100,7 +100,7 @@ export const Pricing = () => {
                             <li className="flex items-center gap-2"><span className="material-symbols-outlined text-action-green text-sm">check</span>Mycie auta raz w m-cu</li>
                             <li className="flex items-center gap-2"><span className="material-symbols-outlined text-action-green text-sm">check</span>Concierge</li>
                         </ul>
-                        <button className="mt-auto w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors">Zamów VIP</button>
+                        <button className="mt-auto w-full py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary/5 active:scale-95 transition-all transform">Zamów VIP</button>
                     </div>
                 </div>
             </div>

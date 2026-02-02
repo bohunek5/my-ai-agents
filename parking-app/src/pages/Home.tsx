@@ -17,7 +17,7 @@ export const Home = () => {
     return (
         <div className="w-full bg-background-light dark:bg-slate-900 font-sans">
             {/* Hero Section */}
-            <section className="relative w-full h-[700px] flex items-center justify-center overflow-hidden bg-tech-navy">
+            <section className="relative w-full min-h-[700px] md:h-[700px] flex items-center justify-center overflow-hidden bg-tech-navy">
                 {/* Background */}
                 <div className="absolute inset-0 z-0 opacity-40">
                     <img src={heroBg} alt="Parking Hero" className="w-full h-full object-cover grayscale mix-blend-multiply" />
@@ -44,13 +44,13 @@ export const Home = () => {
                         <div className="flex flex-wrap gap-4">
                             <button
                                 onClick={() => setShowReservation(true)}
-                                className="px-10 py-4 bg-primary text-white font-bold rounded-xl shadow-[0_10px_30px_-10px_rgba(0,86,179,0.5)] hover:bg-blue-600 hover:scale-105 hover:shadow-[0_15px_40px_-10px_rgba(0,86,179,0.6)] transition-all duration-300 transform"
+                                className="px-10 py-4 bg-primary text-white font-bold rounded-xl shadow-[0_10px_30px_-10px_rgba(0,86,179,0.5)] hover:bg-blue-600 hover:scale-105 active:scale-95 hover:shadow-[0_15px_40px_-10px_rgba(0,86,179,0.6)] transition-all duration-300 transform"
                             >
                                 Zarezerwuj teraz
                             </button>
                             <Link
                                 to="/oferta"
-                                className="px-10 py-4 bg-white/5 text-white font-semibold rounded-xl border border-white/10 hover:bg-white/10 transition-all backdrop-blur-sm"
+                                className="px-10 py-4 bg-white/5 text-white font-semibold rounded-xl border border-white/10 hover:bg-white/10 active:scale-95 transition-all backdrop-blur-sm transform"
                             >
                                 Oferta
                             </Link>
@@ -140,7 +140,7 @@ export const Home = () => {
 
                                 <button
                                     onClick={() => setShowReservation(true)}
-                                    className="w-full mt-6 py-3 rounded-lg border border-primary/20 text-primary font-semibold hover:bg-primary hover:text-white transition-colors"
+                                    className="w-full mt-6 py-3 rounded-lg border border-primary/20 text-primary font-semibold hover:bg-primary hover:text-white active:scale-95 transition-all transform"
                                 >
                                     Wybierz
                                 </button>
