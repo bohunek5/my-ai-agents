@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
 
 export const Contact = () => {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        alert('Dziękujemy za wiadomość! Skontaktujemy się wkrótce.');
+    };
     return (
         <div className="w-full bg-neutral-gray dark:bg-slate-900 min-h-screen pb-20">
             {/* Header */}
@@ -71,54 +75,54 @@ export const Contact = () => {
                         <iframe
                             title="Google Map"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.604533966606!2d21.75620897711808!3d54.03666297257916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e156477e68d097%3A0xc033703d29486c65!2sul.%20Sybirak%C3%B3w%2028%2C%2011-500%20Gi%C5%BCycko!5e0!3m2!1spl!2spl!4v1706863000000!5m2!1spl!2spl"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
+                            className="border-0 w-full h-full"
                             allowFullScreen
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
-            </div>
+                {/* Removed closing div here to include form in grid */}
 
-            {/* Contact Form */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-800">
-                <h2 className="text-2xl font-bold text-tech-navy dark:text-white mb-6">Formularz kontaktowy</h2>
-                <form className="flex flex-col gap-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="flex flex-col gap-1">
-                            <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300">Imię</label>
-                            <input type="text" id="name" className="rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="Jan Kowalski" />
+                {/* Contact Form */}
+                <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-8 border border-slate-200 dark:border-slate-800">
+                    <h2 className="text-2xl font-bold text-tech-navy dark:text-white mb-6">Formularz kontaktowy</h2>
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex flex-col gap-1">
+                                <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-slate-300">Imię</label>
+                                <input type="text" id="name" className="rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="Jan Kowalski" />
+                            </div>
+                            <div className="flex flex-col gap-1">
+                                <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
+                                <input type="email" id="email" className="rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="jan@example.com" />
+                            </div>
                         </div>
+
                         <div className="flex flex-col gap-1">
-                            <label htmlFor="email" className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
-                            <input type="email" id="email" className="rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="jan@example.com" />
+                            <label htmlFor="subject" className="text-sm font-medium text-slate-700 dark:text-slate-300">Temat</label>
+                            <select id="subject" className="rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary">
+                                <option>Rezerwacja miejsca</option>
+                                <option>Oferta dla firm</option>
+                                <option>Problem techniczny</option>
+                                <option>Inne</option>
+                            </select>
                         </div>
-                    </div>
 
-                    <div className="flex flex-col gap-1">
-                        <label htmlFor="subject" className="text-sm font-medium text-slate-700 dark:text-slate-300">Temat</label>
-                        <select id="subject" className="rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary">
-                            <option>Rezerwacja miejsca</option>
-                            <option>Oferta dla firm</option>
-                            <option>Problem techniczny</option>
-                            <option>Inne</option>
-                        </select>
-                    </div>
+                        <div className="flex flex-col gap-1">
+                            <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300">Wiadomość</label>
+                            <textarea id="message" rows={4} className="rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="W czym możemy pomóc?"></textarea>
+                        </div>
 
-                    <div className="flex flex-col gap-1">
-                        <label htmlFor="message" className="text-sm font-medium text-slate-700 dark:text-slate-300">Wiadomość</label>
-                        <textarea id="message" rows={4} className="rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="W czym możemy pomóc?"></textarea>
-                    </div>
-
-                    <button type="button" className="mt-2 w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-md flex items-center justify-center gap-2">
-                        <span className="material-symbols-outlined text-sm">send</span>
-                        Wyślij wiadomość
-                    </button>
-                </form>
+                        <button type="submit" className="mt-2 w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-md flex items-center justify-center gap-2">
+                            <span className="material-symbols-outlined text-sm">send</span>
+                            Wyślij wiadomość
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
+        </div >
 
     );
 };
