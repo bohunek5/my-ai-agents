@@ -1,4 +1,5 @@
 import diveImage from '../assets/image3.jpg';
+import { Link } from 'react-router-dom';
 
 export default function Diving() {
     return (
@@ -27,9 +28,9 @@ export default function Diving() {
                                 <li className="flex gap-3 items-center"><span className="material-symbols-outlined text-navis-gold">landscape</span> Niesamowite widoki</li>
                                 <li className="flex gap-3 items-center"><span className="material-symbols-outlined text-navis-gold">anchor</span> Wraki statków</li>
                             </ul>
-                            <a href="/contact" className="px-8 py-3 bg-white text-navis-navy font-bold rounded-full w-max hover:bg-gray-100 transition-colors">
+                            <Link to="/contact" className="px-8 py-3 bg-white text-navis-navy font-bold rounded-full w-max hover:bg-gray-100 transition-colors">
                                 Skontaktuj się z nami
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

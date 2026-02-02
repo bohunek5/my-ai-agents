@@ -1,5 +1,6 @@
 import bgImage from '../assets/image4.jpg';
 import sideImage from '../assets/image1.jpg';
+import { Link } from 'react-router-dom';
 
 export default function Cruises() {
     return (
@@ -30,9 +31,9 @@ export default function Cruises() {
                     <p className="font-bold text-navis-navy dark:text-white">
                         Organizujemy rejsy śródlądowe i nie tylko, na których my dbamy o kurs, a Ty o swój relaks.
                     </p>
-                    <a href="/contact" className="inline-block mt-4 px-8 py-3 bg-navis-gold text-white rounded-full font-bold hover:bg-yellow-600 transition-colors">
+                    <Link to="/contact" className="inline-block mt-4 px-8 py-3 bg-navis-gold text-white rounded-full font-bold hover:bg-yellow-600 transition-colors">
                         Zapytaj o Terminy
-                    </a>
+                    </Link>
                 </div>
                 <div className="relative h-96 bg-gray-200 dark:bg-white/5 rounded-3xl overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
                     <img
