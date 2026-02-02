@@ -31,7 +31,7 @@ export const Contact = () => {
                 </div>
             </section>
 
-            <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-4 md:px-20 lg:px-40 -mt-20">
+            <div className="max-w-[1200px] mx-auto grid grid-cols-1 gap-12 px-4 md:px-20 lg:px-40 -mt-20">
 
                 <div className="flex flex-col gap-6">
                     <div className="flex items-start gap-4 p-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
