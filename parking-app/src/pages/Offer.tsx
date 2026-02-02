@@ -79,7 +79,7 @@ export const Offer = () => {
             </section>
 
             {/* Main Pricing Cards */}
-            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 -mt-32">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 -mt-20">
                 {pricingPlans.map((plan, index) => (
                     <motion.div
                         key={index}

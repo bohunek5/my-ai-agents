@@ -1,21 +1,32 @@
-import mapBg from '../assets/map-bg.png';
+import { motion } from 'framer-motion';
 
 export const Location = () => {
     return (
         <div className="w-full bg-neutral-gray dark:bg-slate-900/50 min-h-[calc(100vh-80px)]">
 
-            {/* Map Header */}
-            <div className="w-full h-[300px] md:h-[400px] relative bg-slate-800 overflow-hidden">
-                <div className="w-full h-full bg-cover bg-center absolute inset-0 opacity-80" style={{ backgroundImage: `url(${mapBg})` }}></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-neutral-gray dark:from-slate-900/50 to-transparent"></div>
-
-                <div className="absolute bottom-0 left-0 w-full p-4 md:p-20 pb-10">
-                    <div className="max-w-[1200px] mx-auto">
-                        <h1 className="text-4xl font-bold text-tech-navy dark:text-white drop-shadow-md">Lokalizacja</h1>
-                        <p className="text-slate-700 dark:text-slate-300 text-lg font-medium drop-shadow-sm">Giżycko, ul. Sybiraków 28</p>
-                    </div>
+            {/* Header */}
+            <section className="bg-tech-navy pt-32 pb-20 px-6 rounded-b-[3rem] shadow-2xl mb-12 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-10 opacity-5">
+                    <span className="material-symbols-outlined text-[300px] text-white">location_on</span>
                 </div>
-            </div>
+                <div className="max-w-7xl mx-auto text-center relative z-10">
+                    <motion.h1
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="font-display font-black text-4xl md:text-6xl text-white mb-6"
+                    >
+                        Lokalizacja
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-slate-300 text-lg max-w-2xl mx-auto"
+                    >
+                        Giżycko, ul. Sybiraków 28. Łatwy dojazd i wygodna lokalizacja.
+                    </motion.p>
+                </div>
+            </section>
 
             {/* Google Map Section */}
             <div className="w-full h-[400px] bg-slate-100 dark:bg-slate-800">

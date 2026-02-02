@@ -9,8 +9,8 @@ export const Layout = () => {
 
     // Close menu on route change
     useEffect(() => {
-        setIsMenuOpen(false);
-    }, [location]);
+        if (isMenuOpen) setIsMenuOpen(false);
+    }, [location, isMenuOpen]);
 
     // Theme Toggle Logic
     useEffect(() => {
@@ -56,9 +56,11 @@ export const Layout = () => {
                         className="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
                         aria-label="Toggle Dark Mode"
                     >
-                        <span className="material-symbols-outlined text-xl">
-                            {theme === 'dark' ? 'light_mode' : 'dark_mode'}
-                        </span>
+                        {theme === 'dark' ? (
+                            <span className="material-symbols-outlined text-xl text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">light_mode</span>
+                        ) : (
+                            <span className="material-symbols-outlined text-xl text-slate-700 dark:text-slate-300">dark_mode</span>
+                        )}
                     </button>
 
                     <Link to="/panel" className="relative group overflow-hidden flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 border border-primary/50 bg-primary/10 text-white text-sm font-bold transition-all duration-300 hover:border-primary hover:shadow-[0_0_15px_rgba(0,86,179,0.5)]">
@@ -76,9 +78,11 @@ export const Layout = () => {
                         className="p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
                         aria-label="Toggle Dark Mode"
                     >
-                        <span className="material-symbols-outlined text-xl">
-                            {theme === 'dark' ? 'light_mode' : 'dark_mode'}
-                        </span>
+                        {theme === 'dark' ? (
+                            <span className="material-symbols-outlined text-xl text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">light_mode</span>
+                        ) : (
+                            <span className="material-symbols-outlined text-xl text-slate-700 dark:text-slate-300">dark_mode</span>
+                        )}
                     </button>
 
                     <button
