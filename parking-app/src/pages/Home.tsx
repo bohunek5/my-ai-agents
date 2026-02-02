@@ -34,11 +34,11 @@ export const Home = () => {
                         className="flex flex-col gap-8 text-left"
                     >
                         <h1 className="font-display font-black text-5xl md:text-7xl text-white leading-tight tracking-tight drop-shadow-2xl">
-                            Twój majątek <br />
-                            <span className="text-primary">pod ochroną 24/7</span>
+                            Bezpieczny parking <br />
+                            <span className="text-primary">w Giżycku</span>
                         </h1>
                         <p className="text-slate-300 text-lg md:text-xl max-w-lg leading-relaxed font-light">
-                            Najbezpieczniejsze miejsce dla Twojego pojazdu. Monitoring, ochrona fizyczna i ubezpieczenie w standardzie premium.
+                            Ogrodzony i oświetlony plac. Twój samochód w bezpiecznym miejscu.
                         </p>
 
                         <div className="flex flex-wrap gap-4">
@@ -158,9 +158,9 @@ export const Home = () => {
                             <div className="p-4 bg-blue-50 text-primary rounded-full mb-6">
                                 <span className="material-symbols-outlined text-4xl">videocam</span>
                             </div>
-                            <h3 className="font-display font-bold text-xl text-tech-navy mb-3">Monitoring 4K</h3>
+                            <h3 className="font-display font-bold text-xl text-tech-navy mb-3">Monitoring wizyjny</h3>
                             <p className="text-slate-500 leading-relaxed">
-                                System 120 kamer ultra-wysokiej rozdzielczości z analizą AI, pokrywający 100% powierzchni parkingu.
+                                Teren pod stałym nadzorem kamer.
                             </p>
                         </div>
 
@@ -168,19 +168,19 @@ export const Home = () => {
                             <div className="p-4 bg-green-50 text-action-green rounded-full mb-6">
                                 <span className="material-symbols-outlined text-4xl">verified_user</span>
                             </div>
-                            <h3 className="font-display font-bold text-xl text-tech-navy mb-3">Ubezpieczenie OC w cenie</h3>
+                            <h3 className="font-display font-bold text-xl text-tech-navy mb-3">Ubezpieczenie OC</h3>
                             <p className="text-slate-500 leading-relaxed">
-                                Pełna polisa ubezpieczeniowa chroniąca Twój majątek od wszelkich zdarzeń losowych w cenie postoju.
+                                Polisa chroniąca od zdarzeń losowych w cenie postoju.
                             </p>
                         </div>
 
                         <div className="px-6 py-4 flex flex-col items-center md:items-start hover:bg-slate-50 transition-colors rounded-xl">
                             <div className="p-4 bg-purple-50 text-purple-600 rounded-full mb-6">
-                                <span className="material-symbols-outlined text-4xl">local_police</span>
+                                <span className="material-symbols-outlined text-4xl">fence</span>
                             </div>
-                            <h3 className="font-display font-bold text-xl text-tech-navy mb-3">Ochrona fizyczna</h3>
+                            <h3 className="font-display font-bold text-xl text-tech-navy mb-3">Teren ogrodzony</h3>
                             <p className="text-slate-500 leading-relaxed">
-                                Kwalifikowani pracownicy ochrony patrolujący obiekt 24 godziny na dobę, 7 dni w tygodniu.
+                                Solidne ogrodzenie i zamknięty teren zapewniający spokój.
                             </p>
                         </div>
                     </div>

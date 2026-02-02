@@ -8,9 +8,9 @@ export const Offer = () => {
             icon: "schedule",
             features: [
                 "Idealny na zakupy lub spotkania",
-                "Naliczanie minutowe",
+                "Elastyczne godziny",
                 "Dostęp do toalety",
-                "Możliwość płatności w aplikacji"
+                "Płatność gotówką/kartą"
             ],
             price: "5 PLN",
             period: "/ godzina",
@@ -22,7 +22,7 @@ export const Offer = () => {
             features: [
                 "Bezpieczna noc dla Twojego auta",
                 "Wjazd i wyjazd 24/7",
-                "Ochrona fizyczna",
+                "Teren ogrodzony",
                 "Miejsce monitorowane"
             ],
             price: "50 PLN",
@@ -34,9 +34,9 @@ export const Offer = () => {
             icon: "calendar_month",
             features: [
                 "Gwarantowane stałe miejsce",
-                "Karta magnetyczna w cenie",
-                "Myjnia ręczna 1x w miesiącu",
-                "Priorytetowa obsługa"
+                "Dostęp 24/7",
+                "Faktura VAT",
+                "Indywidualne podejście"
             ],
             price: "450 PLN",
             period: "/ miesiąc",

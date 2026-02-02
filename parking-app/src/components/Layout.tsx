@@ -148,7 +148,7 @@ export const Layout = () => {
                             </div>
                         </div>
                         <p className="text-sm leading-relaxed text-slate-500">
-                            Najnowocześniejszy system monitoringu i kontroli dostępu w Warszawie. Twój samochód pod opieką profesjonalistów 24 godziny na dobę.
+                            Bezpieczny i wygodny parking w Giżycku. Zapraszamy 24h na dobę.
                         </p>
                         <p className="text-xs text-slate-600 mt-4">© 2026 Bezpieczny Parking 24/7. Wszelkie prawa zastrzeżone.</p>
                     </div>

@@ -42,7 +42,7 @@ export const Location = () => {
                             </h3>
                             <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                                 Wjazd na parking znajduje się od ulicy Sybiraków. Jesteśmy tuż obok głównej drogi.
-                                Brama otworzy się automatycznie po odczytaniu tablic rejestracyjnych (jeśli masz rezerwację).
+                                Wjazd bezpośrednio z ulicy na plac.
                             </p>
                             <button className="flex items-center gap-2 text-primary font-bold hover:underline">
                                 <span className="material-symbols-outlined text-sm">navigation</span>
@@ -57,16 +57,16 @@ export const Location = () => {
                             </h3>
                             <ul className="space-y-3 text-slate-600 dark:text-slate-400">
                                 <li className="flex items-start gap-3">
-                                    <span className="font-bold text-tech-navy dark:text-white min-w-[60px]">Metro:</span>
-                                    <span>Stacja "Centrum" (5 min pieszo)</span>
+                                    <span className="font-bold text-tech-navy dark:text-white min-w-[60px]">Pociąg:</span>
+                                    <span>Dworzec PKP Giżycko (15 min pieszo)</span>
                                 </li>
                                 <li className="flex items-start gap-3">
                                     <span className="font-bold text-tech-navy dark:text-white min-w-[60px]">Autobus:</span>
-                                    <span>Linie 175, 504, 128 (Przystanek "Parkingowa")</span>
+                                    <span>Komunikacja miejska w pobliżu</span>
                                 </li>
                                 <li className="flex items-start gap-3">
-                                    <span className="font-bold text-tech-navy dark:text-white min-w-[60px]">Tramwaj:</span>
-                                    <span>Linie 7, 9, 24 (Przystanek "Centralny")</span>
+                                    <span className="font-bold text-tech-navy dark:text-white min-w-[60px]">Pieszo:</span>
+                                    <span>Blisko centrum i portu</span>
                                 </li>
                             </ul>
                         </div>
