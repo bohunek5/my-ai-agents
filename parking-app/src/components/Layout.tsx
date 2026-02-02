@@ -170,14 +170,15 @@ export const Layout = () => {
                                 <span className="material-symbols-outlined text-xl">thumb_up</span>
                                 <span className="font-bold text-sm">Facebook</span>
                             </a>
-                            <a href="#" className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-black hover:border-black hover:text-white hover:-translate-y-1 transition-all duration-300 group">
-                                <span className="material-symbols-outlined text-xl">alternate_email</span>
-                                <span className="font-bold text-sm">X / Twitter</span>
-                            </a>
+
                         </div>
                         <div className="flex flex-col gap-2 mt-2">
-                            <a href="tel:+48123456789" className="text-white font-bold hover:text-primary transition-colors">+48 123 456 789</a>
-                            <a href="mailto:kontakt@bezpiecznyparking.pl" className="text-slate-400 hover:text-white transition-colors">kontakt@bezpiecznyparking.pl</a>
+                            <div className="flex items-start gap-3 text-slate-400">
+                                <span className="material-symbols-outlined text-lg mt-0.5">location_on</span>
+                                <span className="text-sm">ul. Sybiraków 28<br />11-500 Giżycko</span>
+                            </div>
+                            <a href="tel:+48607241090" className="text-white font-bold hover:text-primary transition-colors">607 241 090</a>
+                            <a href="mailto:biuro@radlight.pl" className="text-slate-400 hover:text-white transition-colors">biuro@radlight.pl</a>
                         </div>
                     </div>
                 </div>

@@ -151,9 +151,9 @@ export const Offer = () => {
                         <Link to="/kontakt" className="px-8 py-4 bg-white text-primary font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
                             Skontaktuj się z nami
                         </Link>
-                        <a href="tel:+48123456789" className="px-8 py-4 bg-black/20 text-white font-bold rounded-xl border border-white/20 hover:bg-black/30 transition-all flex items-center justify-center gap-2">
+                        <a href="tel:+48607241090" className="px-8 py-4 bg-black/20 text-white font-bold rounded-xl border border-white/20 hover:bg-black/30 transition-all flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined">call</span>
-                            +48 123 456 789
+                            607 241 090
                         </a>
                     </div>
                 </div>

@@ -21,7 +21,21 @@ export const Contact = () => {
                             <div>
                                 <h3 className="text-tech-navy dark:text-white font-bold text-lg">Infolinia 24h</h3>
                                 <p className="text-slate-500 mb-2">Dla klientów indywidualnych i firm</p>
-                                <a href="tel:+48123456789" className="text-primary font-bold text-xl hover:underline">+48 123 456 789</a>
+                                <a href="tel:+48607241090" className="text-primary font-bold text-xl hover:underline">607 241 090</a>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-4 p-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div className="bg-primary/10 p-3 rounded-lg text-primary">
+                                <span className="material-symbols-outlined text-2xl">location_on</span>
+                            </div>
+                            <div>
+                                <h3 className="text-tech-navy dark:text-white font-bold text-lg">Adres</h3>
+                                <p className="text-slate-500 mb-2">Biuro i Parking</p>
+                                <p className="text-primary font-bold text-lg">
+                                    ul. Sybiraków 28<br />
+                                    11-500 Giżycko
+                                </p>
                             </div>
                         </div>
 
@@ -32,8 +46,22 @@ export const Contact = () => {
                             <div>
                                 <h3 className="text-tech-navy dark:text-white font-bold text-lg">Email</h3>
                                 <p className="text-slate-500 mb-2">Odpowiadamy średnio w 15 minut</p>
-                                <a href="mailto:kontakt@bezpiecznyparking.pl" className="text-primary font-bold text-xl hover:underline">kontakt@bezpiecznyparking.pl</a>
+                                <a href="mailto:biuro@radlight.pl" className="text-primary font-bold text-xl hover:underline">biuro@radlight.pl</a>
                             </div>
+                        </div>
+
+                        {/* Map Preview */}
+                        <div className="w-full h-64 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800">
+                            <iframe
+                                title="Google Map"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.604533966606!2d21.75620897711808!3d54.03666297257916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e156477e68d097%3A0xc033703d29486c65!2sul.%20Sybirak%C3%B3w%2028%2C%2011-500%20Gi%C5%BCycko!5e0!3m2!1spl!2spl!4v1706863000000!5m2!1spl!2spl"
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0 }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                     </div>
                 </div>
