@@ -9,8 +9,8 @@ export const Layout = () => {
 
     // Close menu on route change
     useEffect(() => {
-        if (isMenuOpen) setIsMenuOpen(false);
-    }, [location, isMenuOpen]);
+        setIsMenuOpen(false);
+    }, [location]);
 
     // Theme Toggle Logic
     useEffect(() => {
