@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import heroBg from '../assets/hero-bg-3.jpg'; // Reusing existing asset or placeholder
 
 export const Contact = () => {
