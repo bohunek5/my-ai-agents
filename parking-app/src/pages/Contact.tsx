@@ -8,7 +8,7 @@ export const Contact = () => {
     return (
         <div className="w-full bg-neutral-gray dark:bg-slate-900 min-h-screen pb-20">
             {/* Header */}
-            <section className="bg-tech-navy pt-32 pb-20 px-6 rounded-b-[3rem] shadow-2xl mb-12 relative overflow-hidden">
+            <section className="bg-tech-navy pt-44 pb-20 px-6 rounded-b-[3rem] shadow-2xl mb-12 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-10 opacity-5">
                     <span className="material-symbols-outlined text-[300px] text-white">contact_support</span>
                 </div>
@@ -31,7 +31,7 @@ export const Contact = () => {
                 </div>
             </section>
 
-            <div className="max-w-[1200px] mx-auto grid grid-cols-1 gap-12 px-4 md:px-20 lg:px-40 -mt-20">
+            <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-4 md:px-20 lg:px-40 -mt-10 md:-mt-20">
 
                 <div className="flex flex-col gap-6">
                     <div className="flex items-start gap-4 p-6 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
@@ -114,7 +114,7 @@ export const Contact = () => {
                             <textarea id="message" rows={4} className="rounded-lg border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary" placeholder="W czym możemy pomóc?"></textarea>
                         </div>
 
-                        <button type="submit" className="mt-2 w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-md flex items-center justify-center gap-2">
+                        <button type="submit" className="mt-2 w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 active:scale-95 transition-all transform shadow-md flex items-center justify-center gap-2">
                             <span className="material-symbols-outlined text-sm">send</span>
                             Wyślij wiadomość
                         </button>
