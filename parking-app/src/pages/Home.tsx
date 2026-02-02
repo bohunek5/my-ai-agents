@@ -8,10 +8,12 @@ export const Home = () => {
     const [showReservation, setShowReservation] = useState(false);
 
     const offers = [
-        { title: 'Jachty', price: '200 PLN', icon: 'directions_boat' },
-        { title: 'Autobusy', price: '150 PLN', icon: 'directions_bus' },
-        { title: 'Kampery', price: '100 PLN', icon: 'airport_shuttle' },
         { title: 'Osobówki', price: '50 PLN', icon: 'directions_car' },
+        { title: 'Motocykle', price: '30 PLN', icon: 'two_wheeler' },
+        { title: 'Kampery', price: '100 PLN', icon: 'airport_shuttle' },
+        { title: 'Autobusy', price: '150 PLN', icon: 'directions_bus' },
+        { title: 'Jachty i Łodzie', price: '200 PLN', icon: 'sailing' },
+        { title: 'Maszyny / Przyczepy', price: '120 PLN', icon: 'construction' },
     ];
 
     return (
@@ -110,11 +112,11 @@ export const Home = () => {
             <section className="py-24 px-6 bg-neutral-gray dark:bg-slate-800 relative z-10 -mt-10 rounded-t-[3rem] transition-colors duration-300">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-                        <h2 className="font-display font-bold text-4xl text-tech-navy dark:text-white mb-4">Wybierz swój pojazd</h2>
-                        <p className="text-slate-500 dark:text-slate-400">Elastyczne plany postojowe dla każdej klasy</p>
+                        <h2 className="font-display font-bold text-4xl text-tech-navy dark:text-white mb-4">Co chcesz zaparkować?</h2>
+                        <p className="text-slate-500 dark:text-slate-400">Przyjmujemy każdy rodzaj pojazdów i maszyn</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {offers.map((offer, index) => (
                             <motion.div
                                 key={index}
