@@ -28,6 +28,16 @@ module.exports = {
                 "2xl": "1rem",
                 "full": "9999px"
             },
+            keyframes: {
+                "spin-pause": {
+                    "0%": { transform: "rotate(0deg)" },
+                    "15%": { transform: "rotate(360deg)" },
+                    "100%": { transform: "rotate(360deg)" },
+                }
+            },
+            animation: {
+                "spin-pause": "spin-pause 5s ease-in-out infinite",
+            },
         },
     },
     plugins: [

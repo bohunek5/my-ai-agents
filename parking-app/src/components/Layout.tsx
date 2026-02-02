@@ -57,9 +57,9 @@ export const Layout = () => {
                         aria-label="Toggle Dark Mode"
                     >
                         {theme === 'dark' ? (
-                            <span className="material-symbols-outlined text-xl text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)]">light_mode</span>
+                            <span className="material-symbols-outlined text-xl text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.6)] animate-spin-pause">light_mode</span>
                         ) : (
-                            <span className="material-symbols-outlined text-xl text-slate-700 dark:text-slate-300">dark_mode</span>
+                            <span className="material-symbols-outlined text-xl text-white hover:text-primary transition-colors">dark_mode</span>
                         )}
                     </button>
 
