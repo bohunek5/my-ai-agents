@@ -1,4 +1,4 @@
-import bgImage from '../assets/image4.jpg';
+import bgImage from '../assets/cruises_bg.jpg';
 import sideImage from '../assets/image1.jpg';
 import { Link } from 'react-router-dom';
 

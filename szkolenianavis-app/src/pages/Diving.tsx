@@ -1,4 +1,4 @@
-import diveImage from '../assets/image3.jpg';
+import diveImage from '../assets/diving_improved.png';
 import { Link } from 'react-router-dom';
 
 export default function Diving() {
