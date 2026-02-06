@@ -2,7 +2,7 @@
   "name": "parking-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://bohunek5.github.io/my-ai-agents",
+  "homepage": "https://bohunek5.github.io/parking-app",
   "type": "module",
   "scripts": {
     "dev": "vite",
