@@ -79,11 +79,11 @@ const projects = [
   {
     id: 'navis',
     title: 'Szkolenia Navis',
-    status: 'Archiwalne',
+    status: 'Aktywne - Klient',
     icon: <GraduationCap className="text-blue-400" />,
     color: 'from-blue-500/20 to-indigo-500/20',
-    link: '#',
-    github: `${GITHUB_BASE}/szkolenianavis-app`
+    link: 'https://szkolenianavis.pl',
+    github: 'https://github.com/bohunek5/szkolenia-navis'
   }
 ];
 

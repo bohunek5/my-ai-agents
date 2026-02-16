@@ -1,11 +1,8 @@
-name: Deploy Spotless Home to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: ["main"]
-    paths:
-      - 'spotless-home/**'
-      - '.github/workflows/deploy-spotless.yml'
   workflow_dispatch:
 
 permissions:
@@ -14,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages-spotless"
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -29,20 +26,17 @@ jobs:
         with:
           node-version: "20"
           cache: 'npm'
-          cache-dependency-path: spotless-home/package-lock.json
 
       - name: Install Dependencies
         run: npm ci
-        working-directory: spotless-home
 
       - name: Build
         run: npm run build
-        working-directory: spotless-home
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./spotless-home/out
+          path: ./out
 
   deploy:
     environment:
