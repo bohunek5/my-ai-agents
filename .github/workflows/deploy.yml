@@ -39,6 +39,9 @@ jobs:
         run: npm run build
         working-directory: szkolenianavis-app
 
+      - name: Copy Matrix Panel to Build Artifacts
+        run: cp -r matrix-panel szkolenianavis-app/dist/matrix-panel
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
