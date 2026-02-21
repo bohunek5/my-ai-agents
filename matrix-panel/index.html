@@ -1,0 +1,2812 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prescot • Matrix Panel</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&family=Rajdhani:wght@500;700;800&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #000;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #e2e8f0;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #050505;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #22c55e;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #15803d;
+    }
+
+    /* --- WARSTWY ORYGINAŁ (START) --- */
+    #matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .branding-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      /* branding nie blokuje gravity */
+    }
+
+    #physics-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 20;
+      pointer-events: auto;
+      /* gravity łapie mysz */
+    }
+
+    #main-content {
+      position: relative;
+      z-index: 30;
+      pointer-events: none;
+    }
+
+    .content-wrapper {
+      pointer-events: auto;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-panel {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      border-top: 1px solid rgba(34, 197, 94, 0.3);
+      border-bottom: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 3rem 5rem;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInPanel 2s forwards 0.5s;
+      pointer-events: none;
+    }
+
+    @keyframes fadeInPanel {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .silver-glass {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: linear-gradient(to bottom, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+    }
+
+    .green-shimmer {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      background: linear-gradient(90deg, #22c55e 0%, #86efac 50%, #22c55e 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 4s linear infinite;
+    }
+
+    @keyframes shine {
+      to {
+        background-position: 200% center;
+      }
+    }
+
+    .text-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       KLIKALNY HITBOX NA TYTUŁ (nad Matter.js), reszta ekranu gravity
+    ========================================================= */
+    #titleEnterBtn {
+      position: fixed;
+      z-index: 25;
+      /* > physics (20) */
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: min(920px, 92vw);
+      height: 150px;
+      /* trafia w BOHDANOWICZ IT */
+      border: 0;
+      background: transparent;
+      pointer-events: auto;
+      cursor: pointer;
+    }
+
+    /* opcjonalnie: delikatny “glow” przy hover (niewidoczny, ale daje feeling) */
+    #titleEnterBtn:hover {
+      outline: none;
+    }
+
+    @media (max-width: 768px) {
+      #titleEnterBtn {
+        height: 108px;
+      }
+    }
+
+    /* =========================================================
+       PANEL (MENU MATRIX) – bez zmian wyglądu (tylko dźwięk w JS)
+    ========================================================= */
+    :root {
+      --matrix: #22c55e;
+      --matrix2: #86efac;
+      --bg1: #020617;
+      --glass: rgba(0, 0, 0, 0.55);
+      --shadow: 0 40px 110px rgba(0, 0, 0, 0.75);
+      --radius: 22px;
+      --text: #e5e7eb;
+      --dim: rgba(229, 231, 235, 0.60);
+    }
+
+    #app-shell {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: none;
+      /* dopiero po kliknięciu tytułu */
+      pointer-events: auto;
+    }
+
+    /* Mobile topbar */
+    .topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      width: 100%;
+      padding: 12px 14px;
+      background: rgba(0, 0, 0, 0.45);
+      border-bottom: 1px solid rgba(34, 197, 94, 0.18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .brand i {
+      color: var(--matrix);
+      filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.4));
+    }
+
+    .burger {
+      width: 44px;
+      height: 40px;
+      border-radius: 14px;
+      border: 1px solid rgba(34, 197, 94, 0.22);
+      background: rgba(0, 0, 0, 0.35);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: .18s ease;
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.08);
+    }
+
+    .burger:hover {
+      border-color: rgba(34, 197, 94, 0.45);
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.20);
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.66);
+      z-index: 55;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    .app {
+      position: relative;
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      padding-top: 0;
+    }
+
+    .sidebar {
+      width: 310px;
+      min-width: 310px;
+      height: calc(100vh - 28px);
+      margin: 14px;
+      padding: 16px 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(34, 197, 94, 0.22);
+      background: rgba(0, 0, 0, 0.42);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 56;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(34, 197, 94, 0.18);
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.12), rgba(0, 0, 0, 0.25));
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .logo i {
+      color: var(--matrix);
+      filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.35));
+    }
+
+    .nav-links {
+      flex: 1;
+      overflow: auto;
+      padding: 4px 2px;
+    }
+
+    .nav-links::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .nav-links::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-links::-webkit-scrollbar-thumb {
+      background: rgba(34, 197, 94, 0.55);
+      border-radius: 6px;
+    }
+
+    .menu-item {
+      padding: 11px 12px;
+      margin: 6px 0;
+      border-radius: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: .18s ease;
+      color: rgba(229, 231, 235, 0.76);
+      border: 1px solid rgba(148, 163, 184, 0.10);
+      background: rgba(0, 0, 0, 0.28);
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.06);
+    }
+
+    .menu-item .left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .menu-item .left span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .menu-item i.fa-solid {
+      width: 18px;
+      text-align: center;
+      color: rgba(34, 197, 94, 0.85);
+      filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.18));
+      transition: .18s ease;
+    }
+
+    .menu-item:hover {
+      background: rgba(34, 197, 94, 0.10);
+      border-color: rgba(34, 197, 94, 0.22);
+      color: #fff;
+      box-shadow: 0 0 18px rgba(34, 197, 94, 0.16);
+    }
+
+    .menu-item.active {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(0, 0, 0, 0.30));
+      border-color: rgba(34, 197, 94, 0.35);
+      color: #fff;
+      box-shadow: 0 0 24px rgba(34, 197, 94, 0.18);
+    }
+
+    .chevron {
+      transition: .22s ease;
+      font-size: 12px;
+      opacity: .95;
+      color: rgba(34, 197, 94, 0.95);
+      filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.25));
+    }
+
+    .rotate {
+      transform: rotate(180deg);
+    }
+
+    .submenu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+      padding-left: 42px;
+      border-left: 1px solid rgba(34, 197, 94, 0.18);
+      margin-left: 10px;
+    }
+
+    .submenu.open {
+      max-height: 380px;
+    }
+
+    .sub-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 0;
+      font-size: 13px;
+      color: rgba(229, 231, 235, 0.62);
+      cursor: pointer;
+      transition: .18s ease;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .sub-item::before {
+      content: ">";
+      color: rgba(34, 197, 94, 0.95);
+      font-family: ui-monospace, Menlo, Monaco, Consolas, "Courier New", monospace;
+      opacity: .85;
+    }
+
+    .sub-item:hover {
+      color: #fff;
+    }
+
+    .profile {
+      margin-top: 6px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(34, 197, 94, 0.14);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      padding-bottom: 2px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 13px;
+      color: #fff;
+      border: 1px solid rgba(34, 197, 94, 0.22);
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.45), rgba(0, 0, 0, 0.55));
+      box-shadow: 0 0 24px rgba(34, 197, 94, 0.18);
+    }
+
+    .user {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .user .name {
+      font-size: 13px;
+      color: rgba(229, 231, 235, 0.92);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .user .hint {
+      font-size: 11px;
+      color: rgba(34, 197, 94, 0.82);
+      font-family: ui-monospace, Menlo, Monaco, Consolas, "Courier New", monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+      padding: 0 10px 10px;
+      position: relative;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn .35s ease;
+    }
+
+    .page.active-page {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Integracje mają być "jak były" */
+    .integrations-page {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    @media (max-width: 680px) {
+      .topbar {
+        display: flex;
+      }
+
+      .app {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .content {
+        padding: 0 14px 18px;
+        height: auto;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 64px;
+        left: 14px;
+        right: 14px;
+        width: calc(100% - 28px);
+        min-width: unset;
+        height: auto;
+        max-height: calc(100vh - 86px);
+        transform: translateY(-10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: .22s ease;
+      }
+
+      .sidebar.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <script src="dashboard_data.js"></script>
+  <!-- ORYGINALNE SKRYPTY START -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Matrix canvas -->
+  <canvas id="matrix-bg"></canvas>
+
+  <!-- Start branding -->
+  <div class="branding-layer" id="brandingLayer">
+    <div class="glass-panel">
+      <h1 id="main-title" class="silver-glass text-6xl md:text-9xl mb-4" data-value="BOHDANOWICZ IT"></h1>
+      <p id="sub-title" class="green-shimmer text-xl md:text-3xl" data-value="> AI TO PRZYSZŁOŚĆ, A NIE TYLKO SYSTEM_">
+      </p>
+    </div>
+  </div>
+
+  <!-- HITBOX: klik w napis -> menu (nie blokuje gravity poza napisem) -->
+  <button id="titleEnterBtn" aria-label="Wejdź do menu"></button>
+
+  <!-- Physics layer -->
+  <div id="physics-container"></div>
+
+  <!-- (main-content zostaje, ale nie jest tu potrzebny) -->
+  <main id="main-content"></main>
+
+  <!-- =========================
+       APP SHELL (PANEL MENU)
+  ========================== -->
+  <div id="app-shell">
+
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <button class="burger" id="burgerBtn" aria-label="Otwórz menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="brand"><i class="fa-solid fa-layer-group"></i> PRESCOT</div>
+      </div>
+      <div
+        style="font-size:11px;color:rgba(34,197,94,.75);font-family:ui-monospace,Menlo,Monaco,Consolas,'Courier New',monospace;letter-spacing:.12em;text-transform:uppercase;">
+        ONLINE_
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="logo" onclick="location.reload()" style="cursor:pointer;"><i class="fa-solid fa-house"></i> POWRÓT
+          DO GŁÓWNEJ</div>
+
+        <div class="nav-links">
+          <!-- 1. Integracje -->
+          <div class="menu-item active" data-page="integrations" onclick="showPage('integrations', this)">
+            <div class="left"><i class="fa-solid fa-diagram-project"></i><span>Integracje</span></div>
+          </div>
+
+          <!-- MCP CONNECTIONS -->
+          <div class="menu-item" data-page="mcp-connections" onclick="showPage('mcp-connections', this)">
+            <div class="left"><i class="fa-solid fa-bridge"></i><span>Połączenia MCP</span></div>
+          </div>
+
+          <!-- 0. ANTIGRAVITY -->
+          <div class="menu-item" data-page="antigravity" onclick="showPage('antigravity', null)">
+            <div class="left"><i class="fa-solid fa-robot"></i><span>Panel Antigravity</span></div>
+          </div>
+
+          <!-- BAZA WYPADOWA -->
+          <div class="dropdown">
+            <div class="menu-item" onclick="toggleSubmenu(this, 'baza')">
+              <div class="left"><i class="fa-solid fa-rocket"></i><span>Centrum Bazy Wypadowej</span></div>
+              <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div class="submenu open" data-submenu="baza">
+              <span class="sub-item" onclick="showPage('w-trakcie', null)">🛠 Rozpoczęte / W Trakcie</span>
+              <span class="sub-item" onclick="showPage('zrobione', null)">✅ Ukończone Projekty</span>
+              <span class="sub-item" onclick="showPage('repo-github', null)">💻 GitHub Repozytoria</span>
+              <span class="sub-item" onclick="showPage('platformy-auto', null)">⚙️ Automatyzacje (n8n/Make)</span>
+              <span class="sub-item" onclick="showPage('moje-apki', null)">📱 Osobiste Aplikacje</span>
+            </div>
+          </div>
+
+          <!-- 2. Prescot automatyzacje -->
+          <div class="dropdown">
+            <div class="menu-item" onclick="toggleSubmenu(this, 'automations')">
+              <div class="left"><i class="fa-solid fa-bolt"></i><span>Prescot automatyzacje</span></div>
+              <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div class="submenu" data-submenu="automations">
+              <span class="sub-item" onclick="showPage('auto-calls', null)">Obdzwanianie klientów</span>
+              <span class="sub-item" onclick="showPage('auto-products', null)">Aktualizacja danych produktów</span>
+            </div>
+          </div>
+
+          <!-- 3. Prescot aplikacje -->
+          <div class="dropdown">
+            <div class="menu-item" onclick="toggleSubmenu(this, 'apps')">
+              <div class="left"><i class="fa-solid fa-cubes"></i><span>Prescot aplikacje</span></div>
+              <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div class="submenu" data-submenu="apps">
+              <span class="sub-item" onclick="showPage('app-offers', null)">Tworzenie ofert</span>
+              <span class="sub-item" onclick="showPage('app-leads', null)">Szukanie odbiorców</span>
+            </div>
+          </div>
+
+          <!-- 4. Prescot Dodaj dane wyściowe -->
+          <div class="dropdown">
+            <div class="menu-item" onclick="toggleSubmenu(this, 'data')">
+              <div class="left"><i class="fa-solid fa-database"></i><span>Prescot Dodaj dane wyściowe</span></div>
+              <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div class="submenu" data-submenu="data">
+              <span class="sub-item" onclick="showPage('data-add', null)">+ wgraj dane</span>
+              <span class="sub-item" onclick="showPage('data-list', null)">Prescot wgrane dane</span>
+            </div>
+          </div>
+
+          <!-- 5. Prescot szablony -->
+          <div class="dropdown">
+            <div class="menu-item" onclick="toggleSubmenu(this, 'templates')">
+              <div class="left"><i class="fa-solid fa-layer-group"></i><span>Prescot szablony</span></div>
+              <i class="fa-solid fa-chevron-down chevron"></i>
+            </div>
+            <div class="submenu" data-submenu="templates">
+              <span class="sub-item" onclick="showPage('tpl-cards', null)">karty katalogowe</span>
+              <span class="sub-item" onclick="showPage('tpl-labels', null)">etykiety</span>
+              <span class="sub-item" onclick="showPage('tpl-instr', null)">instrukcje</span>
+              <span class="sub-item" onclick="showPage('tpl-boxes', null)">pudełka</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile" id="profileEntry" title="Kliknij aby wrócić do Integracji">
+          <div class="avatar">KB</div>
+          <div class="user">
+            <div class="name">Karol Bohdanowicz</div>
+            <div class="hint">integracje_</div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="content">
+        <!-- INTEGRACJE – ORYGINALNY BLOK -->
+        <!-- ANTIGRAVITY DASHBOARD -->
+        <section id="antigravity" class="page">
+          <div style="padding: 40px; max-width: 1000px; margin: 0 auto; padding-top: 100px;">
+            <!-- Header -->
+            <div style="margin-bottom: 30px; border-bottom: 1px solid rgba(34,197,94,0.3); padding-bottom: 20px;">
+              <h2
+                style="font-size: 32px; font-weight: 800; color: #fff; margin: 0; font-family: 'Rajdhani', sans-serif;">
+                ANTIGRAVITY <span style="color: #22c55e;">CONTROLLER</span></h2>
+              <div
+                style="font-size: 13px; color: #94a3b8; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.15em;">
+                AI Agent Status Monitor
+              </div>
+            </div>
+
+            <!-- Grid -->
+            <div style="display: grid; grid-template-columns: 1fr; gap: 24px;">
+
+              <!-- Active Task Card -->
+              <div
+                style="background: rgba(0,0,0,0.6); border: 1px solid rgba(34,197,94,0.3); border-radius: 16px; padding: 24px; box-shadow: 0 0 30px rgba(34,197,94,0.1);">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                  <span id="ag-status-indicator"
+                    style="display:inline-block; width: 10px; height: 10px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 10px #22c55e;"></span>
+                  <span id="ag-status-text"
+                    style="font-size: 12px; font-weight: 700; color: #22c55e; text-transform: uppercase; letter-spacing: 0.1em;">ACTIVE</span>
+                </div>
+                <h3 id="ag-task-name"
+                  style="font-size: 20px; color: #fff; margin: 0 0 8px 0; font-family: 'Plus Jakarta Sans', sans-serif;">
+                  Initialize...</h3>
+                <p id="ag-task-desc" style="font-size: 14px; color: #cbd5e1; line-height: 1.5; margin: 0;">Waiting for
+                  data...</p>
+              </div>
+
+              <!-- Checklist & Info -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <!-- Checklist -->
+                <div
+                  style="background: rgba(15,23,42,0.6); border: 1px solid rgba(148,163,184,0.2); border-radius: 16px; padding: 20px;">
+                  <h4
+                    style="font-size: 12px; text-transform: uppercase; color: #94a3b8; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">
+                    Checklist</h4>
+                  <div id="ag-checklist"
+                    style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: #e2e8f0;">
+                    <!-- Items injected here -->
+                  </div>
+                </div>
+
+                <!-- Artifacts -->
+                <div
+                  style="background: rgba(15,23,42,0.6); border: 1px solid rgba(148,163,184,0.2); border-radius: 16px; padding: 20px;">
+                  <h4
+                    style="font-size: 12px; text-transform: uppercase; color: #94a3b8; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">
+                    Artifacts</h4>
+                  <div id="ag-artifacts" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+                    <!-- Items injected here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="margin-top: 30px; font-size: 10px; color: #475569; text-align: center; text-transform: uppercase; letter-spacing: 1px;">
+              Data source: local dashboard_data.js • Last sync: <span id="ag-last-sync">-</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="integrations" class="page active-page integrations-page">
+
+          <!-- ================== CSS (ORYGINAŁ) ================== -->
+          <style>
+            /* === GLOBAL === */
+            #integration-flight-map {
+              --bg-main: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+              --card-bg: radial-gradient(circle at top left, #020617 0, #020617 40%, #000 100%);
+              --border-soft: rgba(148, 163, 184, 0.45);
+              --neon-blue: #38bdf8;
+              --neon-orange: #fb923c;
+              --text-soft: #e5e7eb;
+              --text-dim: #9ca3af;
+
+              /* BRAND COLORS */
+              --apilo-purple: #7c3aed;
+              --apilo-purple-dark: #4c1d95;
+              --wapro-red: #dc2626;
+              --tim-yellow: #facc15;
+              --tim-black: #020617;
+              --prescot-navy: #202935;
+              --prescot-orange: #e14e26;
+              --shoper-blue: #0082fa;
+              --empik-black: #020617;
+              --kaja-light: #60a5fa;
+              --kaja-dark: #0f172a;
+              --ceneo-green: #217346;
+              --kid-green: #22c55e;
+              --kid-blue: #0ea5e9;
+
+              font-family: system-ui, -apple-system, BlinkMacSystemFont, "Poppins", sans-serif;
+            }
+
+            #integration-flight-map * {
+              box-sizing: border-box;
+            }
+
+            #integration-flight-map {
+              position: relative;
+              width: 100%;
+              min-height: 100vh;
+              padding: 32px 12px 48px;
+              background: var(--bg-main);
+              color: var(--text-soft);
+              overflow: hidden;
+            }
+
+            /* === TŁO / GLOWY === */
+            .ifm-glow {
+              position: absolute;
+              width: 420px;
+              height: 420px;
+              border-radius: 999px;
+              filter: blur(80px);
+              opacity: 0.18;
+              pointer-events: none;
+              z-index: 0;
+            }
+
+            .ifm-glow--left {
+              background: #fb923c;
+              top: -120px;
+              left: -80px;
+            }
+
+            .ifm-glow--right {
+              background: #38bdf8;
+              top: 40%;
+              right: -140px;
+            }
+
+            /* === WRAPPER === */
+            .ifm-wrapper {
+              position: relative;
+              z-index: 1;
+              max-width: 1600px;
+              margin: 0 auto;
+            }
+
+            /* === HEADER === */
+            .ifm-header {
+              text-align: center;
+              margin-bottom: 26px;
+            }
+
+            .ifm-title {
+              font-size: clamp(22px, 3vw, 30px);
+              letter-spacing: 0.24em;
+              text-transform: uppercase;
+              margin-bottom: 8px;
+            }
+
+            .ifm-subtitle {
+              font-size: 13px;
+              color: var(--text-dim);
+            }
+
+            /* === SCENA === */
+            .ifm-scene {
+              margin-top: 26px;
+            }
+
+            /* LEWA "PŁYTA" – WYŚRODKOWANA */
+            .ifm-board {
+              position: relative;
+              padding: 40px 32px;
+              border-radius: 24px;
+              border: 1px solid var(--border-soft);
+              background: radial-gradient(circle at top, #020617 0, #000 60%);
+              box-shadow:
+                0 40px 110px rgba(15, 23, 42, 0.95),
+                0 0 0 1px rgba(15, 23, 42, 0.9);
+              transform-style: preserve-3d;
+              transform: perspective(1100px) rotateX(0deg) rotateY(0deg);
+              overflow: visible;
+              max-width: 1600px;
+              margin: 0 auto;
+            }
+
+            /* SVG PAJĘCZYNA – POD KAFELKAMI */
+            .ifm-links {
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              pointer-events: none;
+              overflow: visible;
+              z-index: 1;
+              /* pod kafelkami */
+            }
+
+            /* GRID KAFELKÓW – NAD STRZAŁKAMI */
+            .ifm-nodes-grid {
+              display: grid;
+              grid-template-columns: repeat(3, minmax(0, 1fr));
+              gap: 90px;
+              transform-style: preserve-3d;
+              position: relative;
+              z-index: 2;
+            }
+
+            @media (max-width: 900px) {
+              .ifm-nodes-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 40px;
+              }
+            }
+
+            @media (max-width: 600px) {
+              .ifm-nodes-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+              }
+            }
+
+            /* KAFEL PLATFORMY */
+            .ifm-node {
+              position: relative;
+              padding: 12px 12px 13px;
+              border-radius: 16px;
+              background: var(--card-bg);
+              border: 1px solid rgba(148, 163, 184, 0.45);
+              box-shadow:
+                0 16px 40px rgba(15, 23, 42, 0.9),
+                0 0 0 1px rgba(15, 23, 42, 0.85);
+              transform-style: preserve-3d;
+              transform: translateZ(6px);
+              transition:
+                transform 0.32s ease,
+                box-shadow 0.32s ease,
+                border-color 0.32s ease,
+                background 0.32s ease,
+                filter 0.32s ease;
+              z-index: 1;
+              transform-origin: center center;
+              will-change: transform, box-shadow, filter;
+            }
+
+            /* OGÓLNY HOVER */
+            .ifm-node:hover {
+              box-shadow:
+                0 26px 60px rgba(0, 0, 0, 0.92),
+                0 0 40px rgba(255, 255, 255, 0.20);
+              border-color: rgba(56, 189, 248, 0.9);
+              transform: translateZ(45px) scale(1.16) translateY(-6px);
+              filter: brightness(1.25);
+            }
+
+            /* reszta kafli słabiej widoczna przy hoverze */
+            .ifm-board:hover .ifm-node {
+              filter: brightness(0.65);
+            }
+
+            .ifm-board:hover .ifm-node:hover {
+              filter: brightness(1.25);
+            }
+
+            /* mobile – delikatniej */
+            @media (max-width: 768px) {
+              .ifm-node:hover {
+                transform: scale(1.15) translateY(-6px);
+              }
+            }
+
+            /* SPECYFICZNY KIERUNEK RUCHU */
+            .ifm-node[data-dir="left"]:hover {
+              transform: translateZ(45px) scale(1.16) translateX(-12px) translateY(-4px);
+            }
+
+            .ifm-node[data-dir="right"]:hover {
+              transform: translateZ(45px) scale(1.16) translateX(12px) translateY(-4px);
+            }
+
+            .ifm-node[data-dir="up"]:hover {
+              transform: translateZ(45px) scale(1.16) translateY(-13px);
+            }
+
+            .ifm-node[data-dir="down"]:hover {
+              transform: translateZ(45px) scale(1.16) translateY(5px);
+            }
+
+            /* TEKSTY W KAFELKU */
+            .ifm-node-tag {
+              display: inline-flex;
+              align-items: center;
+              padding: 2px 7px;
+              border-radius: 999px;
+              border: 1px solid rgba(148, 163, 184, 0.6);
+              font-size: 9px;
+              text-transform: uppercase;
+              letter-spacing: 0.18em;
+              color: #93c5fd;
+              margin-bottom: 5px;
+            }
+
+            .ifm-node-name {
+              font-size: 15px;
+              font-weight: 600;
+              margin-bottom: 2px;
+            }
+
+            .ifm-node-role {
+              font-size: 10px;
+              text-transform: uppercase;
+              letter-spacing: 0.18em;
+              color: var(--text-dim);
+              margin-bottom: 6px;
+            }
+
+            .ifm-node-info {
+              font-size: 11px;
+              color: var(--text-soft);
+              opacity: 0.9;
+              line-height: 1.4;
+            }
+
+            .ifm-chip-row {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 4px;
+              margin-top: 6px;
+            }
+
+            .ifm-chip {
+              padding: 1px 6px;
+              border-radius: 999px;
+              border: 1px solid rgba(148, 163, 184, 0.6);
+              font-size: 9px;
+              white-space: nowrap;
+            }
+
+            /* APILO – MASTER */
+            .ifm-node--apilo {
+              background: radial-gradient(circle at top left, var(--apilo-purple) 0, var(--apilo-purple-dark) 40%, #020617 100%);
+              border-color: rgba(216, 180, 254, 0.9);
+              box-shadow:
+                0 0 0 1px rgba(216, 180, 254, 0.6),
+                0 22px 70px rgba(88, 28, 135, 0.9);
+            }
+
+            .ifm-node--apilo .ifm-node-tag {
+              border-color: rgba(233, 213, 255, 0.9);
+              color: #f5f3ff;
+              background: rgba(24, 24, 48, 0.98);
+            }
+
+            .ifm-node--apilo .ifm-node-name {
+              color: #fefce8;
+            }
+
+            .ifm-node--apilo .ifm-node-role {
+              color: #e9d5ff;
+            }
+
+            .ifm-node-master-badge {
+              position: absolute;
+              right: 10px;
+              top: 10px;
+              padding: 2px 8px;
+              border-radius: 999px;
+              border: 1px solid rgba(125, 211, 252, 0.9);
+              background: rgba(8, 47, 73, 0.95);
+              font-size: 9px;
+              text-transform: uppercase;
+              letter-spacing: 0.18em;
+              color: #7dd3fc;
+            }
+
+            /* WAPRO */
+            .ifm-node--wapro {
+              background: linear-gradient(135deg, var(--wapro-red) 0, #7f1d1d 55%);
+              border-color: rgba(248, 113, 113, 0.95);
+            }
+
+            .ifm-node--wapro .ifm-node-tag {
+              border-color: rgba(254, 226, 226, 0.9);
+              color: #fee2e2;
+              background: rgba(127, 29, 29, 0.96);
+            }
+
+            .ifm-node--wapro .ifm-node-name,
+            .ifm-node--wapro .ifm-node-role,
+            .ifm-node--wapro .ifm-node-info {
+              color: #fef2f2;
+            }
+
+            /* TIM */
+            .ifm-node--tim {
+              background: radial-gradient(circle at top, var(--tim-yellow) 0, #f59e0b 38%, var(--tim-black) 100%);
+              border-color: rgba(250, 204, 21, 0.95);
+            }
+
+            .ifm-node--tim .ifm-node-tag {
+              border-color: rgba(254, 243, 199, 0.9);
+              color: #713f12;
+              background: rgba(254, 243, 199, 0.96);
+            }
+
+            .ifm-node--tim .ifm-node-name {
+              color: #111827;
+            }
+
+            .ifm-node--tim .ifm-node-role,
+            .ifm-node--tim .ifm-node-info {
+              color: #111827;
+            }
+
+            /* PRESCOT */
+            .ifm-node--prescot {
+              background: radial-gradient(circle at top left, #f97316 0, #ea580c 22%, var(--prescot-navy) 54%, #020617 100%);
+              border-color: rgba(248, 171, 120, 0.9);
+            }
+
+            .ifm-node--prescot .ifm-node-tag {
+              border-color: rgba(251, 146, 60, 0.9);
+              color: #ffedd5;
+              background: rgba(15, 23, 42, 0.98);
+            }
+
+            .ifm-node--prescot .ifm-node-name {
+              color: #fffbeb;
+            }
+
+            /* SHOPER */
+            .ifm-node--shoper {
+              background: linear-gradient(135deg, #0ea5e9 0, var(--shoper-blue) 45%, #020617 100%);
+              border-color: rgba(125, 211, 252, 0.9);
+            }
+
+            .ifm-node--shoper .ifm-node-tag {
+              border-color: rgba(191, 219, 254, 0.9);
+              color: #eff6ff;
+              background: rgba(15, 23, 42, 0.96);
+            }
+
+            /* EMPiK */
+            .ifm-node--empik {
+              background: radial-gradient(circle at top, #020617 0, #020617 50%, #000 100%);
+              border-color: rgba(45, 212, 191, 0.9);
+            }
+
+            .ifm-node--empik .ifm-node-tag {
+              border-color: rgba(45, 212, 191, 0.9);
+              color: #a5f3fc;
+              background: rgba(15, 23, 42, 0.96);
+            }
+
+            .ifm-node--empik .ifm-node-name {
+              color: #f9fafb;
+            }
+
+            /* ALLEGRO */
+            .ifm-node--allegro {
+              background: linear-gradient(135deg, #ff5a00 0, #9a3412 55%);
+              border-color: rgba(253, 186, 140, 0.9);
+            }
+
+            .ifm-node--allegro .ifm-node-tag {
+              border-color: rgba(254, 215, 170, 0.9);
+              color: #7c2d12;
+              background: rgba(255, 237, 213, 0.95);
+            }
+
+            .ifm-node--allegro .ifm-node-name {
+              color: #fff7ed;
+            }
+
+            .ifm-node--allegro .ifm-node-role,
+            .ifm-node--allegro .ifm-node-info {
+              color: #ffedd5;
+            }
+
+            /* Kaja */
+            .ifm-node--kaja {
+              background: radial-gradient(circle at top, #a855f7 0, #4c1d95 55%, #020617 100%);
+              border-color: rgba(216, 180, 254, 0.9);
+            }
+
+            .ifm-node--kaja .ifm-node-tag {
+              border-color: rgba(216, 180, 254, 0.9);
+              color: #f5f3ff;
+              background: rgba(15, 23, 42, 0.96);
+            }
+
+            .ifm-node--kaja .ifm-node-name {
+              color: #ede9fe;
+            }
+
+            /* CENEO */
+            .ifm-node--ceneo {
+              background: linear-gradient(135deg, var(--ceneo-green) 0, #14532d 60%);
+              border-color: rgba(187, 247, 208, 0.9);
+            }
+
+            .ifm-node--ceneo .ifm-node-tag {
+              border-color: rgba(187, 247, 208, 0.9);
+              color: #dcfce7;
+              background: rgba(22, 101, 52, 0.96);
+            }
+
+            .ifm-node--ceneo .ifm-node-name,
+            .ifm-node--ceneo .ifm-node-role,
+            .ifm-node--ceneo .ifm-node-info {
+              color: #ecfdf5;
+            }
+
+            /* KID */
+            .ifm-node--kid {
+              background: radial-gradient(circle at top, var(--kid-green) 0, var(--kid-blue) 40%, #020617 100%);
+              border-color: rgba(110, 231, 183, 0.95);
+            }
+
+            .ifm-node--kid .ifm-node-tag {
+              border-color: rgba(152, 239, 224, 0.95);
+              color: #ecfeff;
+              background: rgba(8, 47, 73, 0.96);
+            }
+
+            .ifm-node--kid .ifm-node-name,
+            .ifm-node--kid .ifm-node-role,
+            .ifm-node--kid .ifm-node-info {
+              color: #f0fdfa;
+            }
+
+            /* === TABELA SYNCHRONIZACJI === */
+            .ifm-sync-wrapper {
+              margin-top: 40px;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+            }
+
+            .ifm-flight-panel {
+              padding: 18px 16px 16px;
+              border-radius: 24px;
+              border: 1px solid var(--border-soft);
+              background: radial-gradient(circle at top, rgba(15, 23, 42, 0.98) 0, #020617 60%);
+              box-shadow:
+                0 30px 80px rgba(15, 23, 42, 0.9),
+                0 0 0 1px rgba(15, 23, 42, 0.85);
+              max-width: 1600px;
+              width: 100%;
+            }
+
+            .ifm-flight-header {
+              display: flex;
+              align-items: baseline;
+              justify-content: space-between;
+              gap: 10px;
+              margin-bottom: 8px;
+            }
+
+            .ifm-flight-title {
+              font-size: 14px;
+              text-transform: uppercase;
+              letter-spacing: 0.2em;
+            }
+
+            .ifm-flight-mode {
+              font-size: 11px;
+              color: var(--text-dim);
+            }
+
+            .ifm-flight-table {
+              margin-top: 10px;
+              border-radius: 18px;
+              border: 1px solid rgba(75, 85, 99, 0.9);
+              background: #020617;
+              overflow: hidden;
+              font-size: 11px;
+            }
+
+            .ifm-flight-row {
+              display: grid;
+              grid-template-columns: 56px 1.2fr 0.8fr 1.4fr;
+              gap: 4px;
+              padding: 6px 10px;
+              align-items: center;
+              border-bottom: 1px solid rgba(31, 41, 55, 0.95);
+            }
+
+            .ifm-flight-row:last-child {
+              border-bottom: none;
+            }
+
+            .ifm-flight-row-head {
+              background: linear-gradient(90deg, #111827, #020617);
+              font-size: 10px;
+              text-transform: uppercase;
+              letter-spacing: 0.18em;
+              color: var(--text-dim);
+            }
+
+            .ifm-flight-cell {
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .ifm-flight-cell--time {
+              font-family: ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            }
+
+            .ifm-flight-cell--route {
+              color: #e5e7eb;
+            }
+
+            .ifm-flight-cell--type {
+              color: #facc15;
+            }
+
+            .ifm-flight-cell--note {
+              color: var(--text-dim);
+            }
+
+            .ifm-flight-row.active {
+              background: radial-gradient(circle at left, rgba(56, 189, 248, 0.25) 0, rgba(15, 23, 42, 1) 55%);
+            }
+
+            .ifm-flight-row.active .ifm-flight-cell--time {
+              color: var(--neon-blue);
+            }
+
+            .ifm-flight-row.active .ifm-flight-cell--route {
+              color: #f9fafb;
+            }
+
+            .ifm-flight-row.active .ifm-flight-cell--type {
+              color: var(--neon-orange);
+            }
+
+            .ifm-legend {
+              margin-top: 12px;
+              font-size: 11px;
+              color: var(--text-dim);
+              line-height: 1.5;
+            }
+
+            .ifm-legend strong {
+              color: #93c5fd;
+            }
+
+            @media (max-width: 700px) {
+              .ifm-flight-row {
+                grid-template-columns: 52px 1.2fr 0.8fr 1.1fr;
+                padding: 5px 8px;
+              }
+            }
+
+            /* ===== STRZAŁKI – BAZA (Super Optymalizacja Bez Filtrów) ===== */
+            .ifm-link {
+              fill: none;
+              stroke-linecap: round;
+              stroke-width: 3;
+              /* TROCHĘ GRUBSZE DLA WIDOCZNOŚCI */
+              stroke-dasharray: 6 22;
+              animation: ifmDashBase 10s linear infinite;
+              opacity: 0.8;
+              marker-end: url(#ifm-arrow-head);
+              stroke: var(--prescot-orange);
+            }
+
+            @keyframes ifmDashBase {
+              0% {
+                stroke-dashoffset: 0;
+              }
+
+              100% {
+                stroke-dashoffset: -140;
+              }
+            }
+
+            .ifm-link.flow-blue {
+              stroke: #38bdf8;
+            }
+
+            .ifm-link.flow-green {
+              stroke: #22c55e;
+            }
+
+            .ifm-link.flow-red {
+              stroke: #ef4444;
+            }
+
+            .ifm-link.flow-yellow {
+              stroke: #facc15;
+            }
+
+            .ifm-link.flow-orange {
+              stroke: #fb923c;
+            }
+
+            .ifm-link.flow-violet {
+              stroke: #a855f7;
+            }
+
+            .ifm-link.is-highlighted {
+              stroke-width: 3.4px !important;
+              animation: ifmDashBase 8s linear infinite !important;
+              opacity: 1 !important;
+              z-index: 10;
+              stroke: #ffffff;
+              /* Zmiana koloru na biały zamiast filtru przy najeździe */
+            }
+
+            @keyframes ifmDashHighlight {
+              0% {
+                stroke-dashoffset: 0;
+              }
+
+              100% {
+                stroke-dashoffset: -180;
+              }
+            }
+
+            .ifm-link.dimmed {
+              opacity: 0.2 !important;
+              filter: none !important;
+            }
+          </style>
+
+          <!-- ================== HTML (ORYGINAŁ) ================== -->
+          <div id="integration-flight-map">
+            <div class="ifm-glow ifm-glow--left"></div>
+            <div class="ifm-glow ifm-glow--right"></div>
+
+            <div class="ifm-wrapper">
+              <div class="ifm-header">
+                <div class="ifm-title">MAPA INTEGRACJI • PRESCOT LED • By Bohdanowicz</div>
+                <div class="ifm-subtitle">
+                  Model symulacyjny – chmury XML, APILO, Wapro Mag, LEDOUTLET, Shoper, Empik, Allegro, Ceneo.
+                </div>
+              </div>
+
+              <div class="ifm-scene">
+                <div class="ifm-board">
+                  <svg class="ifm-links" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <marker id="ifm-arrow-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+                        orient="auto">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#ffffff"></path>
+                      </marker>
+                    </defs>
+                  </svg>
+
+                  <div class="ifm-nodes-grid">
+                    <!-- RZĄD 1 -->
+                    <div class="ifm-node ifm-node--prescot" data-dir="left" data-id="prescot-xml" data-brand="prescot">
+                      <div class="ifm-node-tag">Chmura XML</div>
+                      <div class="ifm-node-name">Prescot CLOUD XML (prescot.xml)</div>
+                      <div class="ifm-node-role">Stany + ceny + aktywność</div>
+                      <div class="ifm-node-info">
+                        Chmura Prescot – docelowe miejsce dla kartotek z Wapro
+                        (produkty, opisy, <strong>atrybuty</strong>).
+                        Stąd wychodzi feed stanów/cen do APILO oraz specjalny feed pod TIM.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Produkty z Wapro (niebieskie)</span>
+                        <span class="ifm-chip">Stany/ceny do APILO (zielone)</span>
+                        <span class="ifm-chip">Feed dla TIM (żółte)</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--kaja" data-dir="up" data-id="kaja-xml" data-brand="kaja">
+                      <div class="ifm-node-tag">Zewnętrzne feedy XML</div>
+                      <div class="ifm-node-name">ZEWNĘTRZNE FEEDY XML</div>
+                      <div class="ifm-node-role">Dostawcy / inne hurtownie</div>
+                      <div class="ifm-node-info">
+                        Zewnętrzne pliki XML (dostawcy, marki oświetleniowe).
+                        Fioletowe strzałki – pełne feedy bezpośrednio do APILO.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Feed pełny → APILO (fiolet)</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--shoper" data-dir="right" data-id="ledoutlet-hurt"
+                      data-brand="shoper">
+                      <div class="ifm-node-tag">Sklep / Hurtownia</div>
+                      <div class="ifm-node-name">LEDOUTLET.pl (hurt)</div>
+                      <div class="ifm-node-role">Hurtownia w APILO</div>
+                      <div class="ifm-node-info">
+                        Sklep na Shoperze dodany w APILO jako hurtownia.
+                        Zielone – stany/ceny z APILO.
+                        Czerwone – zamówienia z LEDOUTLET do APILO.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Dropshipping / hurt</span>
+                        <span class="ifm-chip">Stany ↔ APILO</span>
+                      </div>
+                    </div>
+
+                    <!-- RZĄD 2 -->
+                    <div class="ifm-node ifm-node--wapro" data-dir="left" data-id="wapro" data-brand="wapro">
+                      <div class="ifm-node-tag">ERP</div>
+                      <div class="ifm-node-name">Wapro Mag (WF-Mag)</div>
+                      <div class="ifm-node-role">Baza produktów + Magazyn</div>
+                      <div class="ifm-node-info">
+                        Niebieskie: produkty, opisy i <strong>atrybuty</strong> do Prescot cloud
+                        oraz do integratora KID.
+                        Czerwone: zamówienia wracające z KID (oraz z TIM bez pośrednictwa KID).
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Struktura produktów (niebieskie)</span>
+                        <span class="ifm-chip">Magazyn zamówień (czerwone)</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--apilo" data-dir="up" data-id="apilo" data-brand="apilo">
+                      <div class="ifm-node-master-badge">MASTER STANÓW</div>
+                      <div class="ifm-node-tag">Integrator omnichannel</div>
+                      <div class="ifm-node-name">APILO</div>
+                      <div class="ifm-node-role">Mózg integracji</div>
+                      <div class="ifm-node-info">
+                        Zielone: stany/ceny z Prescot cloud i zewnętrznych feedów do kanałów.
+                        Pomarańczowe: aukcje Allegro.
+                        Czerwone: wszystkie zamówienia z kanałów – dalej
+                        <strong>APILO → Shoper Prescot → KID → Wapro</strong>.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Master stanów i cen</span>
+                        <span class="ifm-chip">Zamówienia via Shoper → KID → Mag</span>
+                        <span class="ifm-chip">Kanały: Shoper, Empik, Allegro, LEDOUTLET…</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--shoper" data-dir="right" data-id="shoper-prescot"
+                      data-brand="shoper">
+                      <div class="ifm-node-tag">Sklep internetowy</div>
+                      <div class="ifm-node-name">Shoper – Prescot.com.pl</div>
+                      <div class="ifm-node-role">Front sprzedaży detal</div>
+                      <div class="ifm-node-info">
+                        Niebieskie: produkty/opisy/atrybuty z Wapro przez KID.
+                        Zielone: stany/ceny z APILO.
+                        Czerwone: zamówienia z APILO (wszystkie kanały) trafiają tu,
+                        a następnie czerwone dalej do KID → Wapro.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Produkty z Wapro przez KID</span>
+                        <span class="ifm-chip">Stany/ceny z APILO</span>
+                      </div>
+                    </div>
+
+                    <!-- RZĄD 3 -->
+                    <div class="ifm-node ifm-node--empik" data-dir="left" data-id="empik" data-brand="empik">
+                      <div class="ifm-node-tag">Marketplace</div>
+                      <div class="ifm-node-name">Empik</div>
+                      <div class="ifm-node-role">Kanał zewnętrzny</div>
+                      <div class="ifm-node-info">
+                        Zielone: feed ofertowy z APILO.
+                        Czerwone: zamówienia do APILO, a dalej czerwone do Shoper Prescot → KID → Mag.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Oferta z APILO (zielone)</span>
+                        <span class="ifm-chip">Zamówienia → APILO</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--tim" data-dir="down" data-id="tim" data-brand="tim">
+                      <div class="ifm-node-tag">Zakupy B2B</div>
+                      <div class="ifm-node-name">TIM / Wapro B2B</div>
+                      <div class="ifm-node-role">Źródła zakupów</div>
+                      <div class="ifm-node-info">
+                        Żółte: specjalny feed Prescot cloud → TIM.
+                        Czerwone: zamówienia z TIM bezpośrednio do Wapro (jedyny wyjątek – poza KID).
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Feed Prescot → TIM (żółte)</span>
+                        <span class="ifm-chip">Zamówienia → Wapro (czerwone)</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--allegro" data-dir="right" data-id="allegro" data-brand="allegro">
+                      <div class="ifm-node-tag">Marketplace</div>
+                      <div class="ifm-node-name">Allegro</div>
+                      <div class="ifm-node-role">Kanał sprzedaży</div>
+                      <div class="ifm-node-info">
+                        Pomarańczowe: aukcje/aktualizacja ofert z APILO.
+                        Czerwone: zamówienia do APILO, a potem dalej do Shoper Prescot → KID → Wapro.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Oferta z APILO (pomarańcz)</span>
+                        <span class="ifm-chip">Zamówienia → APILO</span>
+                      </div>
+                    </div>
+
+                    <!-- RZĄD 4 -->
+                    <div class="ifm-node ifm-node--ceneo" data-dir="left" data-id="ceneo" data-brand="ceneo">
+                      <div class="ifm-node-tag">Ceneo.pl — detal</div>
+                      <div class="ifm-node-name">Prescot CLOUD detal (Ceneo feed)</div>
+                      <div class="ifm-node-role">Porównywarka cen</div>
+                      <div class="ifm-node-info">
+                        Zielone: detaliczny feed Prescot CLOUD (stany/ceny z APILO + dane z Shopera).
+                        Dedykowany pod Ceneo.pl.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Feed detaliczny z APILO</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--kid" data-dir="down" data-id="kid" data-brand="kid">
+                      <div class="ifm-node-tag">Integrator</div>
+                      <div class="ifm-node-name">KID (Wapro ↔ Shoper / APILO)</div>
+                      <div class="ifm-node-role">Most produktów + zamówień</div>
+                      <div class="ifm-node-info">
+                        Niebieskie: produkty, opisy i atrybuty z Wapro do Shoper Prescot.
+                        Czerwone: zamówienia z Shoper Prescot (wcześniej z APILO)
+                        do Wapro (wszystkie kanały oprócz TIM).
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Produkty/opisy/atrybuty → Shoper</span>
+                        <span class="ifm-chip">Zamówienia → Wapro</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--shoper" data-dir="right" data-id="shoper-outlet" data-brand="shoper">
+                      <div class="ifm-node-tag">Sklep internetowy</div>
+                      <div class="ifm-node-name">OUTLET LED (Shoper #2)</div>
+                      <div class="ifm-node-role">Drugi front sprzedaży</div>
+                      <div class="ifm-node-info">
+                        Zielone: stany/ceny z APILO.
+                        Czerwone: zamówienia z Outleta do APILO,
+                        dalej jak wszystkie – do Shoper Prescot → KID → Wapro.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Shoper #2</span>
+                        <span class="ifm-chip">Stany/ceny z APILO</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CZASY SYNCHRONIZACJI -->
+                <div class="ifm-sync-wrapper">
+                  <div class="ifm-flight-panel">
+                    <div class="ifm-flight-header">
+                      <div class="ifm-flight-title">CZASY SYNCHRONIZACJI</div>
+                      <div class="ifm-flight-mode">Tryb podglądu • Model symulacyjny</div>
+                    </div>
+
+                    <div class="ifm-flight-table" id="ifm-flight-table">
+                      <div class="ifm-flight-row ifm-flight-row-head">
+                        <div class="ifm-flight-cell">CZAS</div>
+                        <div class="ifm-flight-cell">TRASA</div>
+                        <div class="ifm-flight-cell">TYP</div>
+                        <div class="ifm-flight-cell">OPIS</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:05</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">Wapro → Prescot CLOUD XML</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Produkty + opisy + atrybuty</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Niebieskie – pełne kartoteki Prescot
+                          (detal/hurt) do chmury.</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:08</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">Wapro → KID → Shoper Prescot</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Produkty + atrybuty</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Niebieskie – struktura produktów do Shoper
+                          Prescot przez integrator KID.</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:10</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">Prescot CLOUD XML → APILO</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Stany + ceny + aktywności</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Zielone – główny feed stanów/cen dla
+                          wszystkich kanałów sprzedaży.</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:12</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">Prescot CLOUD XML → TIM</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Feed pod TIM</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Żółte – specjalny feed zakupowy dla TIM /
+                          Wapro B2B.</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:18</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">Zewnętrzne feedy XML → APILO</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Feed pełny</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Fioletowe – integracja ofert dostawców z
+                          Mózgiem (APILO).</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:20</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">APILO → Shoper Prescot / OUTLET / LEDOUTLET
+                        </div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Stany + ceny</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Zielone – pełne odbicie stanów/cen z APILO na
+                          Shoperach i hurtowni.</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:23</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">APILO → Allegro</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Aukcje</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Pomarańczowe – wystawki / aktualizacja aukcji
+                          Allegro.</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:25</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">APILO → Empik / Ceneo (Prescot CLOUD detal)
+                        </div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Feed ofertowy</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Zielone – detaliczny feed Prescot CLOUD na
+                          Empik i Ceneo.pl.</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:28</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">Shoper / LEDOUTLET / OUTLET / Allegro /
+                          Empik → APILO</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Zamówienia</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Czerwone – zamówienia z wszystkich kanałów
+                          spływają do APILO.</div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:32</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">APILO → Shoper Prescot → KID → Wapro</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Zamówienia</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">
+                          Czerwone – <strong>jedyna poprawna droga</strong> zamówień: APILO → Shoper Prescot.com.pl →
+                          KID → Mag.
+                        </div>
+                      </div>
+
+                      <div class="ifm-flight-row" data-loop="1">
+                        <div class="ifm-flight-cell ifm-flight-cell--time">02:40</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--route">TIM → Wapro</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--type">Zamówienia</div>
+                        <div class="ifm-flight-cell ifm-flight-cell--note">Czerwone – wyjątek: zamówienia z TIM trafiają
+                          bezpośrednio do Maga (bez KID).</div>
+                      </div>
+                    </div>
+
+                    <div class="ifm-legend">
+                      <strong>Kody kolorów (Prescot CLOUD / detal / hurt):</strong><br>
+                      • <strong>Niebieskie</strong> – produkty, opisy i <u>atrybuty</u> (Wapro → Prescot cloud, Wapro →
+                      KID, KID → Shoper).<br>
+                      • <strong>Zielone</strong> – stany/ceny/aktywność oraz feedy z Prescot CLOUD przez APILO do
+                      kanałów.<br>
+                      • <strong>Czerwone</strong> – zamówienia: kanały → APILO → <strong>Shoper Prescot → KID →
+                        Wapro</strong>. Wyjątek: TIM → Wapro bezpośrednio.<br>
+                      • <strong>Żółte</strong> – feed Prescot CLOUD dla TIM.<br>
+                      • <strong>Pomarańczowe</strong> – aukcje Allegro z APILO.<br>
+                      • <strong>Fioletowe</strong> – zewnętrzne feedy XML do APILO.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- ================== JS (ORYGINAŁ) ================== -->
+          <script>
+            (function () {
+              /* === ANIMACJA TABELI CZASÓW === */
+              var rows = document.querySelectorAll('#ifm-flight-table .ifm-flight-row[data-loop="1"]');
+              if (rows.length) {
+                var index = 0;
+                function highlightNext() {
+                  rows.forEach(function (r) { r.classList.remove('active'); });
+                  rows[index].classList.add('active');
+                  index = (index + 1) % rows.length;
+                }
+                highlightNext();
+                setInterval(highlightNext, 2300);
+              }
+
+              /* === STRZAŁKI / MAPA === */
+              var board = document.querySelector('.ifm-board');
+              var svg = board ? board.querySelector('.ifm-links') : null;
+              var nodes = board ? board.querySelectorAll('.ifm-node') : null;
+              if (!board || !svg || !nodes.length) return;
+
+              var nodeMap = {};
+              nodes.forEach(function (node) { nodeMap[node.getAttribute('data-id')] = node; });
+
+              var edges = [
+                { from: 'wapro', to: 'prescot-xml', flow: 'blue' },
+                { from: 'wapro', to: 'kid', flow: 'blue' },
+                { from: 'kid', to: 'shoper-prescot', flow: 'blue' },
+
+                { from: 'prescot-xml', to: 'apilo', flow: 'green' },
+                { from: 'apilo', to: 'ledoutlet-hurt', flow: 'green' },
+                { from: 'apilo', to: 'shoper-prescot', flow: 'green' },
+                { from: 'apilo', to: 'shoper-outlet', flow: 'green' },
+                { from: 'apilo', to: 'empik', flow: 'green' },
+                { from: 'apilo', to: 'ceneo', flow: 'green' },
+
+                { from: 'prescot-xml', to: 'tim', flow: 'yellow' },
+                { from: 'apilo', to: 'allegro', flow: 'orange' },
+                { from: 'kaja-xml', to: 'apilo', flow: 'violet' },
+
+                { from: 'ledoutlet-hurt', to: 'apilo', flow: 'red' },
+                { from: 'shoper-outlet', to: 'apilo', flow: 'red' },
+                { from: 'allegro', to: 'apilo', flow: 'red' },
+                { from: 'empik', to: 'apilo', flow: 'red' },
+                { from: 'shoper-prescot', to: 'apilo', flow: 'red' },
+
+                { from: 'apilo', to: 'shoper-prescot', flow: 'red' },
+                { from: 'shoper-prescot', to: 'kid', flow: 'red' },
+                { from: 'kid', to: 'wapro', flow: 'red' },
+                { from: 'tim', to: 'wapro', flow: 'red' }
+              ];
+
+              var svgNS = "http://www.w3.org/2000/svg";
+              var edgePaths = [];
+
+              function getCenter(node, boardRect) {
+                var r = node.getBoundingClientRect();
+                return { x: r.left - boardRect.left + r.width / 2, y: r.top - boardRect.top + r.height / 2 };
+              }
+
+              function initLinks() {
+                edgePaths = [];
+                Array.from(svg.children).forEach(function (el) {
+                  if (el.tagName && el.tagName.toLowerCase() !== 'defs') svg.removeChild(el);
+                });
+
+                edges.forEach(function (edge) {
+                  var fromNode = nodeMap[edge.from];
+                  var toNode = nodeMap[edge.to];
+                  if (!fromNode || !toNode) return;
+
+                  var path = document.createElementNS(svgNS, 'path');
+                  path.setAttribute('class', 'ifm-link');
+                  path.dataset.from = edge.from;
+                  path.dataset.to = edge.to;
+
+                  var brandFrom = (fromNode.getAttribute('data-brand') || '').toLowerCase();
+                  if (brandFrom) path.classList.add('from-' + brandFrom);
+                  if (edge.flow) path.classList.add('flow-' + edge.flow);
+
+                  svg.appendChild(path);
+                  edgePaths.push({ edge: edge, path: path });
+                });
+              }
+
+              function updateLinks() {
+                var boardRect = board.getBoundingClientRect();
+                svg.setAttribute('width', boardRect.width);
+                svg.setAttribute('height', boardRect.height);
+                svg.setAttribute('viewBox', '0 0 ' + boardRect.width + ' ' + boardRect.height);
+
+                edgePaths.forEach(function (item) {
+                  var edge = item.edge;
+                  var path = item.path;
+                  var fromNode = nodeMap[edge.from];
+                  var toNode = nodeMap[edge.to];
+                  if (!fromNode || !toNode) return;
+
+                  var p1 = getCenter(fromNode, boardRect);
+                  var p2 = getCenter(toNode, boardRect);
+
+                  var mx = (p1.x + p2.x) / 2;
+                  var my = (p1.y + p2.y) / 2;
+                  var dx = p2.x - p1.x;
+                  var dy = p2.y - p1.y;
+
+                  var bend = 0.18;
+                  var cx = mx - dy * bend;
+                  var cy = my + dx * bend;
+
+                  if (p2.y + 4 < p1.y) {
+                    bend = 0.26;
+                    cx = mx - dy * bend;
+                    cy = my + dx * bend - 28;
+                  }
+
+                  path.setAttribute('d', 'M ' + p1.x + ' ' + p1.y + ' Q ' + cx + ' ' + cy + ' ' + p2.x + ' ' + p2.y);
+                });
+              }
+
+              initLinks();
+              updateLinks();
+
+              // EXPOSE TO WINDOW FOR MANUAL TRIGGER
+              window.initLinks = initLinks;
+              window.updateLinks = updateLinks;
+
+              // function tick() { updateLinks(); requestAnimationFrame(tick); }
+              // requestAnimationFrame(tick);
+              /* BLOKUJEMY CIĘŻKIE LOOPY, ALE DAJEMY LEKKI INTERWAŁ DLA RESPONSYWNOŚCI */
+              setInterval(updateLinks, 300);
+
+              /* Od teraz ścieżki strzałek aktualizują się TYLKO jak ruszasz oknem - zero wciągania prądu! */
+              window.addEventListener('resize', function () { initLinks(); updateLinks(); });
+
+              nodes.forEach(function (node) {
+                node.addEventListener('mouseenter', function () {
+                  var id = node.getAttribute('data-id');
+                  edgePaths.forEach(function (item) {
+                    var path = item.path;
+                    if (path.dataset.to === id) {
+                      path.classList.add('is-highlighted');
+                      path.classList.remove('dimmed');
+                    } else {
+                      path.classList.add('dimmed');
+                      path.classList.remove('is-highlighted');
+                    }
+                  });
+                });
+
+                node.addEventListener('mouseleave', function () {
+                  edgePaths.forEach(function (item) { item.path.classList.remove('is-highlighted', 'dimmed'); });
+                });
+              });
+            })();
+          </script>
+        </section>
+
+        <!-- POŁĄCZENIA MCP – MAPA DANYCH -->
+        <section id="mcp-connections" class="page integrations-page">
+          <div id="mcp-flight-map">
+            <div class="ifm-glow ifm-glow--right" style="background: #a855f7; opacity: 0.15;"></div>
+            <div class="ifm-wrapper">
+              <div class="ifm-header">
+                <div class="ifm-title">POŁĄCZENIA MCP • AGENTIC AI • Dr Karol Core</div>
+                <div class="ifm-subtitle">
+                  Wizualizacja mostów danych (Model Context Protocol) oraz przepływu informacji między asystentem a
+                  ekosystemem.
+                </div>
+              </div>
+
+              <div class="ifm-scene">
+                <div class="ifm-board mcp-board">
+                  <svg class="ifm-links mcp-links" xmlns="http://www.w3.org/2000/svg"></svg>
+
+                  <div class="ifm-nodes-grid">
+                    <!-- RZĄD 1 -->
+                    <div class="ifm-node ifm-node--apilo" data-dir="up" data-id="dr-karol" data-brand="apilo">
+                      <div class="ifm-node-master-badge">CORE AI</div>
+                      <div class="ifm-node-tag">Asystent Systemowy</div>
+                      <div class="ifm-node-name">Dr Karol (Main Brain)</div>
+                      <div class="ifm-node-role">Orkiestrator Systemu</div>
+                      <div class="ifm-node-info">
+                        Główny moduł decyzyjny. Zarządza kontekstem, deleguje zadania do skilli i zarządza mostami MCP.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Ollama / Local LLM</span>
+                        <span class="ifm-chip">Voice Control</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--shoper" data-dir="right" data-id="mcp-google" data-brand="shoper">
+                      <div class="ifm-node-tag">MCP Server</div>
+                      <div class="ifm-node-name">Google Workspace</div>
+                      <div class="ifm-node-role">Bridge: Office & Mail</div>
+                      <div class="ifm-node-info">
+                        Dostęp do Gmaila, Kalendarza i Dokumentów. Pozwala na automatyzację korespondencji i planowanie
+                        zadań.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Gmail</span>
+                        <span class="ifm-chip">Calendar</span>
+                        <span class="ifm-chip">Drive</span>
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--kaja" data-dir="left" data-id="mcp-notebook" data-brand="kaja">
+                      <div class="ifm-node-tag">MCP Server</div>
+                      <div class="ifm-node-name">NotebookLM</div>
+                      <div class="ifm-node-role">Bridge: Research</div>
+                      <div class="ifm-node-info">
+                        Integracja z bazą wiedzy. Pozwala na głęboki research w Internecie i analizę dostarczonych
+                        źródeł.
+                      </div>
+                      <div class="ifm-chip-row">
+                        <span class="ifm-chip">Web Search</span>
+                        <span class="ifm-chip">Knowledge Sync</span>
+                      </div>
+                    </div>
+
+                    <!-- RZĄD 2 -->
+                    <div class="ifm-node ifm-node--prescot" data-dir="down" data-id="mcp-stitch" data-brand="prescot">
+                      <div class="ifm-node-tag">MCP Server</div>
+                      <div class="ifm-node-name">Stitch UI</div>
+                      <div class="ifm-node-role">Bridge: Design & Code</div>
+                      <div class="ifm-node-info">
+                        Generowanie i edycja interfejsów użytkownika. Pozwala Doktorowi Karolowi tworzyć wizualne
+                        komponenty.
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--kid" data-dir="up" data-id="mcp-filesystem" data-brand="kid">
+                      <div class="ifm-node-tag">System Bridge</div>
+                      <div class="ifm-node-name">File System</div>
+                      <div class="ifm-node-role">Lokalny dostęp</div>
+                      <div class="ifm-node-info">
+                        Bezpośredni dostęp do plików projektów, konfiguracji i logów systemowych na maszynie Karola.
+                      </div>
+                    </div>
+
+                    <div class="ifm-node ifm-node--tim" data-dir="right" data-id="mcp-brave" data-brand="tim">
+                      <div class="ifm-node-tag">Search Bridge</div>
+                      <div class="ifm-node-name">Brave Search</div>
+                      <div class="ifm-node-role">Real-time Web</div>
+                      <div class="ifm-node-info">
+                        Przeglądanie sieci w czasie rzeczywistym w poszukiwaniu najświeższych informacji
+                        technologicznych.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            (function () {
+              const board = document.querySelector('.mcp-board');
+              const svg = board.querySelector('.mcp-links');
+              const nodes = board.querySelectorAll('.ifm-node');
+              if (!board || !svg || !nodes.length) return;
+
+              const nodeMap = {};
+              nodes.forEach(n => { nodeMap[n.getAttribute('data-id')] = n; });
+
+              const edges = [
+                { from: 'dr-karol', to: 'mcp-google', flow: 'blue' },
+                { from: 'dr-karol', to: 'mcp-notebook', flow: 'violet' },
+                { from: 'dr-karol', to: 'mcp-stitch', flow: 'orange' },
+                { from: 'dr-karol', to: 'mcp-filesystem', flow: 'green' },
+                { from: 'dr-karol', to: 'mcp-brave', flow: 'yellow' }
+              ];
+
+              const svgNS = "http://www.w3.org/2000/svg";
+              let edgePaths = [];
+
+              function getCenter(node, boardRect) {
+                const r = node.getBoundingClientRect();
+                return { x: r.left - boardRect.left + r.width / 2, y: r.top - boardRect.top + r.height / 2 };
+              }
+
+              function initMCP() {
+                edgePaths = [];
+                Array.from(svg.children).forEach(el => {
+                  if (el.tagName && el.tagName.toLowerCase() !== 'defs') svg.removeChild(el);
+                });
+
+                edges.forEach(edge => {
+                  const fromNode = nodeMap[edge.from];
+                  const toNode = nodeMap[edge.to];
+                  if (!fromNode || !toNode) return;
+
+                  const path = document.createElementNS(svgNS, 'path');
+                  path.setAttribute('class', 'ifm-link');
+                  path.dataset.from = edge.from;
+                  path.dataset.to = edge.to;
+                  if (edge.flow) path.classList.add('flow-' + edge.flow);
+
+                  svg.appendChild(path);
+                  edgePaths.push({ edge, path });
+                });
+              }
+
+              function updateMCP() {
+                const boardRect = board.getBoundingClientRect();
+                svg.setAttribute('width', boardRect.width);
+                svg.setAttribute('height', boardRect.height);
+                svg.setAttribute('viewBox', `0 0 ${boardRect.width} ${boardRect.height}`);
+
+                edgePaths.forEach(item => {
+                  const p1 = getCenter(nodeMap[item.edge.from], boardRect);
+                  const p2 = getCenter(nodeMap[item.edge.to], boardRect);
+
+                  const mx = (p1.x + p2.x) / 2;
+                  const my = (p1.y + p2.y) / 2;
+                  const dx = p2.x - p1.x;
+                  const dy = p2.y - p1.y;
+
+                  let bend = 0.15;
+                  let cx = mx - dy * bend;
+                  let cy = my + dx * bend;
+
+                  item.path.setAttribute('d', `M ${p1.x} ${p1.y} Q ${cx} ${cy} ${p2.x} ${p2.y}`);
+                });
+              }
+
+              initMCP();
+              updateMCP();
+              window.updateMCPLinks = updateMCP;
+              window.initMCPLinks = initMCP;
+
+              window.addEventListener('resize', () => { initMCP(); updateMCP(); });
+              setInterval(updateMCP, 300);
+
+              nodes.forEach(node => {
+                node.addEventListener('mouseenter', () => {
+                  const id = node.getAttribute('data-id');
+                  edgePaths.forEach(item => {
+                    if (item.path.dataset.from === id || item.path.dataset.to === id) {
+                      item.path.classList.add('is-highlighted');
+                    } else {
+                      item.path.classList.add('dimmed');
+                    }
+                  });
+                });
+                node.addEventListener('mouseleave', () => {
+                  edgePaths.forEach(item => item.path.classList.remove('is-highlighted', 'dimmed'));
+                });
+              });
+            })();
+          </script>
+        </section>
+
+        <!-- BAZA WYPADOWA STRONY -->
+        <section id="w-trakcie" class="page">
+          <div style="padding: 60px 40px; max-width: 1000px; margin: 0 auto; color: white;">
+            <div style="font-size: 13px; color: #22c55e; letter-spacing: 0.2em; margin-bottom: 10px; font-weight: 800;">
+              <i class="fa-solid fa-code-fork"></i> AKTYWNOSĆ SYSTEMU
+            </div>
+            <h2 style="font-size: 38px; font-weight: 800; font-family: 'Rajdhani', sans-serif;">🛠 ROZPOCZĘTE <span
+                style="opacity:0.4">/ W TRAKCIE</span></h2>
+            <div style="margin-top: 30px; display: grid; gap: 20px;">
+
+              <div
+                style="background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(0,0,0,0.4)); border: 1px solid rgba(34,197,94,0.3); border-radius: 16px; padding: 24px; display:flex; align-items:center; gap:20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div
+                  style="width: 50px; height: 50px; background: rgba(34,197,94,0.2); border-radius: 12px; display:flex; align-items:center; justify-content:center; color: #22c55e; font-size: 24px;">
+                  <i class="fa-solid fa-microphone-lines"></i>
+                </div>
+                <div>
+                  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 5px;">Dr Karol Companion</h3>
+                  <p style="color: #94a3b8; font-size: 14px;">Integracja modelu lokalnego Ollama, przepisywanie detekcji
+                    głosowej z API na natywne skrypty. Optymalizacja komendy tts Mąka.</p>
+                </div>
+                <div
+                  style="margin-left: auto; background: rgba(34,197,94,0.2); color: #22c55e; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;">
+                  AKTYWNY</div>
+              </div>
+
+              <div
+                style="background: rgba(15,23,42,0.8); border: 1px solid rgba(148,163,184,0.1); border-radius: 16px; padding: 24px; display:flex; align-items:center; gap:20px;">
+                <div
+                  style="width: 50px; height: 50px; background: rgba(148,163,184,0.1); border-radius: 12px; display:flex; align-items:center; justify-content:center; color: #94a3b8; font-size: 24px;">
+                  <i class="fa-solid fa-border-all"></i>
+                </div>
+                <div>
+                  <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 5px;">Panel Finalny ZERO</h3>
+                  <p style="color: #94a3b8; font-size: 14px;">Dodawanie nowych widoów, optymalizacja Canvasów i SVG,
+                    przebudowa architektury na czysty lekki kod CSS bez obciążania MACA.</p>
+                </div>
+                <div
+                  style="margin-left: auto; background: rgba(234,179,8,0.2); color: #eab308; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;">
+                  W TOKU</div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section id="zrobione" class="page">
+          <div style="padding: 60px 40px; max-width: 1000px; margin: 0 auto; color: white;">
+            <div style="font-size: 13px; color: #38bdf8; letter-spacing: 0.2em; margin-bottom: 10px; font-weight: 800;">
+              <i class="fa-solid fa-check-double"></i> ŚCIANA CHWAŁY
+            </div>
+            <h2 style="font-size: 38px; font-weight: 800; font-family: 'Rajdhani', sans-serif;">✅ UKOŃCZONE <span
+                style="opacity:0.4">PROJEKTY</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+              <div
+                style="background: rgba(15,23,42,0.6); border: 1px solid rgba(56,189,248,0.3); padding: 20px; border-radius: 16px;">
+                <h4 style="color:#38bdf8; font-size:18px; font-weight: bold;">LED Configurator</h4>
+                <p style="font-size:13px; color:#cbd5e1; margin-top:8px;">Kompletne narzędzie pod Prescot do
+                  parametryzacji i konfiguracji linii świateł.</p>
+              </div>
+              <div
+                style="background: rgba(15,23,42,0.6); border: 1px solid rgba(56,189,248,0.3); padding: 20px; border-radius: 16px;">
+                <h4 style="color:#38bdf8; font-size:18px; font-weight: bold;">Antigravity Pulpit</h4>
+                <p style="font-size:13px; color:#cbd5e1; margin-top:8px;">React Dashboard łączący najważniejsze wtyczki
+                  narzędzi marketingowych.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="repo-github" class="page">
+          <div style="padding: 60px 40px; max-width: 1000px; margin: 0 auto; color: white;">
+            <div style="font-size: 13px; color: #a855f7; letter-spacing: 0.2em; margin-bottom: 10px; font-weight: 800;">
+              <i class="fa-brands fa-github"></i> REPOZYTORIA KODU
+            </div>
+            <h2 style="font-size: 38px; font-weight: 800; font-family: 'Rajdhani', sans-serif;">💻 GITHUB <span
+                style="opacity:0.4">/ SOURCE</span></h2>
+
+            <div
+              style="margin-top:20px; background: rgba(0,0,0,0.3); border: 1px solid rgba(148,163,184,0.2); padding: 20px; border-radius: 12px; display:flex; align-items:center;">
+              <div style="font-size: 30px; color: #a855f7; margin-right: 20px;"><i class="fa-solid fa-code-branch"></i>
+              </div>
+              <div>
+                <div style="font-size: 16px; font-weight: bold; color:white;">github.com/bohunek5/my-ai-agents</div>
+                <div style="font-size: 12px; color: #94a3b8; margin-top:3px;">Główne repozytorium z agentami oraz całą
+                  strukturą kodu.</div>
+              </div>
+              <button
+                style="margin-left: auto; background: rgba(168,85,247,0.2); color: #e9d5ff; border: 1px solid #a855f7; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;">OTWÓRZ</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="platformy-auto" class="page">
+          <div style="padding: 60px 40px; max-width: 1000px; margin: 0 auto; color: white;">
+            <div style="font-size: 13px; color: #facc15; letter-spacing: 0.2em; margin-bottom: 10px; font-weight: 800;">
+              <i class="fa-solid fa-bolt"></i> N8N / MAKE.COM
+            </div>
+            <h2 style="font-size: 38px; font-weight: 800; font-family: 'Rajdhani', sans-serif;">⚙️ AUTOMATYZACJE</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+              <div
+                style="background: rgba(250,204,21,0.05); border: 1px solid rgba(250,204,21,0.3); padding: 25px; border-radius: 16px;">
+                <i class="fa-solid fa-envelope-open-text"
+                  style="font-size: 24px; color: #facc15; margin-bottom: 15px;"></i>
+                <h4 style="font-size: 18px; font-weight: bold;">Parsowanie Maili Apilo</h4>
+                <p style="font-size:13px; color:#cbd5e1; margin-top:8px;">Workflow czytający zapytania z platform B2B i
+                  rzucający je systemowi AI.</p>
+              </div>
+              <div
+                style="background: rgba(250,204,21,0.05); border: 1px solid rgba(250,204,21,0.3); padding: 25px; border-radius: 16px;">
+                <i class="fa-solid fa-file-invoice" style="font-size: 24px; color: #facc15; margin-bottom: 15px;"></i>
+                <h4 style="font-size: 18px; font-weight: bold;">Generatory Wycen PDF</h4>
+                <p style="font-size:13px; color:#cbd5e1; margin-top:8px;">Złączona baza produktów KID i Shopper
+                  wyciągająca ceny na Make.com.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="moje-apki" class="page">
+          <div style="padding: 60px 40px; max-width: 1000px; margin: 0 auto; color: white;">
+            <div style="font-size: 13px; color: #fb923c; letter-spacing: 0.2em; margin-bottom: 10px; font-weight: 800;">
+              <i class="fa-solid fa-mobile-screen"></i> PORTFOLIO APLIKACJI
+            </div>
+            <h2 style="font-size: 38px; font-weight: 800; font-family: 'Rajdhani', sans-serif;">📱 OSOBISTE <span
+                style="opacity:0.4">APLIKACJE</span></h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+
+              <div
+                style="background: rgba(15,23,42,0.8); padding: 24px; border-radius: 16px; border: 1px solid rgba(251,146,60,0.3); position:relative; overflow:hidden;">
+                <div style="position:absolute; top:-20px; right:-20px; font-size:100px; opacity:0.05; color:#fb923c;"><i
+                    class="fa-solid fa-tree"></i></div>
+                <h4 style="color:#fb923c; font-size: 22px; font-weight:bold; margin-bottom:5px;">Mazury Holiday</h4>
+                <div style="font-size:13px; color:#cbd5e1; margin-bottom: 15px;">System zarządzania apartamentami +
+                  rezerwacje.</div>
+                <div
+                  style="background:rgba(251,146,60,0.1); color:#fdba74; display:inline-block; padding: 4px 10px; border-radius: 6px; font-size:11px;">
+                  Next.js + Tailwind</div>
+              </div>
+
+              <div
+                style="background: rgba(15,23,42,0.8); padding: 24px; border-radius: 16px; border: 1px solid rgba(251,146,60,0.3); position:relative; overflow:hidden;">
+                <div style="position:absolute; top:-20px; right:-20px; font-size:100px; opacity:0.05; color:#fb923c;"><i
+                    class="fa-solid fa-broom"></i></div>
+                <h4 style="color:#fb923c; font-size: 22px; font-weight:bold; margin-bottom:5px;">Spotless Home</h4>
+                <div style="font-size:13px; color:#cbd5e1; margin-bottom: 15px;">Najlepszy serwis sprzątający na
+                  Mazurach.</div>
+                <div
+                  style="background:rgba(251,146,60,0.1); color:#fdba74; display:inline-block; padding: 4px 10px; border-radius: 6px; font-size:11px;">
+                  React.js Web App</div>
+              </div>
+
+              <div
+                style="background: rgba(15,23,42,0.8); padding: 24px; border-radius: 16px; border: 1px solid rgba(251,146,60,0.3); position:relative; overflow:hidden;">
+                <div style="position:absolute; top:-20px; right:-20px; font-size:100px; opacity:0.05; color:#fb923c;"><i
+                    class="fa-solid fa-code"></i></div>
+                <h4 style="color:#fb923c; font-size: 22px; font-weight:bold; margin-bottom:5px;">Bohdanowicz IT</h4>
+                <div style="font-size:13px; color:#cbd5e1; margin-bottom: 15px;">Twój partner technologiczny. Strona
+                  firmowa.</div>
+                <div
+                  style="background:rgba(251,146,60,0.1); color:#fdba74; display:inline-block; padding: 4px 10px; border-radius: 6px; font-size:11px;">
+                  Vite + Tailwind</div>
+              </div>
+
+              <div
+                style="background: rgba(15,23,42,0.8); padding: 24px; border-radius: 16px; border: 1px solid rgba(251,146,60,0.3); position:relative; overflow:hidden;">
+                <div style="position:absolute; top:-20px; right:-20px; font-size:100px; opacity:0.05; color:#fb923c;"><i
+                    class="fa-solid fa-car"></i></div>
+                <h4 style="color:#fb923c; font-size: 22px; font-weight:bold; margin-bottom:5px;">Parking / Garaż App
+                </h4>
+                <div style="font-size:13px; color:#cbd5e1; margin-bottom: 15px;">Narzędzia optymalizacyjne przydzielania
+                  spacji garażowych.</div>
+                <div
+                  style="background:rgba(251,146,60,0.1); color:#fdba74; display:inline-block; padding: 4px 10px; border-radius: 6px; font-size:11px;">
+                  Internal Tools</div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- reszta stron (placeholdery) -->
+        <section id="auto-calls" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">Obdzwanianie klientów</div>
+        </section>
+        <section id="auto-products" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">Aktualizacja danych produktów</div>
+        </section>
+        <section id="app-offers" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">Tworzenie ofert</div>
+        </section>
+        <section id="app-leads" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">Szukanie odbiorców</div>
+        </section>
+        <section id="data-add" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">+ Wgraj dane</div>
+        </section>
+        <section id="data-list" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">Prescot wgrane dane</div>
+        </section>
+        <section id="tpl-cards" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">Karty katalogowe</div>
+        </section>
+        <section id="tpl-labels" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">Etykiety</div>
+        </section>
+        <section id="tpl-instr" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">Instrukcje</div>
+        </section>
+        <section id="tpl-boxes" class="page">
+          <div style="padding:18px;color:rgba(229,231,235,.75)">Pudełka</div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- =========================
+       LOGIN MODAL
+  ========================== -->
+  <div id="login-overlay"
+    style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); align-items: center; justify-content: center;">
+    <div
+      style="background: rgba(15,23,42,0.9); border: 1px solid #22c55e; border-radius: 24px; padding: 40px; width: 100%; max-width: 400px; box-shadow: 0 0 50px rgba(34,197,94,0.2);">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <i class="fa-solid fa-lock" style="color: #22c55e; font-size: 40px; margin-bottom: 15px;"></i>
+        <h2 style="font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 800; color: #fff;">BOHDANOWICZ IT
+          • LOGIN</h2>
+        <p style="color: #94a3b8; font-size: 11px; margin-top: 5px; text-transform: uppercase; letter-spacing: 2px;">
+          Restricted Access</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div>
+          <label
+            style="color: #22c55e; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;">Login</label>
+          <input type="text" id="login-user"
+            style="width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(34,197,94,0.3); border-radius: 12px; color: #fff; outline: none; font-family: 'JetBrains Mono', monospace;"
+            placeholder="admin">
+        </div>
+        <div>
+          <label
+            style="color: #22c55e; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px;">Password</label>
+          <input type="password" id="login-pass"
+            style="width: 100%; padding: 12px; background: rgba(0,0,0,0.5); border: 1px solid rgba(34,197,94,0.3); border-radius: 12px; color: #fff; outline: none; font-family: 'JetBrains Mono', monospace;"
+            placeholder="••••••••••">
+        </div>
+        <button onclick="checkLogin()"
+          style="width: 100%; padding: 15px; background: #22c55e; color: #000; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;"
+          onmouseover="this.style.background='#4ade80'"
+          onmouseout="this.style.background='#22c55e'">Authenticate_</button>
+        <p id="login-error" style="color: #ef4444; font-size: 12px; text-align: center; display: none;">Access Denied.
+          Try again.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ==========================================
+    // 1. MATRIX (ORYGINAŁ)
+    // ==========================================
+    const matrixCanvas = document.getElementById('matrix-bg');
+    const mCtx = matrixCanvas.getContext('2d');
+
+    function resizeMatrix() {
+      matrixCanvas.width = window.innerWidth;
+      matrixCanvas.height = window.innerHeight;
+    }
+    resizeMatrix();
+
+    const chars = '01';
+    const fontSize = 14;
+    let columns = matrixCanvas.width / fontSize;
+    let drops = Array(Math.floor(columns)).fill(1);
+    let scrollColorShift = 0;
+
+    let matrixId = setInterval(drawMatrix, 40);
+
+    function drawMatrix() {
+      mCtx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      mCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+      mCtx.font = fontSize + 'px "JetBrains Mono"';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+
+        // OMBRE EFFECT: Fade out based on Y position
+        const yPos = drops[i] * fontSize;
+        const opacity = Math.max(0.1, 1 - (yPos / matrixCanvas.height));
+
+        // RAINBOW OMBRE: Hue shifts based on Y position + horizontal offset for variety
+        const rainbowHue = ((yPos / matrixCanvas.height) * 360 + (i * 2)) % 360;
+        const saturation = 90;
+        const lightness = 60;
+
+        mCtx.fillStyle = `hsla(${rainbowHue}, ${saturation}%, ${lightness}%, ${opacity})`;
+
+        // Brighten random characters
+        if (Math.random() > 0.98) mCtx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+
+        mCtx.fillText(text, i * fontSize, yPos);
+
+        if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    }
+
+    // ==========================================
+    // 2. TEXT HACKER EFFECT (ORYGINAŁ)
+    // ==========================================
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    function runMatrixTextEffect(element, delay = 0) {
+      setTimeout(() => {
+        element.classList.add('text-visible');
+        let iteration = 0;
+        const targetText = element.dataset.value;
+        const interval = setInterval(() => {
+          element.innerText = targetText.split("").map((letter, index) => {
+            if (index < iteration) return targetText[index];
+            return letters[Math.floor(Math.random() * 26)];
+          }).join("");
+          if (iteration >= targetText.length) {
+            clearInterval(interval);
+            element.innerText = targetText;
+          }
+          iteration += 1 / 2;
+        }, 30);
+      }, delay);
+    }
+    runMatrixTextEffect(document.getElementById("main-title"), 500);
+    runMatrixTextEffect(document.getElementById("sub-title"), 2000);
+
+    // ==========================================
+    // 3. FIZYKA (MATTER.JS) (ORYGINAŁ)
+    // ==========================================
+    const { Engine, Render, Runner, Bodies, Composite, Mouse, MouseConstraint, Events, Body } = Matter;
+
+    const engine = Engine.create();
+    const world = engine.world;
+    engine.gravity.y = 0.8;
+
+    const container = document.getElementById('physics-container');
+    const render = Render.create({
+      element: container,
+      engine: engine,
+      options: {
+        width: window.innerWidth,
+        height: window.innerHeight,
+        background: 'transparent',
+        wireframes: false,
+        pixelRatio: window.devicePixelRatio
+      }
+    });
+
+    let ground, leftWall, rightWall;
+    function createWalls() {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ground = Bodies.rectangle(w / 2, h + 30, w, 60, { isStatic: true, render: { visible: false } });
+      leftWall = Bodies.rectangle(-30, h / 2, 60, h * 4, { isStatic: true, render: { visible: false } });
+      rightWall = Bodies.rectangle(w + 30, h / 2, 60, h * 4, { isStatic: true, render: { visible: false } });
+      Composite.add(world, [ground, leftWall, rightWall]);
+    }
+    createWalls();
+
+    const services = ["WWW", "AI", "Cloud", "Apps", "Cyber", "Audit", "Code", "Data", "Bot", "API"];
+    const icons = ["⚡", "🧠", "🔥", "🚀", "💎", "🛡️", "🧬", "💾"];
+    const themes = [
+      { fill: 'rgba(34, 197, 94, 0.2)', stroke: '#22c55e', shadow: '#22c55e' },
+      { fill: 'rgba(59, 130, 246, 0.2)', stroke: '#3b82f6', shadow: '#3b82f6' },
+      { fill: 'rgba(168, 85, 247, 0.2)', stroke: '#a855f7', shadow: '#a855f7' },
+      { fill: 'rgba(255, 255, 255, 0.1)', stroke: '#ffffff', shadow: '#ffffff' }
+    ];
+
+    function createBox(x, y, text, isIcon) {
+      const theme = themes[Math.floor(Math.random() * themes.length)];
+      const width = isIcon ? 60 : 100 + (text.length * 10);
+      const height = isIcon ? 60 : 50;
+
+      return Bodies.rectangle(x, y, width, height, {
+        restitution: 0.8,
+        friction: 0.1,
+        frictionAir: 0.01,
+        chamfer: { radius: 10 },
+        render: { fillStyle: theme.fill, strokeStyle: theme.stroke, lineWidth: 2 },
+        plugin: { text, isIcon, theme }
+      });
+    }
+
+    const physicsBodies = [];
+    function spawnObjects() {
+      services.forEach(s => physicsBodies.push(createBox(Math.random() * (window.innerWidth - 200) + 100, Math.random() * -1000 - 100, s, false)));
+      for (let i = 0; i < 15; i++) physicsBodies.push(createBox(Math.random() * (window.innerWidth - 100) + 50, Math.random() * -1000 - 100, icons[i % icons.length], true));
+      Composite.add(world, physicsBodies);
+    }
+    spawnObjects();
+
+    const mouse = Mouse.create(render.canvas);
+    mouse.pixelRatio = window.devicePixelRatio;
+    const mouseConstraint = MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: { stiffness: 0.2, render: { visible: false } }
+    });
+    Composite.add(world, mouseConstraint);
+    render.mouse = mouse;
+
+    Events.on(render, 'afterRender', function () {
+      const ctx = render.context;
+      physicsBodies.forEach(body => {
+        const { x, y } = body.position;
+        const { text, isIcon, theme } = body.plugin;
+
+        ctx.translate(x, y);
+        ctx.rotate(body.angle);
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        ctx.font = isIcon ? '30px "Segoe UI Emoji"' : 'bold 14px "JetBrains Mono"';
+        ctx.fillStyle = '#fff';
+        ctx.shadowColor = theme.shadow;
+        ctx.shadowBlur = 10;
+        ctx.fillText(text, 0, 0);
+        ctx.shadowBlur = 0;
+
+        ctx.rotate(-body.angle);
+        ctx.translate(-x, -y);
+      });
+    });
+
+    Render.run(render);
+    Runner.run(Runner.create(), engine);
+
+    window.addEventListener('resize', () => {
+      resizeMatrix();
+      render.canvas.width = window.innerWidth;
+      render.canvas.height = window.innerHeight;
+
+      Composite.remove(world, [ground, leftWall, rightWall]);
+      createWalls();
+
+      columns = matrixCanvas.width / fontSize;
+      drops = Array(Math.floor(columns)).fill(1);
+    });
+
+    // ==========================================
+    // 4. GSAP SCROLL (oryginał)
+    // ==========================================
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to({ val: 0 }, {
+      val: 200,
+      scrollTrigger: { trigger: "body", start: "top top", end: "bottom bottom", scrub: 1 },
+      onUpdate: function () { scrollColorShift = this.targets()[0].val; }
+    });
+
+    // ==========================================
+    // PANEL: dźwięk "plumknięcie wody" + nawigacja
+    // ==========================================
+    let audioCtx = null;
+    function initAudio() {
+      if (audioCtx) return;
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    // DELIKATNE "PLUMKNIĘCIE WODY"
+    function playPlop() {
+      if (!audioCtx) return;
+      const t0 = audioCtx.currentTime;
+
+      // krótkie "drop" sine
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(980, t0);
+      osc.frequency.exponentialRampToValueAtTime(420, t0 + 0.07);
+
+      gain.gain.setValueAtTime(0.0001, t0);
+      gain.gain.exponentialRampToValueAtTime(0.045, t0 + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.14);
+
+      osc.connect(gain).connect(audioCtx.destination);
+      osc.start(t0);
+      osc.stop(t0 + 0.15);
+
+      // mini "splash" noise
+      const bufferSize = Math.floor(audioCtx.sampleRate * 0.09);
+      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const data = noiseBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        const d = Math.exp(-i / (audioCtx.sampleRate * 0.022));
+        data[i] = (Math.random() * 2 - 1) * d;
+      }
+      const noise = audioCtx.createBufferSource();
+      noise.buffer = noiseBuffer;
+
+      const bp = audioCtx.createBiquadFilter();
+      bp.type = 'bandpass';
+      bp.frequency.setValueAtTime(820, t0);
+      bp.Q.setValueAtTime(2.0, t0);
+
+      const ng = audioCtx.createGain();
+      ng.gain.setValueAtTime(0.0001, t0);
+      ng.gain.exponentialRampToValueAtTime(0.020, t0 + 0.008);
+      ng.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.11);
+
+      noise.connect(bp).connect(ng).connect(audioCtx.destination);
+      noise.start(t0);
+      noise.stop(t0 + 0.12);
+    }
+
+    // odblokuj audio przy pierwszym tapnięciu
+    document.addEventListener('pointerdown', initAudio, { once: true });
+
+    // ==========================================
+    // WEJŚCIE DO PANELU: klik na tytule (hitbox)
+    // ==========================================
+    const titleEnterBtn = document.getElementById('titleEnterBtn');
+    const appShell = document.getElementById('app-shell');
+    const brandingLayer = document.getElementById('brandingLayer');
+    const physicsContainer = document.getElementById('physics-container');
+
+    function enterPanel() {
+      initAudio(); playPlop();
+      document.getElementById('login-overlay').style.display = 'flex';
+    }
+
+    function checkLogin() {
+      const u = document.getElementById('login-user').value;
+      const p = document.getElementById('login-pass').value;
+      const error = document.getElementById('login-error');
+
+      if (u === 'admin' && p === '1234567890') {
+        initAudio(); playPlop();
+        document.getElementById('login-overlay').style.display = 'none';
+
+        // UKRYJ MATRIX (OSZCZĘDZAJ PROCESOR I WYGLĄD)
+        clearInterval(matrixId);
+        document.getElementById('matrix-bg').style.display = 'none';
+
+        // ukryj start
+        if (brandingLayer) brandingLayer.style.display = 'none';
+        if (titleEnterBtn) titleEnterBtn.style.display = 'none';
+
+        // wyłącz fizykę (menu ma być lekkie)
+        if (physicsContainer) {
+          physicsContainer.style.opacity = '0';
+          physicsContainer.style.pointerEvents = 'none';
+        }
+
+        // pokaż panel
+        appShell.style.display = 'block';
+
+        // start na Integracjach
+        showPage('integrations', document.querySelector('.menu-item[data-page="integrations"]'));
+      } else {
+        error.style.display = 'block';
+        setTimeout(() => { error.style.display = 'none'; }, 2000);
+      }
+    }
+
+    if (titleEnterBtn) {
+      titleEnterBtn.addEventListener('click', enterPanel);
+      titleEnterBtn.addEventListener('touchstart', () => { initAudio(); }, { passive: true });
+    }
+
+    // mobile menu
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const burgerBtn = document.getElementById('burgerBtn');
+
+    function openMenu() { sidebar.classList.add('open'); overlay.classList.add('show'); }
+    function closeMenu() { sidebar.classList.remove('open'); overlay.classList.remove('show'); }
+
+    if (burgerBtn) {
+      burgerBtn.addEventListener('click', () => {
+        initAudio(); playPlop();
+        if (sidebar.classList.contains('open')) closeMenu(); else openMenu();
+      });
+    }
+    if (overlay) overlay.addEventListener('click', closeMenu);
+
+    function toggleSubmenu(element, key) {
+      initAudio(); playPlop();
+      const submenu = document.querySelector('.submenu[data-submenu="' + key + '"]');
+      const chevron = element.querySelector('.chevron');
+      if (!submenu) return;
+      submenu.classList.toggle('open');
+      if (chevron) chevron.classList.toggle('rotate');
+    }
+
+    function showPage(pageId, element) {
+      initAudio(); playPlop();
+
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+      const page = document.getElementById(pageId);
+      if (page) page.classList.add('active-page');
+
+      // TRIGER LINK UPDATE IF INTEGRATIONS TAB IS SHOWN
+      if (pageId === 'integrations' && typeof window.updateLinks === 'function') {
+        setTimeout(window.updateLinks, 50);
+      }
+      if (pageId === 'mcp-connections' && typeof window.updateMCPLinks === 'function') {
+        setTimeout(() => {
+          if (typeof window.initMCPLinks === 'function') window.initMCPLinks();
+          window.updateMCPLinks();
+        }, 50);
+      }
+
+      if (element && element.classList && element.classList.contains('menu-item')) {
+        document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+        element.classList.add('active');
+      } else {
+        const i = document.querySelector('.menu-item[data-page="integrations"]');
+        if (i) {
+          document.querySelectorAll('.menu-item').forEach(item => item.classList.remove('active'));
+          i.classList.add('active');
+        }
+      }
+
+      if (window.matchMedia('(max-width: 680px)').matches) closeMenu();
+    }
+
+    // profil -> integracje
+    const profileEntry = document.getElementById('profileEntry');
+    if (profileEntry) {
+      profileEntry.addEventListener('click', () => showPage('integrations', document.querySelector('.menu-item[data-page="integrations"]')));
+    }
+
+    // (opcjonalnie) Enter / Space na klawiaturze -> wejście do panelu
+    window.addEventListener('keydown', (e) => {
+      if (appShell.style.display === 'block') return;
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        enterPanel();
+      }
+    });
+  </script>
+  <script>
+    function renderAntigravityDashboard() {
+      if (!window.ANTIGRAVITY_DATA) return;
+      const data = window.ANTIGRAVITY_DATA;
+
+      // Task Info
+      const nameEl = document.getElementById('ag-task-name');
+      if (nameEl) nameEl.textContent = data.currentTask.name;
+
+      const descEl = document.getElementById('ag-task-desc');
+      if (descEl) descEl.textContent = data.currentTask.status; // Using status as desc
+
+      const statusText = document.getElementById('ag-status-text');
+      if (statusText) statusText.textContent = data.active ? 'ACTIVE' : 'IDLE';
+
+      const syncEl = document.getElementById('ag-last-sync');
+      if (syncEl) syncEl.textContent = data.lastUpdate;
+
+      // Checklist
+      const clContainer = document.getElementById('ag-checklist');
+      if (clContainer) {
+        clContainer.innerHTML = '';
+        data.checklist.forEach(item => {
+          const div = document.createElement('div');
+          div.style.display = 'flex';
+          div.style.alignItems = 'center';
+          div.style.gap = '8px';
+          div.innerHTML = `
+                    <i class="fa-solid ${item.done ? 'fa-check-circle' : 'fa-circle'}" style="color: ${item.done ? '#22c55e' : '#475569'};"></i>
+                    <span style="${item.done ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${item.text}</span>
+                `;
+          clContainer.appendChild(div);
+        });
+      }
+
+      // Artifacts
+      const artContainer = document.getElementById('ag-artifacts');
+      if (artContainer) {
+        artContainer.innerHTML = '';
+        data.artifacts.forEach(art => {
+          const div = document.createElement('div');
+          div.innerHTML = `
+                    <a href="${art.path}" target="_blank" style="color: #38bdf8; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s;">
+                        <i class="fa-regular fa-file-code"></i> ${art.name}
+                    </a>
+                `;
+          artContainer.appendChild(div);
+        });
+      }
+    }
+
+    // Render on load and every 2 seconds
+    window.addEventListener('load', renderAntigravityDashboard);
+    setInterval(renderAntigravityDashboard, 2000);
+  </script>
+</body>
+
+</html>
