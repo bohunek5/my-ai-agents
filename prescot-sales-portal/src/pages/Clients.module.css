@@ -1,0 +1,895 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background);
+}
+
+.main {
+    flex: 1;
+    margin-left: 300px;
+    padding: 2.5rem;
+    height: 100vh;
+    overflow: hidden;
+    /* Fix: remove the "streak" (redundant main scrollbar) */
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 950;
+    margin-bottom: 0.5rem;
+    color: var(--foreground);
+    letter-spacing: -1.5px;
+}
+
+.subtitle {
+    color: var(--muted-foreground);
+    font-weight: 500;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.repTag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-size: 2.2rem;
+    font-weight: 950;
+    letter-spacing: -1px;
+}
+
+.searchBar {
+    position: relative;
+    width: 450px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #475569;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    color: var(--foreground);
+    transition: all 0.3s;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 20px rgba(225, 78, 38, 0.1);
+}
+
+.overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.statsCard {
+    padding: 1.5rem 2rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: var(--glass-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+}
+
+.accent {
+    background: rgba(225, 78, 38, 0.05) !important;
+    border-color: rgba(225, 78, 38, 0.1) !important;
+}
+
+.statsIcon {
+    width: 52px;
+    height: 52px;
+    background: rgba(225, 78, 38, 0.08);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+}
+
+.statsInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.statsLabel {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.statsValue {
+    font-size: 1.6rem;
+    font-weight: 950;
+    color: var(--foreground);
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    gap: 0;
+    flex: 1;
+    min-height: 0;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+    contain: paint;
+    /* Hard fix for vertical streaks on macOS */
+}
+
+.listSection {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--background) !important;
+    border: none !important;
+    border-right: 1px solid var(--glass-border) !important;
+}
+
+.listHeader {
+    padding: 1.5rem;
+    background: var(--muted);
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.listTitle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.backBtn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--foreground);
+    transition: all 0.2s;
+}
+
+.backBtn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    transform: translateX(-2px);
+}
+
+.clientList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.clientItem {
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    transition: background 0.1s ease;
+    /* No 'all' = no smudge */
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+.clientItem:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.clientItem.active {
+    background: rgba(225, 78, 38, 0.1);
+    border-color: rgba(225, 78, 38, 0.2);
+}
+
+.clientItem.active .clientName {
+    color: var(--primary);
+}
+
+.clientMain {
+    flex: 1;
+}
+
+.clientName {
+    font-weight: 900;
+    font-size: 1.1rem;
+    margin-bottom: 0.1rem;
+    color: var(--foreground);
+}
+
+.clientIndustry {
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+    font-weight: 500;
+}
+
+.clientPotential {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.potentialBar {
+    width: 60px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.potentialFill {
+    height: 100%;
+    background: var(--primary);
+    width: var(--progress, 0%);
+    transition: width 1s ease;
+}
+
+.clientPotential span {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--muted-foreground);
+}
+
+.repList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.repItem {
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.repItem:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.repAvatar {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    background: var(--muted);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.repInfo {
+    flex: 1;
+}
+
+.repName {
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: var(--foreground);
+    margin-bottom: 4px;
+}
+
+.repStats {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.arrow {
+    color: var(--muted-foreground);
+}
+
+.detailSection {
+    height: 100%;
+}
+
+.detailCard {
+    height: 100%;
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    overflow-y: auto;
+    position: relative;
+    box-shadow: var(--shadow-premium);
+}
+
+.detailHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.detailAvatar {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--primary) 0%, #f59e0b 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 950;
+    color: white;
+    box-shadow: 0 4px 15px rgba(225, 78, 38, 0.2);
+}
+
+.detailTitle h2 {
+    font-size: 1.8rem;
+    font-weight: 950;
+    color: var(--foreground);
+    margin-bottom: 0.2rem;
+    letter-spacing: -1px;
+}
+
+.detailTitle p {
+    color: var(--muted-foreground);
+    font-weight: 500;
+}
+
+.detailGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.detailItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s;
+}
+
+.detailItem:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.detailItem svg {
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+.detailItem label {
+    display: block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    font-weight: 800;
+    margin-bottom: 1px;
+}
+
+.detailItem span {
+    color: var(--foreground);
+    font-weight: 800;
+    font-size: 0.95rem;
+}
+
+.link {
+    color: #3b82f6 !important;
+    cursor: pointer;
+}
+
+.aiInsightSection {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.aiIcon {
+    color: var(--primary) !important;
+}
+
+.aiInsightBox {
+    background: rgba(225, 78, 38, 0.05);
+    /* very light primary glow */
+    border: 1px solid rgba(225, 78, 38, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.aiInsightBox::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--primary);
+}
+
+.aiInsightBox p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--foreground);
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.aiInsightBox span {
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.aiInsightBox em {
+    font-style: italic;
+    font-weight: 700;
+}
+
+.potentialBox {
+    background: rgba(59, 130, 246, 0.05);
+    /* very light blue glow */
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.potentialBox::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #3b82f6;
+}
+
+.icebreakerBox {
+    background: rgba(34, 197, 94, 0.05);
+    /* very light green glow */
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.icebreakerBox::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #22c55e;
+}
+
+.greenIcon {
+    color: #22c55e !important;
+}
+
+.blueIcon {
+    color: #3b82f6 !important;
+}
+
+.crmSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.crmHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.crmHeader h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    font-weight: 800;
+}
+
+.crmTextarea {
+    flex: 1;
+    background: var(--muted);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    color: var(--foreground);
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.6;
+    resize: none;
+    transition: all 0.3s;
+}
+
+.crmTextarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.saveBtn {
+    align-self: flex-end;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 14px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.saveBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(225, 78, 38, 0.3);
+}
+
+.blueBtn {
+    background: #3b82f6 !important;
+}
+
+.blueBtn:hover {
+    box-shadow: 0 5px 20px rgba(59, 130, 246, 0.3) !important;
+}
+
+.noteField {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.orangeIcon {
+    color: var(--primary) !important;
+}
+
+.blueIcon {
+    color: #3b82f6 !important;
+}
+
+.readonlyNote {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    color: var(--muted-foreground);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    min-height: 80px;
+}
+
+.presidentNote {
+    border-left: 3px solid #3b82f6;
+    background: transparent;
+    color: var(--foreground);
+    font-weight: 500;
+}
+
+.emptyState {
+    height: 100%;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 4rem;
+    background: rgba(255, 255, 255, 0.02) !important;
+}
+
+.emptyState svg {
+    opacity: 0.2;
+}
+
+.emptyState h3 {
+    color: var(--muted-foreground);
+    font-weight: 800;
+}
+
+/* Fix for the vertical smear/streak artifact */
+.detailSection {
+    position: relative;
+    overflow: hidden;
+}
+
+.filterIcon {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.filterWrapper {
+    position: relative;
+}
+
+
+.sortMenu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 0.8rem;
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 0.4rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    min-width: 190px;
+    box-shadow: var(--shadow-premium);
+}
+
+.sortOption {
+    text-align: left;
+    background: transparent;
+    color: var(--foreground);
+    border: none;
+    justify-content: flex-start;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.sortOption:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sortOptionActive {
+    background: var(--primary-glow);
+    color: var(--primary);
+}
+
+.crossSellSection {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.crossSellTitle {
+    color: #eab308;
+}
+
+.crossSellBox {
+    background: rgba(234, 179, 8, 0.05);
+    border: 1px solid rgba(234, 179, 8, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.crossSellBox::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #eab308;
+}
+
+.crossSellContent strong {
+    color: #eab308;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.crossSellContent {
+    font-size: 0.95rem;
+    color: var(--foreground);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.crossSellContent em {
+    display: block;
+    font-style: italic;
+    color: var(--muted-foreground);
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+}
+
+
+.searchIcon {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #475569;
+    pointer-events: none;
+}
+
+.crossSellSummaryBox {
+    margin-bottom: 1rem;
+    color: var(--muted-foreground);
+    font-size: 0.85rem;
+}
+
+.crossSellBoxSuccess {
+    background: rgba(34, 197, 94, 0.05) !important;
+    border-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+.qtyHeader {
+    text-align: right !important;
+}
+
+.detailBodyColumns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.aiInsightSection {
+    margin: 0;
+}
+
+.purchaseTableSection {
+    margin: 0;
+}
+
+.aiInsightBox {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-height: 200px;
+}
+
+.aiInsightBox p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--foreground);
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.purchaseTableWrapper {
+    background: rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.purchaseTable th {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted-foreground);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.qtyHeader {
+    text-align: right !important;
+}
+
+.purchaseTable td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    color: var(--foreground);
+}
+
+.purchaseTable tr:last-child td {
+    border-bottom: none;
+}
+
+.purchaseQty {
+    font-weight: 800;
+    color: var(--primary);
+    text-align: right;
+    width: 100px;
+}
+
+.purchaseTotalRow {
+    background: rgba(255, 255, 255, 0.02);
+    font-weight: 950;
+    color: var(--foreground);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+.purchaseTotalValue {
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+.emptyPurchaseState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    font-size: 0.85rem;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

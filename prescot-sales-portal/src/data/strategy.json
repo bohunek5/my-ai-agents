@@ -1,0 +1,46 @@
+{
+    "week1": {
+        "day1": {
+            "title": "Audyt Brakującego Ogniwa",
+            "task": "Przejrzenie list TOP 10 swoich klientów. Wytypowanie tych, którzy mają rażące dysproporcje (np. dużo taśm, brak zasilaczy). Przygotowanie indywidualnych ofert brakujących."
+        },
+        "day2": {
+            "title": "Uderzenie w branżę meblową i produkcyjną",
+            "task": "Kontakt z producentami mebli (REJS, WIECH, DORA METAL) - oferta na personalizowane zestawy i profile ALU."
+        },
+        "day3": {
+            "title": "Zasilanie to podstawa",
+            "task": "Promocja zasilaczy Scharfer (7 lat gwarancji) u klientów kupujących taśmy Premium."
+        },
+        "day4": {
+            "title": "Sterowanie i Technologia",
+            "task": "Kontakt z klientami kupującymi sterowniki (AB GROUP, 3N MICHAŁ RÓG) - oferta na hurtowe ilości taśm w rolkach."
+        },
+        "day5": {
+            "title": "Dzień Próbek i Logistyki",
+            "task": "Wysyłka paczek z próbkami do klientów zainteresowanych w poprzednich dniach. Propozycja Zestawów Instalatora (Iwona)."
+        }
+    },
+    "week2": {
+        "day6": {
+            "title": "Wojna o Profile (Kluś vs Prescot ALU)",
+            "task": "Kontakt z klientami kupującymi profile Kluś. Argumentacja: identyczne parametry, lepsza cena i dostępność Prescot ALU."
+        },
+        "day7": {
+            "title": "Wojna o Zasilacze (MeanWell/GLP vs Scharfer/Prescot)",
+            "task": "Konwersja zasilaczy marek obcych na markę własną Prescot/Scharfer."
+        },
+        "day8": {
+            "title": "Branże Specjalistyczne i Usługi",
+            "task": "Oferta na profile hermetyzowane IP67 (WROMAK) oraz usługi prefabrykacji/lutowania (WIDRO, WIRBUD)."
+        },
+        "day9": {
+            "title": "Rozwiązania dla Reklamy i POS",
+            "task": "Kontakt z firmami od POS (WILLSON&BROWN) - oferta na taśmy w rolkach przemysłowych (50-100m)."
+        },
+        "day10": {
+            "title": "Zamykanie Miesiąca i Raport NDA",
+            "task": "Finalizacja zamówień. Sprawdzenie umów NDA u kontrahentów B2B."
+        }
+    }
+}
