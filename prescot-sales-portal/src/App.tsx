@@ -13,6 +13,7 @@ import { Notepad } from './pages/Notepad';
 
 import { SalesAnalytics } from './pages/SalesAnalytics';
 import { SalesStock } from './pages/SalesStock';
+import { TestLeadDetail } from './pages/TestLeadDetail';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, isLoading } = useAuth();
@@ -89,6 +90,14 @@ const App: React.FC = () => {
               element={
                 <ProtectedRoute>
                   <Notepad />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/test-lead"
+              element={
+                <ProtectedRoute>
+                  <TestLeadDetail />
                 </ProtectedRoute>
               }
             />

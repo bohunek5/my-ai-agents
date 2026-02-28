@@ -370,12 +370,12 @@ export const Clients: React.FC = () => {
                                         </div>
                                         <div className={styles.aiInsightBox}>
                                             <p>
-                                                {selectedClient.detail.replace(/\\n/g, '\n').split('\n\nWYBRANE ZAKUPY')[0]}
+                                                {selectedClient.companyAnalysis}
                                             </p>
                                         </div>
                                     </div>
 
-                                    {selectedClient.detail.includes('WYBRANE ZAKUPY') ? (
+                                    {selectedClient.purchaseHistory && selectedClient.purchaseHistory !== "Brak historii zakupów." ? (
                                         <div className={styles.purchaseTableSection}>
                                             <div className={styles.crmHeader}>
                                                 <Tags size={16} className={styles.orangeIcon} />
@@ -387,35 +387,38 @@ export const Clients: React.FC = () => {
                                                         <tr>
                                                             <th>Towar / Model</th>
                                                             <th className={styles.qtyHeader}>Sztuk</th>
+                                                            <th className={styles.qtyHeader}>Wartość</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         {(() => {
-                                                            const cleanDetail = selectedClient.detail.replace(/\\n/g, '\n');
-                                                            const parts = cleanDetail.split('WYBRANE ZAKUPY W PRESCOT:');
-                                                            if (parts.length < 2) return null;
-                                                            const listPart = parts[1].split('ŁĄCZNIE:')[0];
-                                                            const totalPart = parts[1].split('ŁĄCZNIE:')[1];
-                                                            const lines = listPart.trim().split('\n').filter(l => l.includes('•'));
+                                                            const history = selectedClient.purchaseHistory.replace(/\\n/g, '\n');
+                                                            const lines = history.split('\n').filter(l => l.includes('•'));
+                                                            const totalLine = history.split('\n').find(l => l.includes('ŁĄCZNIE:'));
 
                                                             return (
                                                                 <>
                                                                     {lines.map((line, lid) => {
                                                                         const cleanLine = line.replace('•', '').trim();
-                                                                        const qtyMatch = cleanLine.match(/\((.*)\)$/);
-                                                                        const namePart = cleanLine.replace(/\(.*\)$/, '').trim();
-                                                                        const qtyPart = qtyMatch ? qtyMatch[1] : '?';
+                                                                        const parts = cleanLine.split('|');
+                                                                        const namePart = parts[0].trim();
+                                                                        const qtyPart = parts[1] ? parts[1].replace('Ilość:', '').trim() : '?';
+                                                                        const valuePart = parts[3] ? parts[3].replace('Wartość:', '').trim() : '';
+
                                                                         return (
                                                                             <tr key={lid}>
                                                                                 <td>{namePart}</td>
                                                                                 <td className={styles.purchaseQty}>{qtyPart}</td>
+                                                                                <td className={styles.purchaseQty}>{valuePart}</td>
                                                                             </tr>
                                                                         );
                                                                     })}
-                                                                    {totalPart && (
+                                                                    {totalLine && (
                                                                         <tr className={styles.purchaseTotalRow}>
-                                                                            <td>Łączny Wolumen</td>
-                                                                            <td className={`${styles.purchaseQty} ${styles.purchaseTotalValue}`}>{totalPart.trim()}</td>
+                                                                            <td>Suma zamówień</td>
+                                                                            <td colSpan={2} className={`${styles.purchaseQty} ${styles.purchaseTotalValue}`}>
+                                                                                {totalLine.replace('ŁĄCZNIE:', '').trim()}
+                                                                            </td>
                                                                         </tr>
                                                                     )}
                                                                 </>

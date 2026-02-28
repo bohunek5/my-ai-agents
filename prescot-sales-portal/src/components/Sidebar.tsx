@@ -63,7 +63,7 @@ export const Sidebar: React.FC = () => {
             icon: <Zap size={20} />,
             label: 'Stany Magazynowe',
             path: '/stock',
-            visible: isPrezes
+            visible: !isPrezes // User said prezesi don't need this
         },
         {
             icon: isPrezes ? <Zap size={20} /> : <BookOpen size={20} />,

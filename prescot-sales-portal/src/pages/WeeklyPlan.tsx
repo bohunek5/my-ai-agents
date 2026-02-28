@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Sidebar } from '../components/Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { REPS, getDailyPlanForRep, getLeadById } from '../data/mockData';
+import type { Lead } from '../data/mockData';
 import {
     Zap,
     BrainCircuit,
@@ -60,6 +61,11 @@ export const WeeklyPlan: React.FC = () => {
         return all;
     });
 
+    const [mastermindPlan, setMastermindPlan] = useState<Record<string, Record<string, string[]>>>(() => {
+        const saved = localStorage.getItem('prescot_mastermind_plan');
+        return saved ? JSON.parse(saved) : {};
+    });
+
     const days = useMemo(() => ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'], []);
 
     const closeModal = useCallback(() => {
@@ -102,15 +108,29 @@ export const WeeklyPlan: React.FC = () => {
         };
     }, [closeModal]);
 
+    const getPlanForDay = useCallback((repId: string, day: string) => {
+        const basePlan = getDailyPlanForRep(repId, day);
+        const mmPlanIds = mastermindPlan[repId]?.[day] || [];
+
+        if (mmPlanIds.length > 0) {
+            const mmLeads = mmPlanIds.map(id => getLeadById(id)).filter(Boolean) as Lead[];
+            // If we have MM plan, we use it. If it has less than 3, we fill with base.
+            // Requirement was exactly 3 from algorithm.
+            return { retention: mmLeads };
+        }
+
+        return basePlan;
+    }, [mastermindPlan]);
+
     const calculateDailyProgress = useCallback((repId: string, day: string) => {
-        const plan = getDailyPlanForRep(repId, day);
-        const target = 5;
+        const plan = getPlanForDay(repId, day);
+        const target = plan.retention.length || 5;
         const repTasks = taskStatuses[repId] || {};
         const completed = [...plan.retention].filter(t =>
             repTasks[t.id] && repTasks[t.id] !== 'pending'
         ).length;
-        return Math.round((completed / target) * 100);
-    }, [taskStatuses]);
+        return target > 0 ? Math.round((completed / target) * 100) : 0;
+    }, [taskStatuses, getPlanForDay]);
 
     const hasCRMNote = (repId: string, taskId: string) => {
         const notes = taskNotes[repId] || {};
@@ -157,16 +177,24 @@ export const WeeklyPlan: React.FC = () => {
     };
 
     const resetAllProgress = () => {
-        if (!window.confirm('CZY NA PEWNO CHCESZ ZRESETOWAĆ WSZYSTKIE POSTĘPY?')) return;
+        if (!window.confirm('CZY NA PEWNO CHCESZ ZRESETOWAĆ WSZYSTKIE POSTĘPY, WYTYCZNE I PLAN MASTERMINDA?')) return;
+
         REPS.forEach(rep => {
             localStorage.removeItem(`prescot_tasks_${rep.id}`);
             localStorage.removeItem(`prescot_notes_${rep.id}`);
+            localStorage.removeItem(`prescot_postponed_${rep.id}`);
         });
+
         localStorage.removeItem('prescot_president_notes');
+        localStorage.removeItem('prescot_mastermind_plan');
+
         setTaskStatuses({});
         setTaskNotes({});
         setPresidentNotes({});
-        alert('SYSTEM ZRESETOWANY.');
+        setMastermindPlan({});
+        setPostponedDates({});
+
+        alert('SYSTEM ZRESETOWANY. WSZYSTKIE DANE ZOSTAŁY WYCZYSZCZONE.');
     };
 
     const strategicInsights = useMemo(() => {
@@ -187,23 +215,45 @@ export const WeeklyPlan: React.FC = () => {
         return { weekProgress, totalCalls: fixedWeeklyTarget, completedCalls: completedCount, totalContacts };
     }, [selectedRep, taskStatuses]);
 
-    const presidentNotesSummary = useMemo(() => {
-        if (user?.role !== 'prezes' && user?.role !== 'admin') return [];
-        return Object.entries(presidentNotes)
-            .filter(([, note]) => note.trim().length > 0)
-            .map(([key, note]) => {
-                const [repId, taskId] = key.split('_');
-                const rep = REPS.find(r => r.id === repId);
-                const lead = getLeadById(taskId);
-                return { repName: rep?.name || '?', leadName: lead?.name || taskId, note, repId, taskId };
-            });
-    }, [presidentNotes, user?.role]);
+
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+    const handleUlozPlan = async () => {
+        setIsAnalyzing(true);
+        const { runMastermindAnalysis } = await import('../utils/mastermindLogic');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        const { directives, plan } = runMastermindAnalysis();
+
+        // 1. Update President Notes (Directives)
+        const newPresidentNotes = { ...presidentNotes };
+        directives.forEach(res => {
+            const key = `${res.repId}_${res.clientId}`;
+            if (!newPresidentNotes[key] || newPresidentNotes[key].includes('QUICK WIN') || newPresidentNotes[key].includes('CHURN') || newPresidentNotes[key].includes('REGRESJA')) {
+                newPresidentNotes[key] = res.directive;
+            }
+        });
+        setPresidentNotes(newPresidentNotes);
+        localStorage.setItem('prescot_president_notes', JSON.stringify(newPresidentNotes));
+
+        // 2. Update Weekly Plan Distribution
+        setMastermindPlan(plan);
+        localStorage.setItem('prescot_mastermind_plan', JSON.stringify(plan));
+
+        setIsAnalyzing(false);
+        alert(`AGENT MASTERMIND ZAKOŃCZYŁ ANALIZĘ.\n\nWygenerowano ${directives.length} nowych wytycznych oraz ułożono optymalny plan (3 firmy dziennie) dla każdego handlowca.\n\nSprawdź harmonogram!`);
+    };
 
     return (
         <div className="page-layout">
             <Sidebar />
             <main className="page-main">
                 <div className={styles.auroraBg}></div>
+                {Object.keys(mastermindPlan).length > 0 && (
+                    <div className={styles.mmBadge}>
+                        <BrainCircuit size={14} />
+                        AGENT MASTERMIND: TYDZIEŃ ZAPLANOWANY
+                    </div>
+                )}
 
                 <header className={styles.header}>
                     <div className={styles.titleSection}>
@@ -226,38 +276,23 @@ export const WeeklyPlan: React.FC = () => {
                             <Download size={18} /> EKSPORT XLSX
                         </button>
                         {(user?.role === 'admin' || user?.role === 'prezes') && (
-                            <button className={`${styles.exportBtn} ${styles.resetBtn}`} onClick={resetAllProgress}>
-                                <RotateCcw size={18} /> RESET
-                            </button>
+                            <>
+                                <button
+                                    className={`${styles.mastermindBtn} ${isAnalyzing ? styles.analyzing : ''}`}
+                                    onClick={handleUlozPlan}
+                                    disabled={isAnalyzing}
+                                >
+                                    <BrainCircuit size={18} className={isAnalyzing ? styles.spin : ''} />
+                                    {isAnalyzing ? 'ANALIZUJĘ DANE ERP...' : 'UŁÓŻ PLAN TYGODNIA'}
+                                </button>
+                                <button className={`${styles.exportBtn} ${styles.resetBtn}`} onClick={resetAllProgress} disabled={isAnalyzing}>
+                                    <RotateCcw size={18} /> RESET
+                                </button>
+                            </>
                         )}
                     </div>
                 </header>
 
-                {presidentNotesSummary.length > 0 && (
-                    <section className={styles.pNotesOverview}>
-                        <div className={styles.pNotesHeader}>
-                            <Shield size={20} className={styles.blueIcon} />
-                            <h3>AKTYWNE WYTYCZNE ZARZĄDU ({presidentNotesSummary.length})</h3>
-                        </div>
-                        <div className={styles.pNotesGrid}>
-                            {presidentNotesSummary.map((pn, i) => (
-                                <div
-                                    key={i}
-                                    className={`${styles.pNoteCard} glass`}
-                                    onClick={() => {
-                                        setSelectedRep(pn.repId);
-                                        openCRM(pn.repId, pn.taskId, pn.leadName);
-                                    }}
-                                >
-                                    <div className={styles.pNoteTarget}>
-                                        <strong>{pn.leadName}</strong> <span>({pn.repName})</span>
-                                    </div>
-                                    <p className={styles.pNoteText}>"{pn.note.substring(0, 80)}{pn.note.length > 80 ? '...' : ''}"</p>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                )}
 
                 <section className={styles.strategicGrid}>
                     <div className={`${styles.insightCard} glass`}>
@@ -267,7 +302,10 @@ export const WeeklyPlan: React.FC = () => {
                         </div>
                         <div className={styles.insightValue}>{strategicInsights.weekProgress}%</div>
                         <div className={styles.progressBarWrapper}>
-                            <div className={styles.progressBarFill} style={{ width: `${strategicInsights.weekProgress}%` }}></div>
+                            <div
+                                className={styles.progressBarFill}
+                                style={{ '--progress': `${strategicInsights.weekProgress}%` } as React.CSSProperties}
+                            ></div>
                         </div>
                     </div>
 
@@ -313,8 +351,8 @@ export const WeeklyPlan: React.FC = () => {
 
                     <div className={styles.planRows}>
                         {days.map((day: string, idx: number) => {
+                            const plan = getPlanForDay(selectedRep, day);
                             const progress = calculateDailyProgress(selectedRep, day);
-                            const plan = getDailyPlanForRep(selectedRep, day);
 
                             const now = new Date();
                             const monday = new Date(now);
@@ -427,14 +465,14 @@ export const WeeklyPlan: React.FC = () => {
                                         {activeNote && getLeadById(activeNote.id) && (
                                             <>
                                                 <div className={styles.aiInsightSection}>
-                                                    <label className={styles.noteLabel}><Search size={14} className={styles.orangeIcon} /> PROFIL BIZNESOWY</label>
+                                                    <label className={styles.noteLabel}><Search size={14} className={styles.orangeIcon} /> ANALIZA PROFILU (GOOGLE/ERP)</label>
                                                     <div className={styles.aiInsightBox}>
-                                                        <p>{getLeadById(activeNote.id)?.companyAnalysis}</p>
+                                                        <p className={styles.highlightText}>{getLeadById(activeNote.id)?.companyAnalysis}</p>
                                                     </div>
                                                 </div>
 
                                                 <div className={styles.aiInsightSection}>
-                                                    <label className={styles.noteLabel}><TrendingUp size={14} className={styles.orangeIcon} /> HISTORIA ZAKUPÓW (Metry/Szt + Cena śr.)</label>
+                                                    <label className={styles.noteLabel}><TrendingUp size={14} className={styles.orangeIcon} /> HISTORIA ZAKUPÓW (DATA/INDEX/KWOTA)</label>
                                                     <div className={`${styles.aiInsightBox} ${styles.scrollableHistory}`}>
                                                         <div className={styles.historyContent}>
                                                             {getLeadById(activeNote.id)?.purchaseHistory.split('\\n').map((line: string, i: number) => (
@@ -445,9 +483,13 @@ export const WeeklyPlan: React.FC = () => {
                                                 </div>
 
                                                 <div className={styles.aiInsightSection}>
-                                                    <label className={styles.noteLabel}><Zap size={14} className={styles.blueIcon} /> SUGESTIA: CO POWINIEN BRAĆ?</label>
+                                                    <label className={styles.noteLabel}><Zap size={14} className={styles.blueIcon} /> INTELIGENTNA WYTYCZNA Z SYSTEMU</label>
                                                     <div className={`${styles.aiInsightBox} ${styles.suggestionBox}`}>
-                                                        <p>{getLeadById(activeNote.id)?.suggestions}</p>
+                                                        <p className={styles.directiveText}>
+                                                            {presidentNotes[`${activeNote.repId}_${activeNote.id}`] ||
+                                                                getLeadById(activeNote.id)?.suggestions ||
+                                                                "Brak aktywnych wytycznych Mastermind dla tego klienta."}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </>

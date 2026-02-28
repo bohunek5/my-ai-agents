@@ -15,7 +15,8 @@ interface Sale {
     product: string;
     sku: string;
     quantity: number;
-    value?: number;
+    price: number;
+    value: number;
 }
 
 export const SalesAnalytics: React.FC = () => {
@@ -183,7 +184,9 @@ export const SalesAnalytics: React.FC = () => {
                                     <th onClick={() => requestSort('company')} className={styles.sortableHeader}>Firma (Klient) {getSortIndicator('company')}</th>
                                     <th onClick={() => requestSort('product')} className={styles.sortableHeader}>Model Produktu {getSortIndicator('product')}</th>
                                     <th onClick={() => requestSort('sku')} className={styles.sortableHeader}>SKU / Kod {getSortIndicator('sku')}</th>
-                                    <th onClick={() => requestSort('quantity')} className={styles.sortableHeader}>Ilość Szt. {getSortIndicator('quantity')}</th>
+                                    <th onClick={() => requestSort('quantity')} className={styles.sortableHeader}>Ilość {getSortIndicator('quantity')}</th>
+                                    <th onClick={() => requestSort('price' as any)} className={styles.sortableHeader}>Cena {getSortIndicator('price' as any)}</th>
+                                    <th onClick={() => requestSort('value' as any)} className={styles.sortableHeader}>Wartość {getSortIndicator('value' as any)}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -200,11 +203,13 @@ export const SalesAnalytics: React.FC = () => {
                                         <td>{row.product}</td>
                                         <td className={styles.valSubColor}>{row.sku || '-'}</td>
                                         <td className={`${styles.valColor} ${styles.qtyValue}`}>{row.quantity}</td>
+                                        <td className={styles.valColor}>{row.price ? `${row.price.toFixed(2)} PLN` : '-'}</td>
+                                        <td className={`${styles.valColor} ${styles.qtyValue}`}>{row.value ? `${row.value.toLocaleString()} PLN` : '-'}</td>
                                     </tr>
                                 ))}
                                 {filteredData.length === 0 && (
                                     <tr>
-                                        <td colSpan={6} className={styles.noDataCell}>
+                                        <td colSpan={8} className={styles.noDataCell}>
                                             Brak wyników sprzedażowych dla podanego filtrowania.
                                         </td>
                                     </tr>
