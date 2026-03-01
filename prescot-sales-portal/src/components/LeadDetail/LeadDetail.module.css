@@ -218,3 +218,38 @@
 .blueIcon {
     color: #3b82f6;
 }
+.expandHistoryBtn {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(255, 152, 0, 0.1);
+    border: 1px dashed #ff9800;
+    color: #ff9800;
+    border-radius: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.expandHistoryBtn:hover {
+    background: #ff9800;
+    color: white;
+}
+
+.collapseHistoryBtn {
+    background: none;
+    border: none;
+    color: #ff9800;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.historyContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

@@ -9,21 +9,24 @@ export interface MastermindResult {
     clientName: string;
     directive: string;
     type: 'QUICK_WIN' | 'CHURN' | 'REGRESSION' | 'SYSTEMATIC';
-    score: number; // For ranking
+    score: number;
 }
 
 export interface WeeklyPlanDistribution {
-    [repId: string]: {
-        [day: string]: string[]; // Array of client IDs
+    reps: {
+        [repId: string]: {
+            [day: string]: string[];
+        };
+    };
+    metadata: {
+        generatedAt: string;
+        rotationOffset: number;
     };
 }
 
-export function runMastermindAnalysis() {
+export function runMastermindAnalysis(): { directives: MastermindResult[], plan: WeeklyPlanDistribution } {
     const results: MastermindResult[] = [];
     const sales = rawSales as Sale[];
-
-    // Group sales by company for faster access
-    const salesByCompany: Record<string, Sale[]> = {};
 
     const cleanName = (name: string) => (name || '').toLowerCase()
         .replace(/sp\.? z o\.?o\.?/g, '')
@@ -31,6 +34,7 @@ export function runMastermindAnalysis() {
         .trim();
 
     const leadNames = new Set(ALL_LEADS.map(l => cleanName(l.name)));
+    const salesByCompany: Record<string, Sale[]> = {};
 
     sales.forEach(sale => {
         if (!sale.company) return;
@@ -50,7 +54,6 @@ export function runMastermindAnalysis() {
         let directive = '';
         let type: MastermindResult['type'] = 'SYSTEMATIC';
 
-        // 1. QUICK WIN: 3/4 major categories
         const categoriesBought = analysis.boughtCategories.map(c => c.name);
         const majorCats = ['Profile i Oprawy', 'Taśmy LED / Światło', 'Zasilacze', 'Sterowanie (Smart Home)'];
         const boughtMajorsCount = majorCats.filter(c => categoriesBought.includes(c)).length;
@@ -62,7 +65,6 @@ export function runMastermindAnalysis() {
             score = 100 + analysis.totalQuantity / 1000;
         }
 
-        // 2. CHURN ALERT: Bought in 2024/2025 but missing in 2026 (current year)
         const hasHistory = clientSales.some(s => s.year === '2024' || s.year === '2025');
         const hasCurrent = clientSales.some(s => s.year === '2026');
 
@@ -72,7 +74,6 @@ export function runMastermindAnalysis() {
             score = 80 + analysis.totalQuantity / 1000;
         }
 
-        // 3. REGRESSION: Significant drop (2025 vs 2024)
         const qty2024 = clientSales.filter(s => s.year === '2024').reduce((acc, s) => acc + s.quantity, 0);
         const qty2025 = clientSales.filter(s => s.year === '2025').reduce((acc, s) => acc + s.quantity, 0);
 
@@ -94,28 +95,59 @@ export function runMastermindAnalysis() {
         }
     });
 
-    // Sort by score descending
     const sortedResults = results.sort((a, b) => b.score - a.score);
+    const targetReps = ['annag', 'dariuszn', 'annaa', 'adamg', 'iwonab'];
+    const days = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'];
 
-    // Filter target reps mentioned by user
-    const targetReps = ['annag', 'dariuszn', 'annaa', 'adamg'];
-    const distribution: WeeklyPlanDistribution = {};
-    const days = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
+    const offsetKey = 'prescot_mastermind_rotation_offset';
+    const currentOffset = parseInt(localStorage.getItem(offsetKey) || '0');
+
+    const distribution: WeeklyPlanDistribution = {
+        reps: {},
+        metadata: {
+            generatedAt: new Date().toISOString(),
+            rotationOffset: currentOffset
+        }
+    };
 
     targetReps.forEach(repId => {
-        distribution[repId] = {};
+        distribution.reps[repId] = {};
         const repResults = sortedResults.filter(r => r.repId === repId);
+        const total = repResults.length;
+
+        if (total === 0) return;
+
+        // Reguła 1/4 bazy: rotacja co 1/4 wszystkich firm handlowca
+        const poolSize = Math.max(21, Math.ceil(total / 4));
+        const wrappedOffset = currentOffset % total;
 
         days.forEach((day, dIdx) => {
-            // Take 3 items for each day from chronological list
-            const start = dIdx * 3;
-            const dayClients = repResults.slice(start, start + 3).map(r => r.clientId);
-            distribution[repId][day] = dayClients;
+            const dayClients: string[] = [];
+            for (let i = 0; i < 3; i++) {
+                const index = (wrappedOffset + (dIdx * 3) + i) % total;
+                if (repResults[index]) {
+                    dayClients.push(repResults[index].clientId);
+                }
+            }
+            distribution.reps[repId][day] = dayClients;
         });
+
+        // Przesuwamy offset o poolSize (1/4 bazy) dla następnego generowania
+        localStorage.setItem(offsetKey, ((currentOffset + poolSize) % total).toString());
     });
 
     return {
         directives: sortedResults,
         plan: distribution
     };
+}
+
+export function resetMastermindRotation() {
+    localStorage.removeItem('prescot_mastermind_rotation_offset');
+    localStorage.removeItem('prescot_mastermind_plan');
+    const targetReps = ['annag', 'dariuszn', 'annaa', 'adamg', 'iwonab'];
+    targetReps.forEach(repId => {
+        localStorage.removeItem(`prescot_tasks_${repId}`);
+        localStorage.removeItem(`prescot_notes_${repId}`);
+    });
 }

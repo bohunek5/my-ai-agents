@@ -173,6 +173,20 @@
     flex-direction: column;
 }
 
+/* Prawa kolumna: pełna karta CRM */
+.detailPane {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Placeholder – niedostępny slot */
+.placeholderItem {
+    opacity: 0.35;
+    cursor: default !important;
+    border-style: dashed !important;
+}
+
 .sectionHeader {
     display: flex;
     align-items: center;
@@ -739,4 +753,515 @@
 [data-theme='light'] .potentialBox p,
 [data-theme='light'] .icebreakerBox p {
     color: #1e293b;
+}
+
+/* Modal CRM dla handlowca */
+.crmModalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9000;
+    padding: 1.5rem;
+}
+
+.crmModalBox {
+    background: var(--background);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
+    position: relative;
+}
+
+[data-theme='light'] .crmModalBox {
+    background: #ffffff;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+}
+
+/* Przeniesiony kontakt – żółte podświetlenie */
+.scheduledItem {
+    border-color: rgba(245, 158, 11, 0.4) !important;
+    background: rgba(245, 158, 11, 0.06) !important;
+}
+
+.scheduledItem .planName {
+    color: #f59e0b;
+}
+
+.rescheduledHeader {
+    color: #f59e0b !important;
+}
+/* ══════════════════════════════════════
+   STATUS COLORS ON TASK ITEMS
+══════════════════════════════════════ */
+.itemSuccess {
+    border-color: rgba(16, 185, 129, 0.35) !important;
+    background: rgba(16, 185, 129, 0.05) !important;
+}
+
+.itemRejected {
+    border-color: rgba(239, 68, 68, 0.35) !important;
+    background: rgba(239, 68, 68, 0.05) !important;
+}
+
+.itemPostponed {
+    border-color: rgba(245, 158, 11, 0.4) !important;
+    background: rgba(245, 158, 11, 0.06) !important;
+}
+
+/* ══════════════════════════════════════
+   MINI TERMINARZ (rozwijany pod listą)
+══════════════════════════════════════ */
+.scheduledPanel {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 0.75rem;
+}
+
+.scheduledToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    border: none;
+    color: var(--muted-foreground);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    width: 100%;
+    text-align: left;
+    transition: color 0.2s;
+}
+
+.scheduledToggle:hover {
+    color: var(--foreground);
+}
+
+.scheduledList {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.scheduledEntry {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.scheduledDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.scheduledInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.scheduledName {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scheduledDate {
+    font-size: 0.65rem;
+    color: var(--muted-foreground);
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.scheduledBadge {
+    font-size: 0.6rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* ══════════════════════════════════════
+   DATE PICKER MODAL
+══════════════════════════════════════ */
+.datePickerOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.datePickerBox {
+    background: #0f1929;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(245, 158, 11, 0.15);
+    animation: slideUpModal 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+
+[data-theme='light'] .datePickerBox {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes slideUpModal {
+    from { transform: translateY(30px) scale(0.95); opacity: 0; }
+    to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.datePickerHeader {
+    margin-bottom: 1.5rem;
+    padding-right: 2rem;
+}
+
+.datePickerTag {
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #f59e0b;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.datePickerTitle {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--foreground);
+    margin: 0 0 0.25rem 0;
+}
+
+[data-theme='light'] .datePickerTitle {
+    color: #0f172a;
+}
+
+.datePickerSub {
+    font-size: 0.85rem;
+    color: var(--muted-foreground);
+    margin: 0;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.datePickerClose {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--muted-foreground);
+    transition: all 0.2s;
+}
+
+.datePickerClose:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--foreground);
+}
+
+[data-theme='light'] .datePickerClose {
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+    color: #475569;
+}
+
+/* 7-column quick-pick grid */
+.quickPickGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+}
+
+.quickDayBtn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    padding: 0.5rem 0.25rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    transition: all 0.15s;
+    color: var(--foreground);
+}
+
+.quickDayBtn:hover {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.quickDayActive {
+    background: rgba(245, 158, 11, 0.18) !important;
+    border-color: #f59e0b !important;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.2);
+}
+
+.quickDayName {
+    font-size: 0.55rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+}
+
+.quickDayActive .quickDayName {
+    color: #f59e0b;
+}
+
+.quickDayDate {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--foreground);
+}
+
+[data-theme='light'] .quickDayBtn {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    color: #0f172a;
+}
+
+[data-theme='light'] .quickDayActive {
+    background: rgba(245, 158, 11, 0.12) !important;
+}
+
+/* Manual date input */
+.datePickerManual {
+    margin-bottom: 1.5rem;
+}
+
+.datePickerLabel {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+}
+
+.datePickerInput {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    color: var(--foreground);
+    font-size: 0.95rem;
+    font-family: inherit;
+    font-weight: 700;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.datePickerInput:focus {
+    border-color: #f59e0b;
+}
+
+[data-theme='light'] .datePickerInput {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    color: #0f172a;
+}
+
+/* Action buttons */
+.datePickerActions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.datePickerCancel {
+    flex: 0 0 auto;
+    padding: 0.9rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--muted-foreground);
+    font-size: 0.85rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.datePickerCancel:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--foreground);
+}
+
+[data-theme='light'] .datePickerCancel {
+    border-color: #e2e8f0;
+    color: #64748b;
+}
+
+.datePickerConfirm {
+    flex: 1;
+    padding: 0.9rem 1.5rem;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.datePickerConfirm:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+}
+
+.datePickerConfirm:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ══════════════════════════════════════
+   SLOT NOWEGO KLIENTA (PROSPEKCJA)
+══════════════════════════════════════ */
+
+/* Nagłówek sekcji prospekcji – niebieski akcent */
+.prospectHeader {
+    color: #3b82f6 !important;
+}
+
+/* Kafelek nowego klienta – border przerywany, lekkie tło */
+.newClientSlot {
+    border-style: dashed !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    background: rgba(59, 130, 246, 0.03) !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.newClientSlot:hover {
+    border-color: rgba(59, 130, 246, 0.55) !important;
+    background: rgba(59, 130, 246, 0.07) !important;
+}
+
+.newClientSlot .planName {
+    color: #60a5fa;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.newClientSlot .planDetail {
+    color: #475569;
+    font-style: italic;
+}
+
+/* Animowane kropki oczekiwania */
+.prospectDots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.prospectDots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #3b82f6;
+    animation: dotPulse 1.4s ease-in-out infinite;
+    opacity: 0.4;
+}
+
+.prospectDots span:nth-child(1) { animation-delay: 0s; }
+.prospectDots span:nth-child(2) { animation-delay: 0.2s; }
+.prospectDots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+    0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Pusty panel prospekcji po prawej – gdy kliknięto slot */
+.prospectEmptyPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 3rem;
+    text-align: center;
+    border: 1px dashed rgba(59, 130, 246, 0.3);
+    border-radius: 24px;
+    background: rgba(59, 130, 246, 0.02);
+    min-height: 300px;
+    color: #475569;
+}
+
+.prospectEmptyPanel h3 {
+    margin: 0;
+    font-weight: 900;
+    color: #60a5fa;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.prospectEmptyPanel p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+[data-theme='light'] .newClientSlot {
+    border-color: rgba(59, 130, 246, 0.25) !important;
+    background: rgba(59, 130, 246, 0.03) !important;
+}
+
+[data-theme='light'] .newClientSlot .planDetail {
+    color: #94a3b8;
 }

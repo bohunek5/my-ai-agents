@@ -12,6 +12,7 @@ import {
     ShieldCheck,
     Zap,
     BarChartHorizontal,
+    TrendingUp,
     Sun,
     Moon
 } from 'lucide-react';
@@ -39,6 +40,12 @@ export const Sidebar: React.FC = () => {
             icon: <BarChartHorizontal size={20} />,
             label: 'Plan Tygodniowy',
             path: '/weekly-plan',
+            visible: isPrezes
+        },
+        {
+            icon: <TrendingUp size={20} />,
+            label: 'Podsumowanie Tygodnia',
+            path: '/weekly-summary',
             visible: isPrezes
         },
         {
@@ -74,7 +81,7 @@ export const Sidebar: React.FC = () => {
         {
             icon: <CalendarDays size={20} />,
             label: 'Terminarz',
-            path: '/notepad',
+            path: '/schedule',
             visible: isHandlowiec
         },
     ];

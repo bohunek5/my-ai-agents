@@ -10,10 +10,12 @@ import { WeeklyPlan } from './pages/WeeklyPlan';
 import { KnowledgeBase } from './pages/KnowledgeBase';
 import { MondayStrategy } from './pages/MondayStrategy';
 import { Notepad } from './pages/Notepad';
+import { WeeklySummary } from './pages/WeeklySummary';
 
 import { SalesAnalytics } from './pages/SalesAnalytics';
 import { SalesStock } from './pages/SalesStock';
 import { TestLeadDetail } from './pages/TestLeadDetail';
+import { Schedule } from './pages/Schedule';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, isLoading } = useAuth();
@@ -70,6 +72,14 @@ const App: React.FC = () => {
               }
             />
             <Route
+              path="/weekly-summary"
+              element={
+                <ProtectedRoute>
+                  <WeeklySummary />
+                </ProtectedRoute>
+              }
+            />
+            <Route
               path="/knowledge"
               element={
                 <ProtectedRoute>
@@ -98,6 +108,14 @@ const App: React.FC = () => {
               element={
                 <ProtectedRoute>
                   <TestLeadDetail />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/schedule"
+              element={
+                <ProtectedRoute>
+                  <Schedule />
                 </ProtectedRoute>
               }
             />

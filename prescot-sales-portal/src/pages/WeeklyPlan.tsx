@@ -2,21 +2,20 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sidebar } from '../components/Sidebar';
 import { useAuth } from '../context/AuthContext';
-import { REPS, getDailyPlanForRep, getLeadById } from '../data/mockData';
+import { REPS, getLeadById } from '../data/mockData';
 import type { Lead } from '../data/mockData';
 import {
-    Zap,
     BrainCircuit,
     TrendingUp,
     Contact,
     Download,
-    X,
     MessageSquare,
     RotateCcw,
     Search,
     Shield
 } from 'lucide-react';
 import styles from './WeeklyPlan.module.css';
+import { CrmCard } from '../components/CrmCard/CrmCard';
 
 interface TaskStatusMap {
     [key: string]: 'success' | 'rejected' | 'postponed' | 'pending';
@@ -25,8 +24,12 @@ interface TaskStatusMap {
 export const WeeklyPlan: React.FC = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
-    const [selectedRep, setSelectedRep] = useState(REPS[0].id);
+    const [selectedRep, setSelectedRep] = useState(() => {
+        if (user?.role === 'handlowiec') return user.username;
+        return REPS[0].id;
+    });
     const [searchTerm, setSearchTerm] = useState('');
+    const [showResetConfirm, setShowResetConfirm] = useState(false);
 
     const [taskStatuses, setTaskStatuses] = useState<Record<string, TaskStatusMap>>(() => {
         const allStatuses: Record<string, TaskStatusMap> = {};
@@ -61,19 +64,19 @@ export const WeeklyPlan: React.FC = () => {
         return all;
     });
 
-    const [mastermindPlan, setMastermindPlan] = useState<Record<string, Record<string, string[]>>>(() => {
+    const [mastermindPlan, setMastermindPlan] = useState<{ reps: Record<string, Record<string, string[]>>, metadata?: { generatedAt: string, rotationOffset: number } }>(() => {
         const saved = localStorage.getItem('prescot_mastermind_plan');
-        return saved ? JSON.parse(saved) : {};
+        return saved ? JSON.parse(saved) : { reps: {} };
     });
 
-    const days = useMemo(() => ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'], []);
+    const days = useMemo(() => ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'], []);
 
     const closeModal = useCallback(() => {
         setActiveNote(null);
     }, []);
 
     useEffect(() => {
-        const handleStorageChange = () => {
+        const refreshAll = () => {
             const allStatuses: Record<string, TaskStatusMap> = {};
             const allNotes: Record<string, Record<string, string>> = {};
             REPS.forEach(rep => {
@@ -91,36 +94,45 @@ export const WeeklyPlan: React.FC = () => {
                 if (pdSaved) allPostponed[rep.id] = JSON.parse(pdSaved);
             });
             setPostponedDates(allPostponed);
-
             setTaskStatuses(allStatuses);
             setTaskNotes(allNotes);
+
+            // Kluczowe: odśwież mastermindPlan żeby handlowiec widział plan wygenerowany przez prezesa
+            const mmSaved = localStorage.getItem('prescot_mastermind_plan');
+            if (mmSaved) {
+                setMastermindPlan(JSON.parse(mmSaved));
+            }
         };
 
         const handleEsc = (e: KeyboardEvent) => {
             if (e.key === 'Escape') closeModal();
         };
 
-        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener('storage', refreshAll);
         window.addEventListener('keydown', handleEsc);
+
+        // Polling co 5s dla handlowca – synchronizuje plan bez reloadu strony
+        const poll = setInterval(refreshAll, 5000);
+
         return () => {
-            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener('storage', refreshAll);
             window.removeEventListener('keydown', handleEsc);
+            clearInterval(poll);
         };
     }, [closeModal]);
 
     const getPlanForDay = useCallback((repId: string, day: string) => {
-        const basePlan = getDailyPlanForRep(repId, day);
-        const mmPlanIds = mastermindPlan[repId]?.[day] || [];
+        const mmPlanIds: string[] = mastermindPlan.reps?.[repId]?.[day] || [];
 
         if (mmPlanIds.length > 0) {
-            const mmLeads = mmPlanIds.map(id => getLeadById(id)).filter(Boolean) as Lead[];
-            // If we have MM plan, we use it. If it has less than 3, we fill with base.
-            // Requirement was exactly 3 from algorithm.
+            const mmLeads = mmPlanIds.map((id: string) => getLeadById(id)).filter(Boolean) as Lead[];
             return { retention: mmLeads };
         }
 
-        return basePlan;
+        // Brak planu = puste dymki (nie ma fallbacku do base planu)
+        return { retention: [] as Lead[] };
     }, [mastermindPlan]);
+
 
     const calculateDailyProgress = useCallback((repId: string, day: string) => {
         const plan = getPlanForDay(repId, day);
@@ -170,31 +182,70 @@ export const WeeklyPlan: React.FC = () => {
     const setTaskStatus = (status: 'success' | 'postponed' | 'rejected' | 'pending') => {
         if (!activeNote) return;
         const { id, repId } = activeNote;
-        const currentRepTasks = taskStatuses[repId] || {};
-        const nextStatuses: TaskStatusMap = { ...currentRepTasks, [id]: status };
-        setTaskStatuses(prev => ({ ...prev, [repId]: nextStatuses }));
-        localStorage.setItem(`prescot_tasks_${repId}`, JSON.stringify(nextStatuses));
+
+        setTaskStatuses(prev => {
+            const currentRepTasks = prev[repId] || {};
+            const currentStatus = currentRepTasks[id];
+            const nextStatus = currentStatus === status ? 'pending' : status;
+
+            const nextStatuses: TaskStatusMap = { ...currentRepTasks, [id]: nextStatus };
+            const nextStyles = { ...prev, [repId]: nextStatuses };
+            localStorage.setItem(`prescot_tasks_${repId}`, JSON.stringify(nextStatuses));
+
+            // Jeśli status zmienia się na inny niż 'postponed', usuwamy datę z terminarza dla tego handlowca
+            if (nextStatus !== 'postponed') {
+                setPostponedDates(prevPD => {
+                    const repPD = prevPD[repId] || {};
+                    if (!repPD[id]) return prevPD;
+                    const nextRepPD = { ...repPD };
+                    delete nextRepPD[id];
+                    const nextAllPD = { ...prevPD, [repId]: nextRepPD };
+                    localStorage.setItem(`prescot_postponed_dates_${repId}`, JSON.stringify(nextRepPD));
+                    window.dispatchEvent(new StorageEvent('storage', {
+                        key: `prescot_postponed_dates_${repId}`,
+                        newValue: JSON.stringify(nextRepPD)
+                    }));
+                    return nextAllPD;
+                });
+            }
+
+            return nextStyles;
+        });
     };
 
     const resetAllProgress = () => {
-        if (!window.confirm('CZY NA PEWNO CHCESZ ZRESETOWAĆ WSZYSTKIE POSTĘPY, WYTYCZNE I PLAN MASTERMINDA?')) return;
+        setShowResetConfirm(true);
+    };
 
+    const performReset = async () => {
+        setShowResetConfirm(false);
+        const { resetMastermindRotation } = await import('../utils/mastermindLogic');
+        resetMastermindRotation();
+
+        // NUCLEAR RESET: Clear everything
+        const keysToClear = [
+            'prescot_president_notes',
+            'prescot_contact_history',
+            'prescot_mastermind_plan'
+        ];
+
+        // Clear for all reps
         REPS.forEach(rep => {
-            localStorage.removeItem(`prescot_tasks_${rep.id}`);
-            localStorage.removeItem(`prescot_notes_${rep.id}`);
-            localStorage.removeItem(`prescot_postponed_${rep.id}`);
+            keysToClear.push(`prescot_tasks_${rep.id}`);
+            keysToClear.push(`prescot_notes_${rep.id}`);
+            keysToClear.push(`prescot_postponed_dates_${rep.id}`);
         });
 
-        localStorage.removeItem('prescot_president_notes');
-        localStorage.removeItem('prescot_mastermind_plan');
+        keysToClear.forEach(key => localStorage.removeItem(key));
 
         setTaskStatuses({});
         setTaskNotes({});
         setPresidentNotes({});
-        setMastermindPlan({});
+        setMastermindPlan({ reps: {} });
         setPostponedDates({});
 
-        alert('SYSTEM ZRESETOWANY. WSZYSTKIE DANE ZOSTAŁY WYCZYSZCZONE.');
+        // Force reload and clear cache-like states
+        window.location.href = window.location.origin + window.location.pathname;
     };
 
     const strategicInsights = useMemo(() => {
@@ -238,6 +289,8 @@ export const WeeklyPlan: React.FC = () => {
         // 2. Update Weekly Plan Distribution
         setMastermindPlan(plan);
         localStorage.setItem('prescot_mastermind_plan', JSON.stringify(plan));
+        // Rozgłoś zmianę dla handlowców w tej samej przeglądarce
+        window.dispatchEvent(new StorageEvent('storage', { key: 'prescot_mastermind_plan' }));
 
         setIsAnalyzing(false);
         alert(`AGENT MASTERMIND ZAKOŃCZYŁ ANALIZĘ.\n\nWygenerowano ${directives.length} nowych wytycznych oraz ułożono optymalny plan (3 firmy dziennie) dla każdego handlowca.\n\nSprawdź harmonogram!`);
@@ -350,158 +403,150 @@ export const WeeklyPlan: React.FC = () => {
                     </div>
 
                     <div className={styles.planRows}>
-                        {days.map((day: string, idx: number) => {
-                            const plan = getPlanForDay(selectedRep, day);
-                            const progress = calculateDailyProgress(selectedRep, day);
+                        {(!mastermindPlan.reps?.[selectedRep] || Object.keys(mastermindPlan.reps[selectedRep]).length === 0) ? (
+                            <div className={styles.emptyPlanPlaceholder}>
+                                <div className={styles.emptyPlanIcon}>📅</div>
+                                {user?.role === 'handlowiec' ? (
+                                    <>
+                                        <div className={styles.emptyPlanTitle}>Plan tygodnia nie został wygenerowany</div>
+                                        <div className={styles.emptyPlanSub}>Poczekaj aż prezes wygeneruje plan na ten tydzień.</div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className={styles.emptyPlanTitle}>Wygeneruj Plan Tygodnia</div>
+                                        <div className={styles.emptyPlanSub}>Kliknij przycisk „Ułóż Plan Tygodnia" aby AI przydzieliło klientów na każdy dzień tygodnia.</div>
+                                    </>
+                                )}
+                            </div>
+                        ) : (
+                            days.map((day: string, idx: number) => {
+                                const plan = getPlanForDay(selectedRep, day);
+                                const progress = calculateDailyProgress(selectedRep, day);
 
-                            const now = new Date();
-                            const monday = new Date(now);
-                            const currentDay = now.getDay();
-                            const diff = (currentDay === 0 ? -6 : 1) - currentDay;
-                            monday.setDate(now.getDate() + diff);
-                            const targetDate = new Date(monday);
-                            targetDate.setDate(monday.getDate() + idx);
-                            const targetISO = targetDate.toISOString().split('T')[0];
+                                const now = new Date();
+                                const monday = new Date(now);
+                                const currentDay = now.getDay();
+                                const diff = (currentDay === 0 ? -6 : 1) - currentDay;
+                                monday.setDate(now.getDate() + diff);
+                                const targetDate = new Date(monday);
+                                targetDate.setDate(monday.getDate() + idx);
+                                const targetISO = targetDate.toISOString().split('T')[0];
 
-                            const scheduledForDay = Object.entries(postponedDates[selectedRep] || {})
-                                .filter(([, date]) => date === targetISO)
-                                .map(([id]) => getLeadById(id))
-                                .filter(Boolean);
+                                const scheduledForDay = Object.entries(postponedDates[selectedRep] || {})
+                                    .filter(([, date]) => date === targetISO)
+                                    .map(([id]) => getLeadById(id))
+                                    .filter(Boolean);
 
-                            return (
-                                <div key={day} className={styles.dayRow}>
-                                    <div className={styles.dayIndicator}>
-                                        <div className={styles.dayLabel}>{day}</div>
-                                        <div className={styles.daySubLabel}>{targetISO}</div>
-                                    </div>
+                                return (
+                                    <div key={day} className={styles.dayRow}>
+                                        <div className={styles.dayIndicator}>
+                                            <div className={styles.dayLabel}>{day}</div>
+                                            <div className={styles.daySubLabel}>{targetISO}</div>
+                                        </div>
 
-                                    <div className={styles.leadsGroup}>
-                                        {plan.retention.filter(l => l.name.toLowerCase().includes(searchTerm.toLowerCase()) || l.city.toLowerCase().includes(searchTerm.toLowerCase())).map(lead => {
-                                            const status = taskStatuses[selectedRep]?.[lead.id];
-                                            const chipClass = status === 'success' ? styles.successChip : status === 'postponed' ? styles.postponedChip : status === 'rejected' ? styles.rejectedChip : '';
-                                            return (
-                                                <div key={lead.id} className={styles.leadChipContainer}>
-                                                    <div className={`${styles.leadChip} ${chipClass}`} onClick={() => openCRM(selectedRep, lead.id, lead.name)}>
-                                                        <div className={styles.leadChipTop}><span className={styles.leadChipName}>{lead.name}</span></div>
-                                                        <div className={styles.leadChipBottom}>
-                                                            <div className={styles.leadChipCitySection}>
-                                                                <span className={styles.leadChipCity}>{lead.city}</span>
-                                                                {user?.role === 'prezes' && hasPresidentNote(selectedRep, lead.id) && (
-                                                                    <span className={styles.pNoteSnippet}>{presidentNotes[`${selectedRep}_${lead.id}`].substring(0, 15)}...</span>
-                                                                )}
+                                        <div className={styles.leadsGroup}>
+                                            {plan.retention.filter(l => l.name.toLowerCase().includes(searchTerm.toLowerCase()) || l.city.toLowerCase().includes(searchTerm.toLowerCase())).map(lead => {
+                                                const status = taskStatuses[selectedRep]?.[lead.id];
+                                                const chipClass = status === 'success' ? styles.successChip : status === 'postponed' ? styles.postponedChip : status === 'rejected' ? styles.rejectedChip : '';
+                                                return (
+                                                    <div key={lead.id} className={styles.leadChipContainer}>
+                                                        <div className={`${styles.leadChip} ${chipClass}`} onClick={() => openCRM(selectedRep, lead.id, lead.name)}>
+                                                            <div className={styles.leadChipTop}><span className={styles.leadChipName}>{lead.name}</span></div>
+                                                            <div className={styles.leadChipBottom}>
+                                                                <div className={styles.leadChipCitySection}>
+                                                                    <span className={styles.leadChipCity}>{lead.city}</span>
+                                                                    {user?.role === 'prezes' && hasPresidentNote(selectedRep, lead.id) && (
+                                                                        <span className={styles.pNoteSnippet}>{presidentNotes[`${selectedRep}_${lead.id}`].substring(0, 15)}...</span>
+                                                                    )}
+                                                                </div>
+                                                                <div className={styles.leadChipIcons}>
+                                                                    {hasCRMNote(selectedRep, lead.id) && <MessageSquare size={12} className={styles.crmLoggedIcon} />}
+                                                                    {hasPresidentNote(selectedRep, lead.id) && <Shield size={12} className={styles.presidentNoteIcon} />}
+                                                                </div>
                                                             </div>
-                                                            <div className={styles.leadChipIcons}>
-                                                                {hasCRMNote(selectedRep, lead.id) && <MessageSquare size={12} className={styles.crmLoggedIcon} />}
-                                                                {hasPresidentNote(selectedRep, lead.id) && <Shield size={12} className={styles.presidentNoteIcon} />}
-                                                            </div>
+                                                            {status && status !== 'pending' && (
+                                                                <div className={`${styles.crmStatusBar} ${status === 'success' ? styles.crmStatusGreen : status === 'postponed' ? styles.crmStatusYellow : styles.crmStatusRed}`} />
+                                                            )}
                                                         </div>
                                                     </div>
-                                                </div>
-                                            );
-                                        })}
-                                        {scheduledForDay.map(lead => (
-                                            <div key={lead!.id} className={styles.leadChipContainer}>
-                                                <div className={`${styles.leadChip} ${styles.scheduledLeadChip}`} onClick={() => openCRM(selectedRep, lead!.id, lead!.name)}>
-                                                    <div className={styles.leadChipTop}><span className={styles.leadChipName}>{lead!.name}</span><span className={styles.scheduledBadge}>ZALEGŁE</span></div>
-                                                    <div className={styles.leadChipBottom}><span className={styles.leadChipCity}>{lead!.city}</span><MessageSquare size={12} className={styles.crmLoggedIcon} /></div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                                );
+                                            })}
+                                            {scheduledForDay.map(lead => {
+                                                const sStatus = taskStatuses[selectedRep]?.[lead!.id];
+                                                // Kolor chipu: żółty (przeniesiony), zielony (sukces), czerwony (odrzucony)
+                                                const sChipCls = sStatus === 'success'
+                                                    ? styles.successChip
+                                                    : sStatus === 'rejected'
+                                                        ? styles.rejectedChip
+                                                        : styles.scheduledLeadChip; // domyślnie żółty
+                                                return (
+                                                    <div key={`sched-${lead!.id}`} className={styles.leadChipContainer}>
+                                                        <div className={`${styles.leadChip} ${sChipCls}`} onClick={() => openCRM(selectedRep, lead!.id, lead!.name)}>
+                                                            <div className={styles.leadChipTop}>
+                                                                <span className={styles.leadChipName}>{lead!.name}</span>
+                                                                <span className={styles.scheduledBadge}>
+                                                                    {sStatus === 'success' ? '✓ ZREALIZOWANY' : sStatus === 'rejected' ? '✗ ODRZUCONY' : '📅 PRZENIESIONY'}
+                                                                </span>
+                                                            </div>
+                                                            <div className={styles.leadChipBottom}><span className={styles.leadChipCity}>{lead!.city}</span></div>
+                                                            {sStatus && sStatus !== 'pending' && (
+                                                                <div className={`${styles.crmStatusBar} ${sStatus === 'success' ? styles.crmStatusGreen : sStatus === 'postponed' ? styles.crmStatusYellow : styles.crmStatusRed}`} />
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
 
-                                    <div className={styles.leadsGroup}>
-                                        {[1, 2].map((_, i) => (
-                                            <div key={`new-${day}-${i}`} className={styles.leadChipContainer}>
-                                                <div className={`${styles.leadChip} ${styles.newLeadChip}`}>
-                                                    <div className={styles.leadChipTop}><span className={styles.leadChipName}>NOWY KLIENT</span></div>
-                                                    <div className={styles.leadChipBottom}><span className={styles.leadChipCity}>PROSPEKCJA</span></div>
+                                        <div className={styles.leadsGroup}>
+                                            {[1, 2].map((_, i) => (
+                                                <div key={`new-${day}-${i}`} className={styles.leadChipContainer}>
+                                                    <div className={`${styles.leadChip} ${styles.newLeadChip}`}>
+                                                        <div className={styles.leadChipTop}><span className={styles.leadChipName}>NOWY KLIENT</span></div>
+                                                        <div className={styles.leadChipBottom}><span className={styles.leadChipCity}>PROSPEKCJA</span></div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ))}
-                                    </div>
+                                            ))}
+                                        </div>
 
-                                    <div className={styles.progressMetric}><div className={styles.metricRing}>{progress}%</div></div>
-                                </div>
-                            );
-                        })}
+                                        <div className={styles.progressMetric}><div className={styles.metricRing}>{progress}%</div></div>
+                                    </div>
+                                );
+                            })
+                        )}
                     </div>
                 </div>
 
-                {activeNote && (
+                {activeNote && getLeadById(activeNote.id) && (
                     <div className={styles.modalOverlay} onClick={closeModal}>
-                        <div className={`${styles.modal} glass led-glow`} onClick={e => e.stopPropagation()}>
-                            <div className={styles.modalHeader}>
-                                <div><div className={styles.modalTag}>KARTA CRM</div><h3 className={styles.futuristicTitle}>{activeNote.name}</h3></div>
-                                <button className={styles.closeIconBtn} onClick={closeModal} title="Zamknij"><X size={20} /></button>
-                            </div>
-                            <div className={styles.modalBody}>
-                                <div className={styles.modalSplitLayout}>
-                                    <div className={styles.modalLeftColumn}>
-                                        <div className={styles.crmSectionBlock}>
-                                            <label className={styles.noteLabel}><MessageSquare size={14} className={styles.orangeIcon} /> RAPORT HANDLOWCA</label>
-                                            {!(user?.role === 'admin' || user?.role === 'prezes') ? (
-                                                <>
-                                                    <div className={styles.statusButtonGroup}>
-                                                        <button className={`${styles.statusBtnSmall} ${styles.statusSuccess} ${taskStatuses[activeNote.repId]?.[activeNote.id] === 'success' ? styles.active : ''}`} onClick={() => setTaskStatus('success')}>SUKCES</button>
-                                                        <button className={`${styles.statusBtnSmall} ${styles.statusPostponed} ${taskStatuses[activeNote.repId]?.[activeNote.id] === 'postponed' ? styles.active : ''}`} onClick={() => setTaskStatus('postponed')}>ODŁOŻONE</button>
-                                                        <button className={`${styles.statusBtnSmall} ${styles.statusRejected} ${taskStatuses[activeNote.repId]?.[activeNote.id] === 'rejected' ? styles.active : ''}`} onClick={() => setTaskStatus('rejected')}>BRAK ZAINT.</button>
-                                                    </div>
-                                                    <textarea value={activeNote.note || ''} onChange={(e) => updateNote(e.target.value)} className={styles.modalTextarea} placeholder="Główne ustalenia..." />
-                                                </>
-                                            ) : (
-                                                <div className={styles.readonlyNote}>{activeNote.note || 'Brak wpisów handlowca.'}</div>
-                                            )}
-                                        </div>
-
-                                        {(user?.role === 'admin' || user?.role === 'prezes') && (
-                                            <div className={styles.crmSectionBlock}>
-                                                <label className={styles.noteLabel}><Shield size={14} className={styles.blueIcon} /> WYTYCZNE ZARZĄDU</label>
-                                                <textarea value={activeNote.pNote || ''} onChange={(e) => updatePresidentNote(e.target.value)} className={styles.modalTextarea} placeholder="Twoje sugestie dla handlowca..." />
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div className={styles.modalRightColumn}>
-                                        {activeNote && getLeadById(activeNote.id) && (
-                                            <>
-                                                <div className={styles.aiInsightSection}>
-                                                    <label className={styles.noteLabel}><Search size={14} className={styles.orangeIcon} /> ANALIZA PROFILU (GOOGLE/ERP)</label>
-                                                    <div className={styles.aiInsightBox}>
-                                                        <p className={styles.highlightText}>{getLeadById(activeNote.id)?.companyAnalysis}</p>
-                                                    </div>
-                                                </div>
-
-                                                <div className={styles.aiInsightSection}>
-                                                    <label className={styles.noteLabel}><TrendingUp size={14} className={styles.orangeIcon} /> HISTORIA ZAKUPÓW (DATA/INDEX/KWOTA)</label>
-                                                    <div className={`${styles.aiInsightBox} ${styles.scrollableHistory}`}>
-                                                        <div className={styles.historyContent}>
-                                                            {getLeadById(activeNote.id)?.purchaseHistory.split('\\n').map((line: string, i: number) => (
-                                                                <div key={i} className={styles.historyLine}>{line}</div>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className={styles.aiInsightSection}>
-                                                    <label className={styles.noteLabel}><Zap size={14} className={styles.blueIcon} /> INTELIGENTNA WYTYCZNA Z SYSTEMU</label>
-                                                    <div className={`${styles.aiInsightBox} ${styles.suggestionBox}`}>
-                                                        <p className={styles.directiveText}>
-                                                            {presidentNotes[`${activeNote.repId}_${activeNote.id}`] ||
-                                                                getLeadById(activeNote.id)?.suggestions ||
-                                                                "Brak aktywnych wytycznych Mastermind dla tego klienta."}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={styles.modalFooter}><button className={styles.saveBtn} onClick={closeModal}>ZAPISZ I ZAMKNIJ</button></div>
+                        <div onClick={e => e.stopPropagation()}>
+                            <CrmCard
+                                lead={getLeadById(activeNote.id)!}
+                                repNote={activeNote.note}
+                                onRepNoteChange={updateNote}
+                                presidentNote={activeNote.pNote}
+                                onPresidentNoteChange={updatePresidentNote}
+                                isPresidentView={user?.role === 'admin' || user?.role === 'prezes'}
+                                taskStatus={taskStatuses[activeNote.repId]?.[activeNote.id]}
+                                onSetTaskStatus={setTaskStatus}
+                                onClose={closeModal}
+                            />
                         </div>
                     </div>
                 )}
             </main>
+            {showResetConfirm && (
+                <div className={styles.confirmOverlay}>
+                    <div className={styles.confirmBox}>
+                        <h3>⚠️ Resetuj System</h3>
+                        <p>Czy na pewno chcesz zresetować wszystkie postępy, wytyczne i plan Masterminda? Tej operacji nie można cofnąć.</p>
+                        <div className={styles.confirmBtns}>
+                            <button className={styles.confirmNo} onClick={() => setShowResetConfirm(false)}>Anuluj</button>
+                            <button className={styles.confirmYes} onClick={performReset}>TAK, RESETUJ</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

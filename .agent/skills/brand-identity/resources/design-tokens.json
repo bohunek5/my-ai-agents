@@ -1,0 +1,35 @@
+{
+    "meta": {
+        "brand_name": "PRESCOT",
+        "description": "Core design tokens for premium LED Studio implementation based on official logos."
+    },
+    "colors": {
+        "primary": {
+            "DEFAULT": "#E14E26",
+            "hover": "#C03F1D",
+            "foreground": "#FFFFFF"
+        },
+        "secondary": {
+            "DEFAULT": "#212A35",
+            "foreground": "#F8FAFC"
+        },
+        "background": "#020617",
+        "foreground": "#F8FAFC",
+        "muted": "#1E293B",
+        "accent": "#E14E26",
+        "destructive": "#EF4444",
+        "success": "#10B981",
+        "glass": {
+            "bg": "rgba(255, 255, 255, 0.05)",
+            "border": "rgba(255, 255, 255, 0.1)"
+        }
+    },
+    "typography": {
+        "font_family_base": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        "font_family_headings": "'Orbitron', 'Inter', sans-serif"
+    },
+    "spacing": {
+        "base": 16,
+        "radius": "1rem"
+    }
+}

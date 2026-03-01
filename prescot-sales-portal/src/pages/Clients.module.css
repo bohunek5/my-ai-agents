@@ -231,6 +231,31 @@
     color: var(--primary);
 }
 
+.contactedGreen {
+    background: rgba(34, 197, 94, 0.08) !important;
+    border-left: 4px solid #22c55e !important;
+}
+
+.contactedGreen:hover {
+    background: rgba(34, 197, 94, 0.12) !important;
+}
+
+.contactBadge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--muted-foreground);
+    border: 1px solid var(--glass-border);
+}
+
+.contactedGreen .contactBadge {
+    background: #22c55e;
+    color: white;
+    border-color: #22c55e;
+}
+
 .clientMain {
     flex: 1;
 }
@@ -892,4 +917,38 @@
     color: var(--muted-foreground);
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+/* Historia zakupów – toggle */
+.historyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.toggleHistoryBtn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--glass-border);
+    color: var(--muted-foreground);
+    padding: 0.4rem 0.9rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.toggleHistoryBtn:hover {
+    background: rgba(225, 78, 38, 0.1);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+[data-theme='light'] .toggleHistoryBtn {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #475569;
 }

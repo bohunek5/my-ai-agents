@@ -23,6 +23,7 @@ const USERS_DB: Record<string, { pass: string; role: UserRole; name: string }> =
     'dariuszn': { pass: '123456', role: 'handlowiec', name: 'Dariusz Nita' },
     'annag': { pass: '123456', role: 'handlowiec', name: 'Anna Galor' },
     'annaa': { pass: '123456', role: 'handlowiec', name: 'Anna Asztemborska' },
+    'iwonab': { pass: '123456', role: 'handlowiec', name: 'Iwona Baczewska' },
     'krzysztofb': { pass: '654321', role: 'prezes', name: 'Krzysztof Bara' },
     'radoslawn': { pass: '654321', role: 'prezes', name: 'Radosław Narwojsz' },
     'karolb': { pass: 'admin', role: 'admin', name: 'Karol Bohdanowicz' }

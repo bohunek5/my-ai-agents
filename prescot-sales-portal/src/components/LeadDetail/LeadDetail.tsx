@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState } from 'react';
 import {
     MessageSquare,
     Shield,
@@ -29,38 +29,61 @@ export const LeadDetail: React.FC<LeadDetailProps> = ({
     onClose,
     isPrezes
 }) => {
+    const [showHistory, setShowHistory] = useState(false);
+
     const renderPurchaseHistory = () => {
         if (!lead.purchaseHistory || lead.purchaseHistory === "Brak historii zakupów.") {
             return <div className={styles.emptyState}>Brak historii zakupów.</div>;
+        }
+
+        if (!showHistory) {
+            return (
+                <button
+                    className={styles.expandHistoryBtn}
+                    onClick={() => setShowHistory(true)}
+                >
+                    Pokaż historię zakupów (Indeksy/Ceny)
+                </button>
+            );
         }
 
         const history = lead.purchaseHistory.replace(/\\n/g, '\n');
         const lines = history.split('\n').filter(l => l.includes('•'));
 
         return (
-            <table className={styles.historyTable}>
-                <tbody>
-                    {lines.map((line, lid) => {
-                        const cleanLine = line.replace('•', '').trim();
-                        const parts = cleanLine.split('|');
-                        const namePart = parts[0].trim();
-                        const qtyPart = parts[1] ? parts[1].replace('Ilość:', '').trim() : '';
-                        const pricePart = parts[2] ? parts[2].replace('Cena:', '').trim().replace('Cena śr.:', '').trim() : '';
-                        const valuePart = parts[3] ? parts[3].replace('Wartość:', '').trim() : '';
+            <div className={styles.historyContainer}>
+                <button
+                    className={styles.collapseHistoryBtn}
+                    onClick={() => setShowHistory(false)}
+                >
+                    Zwiń historię
+                </button>
+                <div className={styles.tableWrapper}>
+                    <table className={styles.historyTable}>
+                        <tbody>
+                            {lines.map((line, lid) => {
+                                const cleanLine = line.replace('•', '').trim();
+                                const parts = cleanLine.split('|');
+                                const namePart = parts[0].trim();
+                                const qtyPart = parts[1] ? parts[1].replace('Ilość:', '').trim() : '';
+                                const pricePart = parts[2] ? parts[2].replace('Cena:', '').trim().replace('Cena śr.:', '').trim() : '';
+                                const valuePart = parts[3] ? parts[3].replace('Wartość:', '').trim() : '';
 
-                        return (
-                            <tr key={lid}>
-                                <td>{namePart}</td>
-                                <td>{qtyPart && `Ilość: ${qtyPart}`}</td>
-                                <td className={styles.qty}>
-                                    {pricePart && <div className={styles.unitPrice}>Cena: {pricePart}</div>}
-                                    {valuePart && <div className={styles.rowValue}>Wartość: {valuePart}</div>}
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                                return (
+                                    <tr key={lid}>
+                                        <td>{namePart}</td>
+                                        <td>{qtyPart && `Ilość: ${qtyPart}`}</td>
+                                        <td className={styles.qty}>
+                                            {pricePart && <div className={styles.unitPrice}>Cena: {pricePart}</div>}
+                                            {valuePart && <div className={styles.rowValue}>Wartość: {valuePart}</div>}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         );
     };
 
@@ -92,24 +115,21 @@ export const LeadDetail: React.FC<LeadDetailProps> = ({
                         />
                     </div>
 
-                    <div className={styles.section}>
-                        <div className={styles.sectionTitle}>
-                            <Shield size={16} className={styles.blueIcon} />
-                            WYTYCZNE ZARZĄDU
-                        </div>
-                        {isPrezes ? (
+                    {/* Wytyczne Zarządu – widoczne TYLKO dla prezesa/admina */}
+                    {isPrezes && (
+                        <div className={styles.section}>
+                            <div className={styles.sectionTitle}>
+                                <Shield size={16} className={styles.blueIcon} />
+                                WYTYCZNE ZARZĄDU
+                            </div>
                             <textarea
                                 className={`${styles.textarea} ${styles.presidentInput}`}
                                 value={presidentNote}
                                 onChange={(e) => onSavePresidentNote?.(e.target.value)}
                                 placeholder="Wpisz wytyczne dla handlowca..."
                             />
-                        ) : (
-                            <div className={styles.insightBox}>
-                                {presidentNote || "Brak wytycznych od Zarządu."}
-                            </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* Right Column: Analysis & History */}
@@ -129,9 +149,7 @@ export const LeadDetail: React.FC<LeadDetailProps> = ({
                             <Tags size={16} className={styles.orangeIcon} />
                             HISTORIA ZAKUPÓW (DATA/INDEX/KWOTA)
                         </div>
-                        <div className={styles.tableWrapper}>
-                            {renderPurchaseHistory()}
-                        </div>
+                        {renderPurchaseHistory()}
                     </div>
 
                     <div className={styles.section}>
