@@ -31,9 +31,9 @@ export default function ONasPage() {
     ];
 
     const faqs = [
-        { q: "Jak weryfikujecie swoich pracowników?", a: "Każdy kandydat przechodzi 3-etapowy proces rekrutacji: weryfikację dokumentów (w tym zaświadczenie o niekaralności), test umiejętności praktycznych oraz rozmowę z psychologiem." },
-        { q: "Skąd pomysł na CzystyDom?", a: "Firma powstała z potrzeby stworzenia usługi premium, która łączy tradycyjną rzetelność z nowoczesną technologią rezerwacji i płatności online." },
-        { q: "Czy szkolenie pracowników jest stałym elementem?", a: "Tak, nasi specjaliści co kwartał przechodzą szkolenia z zakresu nowych technik sprzątania oraz obsługi luksusowych materiałów wykończeniowych." }
+        { q: "Jak weryfikujecie swoich pracowników?", a: "Każdy kandydat przechodzi wieloetapowy proces rekrutacji, w tym weryfikację zaświadczeń o niekaralności oraz szkolenia praktyczne z zakresu standardów SPOTLESS." },
+        { q: "Skąd pomysł na SPOTLESS?", a: "Marka powstała z potrzeby wprowadzenia standardów korporacyjnych do sektora usług utrzymania czystości, łącząc rzetelność z wydajnością operacyjną." },
+        { q: "Czy szkolenie pracowników jest stałym elementem?", a: "Tak, wdrożony system certyfikacji SPOTLESS gwarantuje, że każdy członek zespołu posiada aktualną wiedzę z zakresu profesjonalnej chemii i nowoczesnych technologii czyszczących." }
     ];
 
     return (
@@ -52,7 +52,7 @@ export default function ONasPage() {
                                 Więcej niż <br /><span className="text-teal-600">Sprzątanie.</span>
                             </h1>
                             <p className="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-bold leading-relaxed mb-10">
-                                Zaczęliśmy w 2018 roku jako mały zespół pasjonatów z jedną wizją: odmienić sposób, w jaki ludzie myślą o usługach domowych. Dziś CzystyDom to lider nowoczesnego sprzątania na Mazurach.
+                                Nasza wizja to dostarczanie usług, które definiują nową jakość w branży facility management. Dziś SPOTLESS to lider zaawansowanych systemów utrzymania czystości, obsługujący najbardziej prestiżowe obiekty.
                             </p>
                             <div className="flex flex-wrap gap-4">
                                 <Button className="rounded-full px-10 h-16 font-black text-lg bg-slate-900 dark:bg-white dark:text-black hover:scale-105 transition-all">Dołącz do nas</Button>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { Waves, Instagram, Facebook, Linkedin, Mail, Phone, MapPin } from "lucide-react";
+import { ShieldCheck, Instagram, Facebook, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
 export const Footer = () => {
     return (
@@ -12,12 +12,12 @@ export const Footer = () => {
                     <div className="space-y-8">
                         <Link href="/" className="flex items-center gap-2">
                             <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center shadow-lg shadow-teal-200">
-                                <Waves className="text-white w-6 h-6" />
+                                <ShieldCheck className="text-white w-6 h-6" />
                             </div>
-                            <span className="text-2xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">CzystyDom.</span>
+                            <span className="text-2xl font-black tracking-tighter text-slate-900 dark:text-white uppercase italic">Spotless.</span>
                         </Link>
                         <p className="text-slate-500 dark:text-slate-400 text-base font-medium leading-relaxed">
-                            Twój dom zasługuje na najlepszą opiekę. Łączymy nowoczesną technologię z pasją do porządku. Każdy pokój, każdy detal, każda rezerwacja.
+                            Zaawansowane systemy utrzymania czystości dla klientów indywidualnych i komercyjnych. Profesjonalizm potwierdzony standardami najwyższej jakości.
                         </p>
                         <div className="flex gap-4">
                             {[
@@ -72,7 +72,7 @@ export const Footer = () => {
                                 <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
                                     <Mail size={18} />
                                 </div>
-                                <span className="text-sm font-bold text-slate-600 dark:text-slate-400">kontakt@czystydom.com.pl</span>
+                                <span className="text-sm font-bold text-slate-600 dark:text-slate-400">office@spotless.com.pl</span>
                             </li>
                             <li className="flex items-center gap-4 group">
                                 <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-all">
@@ -85,7 +85,7 @@ export const Footer = () => {
                 </div>
 
                 <div className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6 text-slate-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-widest">
-                    <p>© 2026 CzystyDom Serwis Sprzątający Sp. z o.o. Wszelkie prawa zastrzeżone.</p>
+                    <p>© 2026 SPOTLESS Group. Wszelkie prawa zastrzeżone.</p>
                     <div className="flex gap-8">
                         <Link href="#" className="hover:text-teal-600 transition-colors">Polityka Prywatności</Link>
                         <Link href="#" className="hover:text-teal-600 transition-colors">Regulamin</Link>

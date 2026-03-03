@@ -6,11 +6,11 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
-  title: "CzystyDom | Najlepsze Sprzątanie na Mazurach",
-  description: "Zasmakuj luksusu czystości. Rezerwuj w sekundy, ciesz się tygodniami.",
+  title: "SPOTLESS | Profesjonalne Systemy Utrzymania Czystości",
+  description: "Najwyższy standard higieny dla Twojego domu i biznesu. Zaufaj ekspertom SPOTLESS.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0",
   appleWebApp: {
-    title: "CzystyDom",
+    title: "SPOTLESS",
     statusBarStyle: "default",
     capable: true,
   },
