@@ -1,4 +1,43 @@
-garaz-app/
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+__pycache__/
 
-# Separate repository
-mazury-holiday/
+# OS files
+.DS_Store
+Thumbs.db
+
+# Heavy data/backups/temp (won't be committed)
+*.mp3
+*.zip
+*.log
+*.pdf
+*.xlsx
+*.xls
+*.csv
+*.xml
+*.json_extracted.json
+
+# Exclude prototype folders (Nexus "won")
+Bohdanowicz.it/
+strona-ai/
+neural-nexus/
+
+# Other heavy/temp dirs
+klus-design/
+gomarplus-backup/
+gomarplus-backup-full/
+gomarplus-backup-headless/
+prezent/
+gomarplus-scraper-httrack/
+ai-content-factory/node_modules/
+dr-karol-companion/node_modules/
+poszukiwanie/node_modules/
+prescot-sales-portal/node_modules/
+szkolenianavis-app/node_modules/
+
+# Keep important projects
+!mazury-holiday/
+!Zadania-Prescot/

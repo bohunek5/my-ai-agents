@@ -50,11 +50,19 @@ export const WeeklyPlan: React.FC = () => {
     });
 
     const [presidentNotes, setPresidentNotes] = useState<Record<string, string>>(() => {
-        const saved = localStorage.getItem('prescot_president_notes');
-        return saved ? JSON.parse(saved) : {};
+        try {
+            const saved = localStorage.getItem('prescot_president_notes');
+            return saved ? JSON.parse(saved) : {};
+        } catch { return {}; }
     });
 
-    const [activeNote, setActiveNote] = useState<{ id: string, name: string, note: string, repId: string, pNote: string } | null>(null);
+    const [mastermindDirectives, setMastermindDirectives] = useState<Record<string, string>>(() => {
+        try {
+            const saved = localStorage.getItem('prescot_mastermind_directives');
+            return saved ? JSON.parse(saved) : {};
+        } catch { return {}; }
+    });
+    const [activeNote, setActiveNote] = useState<{ id: string, name: string, note: string, repId: string, pNote: string, mmDirective: string } | null>(null);
     const [postponedDates, setPostponedDates] = useState<Record<string, Record<string, string>>>(() => {
         const all: Record<string, Record<string, string>> = {};
         REPS.forEach(rep => {
@@ -157,7 +165,8 @@ export const WeeklyPlan: React.FC = () => {
         const notes = taskNotes[repId] || {};
         const note = notes[taskId] || "";
         const pNote = presidentNotes[`${repId}_${taskId}`] || "";
-        setActiveNote({ id: taskId, name: leadName, note, repId, pNote });
+        const mmDirective = mastermindDirectives[`${repId}_${taskId}`] || "";
+        setActiveNote({ id: taskId, name: leadName, note, repId, pNote, mmDirective });
     };
 
     const updateNote = (newNote: string) => {
@@ -241,6 +250,7 @@ export const WeeklyPlan: React.FC = () => {
         setTaskStatuses({});
         setTaskNotes({});
         setPresidentNotes({});
+        setMastermindDirectives({});
         setMastermindPlan({ reps: {} });
         setPostponedDates({});
 
@@ -275,16 +285,14 @@ export const WeeklyPlan: React.FC = () => {
         await new Promise(resolve => setTimeout(resolve, 2000));
         const { directives, plan } = runMastermindAnalysis();
 
-        // 1. Update President Notes (Directives)
-        const newPresidentNotes = { ...presidentNotes };
+        // 1. Update Mastermind Directives (System intelligence) - SEPARATE FROM PRESIDENT NOTES
+        const newDirectives = { ...mastermindDirectives };
         directives.forEach(res => {
             const key = `${res.repId}_${res.clientId}`;
-            if (!newPresidentNotes[key] || newPresidentNotes[key].includes('QUICK WIN') || newPresidentNotes[key].includes('CHURN') || newPresidentNotes[key].includes('REGRESJA')) {
-                newPresidentNotes[key] = res.directive;
-            }
+            newDirectives[key] = res.directive;
         });
-        setPresidentNotes(newPresidentNotes);
-        localStorage.setItem('prescot_president_notes', JSON.stringify(newPresidentNotes));
+        setMastermindDirectives(newDirectives);
+        localStorage.setItem('prescot_mastermind_directives', JSON.stringify(newDirectives));
 
         // 2. Update Weekly Plan Distribution
         setMastermindPlan(plan);
@@ -526,6 +534,7 @@ export const WeeklyPlan: React.FC = () => {
                                 onRepNoteChange={updateNote}
                                 presidentNote={activeNote.pNote}
                                 onPresidentNoteChange={updatePresidentNote}
+                                mastermindDirective={activeNote.mmDirective}
                                 isPresidentView={user?.role === 'admin' || user?.role === 'prezes'}
                                 taskStatus={taskStatuses[activeNote.repId]?.[activeNote.id]}
                                 onSetTaskStatus={setTaskStatus}

@@ -48,6 +48,13 @@ export const Clients: React.FC = () => {
         } catch { return {}; }
     });
 
+    const [mastermindDirectives, setMastermindDirectives] = useState<Record<string, string>>(() => {
+        try {
+            const saved = localStorage.getItem('prescot_mastermind_directives');
+            return saved ? JSON.parse(saved) : {};
+        } catch { return {}; }
+    });
+
     const [repNotesMap, setRepNotesMap] = useState<Record<string, Record<string, string>>>(() => {
         const notes: Record<string, Record<string, string>> = {};
         REPS.forEach(rep => {
@@ -58,6 +65,19 @@ export const Clients: React.FC = () => {
         });
         return notes;
     });
+
+    React.useEffect(() => {
+        const refresh = () => {
+            try {
+                const pSaved = localStorage.getItem('prescot_president_notes');
+                if (pSaved) setPresidentNotes(JSON.parse(pSaved));
+                const mmSaved = localStorage.getItem('prescot_mastermind_directives');
+                if (mmSaved) setMastermindDirectives(JSON.parse(mmSaved));
+            } catch (e) { console.error(e); }
+        };
+        window.addEventListener('storage', refresh);
+        return () => window.removeEventListener('storage', refresh);
+    }, []);
 
     const savePresidentNote = (repId: string, clientId: string, value: string) => {
         const key = `${repId}_${clientId}`;
@@ -153,6 +173,7 @@ export const Clients: React.FC = () => {
     const isPresidentView = user?.role === 'admin' || user?.role === 'prezes';
     const currentRepNote = selectedClient ? (repNotesMap[selectedClient.assignedTo]?.[selectedClient.id] || '') : '';
     const currentPresidentNote = selectedClient ? (presidentNotes[`${selectedClient.assignedTo}_${selectedClient.id}`] || '') : '';
+    const currentMastermindDirective = selectedClient ? (mastermindDirectives[`${selectedClient.assignedTo}_${selectedClient.id}`] || '') : '';
 
     return (
         <div className={styles.layout}>
@@ -287,9 +308,10 @@ export const Clients: React.FC = () => {
                             <CrmCard
                                 lead={selectedClient}
                                 repNote={currentRepNote}
-                                onRepNoteChange={(note) => saveRepNote(selectedClient.id, note)}
+                                onRepNoteChange={(note: string) => saveRepNote(selectedClient.id, note)}
                                 presidentNote={currentPresidentNote}
-                                onPresidentNoteChange={(note) => savePresidentNote(selectedClient.assignedTo, selectedClient.id, note)}
+                                onPresidentNoteChange={(note: string) => savePresidentNote(selectedClient.assignedTo, selectedClient.id, note)}
+                                mastermindDirective={currentMastermindDirective}
                                 isPresidentView={isPresidentView}
                             />
                         ) : (

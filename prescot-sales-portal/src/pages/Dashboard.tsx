@@ -204,6 +204,10 @@ export const Dashboard: React.FC = () => {
         const saved = localStorage.getItem('prescot_president_notes');
         return saved ? JSON.parse(saved) : {};
     });
+    const [mastermindDirectives, setMastermindDirectives] = useState<Record<string, string>>(() => {
+        const saved = localStorage.getItem('prescot_mastermind_directives');
+        return saved ? JSON.parse(saved) : {};
+    });
     const [postponedDates, setPostponedDates] = useState<Record<string, string>>(() => {
         const saved = localStorage.getItem(`prescot_postponed_dates_${user?.username}`);
         return saved ? JSON.parse(saved) : {};
@@ -255,6 +259,8 @@ export const Dashboard: React.FC = () => {
             if (nSaved) setTaskNotes(JSON.parse(nSaved));
             const pSaved = localStorage.getItem('prescot_president_notes');
             if (pSaved) setPresidentNotes(JSON.parse(pSaved));
+            const mmSaved = localStorage.getItem('prescot_mastermind_directives');
+            if (mmSaved) setMastermindDirectives(JSON.parse(mmSaved));
             const pdSaved = localStorage.getItem(`prescot_postponed_dates_${user?.username}`);
             if (pdSaved) setPostponedDates(JSON.parse(pdSaved));
         };
@@ -467,6 +473,9 @@ export const Dashboard: React.FC = () => {
     const activeLeadPresidentNote = activeLead
         ? (presidentNotes[`${activeLead.assignedTo}_${activeLead.id}`] || '')
         : '';
+    const activeLeadMastermindDirective = activeLead
+        ? (mastermindDirectives[`${activeLead.assignedTo}_${activeLead.id}`] || '')
+        : '';
 
     const datePickerLead = datePickerLeadId ? ALL_LEADS.find(l => l.id === datePickerLeadId) : null;
 
@@ -565,6 +574,7 @@ export const Dashboard: React.FC = () => {
                                         onRepNoteChange={(note) => saveNote(activeLead.id, note)}
                                         presidentNote={activeLeadPresidentNote}
                                         onPresidentNoteChange={() => { }}
+                                        mastermindDirective={activeLeadMastermindDirective}
                                         isPresidentView={false}
                                         taskStatus={taskStatuses[activeLead.id]}
                                         onSetTaskStatus={(status) => updateStatus(activeLead.id, status)}

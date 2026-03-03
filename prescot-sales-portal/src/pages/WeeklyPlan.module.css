@@ -802,7 +802,7 @@
     background: var(--glass-bg);
     border-radius: 32px;
     border: 1px solid var(--glass-border);
-    padding: 2.5rem;
+    padding: 3rem;
     position: relative;
     box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6);
     max-height: 90vh;
@@ -863,7 +863,9 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
 }
 
 .modalTag {
@@ -1021,15 +1023,15 @@
 }
 
 .readonlyNote {
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(54, 114, 236, 0.1);
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(54, 114, 236, 0.25);
     border-radius: 20px;
     padding: 1.5rem;
-    color: #475569;
+    color: #ffffff;
     font-size: 1.1rem;
     line-height: 1.7;
     min-height: 100px;
-    font-style: italic;
+    box-sizing: border-box;
 }
 
 [data-theme='light'] .readonlyNote {
@@ -1106,17 +1108,23 @@
 .modalTextarea {
     width: 100%;
     min-height: 250px;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(15, 23, 42, 0.85);
     border: 1px solid rgba(54, 114, 236, 0.2);
     border-radius: 20px;
     padding: 1.5rem;
-    color: #0f172a;
+    color: #ffffff;
     font-size: 1.1rem;
     line-height: 1.6;
     outline: none;
     resize: none;
     transition: all 0.3s ease;
     font-weight: 600;
+    box-sizing: border-box;
+    display: block;
+}
+
+.modalTextarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
 }
 
 [data-theme='light'] .modalTextarea {
@@ -1815,4 +1823,44 @@
 
 .searchSubtext strong {
     color: var(--foreground);
+}
+
+/* Year Tabs for Purchase History */
+.yearTabs {
+    display: flex;
+    gap: 0.8rem;
+    margin: 0;
+    flex-wrap: wrap;
+    padding: 0;
+    background: transparent;
+}
+
+.yearTab {
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: #3b82f6;
+    border: 1px solid #3b82f6;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.yearTab:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.yearTabActive {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
+    box-shadow: 0 0 15px rgba(225, 78, 38, 0.3);
+    transform: translateY(-1px);
+}
+
+.yearTabActive:hover {
+    filter: brightness(1.1);
 }

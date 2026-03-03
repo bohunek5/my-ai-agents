@@ -26,6 +26,8 @@ interface CrmCardProps {
     onPostponeRequest?: () => void;
     /** Tryb MODAL: pokazuje X + "ZAPISZ I ZAMKNIJ" */
     onClose?: () => void;
+    /** Inteligentna wytyczna Masterminda (System) */
+    mastermindDirective?: string;
     /** Slot na dodatkowe akcje (np. duże przyciski outcome w Dashboard) */
     actionSlot?: React.ReactNode;
 }
@@ -41,9 +43,11 @@ export const CrmCard: React.FC<CrmCardProps> = ({
     onSetTaskStatus,
     onPostponeRequest,
     onClose,
+    mastermindDirective,
     actionSlot,
 }) => {
     const [showPurchaseHistory, setShowPurchaseHistory] = useState(false);
+    const [selectedYear, setSelectedYear] = useState<string | null>(null);
 
     // Purchase history is now collapsed by default as requested.
 
@@ -121,19 +125,23 @@ export const CrmCard: React.FC<CrmCardProps> = ({
                             )}
                         </div>
 
-                        {isPresidentView && (
-                            <div className={styles.crmSectionBlock}>
-                                <label className={styles.noteLabel}>
-                                    <Shield size={14} className={styles.blueIcon} /> WYTYCZNE ZARZĄDU
-                                </label>
+                        <div className={styles.crmSectionBlock}>
+                            <label className={styles.noteLabel}>
+                                <Shield size={14} className={styles.blueIcon} /> WYTYCZNE ZARZĄDU
+                            </label>
+                            {isPresidentView ? (
                                 <textarea
                                     value={presidentNote || ''}
                                     onChange={(e) => onPresidentNoteChange(e.target.value)}
                                     className={styles.modalTextarea}
                                     placeholder="Twoje sugestie dla handlowca..."
                                 />
-                            </div>
-                        )}
+                            ) : (
+                                <div className={styles.readonlyNote}>
+                                    {presidentNote || 'Brak dodatkowych wytycznych od zarządu.'}
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     {/* → Prawa kolumna: Analiza + Historia + Wytyczna systemu */}
@@ -184,92 +192,71 @@ export const CrmCard: React.FC<CrmCardProps> = ({
                                         </thead>
                                         <tbody>
                                             {(() => {
-                                                // 1.5 Dynamic ERP Lookup for data consistency
                                                 const cleanName = (n: string) => (n || '').toLowerCase()
                                                     .replace(/sp\.? z o\.?o\.?/g, '')
                                                     .replace(/spółka z ograniczoną odpowiedzialnością/g, '')
                                                     .trim();
                                                 const targetName = cleanName(lead.name);
-                                                const erpSales = (rawSales as Array<{ company?: string; product: string; quantity: number; year: number }>).filter(s => {
+                                                const erpSales = (rawSales as any[]).filter(s => {
                                                     const sName = cleanName(s.company || '');
                                                     return sName.includes(targetName) || targetName.includes(sName);
                                                 });
 
-                                                if (erpSales.length > 0 && (!lead.purchaseHistory || lead.purchaseHistory.includes('Brak historii'))) {
-                                                    const erpRows = erpSales.slice(0, 8).map((sale, sidx) => (
-                                                        <tr key={`erp-${sidx}`}>
-                                                            <td className={styles.productCell}>{sale.product}</td>
-                                                            <td className={styles.qtyCell}>{sale.quantity}</td>
-                                                            <td className={styles.priceCell}>LOG ERP</td>
-                                                            <td className={styles.totalCell}>{sale.year}</td>
-                                                        </tr>
-                                                    ));
-                                                    const totalQty = erpSales.reduce((acc, s) => acc + s.quantity, 0);
-                                                    return (
-                                                        <>
-                                                            {erpRows}
-                                                            <tr key="total-erp" className={styles.totalRow}>
-                                                                <td className={styles.totalLabelCell} colSpan={2}>ŁĄCZNIE (Z LOGÓW ERP)</td>
-                                                                <td className={styles.totalValueCell} colSpan={2}>{totalQty} szt.</td>
-                                                            </tr>
-                                                        </>
-                                                    );
-                                                }
+                                                const salesByYear = erpSales.reduce((acc: Record<string, any[]>, sale) => {
+                                                    const yearMatch = sale.year?.toString().match(/\d{4}/);
+                                                    const year = yearMatch ? yearMatch[0] : 'Inne';
+                                                    if (!acc[year]) acc[year] = [];
+                                                    acc[year].push(sale);
+                                                    return acc;
+                                                }, {});
 
-                                                if (!lead.purchaseHistory || lead.purchaseHistory.includes('Brak historii')) {
+                                                const availableYears = Object.keys(salesByYear).sort((a, b) => b.localeCompare(a));
+                                                const activeYear = selectedYear || availableYears[0];
+
+                                                if (availableYears.length === 0) {
                                                     return (
                                                         <tr>
-                                                            <td colSpan={4} className={styles.historyLine}>Brak historii zakupów.</td>
+                                                            <td colSpan={4} className={styles.historyLine}>Brak historii zakupów w bazie ERP.</td>
                                                         </tr>
                                                     );
                                                 }
 
-                                                // 1. Wyodrębnij część podsumowującą (ŁĄCZNIE) jeśli istnieje
-                                                let mainHistory = lead.purchaseHistory;
-                                                let totalSummary = '';
-                                                if (mainHistory.includes('ŁĄCZNIE:')) {
-                                                    const splitPoint = mainHistory.indexOf('ŁĄCZNIE:');
-                                                    totalSummary = mainHistory.substring(splitPoint).replace('ŁĄCZNIE:', '').trim();
-                                                    mainHistory = mainHistory.substring(0, splitPoint);
-                                                }
-
-                                                // 2. Renderuj produkty
-                                                const rows = mainHistory.split('•').filter(t => t.trim()).map((item, idx) => {
-                                                    const parts = item.split('|').map(p => p.trim());
-                                                    let product = parts[0] || '';
-                                                    // Czyść kropkę na początku
-                                                    if (product.startsWith('•')) product = product.substring(1).trim();
-
-                                                    const qty = parts.find(p => p.toLowerCase().includes('ilość'))?.split(':')[1]?.trim() || '-';
-                                                    const price = parts.find(p => p.toLowerCase().includes('cena'))?.split(':')[1]?.trim() || '-';
-                                                    let total = parts.find(p => p.toLowerCase().includes('wartość'))?.split(':')[1]?.trim() || '-';
-
-                                                    // Usuń "ŁĄCZNIE" z komórki jeśli tam trafiło
-                                                    if (total.toUpperCase().includes('ŁĄCZNIE')) {
-                                                        total = total.split(/ŁĄCZNIE/i)[0].trim();
-                                                    }
-
-                                                    return (
-                                                        <tr key={idx}>
-                                                            <td className={styles.productCell}>{product}</td>
-                                                            <td className={styles.qtyCell}>{qty}</td>
-                                                            <td className={styles.priceCell}>{price}</td>
-                                                            <td className={styles.totalCell}>{total}</td>
+                                                return (
+                                                    <>
+                                                        <tr>
+                                                            <td colSpan={4} style={{ padding: '5px 15px' }}>
+                                                                <div className={styles.yearTabs}>
+                                                                    {availableYears.map(yr => (
+                                                                        <button
+                                                                            key={yr}
+                                                                            className={`${styles.yearTab} ${activeYear === yr ? styles.yearTabActive : ''}`}
+                                                                            onClick={(e) => {
+                                                                                e.stopPropagation();
+                                                                                setSelectedYear(yr);
+                                                                            }}
+                                                                        >
+                                                                            {yr}
+                                                                        </button>
+                                                                    ))}
+                                                                </div>
+                                                            </td>
                                                         </tr>
-                                                    );
-                                                });
-
-                                                // 3. Dodaj wiersz podsumowania na końcu - pełna wartość
-                                                if (totalSummary) {
-                                                    rows.push(
-                                                        <tr key="total-row" className={styles.totalRow}>
-                                                            <td className={styles.totalLabelCell} colSpan={2}>ŁĄCZNIE</td>
-                                                            <td className={styles.totalValueCell} colSpan={2}>{totalSummary}</td>
+                                                        {salesByYear[activeYear]?.map((sale, sidx) => (
+                                                            <tr key={`${activeYear}-${sidx}`}>
+                                                                <td className={styles.productCell}>{sale.product}</td>
+                                                                <td className={styles.qtyCell}>{sale.quantity}</td>
+                                                                <td className={styles.priceCell}>{sale.price || '0.00'}</td>
+                                                                <td className={styles.totalCell}>{sale.value || '0.00'} PLN</td>
+                                                            </tr>
+                                                        ))}
+                                                        <tr className={styles.totalRow}>
+                                                            <td className={styles.totalLabelCell} colSpan={2}>PODSUMOWANIE ROKU {activeYear}</td>
+                                                            <td className={styles.totalValueCell} colSpan={2}>
+                                                                {salesByYear[activeYear]?.reduce((acc, s) => acc + (s.value || 0), 0).toFixed(2)} PLN
+                                                            </td>
                                                         </tr>
-                                                    );
-                                                }
-
-                                                return rows;
+                                                    </>
+                                                );
                                             })()}
                                         </tbody>
                                     </table>
@@ -284,7 +271,7 @@ export const CrmCard: React.FC<CrmCardProps> = ({
                             </label>
                             <div className={`${styles.aiInsightBox} ${styles.suggestionBox}`}>
                                 <p className={styles.directiveText}>
-                                    {presidentNote || lead.suggestions || 'Brak aktywnych wytycznych Mastermind dla tego klienta.'}
+                                    {mastermindDirective || lead.suggestions || 'Brak aktywnych wytycznych Mastermind dla tego klienta.'}
                                 </p>
                             </div>
                         </div>
