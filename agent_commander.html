@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAVITY OS v2 Enterprise (PRO MAX)</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      }
+    }
+    </script>
+    <style>
+        :root {
+            --bg-color: #020408;
+            --accent-cyan: #00f2ff;
+            --accent-purple: #8b5cf6;
+            --accent-pink: #ec4899;
+            --glass-bg: rgba(10, 15, 25, 0.65);
+            --glass-header: rgba(5, 8, 15, 0.95);
+            --glass-border: rgba(0, 242, 255, 0.3);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --dock-bg: rgba(0, 5, 10, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            user-select: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-cyan);
+            border-radius: 10px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            perspective: 800px;
+            /* Dodajemy perspektywę dla fali dźwiękowej 3D */
+        }
+
+        /* BOOT SEQUENCE */
+        #boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #10b981;
+            font-size: 0.8rem;
+            opacity: 1;
+            transition: opacity 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .boot-log {
+            margin-bottom: 5px;
+            opacity: 0;
+        }
+
+        #boot-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* MATRIX RAIN CANVAS - 3D WAVE EFFECT */
+        @keyframes soundwave {
+            0% {
+                transform: scale(1) translateZ(0) translateY(0);
+                filter: brightness(1);
+            }
+
+            100% {
+                transform: scale(1.1) translateZ(50px) translateY(0);
+                filter: brightness(1.7) drop-shadow(0 0 20px rgba(0, 242, 255, 0.5));
+            }
+        }
+
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -4;
+            opacity: 0.3;
+            pointer-events: none;
+            transition: transform 0.5s ease-out;
+            transform-origin: center center;
+        }
+
+        #matrixCanvas.matrix-speaking {
+            /* Legacy animation removed in favor of 3D Three.js effects */
+        }
+
+        /* DYNAMIC BACKGROUND */
+        .master-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('./cybernetic_dashboard_bg_1772911038932.png') center/cover no-repeat;
+            opacity: 0.15;
+            filter: blur(20px) contrast(1.1);
+            z-index: -3;
+            pointer-events: none;
+        }
+
+
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 20%, #000 130%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            height: 35px;
+            background: var(--glass-header);
+            backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 0.75rem;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 242, 255, 0.1);
+        }
+
+        .top-bar .left-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .top-bar .left-group span.neon {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .top-bar .right-group {
+            display: flex;
+            gap: 25px;
+            font-family: 'JetBrains Mono';
+            color: var(--text-dim);
+            align-items: center;
+        }
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pulse-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+                box-shadow: 0 0 10px #10b981;
+            }
+
+            50% {
+                opacity: 0.2;
+                box-shadow: 0 0 2px #10b981;
+            }
+
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 10px #10b981;
+            }
+        }
+
+        /* DESKTOP AREA */
+        .desktop {
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* WINDOWS */
+        .os-window {
+            position: absolute;
+            background: var(--glass-bg);
+            backdrop-filter: blur(40px) saturate(150%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(0, 242, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 300px;
+            min-height: 200px;
+            visibility: hidden;
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: opacity 0.3s, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+            pointer-events: none;
+        }
+
+        .os-window.active {
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: all;
+        }
+
+        .os-window.active:hover {
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 40px rgba(0, 242, 255, 0.15);
+        }
+
+        .os-window.maximized {
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: calc(100vh - 35px) !important;
+            transform: none !important;
+            border-radius: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .window-header {
+            height: 45px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            cursor: grab;
+        }
+
+        .window-header:active {
+            cursor: grabbing;
+            background: rgba(0, 242, 255, 0.05);
+        }
+
+        .window-title {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 2px;
+            pointer-events: none;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .win-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .win-btn::after {
+            opacity: 0;
+            transition: 0.2s;
+            font-size: 8px;
+            font-weight: 800;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .window-controls:hover .win-btn::after {
+            opacity: 1;
+        }
+
+        .btn-close {
+            background: #ff5f56;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-close:hover {
+            background: #ff4036;
+        }
+
+        .btn-close::after {
+            content: '✕';
+        }
+
+        .btn-min {
+            background: #ffbd2e;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-min:hover {
+            background: #ffaa00;
+        }
+
+        .btn-min::after {
+            content: '−';
+        }
+
+        .btn-max {
+            background: #27c93f;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-max:hover {
+            background: #1eb333;
+        }
+
+        .btn-max::after {
+            content: '⤢';
+            font-size: 7px;
+        }
+
+        .window-content {
+            flex-grow: 1;
+            padding: 25px;
+            overflow-y: auto;
+            color: var(--text-main);
+            user-select: text;
+        }
+
+        /* DOCK / TASKBAR */
+        .dock-container {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dock-bg);
+            backdrop-filter: blur(40px) saturate(200%);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            border-radius: 24px;
+            padding: 12px 25px;
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 242, 255, 0.1);
+        }
+
+        .dock-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            pointer-events: none;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .dock-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .dock-icon:hover {
+            transform: translateY(-12px) scale(1.15);
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.2) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 25px rgba(0, 242, 255, 0.4);
+            z-index: 10;
+        }
+
+        .dock-tooltip {
+            position: absolute;
+            bottom: 75px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid var(--accent-cyan);
+            color: white;
+            font-family: 'JetBrains Mono';
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.2s;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0, 242, 255, 0.2);
+        }
+
+        .dock-icon:hover .dock-tooltip {
+            opacity: 1;
+            bottom: 80px;
+        }
+
+        .dock-dot {
+            position: absolute;
+            bottom: -8px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--text-dim);
+            transition: 0.3s;
+        }
+
+        .dock-icon.running .dock-dot {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff;
+        }
+
+        /* SYMBIOZA CHAT STYLES */
+        .chat-history {
+            height: calc(100% - 45px);
+            overflow-y: auto;
+            font-size: 0.9rem;
+            padding-right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .msg-bubble {
+            padding: 12px 18px;
+            border-radius: 12px;
+            max-width: 90%;
+            line-height: 1.5;
+        }
+
+        .msg-user {
+            background: rgba(255, 255, 255, 0.05);
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .msg-ai {
+            background: rgba(0, 242, 255, 0.05);
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 242, 255, 0.05);
+        }
+
+        .chat-input-area {
+            display: flex;
+            height: 45px;
+            margin-top: 15px;
+            gap: 10px;
+        }
+
+        .chat-input-area input {
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: white;
+            padding: 0 20px;
+            outline: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .chat-input-area input:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 242, 255, 0.2);
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .agent-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 16px;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            background: rgba(0, 242, 255, 0.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .agent-card:hover::before {
+            opacity: 1;
+        }
+
+        .agent-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .agent-card p {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+            font-family: 'JetBrains Mono';
+        }
+    </style>
+</head>
+
+<body>
+    <!-- CANVAS FOR MATRIX RAIN -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="master-bg"></div>
+    <div class="vignette"></div>
+
+    <!-- BOOT SCREEN -->
+    <div id="boot-screen">
+        <div id="boot-text"></div>
+    </div>
+
+    <!-- TOP MENU BAR -->
+    <div class="top-bar">
+        <div class="left-group">
+            <span class="neon">KB-CORE v1.0</span>
+            <span style="opacity:0.3;">//</span>
+            <span id="core-status" style="color: #10b981; font-family: 'JetBrains Mono'; font-size: 0.65rem;">HUB:
+                ONLINE / IDLE</span>
+        </div>
+        <div class="right-group">
+            <div class="system-status">
+                <div class="pulse-dot"></div> Zosia TTS: <span id="bridgeStatus" style="color:#10b981;">ONLINE</span>
+            </div>
+            <div class="system-status">OLLAMA v3.2: <span style="color:#10b981;">SYNCED</span></div>
+            <div id="clock">00:00:00</div>
+        </div>
+    </div>
+
+    <!-- DESKTOP WORKSPACE -->
+    <div class="desktop" id="desktop">
+
+        <!-- WINDOW 1: COMMUNICATION -->
+        <div class="os-window" id="win-chat" style="width: 450px; height: 550px; top: 60px; left: 60px; z-index: 10;">
+            <div class="window-header" onmousedown="startDrag(event, 'win-chat')">
+                <div class="window-controls">
+                    <div class="win-btn btn-close" onclick="closeWindow('win-chat')"></div>
+                    <div class="win-btn btn-min" onclick="closeWindow('win-chat')"></div>
+                    <div class="win-btn btn-max" onclick="maximizeWindow('win-chat')"></div>
+                </div>
+                <div class="window-title">SYMBIOZA COM-LINK</div>
+                <div style="width: 44px;"></div>
+            </div>
+            <div class="window-content" style="display: flex; flex-direction: column;">
+                <div class="chat-history" id="chatHistory">
+                    <!-- Default message -->
+                    <div class="msg-bubble msg-ai">
+                        <span
+                            style="color: var(--accent-cyan); font-weight:700; font-size:0.7rem; display:block; margin-bottom:4px;">ANTIGRAVITY</span>
+                        System uruchomiony. Interfejs awansowany do klasy Enterprise Pro Max. Wykrywam nowe wyzwania.
+                        Zosia zwarta i gotowa na komendy, Szefie.
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Napisz cokolwiek, Zosia odpowie falą..."
+                        autocomplete="off" spellcheck="false" onkeydown="handleChatEnter(event)">
+                </div>
+            </div>
+        </div>
+
+        <!-- WINDOW 2: INSTALLED APPS (A-Z) -->
+        <div class="os-window" id="win-apps" style="width: 750px; height: 600px; top: 120px; left: 550px; z-index: 11;">
+            <div class="window-header" onmousedown="startDrag(event, 'win-apps')">
+                <div class="window-controls">
+                    <div class="win-btn btn-close" onclick="closeWindow('win-apps')"></div>
+                    <div class="win-btn btn-min" onclick="closeWindow('win-apps')"></div>
+                    <div class="win-btn btn-max" onclick="maximizeWindow('win-apps')"></div>
+                </div>
+                <div class="window-title">INSTALLED APPLICATIONS (A-Z)</div>
+                <div style="width: 44px;"></div>
+            </div>
+            <div class="window-content">
+                <div class="grid-cards" style="grid-template-columns: 1fr 1fr 1fr;">
+                    <div class="agent-card"><h4>Adobe suite</h4><p>Design & Media production.</p></div>
+                    <div class="agent-card"><h4>Antigravity</h4><p>Main Agent Interface.</p></div>
+                    <div class="agent-card"><h4>AnyDesk</h4><p>Remote access tool.</p></div>
+                    <div class="agent-card"><h4>Discord</h4><p>Community & Collab.</p></div>
+                    <div class="agent-card"><h4>Excel</h4><p>Deep data analysis.</p></div>
+                    <div class="agent-card"><h4>Gardena</h4><p>Smart garden control.</p></div>
+                    <div class="agent-card"><h4>Google Chrome</h4><p>Web browsing & DevTools.</p></div>
+                    <div class="agent-card"><h4>Hue Essentials</h4><p>Lighting automation.</p></div>
+                    <div class="agent-card"><h4>Keynote</h4><p>Premium presentations.</p></div>
+                    <div class="agent-card"><h4>Lumigen</h4><p>LED image generator.</p></div>
+                    <div class="agent-card"><h4>MPC Beats</h4><p>Music production.</p></div>
+                    <div class="agent-card"><h4>Ollama</h4><p>Local LLM Runtime.</p></div>
+                    <div class="agent-card"><h4>Parallels</h4><p>Virtualization & OS isolation.</p></div>
+                    <div class="agent-card"><h4>Prescot LED</h4><p>Sales intelligence tool.</p></div>
+                    <div class="agent-card"><h4>Spotify</h4><p>Audio streaming.</p></div>
+                    <div class="agent-card"><h4>Steam</h4><p>Simulation & Gaming.</p></div>
+                    <div class="agent-card"><h4>Thunderbird</h4><p>Enterprise Email.</p></div>
+                    <div class="agent-card"><h4>Word</h4><p>Document processing.</p></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WINDOW 3: AGENT CONSOLES (REBUILT PROFESJONALNIE) -->
+        <div class="os-window" id="win-agents"
+            style="width: 600px; height: 500px; top: 90px; left: 100px; z-index: 12;">
+            <div class="window-header" onmousedown="startDrag(event, 'win-agents')">
+                <div class="window-controls">
+                    <div class="win-btn btn-close" onclick="closeWindow('win-agents')"></div>
+                    <div class="win-btn btn-min" onclick="closeWindow('win-agents')"></div>
+                    <div class="win-btn btn-max" onclick="maximizeWindow('win-agents')"></div>
+                </div>
+                <div class="window-title">AI HIVE & SYSTEM TOPOLOGY</div>
+                <div style="width: 44px;"></div>
+            </div>
+            <div class="window-content">
+                <p
+                    style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 25px; font-family:'JetBrains Mono';">
+                    >> SUBSYSTEMY: 4 AGENTÓW WEZŁA GŁÓWNEGO W GOTOWOŚCI</p>
+                <div class="grid-cards" style="grid-template-columns: 1fr;">
+                    <!-- Zmieniony rozkład dla profesjonalnych bloków -->
+                    <div class="agent-card">
+                        <h4><span style="font-size:1.3rem">⚙️</span> N8N AUTOMATION NODE</h4>
+                        <p style="color:#10b981;">> ORKIESTRACJA PRZEPŁYWÓW I WEBHOOKÓW API.</p>
+                        <p style="color:var(--text-dim); margin-top:5px; font-size:0.7rem;">Główny silnik procesowy
+                            odpowiedzialny za transfer danych end-to-end, wyzwalacze czasowe i integrację z zewnętrznymi
+                            bazami danych (Google Sheets, Notion).</p>
+                    </div>
+                    <div class="agent-card">
+                        <h4><span style="font-size:1.3rem">🎬</span> WEB SCRAPING NODE</h4>
+                        <p style="color:#ffbd2e;">> WSTRZYKIWANIE TELEMETRII STRUMIENI WIDEO (JSON/API).</p>
+                        <p style="color:var(--text-dim); margin-top:5px; font-size:0.7rem;">Jednostka pobierająca dane,
+                            parsująca struktury XML/JSON oraz indeksująca pliki RAG przed obróbką wtórną w chmurze.</p>
+                    </div>
+                    <div class="agent-card">
+                        <h4><span style="font-size:1.3rem">📊</span> PRESCOT SALES BI</h4>
+                        <p style="color:#00f2ff;">> PREDYKCJA TRENDÓW I ESTYMACJA RENTOWNOŚCI (TCO).</p>
+                        <p style="color:var(--text-dim); margin-top:5px; font-size:0.7rem;">Rdzeń matematyczny.
+                            Przetwarza masywne pliki XLSX wyłuskując anomalie, analizując spadki/wzrosty obrotu oraz
+                            sygnały zakupu Cross-Selling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WINDOW 4: MCP CONNECTIONS -->
+        <div class="os-window" id="win-mcp" style="width: 600px; height: 500px; top: 150px; left: 800px; z-index: 13;">
+            <div class="window-header" onmousedown="startDrag(event, 'win-mcp')">
+                <div class="window-controls">
+                    <div class="win-btn btn-close" onclick="closeWindow('win-mcp')"></div>
+                    <div class="win-btn btn-min" onclick="closeWindow('win-mcp')"></div>
+                    <div class="win-btn btn-max" onclick="maximizeWindow('win-mcp')"></div>
+                </div>
+                <div class="window-title">MCP SERVERS (CORE CONNECTIONS)</div>
+                <div style="width: 44px;"></div>
+            </div>
+            <div class="window-content">
+                <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 25px; font-family:'JetBrains Mono';">
+                    >> Model Context Protocol Topology</p>
+
+                <div class="grid-cards" style="grid-template-columns: 1fr;">
+                    <div class="agent-card">
+                        <h4><span style="font-size:1.3rem">📚</span> NotebookLM Server</h4>
+                        <p style="color:#4285f4;">> Cel: Głęboka analiza źródeł PDF/Web.</p>
+                        <p style="color:var(--text-dim); margin-top:5px; font-size:0.7rem;">Pozwala agentowi na korzystanie z Twoich prywatnych notatników w Google NotebookLM jako bazy wiedzy.</p>
+                    </div>
+                    <div class="agent-card">
+                        <h4><span style="font-size:1.3rem">🦑</span> GitHub MCP</h4>
+                        <p style="color:#e24329;">> Cel: Automatyka Repo & PR.</p>
+                        <p style="color:var(--text-dim); margin-top:5px; font-size:0.7rem;">Pełna integracja z bohunek5 repositories. Push, merge i zarządzanie zadaniami bezpośrednio przez AI.</p>
+                    </div>
+                    <div class="agent-card">
+                        <h4><span style="font-size:1.3rem">☁️</span> Google Workspace</h4>
+                        <p style="color:#34a853;">> Cel: Poczta, Kalendarz, Arkusze.</p>
+                        <p style="color:var(--text-dim); margin-top:5px; font-size:0.7rem;">Symbioza z ekosystemem Google. Agent czyta maile i planuje spotkania w czasie rzeczywistym.</p>
+                    </div>
+                    <div class="agent-card">
+                        <h4><span style="font-size:1.3rem">🧵</span> Stitch / UI Gen</h4>
+                        <p style="color:#8b5cf6;">> Cel: Generowanie Frontendu.</p>
+                        <p style="color:var(--text-dim); margin-top:5px; font-size:0.7rem;">Szybkie prototypowanie interfejsów React/Next.js z natychmiastowym podglądem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WINDOW 5: PROJECTS (NEW) -->
+        <div class="os-window" id="win-projects" style="width: 800px; height: 600px; top: 100px; left: 300px; z-index: 14;">
+            <div class="window-header" onmousedown="startDrag(event, 'win-projects')">
+                <div class="window-controls">
+                    <div class="win-btn btn-close" onclick="closeWindow('win-projects')"></div>
+                    <div class="win-btn btn-min" onclick="closeWindow('win-projects')"></div>
+                    <div class="win-btn btn-max" onclick="maximizeWindow('win-projects')"></div>
+                </div>
+                <div class="window-title">PROJECTS & GITHUB REPOS</div>
+                <div style="width: 44px;"></div>
+            </div>
+            <div class="window-content">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div>
+                        <h3 style="color: var(--accent-cyan); margin-bottom: 15px;">OTWARTE PROJEKTY</h3>
+                        <div class="grid-cards" style="grid-template-columns: 1fr;">
+                            <div class="agent-card"><h4>mazury-holiday</h4><p>Booking & Landing</p></div>
+                            <div class="agent-card"><h4>prescot-sales-portal</h4><p>BI Master Interface</p></div>
+                            <div class="agent-card"><h4>helipadapp</h4><p>Heli Management</p></div>
+                            <div class="agent-card"><h4>garaz-app</h4><p>Garage & Tools</p></div>
+                            <div class="agent-card"><h4>spotless-home</h4><p>Home Services</p></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent-purple); margin-bottom: 15px;">STRONY ONLINE (GITHUB)</h3>
+                        <div class="grid-cards" style="grid-template-columns: 1fr;">
+                            <div class="agent-card" onclick="window.open('https://bohunek5.github.io/PANELKB', '_blank')">
+                                <h4>PANELKB</h4>
+                                <p style="color:#10b981;">● ONLINE</p>
+                            </div>
+                            <div class="agent-card" onclick="window.open('https://bohunek5.github.io/mazury-holiday', '_blank')">
+                                <h4>Mazury Holiday</h4>
+                                <p style="color:#10b981;">● ONLINE</p>
+                            </div>
+                            <div class="agent-card" onclick="window.open('https://bohunek5.github.io/garaz-app', '_blank')">
+                                <h4>Garaż App</h4>
+                                <p style="color:#10b981;">● ONLINE</p>
+                            </div>
+                            <div class="agent-card" onclick="window.open('https://bohunek5.github.io/parking-app', '_blank')">
+                                <h4>Parking App</h4>
+                                <p style="color:#10b981;">● ONLINE</p>
+                            </div>
+                            <div class="agent-card" onclick="window.open('https://bohunek5.github.io/helipadapp', '_blank')">
+                                <h4>Lądowisko (Heli)</h4>
+                                <p style="color:#10b981;">● ONLINE</p>
+                            </div>
+                            <div class="agent-card" onclick="window.open('https://bohunek5.github.io/spotless-home', '_blank')">
+                                <h4>Spotless Home</h4>
+                                <p style="color:#10b981;">● ONLINE</p>
+                            </div>
+                        </div>
+                        <h3 style="color: var(--accent-pink); margin-top: 25px; margin-bottom: 15px;">REPO REPOZYTORIA</h3>
+                        <p style="font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-dim);">
+                            github.com/bohunek5/<br>
+                            > my-ai-agents (Master)<br>
+                            > prescot-sales-portal<br>
+                            > panel-kb-enterprise
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MAIN DOCK (TASKBAR) -->
+    <div class="dock-container">
+        <div class="dock-icon" onclick="toggleWindow('win-chat')">
+            💬<div class="dock-tooltip">Com-Link (Chat)</div>
+            <div class="dock-dot"></div>
+        </div>
+        <div class="dock-icon" onclick="toggleWindow('win-apps')">
+            📂<div class="dock-tooltip">Zainstalowane Apki</div>
+            <div class="dock-dot"></div>
+        </div>
+        <div class="dock-icon" onclick="toggleWindow('win-agents')">
+            🤖<div class="dock-tooltip">Agenci (Hive)</div>
+            <div class="dock-dot"></div>
+        </div>
+        <div class="dock-icon" onclick="toggleWindow('win-mcp')">
+            🔌<div class="dock-tooltip">MCP Serwery</div>
+            <div class="dock-dot"></div>
+        </div>
+        <div class="dock-icon" onclick="toggleWindow('win-projects')">
+            🚀<div class="dock-tooltip">Projekty</div>
+            <div class="dock-dot"></div>
+        </div>
+        <div class="dock-icon" onclick="window.location.reload()">
+            🔄<div class="dock-tooltip">Force Reboot</div>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // BOOT SEQUENCE LOGIC
+        const bootScreen = document.getElementById('boot-screen');
+        const bootText = document.getElementById('boot-text');
+        const bootLines = [
+            '>> GRAVITY_OS KERNEL INITIALIZING...',
+            '>> MOUNTING VIRTUAL FILESYSTEMS... OK',
+            '>> INJECTING RAINBOW OMBRE (20% SATURATION)...',
+            '>> 3D MATRIX VOICE WAVE CONFIGURED...',
+            '>> ESTABLISHING SYMBIOZA UPLINK... OK',
+            '>> ACTIVATING VOICE BRIDGE (PORT 7777)... ONLINE',
+            '>> READY SZEFIE. WELCOME TO PRO MAX.'
+        ];
+
+        let lineIdx = 0;
+        function runBoot() {
+            if (lineIdx < bootLines.length) {
+                const div = document.createElement('div');
+                div.className = 'boot-log';
+                div.textContent = bootLines[lineIdx];
+                bootText.appendChild(div);
+
+                setTimeout(() => div.style.opacity = '1', 50);
+
+                lineIdx++;
+                setTimeout(runBoot, 100 + Math.random() * 150);
+            } else {
+                setTimeout(() => {
+                    bootScreen.classList.add('fade-out');
+                    setTimeout(() => {
+                        toggleWindow('win-chat');
+                    }, 500);
+                }, 500);
+            }
+        }
+        window.addEventListener('load', runBoot);
+
+        // CLOCK
+        setInterval(() => {
+            document.getElementById('clock').textContent = new Date().toLocaleTimeString('pl-PL');
+        }, 1000);
+
+        // --- WINDOW MANAGER LOGIC ---
+        let zIndexCounter = 100;
+
+        function toggleWindow(id) {
+            const win = document.getElementById(id);
+            if (win.classList.contains('active')) {
+                win.classList.remove('active');
+            } else {
+                win.classList.add('active');
+                bringToFront(win);
+            }
+            updateDockIndicators();
+        }
+
+        function closeWindow(id) {
+            document.getElementById(id).classList.remove('active');
+            updateDockIndicators();
+        }
+
+        function maximizeWindow(id) {
+            const win = document.getElementById(id);
+            win.classList.toggle('maximized');
+            bringToFront(win);
+        }
+
+        function bringToFront(win) {
+            zIndexCounter++;
+            win.style.zIndex = zIndexCounter;
+        }
+
+        function updateDockIndicators() {
+            const wins = ['win-chat', 'win-apps', 'win-agents', 'win-mcp', 'win-projects'];
+            const icons = document.querySelectorAll('.dock-icon');
+            wins.forEach((wId, idx) => {
+                const win = document.getElementById(wId);
+                if (win && icons[idx]) {
+                    if (win.classList.contains('active')) {
+                        icons[idx].classList.add('running');
+                    } else {
+                        icons[idx].classList.remove('running');
+                    }
+                }
+            });
+        }
+
+        // --- DRAGGING LOGIC ---
+        let isDragging = false;
+        let activeDragEl = null;
+        let dragOffsetX = 0, dragOffsetY = 0;
+
+        function startDrag(e, winId) {
+            if (e.target.classList.contains('win-btn') || e.target.parentElement.classList.contains('window-controls')) return;
+
+            const win = document.getElementById(winId);
+            if (win.classList.contains('maximized')) win.classList.remove('maximized');
+
+            bringToFront(win);
+            isDragging = true;
+            activeDragEl = win;
+
+            const rect = win.getBoundingClientRect();
+            dragOffsetX = e.clientX - rect.left;
+            dragOffsetY = e.clientY - rect.top;
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging || !activeDragEl) return;
+            activeDragEl.style.left = (e.clientX - dragOffsetX) + 'px';
+            activeDragEl.style.top = (e.clientY - dragOffsetY) + 'px';
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            activeDragEl = null;
+        });
+
+        // --- 3D MATRIX COLUMNS (STITCHED FROM ZOSIA CORE) ---
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+
+        let scene, camera, renderer, columns = [];
+        let isSpeaking = false;
+        let clock = new THREE.Clock();
+        const charset = "日Hｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ23456789ZOSIA";
+
+        function initMatrix3D() {
+            const canvas = document.getElementById("matrixCanvas");
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 5, 15);
+
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const colCount = 80;
+            const textures = [];
+            for (let i = 0; i < 40; i++) {
+                const texCanvas = document.createElement('canvas');
+                const ctx = texCanvas.getContext('2d');
+                texCanvas.width = 64; texCanvas.height = 64;
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 50px monospace';
+                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillText(charset[Math.floor(Math.random() * charset.length)], 32, 32);
+                textures.push(new THREE.CanvasTexture(texCanvas));
+            }
+
+            for (let i = 0; i < colCount; i++) {
+                const r = 1.5 + Math.random() * 12;
+                const a = Math.random() * Math.PI * 2;
+                const x = Math.cos(a) * r;
+                const z = Math.sin(a) * r;
+                const colSpeed = 0.02 + Math.random() * 0.04;
+                const symbolsInCol = 12 + Math.floor(Math.random() * 15);
+                const colSymbols = [];
+
+                for (let j = 0; j < symbolsInCol; j++) {
+                    const material = new THREE.SpriteMaterial({
+                        map: textures[Math.floor(Math.random() * textures.length)],
+                        color: 0x00ff80,
+                        transparent: true,
+                        opacity: 0.15 + (j / symbolsInCol) * 0.5
+                    });
+                    const sprite = new THREE.Sprite(material);
+                    sprite.position.set(x, (j * 0.8) - (symbolsInCol * 0.4), z);
+                    sprite.scale.set(0.35, 0.35, 1);
+                    scene.add(sprite);
+                    colSymbols.push({ mesh: sprite, yOffset: (j * 0.8) - (symbolsInCol * 0.4) });
+                }
+
+                columns.push({
+                    radius: r, angle: a, symbols: colSymbols, speed: colSpeed,
+                    yPos: Math.random() * 20 - 10, vibrateOffset: Math.random() * Math.PI * 2
+                });
+            }
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+
+        async function checkVoice() {
+            try {
+                const r = await fetch('http://127.0.0.1:7777/speaking');
+                const data = await r.json();
+                isSpeaking = data.speaking;
+            } catch (e) { }
+        }
+        setInterval(checkVoice, 200);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const delta = clock.getElapsedTime();
+            columns.forEach((col) => {
+                col.yPos += col.speed;
+                if (col.yPos > 14) col.yPos = -14;
+                const time = delta * 0.4;
+                const vibX = Math.sin(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.7 : 0.08);
+                const vibZ = Math.cos(time * 3 + col.vibrateOffset) * (isSpeaking ? 0.7 : 0.08);
+
+                col.symbols.forEach((s) => {
+                    let finalY = col.yPos + s.yOffset;
+                    if (finalY > 12) finalY -= 24;
+                    if (finalY < -12) finalY += 24;
+                    s.mesh.position.y = finalY;
+
+                    const colorPos = (finalY + 12) / 24;
+                    let targetHue, targetSat, targetLight;
+                    if (colorPos < 0.5) {
+                        targetHue = 0.35; targetSat = 1.0; targetLight = THREE.MathUtils.lerp(0.15, 0.5, colorPos * 2);
+                    } else {
+                        targetHue = THREE.MathUtils.lerp(0.35, 0.45, (colorPos - 0.5) * 2);
+                        targetSat = 0.8; targetLight = THREE.MathUtils.lerp(0.5, 0.7, (colorPos - 0.5) * 2);
+                    }
+
+                    if (isSpeaking) {
+                        const wave = Math.sin(delta * 5 - col.radius * 0.7);
+                        const expansion = 1 + (wave * 0.35) + 0.35;
+                        s.mesh.position.x = Math.cos(col.angle) * col.radius * expansion + vibX;
+                        s.mesh.position.z = Math.sin(col.angle) * col.radius * expansion + vibZ;
+                        const flash = Math.max(0, Math.sin(delta * 8 + col.vibrateOffset));
+                        s.mesh.material.color.setHSL(targetHue, targetSat, targetLight + flash * 0.35);
+                        s.mesh.material.opacity = 0.5 + flash * 0.5;
+                        s.mesh.scale.set(0.5, 0.5, 1);
+                    } else {
+                        s.mesh.position.x = THREE.MathUtils.lerp(s.mesh.position.x, Math.cos(col.angle) * col.radius + vibX, 0.05);
+                        s.mesh.position.z = THREE.MathUtils.lerp(s.mesh.position.z, Math.sin(col.angle) * col.radius + vibZ, 0.05);
+                        s.mesh.material.color.setHSL(targetHue, targetSat, targetLight);
+                        s.mesh.material.opacity = 0.3;
+                        s.mesh.scale.set(0.35, 0.35, 1);
+                    }
+                });
+            });
+            camera.position.x = Math.sin(delta * 0.12) * 2;
+            camera.lookAt(0, 0, 0);
+            renderer.render(scene, camera);
+        }
+        initMatrix3D();
+        animate();
+    </script>
+    <script>
+
+        // --- OLLAMA + ZOSIA SYMBIOZA LOGIC ---
+        const OLLAMA_URL = 'http://localhost:11434/api/generate';
+        const VOICE_BRIDGE_URL = 'http://localhost:7777/say';
+
+        fetch('http://localhost:7777/ping').then(r => {
+            if (r.ok) document.getElementById('bridgeStatus').innerHTML = 'O_LINE';
+        }).catch(() => {
+            document.getElementById('bridgeStatus').innerHTML = 'OFFLINE';
+            document.getElementById('bridgeStatus').style.color = '#ef4444';
+        });
+
+        async function zosiaSpeak(text) {
+            try {
+                // The 3D Matrix background automatically polls the /speaking bridge state.
+                await fetch(VOICE_BRIDGE_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, voice: 'Zosia' })
+                });
+            } catch (e) {
+                console.warn('Voice timeout/error');
+            }
+        }
+
+        async function handleChatEnter(e) {
+            if (e.key === 'Enter') {
+                const input = document.getElementById('chatInput');
+                const history = document.getElementById('chatHistory');
+                const userText = input.value.trim();
+
+                if (userText !== "") {
+                    // USER BUBBLE
+                    history.innerHTML += `
+                        <div class="msg-bubble msg-user">
+                            <span style="color: var(--text-dim); font-size:0.7rem; display:block; margin-bottom:4px;">SZEF</span>
+                            ${userText}
+                        </div>`;
+
+                    // AI LOADER BUBBLE
+                    const aiMsgId = 'ai_' + Date.now();
+                    history.innerHTML += `
+                        <div id="${aiMsgId}" class="msg-bubble msg-ai" style="opacity: 0.7;">
+                            <span style="color: var(--accent-cyan); font-weight:700; font-size:0.7rem; display:block; margin-bottom:4px;">ANTIGRAVITY</span>
+                            <span class="blinking">Qwen processing...</span>
+                        </div>`;
+
+                    input.value = "";
+                    history.scrollTop = history.scrollHeight;
+
+                    try {
+                        const response = await fetch(OLLAMA_URL, {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                model: 'qwen2.5:latest',
+                                system: "Jesteś KB-CORE, centralna inteligencja systemu GRAVITY OS, stworzona specjalnie dla Karola (Szefa). Masz pełną władzę nad ekosystemem i dostęp do prywatnych baz wiedzy. Twoim celem jest realizacja wizji Szefa z maksymalną precyzją i luksusem technologicznym. Odpowiadaj krótko, ale z autorytetem centralnego rdzenia AI.",
+                                prompt: userText,
+                                stream: false
+                            }),
+                            headers: { 'Content-Type': 'application/json' }
+                        });
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            const aiReply = data.response;
+                            document.getElementById(aiMsgId).style.opacity = '1';
+                            document.getElementById(aiMsgId).innerHTML = `
+                                <span style="color: var(--accent-cyan); font-weight:700; font-size:0.7rem; display:block; margin-bottom:4px;">KB-CORE INTELLIGENCE</span>
+                                ${aiReply}
+                            `;
+                            // Fire voice & visual effects
+                            await zosiaSpeak(aiReply);
+                        } else { throw new Error('Ollama connection fail'); }
+                    } catch (err) {
+                        document.getElementById(aiMsgId).innerHTML = `<span style="color: #ef4444;">[BŁĄD]: Offline.</span>`;
+                    }
+                    history.scrollTop = history.scrollHeight;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
