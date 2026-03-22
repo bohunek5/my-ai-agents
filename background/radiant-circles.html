@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Radiant Circles 3D — Gravity OS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #010103;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #status {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 150, 255, 0.5);
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            transition: all 0.5s;
+        }
+
+        #status.speaking {
+            border-color: rgba(255, 0, 150, 0.5);
+            color: #ff0096;
+            box-shadow: 0 0 20px rgba(255, 0, 150, 0.2);
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #333;
+            transition: all 0.3s;
+        }
+
+        #status.speaking .dot {
+            background: #ff0096;
+            box-shadow: 0 0 15px #ff0096;
+            animation: flash 0.5s infinite alternate;
+        }
+
+        @keyframes flash {
+            from {
+                opacity: 0.4;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c"></canvas>
+    <div id="status">
+        <div class="dot"></div>
+        <span id="statusLabel">RADIANT SYNC</span>
+    </div>
+
+    <script>
+        const c = document.getElementById('c');
+        const ctx = c.getContext('2d');
+
+        function resize() {
+            c.width = window.innerWidth;
+            c.height = window.innerHeight;
+            build();
+        }
+        window.addEventListener('resize', resize);
+
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+        // ── GRID CONFIG ───────────────────────────────────────────────
+        const COLS = 42, ROWS = 26;
+        let pts = [];
+
+        function build() {
+            pts = [];
+            const gx = c.width / COLS;
+            const gy = c.height / ROWS;
+            for (let r = 0; r <= ROWS; r++) {
+                for (let col = 0; col <= COLS; col++) {
+                    pts.push({
+                        ox: col * gx, oy: r * gy,
+                        x: col * gx, y: r * gy,
+                        z: 0, vz: 0,
+                        hue: (col / COLS) * 60 + 280 // Radiant Purple/Blue/Pink range
+                    });
+                }
+            }
+        }
+        resize();
+
+        // ── RADIANT ENGINE ──────────────────────────────────────────
+        let voiceAmp = 0;
+        let lightAngle = 0;
+        let isSpeaking = false;
+
+        async function pollVoice() {
+            try {
+                const r = await fetch('http://127.0.0.1:7777/speaking');
+                const data = await r.json();
+                isSpeaking = data.speaking;
+                if (isSpeaking) {
+                    voiceAmp = Math.min(1.0, voiceAmp + 0.3);
+                    document.getElementById('status').classList.add('speaking');
+                } else {
+                    voiceAmp *= 0.8;
+                    document.getElementById('status').classList.remove('speaking');
+                }
+            } catch (e) { }
+        }
+        setInterval(pollVoice, 150);
+
+        // ── ANIMATE ────────────────────────────────────────────────────
+        let hueOff = 0;
+
+        function tick() {
+            ctx.fillStyle = '#010002';
+            ctx.fillRect(0, 0, c.width, c.height);
+
+            const cx = c.width / 2;
+            const cy = c.height / 2;
+
+            // Whirl the light source
+            if (isSpeaking) lightAngle += 0.12;
+            else lightAngle += 0.01;
+
+            const lx = cx + Math.cos(lightAngle) * (cx * 0.7);
+            const ly = cy + Math.sin(lightAngle) * (cy * 0.7);
+
+            for (const p of pts) {
+                // Distance to Radiant Light
+                const ldx = lx - p.x;
+                const ldy = ly - p.y;
+                const ld = Math.sqrt(ldx * ldx + ldy * ldy) || 1;
+
+                if (ld < 350) {
+                    const radiantPower = (350 - ld) / 350;
+                    p.vz += radiantPower * radiantPower * 2.5 * (1 + voiceAmp * 2);
+                }
+
+                // Mouse Depth
+                const mdx = mx - p.x;
+                const mdy = my - p.y;
+                const md = Math.sqrt(mdx * mdx + mdy * mdy) || 1;
+                if (md < 200) {
+                    p.vz += (200 - md) / 200 * 1.5;
+                }
+
+                // Physics
+                p.vz += (0 - p.z) * 0.08;
+                p.vz *= 0.85;
+                p.z += p.vz;
+            }
+
+            // Draw Circles (Rings)
+            for (let i = 0; i < pts.length; i++) {
+                const p = pts[i];
+                const hue = (p.hue + hueOff) % 360;
+
+                // Calculate light proximity for glow colors
+                const ldx = lx - p.ox;
+                const ldy = ly - p.oy;
+                const ld = Math.sqrt(ldx * ldx + ldy * ldy);
+                const lightFactor = Math.max(0, (400 - ld) / 400);
+
+                const r = 2 + p.z * 0.15;
+                const alpha = 0.1 + p.z * 0.02 + lightFactor * 0.4;
+                const bright = 60 + p.z * 0.5 + lightFactor * 30;
+
+                // Draw the Ring (Okrąg)
+                ctx.beginPath();
+                ctx.arc(p.ox, p.oy - p.z * 0.5, r * 1.5, 0, Math.PI * 2);
+                ctx.lineWidth = 1 + p.z * 0.05;
+                ctx.strokeStyle = `hsla(${hue}, 100%, ${bright}%, ${Math.min(0.8, alpha)})`;
+                ctx.stroke();
+
+                // Secondary inner ring
+                if (p.z > 5) {
+                    ctx.beginPath();
+                    ctx.arc(p.ox, p.oy - p.z * 0.5, r * 0.5, 0, Math.PI * 2);
+                    ctx.strokeStyle = `hsla(${(hue + 40) % 360}, 100%, 80%, ${alpha * 0.5})`;
+                    ctx.stroke();
+                }
+
+                // Radiant Glow (Bloom)
+                if (lightFactor > 0.5 || p.z > 20) {
+                    ctx.beginPath();
+                    ctx.arc(p.ox, p.oy - p.z * 0.5, r * 5, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsla(${hue}, 100%, 50%, ${0.05 * lightFactor})`;
+                    ctx.fill();
+                }
+            }
+
+            hueOff = (hueOff + 0.2) % 360;
+            requestAnimationFrame(tick);
+        }
+
+        tick();
+    </script>
+</body>
+
+</html>

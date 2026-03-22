@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spline 2</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #050505;
+            color: white;
+            font-family: sans-serif;
+        }
+
+        spline-viewer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        spline-viewer::part(logo) {
+            display: none !important;
+        }
+
+        .warning {
+            position: absolute;
+            z-index: 10;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.94/build/spline-viewer.js"></script>
+</head>
+
+<body>
+    <div class="warning" id="warning">
+        Link z edytora (app.spline.design) zablokuje podgląd. Jeśli jest czarno: w Spline naciśnij
+        <strong>Export</strong> (prawy górny róg) -> <strong>Viewer</strong> i podmień link w kodzie `index2.html` na
+        ten krótki (np. prod.spline.design/.../scene.splinecode).
+    </div>
+    <!-- Wrzuciłam tu Twój link, ale to link do edytora, docelowo trzeba tu wkleić wyeksportowany kod -->
+    <spline-viewer url="https://app.spline.design/file/fcb3d45a-1ffd-474a-afbf-9643cc3a0d40"></spline-viewer>
+    <script>setTimeout(() => document.getElementById('warning').style.display = 'none', 15000);</script>
+</body>
+
+</html>

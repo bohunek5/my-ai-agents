@@ -1,0 +1,16 @@
+{
+  "name": "my-ai-agents",
+  "version": "3.0.0",
+  "description": "Antigravity AI Ecosystem — n8n + OpenClaw + Ollama/Nemotron",
+  "scripts": {
+    "start":        "./start-n8n.sh",
+    "n8n":          "NODE_OPTIONS='--max-old-space-size=6144' npx -y n8n@latest",
+    "n8n:dev":      "NODE_OPTIONS='--max-old-space-size=4096' npx -y n8n@latest",
+    "openclaw":     "cd ~/openclaw-atom/node_modules/openclaw-atom && node openclaw.mjs gateway --allow-unconfigured",
+    "ollama:list":  "curl -s http://localhost:11434/api/tags | python3 -c \"import json,sys; [print('  ✅', m['name']) for m in json.load(sys.stdin)['models']]\"",
+    "status":       "echo '\\n🤖 ANTIGRAVITY STATUS\\n━━━━━━━━━━━━━━━━━━━━━━━━━━' && echo 'n8n:' && curl -s http://localhost:5678/healthz && echo '\\nOllama models:' && npm run ollama:list --silent && echo '\\nOpenClaw:' && curl -s http://localhost:18777 > /dev/null && echo '  ✅ online' || echo '  ○ offline'"
+  },
+  "keywords": ["ai", "agents", "n8n", "ollama", "nemotron", "openclaw", "antigravity"],
+  "author": "Karol Bohdanowicz",
+  "license": "MIT"
+}

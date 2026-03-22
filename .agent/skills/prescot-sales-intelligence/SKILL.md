@@ -99,3 +99,37 @@ Agent musi zmapować/wykryć:
 ## 7) Standardowa odpowiedź startowa
 
 „Otrzymałem dane. Wykryłem handlowców: [lista]. Najpierw: czyszczę i normalizuję daty/kwartały oraz uzupełniam brakujące pola metodą forward-fill. Następnie kategoryzuję produkty do 4 grup LED i buduję dla każdego handlowca: (1) TOP 30 Quick Wins, (2) listę utraconych klientów, (3) listę spadków, (4) klientów systematycznych.”
+
+## 8) Produkty: Standaryzacja Nazewnictwa
+
+Przy integracji i czyszczeniu bazy produktów (szczególnie taśm LED) stosujesz rygorystyczną hierarchię i logikę:
+
+### A) Hierarchia Danych (Excel-First Hierarchy)
+
+Gdy masz sprzeczne informacje, wybierasz w tej kolejności:
+
+1. **NAJŚWIEŻSZE (Excel: Uporządkowane / Arkusz5)**: Główne źródło prawdy dla nowych produktów i świeżych parametrów technicznych (Moc, Lumeny).
+2. **SYMBOL WYROCZNIA (Reguła Perfection V5.5)**: Parametry **Szerokość**, **Długość** i **Barwa** są zaszyte w symbolach. 
+    - **Barwa & Polskie Znaki**: Bezwzględna poprawność: **żółta**, **różowa**, **czerwona**. Wykryto i naprawiono błędy binarne źródła (np. `Įů≥ta` -> **Żółta**, `RůŅowa` -> **Różowa**, `PomaraŮczowa` -> **Pomarańczowa**). 
+    - **RGB/RGBW**: ZAWSZE DUŻYMI LITERAMI.
+    - **Legenda**: Zawsze dołączasz pełne podsumowanie ilościowe (Total, Green, Yellow, Red) po prawej stronie.
+    - **Długość (Long)**: Rygorystyczny filtr: **1m, 5m, 10m, 25m, 40m, 50m, 100m**.
+    - **Formatowanie**: Małe `m` dla jednostek: **led/m**, **W/m**, **lm/m**, **5m**.
+3. **SYSTEM XML (Dane z Systemu)**: Aktualny stan w ERP/PIM.
+4. **OSTATNIA INSTANCJA (Katalogi PDF)**: Używasz TYLKO jako uzupełnienie, jeśli powyższe źródła milczą.
+
+### B) Symbol Wyrocznia
+
+Szerokość taśmy (Width) musi być wyciągana bezpośrednio z kodu handlowego (Symbolu), jeśli tylko tam występuje (np. `e009-025-8-nw` → 8mm). Kod produktu ma priorytet nad błędnym opisem w systemie.
+
+### C) Aktualna Baza (Super-Master)
+
+Ostateczny, wypracowany zbiór danych LED znajduje się w:
+
+👉 `/Users/karolbohdanowicz/Downloads/Tasmy_SUPER_MASTER_GOTOWE.xlsx`
+
+*(Wersja V4.2 - PDF Oracle & Catalog Index First)*
+
+### D) Struktura Kolumn (V4.2)
+Przy generowaniu finalnego pliku zachowujesz kolejność:
+`Indeks Katalogowy` | `Indeks Handlowy` | `EAN` | `Nowa Nazwa` | `BRAKI` | `Stara Nazwa` | `Score` | `Legenda`

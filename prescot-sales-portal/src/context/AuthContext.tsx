@@ -19,14 +19,14 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const USERS_DB: Record<string, { pass: string; role: UserRole; name: string }> = {
-    'adamg': { pass: '123456', role: 'handlowiec', name: 'Adam Garbowski' },
-    'dariuszn': { pass: '123456', role: 'handlowiec', name: 'Dariusz Nita' },
-    'annag': { pass: '123456', role: 'handlowiec', name: 'Anna Galor' },
-    'annaa': { pass: '123456', role: 'handlowiec', name: 'Anna Asztemborska' },
-    'iwonab': { pass: '123456', role: 'handlowiec', name: 'Iwona Baczewska' },
-    'krzysztofb': { pass: '654321', role: 'prezes', name: 'Krzysztof Bara' },
-    'radoslawn': { pass: '654321', role: 'prezes', name: 'Radosław Narwojsz' },
-    'karolb': { pass: 'admin', role: 'admin', name: 'Karol Bohdanowicz' }
+    'adamg': { pass: '123', role: 'handlowiec', name: 'Adam Garbowski' },
+    'dariuszn': { pass: '123', role: 'handlowiec', name: 'Dariusz Nita' },
+    'annag': { pass: '123', role: 'handlowiec', name: 'Anna Galor' },
+    'annaa': { pass: '123', role: 'handlowiec', name: 'Anna Asztemborska' },
+    'iwonab': { pass: '123', role: 'handlowiec', name: 'Iwona Baczewska' },
+    'krzysztofb': { pass: '123', role: 'prezes', name: 'Krzysztof Bara' },
+    'radoslawn': { pass: '123', role: 'prezes', name: 'Radosław Narwojsz' },
+    'karolb': { pass: '123', role: 'admin', name: 'Karol Bohdanowicz' }
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

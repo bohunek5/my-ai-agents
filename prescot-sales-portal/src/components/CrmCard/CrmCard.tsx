@@ -12,6 +12,7 @@ import { MessageSquare, Shield, Search, Zap, TrendingUp, X } from 'lucide-react'
 import type { Lead } from '../../data/mockData';
 import rawSales from '../../data/sales_data_parsed.json';
 import styles from '../../pages/WeeklyPlan.module.css';
+import { formatPrice } from '../../utils/formatUtils';
 
 interface CrmCardProps {
     lead: Lead;
@@ -30,6 +31,8 @@ interface CrmCardProps {
     mastermindDirective?: string;
     /** Slot na dodatkowe akcje (np. duże przyciski outcome w Dashboard) */
     actionSlot?: React.ReactNode;
+    /** Blokada edycji dla trybu historii */
+    isReadOnly?: boolean;
 }
 
 export const CrmCard: React.FC<CrmCardProps> = ({
@@ -45,6 +48,7 @@ export const CrmCard: React.FC<CrmCardProps> = ({
     onClose,
     mastermindDirective,
     actionSlot,
+    isReadOnly = false,
 }) => {
     const [showPurchaseHistory, setShowPurchaseHistory] = useState(false);
     const [selectedYear, setSelectedYear] = useState<string | null>(null);
@@ -89,7 +93,7 @@ export const CrmCard: React.FC<CrmCardProps> = ({
 
                             {!isPresidentView ? (
                                 <>
-                                    {onSetTaskStatus && (
+                                    {onSetTaskStatus && !isReadOnly && (
                                         <div className={styles.statusButtonGroup}>
                                             <button
                                                 className={`${styles.statusBtnSmall} ${styles.statusSuccess} ${taskStatus === 'success' ? styles.active : ''}`}
@@ -111,12 +115,18 @@ export const CrmCard: React.FC<CrmCardProps> = ({
                                             </button>
                                         </div>
                                     )}
-                                    <textarea
-                                        value={repNote || ''}
-                                        onChange={(e) => onRepNoteChange(e.target.value)}
-                                        className={styles.modalTextarea}
-                                        placeholder="Główne ustalenia z rozmowy..."
-                                    />
+                                    {isReadOnly ? (
+                                        <div className={styles.readonlyNote}>
+                                            {repNote || 'Brak wpisów handlowca.'}
+                                        </div>
+                                    ) : (
+                                        <textarea
+                                            value={repNote || ''}
+                                            onChange={(e) => onRepNoteChange(e.target.value)}
+                                            className={styles.modalTextarea}
+                                            placeholder="Główne ustalenia z rozmowy..."
+                                        />
+                                    )}
                                 </>
                             ) : (
                                 <div className={styles.readonlyNote}>
@@ -129,7 +139,7 @@ export const CrmCard: React.FC<CrmCardProps> = ({
                             <label className={styles.noteLabel}>
                                 <Shield size={14} className={styles.blueIcon} /> WYTYCZNE ZARZĄDU
                             </label>
-                            {isPresidentView ? (
+                            {isPresidentView && !isReadOnly ? (
                                 <textarea
                                     value={presidentNote || ''}
                                     onChange={(e) => onPresidentNoteChange(e.target.value)}
@@ -245,14 +255,14 @@ export const CrmCard: React.FC<CrmCardProps> = ({
                                                             <tr key={`${activeYear}-${sidx}`}>
                                                                 <td className={styles.productCell}>{sale.product}</td>
                                                                 <td className={styles.qtyCell}>{sale.quantity}</td>
-                                                                <td className={styles.priceCell}>{sale.price || '0.00'}</td>
-                                                                <td className={styles.totalCell}>{sale.value || '0.00'} PLN</td>
+                                                                <td className={styles.priceCell}>{formatPrice(sale.price)}</td>
+                                                                <td className={styles.totalCell}>{formatPrice(sale.value)} PLN</td>
                                                             </tr>
                                                         ))}
                                                         <tr className={styles.totalRow}>
                                                             <td className={styles.totalLabelCell} colSpan={2}>PODSUMOWANIE ROKU {activeYear}</td>
                                                             <td className={styles.totalValueCell} colSpan={2}>
-                                                                {salesByYear[activeYear]?.reduce((acc, s) => acc + (s.value || 0), 0).toFixed(2)} PLN
+                                                                {formatPrice(salesByYear[activeYear]?.reduce((acc, s) => acc + (s.value || 0), 0))} PLN
                                                             </td>
                                                         </tr>
                                                     </>

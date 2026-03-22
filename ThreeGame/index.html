@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Robot Background</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0d0d0d;
+            /* Ciemne tło, by robot wyglądał epicko */
+            font-family: sans-serif;
+        }
+
+        #game-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            /* Warstwa na samym dole */
+        }
+
+        /* Opcjonalny tekst na wierzchu, przepuszczający pointer-events */
+        #content-layer {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+            /* Klikanie przelatuje do robota i obracania kamery */
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="content-layer">
+        <h1>Twój Własny Robot</h1>
+        <p>Obracaj go myszką. Pomyśl, że to może być tło Twojej nowej strony!</p>
+    </div>
+
+    <canvas id="game-container"></canvas>
+
+    <!-- Import maps polyfill -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        const canvas = document.getElementById('game-container');
+
+        // Scena i kamera
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2('#0d0d0d', 0.05); // Delikatna mgła na brzegach
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 1.5, 4); // Patrzymy trochę z góry
+
+        // Renderowanie
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.0;
+
+        // Sterowanie myszką
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.enablePan = false; // blokuje przesuwanie
+        controls.maxPolarAngle = Math.PI / 2 + 0.1; // blokuje zjechanie pod ziemię
+        controls.target.set(0, 1, 0);
+
+        // Dynamiczne oświetlenie trójpunktowe
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambientLight);
+
+        const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        mainLight.position.set(5, 10, 5);
+        scene.add(mainLight);
+
+        const backLight = new THREE.PointLight(0x00aaff, 3, 10);
+        backLight.position.set(-5, 2, -5);
+        scene.add(backLight);
+
+        const fillLight = new THREE.PointLight(0xff0055, 2, 10); // Różowe podświetlenie od dołu
+        fillLight.position.set(5, 0, 5);
+        scene.add(fillLight);
+
+        // Mrugający neon / siatka podłogi (wygląda super jako tło stron)
+        const gridHelper = new THREE.GridHelper(20, 40, 0x00aaff, 0x222222);
+        gridHelper.position.y = 0;
+        scene.add(gridHelper);
+
+        // Wczytanie robota - teraz jest epicki
+        let robotModel;
+        const loader = new GLTFLoader();
+
+        loader.load('robot.glb', (gltf) => {
+            robotModel = gltf.scene;
+
+            const box = new THREE.Box3().setFromObject(robotModel);
+            const size = box.getSize(new THREE.Vector3()).length();
+            const center = box.getCenter(new THREE.Vector3());
+
+            robotModel.position.x += (robotModel.position.x - center.x);
+            robotModel.position.y += (robotModel.position.y - box.min.y);
+            robotModel.position.z += (robotModel.position.z - center.z);
+
+            const desiredHeight = 2.2;
+            const scale = desiredHeight / box.getSize(new THREE.Vector3()).y;
+            robotModel.scale.setScalar(scale);
+
+            scene.add(robotModel);
+        }, undefined, (error) => {
+            console.error('Error loading robot', error);
+        });
+
+        // Responsywność ekranu
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Animacja
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+
+            if (robotModel) {
+                // Bardzo spowolnione, dostojne obracanie się robota jako tła
+                robotModel.rotation.y += 0.002;
+            }
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+    </script>
+</body>
+
+</html>

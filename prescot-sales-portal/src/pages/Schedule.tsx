@@ -9,6 +9,7 @@ import { useAuth } from '../context/AuthContext';
 import { ALL_LEADS } from '../data/mockData';
 import type { Lead } from '../data/mockData';
 import { Calendar, ChevronLeft, ChevronRight, Check, X, Clock, Zap } from 'lucide-react';
+import { pluralizeKontakt } from '../utils/pluralize';
 import styles from './Schedule.module.css';
 
 type TaskStatus = 'pending' | 'success' | 'postponed' | 'rejected';
@@ -222,7 +223,7 @@ export const Schedule: React.FC = () => {
                                                 <span
                                                     className={styles.calDot}
                                                     style={{ background: dot }}
-                                                    title={`${count} kontakt(ów)`}
+                                                    title={`${count} ${pluralizeKontakt(count || 0).toLowerCase()}`}
                                                 />
                                             )}
                                         </button>

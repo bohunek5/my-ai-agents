@@ -5,20 +5,33 @@ import { useAuth } from '../context/AuthContext';
 import { REPS, getLeadById } from '../data/mockData';
 import type { Lead } from '../data/mockData';
 import {
-    BrainCircuit,
     TrendingUp,
-    Contact,
-    Download,
     MessageSquare,
-    RotateCcw,
     Search,
-    Shield
+    History as HistoryIcon,
+    ArrowLeft,
+    Shield,
+    BrainCircuit,
+    RotateCcw,
+    Contact
 } from 'lucide-react';
 import styles from './WeeklyPlan.module.css';
 import { CrmCard } from '../components/CrmCard/CrmCard';
+import { getCurrentISOWeek } from '../utils/dateUtils';
+import type { WeeklyPlanDistribution } from '../utils/mastermindLogic';
 
 interface TaskStatusMap {
     [key: string]: 'success' | 'rejected' | 'postponed' | 'pending';
+}
+
+interface HistorySnapshot {
+    weekId: string;
+    description: string;
+    timestamp: string;
+    mastermindPlan: WeeklyPlanDistribution;
+    taskStatuses: Record<string, TaskStatusMap>;
+    taskNotes: Record<string, Record<string, string>>;
+    presidentNotes: Record<string, string>;
 }
 
 export const WeeklyPlan: React.FC = () => {
@@ -30,6 +43,39 @@ export const WeeklyPlan: React.FC = () => {
     });
     const [searchTerm, setSearchTerm] = useState('');
     const [showResetConfirm, setShowResetConfirm] = useState(false);
+    const [showHistoryModal, setShowHistoryModal] = useState(false);
+    const [generationReport, setGenerationReport] = useState<string | null>(null);
+    const [viewingHistory, setViewingHistory] = useState<HistorySnapshot | null>(null);
+
+    const [history, setHistory] = useState<HistorySnapshot[]>(() => {
+        try {
+            const saved = localStorage.getItem('prescot_history');
+            const parsed = saved ? JSON.parse(saved) : [];
+            if (parsed.length === 0) {
+                return [
+                    {
+                        weekId: "11",
+                        description: "Plan z tygodnia 11 (Brak danych)",
+                        timestamp: "Archiwum",
+                        mastermindPlan: { reps: {}, metadata: { generatedAt: "", rotationOffset: 0, report: "" } },
+                        taskStatuses: {},
+                        taskNotes: {},
+                        presidentNotes: {}
+                    },
+                    {
+                        weekId: "10",
+                        description: "Plan z tygodnia 10 (Brak danych)",
+                        timestamp: "Archiwum",
+                        mastermindPlan: { reps: {}, metadata: { generatedAt: "", rotationOffset: 0, report: "" } },
+                        taskStatuses: {},
+                        taskNotes: {},
+                        presidentNotes: {}
+                    }
+                ];
+            }
+            return parsed;
+        } catch { return []; }
+    });
 
     const [taskStatuses, setTaskStatuses] = useState<Record<string, TaskStatusMap>>(() => {
         const allStatuses: Record<string, TaskStatusMap> = {};
@@ -72,9 +118,9 @@ export const WeeklyPlan: React.FC = () => {
         return all;
     });
 
-    const [mastermindPlan, setMastermindPlan] = useState<{ reps: Record<string, Record<string, string[]>>, metadata?: { generatedAt: string, rotationOffset: number } }>(() => {
+    const [mastermindPlan, setMastermindPlan] = useState<WeeklyPlanDistribution>(() => {
         const saved = localStorage.getItem('prescot_mastermind_plan');
-        return saved ? JSON.parse(saved) : { reps: {} };
+        return saved ? JSON.parse(saved) : { reps: {}, metadata: { generatedAt: "", rotationOffset: 0, report: "" } };
     });
 
     const days = useMemo(() => ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela'], []);
@@ -84,6 +130,56 @@ export const WeeklyPlan: React.FC = () => {
     }, []);
 
     useEffect(() => {
+        const checkAutoMaintenance = async () => {
+            const now = new Date();
+            const day = now.getDay(); // 0-Sunday, 6-Saturday
+            const currentWeek = getCurrentISOWeek();
+            const lastSnapshotWeek = localStorage.getItem('prescot_last_auto_snapshot_week');
+            const lastGenWeek = localStorage.getItem('prescot_last_auto_gen_week');
+
+            // Saturday Morning: Auto-Snapshot
+            if (day === 6 && lastSnapshotWeek !== currentWeek) {
+                // Check if there was any progress
+                const hasProgress = Object.values(taskStatuses).some(repTasks => 
+                    Object.values(repTasks).some(s => s !== 'pending')
+                ) || Object.values(taskNotes).some(repNotes => 
+                    Object.values(repNotes).some(n => n.trim().length > 0)
+                );
+
+                if (hasProgress && Object.keys(mastermindPlan.reps || {}).length > 0) {
+                    const snapshot: HistorySnapshot = {
+                        weekId: currentWeek,
+                        description: `Automatyczny zapis tygodnia ${currentWeek}`,
+                        timestamp: new Date().toLocaleString(),
+                        mastermindPlan,
+                        taskStatuses,
+                        taskNotes,
+                        presidentNotes
+                    };
+                    const saved = localStorage.getItem('prescot_history');
+                    const nextHistory = [snapshot, ...(saved ? JSON.parse(saved) : [])].slice(0, 50);
+                    localStorage.setItem('prescot_history', JSON.stringify(nextHistory));
+                    setHistory(nextHistory);
+                    localStorage.setItem('prescot_last_auto_snapshot_week', currentWeek);
+                    console.log("Auto-snapshot created for Saturday.");
+                }
+            }
+
+            // Sunday: Auto-Generate if empty
+            if (day === 0 && lastGenWeek !== currentWeek) {
+                const hasPlan = Object.keys(mastermindPlan.reps || {}).length > 0;
+                if (!hasPlan && (user?.role === 'admin' || user?.role === 'prezes')) {
+                    const { runMastermindAnalysis } = await import('../utils/mastermindLogic');
+                    const { plan } = runMastermindAnalysis();
+                    setMastermindPlan(plan);
+                    localStorage.setItem('prescot_mastermind_plan', JSON.stringify(plan));
+                    localStorage.setItem('prescot_last_auto_gen_week', currentWeek);
+                    window.dispatchEvent(new StorageEvent('storage', { key: 'prescot_mastermind_plan' }));
+                    console.log("Auto-plan generated for Sunday.");
+                }
+            }
+        };
+
         const refreshAll = () => {
             const allStatuses: Record<string, TaskStatusMap> = {};
             const allNotes: Record<string, Record<string, string>> = {};
@@ -105,32 +201,30 @@ export const WeeklyPlan: React.FC = () => {
             setTaskStatuses(allStatuses);
             setTaskNotes(allNotes);
 
-            // Kluczowe: odśwież mastermindPlan żeby handlowiec widział plan wygenerowany przez prezesa
             const mmSaved = localStorage.getItem('prescot_mastermind_plan');
             if (mmSaved) {
                 setMastermindPlan(JSON.parse(mmSaved));
             }
         };
 
-        const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') closeModal();
-        };
-
+        checkAutoMaintenance();
         window.addEventListener('storage', refreshAll);
-        window.addEventListener('keydown', handleEsc);
-
-        // Polling co 5s dla handlowca – synchronizuje plan bez reloadu strony
         const poll = setInterval(refreshAll, 5000);
 
         return () => {
             window.removeEventListener('storage', refreshAll);
-            window.removeEventListener('keydown', handleEsc);
             clearInterval(poll);
         };
-    }, [closeModal]);
+    }, [mastermindPlan, taskStatuses, taskNotes, presidentNotes, user]);
+
+    // Derived values for easy consumption throughout the component
+    const effectiveMMPlan = viewingHistory ? viewingHistory.mastermindPlan : mastermindPlan;
+    const effectiveStatuses = viewingHistory ? viewingHistory.taskStatuses : taskStatuses;
+    const effectiveNotes = viewingHistory ? viewingHistory.taskNotes : taskNotes;
+    const effectivePNotes = viewingHistory ? viewingHistory.presidentNotes : presidentNotes;
 
     const getPlanForDay = useCallback((repId: string, day: string) => {
-        const mmPlanIds: string[] = mastermindPlan.reps?.[repId]?.[day] || [];
+        const mmPlanIds: string[] = effectiveMMPlan.reps?.[repId]?.[day] || [];
 
         if (mmPlanIds.length > 0) {
             const mmLeads = mmPlanIds.map((id: string) => getLeadById(id)).filter(Boolean) as Lead[];
@@ -139,32 +233,32 @@ export const WeeklyPlan: React.FC = () => {
 
         // Brak planu = puste dymki (nie ma fallbacku do base planu)
         return { retention: [] as Lead[] };
-    }, [mastermindPlan]);
+    }, [effectiveMMPlan]);
 
 
     const calculateDailyProgress = useCallback((repId: string, day: string) => {
         const plan = getPlanForDay(repId, day);
         const target = plan.retention.length || 5;
-        const repTasks = taskStatuses[repId] || {};
+        const repTasks = effectiveStatuses[repId] || {};
         const completed = [...plan.retention].filter(t =>
             repTasks[t.id] && repTasks[t.id] !== 'pending'
         ).length;
         return target > 0 ? Math.round((completed / target) * 100) : 0;
-    }, [taskStatuses, getPlanForDay]);
+    }, [effectiveStatuses, getPlanForDay]);
 
     const hasCRMNote = (repId: string, taskId: string) => {
-        const notes = taskNotes[repId] || {};
+        const notes = effectiveNotes[repId] || {};
         return !!notes[taskId] && notes[taskId].trim().length > 0;
     };
 
     const hasPresidentNote = (repId: string, taskId: string) => {
-        return !!presidentNotes[`${repId}_${taskId}`] && presidentNotes[`${repId}_${taskId}`].trim().length > 0;
+        return !!effectivePNotes[`${repId}_${taskId}`] && effectivePNotes[`${repId}_${taskId}`].trim().length > 0;
     };
 
     const openCRM = (repId: string, taskId: string, leadName: string) => {
-        const notes = taskNotes[repId] || {};
+        const notes = effectiveNotes[repId] || {};
         const note = notes[taskId] || "";
-        const pNote = presidentNotes[`${repId}_${taskId}`] || "";
+        const pNote = effectivePNotes[`${repId}_${taskId}`] || "";
         const mmDirective = mastermindDirectives[`${repId}_${taskId}`] || "";
         setActiveNote({ id: taskId, name: leadName, note, repId, pNote, mmDirective });
     };
@@ -234,8 +328,8 @@ export const WeeklyPlan: React.FC = () => {
         // NUCLEAR RESET: Clear everything
         const keysToClear = [
             'prescot_president_notes',
-            'prescot_contact_history',
-            'prescot_mastermind_plan'
+            'prescot_mastermind_plan',
+            'prescot_history'
         ];
 
         // Clear for all reps
@@ -247,13 +341,17 @@ export const WeeklyPlan: React.FC = () => {
 
         keysToClear.forEach(key => localStorage.removeItem(key));
 
+        setHistory([]);
+        setViewingHistory(null);
+
         setTaskStatuses({});
         setTaskNotes({});
         setPresidentNotes({});
         setMastermindDirectives({});
-        setMastermindPlan({ reps: {} });
+        setMastermindPlan({ reps: {}, metadata: { generatedAt: "", rotationOffset: 0, report: "" } });
         setPostponedDates({});
 
+        //* Cleaned up CSS */
         // Force reload and clear cache-like states
         window.location.href = window.location.origin + window.location.pathname;
     };
@@ -261,31 +359,50 @@ export const WeeklyPlan: React.FC = () => {
     const strategicInsights = useMemo(() => {
         const repId = selectedRep;
         const fixedWeeklyTarget = 25;
-        const completedCount = Object.values(taskStatuses[repId] || {}).filter(s => s !== 'pending').length;
+        const completedCount = Object.values(effectiveStatuses[repId] || {}).filter(s => s !== 'pending').length;
         const weekProgress = Math.round((completedCount / fixedWeeklyTarget) * 100);
 
         let totalContacts = 0;
         REPS.forEach(rep => {
-            const saved = localStorage.getItem(`prescot_notes_${rep.id}`);
-            if (saved) {
-                const notes = JSON.parse(saved);
-                totalContacts += Object.values(notes).filter(n => (n as string).trim().length > 0).length;
-            }
+            const notes = effectiveNotes[rep.id] || {};
+            totalContacts += Object.values(notes).filter(n => (n as string).trim().length > 0).length;
         });
 
         return { weekProgress, totalCalls: fixedWeeklyTarget, completedCalls: completedCount, totalContacts };
-    }, [selectedRep, taskStatuses]);
+    }, [selectedRep, effectiveStatuses, effectiveNotes]);
 
 
     const [isAnalyzing, setIsAnalyzing] = useState(false);
 
     const handleUlozPlan = async () => {
+        // Reset check: If this is Sunday, we can generate a fresh one.
+        // If mid-week, we only snapshot if there was actual work (notes or statuses).
+        const hasProgress = Object.values(taskStatuses).some(repTasks => 
+            Object.values(repTasks).some(s => s !== 'pending')
+        ) || Object.values(taskNotes).some(repNotes => 
+            Object.values(repNotes).some(n => n.trim().length > 0)
+        );
+
+        if (hasProgress && Object.keys(mastermindPlan.reps || {}).length > 0) {
+            const snapshot: HistorySnapshot = {
+                weekId: getCurrentISOWeek(),
+                description: `Manualny zapis tygodnia ${getCurrentISOWeek()}`,
+                timestamp: new Date().toLocaleString(),
+                mastermindPlan,
+                taskStatuses,
+                taskNotes,
+                presidentNotes
+            };
+            const nextHistory = [snapshot, ...history].slice(0, 50);
+            setHistory(nextHistory);
+            localStorage.setItem('prescot_history', JSON.stringify(nextHistory));
+        }
+
         setIsAnalyzing(true);
         const { runMastermindAnalysis } = await import('../utils/mastermindLogic');
         await new Promise(resolve => setTimeout(resolve, 2000));
         const { directives, plan } = runMastermindAnalysis();
 
-        // 1. Update Mastermind Directives (System intelligence) - SEPARATE FROM PRESIDENT NOTES
         const newDirectives = { ...mastermindDirectives };
         directives.forEach(res => {
             const key = `${res.repId}_${res.clientId}`;
@@ -294,15 +411,14 @@ export const WeeklyPlan: React.FC = () => {
         setMastermindDirectives(newDirectives);
         localStorage.setItem('prescot_mastermind_directives', JSON.stringify(newDirectives));
 
-        // 2. Update Weekly Plan Distribution
         setMastermindPlan(plan);
         localStorage.setItem('prescot_mastermind_plan', JSON.stringify(plan));
-        // Rozgłoś zmianę dla handlowców w tej samej przeglądarce
         window.dispatchEvent(new StorageEvent('storage', { key: 'prescot_mastermind_plan' }));
 
         setIsAnalyzing(false);
-        alert(`AGENT MASTERMIND ZAKOŃCZYŁ ANALIZĘ.\n\nWygenerowano ${directives.length} nowych wytycznych oraz ułożono optymalny plan (3 firmy dziennie) dla każdego handlowca.\n\nSprawdź harmonogram!`);
+        setGenerationReport(plan.metadata?.report || "Plan wygenerowany pomyślnie.");
     };
+
 
     return (
         <div className="page-layout">
@@ -333,8 +449,11 @@ export const WeeklyPlan: React.FC = () => {
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
                         </div>
-                        <button className={styles.exportBtn} onClick={() => alert('Generowanie raportu...')}>
-                            <Download size={18} /> EKSPORT XLSX
+                        <button 
+                            className={styles.historyBtnManual} 
+                            onClick={() => setShowHistoryModal(true)}
+                        >
+                            <HistoryIcon size={18} /> HISTORIA PLANÓW
                         </button>
                         {(user?.role === 'admin' || user?.role === 'prezes') && (
                             <>
@@ -353,6 +472,16 @@ export const WeeklyPlan: React.FC = () => {
                         )}
                     </div>
                 </header>
+
+                {viewingHistory && (
+                    <div className={styles.historyContextBar}>
+                        <div className={styles.liveBadge}>TRYB PODGLĄDU HISTORII</div>
+                        <span>Przeglądasz: <strong>{viewingHistory.description}</strong> ({viewingHistory.timestamp})</span>
+                        <button className={styles.backToLiveBtn} onClick={() => setViewingHistory(null)}>
+                            <ArrowLeft size={16} /> POWRÓT DO AKTUALNEGO PLANU
+                        </button>
+                    </div>
+                )}
 
 
                 <section className={styles.strategicGrid}>
@@ -389,18 +518,23 @@ export const WeeklyPlan: React.FC = () => {
                     </div>
                 </section>
 
-                <nav className={styles.repNav}>
-                    {REPS.map(rep =>
-                        <button
-                            key={rep.id}
-                            className={`${styles.repNavItem} ${selectedRep === rep.id ? styles.repNavActive : ''}`}
-                            onClick={() => setSelectedRep(rep.id)}
-                        >
-                            <Contact size={16} />
-                            <span>{rep.name}</span>
-                        </button>
-                    )}
-                </nav>
+                <div className={styles.navContainer}>
+                    <nav className={styles.repNav}>
+                        {REPS.map(rep =>
+                            <button
+                                key={rep.id}
+                                className={`${styles.repNavItem} ${selectedRep === rep.id && !viewingHistory ? styles.repNavActive : ''}`}
+                                onClick={() => {
+                                    setSelectedRep(rep.id);
+                                    setViewingHistory(null);
+                                }}
+                            >
+                                <Contact size={16} />
+                                <span>{rep.name}</span>
+                            </button>
+                        )}
+                    </nav>
+                </div>
 
                 <div className={`${styles.dashboardContainer} glass`}>
                     <div className={styles.tableHeader}>
@@ -411,7 +545,7 @@ export const WeeklyPlan: React.FC = () => {
                     </div>
 
                     <div className={styles.planRows}>
-                        {(!mastermindPlan.reps?.[selectedRep] || Object.keys(mastermindPlan.reps[selectedRep]).length === 0) ? (
+                        {(!effectiveMMPlan.reps?.[selectedRep] || Object.keys(effectiveMMPlan.reps[selectedRep]).length === 0) ? (
                             <div className={styles.emptyPlanPlaceholder}>
                                 <div className={styles.emptyPlanIcon}>📅</div>
                                 {user?.role === 'handlowiec' ? (
@@ -454,7 +588,7 @@ export const WeeklyPlan: React.FC = () => {
 
                                         <div className={styles.leadsGroup}>
                                             {plan.retention.filter(l => l.name.toLowerCase().includes(searchTerm.toLowerCase()) || l.city.toLowerCase().includes(searchTerm.toLowerCase())).map(lead => {
-                                                const status = taskStatuses[selectedRep]?.[lead.id];
+                                                const status = effectiveStatuses[selectedRep]?.[lead.id];
                                                 const chipClass = status === 'success' ? styles.successChip : status === 'postponed' ? styles.postponedChip : status === 'rejected' ? styles.rejectedChip : '';
                                                 return (
                                                     <div key={lead.id} className={styles.leadChipContainer}>
@@ -463,8 +597,10 @@ export const WeeklyPlan: React.FC = () => {
                                                             <div className={styles.leadChipBottom}>
                                                                 <div className={styles.leadChipCitySection}>
                                                                     <span className={styles.leadChipCity}>{lead.city}</span>
+                                                                    {hasCRMNote(selectedRep, lead.id) && <MessageSquare size={12} className={styles.crmLoggedIcon} />}
+                                                                    {hasPresidentNote(selectedRep, lead.id) && <Shield size={12} className={styles.presidentNoteIcon} />}
                                                                     {user?.role === 'prezes' && hasPresidentNote(selectedRep, lead.id) && (
-                                                                        <span className={styles.pNoteSnippet}>{presidentNotes[`${selectedRep}_${lead.id}`].substring(0, 15)}...</span>
+                                                                        <span className={styles.pNoteSnippet}>{effectivePNotes[`${selectedRep}_${lead.id}`].substring(0, 15)}...</span>
                                                                     )}
                                                                 </div>
                                                                 <div className={styles.leadChipIcons}>
@@ -536,13 +672,13 @@ export const WeeklyPlan: React.FC = () => {
                                 onPresidentNoteChange={updatePresidentNote}
                                 mastermindDirective={activeNote.mmDirective}
                                 isPresidentView={user?.role === 'admin' || user?.role === 'prezes'}
-                                taskStatus={taskStatuses[activeNote.repId]?.[activeNote.id]}
+                                taskStatus={effectiveStatuses[activeNote.repId]?.[activeNote.id]}
                                 onSetTaskStatus={setTaskStatus}
                                 onClose={closeModal}
+                                isReadOnly={!!viewingHistory}
                             />
                         </div>
-                    </div>
-                )}
+                    </div>                )}
             </main>
             {showResetConfirm && (
                 <div className={styles.confirmOverlay}>
@@ -553,6 +689,47 @@ export const WeeklyPlan: React.FC = () => {
                             <button className={styles.confirmNo} onClick={() => setShowResetConfirm(false)}>Anuluj</button>
                             <button className={styles.confirmYes} onClick={performReset}>TAK, RESETUJ</button>
                         </div>
+                    </div>
+                </div>
+            )}
+
+            {showHistoryModal && (
+                <div className={styles.confirmOverlay} onClick={() => setShowHistoryModal(false)}>
+                    <div className={styles.historyModal} onClick={e => e.stopPropagation()}>
+                        <div className={styles.historyModalHeader}>
+                            <h3>🗄️ Historia Planów</h3>
+                            <button className={styles.closeModalBtn} onClick={() => setShowHistoryModal(false)}>✕</button>
+                        </div>
+                        <div className={styles.historyList}>
+                            {history.length === 0 ? (
+                                <p className={styles.emptyHistoryText}>Brak zapisanego archiwum.</p>
+                            ) : (
+                                history.map((snap, idx) => (
+                                    <div 
+                                        key={snap.weekId + idx} 
+                                        className={`${styles.historyCard} ${viewingHistory?.timestamp === snap.timestamp ? styles.activeHistoryCard : ''}`}
+                                        onClick={() => {
+                                            setViewingHistory(snap);
+                                            setShowHistoryModal(false);
+                                        }}
+                                    >
+                                        <div className={styles.historyCardTitle}>{snap.description}</div>
+                                        <div className={styles.historyCardMeta}>{snap.timestamp}</div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {generationReport && (
+                <div className={styles.confirmOverlay}>
+                    <div className={styles.reportBox}>
+                        <div className={styles.reportIcon}><BrainCircuit size={32} /></div>
+                        <h3>ANALIZA ZAKOŃCZONA</h3>
+                        <p>{generationReport}</p>
+                        <button className={styles.confirmYes} onClick={() => setGenerationReport(null)}>Zrozumiałem</button>
                     </div>
                 </div>
             )}

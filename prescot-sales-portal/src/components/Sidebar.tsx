@@ -6,7 +6,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
     LayoutDashboard,
     Users,
-    BookOpen,
     CalendarDays,
     LogOut,
     ShieldCheck,
@@ -68,15 +67,9 @@ export const Sidebar: React.FC = () => {
         },
         {
             icon: <Zap size={20} />,
-            label: 'Stany Magazynowe',
-            path: '/stock',
-            visible: !isPrezes // User said prezesi don't need this
-        },
-        {
-            icon: isPrezes ? <Zap size={20} /> : <BookOpen size={20} />,
-            label: isPrezes ? 'Plan Poniedziałkowy' : 'Wsparcie Rozmowy',
-            path: isPrezes ? '/strategy' : '/knowledge',
-            visible: isHandlowiec || isPrezes
+            label: 'Plan Poniedziałkowy',
+            path: '/strategy',
+            visible: isPrezes
         },
         {
             icon: <CalendarDays size={20} />,

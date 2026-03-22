@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szkolenie Produktowe Prescot LED // Akademia Partnera</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Orbitron:wght@600;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E14E26;
+            --primary-hover: #C03F1D;
+            --secondary: #212A35;
+            --bg: #020617;
+            --fg: #F8FAFC;
+            --muted: #1E293B;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --radius: 1.25rem;
+            --font-base: 'Inter', sans-serif;
+            --font-heading: 'Orbitron', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-base);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* PREMIUM BACKGROUND */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(225, 78, 38, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(33, 42, 53, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(225, 78, 38, 0.03) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* LAYOUT ARCHITECT */
+        .page-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 10rem 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            background: rgba(2, 6, 23, 0.85);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 1rem 0;
+            background: rgba(2, 6, 23, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            height: 36px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--fg);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3.5rem, 12vw, 7.5rem);
+            line-height: 0.85;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            font-weight: 900;
+            letter-spacing: -3px;
+            background: linear-gradient(180deg, #fff 40%, rgba(255, 255, 255, 0.2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--fg);
+            opacity: 0.8;
+            max-width: 750px;
+            margin-bottom: 3.5rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+
+        /* MODULE CARDS */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 5rem;
+        }
+
+        .premium-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 3.5rem;
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .premium-card:hover {
+            border-color: rgba(225, 78, 38, 0.5);
+            transform: translateY(-15px);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .premium-card:hover::before {
+            opacity: 1;
+        }
+
+        .premium-card h3 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.85rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        /* TYPOGRAPHY COMPONENTS */
+        .section-tag {
+            color: var(--primary);
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 6px;
+            display: block;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+        }
+
+        h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1;
+            font-weight: 800;
+        }
+
+        /* PARTNER LOGOS */
+        .partner-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 5rem;
+            align-items: center;
+            justify-items: center;
+            margin-top: 6rem;
+            filter: brightness(0) invert(1) opacity(0.3);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .partner-links:hover {
+            filter: brightness(1) invert(0) opacity(1);
+        }
+
+        .partner-logo {
+            max-width: 160px;
+            height: auto;
+            transition: all 0.4s ease;
+        }
+
+        /* BUTTONS */
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem 4rem;
+            border-radius: 5rem;
+            text-decoration: none;
+            font-weight: 900;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            letter-spacing: 3px;
+            transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            display: inline-block;
+            box-shadow: 0 15px 30px rgba(225, 78, 38, 0.3);
+            border: 1px solid transparent;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(225, 78, 38, 0.5);
+        }
+
+        /* CHECKLIST */
+        .check-list {
+            list-style: none;
+            margin-top: 2.5rem;
+        }
+
+        .check-list li {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            font-weight: 300;
+            opacity: 0.85;
+        }
+
+        .check-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.4rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--primary);
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 8rem 0;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            font-family: var(--font-heading);
+        }
+
+        /* UTILS */
+        .highlight {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .text-muted {
+            opacity: 0.5;
+            font-size: 0.9rem;
+        }
+
+        /* SCROLL PROGRESS */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), #ffffff);
+            z-index: 1100;
+            width: 0%;
+            transition: width 0.15s ease-out;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* SPECIAL LABEL */
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.65rem;
+            font-weight: 900;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            h2 {
+                font-size: 2.8rem;
+            }
+
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-glow"></div>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <header id="mainHeader">
+        <nav>
+            <img src="PRESCOT_logo_biale+kolor-01.svg" alt="Prescot Logo" class="logo">
+            <div class="nav-links">
+                <a href="#modul1">DNA</a>
+                <a href="#modul2">Produkty</a>
+                <a href="#modul3">Zasilanie</a>
+                <a href="#summary">Strategia</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-container">
+        <!-- HERO -->
+        <section class="hero visible">
+            <span class="section-tag" style="animation: fadeInUp 1s ease forwards;">Ekskluzywna Akademia LED</span>
+            <h1 style="animation: fadeInUp 1.2s ease forwards;">Prescot<br>Systemy</h1>
+            <p style="animation: fadeInUp 1.4s ease forwards;">Przekształcamy zaawansowaną inżynierię w sukces Twojego
+                <span class="highlight">Partnerstwa</span>. Odkryj fundamenty Planu 1.</p>
+            <a href="#modul1" class="cta-button" style="animation: fadeInUp 1.6s ease forwards;">ROZPOCZNIJ PRZYGODĘ</a>
+        </section>
+
+        <!-- MODUL 1 -->
+        <section id="modul1">
+            <span class="section-tag">Nasza Tożsamość</span>
+            <h2>Wizja i <span class="highlight">Precyzja</span> DNA</h2>
+
+            <div class="premium-card" style="margin-bottom: 3rem;">
+                <p style="font-size: 1.5rem; font-weight: 300; line-height: 1.5; color: #fff;">Prescot to nie tylko
+                    oświetlenie. To hybrydowy ekosystem łączący <span class="highlight">Polską Myśl Techniczną</span> z
+                    globalnym standardem dystrybucji. Nasze serce bije w Giżycku.</p>
+            </div>
+
+            <div class="grid-layout">
+                <div class="premium-card">
+                    <h3>Produkcja Polska</h3>
+                    <p class="text-muted" style="margin-bottom: 2rem;">Własny park maszynowy to pełna kontrola nad
+                        każdym lumenem.</p>
+                    <ul class="check-list">
+                        <li>Stałość barwy (3-Step Binning)</li>
+                        <li>Logistyka odporna na zatory</li>
+                        <li>Customizacja bez ograniczeń</li>
+                    </ul>
+                </div>
+                <div class="premium-card">
+                    <h3>Filary Jakości</h3>
+                    <p class="text-muted" style="margin-bottom: 2rem;">Współpraca z liderami rynku definiuje nasze
+                        standardy.</p>
+                    <ul class="check-list">
+                        <li><strong>KLUŚ</strong> – Architektura profilu</li>
+                        <li><strong>Scharfer</strong> – Kręgosłup zasilania</li>
+                        <li><strong>MiBoxer</strong> – Inteligencja sterowania</li>
+                        <li><strong>ELBA</strong> – Profesjonalna optyka</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODUL 2 -->
+        <section id="modul2">
+            <span class="section-tag">Inżynieria Światła</span>
+            <h2>Filar Oferty: <span class="highlight">LED</span> Pro</h2>
+
+            <div class="grid-layout">
+                <div class="premium-card">
+                    <h3>Podłoże 4oz <div class="badge">PREMIUM</div>
+                    </h3>
+                    <p>Skuteczny radiator i stabilne napięcia. Nasze taśmy pracują w temperaturze o <span
+                            class="highlight">20°C niższej</span> niż produkty rynkowe, co eliminuje ryzyko degradacji
+                        luminoforu.</p>
+                </div>
+                <div class="premium-card">
+                    <h3>MacAdam Ellipse</h3>
+                    <p>Standard 3-stopniowy gwarantuje idealną jednolitość. Każdy metr Twojej instalacji świeci tą samą
+                        energią i odcieniem, budując zaufanie <span class="highlight">Partnera</span>.</p>
+                </div>
+                <div class="premium-card">
+                    <h3>Systemy 48V</h3>
+                    <p>Przełamujemy bariery fizyki. Zasilaj korytarze i hale o długości do <span class="highlight">50
+                            metrów</span> z jednego źródła. Mniej kabli, więcej światła.</p>
+                </div>
+            </div>
+
+            <h3
+                style="margin-top: 6rem; font-family: var(--font-heading); color: var(--primary); text-align: center; font-size: 2rem;">
+                Specjalizacja i <span class="highlight">Wyzwania</span></h3>
+            <div class="grid-layout">
+                <div class="premium-card">
+                    <span class="section-tag" style="letter-spacing: 2px;">OneCut Tech</span>
+                    <p>Cięcie co <span class="highlight">10mm</span>. Perfekcyjne dopasowanie do wymiarów mebla bez
+                        ciemnych plam na końcach.</p>
+                </div>
+                <div class="premium-card">
+                    <span class="section-tag" style="letter-spacing: 2px;">Delux Slim</span>
+                    <p>Zaledwie <span class="highlight">4mm</span> szerokości. Ekstremalnie wąskie frezy i detale
+                        architektoniczne.</p>
+                </div>
+                <div class="premium-card">
+                    <span class="section-tag" style="letter-spacing: 2px;">True Color</span>
+                    <p>Współczynnik <span class="highlight">CRI 97+</span>. Sklepy premium, muzea i galerie sztuki –
+                        światło jak naturalne.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODUL 3 -->
+        <section id="modul3">
+            <span class="section-tag">Zasilanie Systemu</span>
+            <h2>Stabilność <span class="highlight">Energii</span></h2>
+
+            <div class="grid-layout">
+                <div class="premium-card">
+                    <h3>Portfolio Prescot</h3>
+                    <p class="text-muted" style="margin-bottom: 2rem;">Zasilanie dopasowane do każdej skali projektu.
+                    </p>
+                    <ul class="check-list">
+                        <li>Linia PR – Modułowa/Siatkowa</li>
+                        <li>Linia PG – Plug-in/Gniazdowa</li>
+                        <li>Linia IP – Pełna hermetyczność</li>
+                    </ul>
+                </div>
+                <div class="premium-card"
+                    style="box-shadow: 0 0 40px rgba(225, 78, 38, 0.15); border-color: var(--primary);">
+                    <h3>Scharfer Premium <div class="badge">7 LAT GW</div>
+                    </h3>
+                    <p>Dla najbardziej wymagających systemów przemysłowych. Praca pod pełnym, ciągłym obciążeniem. To
+                        gwarancja spokoju na lata dla Twojego <span class="highlight">Partnera</span>.</p>
+                </div>
+            </div>
+
+            <div class="premium-card" style="margin-top: 4rem; text-align: center; border-style: dashed;">
+                <p style="font-size: 1.25rem;">Złota zasada: <span class="highlight">Napięcie taśmy = Napięcie
+                        zasilacza</span>. <br><span class="text-muted">Zawsze projektuj z 20% marginesem
+                        bezpieczeństwa.</span></p>
+            </div>
+        </section>
+
+        <!-- SUMMARY -->
+        <section id="summary" style="text-align: center;">
+            <span class="section-tag">Zakończenie</span>
+            <h2>Strategia <span class="highlight">Jutra</span></h2>
+            <p style="max-width: 850px; margin: 0 auto 5rem auto; font-size: 1.4rem; font-weight: 300;">W Prescot nie
+                rozwiązujemy problemów – odpowiadamy na <span class="highlight">Wyzwania</span>. Nasza przewaga to
+                polska produkcja, najwyższej jakości komponenty (Osram, Cree, Tridonic) i relacje oparte na
+                bezkompromisowej jakości.</p>
+
+            <div class="partner-links">
+                <img src="Klus-logo.svg" alt="KLUŚ" class="partner-logo">
+                <img src="logo%20scharfer.png" alt="Scharfer" class="partner-logo">
+                <img src="miboxer%20logo.png" alt="MiBoxer" class="partner-logo">
+                <img src="elba%20logo.png" alt="ELBA" class="partner-logo">
+            </div>
+        </section>
+
+        <footer>
+            <div style="margin-bottom: 3rem;">
+                <img src="PRESCOT_logo_biale+kolor-01.svg" alt="Prescot" style="height: 35px; opacity: 0.9;">
+            </div>
+            <p style="font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.5;">Prescot LED //
+                Giżycko 2026 // Systemy Szkoleniowe Premium</p>
+            <p style="font-weight: 800; font-size: 1.5rem; margin-top: 1.5rem; color: var(--fg); letter-spacing: -1px;">
+                NAJWYŻSZA JAKOŚĆ POTWIERDZONA POLSKĄ PRODUKCJĄ</p>
+        </footer>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Scroll Effects
+        const header = document.getElementById('mainHeader');
+        const progressBar = document.getElementById('progressBar');
+
+        window.onscroll = function () {
+            // Header scale
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Progress Bar
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            progressBar.style.width = scrolled + "%";
+        };
+
+        // Subtle animation injection
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+{
+  "updatedAt": "2026-03-19T21:06:27.434Z",
+  "createdAt": "2026-03-19T07:43:54.912Z",
+  "id": "MOV6qfaDueCFzbZm",
+  "name": "Antigravity Swarm Automator",
+  "description": "Automated Gmail analysis and Swarm task delegation.",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "id": "a31232d3-748a-43ad-a72f-84af4601d826",
+      "name": "1h Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1424,
+        0
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "534db68b-f8a2-4501-bf14-0796df7208a4",
+      "name": "IMAP Email",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 1.1,
+      "position": [
+        1648,
+        0
+      ],
+      "credentials": {
+        "imap": {
+          "id": "RUJVTesdFAw4vVfM",
+          "name": "IMAP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        1904,
+        96
+      ],
+      "id": "99f97ceb-231b-4f2e-86c8-9f0f73d38d18",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "8qGVZf0t6KYuKeFL",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Oto wiadomość od Szefa: {{ $json.text }}",
+        "options": {
+          "systemMessage": "Jesteś Koordynatorem Rozwoju Antigravity. Twoim zadaniem jest wyciąganie technicznej wiedzy z maili Szefa dla Antigravity. Skup się na: MCP connections, triki kodowania JS/TS, nowości AI (OpenAI, Gemini), rozwój agentów. Każdy mail od Szefa to dawka wiedzy. Wyciągnij kluczowe punkty i sformatuj jako Markdown. Wyślij tylko czysty Markdown."
+        }
+      },
+      "id": "f993d44e-571e-4b9f-919d-18310f8b0552",
+      "name": "Knowledge Archivist",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        1904,
+        -192
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "save-to-file",
+      "name": "Save to Growth Log",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2208,
+        -192
+      ]
+    }
+  ],
+  "connections": {
+    "IMAP Email": {
+      "main": [
+        [
+          {
+            "node": "Knowledge Archivist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Knowledge Archivist",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Knowledge Archivist": {
+      "main": [
+        [
+          {
+            "node": "Save to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false,
+    "binaryMode": "separate"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "IMAP Email": [
+      {
+        "json": {
+          "subject": "New lead for Antigravity",
+          "text": "Hello, I am interested in your agentic AI solutions. - Karol",
+          "from": "karol@example.com"
+        }
+      }
+    ]
+  },
+  "versionId": "d85ec851-11fc-488e-b475-1b3f4091b4ec",
+  "activeVersionId": "d056ced5-1cb8-414c-a46f-bf6d5ecccbe3",
+  "versionCounter": 89,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-03-19T07:43:54.916Z",
+      "createdAt": "2026-03-19T07:43:54.916Z",
+      "role": "workflow:owner",
+      "workflowId": "MOV6qfaDueCFzbZm",
+      "projectId": "Fz5umYibcNGoVlFz",
+      "project": {
+        "updatedAt": "2026-03-19T07:28:58.576Z",
+        "createdAt": "2026-03-18T19:24:19.113Z",
+        "id": "Fz5umYibcNGoVlFz",
+        "name": "Karol Bohunek <bohunek5@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "creatorId": "db23f929-c016-4d39-8890-2ae369ff840d"
+      }
+    }
+  ],
+  "tags": [],
+  "activeVersion": {
+    "updatedAt": "2026-03-19T20:49:58.723Z",
+    "createdAt": "2026-03-19T20:49:58.723Z",
+    "versionId": "d056ced5-1cb8-414c-a46f-bf6d5ecccbe3",
+    "workflowId": "MOV6qfaDueCFzbZm",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "hours",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "id": "a31232d3-748a-43ad-a72f-84af4601d826",
+        "name": "1h Check",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          1424,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "format": "resolved",
+          "action": "read",
+          "options": {
+            "unreadOnly": false,
+            "customEmailConfig": "[\"FROM\", \"bohunek5@gmail.com\"]"
+          }
+        },
+        "id": "534db68b-f8a2-4501-bf14-0796df7208a4",
+        "name": "IMAP Email",
+        "type": "n8n-nodes-base.emailReadImap",
+        "typeVersion": 1.1,
+        "position": [
+          1648,
+          0
+        ],
+        "credentials": {
+          "imap": {
+            "id": "RUJVTesdFAw4vVfM",
+            "name": "IMAP account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+        "typeVersion": 1,
+        "position": [
+          1904,
+          96
+        ],
+        "id": "99f97ceb-231b-4f2e-86c8-9f0f73d38d18",
+        "name": "Ollama Chat Model",
+        "credentials": {
+          "ollamaApi": {
+            "id": "8qGVZf0t6KYuKeFL",
+            "name": "Ollama account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Oto wiadomość od Szefa: {{ $json.text }}",
+          "options": {
+            "systemMessage": "Jesteś Koordynatorem Rozwoju Antigravity. Twoim zadaniem jest wyciąganie technicznej wiedzy z maili Szefa dla Antigravity. Skup się na: MCP connections, triki kodowania JS/TS, nowości AI (OpenAI, Gemini), rozwój agentów. Każdy mail od Szefa to dawka wiedzy. Wyciągnij kluczowe punkty i sformatuj jako Markdown. Wyślij tylko czysty Markdown."
+          }
+        },
+        "id": "f993d44e-571e-4b9f-919d-18310f8b0552",
+        "name": "Knowledge Archivist",
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.6,
+        "position": [
+          1904,
+          -192
+        ]
+      },
+      {
+        "parameters": {
+          "action": "write",
+          "fileContent": "={{ $json.output }}",
+          "options": {
+            "appendToFile": true
+          },
+          "fileName": "/Users/karolbohdanowicz/my-ai-agents/.agent/knowledge/growth_log.md"
+        },
+        "id": "save-to-file",
+        "name": "Save to Growth Log",
+        "type": "n8n-nodes-base.readWriteFile",
+        "typeVersion": 1,
+        "position": [
+          2200,
+          -192
+        ]
+      }
+    ],
+    "connections": {
+      "IMAP Email": {
+        "main": [
+          [
+            {
+              "node": "Knowledge Archivist",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Ollama Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Knowledge Archivist",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Knowledge Archivist": {
+        "main": [
+          [
+            {
+              "node": "Save to File",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Karol Bohunek",
+    "name": null,
+    "description": null,
+    "autosaved": false,
+    "workflowPublishHistory": []
+  }
+}

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import type { Lead } from '../data/mockData';
 import { ALL_LEADS, REPS } from '../data/mockData';
+import { pluralize } from '../utils/pluralize';
 import styles from './Clients.module.css';
 import weeklyStyles from './WeeklyPlan.module.css';
 import { CrmCard } from '../components/CrmCard/CrmCard';
@@ -212,7 +213,7 @@ export const Clients: React.FC = () => {
                         <div className={styles.statsIcon}><Target size={20} /></div>
                         <div className={styles.statsInfo}>
                             <span className={styles.statsLabel}>Aktywność (30 dni)</span>
-                            <span className={styles.statsValue}>+{stats.activityCount} {stats.activityLabel}</span>
+                            <span className={styles.statsValue}>+{stats.activityCount} {pluralize(stats.activityCount, ['NOWY', 'NOWE', 'NOWYCH'])}</span>
                         </div>
                     </div>
                     <div className={`${styles.statsCard} glass`}>
@@ -238,7 +239,7 @@ export const Clients: React.FC = () => {
                                             <div className={styles.repAvatar}>{rep.name[0]}</div>
                                             <div className={styles.repInfo}>
                                                 <div className={styles.repName}>{rep.name}</div>
-                                                <div className={styles.repStats}>{repCounts[rep.id] || 0} Kontrahentów</div>
+                                                <div className={styles.repStats}>{repCounts[rep.id] || 0} {pluralize(repCounts[rep.id] || 0, ['Kontrahent', 'Kontrahenci', 'Kontrahentów'])}</div>
                                             </div>
                                             <ChevronRight size={18} />
                                         </div>

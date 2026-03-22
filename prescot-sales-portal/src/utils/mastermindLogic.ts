@@ -21,12 +21,17 @@ export interface WeeklyPlanDistribution {
     metadata: {
         generatedAt: string;
         rotationOffset: number;
+        report?: string;
     };
 }
 
 export function runMastermindAnalysis(): { directives: MastermindResult[], plan: WeeklyPlanDistribution } {
     const results: MastermindResult[] = [];
     const sales = rawSales as Sale[];
+    
+    // Load used leads from localStorage to ensure uniqueness
+    const usedLeadsKey = 'prescot_used_leads';
+    const usedLeads: string[] = JSON.parse(localStorage.getItem(usedLeadsKey) || '[]');
 
     const cleanName = (name: string) => (name || '').toLowerCase()
         .replace(/sp\.? z o\.?o\.?/g, '')
@@ -102,6 +107,10 @@ export function runMastermindAnalysis(): { directives: MastermindResult[], plan:
     const offsetKey = 'prescot_mastermind_rotation_offset';
     const currentOffset = parseInt(localStorage.getItem(offsetKey) || '0');
 
+    let totalStrategic = 0;
+    let totalStandard = 0;
+    const currentSessionUsed: string[] = [];
+
     const distribution: WeeklyPlanDistribution = {
         reps: {},
         metadata: {
@@ -112,29 +121,48 @@ export function runMastermindAnalysis(): { directives: MastermindResult[], plan:
 
     targetReps.forEach(repId => {
         distribution.reps[repId] = {};
-        const repResults = sortedResults.filter(r => r.repId === repId);
-        const total = repResults.length;
+        
+        // 1. Get strategic leads for this rep, excluding those used in recent weeks OR this session
+        const repResults = sortedResults.filter(r => 
+            r.repId === repId && 
+            !usedLeads.includes(r.clientId) && 
+            !currentSessionUsed.includes(r.clientId)
+        );
 
-        if (total === 0) return;
+        // 2. Prepare pool: Take top strategic ones (up to 21)
+        let selectionPool = repResults.slice(0, 21).map(r => r.clientId);
+        totalStrategic += selectionPool.length;
 
-        // Reguła 1/4 bazy: rotacja co 1/4 wszystkich firm handlowca
-        const poolSize = Math.max(21, Math.ceil(total / 4));
-        const wrappedOffset = currentOffset % total;
+        // 3. Fallback: If less than 21, add regular customers
+        if (selectionPool.length < 21) {
+            const fallbackCount = 21 - selectionPool.length;
+            const regularCustomers = ALL_LEADS.filter(l => 
+                l.assignedTo === repId && 
+                !selectionPool.includes(l.id) && 
+                !usedLeads.includes(l.id) &&
+                !currentSessionUsed.includes(l.id)
+            );
+            
+            const selectedFallbacks = regularCustomers.slice(0, fallbackCount).map(l => l.id);
+            selectionPool = [...selectionPool, ...selectedFallbacks];
+            totalStandard += selectedFallbacks.length;
+        }
 
+        currentSessionUsed.push(...selectionPool);
+
+        // 4. Distribute into days (3 per day)
         days.forEach((day, dIdx) => {
-            const dayClients: string[] = [];
-            for (let i = 0; i < 3; i++) {
-                const index = (wrappedOffset + (dIdx * 3) + i) % total;
-                if (repResults[index]) {
-                    dayClients.push(repResults[index].clientId);
-                }
-            }
-            distribution.reps[repId][day] = dayClients;
+            distribution.reps[repId][day] = selectionPool.slice(dIdx * 3, (dIdx * 3) + 3);
         });
-
-        // Przesuwamy offset o poolSize (1/4 bazy) dla następnego generowania
-        localStorage.setItem(offsetKey, ((currentOffset + poolSize) % total).toString());
     });
+
+    // Update global used leads (keep last 100 for variety)
+    const nextUsedLeads = [...currentSessionUsed, ...usedLeads].slice(0, 100);
+    localStorage.setItem(usedLeadsKey, JSON.stringify(nextUsedLeads));
+
+    // Intelligence Report
+    const report = `AGENT MASTERMIND: Przeanalizowano bazę ERP (${sales.length} transakcji). Wykryto ${results.length} okazji strategicznych. Ułożono plan dla 5 handlowców: wybrano ${totalStrategic} okazji (Cross-sell/Churn) oraz ${totalStandard} stałych klientów (Fallback). Całość na bazie unikalnej puli (bez powtórzeń z ubiegłych tygodni).`;
+    distribution.metadata.report = report;
 
     return {
         directives: sortedResults,
@@ -145,6 +173,7 @@ export function runMastermindAnalysis(): { directives: MastermindResult[], plan:
 export function resetMastermindRotation() {
     localStorage.removeItem('prescot_mastermind_rotation_offset');
     localStorage.removeItem('prescot_mastermind_plan');
+    localStorage.removeItem('prescot_used_leads');
     const targetReps = ['annag', 'dariuszn', 'annaa', 'adamg', 'iwonab'];
     targetReps.forEach(repId => {
         localStorage.removeItem(`prescot_tasks_${repId}`);

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import type { Lead } from '../../data/mockData';
 import styles from './LeadDetail.module.css';
+import { formatPrice } from '../../utils/formatUtils';
 
 interface LeadDetailProps {
     lead: Lead;
@@ -74,8 +75,8 @@ export const LeadDetail: React.FC<LeadDetailProps> = ({
                                         <td>{namePart}</td>
                                         <td>{qtyPart && `Ilość: ${qtyPart}`}</td>
                                         <td className={styles.qty}>
-                                            {pricePart && <div className={styles.unitPrice}>Cena: {pricePart}</div>}
-                                            {valuePart && <div className={styles.rowValue}>Wartość: {valuePart}</div>}
+                                            {pricePart && <div className={styles.unitPrice}>Cena: {formatPrice(pricePart)}</div>}
+                                            {valuePart && <div className={styles.rowValue}>Wartość: {formatPrice(valuePart)}</div>}
                                         </td>
                                     </tr>
                                 );

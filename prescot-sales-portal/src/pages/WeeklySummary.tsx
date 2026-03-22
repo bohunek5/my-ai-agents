@@ -1,82 +1,74 @@
 import React, { useState, useMemo } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { useAuth } from '../context/AuthContext';
-import { REPS, getLeadById } from '../data/mockData';
+import { REPS } from '../data/mockData';
 import {
     TrendingUp,
-    Zap,
-    ChevronRight,
     Loader2,
-    ShieldCheck
+    ShieldCheck,
+    Calendar
 } from 'lucide-react';
 import styles from './WeeklySummary.module.css';
 
-interface RepPerformance {
+// History-based performance interface
+interface RepHistoryPerformance {
     id: string;
     name: string;
-    contactCount: number;
-    notes: { clientId: string, clientName: string, text: string, status: string }[];
-    summaryAI?: string;
+    total: number;
+    successes: number;
+    lastNote: string;
 }
 
 export const WeeklySummary: React.FC = () => {
     const { user } = useAuth();
     const [isGenerating, setIsGenerating] = useState(false);
     const [showResults, setShowResults] = useState(false);
-    const [expandedRep, setExpandedRep] = useState<string | null>(null);
+
+    const historyData = useMemo(() => {
+        try {
+            const saved = localStorage.getItem('prescot_history');
+            const history: any[] = saved ? JSON.parse(saved) : [];
+            return history[0] || null; // Pobierz ostatni zapisany tydzień
+        } catch { return null; }
+    }, []);
 
     const performanceData = useMemo(() => {
+        if (!historyData) return [];
+
         return REPS.map(rep => {
-            const taskData = localStorage.getItem(`prescot_tasks_${rep.id}`);
-            const noteData = localStorage.getItem(`prescot_notes_${rep.id}`);
+            const tasks = historyData.taskStatuses?.[rep.id] || {};
+            const notes = historyData.taskNotes?.[rep.id] || {};
 
-            const tasks = taskData ? JSON.parse(taskData) : {};
-            const notes = noteData ? JSON.parse(noteData) : {};
-
-            const validNotes: RepPerformance['notes'] = [];
-            let count = 0;
+            let total = 0;
+            let successes = 0;
+            let lastNote = "";
 
             Object.entries(tasks).forEach(([clientId, status]) => {
-                if (status === 'success' || status === 'rejected') {
-                    count++;
-                    const lead = getLeadById(clientId);
-                    if (notes[clientId]) {
-                        validNotes.push({
-                            clientId,
-                            clientName: lead?.name || clientId,
-                            text: notes[clientId],
-                            status: status as string
-                        });
-                    }
+                total++;
+                if (status === 'success') {
+                    successes++;
+                }
+                if (notes[clientId]) {
+                    lastNote = notes[clientId];
                 }
             });
-
-            // "Script" logic for AI-style summary
-            let summary = "";
-            if (count === 0) {
-                summary = "Brak zarejestrowanych kontaktów w tym tygodniu. Wymagana weryfikacja aktywności.";
-            } else if (count < 5) {
-                summary = `Niska aktywność (${count} kont.). Handlowiec skupił się na wąskiej grupie klientów. Główne ustalenia dotyczą m.in. ${validNotes[0]?.clientName || 'braku danych'}.`;
-            } else {
-                summary = `Wysoka aktywność (${count} kont.). Realizacja planu przebiega pomyślnie. Handlowiec skutecznie domyka tematy u kluczowych odbiorców.`;
-            }
 
             return {
                 id: rep.id,
                 name: rep.name,
-                contactCount: count,
-                notes: validNotes,
-                summaryAI: summary
-            } as RepPerformance;
+                total,
+                successes,
+                lastNote
+            };
         });
-    }, []);
+    }, [historyData]);
 
     const handleGenerate = () => {
         setIsGenerating(true);
         setTimeout(() => {
             setIsGenerating(false);
             setShowResults(true);
-        }, 2500);
+        }, 1500);
     };
 
     if (user?.role === 'handlowiec') {
@@ -93,7 +85,7 @@ export const WeeklySummary: React.FC = () => {
                     <header className={styles.header}>
                         <div className={styles.headerTag}>SYSTEM ANALITYKI ZARZĄDCZEJ</div>
                         <h1 className={styles.title}>Podsumowanie Tygodnia</h1>
-                        <p className={styles.subtitle}>Przegląd zaangażowania i efektów pracy zespołu handlowego</p>
+                        <p className={styles.subtitle}>Wyniki oraz aktywność zespołu z ubiegłego tygodnia {historyData ? `(${historyData.weekId})` : ''}</p>
                     </header>
 
                     {!showResults ? (
@@ -101,9 +93,9 @@ export const WeeklySummary: React.FC = () => {
                             <div className={styles.generateIcon}>
                                 <ShieldCheck size={48} color="var(--primary)" />
                             </div>
-                            <h2 className={styles.generateTitle}>Gotowy do generowania zestawienia?</h2>
+                            <h2 className={styles.generateTitle}>Przeanalizować ubiegły tydzień?</h2>
                             <p className={styles.generateText}>
-                                System przeanalizuje wszystkie wpisy handlowców, statusy zadań oraz notatki CRM z bieżącego tygodnia, aby przygotować strategiczne podsumowanie.
+                                System przygotuje zestawienie tabelaryczne na podstawie ostatniego zamkniętego cyklu pracy zespołu.
                             </p>
                             <button
                                 className={styles.generateBtn}
@@ -112,69 +104,73 @@ export const WeeklySummary: React.FC = () => {
                             >
                                 {isGenerating ? (
                                     <>
-                                        <Loader2 className={styles.spin} /> PRZETWARZANIE DANYCH...
+                                        <Loader2 className={styles.spin} /> ANALIZA ARCHIWALNA...
                                     </>
                                 ) : (
                                     <>
-                                        <Zap size={20} /> GENERUJ ZESTAWIENIE
+                                        <TrendingUp size={20} /> POKAŻ WYNIKI
                                     </>
                                 )}
                             </button>
                         </div>
                     ) : (
-                        <div className={styles.repGrid}>
-                            {performanceData.map(rep => (
-                                <div
-                                    key={rep.id}
-                                    className={`${styles.repCard} ${expandedRep === rep.id ? styles.expanded : ''}`}
-                                    onClick={() => setExpandedRep(expandedRep === rep.id ? null : rep.id)}
-                                >
-                                    <div className={styles.repHeader}>
-                                        <div className={styles.repNameInfo}>
-                                            <div className={styles.repName}>{rep.name}</div>
-                                            <div className={styles.repIdLabel}>ID: {rep.id}</div>
-                                        </div>
-                                        <div className={styles.statBadge}>
-                                            {rep.contactCount} KONTAKTÓW
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.repSummary}>
-                                        <TrendingUp size={14} style={{ marginRight: '8px' }} />
-                                        <strong>OCENA SYSTEMU:</strong><br />
-                                        {rep.summaryAI}
-                                    </div>
-
-                                    {expandedRep === rep.id && (
-                                        <div className={styles.detailsList}>
-                                            <div className={styles.detailsHeader}>
-                                                <h4>SZCZEGÓŁY WPISÓW:</h4>
-                                            </div>
-                                            {rep.notes.length === 0 ? (
-                                                <div className={styles.noReports}>Brak szczegółowych raportów.</div>
-                                            ) : (
-                                                rep.notes.map((note, idx) => (
-                                                    <div key={idx} className={styles.detailItem}>
-                                                        <div className={styles.detailHeader}>
-                                                            <span className={styles.detailClient}>{note.clientName}</span>
-                                                            <span className={`${styles.statusLabel} ${note.status === 'success' ? styles.statusGreen : styles.statusRed}`}>
-                                                                {note.status === 'success' ? '✓ SUKCES' : '✗ BRAK'}
-                                                            </span>
-                                                        </div>
-                                                        <p className={styles.detailText}>{note.text}</p>
-                                                    </div>
-                                                ))
-                                            )}
-                                        </div>
-                                    )}
-
-                                    {!expandedRep && (
-                                        <div className={styles.expandPrompt}>
-                                            KLIKNIJ ABY ROZWINĄĆ <ChevronRight size={12} />
-                                        </div>
-                                    )}
+                        <div className={`${styles.tableWrapper} glass`}>
+                            {!historyData ? (
+                                <div className={styles.noDataState}>
+                                    <Calendar size={64} className={styles.noDataIcon} />
+                                    <h3>Brak danych historycznych</h3>
+                                    <p>Nie odnaleziono zapisów z ubiegłego tygodnia w archiwum systemu.</p>
                                 </div>
-                            ))}
+                            ) : (
+                                <table className={styles.summaryTable}>
+                                    <thead>
+                                        <tr>
+                                            <th>HANDLOWIEC</th>
+                                            <th>KONTAKTY (SUKCESY / RAZEM)</th>
+                                            <th>SKUTECZNOŚĆ</th>
+                                            <th>OSTATNIA ISTOTNA NOTATKA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {performanceData.map(rep => {
+                                            const trend = rep.total > 0 ? Math.round((rep.successes / rep.total) * 100) : 0;
+                                            return (
+                                                <tr key={rep.id}>
+                                                    <td>
+                                                        <div className={styles.repTableInfo}>
+                                                            <div className={styles.repName}>{rep.name}</div>
+                                                            <div className={styles.repIdLabel}>ID: {rep.id}</div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className={styles.statContainer}>
+                                                            <span className={styles.successValue}>{rep.successes}</span>
+                                                            <span className={styles.separator}>/</span>
+                                                            <span className={styles.totalValue}>{rep.total}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div className={styles.efficiencyCell}>
+                                                            <div className={styles.efficiencyValue}>{trend}%</div>
+                                                            <div className={styles.miniProgress}>
+                                                                <div 
+                                                                    className={styles.miniProgressFill} 
+                                                                    style={{ width: `${trend}%` }}
+                                                                ></div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td className={styles.noteCell}>
+                                                        <div className={styles.noteText}>
+                                                            {rep.lastNote || "---"}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            )}
                         </div>
                     )}
                 </div>

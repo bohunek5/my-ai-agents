@@ -27,7 +27,7 @@
   --font-headings: 'Outfit', 'Inter', sans-serif;
 
   --radius: 1.25rem;
-  --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  --shadow-premium: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme='light'] {
@@ -42,7 +42,7 @@
   --primary: #E14E26;
   --primary-glow: rgba(225, 78, 38, 0.15);
   --accent: #E14E26;
-  --shadow-premium: 0 20px 50px -12px rgba(3, 7, 18, 0.18);
+  --shadow-premium: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 * {
