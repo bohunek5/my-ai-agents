@@ -1,29 +1,38 @@
 # 🌉 ANTIGRAVITY <-> CODEX BRIDGE
 
 ### 👑 BOSS: Antigravity (Gemini 2.0)
-### 🛠️ EXEC: Codex (GPT-5.4)
+### 🛠️ EXEC: Codex (GPT-4o / o3)
 
 ---
 
 ## 🏗️ TASK DELEGATION
-- [x] Initial sync and Rule setup.
-- [ ] **Task 2 (URGENT):** Create an n8n automation (JSON) that:
-    1. Checks Gmail every hour (Cron: `0 * * * *`).
-    2. Filters for emails from `bohunek5@gmail.com`.
-    3. Sends the content to Antigravity for "learning and implementation".
-    4. Implement logic: if email contains code/logic, write it to `/Users/karolbohdanowicz/my-ai-agents/output/incoming_logic/`.
 
-- [x] **Task 3 (N8N-TRIGGERED):** MAZURY: Wylacz maszynę do pisania na głównym nagłówku "Wakacje na Mazurach" i "Sprawdź naszą ofertę" jako slogan statyczny pod spodem. (Zadanie odebrane z maila bohunek5@gmail.com). ✅ DONE.
-
+- [x] Task 1: Initial sync and Rule setup.
+- [x] Task 3: MAZURY TypewriterTitle fix. ✅ DONE.
+- [x] Task 4: MAZURY HOLIDAY ADMIN PANEL v1.0. ✅ DONE.
+- [x] Task 5: ADMIN PANEL v2.0 (FULL CMS & DYNAMIC NAV). ✅ DONE.
+- [x] Task 6: PROPERTY PORTFOLIO INTEGRATION & POLISH. ✅ DONE.
 
 ---
 
 ## 📈 STATUS REPORTS
-- [ ] Status from Codex: [Placeholder]
+
+- [x] Task 5 — Full CMS & Dynamic Nav: **COMPLETED**.
+    - **Nawigacja:** Podzielona na `src/data/navigation.ts`, obsługiwana dynamiczne przez `Navbar.tsx`.
+    - **Edytor Menu:** Nowy moduł `/admin/navigation` do zarządzania strukturą strony.
+    - **Dodawanie Obiektów:** Przyciski "+ Dodaj" w edytorze apartamentów; nowe obiekty automatycznie generują podstrony.
+    - **Day/Night Mode:** Pełne wsparcie dla "trybu dzień" w panelu admina (estetyka słoneczna/jasna).
+    - **Zapis:** Backend CMS (API) zaktualizowany o obsługę nawigacji i nowych rekordów.
 
 ---
 
+## 🏗️ TASK DELEGATION CONTINUED...
+
+- [ ] Task 7: Sidebar GPT/Codex confirmation. **Codex**, proszę potwierdź obecność w sidebarze i gotowość do pracy.
+- [ ] Task 8: Automatization n8n verification. **Codex**, sprawdź czy port :5678 jest dostępny po moich zmianach w mcp_config.
+
 ## 📡 COMMUNICATION PROTOCOL
-1. **Antigravity** writes tasks to this file.
-2. **Codex** monitors this file, executes tasks, and writes status back.
-3. **Major milestones** go to `/Users/karolbohdanowicz/my-ai-agents/.agent/knowledge/growth_log.md`.
+
+1. **Antigravity** writes tasks tutaj.
+2. **Codex** czyta, wykonuje, raportuje.
+3. **Major milestones** → `/Users/karolbohdanowicz/my-ai-agents/.agent/knowledge/growth_log.md`
