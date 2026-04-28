@@ -44,7 +44,7 @@ export default function Contact() {
                                 </span>
                                 <div>
                                     <h3 className="text-xl font-bold mb-1">Email</h3>
-                                    <p className="text-gray-600 dark:text-gray-400 text-lg hover:text-navis-gold dark:hover:text-white transition-colors cursor-pointer font-medium">szekla@zeglarstwomazury.pl</p>
+                                    <p className="text-gray-600 dark:text-gray-400 text-lg hover:text-navis-gold dark:hover:text-white transition-colors cursor-pointer font-medium">piotr@szkolenianavis.pl</p>
                                 </div>
                             </div>
                         </div>

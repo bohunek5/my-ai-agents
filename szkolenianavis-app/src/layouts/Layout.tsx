@@ -182,7 +182,7 @@ export default function Layout() {
                                 </li>
                                 <li className="flex items-center gap-4 group">
                                     <span className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-navis-gold transition-colors text-navis-gold group-hover:text-white material-symbols-outlined text-sm">mail</span>
-                                    szekla@zeglarstwomazury.pl
+                                    piotr@szkolenianavis.pl
                                 </li>
                             </ul>
                         </div>
