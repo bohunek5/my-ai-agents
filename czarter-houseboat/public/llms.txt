@@ -1,0 +1,16 @@
+# Mazury Holiday (zeglarstwomazury.pl)
+
+## O nas / About Us
+Mazury Holiday to kompleks komfortowych domków letniskowych położonych na Mazurach. Oferujemy wynajem domków dla rodzin, żeglarzy i turystów szukających odpoczynku w otoczeniu mazurskich jezior i natury.
+
+## Oferta / Offer
+- Wynajem domków wypoczynkowych (Domek 1, Domek 2, itp.)
+- Dostęp do jeziora, atrakcji wodnych
+- Rezerwacje online
+
+## Kontakt / Contact
+Strona internetowa: https://zeglarstwomazury.pl (docelowo: mazury.holiday)
+W przypadku zapytań o rezerwacje zapraszamy do kontaktu przez formularz na stronie lub podane numery telefonów.
+
+## Informacje techniczne
+Strona została zbudowana w nowoczesnej architekturze Next.js/React. Zapewnia to najwyższe standardy wydajności, bezpieczeństwa oraz SEO.

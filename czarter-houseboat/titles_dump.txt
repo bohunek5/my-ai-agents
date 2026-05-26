@@ -1,0 +1,92 @@
+ID 5: Piąta przykładowa oferta
+   Desc:  Wypełnij to pole odpowiednim tekstem. Jego treść zmienisz w panelu administracyjnym w zakładce Ofer
+ID 9: Dziewiąta przykładowa oferta
+   Desc:  Wypełnij to pole odpowiednim tekstem. Jego treść zmienisz w panelu administracyjnym w zakładce Ofer
+ID 4: Pierwsza przykładowa oferta
+   Desc:  Wypełnij to pole odpowiednim tekstem. Jego treść zmienisz w panelu administracyjnym w zakładce Ofer
+ID 7: Siódma przykładowa oferta
+   Desc:  Wypełnij to pole odpowiednim tekstem. Jego treść zmienisz w panelu administracyjnym w zakładce Ofer
+ID 6: Szósta przykładowa oferta
+   Desc:  Wypełnij to pole odpowiednim tekstem. Jego treść zmienisz w panelu administracyjnym w zakładce Ofer
+ID 8: Ósma przykładowa oferta
+   Desc:  Wypełnij to pole odpowiednim tekstem. Jego treść zmienisz w panelu administracyjnym w zakładce Ofer
+ID 3: Czwarta przykładowa oferta
+   Desc:  Wypełnij to pole odpowiednim tekstem. Jego treść zmienisz w panelu administracyjnym w zakładce Ofer
+ID 12: Stranda - Apartament z jedną sypialnią (A204)
+   Desc:  Apartament A204 Suite leży na pierwszym piętrze budynku A, posiada duży i przestronny salon z aneks
+ID 10: Stranda - Apartament z jacuzzi na tarasie (A105)
+   Desc:  Apartament A105 Suite leży na parterze budynku A, posiada duży i przestronny salon z aneksem kuchen
+ID 1: Stranda - Apartament z jedną sypialnią (A103)
+   Desc:  Apartament A103 Suite leży na parterze budynku, posiada duży i przestronny salon z aneksem kuchenny
+ID 13: Stranda - Apartament z jedną sypialnią (A205)
+   Desc:  Apartament A205 Suite leży na pierwszym piętrze budynku A, posiada duży i przestronny salon z aneks
+ID 2: Stranda - Apartament z jedną sypialnią i jacuzzi (A104)
+   Desc:  Apartament A104 Suite leży na parterze budynku A, posiada duży i przestronny salon z aneksem kuchen
+ID 15: Stranda - Apartament z dwoma sypialniami(A306)
+   Desc:  Apartament A306 Suite leży na drugim piętrze budynku A, posiada duży i przestronny salon z aneksem 
+ID 16: Stranda - Apartament z 1 sypialnią i jacuzzi na dachu (A402)
+   Desc:  Apartament A402 Suite leży na najwyższym 3 piętrze budynku A, posiada duży i przestronny salon z an
+ID 17: Stranda - Apartament z 1 sypialnią i jacuzzi na dachu (A403)
+   Desc:  Apartament A403 Suite leży na najwyższym 3 piętrze budynku A, posiada duży i przestronny salon z an
+ID 11: A202
+   Desc:  A202 
+ID 20: B104
+   Desc:  B104 
+ID 14: Stranda - Apartament z jedną sypialnią (A305)
+   Desc:  Apartament A305 Suite leży na piętrze budynku A, posiada duży i przestronny salon z aneksem kuchenn
+ID 19: Apartament B103 z jacuzzi na tarasie
+   Desc:  Apartament B103 Suite leży na parterze budynku A, posiada duży i przestronny salon z aneksem kuchen
+ID 18: Stranda - Apartament z jacuzzi na tarasie (B102)
+   Desc:  Apartament B102 Suite leży na parterze budynku A, posiada duży i przestronny salon z aneksem kuchen
+ID 25: Stranda - Apartament z jedną sypialnią (B404)
+   Desc:  Apartament B404 Suite leży na najwyższym 3 piętrze budynku B, posiada duży i przestronny salon z an
+ID 22: Apartament B106 z dwoma sypialniami
+   Desc:  Apartament B106 Suite leży na parterze budynku B, posiada duży i przestronny salon z aneksem kuchen
+ID 30: Stranda - Apartament C304 Studio
+   Desc:  Apartament C304 Studio znajduje się na drugim piętrze budynku C, posiada miejsce noclegowe z łóżkie
+ID 35: B101
+   Desc:  B101 
+ID 27: Fuleda - Apartament z 1 sypialnią (piętro)
+   Desc:  Apartament z jedną sypialnią zlokalizowany na piętrze budynku to pięknie i stylowo wykończony obiek
+ID 37: C401
+   Desc:  C401 
+ID 29: Stranda - Apartament Studio z jacuzzi na dachu (C403)
+   Desc:  Apartament C403 typu Studio leży na najwyższym 3 piętrze budynku C, posiada wydzielone miejscem syp
+ID 36: B302
+   Desc:  B302 
+ID 28: Fuleda - Dwa pokoje z łazienką
+   Desc:  Dwa pokoje: jeden z łóżkiem podwójnym, drugi z dwoma pojedynczymi. Łazienka z prysznicem i wc. Przy
+ID 31: Wyposażenie Stillo 30
+   Desc:  Stillo30 VIP to następca sprawdzonej i cenionej Futury 870. Jest jednostką mającą na celu zaspokoje
+ID 26: Fuleda - Apartament z 1 sypialnią (parter)
+   Desc:  Apartament z jedną sypialnią zlokalizowany na parterze budynku to pięknie i stylowo wykończony obie
+ID 39: Stranda - Apartament z dwoma sypialniami i jacuzzi (B201)
+   Desc:  Apartament B201 Suite położony jest na pierwszym piętrze budynku B, posiada duży i przestronny salo
+ID 32: Stranda - Apartament typu Studio
+   Desc:  Apartamenty typu Studio znajdują się w budynku C, są to miejsce noclegowe z jednym łóżkiem podwójny
+ID 23: Stranda - Apartament z dwoma sypialniami (B401)
+   Desc:  Apartament B401 Suite leży na najwyższym 3 piętrze budynku B, posiada duży i przestronny salon z an
+ID 34: B105
+   Desc:  B105 
+ID 33: B104
+   Desc:  B104 Prywatny 
+ID 40: Stranda - Apartament z dwoma sypialniami (C301)
+   Desc:  Apartament C301 Suite znajduje się na drugim piętrze budynku C, posiada przestronny salon z aneksem
+ID 38: Stranda - Apartament z 2 sypialniami jacuzzi i sauną (B202)
+   Desc:  Apartament B202 Suite leży na pierwszym piętrze budynku B, posiada salon z aneksem kuchennym i rozk
+ID 24: Stranda - Apartament z jedną sypialnią (B402)
+   Desc:  Apartament B402 Suite leży na najwyższym 3 piętrze budynku B, posiada duży i przestronny salon z an
+ID 21: B105
+   Desc:  B105 
+ID 45: Kisajno - Apartament z dwoma sypialniami (nr15)
+   Desc:  Apartament Kisajno 15A Suite znajduje się na parterze budynku, posiada przestronny salon z aneksem 
+ID 44: Stranda - Apartament z 1 sypialnią
+   Desc:  Apartamenty z 1 sypialnią znajdują się w budynku C, w sypialni łóżko podwójne, salon z aneksem kuch
+ID 46: Stranda - Apartament Studio z jacuzzi na dachu (C402)
+   Desc:  Apartament C402 typu Studio leży na najwyższym 3 piętrze budynku C, posiada wydzielone miejscem syp
+ID 43: Stranda - Apartament z 2 sypialniami
+   Desc:  Apartamenty z 2 sypialniami znajdują się w budynku C, są to miejsce noclegowe z dwoma sypialniami, 
+ID 42: Stranda - Apartament z jedną sypialnią (A302)
+   Desc:  Apartament A302 Suite leży na piętrze budynku A, posiada duży i przestronny salon z aneksem kuchenn
+ID 41: Stranda - Apartament Studio z jacuzzi na dachu (C404)
+   Desc:  Apartament C404 typu Studio leży na najwyższym 3 piętrze budynku C, posiada wydzielone miejscem syp
