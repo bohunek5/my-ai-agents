@@ -1,0 +1,120 @@
+.fleet {
+  position: relative;
+  background: var(--bg-base);
+  z-index: 1;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 300px;
+  gap: 24px;
+}
+
+.bentoCard {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-glass);
+  cursor: pointer;
+  
+  &:hover {
+    .imageWrapper img {
+      transform: scale(1.05);
+    }
+    .overlay {
+      opacity: 1;
+    }
+  }
+}
+
+/* Bento Sizing Classes */
+.span2col { grid-column: span 2; }
+.span3col { grid-column: span 3; }
+.span4col { grid-column: span 4; }
+.span2row { grid-row: span 2; }
+
+@media (max-width: 1024px) {
+  .bentoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .span3col, .span4col { grid-column: span 2; }
+}
+
+@media (max-width: 640px) {
+  .bentoGrid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 250px;
+  }
+  .span2col, .span3col, .span4col { grid-column: span 1; }
+  .span2row { grid-row: span 1; height: 350px; }
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.2) 50%, rgba(2,6,23,0.1) 100%);
+  z-index: 2;
+  opacity: 0.8;
+  transition: opacity 0.4s ease;
+}
+
+.info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 32px;
+  z-index: 3;
+  color: #fff; /* Always white on dark overlay */
+  
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+}
+
+.action {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bentoCard:hover .action {
+  opacity: 1;
+  transform: translateY(0);
+}

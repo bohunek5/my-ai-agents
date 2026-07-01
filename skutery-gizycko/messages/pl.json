@@ -1,0 +1,103 @@
+{
+  "Navigation": {
+    "about": "O nas",
+    "fleet": "Sprzęt",
+    "howItWorks": "Jak to działa?",
+    "gallery": "Galeria",
+    "contact": "Kontakt",
+    "bookNow": "Zarezerwuj"
+  },
+  "Hero": {
+    "title": "Wypożyczalnia skuterów wodnych i motorówek.",
+    "subtitle": "Odkryj piękno Wielkich Jezior Mazurskich z Jet Ski Rental Maciej Skwarko. Zarezerwuj swój skuter lub motorówkę już dziś!",
+    "cta": "Zarezerwuj teraz"
+  },
+  "About": {
+    "title": "O nas",
+    "description": "Atrakcyjne położenie naszego regionu na Szlaku Wielkich Jezior Mazurskich oraz zamiłowanie do sprzętu wodnego było inicjatywą do stworzenia wypożyczalni Jet Ski Rental Maciej Skwarko, w której wynajmiesz skutery wodne oraz motorówki. Odwiedź nas w sezonie letnim w Giżycku i spędź ekscytujący czas na wodzie. Poznaj wspaniałe zakątki Mazur, niedostępne z lądu. Znajdziesz nas w portach: Stanica Wodna Stranda oraz Łabędzi Ostrów."
+  },
+  "Fleet": {
+    "title": "Nasza oferta",
+    "subtitle": "Sprzęt",
+    "details": "Szczegóły",
+    "items": {
+      "vx110_1": {
+        "name": "YAMAHA VX 110KM",
+        "type": "Skuter wodny"
+      },
+      "vx110_2": {
+        "name": "YAMAHA VX 110KM",
+        "type": "Skuter wodny"
+      },
+      "honda": {
+        "name": "HONDA AQUATRAX",
+        "type": "Skuter wodny"
+      },
+      "vx180": {
+        "name": "YAMAHA VX 180km",
+        "type": "Łódź QUICKSILVER"
+      },
+      "activ505": {
+        "name": "ACTIV 505 OPEN",
+        "type": "Łódź QUICKSILVER"
+      },
+      "quick675": {
+        "name": "QUICKSILVER 675",
+        "type": "Łódź"
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "Cztery proste kroki",
+    "subtitle": "Jak wypożyczyć?",
+    "description": "Wypożycz skuter lub łódź przez Internet lub telefonicznie i ciesz się podróżą przez krainę Wielkich Jezior Mazurskich!",
+    "steps": {
+      "step1": {
+        "title": "Wybierz sprzęt",
+        "description": "Nasze sprzęty zaprezentowane są powyżej."
+      },
+      "step2": {
+        "title": "Złóż rezerwację",
+        "description": "Telefonicznie, szybko i wygodnie."
+      },
+      "step3": {
+        "title": "Ciesz się wypoczynkiem",
+        "description": "Zrelaksuj się na łodzi lub poczuj emocje na skuterze."
+      },
+      "step4": {
+        "title": "Zwróć sprzęt",
+        "description": "I podziel się z nami swoją opinią."
+      }
+    }
+  },
+  "Gallery": {
+    "title": "Nasze zdjęcia",
+    "subtitle": "Galeria",
+    "more": "Więcej"
+  },
+  "Contact": {
+    "title": "Odwiedź nas",
+    "subtitle": "Kontakt",
+    "addressTitle": "Adres",
+    "address": "Pierkunowo 36, 11-500 Giżycko",
+    "phoneTitle": "Numer telefonu",
+    "phone": "+ 48 507 697 292",
+    "emailTitle": "Adres email",
+    "email": "kontakt@skutery-gizycko.pl",
+    "message": "Napisz do nas"
+  },
+  "Footer": {
+    "tagline": "Odkryj piękno Wielkich Jezior Mazurskich. Spędź ekscytujący czas na wodzie i poznaj wspaniałe zakątki Mazur, niedostępne z lądu.",
+    "copyright": "© {year} Jet Ski Rental Maciej Skwarko. Wszelkie prawa zastrzeżone.",
+    "quickLinks": "Na skróty",
+    "contactUs": "Nasz Kontakt",
+    "preferences": "Ustawienia",
+    "theme": "Motyw graficzny",
+    "language": "Język"
+  },
+  "Weather": {
+    "sunny": "Słonecznie",
+    "cloudy": "Pochmurno",
+    "rain": "Deszczowo"
+  }
+}

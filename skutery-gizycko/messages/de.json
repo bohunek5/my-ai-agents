@@ -1,0 +1,103 @@
+{
+  "Navigation": {
+    "about": "Über uns",
+    "fleet": "Ausrüstung",
+    "howItWorks": "Wie es funktioniert?",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "bookNow": "Jetzt buchen"
+  },
+  "Hero": {
+    "title": "Verleih von Jetskis und Motorbooten.",
+    "subtitle": "Entdecken Sie die Schönheit der Großen Masurischen Seen mit Jet Ski Rental Maciej Skwarko. Buchen Sie noch heute Ihren Jetski oder Ihr Motorboot!",
+    "cta": "Jetzt buchen"
+  },
+  "About": {
+    "title": "Über uns",
+    "description": "Die attraktive Lage unserer Region an der Route der Großen Masurischen Seen und unsere Leidenschaft für Wassersport waren die Initiative zur Gründung des Verleihs Jet Ski Rental Maciej Skwarko, wo Sie Jetskis und Motorboote mieten können. Besuchen Sie uns in der Sommersaison in Giżycko und verbringen Sie eine aufregende Zeit auf dem Wasser. Entdecken Sie die wunderbaren Ecken Masurens, die vom Land aus unzugänglich sind. Sie finden uns in den Häfen: Stanica Wodna Stranda und Łabędzi Ostrów."
+  },
+  "Fleet": {
+    "title": "Unser Angebot",
+    "subtitle": "Ausrüstung",
+    "details": "Details",
+    "items": {
+      "vx110_1": {
+        "name": "YAMAHA VX 110PS",
+        "type": "Jetski"
+      },
+      "vx110_2": {
+        "name": "YAMAHA VX 110PS",
+        "type": "Jetski"
+      },
+      "honda": {
+        "name": "HONDA AQUATRAX",
+        "type": "Jetski"
+      },
+      "vx180": {
+        "name": "YAMAHA VX 180PS",
+        "type": "QUICKSILVER Boot"
+      },
+      "activ505": {
+        "name": "ACTIV 505 OPEN",
+        "type": "QUICKSILVER Boot"
+      },
+      "quick675": {
+        "name": "QUICKSILVER 675",
+        "type": "Boot"
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "Vier einfache Schritte",
+    "subtitle": "Wie man mietet?",
+    "description": "Mieten Sie einen Jetski oder ein Boot online oder telefonisch und genießen Sie eine Reise durch das Land der Großen Masurischen Seen!",
+    "steps": {
+      "step1": {
+        "title": "Ausrüstung wählen",
+        "description": "Unsere Ausrüstung wird oben präsentiert."
+      },
+      "step2": {
+        "title": "Reservierung vornehmen",
+        "description": "Telefonisch, schnell und bequem."
+      },
+      "step3": {
+        "title": "Genießen Sie Ihre Erholung",
+        "description": "Entspannen Sie sich auf dem Boot oder spüren Sie die Aufregung auf dem Jetski."
+      },
+      "step4": {
+        "title": "Ausrüstung zurückgeben",
+        "description": "Und teilen Sie uns Ihre Meinung mit."
+      }
+    }
+  },
+  "Gallery": {
+    "title": "Unsere Fotos",
+    "subtitle": "Galerie",
+    "more": "Mehr"
+  },
+  "Contact": {
+    "title": "Besuchen Sie uns",
+    "subtitle": "Kontakt",
+    "addressTitle": "Adresse",
+    "address": "Pierkunowo 36, 11-500 Giżycko",
+    "phoneTitle": "Telefonnummer",
+    "phone": "+ 48 507 697 292",
+    "emailTitle": "E-Mail-Adresse",
+    "email": "kontakt@skutery-gizycko.pl",
+    "message": "Schreiben Sie uns"
+  },
+  "Footer": {
+    "tagline": "Entdecken Sie die Schönheit der Großen Masurischen Seen. Verbringen Sie eine aufregende Zeit auf dem Wasser und entdecken Sie wunderbare Ecken Masurens, die vom Land aus unzugänglich sind.",
+    "copyright": "© {year} Jet Ski Rental Maciej Skwarko. Alle Rechte vorbehalten.",
+    "quickLinks": "Schnellzugriff",
+    "contactUs": "Kontaktiere uns",
+    "preferences": "Einstellungen",
+    "theme": "Thema",
+    "language": "Sprache"
+  },
+  "Weather": {
+    "sunny": "Sonnig",
+    "cloudy": "Bewölkt",
+    "rain": "Regnerisch"
+  }
+}

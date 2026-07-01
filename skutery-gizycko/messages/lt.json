@@ -1,0 +1,103 @@
+{
+  "Navigation": {
+    "about": "Apie mus",
+    "fleet": "Įranga",
+    "howItWorks": "Kaip tai veikia?",
+    "gallery": "Galerija",
+    "contact": "Kontaktai",
+    "bookNow": "Užsisakyti"
+  },
+  "Hero": {
+    "title": "Vandens motociklų ir motorinių valčių nuoma.",
+    "subtitle": "Atraskite Didžiųjų Mozūrijos ežerų grožį su Jet Ski Rental Maciej Skwarko. Užsisakykite savo vandens motociklą ar motorinę valtį jau šiandien!",
+    "cta": "Užsisakyti dabar"
+  },
+  "About": {
+    "title": "Apie mus",
+    "description": "Patraukli mūsų regiono vieta prie Didžiųjų Mozūrijos ežerų kelio ir aistra vandens sportui paskatino įkurti Jet Ski Rental Maciej Skwarko nuomos punktą, kur galite išsinuomoti vandens motociklus ir motorines valtis. Aplankykite mus vasaros sezono metu Gižycke ir praleiskite įdomų laiką ant vandens. Atraskite nuostabius Mozūrijos kampelius, nepasiekiamus iš sausumos. Mus rasite uostuose: Stanica Wodna Stranda ir Łabędzi Ostrów."
+  },
+  "Fleet": {
+    "title": "Mūsų pasiūlymas",
+    "subtitle": "Įranga",
+    "details": "Išsami informacija",
+    "items": {
+      "vx110_1": {
+        "name": "YAMAHA VX 110AG",
+        "type": "Vandens motociklas"
+      },
+      "vx110_2": {
+        "name": "YAMAHA VX 110AG",
+        "type": "Vandens motociklas"
+      },
+      "honda": {
+        "name": "HONDA AQUATRAX",
+        "type": "Vandens motociklas"
+      },
+      "vx180": {
+        "name": "YAMAHA VX 180ag",
+        "type": "QUICKSILVER valtis"
+      },
+      "activ505": {
+        "name": "ACTIV 505 OPEN",
+        "type": "QUICKSILVER valtis"
+      },
+      "quick675": {
+        "name": "QUICKSILVER 675",
+        "type": "Valtis"
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "Keturi paprasti žingsniai",
+    "subtitle": "Kaip išsinuomoti?",
+    "description": "Išsinuomokite vandens motociklą ar valtį internetu arba telefonu ir mėgaukitės kelione per Didžiųjų Mozūrijos ežerų kraštą!",
+    "steps": {
+      "step1": {
+        "title": "Pasirinkite įrangą",
+        "description": "Mūsų įranga pateikta aukščiau."
+      },
+      "step2": {
+        "title": "Atlikite rezervaciją",
+        "description": "Telefonu, greitai ir patogiai."
+      },
+      "step3": {
+        "title": "Mėgaukitės poilsiu",
+        "description": "Atsipalaiduokite valtyje arba pajuskite jaudulį ant vandens motociklo."
+      },
+      "step4": {
+        "title": "Grąžinkite įrangą",
+        "description": "Ir pasidalykite savo nuomone su mumis."
+      }
+    }
+  },
+  "Gallery": {
+    "title": "Mūsų nuotraukos",
+    "subtitle": "Galerija",
+    "more": "Daugiau"
+  },
+  "Contact": {
+    "title": "Aplankykite mus",
+    "subtitle": "Kontaktai",
+    "addressTitle": "Adresas",
+    "address": "Pierkunowo 36, 11-500 Gižyckas",
+    "phoneTitle": "Telefono numeris",
+    "phone": "+ 48 507 697 292",
+    "emailTitle": "El. pašto adresas",
+    "email": "kontakt@skutery-gizycko.pl",
+    "message": "Parašykite mums"
+  },
+  "Footer": {
+    "tagline": "Atraskite Didžiųjų Mozūrijos ežerų grožį. Praleiskite įdomų laiką ant vandens ir atraskite nuostabius Mozūrijos kampelius, nepasiekiamus iš sausumos.",
+    "copyright": "© {year} Jet Ski Rental Maciej Skwarko. Visos teisės saugomos.",
+    "quickLinks": "Greitosios nuorodos",
+    "contactUs": "Susisiekite",
+    "preferences": "Nustatymai",
+    "theme": "Tema",
+    "language": "Kalba"
+  },
+  "Weather": {
+    "sunny": "Saulėta",
+    "cloudy": "Debesuota",
+    "rain": "Lietinga"
+  }
+}
