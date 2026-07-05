@@ -110,8 +110,7 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
       <div className="product-image" onClick={() => onOpenModal(product)} style={{ cursor: 'zoom-in', textAlign: 'center', padding: '1rem 0' }} title="Zobacz szczegóły techniczne">
         <img src={product.img} alt={product.name} style={{ maxWidth: '100%', maxHeight: '160px', objectFit: 'contain' }} />
       </div>
-      <div className="product-index">EAN: {product.ean}</div>
-      <h3 className="product-name" style={{ fontSize: '1.2rem', margin: '0.5rem 0', color: 'var(--c-heading)', fontWeight: 700 }}>{product.name}</h3>
+      <h3 className="product-name" style={{ fontSize: '1.2rem', margin: '0.5rem 0 1rem 0', color: 'var(--c-heading)', fontWeight: 700 }}>{product.name}</h3>
 
       <div className="product-specs" style={{ fontSize: '0.85rem', marginBottom: '1.5rem' }}>
         <div className="spec-line" style={{ display: 'flex', justifyContent: 'space-between', padding: '0.3rem 0', borderBottom: '1px solid #f0f0f0' }}>
@@ -148,13 +147,12 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           <img 
             src={product.img} 
             alt={product.name} 
-            onClick={() => setIsZoomed(!isZoomed)}
+            onClick={() => setIsZoomed(true)}
             style={{ 
               maxWidth: '100%', 
               maxHeight: '320px', 
               objectFit: 'contain', 
-              cursor: isZoomed ? 'zoom-out' : 'zoom-in', 
-              transform: isZoomed ? 'scale(1.8)' : 'scale(1)', 
+              cursor: 'zoom-in', 
               transition: 'transform 0.3s ease',
               position: 'relative',
               zIndex: 10
@@ -163,9 +161,6 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         </div>
         
         <div className="modal-info-col" style={{ flex: 1.3, minWidth: '320px', display: 'flex', flexDirection: 'column' }}>
-          <div className="modal-index" style={{ marginBottom: '1rem', fontSize: '0.95rem', color: '#888', fontWeight: 600 }}>
-            EAN: {product.ean} <span style={{ marginLeft: '1.5rem', color: 'var(--c-red)' }}>INDEX: {product.index}</span>
-          </div>
           <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)', lineHeight: 1.15, fontFamily: 'Outfit, sans-serif' }}>{product.name}</h2>
           
           <table className="modal-specs-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '1rem', marginBottom: '2.5rem' }}>
@@ -193,6 +188,40 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
             </button>
           </div>
         </div>
+        {/* Lightbox full screen zoom overlay */}
+        {isZoomed && (
+          <div 
+            className="product-lightbox"
+            onClick={(e) => { e.stopPropagation(); setIsZoomed(false); }}
+          >
+            <img 
+              src={product.img} 
+              alt={product.name} 
+              style={{ 
+                maxWidth: '90%', 
+                maxHeight: '90%', 
+                objectFit: 'contain',
+                boxShadow: '0 25px 60px rgba(0,0,0,0.6)',
+                borderRadius: '8px'
+              }} 
+            />
+            <span 
+              onClick={() => setIsZoomed(false)}
+              style={{ 
+                position: 'absolute', 
+                top: '25px', 
+                right: '35px', 
+                color: 'white', 
+                fontSize: '3.5rem', 
+                cursor: 'pointer', 
+                fontWeight: 300,
+                lineHeight: 1
+              }}
+            >
+              &times;
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
