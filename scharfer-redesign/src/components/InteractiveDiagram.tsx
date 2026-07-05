@@ -20,7 +20,14 @@ export default function InteractiveDiagram() {
   // Right column width = 290px (bounds: 1110px to 1400px). x1 anchor at 1100px.
   // Center is at x = 700px.
   // Zasilacz image width = 760px (centered around 700px, top 280px).
-  // Hotspots are carefully mapped to prevent crossing lines (left cards connect to left spots, right cards connect to right spots).
+  // Hotspots are precisely aligned with the user's red arrow tips:
+  // Card 0 (Aluminiowa Obudowa) -> Top-Left corner (480, 230)
+  // Card 1 (100% Mocy Znamionowej) -> Bottom-Left corner (420, 250)
+  // Card 2 (Cicha Praca) -> Bottom-Middle casing (520, 290)
+  // Card 3 (Klasa Szczelności IP67) -> Top-Middle casing (580, 270)
+  // Card 4 (Zabezpieczenia SCP, OVP, OTP) -> Top-Right corner (680, 310)
+  // Card 5 (Aktywny Układ PFC) -> Bottom-Right corner (620, 330)
+  // Card 6 (7 Lat Pełnej Gwarancji) -> No arrow, no hotspot (static block).
   const features: Feature[] = [
     // Left side features (0, 1, 2)
     {
@@ -28,7 +35,7 @@ export default function InteractiveDiagram() {
       desc: 'Masywny odlew aluminiowy działający jako radiator. Całkowicie wyeliminowaliśmy wentylatory, gwarantując cichą pracę.',
       x1: 300,
       y1: 90,
-      x2: 470,
+      x2: 480,
       y2: 230
     },
     {
@@ -36,7 +43,7 @@ export default function InteractiveDiagram() {
       desc: 'Zaprojektowany do ciągłej pracy przy pełnym obciążeniu. Kupując model 150W, otrzymujesz realne 150W bez ugięć napięcia.',
       x1: 300,
       y1: 260,
-      x2: 530,
+      x2: 420,
       y2: 250
     },
     {
@@ -44,8 +51,8 @@ export default function InteractiveDiagram() {
       desc: 'Wnętrze w 100% zalane żywicą epoksydową tłumi drgania cewek i filtrów. Zachowuje bezwzględną ciszę przy ściemnianiu.',
       x1: 300,
       y1: 430,
-      x2: 430,
-      y2: 210
+      x2: 520,
+      y2: 290
     },
     // Right side features (3, 4, 5, 6)
     {
@@ -53,24 +60,24 @@ export default function InteractiveDiagram() {
       desc: 'Hermetycznie zalana konstrukcja zapobiega wnikaniu wody i kurzu. Może bezpiecznie pracować w trudnych warunkach zewnętrznych.',
       x1: 1100,
       y1: 65,
-      x2: 680,
-      y2: 310
+      x2: 580,
+      y2: 270
     },
     {
       title: 'Zabezpieczenia SCP, OVP, OTP',
       desc: 'Aktywna ochrona podłączonego oświetlenia przed skokami napięcia, zwarciem sieci oraz przegrzaniem z auto-restartem.',
       x1: 1100,
       y1: 195,
-      x2: 820,
-      y2: 360
+      x2: 680,
+      y2: 310
     },
     {
       title: 'Aktywny Układ PFC (PF > 0.98)',
       desc: 'Kompensacja współczynnika mocy minimalizuje straty energetyczne i skutecznie eliminuje zakłócenia w sieci elektrycznej.',
       x1: 1100,
       y1: 325,
-      x2: 630,
-      y2: 290
+      x2: 620,
+      y2: 330
     },
     {
       title: '7 Lat Pełnej Gwarancji',
@@ -78,7 +85,7 @@ export default function InteractiveDiagram() {
       x1: 1100,
       y1: 455,
       x2: 730,
-      y2: 330
+      y2: 330 // Not rendered
     }
   ];
 
@@ -99,6 +106,7 @@ export default function InteractiveDiagram() {
           }}
         >
           {features.map((f, idx) => {
+            if (idx === 6) return null; // No arrow line for Gwarancja card
             const isActive = activeFeature === idx;
             return (
               <line 
@@ -142,6 +150,7 @@ export default function InteractiveDiagram() {
 
         {/* Pulsing Hotspots on the zasilacz */}
         {features.map((f, idx) => {
+          if (idx === 6) return null; // No pulsing hotspot for Gwarancja
           const isActive = activeFeature === idx;
           return (
             <div 
@@ -226,19 +235,19 @@ export default function InteractiveDiagram() {
             return (
               <div 
                 key={realIdx}
-                onMouseEnter={() => setActiveFeature(realIdx)}
-                onMouseLeave={() => setActiveFeature(null)}
+                onMouseEnter={() => realIdx !== 6 ? setActiveFeature(realIdx) : undefined}
+                onMouseLeave={() => realIdx !== 6 ? setActiveFeature(null) : undefined}
                 style={{
                   background: 'white',
                   border: isActive ? '1.5px solid var(--c-red)' : '1.5px solid #e5e7eb',
                   boxShadow: isActive ? '0 12px 25px rgba(230,0,0,0.07)' : '0 4px 12px rgba(0,0,0,0.03)',
                   borderRadius: '12px',
                   padding: '0.75rem 0.9rem',
-                  cursor: 'pointer',
+                  cursor: realIdx !== 6 ? 'pointer' : 'default',
                   textAlign: 'left',
                   transition: 'all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                   transform: isActive ? 'translateX(8px)' : 'none',
-                  opacity: activeFeature === null || isActive ? 1 : 0.45
+                  opacity: activeFeature === null || isActive || realIdx === 6 ? 1 : 0.45
                 }}
               >
                 <h3 style={{ fontSize: '1rem', fontWeight: 800, color: isActive ? 'var(--c-red)' : 'var(--c-heading)', transition: 'color 0.2s', margin: '0 0 0.3rem 0' }}>{f.title}</h3>
