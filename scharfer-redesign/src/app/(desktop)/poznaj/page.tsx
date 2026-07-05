@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import InteractiveDiagram from '@/components/InteractiveDiagram';
 
 export default function PoznajPage() {
   const { t } = useLanguage();
@@ -53,9 +54,23 @@ export default function PoznajPage() {
         </div>
       </div>
 
-      {/* Expanded container to match header (1500px / var(--max-width)) */}
-      <div className="container section-padding" style={{ maxWidth: 'var(--max-width)', margin: '0 auto', padding: '4rem var(--spacing-lg)' }}>
-        {/* 7 lat, 100%, IP67 trust items in a beautiful horizontal container under the hero */}
+      {/* Expanded container (1500px) */}
+      <div className="container section-padding" style={{ maxWidth: 'var(--max-width)', margin: '0 auto', padding: '4rem var(--spacing-lg) 0 var(--spacing-lg)' }}>
+        
+        {/* Interactive diagram representing why Scharfer */}
+        <div style={{ marginBottom: '4rem', borderBottom: '1px solid var(--c-border)', paddingBottom: '3rem' }}>
+          <div className="text-center" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
+              Budowa i innowacje Scharfer
+            </h2>
+            <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '700px', margin: '0.5rem auto 0' }}>
+              Najedź na poszczególne elementy zasilacza, aby poznać jego unikalne parametry techniczne i przewagi.
+            </p>
+          </div>
+          <InteractiveDiagram />
+        </div>
+
+        {/* 7 lat, 100%, IP67 trust items */}
         <div className="hero-trust" style={{ display: 'flex', gap: '3rem', justifyContent: 'center', marginBottom: '5rem', borderBottom: '1px solid var(--c-border)', paddingBottom: '3rem' }}>
           <div className="trust-item" style={{ textAlign: 'center' }}>
             <span className="trust-val" style={{ display: 'block', fontSize: '3rem', fontWeight: 800, color: 'var(--c-red)', marginBottom: '0.5rem' }}>7</span>
@@ -72,7 +87,7 @@ export default function PoznajPage() {
         </div>
 
         <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', marginBottom: '3rem', fontWeight: 800, textAlign: 'center', fontFamily: 'Outfit, sans-serif' }}>
-          Dlaczego warto wybrać zasilacze Scharfer?
+          Szczegółowe zalety technologii
         </h2>
 
         <div className="b2b-story-section" style={{ padding: 0 }}>
@@ -116,7 +131,7 @@ export default function PoznajPage() {
           <div className="b2b-story-row">
             <div className="b2b-story-text">
               <h2>Zgodność z Normami PN-EN, CE i RoHS</h2>
-              <p>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejskie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym <strong>PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547</strong>.</p>
+              <p>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejswie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym <strong>PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547</strong>.</p>
               <p>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru, przebicia prądu i niestabilnego napięcia. Sprzedawaj z czystym sumieniem certyfikowany sprzęt najwyższej klasy.</p>
             </div>
             <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
@@ -154,7 +169,7 @@ export default function PoznajPage() {
           </div>
         </div>
 
-        {/* FAQ Section (Replacing Wspolpraca/B2B section) */}
+        {/* FAQ Section */}
         <div className="faq-section section-padding bg-light" style={{ marginTop: '6rem', background: '#fafafa', borderRadius: '12px', padding: '3rem 2rem', border: '1px solid var(--c-border)' }}>
           <div className="text-center" style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 className="section-title" style={{ fontSize: '2rem', color: 'var(--c-heading)', fontWeight: 800 }}>Często zadawane pytania (FAQ)</h2>
