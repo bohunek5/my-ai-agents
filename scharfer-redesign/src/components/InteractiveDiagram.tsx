@@ -20,13 +20,13 @@ export default function InteractiveDiagram() {
   // Right column width = 290px (bounds: 1110px to 1400px). x1 anchor at 1100px.
   // Center is at x = 700px.
   // Zasilacz image width = 760px (centered around 700px, top 340px).
-  // Hotspots are precisely aligned with the user's red arrow tips:
-  // Card 0 (Aluminiowa Obudowa) -> Top-Left corner (390, 275)
-  // Card 1 (100% Mocy Znamionowej) -> Bottom-Left flange (420, 450)
-  // Card 2 (Cicha Praca) -> Bottom-Middle casing (520, 560)
-  // Card 3 (Klasa Szczelności IP67) -> Top-Middle casing (545, 370)
-  // Card 4 (Zabezpieczenia SCP, OVP, OTP) -> Top-Right corner (620, 490)
-  // Card 5 (Aktywny Układ PFC) -> Bottom-Right corner (575, 610)
+  // Hotspots are precisely aligned with the user's red open circles on the zasilacz body:
+  // Card 0 (Aluminiowa Obudowa) -> Top-Left edge of casing (510, 255)
+  // Card 1 (100% Mocy Znamionowej) -> Bottom-Left corner of casing (460, 330)
+  // Card 2 (Cicha Praca) -> Bottom-Middle flange (540, 375)
+  // Card 3 (Klasa Szczelności IP67) -> Middle-Top flat surface IP67 logo (650, 325)
+  // Card 4 (Zabezpieczenia SCP, OVP, OTP) -> Top-Right flat surface 12V 400W print (730, 365)
+  // Card 5 (Aktywny Układ PFC) -> Bottom-Right corner of casing (790, 395)
   // Card 6 (7 Lat Pełnej Gwarancji) -> No arrow, no hotspot (static block).
   const features: Feature[] = [
     // Left side features (0, 1, 2)
@@ -35,24 +35,24 @@ export default function InteractiveDiagram() {
       desc: 'Masywny odlew aluminiowy działający jako radiator. Całkowicie wyeliminowaliśmy wentylatory, gwarantując cichą pracę.',
       x1: 300,
       y1: 110,
-      x2: 390,
-      y2: 275
+      x2: 510,
+      y2: 255
     },
     {
       title: '100% Mocy Znamionowej',
       desc: 'Zaprojektowany do ciągłej pracy przy pełnym obciążeniu. Kupując model 150W, otrzymujesz realne 150W bez ugięć napięcia.',
       x1: 300,
       y1: 300,
-      x2: 420,
-      y2: 450
+      x2: 460,
+      y2: 330
     },
     {
       title: 'Cicha Praca (Brak piszczenia)',
       desc: 'Wnętrze w 100% zalane żywicą epoksydową tłumi drgania cewek i filtrów. Zachowuje bezwzględną ciszę przy ściemnianiu.',
       x1: 300,
       y1: 490,
-      x2: 520,
-      y2: 560
+      x2: 540,
+      y2: 375
     },
     // Right side features (3, 4, 5, 6)
     {
@@ -60,24 +60,24 @@ export default function InteractiveDiagram() {
       desc: 'Hermetycznie zalana konstrukcja zapobiega wnikaniu wody i kurzu. Może bezpiecznie pracować w trudnych warunkach zewnętrznych.',
       x1: 1100,
       y1: 90,
-      x2: 545,
-      y2: 370
+      x2: 650,
+      y2: 325
     },
     {
       title: 'Zabezpieczenia SCP, OVP, OTP',
       desc: 'Aktywna ochrona podłączonego oświetlenia przed skokami napięcia, zwarciem sieci oraz przegrzaniem z auto-restartem.',
       x1: 1100,
       y1: 240,
-      x2: 620,
-      y2: 490
+      x2: 730,
+      y2: 365
     },
     {
       title: 'Aktywny Układ PFC (PF > 0.98)',
       desc: 'Kompensacja współczynnika mocy minimalizuje straty energetyczne i skutecznie eliminuje zakłócenia w sieci elektrycznej.',
       x1: 1100,
       y1: 390,
-      x2: 575,
-      y2: 610
+      x2: 790,
+      y2: 395
     },
     {
       title: '7 Lat Pełnej Gwarancji',
