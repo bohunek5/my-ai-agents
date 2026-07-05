@@ -435,7 +435,7 @@ img {
     line-height: 1.15;
     margin-bottom: 1.5rem;
     color: var(--c-heading);
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
 }
 
 .hero-title span {
@@ -448,7 +448,7 @@ img {
     margin-bottom: 2.5rem;
     font-weight: 400;
     max-width: 550px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
 .hero-actions {
@@ -1755,7 +1755,7 @@ img {
     line-height: 1.15 !important;
     letter-spacing: -0.02em !important;
     font-family: 'Outfit', sans-serif !important;
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.22) !important;
 }
 
 .page-hero-subtitle {
@@ -1764,6 +1764,6 @@ img {
     max-width: 750px !important;
     line-height: 1.6 !important;
     margin: 0 auto !important;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18) !important;
 }
 
