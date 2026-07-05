@@ -6,36 +6,129 @@ export default function PoznajPage() {
 
   return (
     <div className="view-section active">
-      {/* Poznaj Hero */}
-      <div className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '6rem 2rem', borderBottom: '1px solid var(--c-border)', position: 'relative', overflow: 'hidden' }}>
+      {/* Poznaj Hero with background image and white overlay */}
+      <div className="poznaj-hero" style={{ position: 'relative', overflow: 'hidden', padding: '6rem 2rem', borderBottom: '1px solid var(--c-border)' }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
+          <img src="/assets/scharfer_hotel.png" alt="Scharfer w hotelach" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(255, 255, 255, 0.85)' }} />
+        </div>
         <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '4rem', flexWrap: 'wrap' }}>
-          <div style={{ flex: 1, minWidth: '300px', position: 'relative', zIndex: 2 }}>
-            <h1 style={{ fontSize: '3rem', color: 'var(--c-heading)', marginBottom: '1rem', lineHeight: '1.2', fontWeight: 800 }}>Technologia bez kompromisów</h1>
-            <p style={{ fontSize: '1.25rem', color: 'var(--c-text)', lineHeight: 1.6 }}>Odkryj innowacje i zabezpieczenia, które sprawiają, że zasilacze Scharfer są najczęstszym wyborem profesjonalistów w branży oświetleniowej i B2B.</p>
-            <div className="hero-trust" style={{ marginTop: '3rem', justifyContent: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
-              <div className="trust-item" style={{ background: 'var(--c-white)', padding: '1rem 1.5rem', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
-                <span className="trust-val" style={{ display: 'block', fontSize: '1.5rem', fontWeight: 800, color: 'var(--c-primary)', marginBottom: '0.2rem' }}>7</span>
-                <span className="trust-lbl" style={{ fontSize: '0.9rem', color: 'var(--c-text)', fontWeight: 500 }}>Lat Gwarancji</span>
+          <div style={{ flex: 1.2, minWidth: '300px', position: 'relative', zIndex: 2 }}>
+            <h1 style={{ fontSize: '3.5rem', color: 'var(--c-heading)', marginBottom: '1.5rem', lineHeight: '1.1', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
+              Technologia bez kompromisów
+            </h1>
+            <p style={{ fontSize: '1.25rem', color: 'var(--c-text)', lineHeight: 1.6, marginBottom: '2rem' }}>
+              Odkryj innowacje i zabezpieczenia, które sprawiają, że zasilacze Scharfer są najczęstszym wyborem profesjonalistów w branży oświetleniowej i B2B.
+            </p>
+            {/* 7 lat, 100%, IP67 in 1 line inside Hero */}
+            <div className="hero-trust" style={{ display: 'flex', gap: '2.5rem', borderTop: '1px solid #ccc', paddingTop: '1.5rem', justifyContent: 'flex-start' }}>
+              <div className="trust-item">
+                <span className="trust-val" style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--c-heading)' }}>7</span>
+                <span className="trust-lbl" style={{ fontSize: '0.8rem', color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Lat Gwarancji</span>
               </div>
-              <div className="trust-item" style={{ background: 'var(--c-white)', padding: '1rem 1.5rem', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
-                <span className="trust-val" style={{ display: 'block', fontSize: '1.5rem', fontWeight: 800, color: 'var(--c-primary)', marginBottom: '0.2rem' }}>IP67</span>
-                <span className="trust-lbl" style={{ fontSize: '0.9rem', color: 'var(--c-text)', fontWeight: 500 }}>Pełna Szczelność</span>
+              <div className="trust-item">
+                <span className="trust-val" style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--c-heading)' }}>IP67</span>
+                <span className="trust-lbl" style={{ fontSize: '0.8rem', color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Pełna Szczelność</span>
               </div>
-              <div className="trust-item" style={{ background: 'var(--c-white)', padding: '1rem 1.5rem', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}>
-                <span className="trust-val" style={{ display: 'block', fontSize: '1.5rem', fontWeight: 800, color: 'var(--c-primary)', marginBottom: '0.2rem' }}>100%</span>
-                <span className="trust-lbl" style={{ fontSize: '0.9rem', color: 'var(--c-text)', fontWeight: 500 }}>Praca pod obciążeniem</span>
+              <div className="trust-item">
+                <span className="trust-val" style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--c-heading)' }}>100%</span>
+                <span className="trust-lbl" style={{ fontSize: '0.8rem', color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Praca pod obciążeniem</span>
               </div>
             </div>
           </div>
-          <div style={{ flex: 1, minWidth: '300px', position: 'relative', zIndex: 2, textAlign: 'center' }}>
+          <div style={{ flex: 0.8, minWidth: '300px', position: 'relative', zIndex: 2, textAlign: 'center' }}>
             <img src="/assets/scharfer3.jpg" alt="Zasilacze Scharfer" style={{ maxWidth: '100%', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
           </div>
         </div>
       </div>
 
+      {/* Main content area containing detailed advantages */}
       <div className="container section-padding" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* Value Proposition B2B */}
-        <div className="partnership-section" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', marginTop: '3rem' }}>
+        <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', marginBottom: '3rem', fontWeight: 800, textAlign: 'center', fontFamily: 'Outfit, sans-serif' }}>
+          Dlaczego warto wybrać zasilacze Scharfer?
+        </h2>
+
+        <div className="b2b-story-section">
+          {/* Row 1: Gwarancja */}
+          <div className="b2b-story-row">
+            <div className="b2b-story-text">
+              <h2>7 Lat Pełnej Gwarancji</h2>
+              <p>Zaufanie to podstawa w branży B2B. Zasilacze Scharfer są projektowane tak, aby przetrwać najcięższe warunki pracy. Dlatego każdy nasz produkt objęty jest bezwarunkową, 7-letnią gwarancją producenta.</p>
+              <p>Jasne warunki współpracy B2B: w przypadku usterki gwarantujemy ekspresową wymianę na nowy model bezpośrednio z naszego magazynu w Polsce. Buduj swoją renomę instalatorską na niezawodności.</p>
+            </div>
+            <div className="b2b-story-img">
+              <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" />
+            </div>
+          </div>
+
+          {/* Row 2: IP67 */}
+          <div className="b2b-story-row">
+            <div className="b2b-story-text">
+              <h2>Ochrona IP67 do Zadań Specjalnych</h2>
+              <p>Deszcz, śnieg, wilgoć czy pył – to dla nas żaden problem. Obudowa zasilaczy Scharfer posiada certyfikat szczelności IP67. Są całkowicie wodoodporne i pyłoszczelne.</p>
+              <p>Idealne rozwiązanie do oświetlenia elewacji, podświetlania basenów, banerów reklamowych i architektury ogrodowej. Wyeliminuj ryzyko zwarć w instalacjach outdoorowych.</p>
+            </div>
+            <div className="b2b-story-img">
+              <img src="/assets/sch2.webp" alt="Wodoodporność IP67" />
+            </div>
+          </div>
+
+          {/* Row 3: 100% Obciążenia */}
+          <div className="b2b-story-row">
+            <div className="b2b-story-text">
+              <h2>Zaprojektowane do Pracy pod 100% Obciążeniem</h2>
+              <p>Koniec z przewymiarowaniem zasilaczy! W przeciwieństwie do tańszych zamienników, technologia Scharfer pozwala na stałą pracę pod 100% zadeklarowanym obciążeniem.</p>
+              <p>Jeśli kupujesz model 150W, otrzymujesz pełne 150W czystej, stabilnej mocy. Oznacza to mniejsze koszty instalacji (możesz użyć mniejszego zasilacza) oraz brak problemów z przegrzewaniem.</p>
+            </div>
+            <div className="b2b-story-img">
+              <img src="/assets/sch4.webp" alt="100% obciążenia" />
+            </div>
+          </div>
+          
+          {/* Row 4: Zgodność i Bezpieczeństwo */}
+          <div className="b2b-story-row">
+            <div className="b2b-story-text">
+              <h2>Zgodność z Normami PN-EN, CE i RoHS</h2>
+              <p>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejskie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym <strong>PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547</strong>.</p>
+              <p>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru, przebicia prądu i niestabilnego napięcia. Sprzedawaj z czystym sumieniem certyfikowany sprzęt najwyższej klasy.</p>
+            </div>
+            <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+              <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', mixBlendMode: 'multiply', boxShadow: 'none', borderRadius: 0 }} />
+            </div>
+          </div>
+
+          {/* Row 5: Zaawansowane Zabezpieczenia */}
+          <div className="b2b-story-row">
+            <div className="b2b-story-text">
+              <h2>Zabezpieczenia OVP, SCP, OTP, OLP</h2>
+              <p>Każdy profesjonalny zasilacz instalacyjny Scharfer wyposażony jest w aktywny, wielopoziomowy system ochrony elektroniki, zapobiegający uszkodzeniom w przypadku awarii sieci elektrycznej.</p>
+              <ul style={{ listStyleType: 'none', padding: 0, marginTop: '1rem' }}>
+                <li style={{ marginBottom: '0.5rem' }}><strong>OVP (Over Voltage Protection)</strong> – automatyczne odcięcie przy skokach napięcia.</li>
+                <li style={{ marginBottom: '0.5rem' }}><strong>SCP (Short Circuit Protection)</strong> – błyskawiczne zabezpieczenie przeciwzwarciowe.</li>
+                <li style={{ marginBottom: '0.5rem' }}><strong>OTP (Over Temperature Protection)</strong> – ochrona termiczna przed przegrzaniem.</li>
+                <li><strong>OLP (Over Load Protection)</strong> – zabezpieczenie przeciążeniowe przy zbyt wysokim poborze prądu.</li>
+              </ul>
+            </div>
+            <div className="b2b-story-img">
+              <img src="/assets/40012.png" alt="Zasilacz 12V 400W Scharfer" />
+            </div>
+          </div>
+
+          {/* Row 6: Konstrukcja Termiczna */}
+          <div className="b2b-story-row">
+            <div className="b2b-story-text">
+              <h2>Aluminium i Żywica Epoksydowa</h2>
+              <p>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Zasilacze Scharfer zamknięte są w masywnej, aluminiowej obudowie, która pełni rolę radiatora.</p>
+              <p>Wnętrze urządzenia jest w 100% zalane specjalistyczną żywicą przewodzącą ciepło. Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy nawet przy maksymalnym obciążeniu. Każda jednostka przechodzi również rygorystyczne testy <strong>Burn-in</strong> przed opuszczeniem fabryki.</p>
+            </div>
+            <div className="b2b-story-img">
+              <img src="/assets/sch3.webp" alt="Aluminiowa obudowa i odprowadzanie ciepła" />
+            </div>
+          </div>
+        </div>
+
+        {/* B2B Partnership Value Props */}
+        <div className="partnership-section" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', marginTop: '6rem', alignItems: 'center' }}>
           <div className="partnership-img" style={{ flex: 1, minWidth: '300px' }}>
             <img src="/assets/wspolpraca.webp" alt="Współpraca B2B Scharfer" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.05)' }} />
           </div>

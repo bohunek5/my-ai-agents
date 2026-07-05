@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MobileRedirect from "@/components/MobileRedirect";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: "Scharfer | Profesjonalne Zasilacze Instalacyjne LED 12V 24V",
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="pl">
       <body>
         <MobileRedirect>
+          <ScrollToTop />
           {children}
         </MobileRedirect>
       </body>
