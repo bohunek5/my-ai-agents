@@ -1767,3 +1767,18 @@ img {
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18) !important;
 }
 
+/* Retail Button Hover/Active Effects */
+.retail-btn {
+    transition: all 0.3s ease !important;
+}
+.retail-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+    background: #ffffff !important;
+    border-color: #d1d5db !important;
+}
+.retail-btn:active {
+    transform: translateY(1px) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+

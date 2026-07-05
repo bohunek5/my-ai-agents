@@ -26,7 +26,7 @@ export default function OfertaPage() {
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
-          <img src="/assets/scharfer_supplies_hero.png" alt="Zasilacze oświetlenia miejskiego" />
+          <img src="assets/scharfer_supplies_hero.png" alt="Zasilacze oświetlenia miejskiego" />
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">

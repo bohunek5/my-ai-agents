@@ -131,7 +131,7 @@ export default function InteractiveDiagram() {
           }}
         >
           <img 
-            src="/assets/40012.png" 
+            src="assets/40012.png" 
             alt="Zasilacz Scharfer 12V 400W" 
             style={{ 
               width: '100%', 
