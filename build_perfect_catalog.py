@@ -35,10 +35,49 @@ if os.path.exists(src_cover):
 # Removed Page 8 (Złączki Instalacyjne) and Page 10 (WAGO)
 catalog_structure = [
     {
+        "id": "zlaczki-seria-fc",
+        "category": "Złączki do taśm LED",
+        "series": "ZŁĄCZKI DO TAŚM LED / SERIA FC",
+        "page": 1,
+        "tables": [
+            {
+                "title": "Złączki 9-in-1 Multi (do taśm SMD/COB)",
+                "headers": ["", "Nr katalogowy", "Szerokość taśmy", "Długość przewodu", "Rodzaj złącza", "Typ połączenia"],
+                "rows": [
+                    ["assets/k2018/fc8_mono_multi_9in1.jpg", "FC8-MONO-MULTI-9IN1", "8mm", "-", "szybkozłączka", "wsuwane (9-in-1)"],
+                    ["assets/k2018/fc10_mono_multi_9in1.jpg", "FC10-MONO-MULTI-9IN1", "10mm", "-", "szybkozłączka", "wsuwane (9-in-1)"]
+                ]
+            },
+            {
+                "title": "Złączki Seria FC (taśma-taśma, taśma-przewód)",
+                "headers": ["", "Nr katalogowy", "Szerokość taśmy", "Długość przewodu", "Rodzaj złącza", "Typ połączenia"],
+                "rows": [
+                    ["assets/k2018/fc8_mono_multi.jpg", "FC8-MONO-MULTI", "8mm", "-", "szybkozłączka", "zaciskowe (taśma-taśma / taśma-przewód)"],
+                    ["assets/k2018/fc10_mono_multi.jpg", "FC10-MONO-MULTI", "10mm", "-", "szybkozłączka", "zaciskowe (taśma-taśma / taśma-przewód)"],
+                    ["assets/k2018/fc8_mono_multi_tp.jpg", "FC8-MONO-MULTI-TP", "8mm", "15cm", "szybkozłączka", "taśma-przewód"],
+                    ["assets/k2018/fc10_mono_multi_tp.jpg", "FC10-MONO-MULTI-TP", "10mm", "15cm", "szybkozłączka", "taśma-przewód"],
+                    ["assets/k2018/fc8_mono_multi_tpt.jpg", "FC8-MONO-MULTI-TPT", "8mm", "15cm", "szybkozłączka", "taśma-przewód-taśma"],
+                    ["assets/k2018/fc10_mono_multi_tpt.jpg", "FC10-MONO-MULTI-TPT", "10mm", "15cm", "szybkozłączka", "taśma-przewód-taśma"],
+                    ["assets/k2018/fc8_mono_multi_l.jpg", "FC8-MONO-MULTI-L", "8mm", "-", "szybkozłączka", "taśma-taśma L"],
+                    ["assets/k2018/fc10_mono_multi_l.jpg", "FC10-MONO-MULTI-L", "10mm", "-", "szybkozłączka", "taśma-taśma L"],
+                    ["assets/k2018/fc8_mono_multi_t.jpg", "FC8-MONO-MULTI-T", "8mm", "-", "szybkozłączka", "taśma-taśma T"],
+                    ["assets/k2018/fc10_mono_multi_t.jpg", "FC10-MONO-MULTI-T", "10mm", "-", "szybkozłączka", "taśma-taśma T"],
+                    ["assets/k2018/fc8_smd_cct_tp.jpg", "FC8-SMD-CCT-TP", "8mm", "15cm", "szybkozłączka", "taśma-przewód"],
+                    ["assets/k2018/fc10_cob_rgb_tp.jpg", "FC10-COB-RGB-TP", "10mm", "15cm", "szybkozłączka", "taśma-przewód"],
+                    ["assets/k2018/fc10_cob_rgb_tpt.jpg", "FC10-COB-RGB-TPT", "10mm", "15cm", "szybkozłączka", "taśma-przewód-taśma"],
+                    ["assets/k2018/fc10_smd_rgb_tp.jpg", "FC10-SMD-RGB-TP", "10mm", "15cm", "szybkozłączka", "taśma-przewód"],
+                    ["assets/k2018/fc10_smd_rgb_tpt.jpg", "FC10-SMD-RGB-TPT", "10mm", "15cm", "szybkozłączka", "taśma-przewód-taśma"],
+                    ["assets/k2018/fc10_smd_rgbw_tp.jpg", "FC10-SMD-RGBW-TP", "10mm", "15cm", "szybkozłączka", "taśma-przewód"],
+                    ["assets/k2018/fc10_smd_rgbw_tpt.jpg", "FC10-SMD-RGBW-TPT", "10mm", "15cm", "szybkozłączka", "taśma-przewód-taśma"]
+                ]
+            }
+        ]
+    },
+    {
         "id": "zlaczki-do-tasm-led",
         "category": "Złączki do taśm LED",
         "series": "ZŁĄCZKI DO TAŚM LED / SERIA BASIC",
-        "page": 1,
+        "page": 2,
         "tables": [
             {
                 "headers": ["", "Nr katalogowy", "Zakończenie", "Połączenie", "Zakończenie", "Przewód"],
@@ -72,7 +111,7 @@ catalog_structure = [
         "id": "zlaczki-seria-hipp",
         "category": "Złączki do taśm LED",
         "series": "ZŁĄCZKI DO TAŚM LED / SERIA HIPP",
-        "page": 2,
+        "page": 3,
         "tables": [
             {
                 "headers": ["", "Nr katalogowy", "Zakończenie", "Zakończenie", "Zastosowanie"],
@@ -101,7 +140,7 @@ catalog_structure = [
         "id": "zlaczki-seria-pcb",
         "category": "Złączki do taśm LED",
         "series": "ZŁĄCZKI DO TAŚM LED / SERIA PCB",
-        "page": 3,
+        "page": 4,
         "tables": [
             {
                 "headers": ["", "Nr katalogowy", "Zakończenie", "Model", "Zastosowanie"],
@@ -129,7 +168,7 @@ catalog_structure = [
         "id": "zasilanie-i-rozgalezniki-dc",
         "category": "Zasilanie i Rozgałęźniki DC",
         "series": "KABLE DC / WTYKI I ROZGAŁĘŹNIKI",
-        "page": 4,
+        "page": 5,
         "tables": [
             {
                 "title": "Wtyki DC z przewodem",
@@ -163,7 +202,7 @@ catalog_structure = [
         "id": "zlacza-zip-i-rgb",
         "category": "Zasilanie i Rozgałęźniki DC",
         "series": "ZŁĄCZA DC HERMETYCZNE I RGB",
-        "page": 5,
+        "page": 6,
         "tables": [
             {
                 "headers": ["", "Numer katalogowy", "Zakończenie", "Połączenie", "Zakończenie", "Przewód"],
@@ -186,7 +225,7 @@ catalog_structure = [
         "id": "wtyki-i-gniazda-dc",
         "category": "Zasilanie i Rozgałęźniki DC",
         "series": "WTYKI I GNIAZDA DC",
-        "page": 6,
+        "page": 7,
         "tables": [
             {
                 "title": "Wtyki DC",
@@ -220,7 +259,7 @@ catalog_structure = [
         "id": "kable-i-szybkozlaczki",
         "category": "Kable i Szybkozłączki",
         "series": "ZŁĄCZKI / SERIA KLIK",
-        "page": 7,
+        "page": 8,
         "tables": [
             {
                 "headers": ["", "Numer katalogowy", "Zakończenie", "Połączenie", "Zakończenie", "Przewód"],
@@ -244,7 +283,7 @@ catalog_structure = [
         "id": "zlaczki-fast-i-listwy",
         "category": "Kable i Szybkozłączki",
         "series": "ZŁĄCZKI / SERIA FAST I LISTWY",
-        "page": 8,
+        "page": 9,
         "tables": [
             {
                 "title": "Seria FAST",
@@ -280,7 +319,7 @@ catalog_structure = [
         "id": "przyciski-i-wlaczniki",
         "category": "Przyciski i Włączniki",
         "series": "PRZYCISKI I WŁĄCZNIKI",
-        "page": 9,
+        "page": 10,
         "tables": [
             {
                 "headers": ["", "Nr katalogowy", "Kolor przycisku/obudowy", "Kolor podświetlenia", "Ilość pozycji", "Otwór montażowy"],
@@ -301,7 +340,7 @@ catalog_structure = [
         "id": "zlaczki-hermetyczne-ip68",
         "category": "Złączki Hermetyczne IP68",
         "series": "ZŁĄCZKI HERMETYCZNE NA PRZEWÓD",
-        "page": 10,
+        "page": 11,
         "tables": [
             {
                 "headers": ["", "Nr katalogowy", "Rodzaj", "Ilość pinów", "Przewód", "IP", "IK"],
@@ -322,6 +361,87 @@ catalog_structure = [
         ]
     }
 ]
+
+def extract_row_metadata(headers, row):
+    width = "all"
+    wire = "all"
+    connector = "all"
+    connection = "all"
+    
+    sku = row[1] if len(row) > 1 else ""
+    sku_l = sku.lower()
+    
+    # Deducing width
+    for idx, h in enumerate(headers):
+        val = str(row[idx]).lower()
+        if "szerokość" in h.lower() or "zakończenie" in h.lower() or "rodzaj" in h.lower():
+            if "8mm" in val or "8 mm" in val: width = "8mm"
+            elif "10mm" in val or "10 mm" in val: width = "10mm"
+            elif "12mm" in val or "12 mm" in val: width = "12mm"
+                
+    if width == "all":
+        if "8mm" in sku_l or "fc8" in sku_l: width = "8mm"
+        elif "10mm" in sku_l or "fc10" in sku_l or "12-b" in sku_l or "12-bo" in sku_l or "12-g" in sku_l or "12-r" in sku_l: width = "10mm"
+        elif "12mm" in sku_l: width = "12mm"
+            
+    # Deducing wire
+    for idx, h in enumerate(headers):
+        val = str(row[idx]).lower()
+        if "długość" in h.lower() or "połączenie" in h.lower() or "przewód" in h.lower():
+            if "14cm" in val or "14 cm" in val: wire = "14cm"
+            elif "15cm" in val or "15 cm" in val: wire = "15cm"
+            elif "24cm" in val or "24 cm" in val: wire = "24cm"
+            elif "150cm" in val or "150 cm" in val or "1.5m" in val: wire = "150cm"
+            elif "300cm" in val or "300 cm" in val or "3m" in val: wire = "300cm"
+            
+    if wire == "all":
+        if "+15" in sku_l or "klik" in sku_l or "15cm" in sku_l:
+            if "300+15" in sku_l: wire = "300cm"
+            else: wire = "15cm"
+        elif "+150" in sku_l or "-150" in sku_l: wire = "150cm"
+        elif "300" in sku_l: wire = "300cm"
+        elif "14" in sku_l: wire = "14cm"
+        elif "24" in sku_l: wire = "24cm"
+        elif "tpt" in sku_l or "tp" in sku_l: wire = "14cm"
+        else: wire = "brak"
+        
+    # Rodzaj złącza
+    if "hermetycz" in sku_l or "ip68" in sku_l or "or-ae" in sku_l or "thb" in sku_l:
+        connector = "hermetyczne"
+    elif "wt-" in sku_l or "wtyk" in sku_l:
+        connector = "wtyk"
+    elif "gniazd" in sku_l or "gn-" in sku_l or "gn_ob" in sku_l:
+        connector = "gniazdo"
+    elif "klik" in sku_l or "fc" in sku_l or "zpf" in sku_l:
+        connector = "szybkozłączka"
+    elif "pcb" in sku_l:
+        connector = "wsuwane"
+    elif "hipp" in sku_l:
+        connector = "zaciskowe"
+    elif "listwa" in sku_l or "zl-12x" in sku_l:
+        connector = "skręcane"
+    elif "ps11" in sku_l or "prz-led" in sku_l or "pr-wlk" in sku_l:
+        connector = "przełącznik"
+    else:
+        connector = "akcesoria"
+        
+    # Typ połączenia
+    if "tpt" in sku_l or "taśma-przewód-taśma" in sku_l:
+        connection = "taśma-przewód-taśma"
+    elif "tp" in sku_l or "taśma-przewód" in sku_l:
+        connection = "taśma-przewód"
+    elif "tt" in sku_l or "taśma-taśma" in sku_l:
+        connection = "taśma-taśma"
+    elif "wtyk+gniazdo" in sku_l or "klik" in sku_l:
+        connection = "wtyk+gniazdo"
+    elif "rozgałęźnik" in sku_l or "roz-dc" in sku_l:
+        connection = "rozgałęźnik"
+    elif "ob1" in sku_l or "obp" in sku_l:
+        connection = "panelowe"
+    else:
+        connection = "akcesoria"
+        
+    return width, wire, connector, connection
 
 # Generate main content HTML
 sections_html = ""
@@ -369,6 +489,9 @@ for sec in catalog_structure:
             img_src = r[0]
             sku = r[1]
             
+            # Extract metadata
+            width, wire, connector, connection = extract_row_metadata(t["headers"], r)
+            
             td_html = ""
             for val_idx, val in enumerate(r):
                 if val_idx == 0:
@@ -378,7 +501,7 @@ for sec in catalog_structure:
                 else:
                     td_html += f'<td>{val}</td>'
                     
-            tr_html += f'<tr class="hover:bg-gray-50/50 transition-colors">{td_html}</tr>\n'
+            tr_html += f'<tr class="product-row hover:bg-gray-50/50 transition-colors" data-width="{width}" data-wire="{wire}" data-connector="{connector}" data-connection="{connection}">{td_html}</tr>\n'
             
         tables_html += f"""
         <div class="mb-8">
@@ -567,16 +690,13 @@ full_html_content = f"""<!DOCTYPE html>
             </a>
             
             <nav class="hidden lg:flex gap-6 text-xs font-semibold text-gray-500">
-                <a class="hover:text-prescot-orange transition-colors" href="#zlaczki-do-tasm-led">Złączki LED</a>
+                <a class="hover:text-prescot-orange transition-colors" href="#zlaczki-seria-fc">Seria FC</a>
+                <a class="hover:text-prescot-orange transition-colors" href="#zlaczki-do-tasm-led">Złączki Basic</a>
                 <a class="hover:text-prescot-orange transition-colors" href="#zasilanie-i-rozgalezniki-dc">Kable DC</a>
                 <a class="hover:text-prescot-orange transition-colors" href="#kable-i-szybkozlaczki">Złączki Klik</a>
                 <a class="hover:text-prescot-orange transition-colors" href="#przyciski-i-wlaczniki">Włączniki</a>
                 <a class="hover:text-prescot-orange transition-colors" href="#zlaczki-hermetyczne-ip68">Złącza IP68</a>
             </nav>
-            
-            <button class="bg-prescot-orange hover:bg-prescot-orange-hover text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-all shadow-md" onclick="window.print()">
-                Drukuj Katalog (PDF)
-            </button>
         </div>
     </header>
 
@@ -597,27 +717,82 @@ full_html_content = f"""<!DOCTYPE html>
     </section>
 
     <!-- FILTER BAR -->
-    <section class="sticky top-16 bg-white/95 backdrop-blur-md border-b border-gray-200/60 py-3.5 z-40 no-print">
-        <div class="max-w-7xl mx-auto px-6 flex flex-wrap gap-2 items-center">
-            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mr-2">Filtruj:</span>
-            <button onclick="filterCategory('all', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-prescot-orange text-white border-prescot-orange shadow-sm">
-                Wszystko
-            </button>
-            <button onclick="filterCategory('Złączki do taśm LED', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
-                Złączki LED
-            </button>
-            <button onclick="filterCategory('Zasilanie i Rozgałęźniki DC', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
-                Kable & Wtyki DC
-            </button>
-            <button onclick="filterCategory('Kable i Szybkozłączki', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
-                Złączki Klik & Fast
-            </button>
-            <button onclick="filterCategory('Przyciski i Włączniki', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
-                Włączniki
-            </button>
-            <button onclick="filterCategory('Złączki Hermetyczne IP68', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
-                Złącza IP68
-            </button>
+    <section class="sticky top-16 bg-white/95 backdrop-blur-md border-b border-gray-200/60 py-3.5 z-40 no-print shadow-sm">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap gap-2 items-center mb-3">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mr-2">Kategoria:</span>
+                <button onclick="filterCategory('all', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-prescot-orange text-white border-prescot-orange shadow-sm">
+                    Wszystko
+                </button>
+                <button onclick="filterCategory('Złączki do taśm LED', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                    Złączki LED
+                </button>
+                <button onclick="filterCategory('Zasilanie i Rozgałęźniki DC', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                    Kable & Wtyki DC
+                </button>
+                <button onclick="filterCategory('Kable i Szybkozłączki', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                    Złączki Klik & Fast
+                </button>
+                <button onclick="filterCategory('Przyciski i Włączniki', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                    Włączniki
+                </button>
+                <button onclick="filterCategory('Złączki Hermetyczne IP68', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                    Złącza IP68
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 border-t border-gray-100">
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Szerokość taśmy</label>
+                    <select id="filter-width" onchange="applyFilters()" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-xs font-semibold text-gray-700 px-2.5 py-1.5 outline-none focus:border-prescot-orange focus:bg-white transition-all cursor-pointer">
+                        <option value="all">Dowolna</option>
+                        <option value="8mm">8 mm</option>
+                        <option value="10mm">10 mm</option>
+                        <option value="12mm">12 mm</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Długość przewodu</label>
+                    <select id="filter-wire" onchange="applyFilters()" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-xs font-semibold text-gray-700 px-2.5 py-1.5 outline-none focus:border-prescot-orange focus:bg-white transition-all cursor-pointer">
+                        <option value="all">Dowolna</option>
+                        <option value="brak">Brak przewodu</option>
+                        <option value="14cm">14 cm</option>
+                        <option value="15cm">15 cm</option>
+                        <option value="24cm">24 cm</option>
+                        <option value="150cm">1.5 m (150cm)</option>
+                        <option value="300cm">3.0 m (300cm)</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Rodzaj złącza</label>
+                    <select id="filter-connector" onchange="applyFilters()" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-xs font-semibold text-gray-700 px-2.5 py-1.5 outline-none focus:border-prescot-orange focus:bg-white transition-all cursor-pointer">
+                        <option value="all">Dowolny</option>
+                        <option value="szybkozłączka">Szybkozłączka (klik / fast)</option>
+                        <option value="wsuwane">Wsuwane (PCB)</option>
+                        <option value="zaciskowe">Zaciskowe (HIPP)</option>
+                        <option value="wtyk">Wtyk DC</option>
+                        <option value="gniazdo">Gniazdo DC</option>
+                        <option value="hermetyczne">Hermetyczne IP68</option>
+                        <option value="skręcane">Skręcane 12-torowe</option>
+                        <option value="przełącznik">Przełącznik / Włącznik</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Typ połączenia</label>
+                    <select id="filter-connection" onchange="applyFilters()" class="w-full bg-gray-50 border border-gray-200 rounded-lg text-xs font-semibold text-gray-700 px-2.5 py-1.5 outline-none focus:border-prescot-orange focus:bg-white transition-all cursor-pointer">
+                        <option value="all">Dowolny</option>
+                        <option value="taśma-taśma">Taśma - Taśma</option>
+                        <option value="taśma-przewód">Taśma - Przewód</option>
+                        <option value="taśma-przewód-taśma">Taśma - Przewód - Taśma</option>
+                        <option value="wtyk+gniazdo">Wtyk + Gniazdo</option>
+                        <option value="rozgałęźnik">Rozgałęźnik</option>
+                        <option value="panelowe">Panelowy</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -636,7 +811,7 @@ full_html_content = f"""<!DOCTYPE html>
     </div>
 
     <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-12 no-print border-t border-gray-800">
+    <footer class="bg-gray-900 text-white py-12 pb-24 md:py-12 no-print border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <img alt="PRESCOT Logo" class="h-6 mb-4" src="assets/logo_light.svg"/>
@@ -648,7 +823,7 @@ full_html_content = f"""<!DOCTYPE html>
             </div>
             <div>
                 <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">Kontakt B2B</h4>
-                <p class="text-gray-500 text-xs">PRESCOT Sp. z o.o. | prescot.pl | E-mail: biuro@prescot.pl</p>
+                <p class="text-gray-500 text-xs">PRESCOT Sp. z o.o. | prescot.pl | E-mail: komponenty@prescot.pl</p>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-gray-800 text-[10px] text-gray-600 flex justify-between">
@@ -657,8 +832,32 @@ full_html_content = f"""<!DOCTYPE html>
         </div>
     </footer>
 
+    <!-- BOTTOM MOBILE NAVIGATION BAR -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200/80 h-16 flex justify-around items-center z-50 shadow-[0_-4px_10px_-1px_rgba(0,0,0,0.05)] no-print px-4">
+        <a href="#zlaczki-seria-fc" class="flex flex-col items-center text-gray-400 hover:text-prescot-orange transition-colors">
+            <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <span class="text-[9px] font-bold uppercase tracking-wider">Złączki</span>
+        </a>
+        <a href="#zasilanie-i-rozgalezniki-dc" class="flex flex-col items-center text-gray-400 hover:text-prescot-orange transition-colors">
+            <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <span class="text-[9px] font-bold uppercase tracking-wider">Kable DC</span>
+        </a>
+        <a href="#przyciski-i-wlaczniki" class="flex flex-col items-center text-gray-400 hover:text-prescot-orange transition-colors">
+            <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+            <span class="text-[9px] font-bold uppercase tracking-wider">Włączniki</span>
+        </a>
+        <a href="#zlaczki-hermetyczne-ip68" class="flex flex-col items-center text-gray-400 hover:text-prescot-orange transition-colors">
+            <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+            <span class="text-[9px] font-bold uppercase tracking-wider">IP68</span>
+        </a>
+    </div>
+
     <script>
+        let activeCategory = 'all';
+
         function filterCategory(category, button) {{
+            activeCategory = category;
+            
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => {{
                 btn.classList.remove('bg-prescot-orange', 'text-white', 'border-prescot-orange', 'shadow-sm');
@@ -667,9 +866,56 @@ full_html_content = f"""<!DOCTYPE html>
             button.classList.add('bg-prescot-orange', 'text-white', 'border-prescot-orange', 'shadow-sm');
             button.classList.remove('bg-gray-50', 'text-gray-600', 'border-gray-200/80');
 
+            applyFilters();
+        }}
+
+        function applyFilters() {{
+            const selectedWidth = document.getElementById('filter-width').value;
+            const selectedWire = document.getElementById('filter-wire').value;
+            const selectedConnector = document.getElementById('filter-connector').value;
+            const selectedConnection = document.getElementById('filter-connection').value;
+
             const sections = document.querySelectorAll('.category-section');
+            
             sections.forEach(sec => {{
-                if (category === 'all' || sec.getAttribute('data-category') === category) {{
+                const secCat = sec.getAttribute('data-category');
+                const isCatMatch = (activeCategory === 'all' || secCat === activeCategory);
+                
+                let visibleRowsInSection = 0;
+                
+                const seriesBoxes = sec.querySelectorAll('.bg-white.border');
+                seriesBoxes.forEach(box => {{
+                    let visibleRowsInBox = 0;
+                    
+                    const rows = box.querySelectorAll('.product-row');
+                    rows.forEach(row => {{
+                        const rowWidth = row.getAttribute('data-width');
+                        const rowWire = row.getAttribute('data-wire');
+                        const rowConnector = row.getAttribute('data-connector');
+                        const rowConnection = row.getAttribute('data-connection');
+
+                        const matchesWidth = (selectedWidth === 'all' || rowWidth === selectedWidth);
+                        const matchesWire = (selectedWire === 'all' || rowWire === selectedWire);
+                        const matchesConnector = (selectedConnector === 'all' || rowConnector === selectedConnector);
+                        const matchesConnection = (selectedConnection === 'all' || rowConnection === selectedConnection);
+
+                        if (isCatMatch && matchesWidth && matchesWire && matchesConnector && matchesConnection) {{
+                            row.style.display = '';
+                            visibleRowsInBox++;
+                            visibleRowsInSection++;
+                        }} else {{
+                            row.style.display = 'none';
+                        }}
+                    }});
+                    
+                    if (visibleRowsInBox > 0) {{
+                        box.style.display = '';
+                    }} else {{
+                        box.style.display = 'none';
+                    }}
+                }});
+                
+                if (visibleRowsInSection > 0) {{
                     sec.style.display = 'block';
                     setTimeout(() => {{
                         sec.style.opacity = '1';
