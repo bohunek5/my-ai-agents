@@ -303,7 +303,7 @@ export default function HomePage() {
       <div className="container section-padding" style={{ maxWidth: 'var(--max-width)', margin: '4rem auto 0 auto', padding: '0 1.5rem' }}>
         <div className="partnership-section" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <div className="partnership-img" style={{ flex: 1, minWidth: '300px' }}>
-            <img src="/assets/wspolpraca.webp" alt="Współpraca B2B Scharfer" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.05)' }} />
+            <img src="/assets/scharfer_partnership.png" alt="Współpraca B2B Scharfer" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.05)' }} />
           </div>
           <div className="partnership-text" style={{ flex: 1, minWidth: '300px' }}>
             <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', marginBottom: '0.5rem', fontWeight: 800 }}>Zostań naszym partnerem biznesowym</h2>

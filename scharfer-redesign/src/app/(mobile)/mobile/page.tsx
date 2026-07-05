@@ -352,7 +352,7 @@ export default function MobileAppPage() {
               <h2 className="section-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '20px', textAlign: 'center' }}>Partnerstwo B2B</h2>
               
               <div className="partnership-card" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', padding: '15px', textAlign: 'center', marginBottom: '20px', boxShadow: '0 2px 5px rgba(0,0,0,0.03)' }}>
-                <img src="/assets/wspolpraca.webp" alt="Współpraca" style={{ width: '100%', borderRadius: '8px', marginBottom: '12px' }} />
+                <img src="/assets/scharfer_partnership.png" alt="Współpraca" style={{ width: '100%', borderRadius: '8px', marginBottom: '12px' }} />
                 <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--c-heading)', margin: '0 0 4px 0' }}>Zostań partnerem handlowym</h3>
                 <p style={{ fontSize: '0.82rem', color: '#666', margin: 0 }}>Długofalowa współpraca i wysokie marże dla dystrybutorów.</p>
               </div>
