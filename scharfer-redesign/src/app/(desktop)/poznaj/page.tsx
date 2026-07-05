@@ -1,8 +1,41 @@
 'use client';
+import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function PoznajPage() {
   const { t } = useLanguage();
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
+  const faqItems = [
+    {
+      q: 'Jakie są warunki gwarancji na zasilacze LED Scharfer?',
+      a: 'Każdy zasilacz LED marki Scharfer objęty jest pełną, 7-letnią gwarancją producenta. Jesteśmy pewni naszej technologii i stosowanych komponentów, co pozwala nam zapewnić Ci maksymalne bezpieczeństwo inwestycji w oświetlenie.'
+    },
+    {
+      q: 'Czy zasilacze posiadają certyfikat IP67?',
+      a: 'Tak, zasilacze scharfer posiadają klasę szczelności IP67. Oznacza to pełną wodoszczelność i pyłoszczelność. Dzięki temu idealnie nadają się do montażu w łazienkach, elewacjach budynków, reklamach świetlnych oraz w innych trudnych warunkach zewnętrznych.'
+    },
+    {
+      q: 'Jak zostać dystrybutorem zasilaczy Scharfer?',
+      a: 'Aby rozpocząć współpracę B2B, wystarczy wypełnić formularz w sekcji "Kontakt B2B" lub napisać bezpośrednio na adres biuro@prescot.pl. Nasz przedstawiciel handlowy skontaktuje się z Tobą w ciągu 24 godzin w celu przedstawienia dedykowanych warunków handlowych i rabatów hurtowych.'
+    },
+    {
+      q: 'Czy gwarantujecie pracę pod pełnym obciążeniem?',
+      a: 'Tak. Jedną z głównych zalet zasilaczy Scharfer jest gwarancja stabilnej pracy pod 100% zadeklarowanym obciążeniem. Nie musisz stosować dużych zapasów mocy (tzw. marginesów), jak to bywa w przypadku tańszych zamienników, co optymalizuje koszty całej instalacji LED.'
+    },
+    {
+      q: 'Gdzie najlepiej stosować zasilacze 12V i 24V Scharfer?',
+      a: 'Zasilacze 12V idealnie sprawdzają się do małych instalacji LED, podświetleń meblowych, gablot, kasetonów i krótkich linii światła, gdzie zasilacz ma pozostać dyskretny (np. modele 20W). Zasilacze 24V rekomendujemy przy dłuższych ciągach oświetleniowych, zapewniając stabilne napięcie na całym odcinku.'
+    },
+    {
+      q: 'Jakie są kluczowe przewagi (Przewaga Scharfer)?',
+      a: 'Przewaga Scharfer to przede wszystkim: obudowa w klasie IP67 zapewniająca wodoodporność i pyłoszczelność, stabilne napięcie wyjściowe, szeroki zakres wejściowy (100-250V AC), wysoka wydajność transferu, praca przy 100% obciążenia, test wypalenia przy pełnym obciążeniu oraz zaawansowane zabezpieczenia przed przeciążeniem i zwarciem.'
+    }
+  ];
 
   return (
     <div className="view-section active">
@@ -20,20 +53,20 @@ export default function PoznajPage() {
         </div>
       </div>
 
-      {/* Main content area containing detailed advantages */}
-      <div className="container section-padding" style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 1.5rem' }}>
+      {/* Expanded container to match header (1500px / var(--max-width)) */}
+      <div className="container section-padding" style={{ maxWidth: 'var(--max-width)', margin: '0 auto', padding: '4rem var(--spacing-lg)' }}>
         {/* 7 lat, 100%, IP67 trust items in a beautiful horizontal container under the hero */}
         <div className="hero-trust" style={{ display: 'flex', gap: '3rem', justifyContent: 'center', marginBottom: '5rem', borderBottom: '1px solid var(--c-border)', paddingBottom: '3rem' }}>
           <div className="trust-item" style={{ textAlign: 'center' }}>
-            <span className="trust-val" style={{ display: 'block', fontSize: '3rem', fontWeight: 800, color: 'var(--c-primary)', marginBottom: '0.5rem' }}>7</span>
+            <span className="trust-val" style={{ display: 'block', fontSize: '3rem', fontWeight: 800, color: 'var(--c-red)', marginBottom: '0.5rem' }}>7</span>
             <span className="trust-lbl" style={{ fontSize: '0.9rem', color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Lat Gwarancji</span>
           </div>
           <div className="trust-item" style={{ textAlign: 'center' }}>
-            <span className="trust-val" style={{ display: 'block', fontSize: '3rem', fontWeight: 800, color: 'var(--c-primary)', marginBottom: '0.5rem' }}>IP67</span>
+            <span className="trust-val" style={{ display: 'block', fontSize: '3rem', fontWeight: 800, color: 'var(--c-red)', marginBottom: '0.5rem' }}>IP67</span>
             <span className="trust-lbl" style={{ fontSize: '0.9rem', color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Pełna Szczelność</span>
           </div>
           <div className="trust-item" style={{ textAlign: 'center' }}>
-            <span className="trust-val" style={{ display: 'block', fontSize: '3rem', fontWeight: 800, color: 'var(--c-primary)', marginBottom: '0.5rem' }}>100%</span>
+            <span className="trust-val" style={{ display: 'block', fontSize: '3rem', fontWeight: 800, color: 'var(--c-red)', marginBottom: '0.5rem' }}>100%</span>
             <span className="trust-lbl" style={{ fontSize: '0.9rem', color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>Praca pod obciążeniem</span>
           </div>
         </div>
@@ -108,7 +141,7 @@ export default function PoznajPage() {
             </div>
           </div>
 
-          {/* Row 6: Konstruknia Termiczna */}
+          {/* Row 6: Konstrukcja Termiczna */}
           <div className="b2b-story-row">
             <div className="b2b-story-text">
               <h2>Aluminium i Żywica Epoksydowa</h2>
@@ -121,33 +154,32 @@ export default function PoznajPage() {
           </div>
         </div>
 
-        {/* B2B Partnership Value Props */}
-        <div className="partnership-section" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', marginTop: '6rem', alignItems: 'center' }}>
-          <div className="partnership-img" style={{ flex: 1, minWidth: '300px' }}>
-            <img src="/assets/wspolpraca.webp" alt="Współpraca B2B Scharfer" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.05)' }} />
+        {/* FAQ Section (Replacing Wspolpraca/B2B section) */}
+        <div className="faq-section section-padding bg-light" style={{ marginTop: '6rem', background: '#fafafa', borderRadius: '12px', padding: '3rem 2rem', border: '1px solid var(--c-border)' }}>
+          <div className="text-center" style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <h2 className="section-title" style={{ fontSize: '2rem', color: 'var(--c-heading)', fontWeight: 800 }}>Często zadawane pytania (FAQ)</h2>
+            <p className="section-subtitle" style={{ color: '#666' }}>Wszystko, co musisz wiedzieć o zasilaczach LED Scharfer</p>
           </div>
-          <div className="partnership-text" style={{ flex: 1, minWidth: '300px' }}>
-            <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', marginBottom: '0.5rem', fontWeight: 800 }}>Zostań naszym partnerem biznesowym</h2>
-            <p className="ps-subtitle" style={{ fontSize: '1.1rem', color: '#666', marginBottom: '2rem' }}>Budujemy długofalowe relacje oparte na zaufaniu i zyskach dla obu stron.</p>
-            
-            <div className="value-list" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <div className="value-item">
-                <h4 style={{ fontSize: '1.15rem', color: 'var(--c-heading)', fontWeight: 700, marginBottom: '0.25rem' }}>{t('valPrice')}</h4>
-                <p style={{ color: 'var(--c-text)', fontSize: '0.95rem' }}>{t('valPriceDesc')}</p>
+          <div className="faq-accordion" style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            {faqItems.map((item, idx) => (
+              <div key={idx} className={`faq-item ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '8px', overflow: 'hidden' }}>
+                <button 
+                  className="faq-question" 
+                  onClick={() => toggleFaq(idx)}
+                  style={{ width: '100%', padding: '1.2rem 1.5rem', background: 'none', border: 'none', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.1rem', fontWeight: 600, color: 'var(--c-heading)', cursor: 'pointer' }}
+                >
+                  {item.q}
+                  <span className="faq-icon" style={{ fontSize: '1.3rem', color: 'var(--c-red)' }}>
+                    {activeFaq === idx ? '−' : '+'}
+                  </span>
+                </button>
+                {activeFaq === idx && (
+                  <div className="faq-answer" style={{ padding: '0 1.5rem 1.5rem', color: 'var(--c-text)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                    <p style={{ margin: 0 }}>{item.a}</p>
+                  </div>
+                )}
               </div>
-              <div className="value-item">
-                <h4 style={{ fontSize: '1.15rem', color: 'var(--c-heading)', fontWeight: 700, marginBottom: '0.25rem' }}>{t('valAvailability')}</h4>
-                <p style={{ color: 'var(--c-text)', fontSize: '0.95rem' }}>{t('valAvailabilityDesc')}</p>
-              </div>
-              <div className="value-item">
-                <h4 style={{ fontSize: '1.15rem', color: 'var(--c-heading)', fontWeight: 700, marginBottom: '0.25rem' }}>{t('valSupport')}</h4>
-                <p style={{ color: 'var(--c-text)', fontSize: '0.95rem' }}>{t('valSupportDesc')}</p>
-              </div>
-              <div className="value-item">
-                <h4 style={{ fontSize: '1.15rem', color: 'var(--c-heading)', fontWeight: 700, marginBottom: '0.25rem' }}>{t('valPartner')}</h4>
-                <p style={{ color: 'var(--c-text)', fontSize: '0.95rem' }}>{t('valPartnerDesc')}</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

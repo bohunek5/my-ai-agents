@@ -42,16 +42,16 @@ export default function HomePage() {
     <div className="view-section active" style={{ animation: 'none' }}>
       {/* Hero Section */}
       <div className="hero">
-        <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: 100 + '%', height: 100 + '%', zIndex: -1 }}>
+        <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
           <iframe 
             src="https://www.youtube.com/embed/2Ofm-Rvbz9A?autoplay=1&mute=1&loop=1&playlist=2Ofm-Rvbz9A&controls=0&showinfo=0&autohide=1&start=2" 
             style={{ width: '100vw', height: '56.25vw', minHeight: '100vh', minWidth: '177.77vh', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', border: 'none' }} 
             allow="autoplay; encrypted-media" 
             allowFullScreen
           />
-          <div className="hero-overlay" style={{ background: 'rgba(255, 255, 255, 0.85)', position: 'absolute', top: 0, left: 0, width: 100 + '%', height: 100 + '%' }} />
+          <div className="hero-overlay" style={{ background: 'rgba(255, 255, 255, 0.85)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
         </div>
-        <div className="hero-container">
+        <div className="hero-container" style={{ maxWidth: 'var(--max-width)' }}>
           <div className="hero-content">
             <h1 className="hero-title" style={{ display: 'block' }}>
               <span>7 Lat gwarancji.</span> Stabilne Zasilanie. Prawdziwe <span>100%</span> mocy.
@@ -69,15 +69,15 @@ export default function HomePage() {
             </div>
             <div className="hero-trust">
               <div className="trust-item">
-                <span className="trust-val">7</span>
+                <span className="trust-val" style={{ color: 'var(--c-red)' }}>7</span>
                 <span className="trust-lbl">Lat Gwarancji</span>
               </div>
               <div className="trust-item">
-                <span className="trust-val">IP67</span>
+                <span className="trust-val" style={{ color: 'var(--c-red)' }}>IP67</span>
                 <span className="trust-lbl">Pełna Szczelność</span>
               </div>
               <div className="trust-item">
-                <span className="trust-val">100%</span>
+                <span className="trust-val" style={{ color: 'var(--c-red)' }}>100%</span>
                 <span className="trust-lbl">Praca pod obciążeniem</span>
               </div>
             </div>
@@ -85,19 +85,64 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Technology / Story Section */}
+      {/* Technology Intro Block */}
       <div className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '6rem 2rem', textAlign: 'center', borderBottom: '1px solid var(--c-border)' }}>
-        <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <div className="container" style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
           <h2 style={{ fontSize: '3rem', color: 'var(--c-heading)', marginBottom: '1rem', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
             Technologia bez kompromisów
           </h2>
-          <p style={{ fontSize: '1.25rem', color: 'var(--c-text)', lineHeight: 1.6 }}>
+          <p style={{ fontSize: '1.25rem', color: 'var(--c-text)', lineHeight: 1.6, maxWidth: '800px', margin: '0 auto' }}>
             Odkryj innowacje i zabezpieczenia, które sprawiają, że zasilacze Scharfer są najczęstszym wyborem profesjonalistów w branży oświetleniowej i B2B.
           </p>
         </div>
       </div>
 
-      <div className="container section-padding" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      {/* Exploded diagram immediately under the intro block */}
+      <div className="section-padding bg-light" style={{ padding: '6rem 2rem', background: '#fafafa', borderBottom: '1px solid var(--c-border)', overflow: 'hidden' }}>
+        <div className="container" style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
+          <div style={{ position: 'relative', width: '100%', maxWidth: '1000px', height: '420px', margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {/* Center image */}
+            <div style={{ zIndex: 5, width: '320px', textAlign: 'center', position: 'relative' }}>
+              <img src="/assets/40012.png" alt="Zasilacz Scharfer 12V 400W" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.12))' }} />
+            </div>
+
+            {/* Left Top Card */}
+            <div style={{ position: 'absolute', left: '0', top: '15%', width: '300px', zIndex: 10, textAlign: 'right' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>Aluminiowa Obudowa</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Działa jako radiator skutecznie odprowadzający ciepło. Wytrzymała i odporna na uszkodzenia mechaniczne.</p>
+              {/* Line pointer */}
+              <div style={{ position: 'absolute', right: '-40px', top: '25px', width: '60px', height: '1px', background: 'var(--c-red)', transform: 'rotate(15deg)', transformOrigin: 'left' }} />
+            </div>
+
+            {/* Left Bottom Card */}
+            <div style={{ position: 'absolute', left: '0', bottom: '15%', width: '300px', zIndex: 10, textAlign: 'right' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>100% Realnej Mocy</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Możliwość ciągłej pracy pod pełnym, zadeklarowanym obciążeniem bez spadków napięcia i ryzyka usterki.</p>
+              {/* Line pointer */}
+              <div style={{ position: 'absolute', right: '-40px', bottom: '25px', width: '60px', height: '1px', background: 'var(--c-red)', transform: 'rotate(-15deg)', transformOrigin: 'left' }} />
+            </div>
+
+            {/* Right Top Card */}
+            <div style={{ position: 'absolute', right: '0', top: '15%', width: '300px', zIndex: 10 }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>Klasa Szczelności IP67</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Wnętrze zalane żywicą epoksydową, zapewniające wodoszczelność, pyłoszczelność i cichą pracę cewek.</p>
+              {/* Line pointer */}
+              <div style={{ position: 'absolute', left: '-40px', top: '25px', width: '60px', height: '1px', background: 'var(--c-red)', transform: 'rotate(-15deg)', transformOrigin: 'right' }} />
+            </div>
+
+            {/* Right Bottom Card */}
+            <div style={{ position: 'absolute', right: '0', bottom: '15%', width: '300px', zIndex: 10 }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>Aktywne Zabezpieczenia</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Wbudowane filtry SCP, OVP, OTP, OLP chronią podłączone oświetlenie LED przed skokami napięcia i zwarciem.</p>
+              {/* Line pointer */}
+              <div style={{ position: 'absolute', left: '-40px', bottom: '25px', width: '60px', height: '1px', background: 'var(--c-red)', transform: 'rotate(15deg)', transformOrigin: 'right' }} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 6 story detailed rows */}
+      <div className="container section-padding" style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
         <div className="b2b-story-section">
           {/* Row 1: Gwarancja */}
           <div className="b2b-story-row">
@@ -107,7 +152,7 @@ export default function HomePage() {
               <p>Jasne warunki współpracy B2B: w przypadku usterki gwarantujemy ekspresową wymianę na nowy model bezpośrednio z naszego magazynu w Polsce. Buduj swoją renomę instalatorską na niezawodności.</p>
             </div>
             <div className="b2b-story-img">
-              <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" />
+              <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ borderRadius: '8px' }} />
             </div>
           </div>
 
@@ -119,7 +164,7 @@ export default function HomePage() {
               <p>Idealne rozwiązanie do oświetlenia elewacji, podświetlania basenów, banerów reklamowych i architektury ogrodowej. Wyeliminuj ryzyko zwarć w instalacjach outdoorowych.</p>
             </div>
             <div className="b2b-story-img">
-              <img src="/assets/sch2.webp" alt="Wodoodporność IP67" />
+              <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ borderRadius: '8px' }} />
             </div>
           </div>
 
@@ -131,7 +176,7 @@ export default function HomePage() {
               <p>Jeśli kupujesz model 150W, otrzymujesz pełne 150W czystej, stabilnej mocy. Oznacza to mniejsze koszty instalacji (możesz użyć mniejszego zasilacza) oraz brak problemów z przegrzewaniem.</p>
             </div>
             <div className="b2b-story-img">
-              <img src="/assets/sch4.webp" alt="100% obciążenia" />
+              <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ borderRadius: '8px' }} />
             </div>
           </div>
           
@@ -160,7 +205,7 @@ export default function HomePage() {
               </ul>
             </div>
             <div className="b2b-story-img">
-              <img src="/assets/40012.png" alt="Zasilacz 12V 400W Scharfer" />
+              <img src="/assets/40012.png" alt="Zasilacz 12V 400W Scharfer" style={{ borderRadius: '8px' }} />
             </div>
           </div>
 
@@ -172,67 +217,14 @@ export default function HomePage() {
               <p>Wnętrze urządzenia jest w 100% zalane specjalistyczną żywicą przewodzącą ciepło. Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy nawet przy maksymalnym obciążeniu. Każda jednostka przechodzi również rygorystyczne testy <strong>Burn-in</strong> przed opuszczeniem fabryki.</p>
             </div>
             <div className="b2b-story-img">
-              <img src="/assets/sch3.webp" alt="Aluminiowa obudowa..." />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Budowa zasilacza - explodowany diagram */}
-      <div className="section-padding bg-light" style={{ padding: '6rem 2rem', background: '#fafafa', borderTop: '1px solid var(--c-border)', borderBottom: '1px solid var(--c-border)', overflow: 'hidden' }}>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div className="text-center" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <h2 style={{ fontSize: '2.5rem', color: 'var(--c-heading)', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
-              Budowa zasilacza Scharfer
-            </h2>
-            <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '700px', margin: '0.5rem auto 0' }}>
-              Poznaj unikalne cechy konstrukcyjne, które gwarantują niezawodność i pełną moc w każdych warunkach.
-            </p>
-          </div>
-
-          <div style={{ position: 'relative', width: '100%', maxWidth: '1000px', height: '420px', margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            {/* Center image */}
-            <div style={{ zIndex: 5, width: '320px', textAlign: 'center', position: 'relative' }}>
-              <img src="/assets/40012.png" alt="Zasilacz Scharfer 12V 400W" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.12))' }} />
-            </div>
-
-            {/* Left Top Card */}
-            <div style={{ position: 'absolute', left: '0', top: '15%', width: '300px', zIndex: 10, textAlign: 'right' }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>Aluminiowa Obudowa</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Działa jako radiator skutecznie odprowadzający ciepło. Wytrzymała i odporna na uszkodzenia mechaniczne.</p>
-              {/* Line pointer */}
-              <div style={{ position: 'absolute', right: '-40px', top: '25px', width: '60px', height: '1px', background: 'var(--c-primary)', transform: 'rotate(15deg)', transformOrigin: 'left' }} />
-            </div>
-
-            {/* Left Bottom Card */}
-            <div style={{ position: 'absolute', left: '0', bottom: '15%', width: '300px', zIndex: 10, textAlign: 'right' }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>100% Realnej Mocy</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Możliwość ciągłej pracy pod pełnym, zadeklarowanym obciążeniem bez spadków napięcia i ryzyka usterki.</p>
-              {/* Line pointer */}
-              <div style={{ position: 'absolute', right: '-40px', bottom: '25px', width: '60px', height: '1px', background: 'var(--c-primary)', transform: 'rotate(-15deg)', transformOrigin: 'left' }} />
-            </div>
-
-            {/* Right Top Card */}
-            <div style={{ position: 'absolute', right: '0', top: '15%', width: '300px', zIndex: 10 }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>Klasa Szczelności IP67</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Wnętrze zalane żywicą epoksydową, zapewniające wodoszczelność, pyłoszczelność i cichą pracę cewek.</p>
-              {/* Line pointer */}
-              <div style={{ position: 'absolute', left: '-40px', top: '25px', width: '60px', height: '1px', background: 'var(--c-primary)', transform: 'rotate(-15deg)', transformOrigin: 'right' }} />
-            </div>
-
-            {/* Right Bottom Card */}
-            <div style={{ position: 'absolute', right: '0', bottom: '15%', width: '300px', zIndex: 10 }}>
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>Aktywne Zabezpieczenia</h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Wbudowane filtry SCP, OVP, OTP, OLP chronią podłączone oświetlenie LED przed skokami napięcia i zwarciem.</p>
-              {/* Line pointer */}
-              <div style={{ position: 'absolute', left: '-40px', bottom: '25px', width: '60px', height: '1px', background: 'var(--c-primary)', transform: 'rotate(15deg)', transformOrigin: 'right' }} />
+              <img src="/assets/sch3.webp" alt="Aluminiowa obudowa" style={{ borderRadius: '8px' }} />
             </div>
           </div>
         </div>
       </div>
 
       {/* Applications Section (Visual Sales Tool) */}
-      <div className="applications-section" style={{ maxWidth: '1200px', margin: '5rem auto 0 auto', padding: '0 1.5rem' }}>
+      <div className="applications-section" style={{ maxWidth: 'var(--max-width)', margin: '5rem auto 0 auto', padding: '0 1.5rem' }}>
         <div className="section-header text-center" style={{ marginBottom: '3rem', textAlign: 'center' }}>
           <h2 style={{ fontSize: '2.5rem', color: 'var(--c-heading)' }}>Gdzie sprawdzają się Zasilacze Scharfer?</h2>
           <p style={{ fontSize: '1.1rem', color: 'var(--c-text)', maxWidth: '700px', margin: '0 auto' }}>
@@ -278,7 +270,7 @@ export default function HomePage() {
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
             <img src="/assets/app_ogrod_v2_1783188615253.png" alt="Zasilacz LED hermetyczny IP67" style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
-              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Ogrody i Parki</h3>
+              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Ogrody & Parki</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.95rem' }}>Zasilacz LED hermetyczny IP67. Gwarantowane bezpieczne zasilanie taśm ledowych w gruncie, w pobliżu wody i zraszaczy.</p>
             </div>
           </div>
@@ -286,7 +278,7 @@ export default function HomePage() {
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
             <img src="/assets/app_hotel_1783188309904.png" alt="Zasilacze do taśm LED ze ściemniaczem" style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
-              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Hotele i HoReCa</h3>
+              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Hotele & Gastro</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.95rem' }}>Zasilacze do taśm LED współpracujące ze ściemniaczem. Zasilanie oświetlenia stref relaksu w hotelach bez irytującego piszczenia.</p>
             </div>
           </div>
@@ -294,7 +286,7 @@ export default function HomePage() {
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
             <img src="/assets/app_kina_v2_1783188608035.png" alt="Zasilacze LED 12V do pasków" style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
-              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Kina i Teatry</h3>
+              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Kina & Kultura</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.95rem' }}>Zasilacze LED 12V do pasków led. Niezawodne i bezpieczne zasilanie przygaszonego oświetlenia ciągów komunikacyjnych.</p>
             </div>
           </div>
@@ -302,7 +294,7 @@ export default function HomePage() {
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
             <img src="/assets/app_szkoly_1783188326372.png" alt="Zasilacze do opraw LED" style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
-              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Szkoły i Edukacja</h3>
+              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Szkoły & Edukacja</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.95rem' }}>Wydajne zasilacze do opraw LED. Bezpieczne zasilanie oświetlenia klas szkolnych wyposażone w zabezpieczenia przeciwzwarciowe.</p>
             </div>
           </div>
@@ -318,7 +310,7 @@ export default function HomePage() {
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
             <img src="/assets/app_garaze_1783188344306.png" alt="Mocne zasilacze do taśm LED 24V" style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
-              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Garaże i Warsztaty</h3>
+              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Garaże & Warsztaty</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.95rem' }}>Mocne zasilacze do taśm LED 24V. Idealne zasilanie mocnych systemów oświetlenia liniowego do pracy detalicznej.</p>
             </div>
           </div>
@@ -327,23 +319,23 @@ export default function HomePage() {
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
             <img src="/wiata_jezioro.png" alt="Oświetlenie wiat i drewnianej stolarki" style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
-              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Wiaty i Stolarka Drewniana</h3>
-              <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.95rem' }}>Zasilacze hermetyczne Scharfer idealnie sprawdzają się w konstrukcjach drewnianych (wiaty, altany, pergole) ze względu na wysoką odporność na wilgoć, zabezpieczenia termiczne i pełną szczelność.</p>
+              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Wiaty & Stolarka</h3>
+              <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.95rem' }}>Zasilacze hermetyczne Scharfer idealnie sprawdzają się w konstrukcjach drewnianych ze względu na ochronę termiczną.</p>
             </div>
           </div>
           {/* App 12: Mosty */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
             <img src="/assets/app_mosty_1783188351515.png" alt="Zasilacz LED wodoszczelny" style={{ width: '100%', height: '250px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
-              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Infrastruktura i Mosty</h3>
+              <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.25rem' }}>Infrastruktura & Mosty</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.95rem' }}>Zasilacz LED wodoszczelny i odporny na wibracje. Przemysłowe zasilanie oświetlenia konstrukcji stalowych i mostów.</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* B2B Partnership Section (Value Proposition) */}
-      <div className="container section-padding" style={{ maxWidth: '1200px', margin: '4rem auto 0 auto', padding: '0 1.5rem' }}>
+      {/* B2B Partnership Section */}
+      <div className="container section-padding" style={{ maxWidth: 'var(--max-width)', margin: '4rem auto 0 auto', padding: '0 1.5rem' }}>
         <div className="partnership-section" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <div className="partnership-img" style={{ flex: 1, minWidth: '300px' }}>
             <img src="/assets/wspolpraca.webp" alt="Współpraca B2B Scharfer" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.05)' }} />
@@ -390,7 +382,7 @@ export default function HomePage() {
                   style={{ width: '100%', padding: '1.2rem 1.5rem', background: 'none', border: 'none', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.1rem', fontWeight: 600, color: 'var(--c-heading)', cursor: 'pointer' }}
                 >
                   {item.q}
-                  <span className="faq-icon" style={{ fontSize: '1.3rem', color: 'var(--c-primary)' }}>
+                  <span className="faq-icon" style={{ fontSize: '1.3rem', color: 'var(--c-red)' }}>
                     {activeFaq === idx ? '−' : '+'}
                   </span>
                 </button>

@@ -37,7 +37,8 @@ export default function OfertaPage() {
         </div>
       </div>
 
-      <div className="container section-padding" style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 1.5rem' }}>
+      {/* Expanded container to match header (1500px / var(--max-width)) */}
+      <div className="container section-padding" style={{ maxWidth: 'var(--max-width)', margin: '0 auto', padding: '4rem var(--spacing-lg)' }}>
         {/* Filters */}
         <div className="catalog-filters" style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
           <input 
@@ -56,11 +57,11 @@ export default function OfertaPage() {
         </div>
 
         {/* Catalog */}
-        <div className="catalog-wrapper">
+        <div className="catalog-wrapper" style={{ padding: 0 }}>
           {products12v.length > 0 && (
             <div className="voltage-section" style={{ marginBottom: '4rem' }}>
-              <h2 className="voltage-heading" style={{ fontSize: '1.8rem', color: 'var(--c-heading)', borderBottom: '2px solid var(--c-primary)', paddingBottom: '0.5rem', marginBottom: '2rem', fontWeight: 800 }}>Zasilacze LED Scharfer 12V</h2>
-              <div className="products-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '2rem' }}>
+              <h2 className="voltage-heading" style={{ fontSize: '1.8rem', color: 'var(--c-heading)', borderBottom: '2px solid var(--c-red)', paddingBottom: '0.5rem', marginBottom: '2rem', fontWeight: 800 }}>Zasilacze LED Scharfer 12V</h2>
+              <div className="products-grid">
                 {products12v.map(p => (
                   <ProductCard key={p.index} product={p} onOpenModal={setActiveProduct} downloadLabel={t('downloadPdf')} />
                 ))}
@@ -70,8 +71,8 @@ export default function OfertaPage() {
 
           {products24v.length > 0 && (
             <div className="voltage-section" style={{ marginBottom: '2rem' }}>
-              <h2 className="voltage-heading" style={{ fontSize: '1.8rem', color: 'var(--c-heading)', borderBottom: '2px solid var(--c-primary)', paddingBottom: '0.5rem', marginBottom: '2rem', fontWeight: 800 }}>Zasilacze LED Scharfer 24V</h2>
-              <div className="products-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '2rem' }}>
+              <h2 className="voltage-heading" style={{ fontSize: '1.8rem', color: 'var(--c-heading)', borderBottom: '2px solid var(--c-red)', paddingBottom: '0.5rem', marginBottom: '2rem', fontWeight: 800 }}>Zasilacze LED Scharfer 24V</h2>
+              <div className="products-grid">
                 {products24v.map(p => (
                   <ProductCard key={p.index} product={p} onOpenModal={setActiveProduct} downloadLabel={t('downloadPdf')} />
                 ))}
@@ -102,9 +103,9 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
   return (
     <div className="product-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div className="product-badges">
-        {powerText && <span className="badge" style={{ backgroundColor: 'var(--c-primary)', color: 'white', fontWeight: 700 }}>{powerText}</span>}
+        {powerText && <span className="badge" style={{ backgroundColor: 'var(--c-red)', color: 'white', border: '1px solid var(--c-red)', fontWeight: 700 }}>{powerText}</span>}
         <span className="badge badge-ip67">IP67</span>
-        <span className="badge">Gwarancja 7 Lat</span>
+        <span className="badge" style={{ borderColor: 'var(--c-red)', color: 'var(--c-red)' }}>7 LAT GWARANCJI</span>
       </div>
       <div className="product-image" onClick={() => onOpenModal(product)} style={{ cursor: 'zoom-in', textAlign: 'center', padding: '1rem 0' }} title="Zobacz szczegóły techniczne">
         <img src={product.img} alt={product.name} style={{ maxWidth: '100%', maxHeight: '160px', objectFit: 'contain' }} />
@@ -127,7 +128,7 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
         </div>
       </div>
 
-      <button onClick={() => onOpenModal(product)} className="btn-secondary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.8rem', fontSize: '0.85rem' }}>
+      <button onClick={() => onOpenModal(product)} className="btn-secondary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.8rem', fontSize: '0.85rem', borderColor: 'var(--c-red)', color: 'var(--c-red) !important' }}>
         Szczegóły techniczne
       </button>
     </div>
@@ -139,17 +140,18 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
 
   return (
     <div className="product-modal active" id="product-modal" onClick={(e) => { if ((e.target as HTMLElement).id === 'product-modal') onClose(); }} style={{ display: 'flex', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, alignItems: 'center', justifyContent: 'center' }}>
-      <div className="modal-content" style={{ maxWidth: '900px', maxHeight: '92vh', overflowY: 'auto', background: 'white', borderRadius: '16px', padding: '3rem', position: 'relative', display: 'flex', gap: '3rem', flexWrap: 'wrap', width: '92%', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', border: '1px solid #eee' }}>
+      <div className="modal-content" style={{ maxWidth: '1000px', maxHeight: '92vh', overflowY: 'auto', background: 'white', borderRadius: '16px', padding: '3.5rem', position: 'relative', display: 'flex', gap: '3.5rem', flexWrap: 'wrap', width: '95%', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', border: '1px solid #eee' }}>
         <span className="modal-close" onClick={onClose} style={{ position: 'absolute', top: '20px', right: '25px', fontSize: '2.5rem', cursor: 'pointer', color: '#aaa', transition: 'color 0.2s', fontWeight: 300, lineHeight: 1 }} onMouseEnter={(e) => e.currentTarget.style.color = '#111'} onMouseLeave={(e) => e.currentTarget.style.color = '#aaa'}>&times;</span>
         
-        <div className="modal-image-col" style={{ flex: 1, minWidth: '280px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fafafa', borderRadius: '12px', padding: '2rem', overflow: 'hidden' }}>
+        {/* Expanded image container (minWidth: 360px) */}
+        <div className="modal-image-col" style={{ flex: 1.2, minWidth: '360px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fafafa', borderRadius: '12px', padding: '1.5rem', overflow: 'hidden' }}>
           <img 
             src={product.img} 
             alt={product.name} 
             onClick={() => setIsZoomed(!isZoomed)}
             style={{ 
               maxWidth: '100%', 
-              maxHeight: '280px', 
+              maxHeight: '320px', 
               objectFit: 'contain', 
               cursor: isZoomed ? 'zoom-out' : 'zoom-in', 
               transform: isZoomed ? 'scale(1.8)' : 'scale(1)', 
@@ -158,12 +160,11 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
               zIndex: 10
             }} 
           />
-          <div style={{ marginTop: '1.5rem', background: '#e1f5fe', color: '#0288d1', fontSize: '0.78rem', fontWeight: 700, padding: '4px 10px', borderRadius: '20px', textTransform: 'uppercase', opacity: isZoomed ? 0 : 1, transition: 'opacity 0.2s' }}>Klasa Szczelności IP67</div>
         </div>
         
         <div className="modal-info-col" style={{ flex: 1.3, minWidth: '320px', display: 'flex', flexDirection: 'column' }}>
           <div className="modal-index" style={{ marginBottom: '1rem', fontSize: '0.95rem', color: '#888', fontWeight: 600 }}>
-            EAN: {product.ean} <span style={{ marginLeft: '1.5rem', color: 'var(--c-primary)' }}>INDEX: {product.index}</span>
+            EAN: {product.ean} <span style={{ marginLeft: '1.5rem', color: 'var(--c-red)' }}>INDEX: {product.index}</span>
           </div>
           <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)', lineHeight: 1.15, fontFamily: 'Outfit, sans-serif' }}>{product.name}</h2>
           
@@ -173,13 +174,15 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Prąd wyjściowy</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Moc znamionowa</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.name.match(/\d+W/) ? product.name.match(/\d+W/)?.[0] : ''}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Wymiary (dł. x szer. x wys.)</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Klasa szczelności</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-red)' }}>IP67 (pełna wodoodporność)</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Aktywne zabezpieczenia</td><td style={{ padding: '0.9rem 0', fontWeight: 600, color: '#10b981', fontSize: '0.9rem' }}>Nadnapięciowe (OVP), Przeciwzwarciowe (SCP), Termiczne (OTP), Przeciążeniowe (OLP)</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja producenta</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-primary)' }}>7 Lat (Pełna, realizowana w Polsce)</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja producenta</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-red)' }}>7 Lat (Pełna, realizowana w Polsce)</td></tr>
             </tbody>
           </table>
 
           <div className="modal-actions" style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-            <a href={product.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', textDecoration: 'none', padding: '1.2rem', borderRadius: '8px', background: 'var(--c-primary)', color: 'white', fontWeight: 700, fontSize: '1.05rem', boxShadow: '0 4px 12px rgba(230,0,0,0.2)' }}>
+            {/* Bright red button background for full visibility */}
+            <a href={product.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', textDecoration: 'none', padding: '1.2rem', borderRadius: '8px', background: 'var(--c-red)', color: 'white', fontWeight: 700, fontSize: '1.05rem', boxShadow: '0 4px 12px rgba(230,0,0,0.2)' }}>
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '20px', height: '20px' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>

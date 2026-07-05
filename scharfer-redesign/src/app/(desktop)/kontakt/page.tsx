@@ -53,7 +53,8 @@ export default function KontaktPage() {
         </div>
       </div>
 
-      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 1.5rem' }}>
+      {/* Expanded container to match header (1500px / var(--max-width)) */}
+      <div className="container" style={{ maxWidth: 'var(--max-width)', margin: '0 auto', padding: '4rem var(--spacing-lg)' }}>
         <div className="contact-grid" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap' }}>
           
           <div className="contact-details" style={{ flex: 1, minWidth: '300px' }}>
@@ -96,7 +97,7 @@ export default function KontaktPage() {
                   <input type="checkbox" id="gdpr" required style={{ marginTop: '0.2rem' }} />
                   <label htmlFor="gdpr" style={{ fontSize: '0.8rem', color: '#666', lineHeight: 1.4 }}>{t('formGdpr')}</label>
                 </div>
-                <button type="submit" className="btn-primary" style={{ padding: '1rem', border: 'none', background: 'var(--c-primary)', color: 'white', borderRadius: '6px', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}>
+                <button type="submit" className="btn-primary" style={{ padding: '1rem', border: 'none', background: 'var(--c-red)', color: 'white', borderRadius: '6px', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}>
                   {t('formSend')}
                 </button>
               </form>
@@ -120,7 +121,7 @@ export default function KontaktPage() {
                   style={{ width: '100%', padding: '1.2rem 1.5rem', background: 'none', border: 'none', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '1.1rem', fontWeight: 600, color: 'var(--c-heading)', cursor: 'pointer' }}
                 >
                   {item.q}
-                  <span className="faq-icon" style={{ fontSize: '1.3rem', color: 'var(--c-primary)' }}>
+                  <span className="faq-icon" style={{ fontSize: '1.3rem', color: 'var(--c-red)' }}>
                     {activeFaq === idx ? '−' : '+'}
                   </span>
                 </button>
