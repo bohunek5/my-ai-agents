@@ -181,9 +181,9 @@ export default function MobileAppPage() {
         {/* VIEW: HOME */}
         {activeTab === 'home' && (
           <section className="view-section active">
-            {/* Hero Section (exact match with PC) */}
-            <div className="hero" style={{ minHeight: 'calc(100vh - 75px - 70px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
-              <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1, background: '#fff' }}>
+            {/* Hero with Video Background (1:1 with desktop) */}
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '1.25rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: '#fff', color: '#111' }}>
+              <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
                 <iframe 
                   src="https://www.youtube.com/embed/2Ofm-Rvbz9A?autoplay=1&mute=1&loop=1&playlist=2Ofm-Rvbz9A&controls=0&showinfo=0&autohide=1&start=2" 
                   style={{ width: '100vw', height: '56.25vw', minHeight: '100vh', minWidth: '177.77vh', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', border: 'none' }} 
@@ -192,35 +192,36 @@ export default function MobileAppPage() {
                 />
                 <div className="hero-overlay" style={{ background: 'rgba(255, 255, 255, 0.85)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
               </div>
-              <div className="hero-container" style={{ maxWidth: '100%', position: 'relative', zIndex: 2, textAlign: 'center' }}>
-                <div className="hero-content">
-                  <h1 className="hero-title" style={{ fontSize: '2.2rem', display: 'block', lineHeight: 1.1, marginBottom: '15px' }}>
-                    <span>7 Lat gwarancji.</span><br />Stabilne Zasilanie.<br />Prawdziwe <span>100%</span> mocy.
-                  </h1>
-                  <p className="hero-subtitle" style={{ fontSize: '1rem', padding: '0 10px', marginBottom: '25px', lineHeight: 1.4 }}>
-                    Koniec z piszczeniem, awariami i spadkami napięć. Wodoodporne zasilacze LED IP67 (12V i 24V) stworzone do pracy pod pełnym obciążeniem. 7 lat gwarancji. Instalujesz i zapominasz.
-                  </p>
-                  <div className="hero-actions" style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center', marginBottom: '30px' }}>
-                    <button onClick={() => handleTabChange('oferta')} className="btn-primary large" style={{ width: '100%', textDecoration: 'none', display: 'block', boxSizing: 'border-box' }}>
-                      Zobacz Katalog Zasilaczy
-                    </button>
-                    <button onClick={() => handleTabChange('kontakt')} className="btn-secondary large" style={{ width: '100%', textDecoration: 'none', display: 'block', boxSizing: 'border-box' }}>
-                      Współpraca B2B
-                    </button>
+              
+              <div className="hero-content" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '100%', marginTop: '50px' }}>
+                <h1 className="hero-title" style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '12px', lineHeight: 1.2 }}>
+                  <span style={{ color: 'var(--c-red)' }}>7 Lat gwarancji.</span><br />Stabilne Zasilanie.<br />Prawdziwe <span style={{ color: 'var(--c-red)' }}>100%</span> mocy.
+                </h1>
+                <p className="hero-subtitle" style={{ fontSize: '1rem', color: 'var(--c-text)', marginBottom: '20px', lineHeight: 1.45, padding: '0 10px' }}>
+                  Koniec z piszczeniem, awariami i spadkami napięć. Wodoodporne zasilacze LED IP67 (12V i 24V) stworzone do pracy pod pełnym obciążeniem. 7 lat gwarancji. Instalujesz i zapominasz.
+                </p>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '30px' }}>
+                  <button onClick={() => handleTabChange('oferta')} className="btn-primary" style={{ border: 'none', padding: '14px', borderRadius: '6px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer', background: 'var(--c-red)', color: 'white' }}>
+                    Zobacz Katalog Zasilaczy
+                  </button>
+                  <button onClick={() => handleTabChange('kontakt')} className="btn-secondary" style={{ padding: '14px', borderRadius: '6px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer', background: 'transparent', border: '2px solid var(--c-heading)', color: 'var(--c-heading)' }}>
+                    Współpraca B2B
+                  </button>
+                </div>
+
+                <div className="hero-trust" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '15px' }}>
+                  <div className="trust-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '30%' }}>
+                    <span className="trust-val" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--c-red)' }}>7</span>
+                    <span className="trust-lbl" style={{ fontSize: '0.7rem', color: 'var(--c-text)', fontWeight: 700, textTransform: 'uppercase' }}>Lat Gwarancji</span>
                   </div>
-                  <div className="hero-trust" style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-                    <div className="trust-item" style={{ minWidth: '28%' }}>
-                      <span className="trust-val" style={{ color: 'var(--c-red)' }}>7</span>
-                      <span className="trust-lbl">Lat Gwarancji</span>
-                    </div>
-                    <div className="trust-item" style={{ minWidth: '28%' }}>
-                      <span className="trust-val" style={{ color: 'var(--c-red)' }}>IP67</span>
-                      <span className="trust-lbl">Pełna Szczelność</span>
-                    </div>
-                    <div className="trust-item" style={{ minWidth: '28%' }}>
-                      <span className="trust-val" style={{ color: 'var(--c-red)' }}>100%</span>
-                      <span className="trust-lbl">Praca pod obciążeniem</span>
-                    </div>
+                  <div className="trust-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '30%' }}>
+                    <span className="trust-val" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--c-red)' }}>IP67</span>
+                    <span className="trust-lbl" style={{ fontSize: '0.7rem', color: 'var(--c-text)', fontWeight: 700, textTransform: 'uppercase' }}>Pełna Szczelność</span>
+                  </div>
+                  <div className="trust-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '30%' }}>
+                    <span className="trust-val" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--c-red)' }}>100%</span>
+                    <span className="trust-lbl" style={{ fontSize: '0.7rem', color: 'var(--c-text)', fontWeight: 700, textTransform: 'uppercase' }}>Praca pod obciążeniem</span>
                   </div>
                 </div>
               </div>
@@ -242,7 +243,7 @@ export default function MobileAppPage() {
             <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', borderBottom: '1px solid #eee', overflow: 'hidden' }}>
               <div className="container" style={{ padding: '0 10px' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>Budowa zasilacza - interaktywny diagram</h3>
-                <InteractiveDiagram forceMobile={true} />
+                <InteractiveDiagram />
               </div>
             </div>
 
@@ -251,7 +252,7 @@ export default function MobileAppPage() {
               <div className="b2b-story-section-m" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
                 {/* Row 1: Gwarancja */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>7 Lat Pełnej Gwarancji</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Zaufanie to podstawa w branży B2B. Zasilacze Scharfer są projektowane tak, aby przetrwać najcięższe warunki pracy. Dlatego każdy nasz produkt objęty jest bezwarunkową, 7-letnią gwarancją producenta.</p>
@@ -261,7 +262,7 @@ export default function MobileAppPage() {
 
                 {/* Row 2: IP67 */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Ochrona IP67 do Zadań Specjalnych</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Deszcz, śnieg, wilgoć czy pył – to dla nas żaden problem. Obudowa zasilaczy Scharfer posiada certyfikat szczelności IP67. Są całkowicie wodoodporne i pyłoszczelne.</p>
@@ -271,7 +272,7 @@ export default function MobileAppPage() {
 
                 {/* Row 3: 100% Obciążenia */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zaprojektowane do Pracy pod 100% Obciążeniem</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Koniec z przewymiarowaniem zasilaczy! W przeciwieństwie do tańszych zamienników, technologia Scharfer pozwala na stałą pracę pod 100% zadeklarowanym obciążeniem.</p>
@@ -281,8 +282,8 @@ export default function MobileAppPage() {
 
                 {/* Row 4: Zgodność i Bezpieczeństwo */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '30px' }}>
-                    <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', height: 'auto', display: 'block' }} />
+                  <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '1/1', width: '100%', padding: '30px' }}>
+                    <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                   </div>
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zgodność z Normami PN-EN, CE i RoHS</h3>
@@ -293,7 +294,7 @@ export default function MobileAppPage() {
 
                 {/* Row 5: Zabezpieczenia */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', padding: '15px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zabezpieczenia OVP, SCP, OTP, OLP</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Każdy profesjonalny zasilacz instalacyjny Scharfer wyposażony jest w aktywny, wielopoziomowy system ochrony elektroniki:</p>
@@ -308,7 +309,7 @@ export default function MobileAppPage() {
 
                 {/* Row 6: Termika */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Aluminium i Żywica Epoksydowa</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Obudowa z aluminium pełni rolę radiatora, a wnętrze jest w 100% zalane żywicą.</p>
@@ -339,7 +340,7 @@ export default function MobileAppPage() {
                   { title: 'Infrastruktura & Mosty', desc: 'Iluminacja mostów, wiaduktów i obiektów inżynieryjnych wymaga sprzętu odpornego na nieustanne drgania konstrukcyjne, silny wiatr i zmienne warunki pogodowe. Hermetyczna obudowa Scharfer, w całości wypełniona elastyczną żywicą epoksydową, absorbuje wibracje i uniemożliwia pękanie połączeń lutowanych. Daje to pewność bezawaryjnej pracy oświetlenia w najbardziej ekstremalnych lokalizacjach infrastruktury.', img: 'assets/app_mosty_1783188351515.png' }
                 ].map((ap, idx) => (
                   <div key={idx} className="app-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', border: '1px solid #eee' }}>
-                    <img src={ap.img} alt={ap.title} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                    <img src={ap.img} alt={ap.title} style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
                     <div className="app-card-info" style={{ padding: '15px' }}>
                       <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0 0 6px 0', color: 'var(--c-heading)' }}>{ap.title}</h3>
                       <p style={{ fontSize: '0.82rem', color: 'var(--c-text)', margin: 0, lineHeight: 1.45 }}>{ap.desc}</p>
@@ -490,18 +491,10 @@ export default function MobileAppPage() {
                         </div>
                       </div>
 
-                      {/* Details & PDF Buttons */}
-                      <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
-                        <a href={p.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.8rem', fontSize: '0.8rem', fontWeight: 700, borderRadius: '6px', background: 'var(--c-red)', color: 'white', textDecoration: 'none' }}>
-                          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '14px', height: '14px' }}>
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                          </svg>
-                          Karta PDF
-                        </a>
-                        <button onClick={() => setActiveProduct(p)} className="btn-secondary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.8rem', fontSize: '0.8rem', fontWeight: 700, border: '1px solid #ddd', borderRadius: '6px', background: 'white', color: '#333', cursor: 'pointer' }}>
-                          Szczegóły
-                        </button>
-                      </div>
+                      {/* Details Button */}
+                      <button onClick={() => setActiveProduct(p)} className="btn-secondary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.8rem', fontSize: '0.85rem', fontWeight: 700, border: '1px solid #ddd', borderRadius: '6px', background: 'white', color: '#333', cursor: 'pointer' }}>
+                        Szczegóły techniczne
+                      </button>
                     </div>
                   );
                 })}
@@ -544,7 +537,7 @@ export default function MobileAppPage() {
             <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', borderBottom: '1px solid #eee', overflow: 'hidden' }}>
               <div className="container" style={{ padding: '0 10px' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>Budowa zasilacza - innowacje Scharfer</h3>
-                <InteractiveDiagram forceMobile={true} />
+                <InteractiveDiagram />
               </div>
             </div>
 
@@ -921,8 +914,8 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
       {/* Copyright Line */}
       <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '0.25rem' }}>
-          <button onClick={onOpenRegulamin} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>Regulamin</button>
-          <button onClick={onOpenRodo} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>RODO</button>
+          <a href="/regulamin" style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}>Regulamin</a>
+          <a href="/rodo" style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}>RODO</a>
         </div>
         <span className="footer-copy-m" style={{ fontSize: '0.75rem', color: '#9ca3af' }}>&copy; {new Date().getFullYear()} Scharfer. Wszelkie prawa zastrzeżone.</span>
         <span style={{ fontSize: '0.72rem', color: '#9ca3af' }}>

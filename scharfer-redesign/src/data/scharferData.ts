@@ -13,33 +13,33 @@ export interface Product {
 
 export const productsData: Product[] = [
   // 12V
-  { index: '32000', name: 'SCH-18-12 18W', specs: { voltage: '12V', current: '1.5A', dim: '133×34×22 mm' }, ean: '5905475360008', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-18.pdf', img: 'assets/products/1218.png' },
-  { index: '32000A', name: 'SCH-20-12 20W', specs: { voltage: '12V', current: '1.66A', dim: '133×34×22 mm' }, ean: '5905475360039', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-20.pdf', img: 'assets/products/1220.png' },
-  { index: '32001', name: 'SCH-30-12 30W', specs: { voltage: '12V', current: '2.5A', dim: '133×34×22 mm' }, ean: '5905475360046', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-30.pdf', img: 'assets/products/1230.png' },
-  { index: '32001A', name: 'SCH-45-12 45W', specs: { voltage: '12V', current: '3.75A', dim: '163×43×32 mm' }, ean: '5905475360077', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-45.pdf', img: 'assets/products/1245.png' },
-  { index: '32002', name: 'SCH-60-12 60W', specs: { voltage: '12V', current: '5A', dim: '163×43×32 mm' }, ean: '5905475360084', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-60.pdf', img: 'assets/products/1260.png' },
-  { index: '32003', name: 'SCH-100-12 100W', specs: { voltage: '12V', current: '8.3A', dim: '190×52×37 mm' }, ean: '5905475360114', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-100.pdf', img: 'assets/products/12100.png' },
-  { index: '32004', name: 'SCH-150-12 150W', specs: { voltage: '12V', current: '12.5A', dim: '202×58×32 mm' }, ean: '5905475360121', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-150.pdf', img: 'assets/products/12150.png' },
-  { index: '32005', name: 'SCH-200-12 200W', specs: { voltage: '12V', current: '16.7A', dim: '243×65×40 mm' }, ean: '5905475360145', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-200.pdf', img: 'assets/products/12200.png' },
-  { index: '32006', name: 'SCH-300-12 300W', specs: { voltage: '12V', current: '25A', dim: '260×82×45 mm' }, ean: '5905475360176', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-300.pdf', img: 'assets/products/12300.png' },
-  { index: '32007', name: 'SCH-400-12 400W', specs: { voltage: '12V', current: '33.3A', dim: '260×82×45 mm' }, ean: '5905475364433', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/09/SCH-400.pdf', img: 'assets/products/12400.png' },
+  { index: '32000', name: 'SCH-18-12 18W', specs: { voltage: '12V', current: '1.5A', dim: '133×34×22 mm' }, ean: '5905475360008', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-18.pdf', img: '/assets/products/1218.png' },
+  { index: '32000A', name: 'SCH-20-12 20W', specs: { voltage: '12V', current: '1.66A', dim: '133×34×22 mm' }, ean: '5905475360039', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-20.pdf', img: '/assets/products/1220.png' },
+  { index: '32001', name: 'SCH-30-12 30W', specs: { voltage: '12V', current: '2.5A', dim: '133×34×22 mm' }, ean: '5905475360046', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-30.pdf', img: '/assets/products/1230.png' },
+  { index: '32001A', name: 'SCH-45-12 45W', specs: { voltage: '12V', current: '3.75A', dim: '163×43×32 mm' }, ean: '5905475360077', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-45.pdf', img: '/assets/products/1245.png' },
+  { index: '32002', name: 'SCH-60-12 60W', specs: { voltage: '12V', current: '5A', dim: '163×43×32 mm' }, ean: '5905475360084', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-60.pdf', img: '/assets/products/1260.png' },
+  { index: '32003', name: 'SCH-100-12 100W', specs: { voltage: '12V', current: '8.3A', dim: '190×52×37 mm' }, ean: '5905475360114', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-100.pdf', img: '/assets/products/12100.png' },
+  { index: '32004', name: 'SCH-150-12 150W', specs: { voltage: '12V', current: '12.5A', dim: '202×58×32 mm' }, ean: '5905475360121', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-150.pdf', img: '/assets/products/12150.png' },
+  { index: '32005', name: 'SCH-200-12 200W', specs: { voltage: '12V', current: '16.7A', dim: '243×65×40 mm' }, ean: '5905475360145', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-200.pdf', img: '/assets/products/12200.png' },
+  { index: '32006', name: 'SCH-300-12 300W', specs: { voltage: '12V', current: '25A', dim: '260×82×45 mm' }, ean: '5905475360176', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-300.pdf', img: '/assets/products/12300.png' },
+  { index: '32007', name: 'SCH-400-12 400W', specs: { voltage: '12V', current: '33.3A', dim: '260×82×45 mm' }, ean: '5905475364433', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/09/SCH-400.pdf', img: '/assets/products/12400.png' },
   // 24V
-  { index: '32100', name: 'SCH-18-24 18W', specs: { voltage: '24V', current: '0.75A', dim: '133×34×22 mm' }, ean: '5905475360015', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-18.pdf', img: 'assets/products/2418.png' },
-  { index: '32100A', name: 'SCH-20-24 20W', specs: { voltage: '24V', current: '0.83A', dim: '133×34×22 mm' }, ean: '5905475360022', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-20.pdf', img: 'assets/products/2420.png' },
-  { index: '32101', name: 'SCH-30-24 30W', specs: { voltage: '24V', current: '1.25A', dim: '133×34×22 mm' }, ean: '5905475360053', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-30.pdf', img: 'assets/products/2430.png' },
-  { index: '32101A', name: 'SCH-45-24 45W', specs: { voltage: '24V', current: '1.87A', dim: '163×43×32 mm' }, ean: '5905475360060', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-45.pdf', img: 'assets/products/2445.png' },
-  { index: '32102', name: 'SCH-60-24 60W', specs: { voltage: '24V', current: '2.5A', dim: '163×43×32 mm' }, ean: '5905475360091', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-60.pdf', img: 'assets/products/2460.png' },
-  { index: '32103', name: 'SCH-100-24 100W', specs: { voltage: '24V', current: '4.2A', dim: '190×52×37 mm' }, ean: '5905475360107', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-100.pdf', img: 'assets/products/24100.png' },
-  { index: '32104', name: 'SCH-150-24 150W', specs: { voltage: '24V', current: '6.25A', dim: '202×58×32 mm' }, ean: '5905475360138', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-150.pdf', img: 'assets/products/24150.png' },
-  { index: '32105', name: 'SCH-200-24 200W', specs: { voltage: '24V', current: '8.3A', dim: '243×65×40 mm' }, ean: '5905475360152', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-200.pdf', img: 'assets/products/24200.png' },
-  { index: '32106', name: 'SCH-300-24 300W', specs: { voltage: '24V', current: '12.5A', dim: '260×82×45 mm' }, ean: '5905475360169', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-300.pdf', img: 'assets/products/24300.png' },
-  { index: '32107', name: 'SCH-400-24 400W', specs: { voltage: '24V', current: '16.7A', dim: '260×82×45 mm' }, ean: '5905475364440', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/09/SCH-400.pdf', img: 'assets/products/24400.png' }
+  { index: '32100', name: 'SCH-18-24 18W', specs: { voltage: '24V', current: '0.75A', dim: '133×34×22 mm' }, ean: '5905475360015', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-18.pdf', img: '/assets/products/2418.png' },
+  { index: '32100A', name: 'SCH-20-24 20W', specs: { voltage: '24V', current: '0.83A', dim: '133×34×22 mm' }, ean: '5905475360022', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-20.pdf', img: '/assets/products/2420.png' },
+  { index: '32101', name: 'SCH-30-24 30W', specs: { voltage: '24V', current: '1.25A', dim: '133×34×22 mm' }, ean: '5905475360053', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-30.pdf', img: '/assets/products/2430.png' },
+  { index: '32101A', name: 'SCH-45-24 45W', specs: { voltage: '24V', current: '1.87A', dim: '163×43×32 mm' }, ean: '5905475360060', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-45.pdf', img: '/assets/products/2445.png' },
+  { index: '32102', name: 'SCH-60-24 60W', specs: { voltage: '24V', current: '2.5A', dim: '163×43×32 mm' }, ean: '5905475360091', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-60.pdf', img: '/assets/products/2460.png' },
+  { index: '32103', name: 'SCH-100-24 100W', specs: { voltage: '24V', current: '4.2A', dim: '190×52×37 mm' }, ean: '5905475360107', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-100.pdf', img: '/assets/products/24100.png' },
+  { index: '32104', name: 'SCH-150-24 150W', specs: { voltage: '24V', current: '6.25A', dim: '202×58×32 mm' }, ean: '5905475360138', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-150.pdf', img: '/assets/products/24150.png' },
+  { index: '32105', name: 'SCH-200-24 200W', specs: { voltage: '24V', current: '8.3A', dim: '243×65×40 mm' }, ean: '5905475360152', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-200.pdf', img: '/assets/products/24200.png' },
+  { index: '32106', name: 'SCH-300-24 300W', specs: { voltage: '24V', current: '12.5A', dim: '260×82×45 mm' }, ean: '5905475360169', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-300.pdf', img: '/assets/products/24300.png' },
+  { index: '32107', name: 'SCH-400-24 400W', specs: { voltage: '24V', current: '16.7A', dim: '260×82×45 mm' }, ean: '5905475364440', pdf: 'https://scharfer.com.pl/wp-content/uploads/2024/09/SCH-400.pdf', img: '/assets/products/24400.png' }
 ];
 
 export const translations = {
   pl: {
     navHome: 'Strona Główna',
-    navPoznaj: 'Dlaczego Scharfer?',
+    navPoznaj: 'Scharfer?',
     navPoznajShort: 'Scharfer?',
     navOferta: 'Zasilacze LED',
     navB2C: 'Zakup B2C',
@@ -71,7 +71,7 @@ export const translations = {
   },
   en: {
     navHome: 'Home',
-    navPoznaj: 'Why Scharfer?',
+    navPoznaj: 'Scharfer?',
     navPoznajShort: 'Scharfer?',
     navOferta: 'LED Power Supplies',
     navB2C: 'B2C Shop',

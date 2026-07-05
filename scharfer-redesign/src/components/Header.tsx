@@ -23,12 +23,12 @@ export default function Header() {
       <div className="header-inner">
         <div className="logo-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           <Link href="/" className="logo-link" id="logo-btn">
-            <img src="logo_scharfer.png" alt="Scharfer - Zasilacze LED" className="logo-img" />
+            <img src="/logo_scharfer.png" alt="Scharfer - Zasilacze LED" className="logo-img" />
           </Link>
           <div className="distributor-badge" style={{ fontSize: '12px', fontWeight: 600, color: '#555', textTransform: 'uppercase', borderLeft: '2px solid #eee', paddingLeft: '15px' }}>
             <span style={{ display: 'block', fontSize: '9px', color: '#999', marginBottom: '2px' }}>Oficjalny dystrybutor</span>
             <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer">
-              <img src="PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '18px', marginTop: '2px' }} />
+              <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '18px', marginTop: '2px' }} />
             </a>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default function Header() {
                 <circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
               </svg>
-              Zakup detaliczny
+              Zakup B2C
             </span>
             <span style={{ fontSize: '0.65rem', color: '#888', borderLeft: '1px solid #ddd', paddingLeft: '8px' }}>www.prescot.com.pl</span>
           </a>

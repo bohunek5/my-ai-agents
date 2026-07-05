@@ -10,7 +10,8 @@ export default function MobileRedirect({ children }: { children: React.ReactNode
   useEffect(() => {
     setMounted(true);
     const isMobile = window.innerWidth <= 768 || /Mobi|Android/i.test(navigator.userAgent);
-    if (isMobile && !pathname.startsWith('/mobile')) {
+    const isLegalPage = pathname === '/regulamin' || pathname === '/rodo';
+    if (isMobile && !pathname.startsWith('/mobile') && !isLegalPage) {
       router.replace('/mobile');
     } else if (!isMobile && pathname.startsWith('/mobile')) {
       router.replace('/');

@@ -9,7 +9,7 @@ export default function RegulaminPage() {
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
-          <img src="assets/scharfer_supplies_hero.png" alt="Regulamin Scharfer" />
+          <img src="/assets/scharfer_supplies_hero.png" alt="Regulamin Scharfer" />
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">

@@ -3,6 +3,17 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Scharfer Color Palette */
+  --c-white: #FFFFFF;
+  --c-light-gray: #F8F9FA;
+  --c-border: #E5E7EB;
+  --c-text: #374151;
+  --c-heading: #111827;
+  --c-black: #000000;
+  --c-red: #E60000;
+  --c-red-hover: #CC0000;
+  --c-red-light: rgba(230, 0, 0, 0.05);
 }
 
 @theme inline {
