@@ -101,12 +101,15 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
   const powerText = powerMatch ? powerMatch[0] : '';
 
   return (
-    <div className="product-card" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '1.2rem', position: 'relative' }}>
-      {/* Sleek horizontal badge row at the top */}
+    <div className="product-card" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '1.2rem', position: 'relative', alignItems: 'stretch' }}>
+      {/* Sleek horizontal badge row at the top including SELV, CE, RoHS */}
       <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1rem', zIndex: 5 }}>
         {powerText && <span style={{ backgroundColor: 'var(--c-red)', color: 'white', border: '1px solid var(--c-red)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>{powerText}</span>}
         <span style={{ backgroundColor: '#1e293b', color: 'white', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>IP67</span>
-        <span style={{ backgroundColor: 'white', border: '1px solid var(--c-red)', color: 'var(--c-red)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>7 LAT GWARANCJI</span>
+        <span style={{ backgroundColor: 'white', border: '1px solid var(--c-red)', color: 'var(--c-red)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>7 LAT GW.</span>
+        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>SELV</span>
+        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>CE</span>
+        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>RoHS</span>
       </div>
 
       {/* Spacious centered image container with hover transition */}
@@ -116,7 +119,7 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
 
       <h3 className="product-name" style={{ fontSize: '1.15rem', margin: '0 0 1rem 0', color: 'var(--c-heading)', fontWeight: 800, textAlign: 'center' }}>{product.name}</h3>
 
-      {/* Modern technology spec card ("ladnie w bloczku") */}
+      {/* Modern technology spec card ("ladnie w bloczku") - stretched to full card width */}
       <div style={{ background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem' }}>
           <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Napięcie</span>

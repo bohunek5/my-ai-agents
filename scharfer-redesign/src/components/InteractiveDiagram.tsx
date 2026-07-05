@@ -20,7 +20,7 @@ export default function InteractiveDiagram() {
   // Right column width = 290px (bounds: 1110px to 1400px). x1 anchor at 1100px.
   // Center is at x = 700px.
   // Zasilacz image width = 760px (centered around 700px, top 280px).
-  // Hotspots are precisely mapped along the slanted zasilacz body from top-left (430, 210) to bottom-right (820, 360).
+  // Hotspots are carefully mapped to prevent crossing lines (left cards connect to left spots, right cards connect to right spots).
   const features: Feature[] = [
     // Left side features (0, 1, 2)
     {
@@ -36,16 +36,16 @@ export default function InteractiveDiagram() {
       desc: 'Zaprojektowany do ciągłej pracy przy pełnym obciążeniu. Kupując model 150W, otrzymujesz realne 150W bez ugięć napięcia.',
       x1: 300,
       y1: 260,
-      x2: 580,
-      y2: 270
+      x2: 530,
+      y2: 250
     },
     {
       title: 'Cicha Praca (Brak piszczenia)',
       desc: 'Wnętrze w 100% zalane żywicą epoksydową tłumi drgania cewek i filtrów. Zachowuje bezwzględną ciszę przy ściemnianiu.',
       x1: 300,
       y1: 430,
-      x2: 530,
-      y2: 250
+      x2: 430,
+      y2: 210
     },
     // Right side features (3, 4, 5, 6)
     {
@@ -69,16 +69,16 @@ export default function InteractiveDiagram() {
       desc: 'Kompensacja współczynnika mocy minimalizuje straty energetyczne i skutecznie eliminuje zakłócenia w sieci elektrycznej.',
       x1: 1100,
       y1: 325,
-      x2: 430,
-      y2: 210
+      x2: 630,
+      y2: 290
     },
     {
       title: '7 Lat Pełnej Gwarancji',
       desc: 'Pełna ochrona dystrybutora. W przypadku usterki gwarantujemy natychmiastową wymianę na nowy produkt bezpośrednio z magazynu.',
       x1: 1100,
       y1: 455,
-      x2: 630,
-      y2: 290
+      x2: 730,
+      y2: 330
     }
   ];
 
@@ -94,7 +94,7 @@ export default function InteractiveDiagram() {
             left: 0, 
             width: '100%', 
             height: '100%', 
-            zIndex: 2, 
+            zIndex: 1, // Rendered behind the zasilacz image container (zIndex 3)
             pointerEvents: 'none' 
           }}
         >
