@@ -340,7 +340,7 @@ for sec in catalog_structure:
             sections_html += "</div></div></section>"
         current_category = cat
         sections_html += f"""
-        <section id="{sec_id}" class="py-12 border-b border-gray-100 scroll-mt-24">
+        <section id="{sec_id}" data-category="{cat}" class="category-section py-12 border-b border-gray-100 scroll-mt-24 transition-all duration-300">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="mb-10 border-l-4 border-prescot-orange pl-6">
                     <h2 class="text-3xl font-extrabold text-gray-900 uppercase tracking-tight">{cat}</h2>
@@ -475,8 +475,10 @@ full_html_content = f"""<!DOCTYPE html>
         .product-thumb {{ width: 72px; height: 54px; display: grid; place-items: center; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; overflow: hidden; cursor: pointer; transition: border-color 0.2s; }}
         .product-thumb:hover {{ border-color: #E14E26; }}
         .product-thumb img {{ max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.2s; }}
-        .product-thumb:hover img {{ transform: scale(1.1); }}
         main table th:first-child, main table td:first-child {{ width: 92px; }}
+        .category-section {{
+            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+        }}
 
         /* Lightbox Styles */
         .lightbox-overlay {{
@@ -594,6 +596,31 @@ full_html_content = f"""<!DOCTYPE html>
         </div>
     </section>
 
+    <!-- FILTER BAR -->
+    <section class="sticky top-16 bg-white/95 backdrop-blur-md border-b border-gray-200/60 py-3.5 z-40 no-print">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap gap-2 items-center">
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mr-2">Filtruj:</span>
+            <button onclick="filterCategory('all', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-prescot-orange text-white border-prescot-orange shadow-sm">
+                Wszystko
+            </button>
+            <button onclick="filterCategory('Złączki do taśm LED', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                Złączki LED
+            </button>
+            <button onclick="filterCategory('Zasilanie i Rozgałęźniki DC', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                Kable & Wtyki DC
+            </button>
+            <button onclick="filterCategory('Kable i Szybkozłączki', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                Złączki Klik & Fast
+            </button>
+            <button onclick="filterCategory('Przyciski i Włączniki', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                Włączniki
+            </button>
+            <button onclick="filterCategory('Złączki Hermetyczne IP68', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-bold border transition-all duration-200 bg-gray-50 text-gray-600 border-gray-200/80 hover:bg-gray-100 hover:text-gray-900">
+                Złącza IP68
+            </button>
+        </div>
+    </section>
+
     <!-- MAIN PRODUCTS -->
     <main class="py-8">
         {sections_html}
@@ -631,6 +658,33 @@ full_html_content = f"""<!DOCTYPE html>
     </footer>
 
     <script>
+        function filterCategory(category, button) {{
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {{
+                btn.classList.remove('bg-prescot-orange', 'text-white', 'border-prescot-orange', 'shadow-sm');
+                btn.classList.add('bg-gray-50', 'text-gray-600', 'border-gray-200/80');
+            }});
+            button.classList.add('bg-prescot-orange', 'text-white', 'border-prescot-orange', 'shadow-sm');
+            button.classList.remove('bg-gray-50', 'text-gray-600', 'border-gray-200/80');
+
+            const sections = document.querySelectorAll('.category-section');
+            sections.forEach(sec => {{
+                if (category === 'all' || sec.getAttribute('data-category') === category) {{
+                    sec.style.display = 'block';
+                    setTimeout(() => {{
+                        sec.style.opacity = '1';
+                        sec.style.transform = 'translateY(0)';
+                    }}, 50);
+                }} else {{
+                    sec.style.opacity = '0';
+                    sec.style.transform = 'translateY(10px)';
+                    setTimeout(() => {{
+                        sec.style.display = 'none';
+                    }}, 250);
+                }}
+            }});
+        }}
+
         function openLightbox(imgSrc, sku) {{
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
