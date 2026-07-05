@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Feature {
   title: string;
@@ -10,18 +10,25 @@ interface Feature {
   // Hotspot on the zasilacz image
   x2: number;
   y2: number;
+  // Mobile percentage position
+  mobileLeft: string;
+  mobileTop: string;
 }
 
 export default function InteractiveDiagram() {
   const [activeFeature, setActiveFeature] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Layout bounds: width = 1400px, height = 540px (restored to original height)
-  // Left column width = 290px (bounds: 0px to 290px). x1 anchor at 300px.
-  // Right column width = 290px (bounds: 1110px to 1400px). x1 anchor at 1100px.
-  // Center is at x = 700px.
-  // Zasilacz image width = 760px (centered around 700px, top 280px).
-  // Hotspots are aligned with the user's red open circles on the zasilacz body,
-  // with Spot 1 and Spot 2 shifted slightly higher.
+  useEffect(() => {
+    setMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Layout bounds: width = 1400px, height = 540px
   const features: Feature[] = [
     // Left side features (0, 1, 2)
     {
@@ -30,7 +37,9 @@ export default function InteractiveDiagram() {
       x1: 300,
       y1: 90,
       x2: 510,
-      y2: 195
+      y2: 195,
+      mobileLeft: '14%',
+      mobileTop: '32%'
     },
     {
       title: '100% Mocy Znamionowej',
@@ -38,7 +47,9 @@ export default function InteractiveDiagram() {
       x1: 300,
       y1: 260,
       x2: 460,
-      y2: 250 // Shifted slightly higher
+      y2: 250,
+      mobileLeft: '22%',
+      mobileTop: '46%'
     },
     {
       title: 'Cicha Praca (Brak piszczenia)',
@@ -46,7 +57,9 @@ export default function InteractiveDiagram() {
       x1: 300,
       y1: 430,
       x2: 540,
-      y2: 295 // Shifted slightly higher
+      y2: 295,
+      mobileLeft: '34%',
+      mobileTop: '52%'
     },
     // Right side features (3, 4, 5, 6)
     {
@@ -55,7 +68,9 @@ export default function InteractiveDiagram() {
       x1: 1100,
       y1: 65,
       x2: 650,
-      y2: 265
+      y2: 265,
+      mobileLeft: '48%',
+      mobileTop: '48%'
     },
     {
       title: 'Zabezpieczenia SCP, OVP, OTP',
@@ -63,7 +78,9 @@ export default function InteractiveDiagram() {
       x1: 1100,
       y1: 195,
       x2: 730,
-      y2: 305
+      y2: 305,
+      mobileLeft: '62%',
+      mobileTop: '54%'
     },
     {
       title: 'Aktywny Układ PFC (PF > 0.98)',
@@ -71,7 +88,9 @@ export default function InteractiveDiagram() {
       x1: 1100,
       y1: 325,
       x2: 790,
-      y2: 335
+      y2: 335,
+      mobileLeft: '78%',
+      mobileTop: '62%'
     },
     {
       title: '7 Lat Pełnej Gwarancji',
@@ -79,15 +98,163 @@ export default function InteractiveDiagram() {
       x1: 1100,
       y1: 455,
       x2: 730,
-      y2: 330 // Not rendered
+      y2: 330,
+      mobileLeft: '88%',
+      mobileTop: '64%'
     }
   ];
 
+  if (!mounted) {
+    return (
+      <div style={{ width: '100%', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <img src="assets/40012.png" alt="Zasilacz Scharfer" style={{ maxWidth: '85%', maxHeight: '120px', objectFit: 'contain', opacity: 0.3 }} />
+      </div>
+    );
+  }
+
+  // Render Mobile Version
+  if (isMobile) {
+    const currentIdx = activeFeature === null ? 0 : activeFeature;
+    return (
+      <div style={{ width: '100%', padding: '10px', boxSizing: 'border-box' }}>
+        {/* Hotspots container over zasilacz image */}
+        <div style={{ position: 'relative', width: '100%', height: '140px', background: '#fafafa', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #eee', overflow: 'hidden' }}>
+          
+          <img 
+            src="assets/40012.png" 
+            alt="Zasilacz Scharfer" 
+            style={{ 
+              width: '90%', 
+              height: 'auto', 
+              maxHeight: '110px', 
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.06))',
+              pointerEvents: 'none'
+            }} 
+          />
+
+          {/* Render pulsing hotspots */}
+          {features.map((f, idx) => {
+            const isActive = currentIdx === idx;
+            return (
+              <div 
+                key={idx}
+                onClick={() => setActiveFeature(idx)}
+                style={{
+                  position: 'absolute',
+                  left: f.mobileLeft,
+                  top: f.mobileTop,
+                  width: '24px',
+                  height: '24px',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 10,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <div 
+                  style={{
+                    width: isActive ? '12px' : '10px',
+                    height: isActive ? '12px' : '10px',
+                    borderRadius: '50%',
+                    background: isActive ? 'var(--c-red)' : '#4b5563',
+                    border: '2px solid white',
+                    boxShadow: isActive ? '0 0 10px rgba(230,0,0,0.8)' : '0 0 5px rgba(0,0,0,0.3)',
+                    transition: 'all 0.25s ease'
+                  }}
+                />
+                {isActive && (
+                  <div 
+                    className="ping-animation"
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '50%',
+                      background: 'var(--c-red)',
+                      opacity: 0.4,
+                      zIndex: -1
+                    }}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Feature descriptive card */}
+        <div style={{ background: 'white', border: '1.5px solid var(--c-red)', borderRadius: '12px', padding: '15px', marginTop: '12px', boxShadow: '0 4px 12px rgba(230,0,0,0.05)' }}>
+          <h4 style={{ fontSize: '0.98rem', fontWeight: 800, color: 'var(--c-red)', margin: '0 0 4px 0', fontFamily: 'Outfit, sans-serif' }}>
+            {features[currentIdx].title}
+          </h4>
+          <p style={{ fontSize: '0.78rem', color: 'var(--c-text)', margin: '0 0 12px 0', lineHeight: 1.4 }}>
+            {features[currentIdx].desc}
+          </p>
+          
+          {/* Navigation Controls */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <button 
+              onClick={() => setActiveFeature((currentIdx - 1 + 7) % 7)}
+              style={{ padding: '6px 12px', background: '#f3f4f6', border: 'none', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 700, color: '#374151', cursor: 'pointer' }}
+            >
+              ← Poprzedni
+            </button>
+            
+            {/* Dots */}
+            <div style={{ display: 'flex', gap: '5px' }}>
+              {features.map((_, i) => (
+                <div 
+                  key={i} 
+                  onClick={() => setActiveFeature(i)}
+                  style={{ 
+                    width: '6px', 
+                    height: '6px', 
+                    borderRadius: '50%', 
+                    background: currentIdx === i ? 'var(--c-red)' : '#d1d5db', 
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }} 
+                />
+              ))}
+            </div>
+
+            <button 
+              onClick={() => setActiveFeature((currentIdx + 1) % 7)}
+              style={{ padding: '6px 12px', background: '#f3f4f6', border: 'none', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 700, color: '#374151', cursor: 'pointer' }}
+            >
+              Następny →
+            </button>
+          </div>
+        </div>
+
+        {/* CSS Keyframe definition */}
+        <style jsx global>{`
+          .ping-animation {
+            animation: pulsePing 2s infinite ease-out;
+          }
+          @keyframes pulsePing {
+            0% {
+              transform: scale(0.8);
+              opacity: 0.5;
+            }
+            100% {
+              transform: scale(2.4);
+              opacity: 0;
+            }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
+  // Render Desktop Version (Original Width)
   return (
     <div style={{ width: '100%', overflowX: 'auto', paddingBottom: '10px', WebkitOverflowScrolling: 'touch' }}>
       <div style={{ position: 'relative', width: '1400px', height: '540px', margin: '0 auto', overflow: 'visible' }}>
         
-        {/* Background SVG for lines - Rendered ON TOP of zasilacz image (zIndex: 4) */}
+        {/* Background SVG for lines */}
         <svg 
           style={{ 
             position: 'absolute', 
@@ -95,7 +262,7 @@ export default function InteractiveDiagram() {
             left: 0, 
             width: '100%', 
             height: '100%', 
-            zIndex: 4, // Higher than image (zIndex 3) so lines go OVER the zasilacz
+            zIndex: 4, 
             pointerEvents: 'none' 
           }}
         >
@@ -117,7 +284,7 @@ export default function InteractiveDiagram() {
           })}
         </svg>
 
-        {/* Center Zasilacz Image - HUGE (760px width, centered at 280px vertically) */}
+        {/* Center Zasilacz Image */}
         <div 
           style={{ 
             position: 'absolute', 
@@ -144,7 +311,7 @@ export default function InteractiveDiagram() {
 
         {/* Pulsing Hotspots on the zasilacz */}
         {features.map((f, idx) => {
-          if (idx === 6) return null; // No pulsing hotspot for Gwarancja
+          if (idx === 6) return null;
           const isActive = activeFeature === idx;
           return (
             <div 
@@ -192,7 +359,7 @@ export default function InteractiveDiagram() {
           );
         })}
 
-        {/* Left Column Features (Slide left on hover) */}
+        {/* Left Column Features */}
         <div style={{ position: 'absolute', left: 0, top: 10, width: '290px', height: '510px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 5 }}>
           {features.slice(0, 3).map((f, idx) => {
             const isActive = activeFeature === idx;
@@ -221,7 +388,7 @@ export default function InteractiveDiagram() {
           })}
         </div>
 
-        {/* Right Column Features (Slide right on hover) */}
+        {/* Right Column Features */}
         <div style={{ position: 'absolute', right: 0, top: 10, width: '290px', height: '510px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 5 }}>
           {features.slice(3).map((f, idx) => {
             const realIdx = idx + 3;
@@ -253,7 +420,7 @@ export default function InteractiveDiagram() {
 
       </div>
 
-      {/* CSS Keyframe definition in inline style tag */}
+      {/* CSS Keyframe definition */}
       <style jsx global>{`
         .ping-animation {
           animation: pulsePing 2s infinite ease-out;
@@ -272,3 +439,4 @@ export default function InteractiveDiagram() {
     </div>
   );
 }
+

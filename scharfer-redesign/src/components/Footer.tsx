@@ -65,8 +65,8 @@ export default function Footer() {
               Kontakt B2B
             </Link>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '0.4rem', paddingTop: '0.8rem', borderTop: '1px solid #f3f4f6' }}>
-              <a href="#" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '0.8rem', transition: 'color 0.2s' }} className="footer-link-sub">Regulamin</a>
-              <a href="#" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '0.8rem', transition: 'color 0.2s' }} className="footer-link-sub">RODO</a>
+              <Link href="/regulamin" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '0.8rem', transition: 'color 0.2s' }} className="footer-link-sub">Regulamin</Link>
+              <Link href="/rodo" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '0.8rem', transition: 'color 0.2s' }} className="footer-link-sub">RODO</Link>
             </div>
           </div>
         </div>

@@ -14,7 +14,8 @@ export default function OfertaPage() {
     const matchesFilter = filter === 'all' || p.specs.voltage === filter;
     const matchesSearch = searchQuery === '' || 
       p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      p.index.toLowerCase().includes(searchQuery.toLowerCase());
+      p.index.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.ean.includes(searchQuery);
     return matchesFilter && matchesSearch;
   });
 
@@ -23,6 +24,39 @@ export default function OfertaPage() {
 
   return (
     <div className="view-section active">
+      {/* Structured SEO Data (JSON-LD Product Schema) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": productsData.map(p => ({
+              "@type": "Product",
+              "name": p.name,
+              "image": `https://scharfer.com.pl/${p.img}`,
+              "description": `Profesjonalny wodoodporny zasilacz LED Scharfer ${p.name} o napięciu wyjściowym ${p.specs.voltage} i klasie szczelności IP67. Posiada certyfikaty CE i RoHS oraz 7 lat gwarancji.`,
+              "sku": p.index,
+              "gtin13": p.ean,
+              "brand": {
+                "@type": "Brand",
+                "name": "Scharfer"
+              },
+              "offers": {
+                "@type": "AggregateOffer",
+                "priceCurrency": "PLN",
+                "lowPrice": "99.00",
+                "highPrice": "499.00",
+                "offerCount": "1",
+                "seller": {
+                  "@type": "Organization",
+                  "name": "Prescot Sp. z o.o.",
+                  "url": "https://scharfer.com.pl"
+                }
+              }
+            }))
+          })
+        }}
+      />
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
@@ -129,6 +163,10 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
           <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Prąd wyjściowy</span>
           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{product.specs.current}</span>
         </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem' }}>
+          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Kod EAN</span>
+          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{product.ean}</span>
+        </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Wymiary</span>
           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{product.specs.dim}</span>
@@ -172,22 +210,22 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         
         <div className="modal-info-col" style={{ flex: 1.3, minWidth: '320px', display: 'flex', flexDirection: 'column' }}>
           <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)', lineHeight: 1.15, fontFamily: 'Outfit, sans-serif' }}>{product.name}</h2>
-          
           <table className="modal-specs-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '1rem', marginBottom: '2.5rem' }}>
             <tbody>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Napięcie wyjściowe</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.voltage} DC</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Prąd wyjściowy</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Moc znamionowa</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.name.match(/\d+W/) ? product.name.match(/\d+W/)?.[0] : ''}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Kod EAN</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Wymiary (dł. x szer. x wys.)</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Klasa szczelności</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-red)' }}>IP67 (pełna wodoodporność)</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Aktywne zabezpieczenia</td><td style={{ padding: '0.9rem 0', fontWeight: 600, color: '#10b981', fontSize: '0.9rem' }}>Nadnapięciowe (OVP), Przeciwzwarciowe (SCP), Termiczne (OTP), Przeciążeniowe (OLP)</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja producenta</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-red)' }}>7 Lat (Pełna, realizowana w Polsce)</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja producenta</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-red)' }}>7 Lat Gwarancji (Pełna, realizowana w Polsce)</td></tr>
             </tbody>
           </table>
 
           <div className="modal-actions" style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             {/* Bright red button background for full visibility */}
-            <a href={product.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', textDecoration: 'none', padding: '1.2rem', borderRadius: '8px', background: 'var(--c-red)', color: 'white', fontWeight: 700, fontSize: '1.05rem', boxShadow: '0 4px 12px rgba(230,0,0,0.2)' }}>
+            <a href={product.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', textDecoration: 'none', padding: '1.2rem', borderRadius: '8px', background: 'var(--c-red)', backgroundColor: 'var(--c-red)', color: 'white', fontWeight: 700, fontSize: '1.05rem', boxShadow: '0 4px 12px rgba(230,0,0,0.2)' }}>
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '20px', height: '20px' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>

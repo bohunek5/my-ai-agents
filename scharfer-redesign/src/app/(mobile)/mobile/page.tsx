@@ -31,6 +31,10 @@ export default function MobileAppPage() {
   // Kontakt FAQ state
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
 
+  // Legal modals states
+  const [mobileRegulaminOpen, setMobileRegulaminOpen] = useState(false);
+  const [mobileRodoOpen, setMobileRodoOpen] = useState(false);
+
   const flagEmojis: Record<string, string> = { pl: '🇵🇱', en: '🇬🇧', de: '🇩🇪', lt: '🇱🇹' };
 
   // Filter products
@@ -38,7 +42,8 @@ export default function MobileAppPage() {
     const matchesFilter = filterVoltage === 'all' || p.specs.voltage === filterVoltage;
     const matchesSearch = searchQuery === '' ||
       p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.index.toLowerCase().includes(searchQuery.toLowerCase());
+      p.index.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.ean.includes(searchQuery);
     return matchesFilter && matchesSearch;
   });
 
@@ -165,16 +170,11 @@ export default function MobileAppPage() {
         {/* VIEW: HOME */}
         {activeTab === 'home' && (
           <section className="view-section active">
-            {/* Hero with YouTube Video Background (Responsive scale) */}
-            <div className="hero" style={{ position: 'relative', overflow: 'hidden', padding: '3rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '400px', background: '#000', color: 'white' }}>
+            {/* Hero with Static Background (Optimized for Mobile) */}
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '3rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '360px', background: '#000', color: 'white' }}>
               <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
-                <iframe 
-                  src="https://www.youtube.com/embed/2Ofm-Rvbz9A?autoplay=1&mute=1&loop=1&playlist=2Ofm-Rvbz9A&controls=0&showinfo=0&autohide=1&start=2" 
-                  style={{ width: '200%', height: '100%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', border: 'none', opacity: 0.4 }} 
-                  allow="autoplay; encrypted-media" 
-                  allowFullScreen
-                />
-                <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+                <img src="assets/scharfer_city_night.png" alt="Scharfer oświetlenie miejskie" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }} />
+                <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
               </div>
               
               <div className="hero-content" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '100%' }}>
@@ -223,16 +223,11 @@ export default function MobileAppPage() {
               </div>
             </div>
 
-            {/* Interactive Diagram Section (Responsive scrollable container for diagram) */}
+            {/* Interactive Diagram Section (Optimized for Mobile) */}
             <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', borderBottom: '1px solid #eee', overflow: 'hidden' }}>
               <div className="container" style={{ padding: '0 10px' }}>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)' }}>Budowa zasilacza - interaktywny diagram</h3>
-                <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-                  <div style={{ width: '1400px' }}>
-                    <InteractiveDiagram />
-                  </div>
-                </div>
-                <p style={{ fontSize: '0.72rem', color: '#888', textAlign: 'center', marginTop: '10px' }}>💡 Przesuń palcem w lewo/prawo, aby zobaczyć cały zasilacz i kliknąć punkty</p>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>Budowa zasilacza - interaktywny diagram</h3>
+                <InteractiveDiagram />
               </div>
             </div>
 
@@ -391,7 +386,7 @@ export default function MobileAppPage() {
               </div>
             </div>
 
-            <MobileFooter />
+            <MobileFooter onOpenRegulamin={() => setMobileRegulaminOpen(true)} onOpenRodo={() => setMobileRodoOpen(true)} />
           </section>
         )}
 
@@ -470,6 +465,10 @@ export default function MobileAppPage() {
                           <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Prąd wyjściowy</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{p.specs.current}</span>
                         </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem' }}>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Kod EAN</span>
+                          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{p.ean}</span>
+                        </div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Wymiary</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{p.specs.dim}</span>
@@ -495,7 +494,7 @@ export default function MobileAppPage() {
             </div>
             
             {/* Footer */}
-            <MobileFooter />
+            <MobileFooter onOpenRegulamin={() => setMobileRegulaminOpen(true)} onOpenRodo={() => setMobileRodoOpen(true)} />
           </section>
         )}
 
@@ -503,7 +502,7 @@ export default function MobileAppPage() {
         {activeTab === 'info' && (
           <section className="view-section active">
             {/* Unified Page Hero */}
-            <div className="hero" style={{ position: 'relative', overflow: 'hidden', padding: '3.5rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '260px', background: '#000', color: 'white' }}>
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '3.5rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '260px', background: '#000', color: 'white' }}>
               <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
                 <img src="assets/scharfer_estate_night.png" alt="Scharfer oświetlenie osiedla" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }} />
                 <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
@@ -518,16 +517,11 @@ export default function MobileAppPage() {
               </div>
             </div>
 
-            {/* Interactive Diagram Section */}
+            {/* Interactive Diagram Section (Optimized for Mobile) */}
             <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', borderBottom: '1px solid #eee', overflow: 'hidden' }}>
               <div className="container" style={{ padding: '0 10px' }}>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)' }}>Budowa zasilacza - innowacje Scharfer</h3>
-                <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-                  <div style={{ width: '1400px' }}>
-                    <InteractiveDiagram />
-                  </div>
-                </div>
-                <p style={{ fontSize: '0.72rem', color: '#888', textAlign: 'center', marginTop: '10px' }}>💡 Przesuń palcem w lewo/prawo, aby zobaczyć cały zasilacz i kliknąć punkty</p>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>Budowa zasilacza - innowacje Scharfer</h3>
+                <InteractiveDiagram />
               </div>
             </div>
 
@@ -670,7 +664,7 @@ export default function MobileAppPage() {
               </div>
             </div>
 
-            <MobileFooter />
+            <MobileFooter onOpenRegulamin={() => setMobileRegulaminOpen(true)} onOpenRodo={() => setMobileRodoOpen(true)} />
           </section>
         )}
 
@@ -678,7 +672,7 @@ export default function MobileAppPage() {
         {activeTab === 'kontakt' && (
           <section className="view-section active">
             {/* Unified Page Hero */}
-            <div className="hero" style={{ position: 'relative', overflow: 'hidden', padding: '3.5rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '260px', background: '#000', color: 'white' }}>
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '3.5rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '260px', background: '#000', color: 'white' }}>
               <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
                 <img src="assets/kontakt_hero.png" alt="Biuro dystrybutora Scharfer" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }} />
                 <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
@@ -763,7 +757,7 @@ export default function MobileAppPage() {
                 ))}
               </div>
             </div>
-            <MobileFooter />
+            <MobileFooter onOpenRegulamin={() => setMobileRegulaminOpen(true)} onOpenRodo={() => setMobileRodoOpen(true)} />
           </section>
         )}
 
@@ -814,11 +808,58 @@ export default function MobileAppPage() {
       {activeProduct && (
         <ProductModal product={activeProduct} onClose={() => setActiveProduct(null)} />
       )}
+
+      {/* Mobile Regulamin Modal */}
+      {mobileRegulaminOpen && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setMobileRegulaminOpen(false)}>
+          <div style={{ background: 'white', borderRadius: '16px', padding: '20px', width: '90%', maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '15px' }}>
+              <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--c-heading)' }}>Regulamin Serwisu</h3>
+              <span onClick={() => setMobileRegulaminOpen(false)} style={{ fontSize: '1.8rem', cursor: 'pointer', color: '#aaa', lineHeight: 1 }}>&times;</span>
+            </div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.6 }}>
+              <h4 style={{ margin: '10px 0 5px' }}>§ 1. Postanowienia ogólne</h4>
+              <p style={{ margin: '0 0 10px' }}>1. Regulamin określa zasady korzystania z witryny <strong>scharfer.com.pl</strong>.</p>
+              <p style={{ margin: '0 0 10px' }}>2. Właścicielem serwisu jest <strong>PRESCOT SP. Z O.O.</strong> z siedzibą w Giżycku, ul. Wileńska 1, NIP: 8451939947.</p>
+              <p style={{ margin: '0 0 10px' }}>3. Serwis ma charakter katalogu technicznego i informacyjnego B2B.</p>
+              <h4 style={{ margin: '10px 0 5px' }}>§ 2. Korzystanie z serwisu</h4>
+              <p style={{ margin: '0 0 10px' }}>1. Korzystanie jest bezpłatne.</p>
+              <p style={{ margin: '0 0 10px' }}>2. Opisy, diagramy i materiały wideo są własnością Administratora i podlegają ochronie autorskiej.</p>
+              <p style={{ margin: '0 0 10px' }}>3. Dane techniczne produktów mają charakter informacyjny i nie stanowią oferty handlowej w rozumieniu Kodeksu Cywilnego.</p>
+              <h4 style={{ margin: '10px 0 5px' }}>§ 3. Kontakt</h4>
+              <p style={{ margin: '0 0 10px' }}>1. Użytkownik może kontaktować się z dystrybutorem za pośrednictwem poczty e-mail: <strong>komponenty@prescot.pl</strong> lub infolinii: <strong>+48 87 777 64 82</strong>.</p>
+            </div>
+            <button onClick={() => setMobileRegulaminOpen(false)} className="btn-primary" style={{ width: '100%', padding: '10px', marginTop: '15px', border: 'none', background: 'var(--c-red)', backgroundColor: 'var(--c-red)', color: 'white', borderRadius: '6px', fontWeight: 600 }}>Zamknij</button>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile RODO Modal */}
+      {mobileRodoOpen && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setMobileRodoOpen(false)}>
+          <div style={{ background: 'white', borderRadius: '16px', padding: '20px', width: '90%', maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '15px' }}>
+              <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--c-heading)' }}>Polityka Prywatności i RODO</h3>
+              <span onClick={() => setMobileRodoOpen(false)} style={{ fontSize: '1.8rem', cursor: 'pointer', color: '#aaa', lineHeight: 1 }}>&times;</span>
+            </div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.6 }}>
+              <p style={{ margin: '0 0 10px' }}>Zgodnie z ogólnym rozporządzeniem o ochronie danych (RODO) z dnia 27 kwietnia 2016 r., informujemy o zasadach przetwarzania danych:</p>
+              <h4 style={{ margin: '10px 0 5px' }}>1. Administrator Danych</h4>
+              <p style={{ margin: '0 0 10px' }}>Administratorem danych osobowych jest <strong>PRESCOT SP. Z O.O.</strong> z siedzibą w Giżycku, ul. Wileńska 1, NIP: 8451939947, e-mail: <strong>komponenty@prescot.pl</strong>.</p>
+              <h4 style={{ margin: '10px 0 5px' }}>2. Cele przetwarzania</h4>
+              <p style={{ margin: '0 0 10px' }}>Dane podane w formularzu kontaktowym (imię, adres e-mail) przetwarzane są wyłącznie w celu obsługi zapytania ofertowego lub technicznego (art. 6 ust. 1 lit. f RODO – uzasadniony interes Administratora).</p>
+              <h4 style={{ margin: '10px 0 5px' }}>3. Prawa użytkownika</h4>
+              <p style={{ margin: '0 0 10px' }}>Użytkownikowi przysługuje prawo dostępu do swoich danych, sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz wniesienia skargi do PUODO.</p>
+            </div>
+            <button onClick={() => setMobileRodoOpen(false)} className="btn-primary" style={{ width: '100%', padding: '10px', marginTop: '15px', border: 'none', background: 'var(--c-red)', backgroundColor: 'var(--c-red)', color: 'white', borderRadius: '6px', fontWeight: 600 }}>Zamknij</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-function MobileFooter() {
+function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => void; onOpenRodo: () => void }) {
   return (
     <footer className="app-footer" style={{ textAlign: 'center', padding: '3rem 1.25rem 2rem 1.25rem', marginTop: '2rem', background: '#ffffff', borderTop: '1px solid #e5e7eb' }}>
       
@@ -856,6 +897,10 @@ function MobileFooter() {
 
       {/* Copyright Line */}
       <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '0.25rem' }}>
+          <span onClick={onOpenRegulamin} style={{ color: '#9ca3af', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', textDecoration: 'underline' }}>Regulamin</span>
+          <span onClick={onOpenRodo} style={{ color: '#9ca3af', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer', textDecoration: 'underline' }}>RODO</span>
+        </div>
         <span className="footer-copy-m" style={{ fontSize: '0.75rem', color: '#9ca3af' }}>&copy; {new Date().getFullYear()} Scharfer. Wszelkie prawa zastrzeżone.</span>
         <span style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
           Powered by <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ color: '#6b7280', textDecoration: 'none', fontWeight: 600 }}>PRESCOT LED</a>
@@ -902,9 +947,10 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Napięcie wyjściowe</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.voltage} DC</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Prąd wyjściowy</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Moc znamionowa</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{powerText}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Kod EAN</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Wymiary</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Klasa szczelności</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: 'var(--c-red)' }}>IP67 (wodoodporny)</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: 'var(--c-red)' }}>7 Lat</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: 'var(--c-red)' }}>7 Lat Gwarancji</td></tr>
             </tbody>
           </table>
 
