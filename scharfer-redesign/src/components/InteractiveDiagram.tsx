@@ -19,65 +19,65 @@ export default function InteractiveDiagram() {
     // Left side features (0, 1, 2)
     {
       title: 'Aluminiowa Obudowa',
-      desc: 'Masywny odlew aluminiowy działający jako pasywny radiator. Wyeliminowaliśmy wentylatory, gwarantując cichą bezawaryjną pracę na lata.',
-      x1: 300,
-      y1: 90,
+      desc: 'Masywny odlew aluminiowy działający jako pasywny radiator. Wyeliminowaliśmy wentylatory, gwarantując bezawaryjną i cichą pracę.',
+      x1: 290,
+      y1: 85,
       x2: 440,
       y2: 175
     },
     {
       title: '100% Mocy Znamionowej',
-      desc: 'Pełne obciążenie bez spadków napięć. Kupując zasilacz 150W, otrzymujesz realne 150W stałego obciążenia w każdych warunkach termicznych.',
-      x1: 300,
-      y1: 210,
-      x2: 400,
+      desc: 'Pełne obciążenie bez spadków napięć. Kupując model 150W, otrzymujesz realne 150W stałego obciążenia w każdych warunkach.',
+      x1: 290,
+      y1: 260,
+      x2: 390,
       y2: 215
     },
     {
       title: 'Cicha Praca (Brak piszczenia)',
-      desc: 'Specjalny proces zalewania cewek i filtrów wejściowych eliminuje wibracje akustyczne i piszczenie zasilacza przy ściemnianiu.',
-      x1: 300,
-      y1: 330,
+      desc: 'Specjalny proces zalewania cewek i filtrów wejściowych eliminuje wibracje akustyczne i piszczenie przy ściemnianiu oświetlenia.',
+      x1: 290,
+      y1: 435,
       x2: 430,
-      y2: 210
+      y2: 230
     },
     // Right side features (3, 4, 5, 6)
     {
       title: 'Klasa Szczelności IP67',
-      desc: 'Wnętrze jest w 100% zalane żywicą epoksydową przewodzącą ciepło. Pełna ochrona przed ciągłym zanurzeniem w wodzie, deszczem i kurzem.',
-      x1: 700,
-      y1: 90,
+      desc: 'Wnętrze jest w 100% zalane żywicą epoksydową przewodzącą ciepło. Pełna ochrona przed ciągłym zanurzeniem w wodzie i pyłem.',
+      x1: 710,
+      y1: 65,
       x2: 580,
       y2: 205
     },
     {
       title: 'Zabezpieczenia SCP, OVP, OTP',
-      desc: 'Aktywne systemy ochrony przed zwarciem, przepięciem i przegrzaniem z automatycznym powrotem do normalnej pracy po usunięciu usterki.',
-      x1: 700,
-      y1: 200,
+      desc: 'Aktywne systemy ochrony przed zwarciem, przepięciem i przegrzaniem z automatycznym powrotem do normalnej pracy po awarii.',
+      x1: 710,
+      y1: 185,
       x2: 620,
       y2: 230
     },
     {
       title: 'Aktywny Układ PFC (PF > 0.98)',
-      desc: 'Kompensacja współczynnika mocy minimalizuje straty w sieci i eliminuje zakłócenia w urządzeniach domowych oraz systemach audio-video.',
-      x1: 700,
-      y1: 290,
+      desc: 'Kompensacja współczynnika mocy minimalizuje straty w sieci i eliminuje zakłócenia w domowych urządzeniach i systemach audio.',
+      x1: 710,
+      y1: 305,
       x2: 500,
-      y2: 200
+      y2: 205
     },
     {
       title: '7 Lat Pełnej Gwarancji',
-      desc: 'Bezwarunkowe wsparcie dla profesjonalistów i instalatorów. Ekspresowa wymiana wadliwego zasilacza na nowy bezpośrednio z magazynu w Polsce.',
-      x1: 700,
-      y1: 370,
+      desc: 'Bezwarunkowe wsparcie dla profesjonalistów i instalatorów. Ekspresowa wymiana wadliwego zasilacza na nowy z magazynu w Polsce.',
+      x1: 710,
+      y1: 425,
       x2: 460,
       y2: 195
     }
   ];
 
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: '1080px', height: '480px', margin: '0 auto' }}>
+    <div style={{ position: 'relative', width: '100%', maxWidth: '1080px', height: '520px', margin: '0 auto', overflow: 'visible' }}>
       {/* Background SVG for lines */}
       <svg 
         style={{ 
@@ -100,7 +100,7 @@ export default function InteractiveDiagram() {
                 y1={f.y1} 
                 x2={f.x2} 
                 y2={f.y2} 
-                stroke={isActive ? 'var(--c-red)' : '#eaeaea'} 
+                stroke={isActive ? 'var(--c-red)' : '#e5e7eb'} 
                 strokeWidth={isActive ? '2' : '1'} 
                 strokeDasharray={isActive ? 'none' : '3,3'}
                 style={{ transition: 'all 0.3s ease' }}
@@ -134,7 +134,7 @@ export default function InteractiveDiagram() {
           top: '50%', 
           transform: 'translate(-50%, -50%)', 
           zIndex: 3, 
-          width: '340px',
+          width: '280px', // slightly smaller to give more space and prevent overlap
           textAlign: 'center'
         }}
       >
@@ -146,7 +146,6 @@ export default function InteractiveDiagram() {
             height: 'auto', 
             objectFit: 'contain', 
             filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.12))',
-            transition: 'transform 0.4s ease'
           }} 
         />
       </div>
@@ -200,8 +199,8 @@ export default function InteractiveDiagram() {
         );
       })}
 
-      {/* Left Column Features */}
-      <div style={{ position: 'absolute', left: 0, top: 0, width: '280px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 4, padding: '10px 0' }}>
+      {/* Left Column Features (Beautiful Static Cards) */}
+      <div style={{ position: 'absolute', left: 0, top: 0, width: '270px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 4 }}>
         {features.slice(0, 3).map((f, idx) => {
           const isActive = activeFeature === idx;
           return (
@@ -210,33 +209,27 @@ export default function InteractiveDiagram() {
               onMouseEnter={() => setActiveFeature(idx)}
               onMouseLeave={() => setActiveFeature(null)}
               style={{
-                background: isActive ? 'white' : 'transparent',
-                border: isActive ? '1px solid #eee' : '1px solid transparent',
-                boxShadow: isActive ? '0 10px 20px rgba(0,0,0,0.04)' : 'none',
-                borderRadius: '8px',
-                padding: '0.8rem',
+                background: 'white',
+                border: isActive ? '1px solid var(--c-red)' : '1px solid #e5e7eb',
+                boxShadow: isActive ? '0 10px 25px rgba(230,0,0,0.08)' : '0 4px 12px rgba(0,0,0,0.03)',
+                borderRadius: '12px',
+                padding: '1rem',
                 cursor: 'pointer',
                 textAlign: 'right',
-                transition: 'all 0.3s ease',
-                opacity: activeFeature === null || isActive ? 1 : 0.3
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                transform: isActive ? 'translateY(-3px)' : 'none',
+                opacity: activeFeature === null || isActive ? 1 : 0.4
               }}
             >
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: isActive ? 'var(--c-red)' : 'var(--c-heading)', transition: 'color 0.2s', margin: '0 0 0.3rem 0' }}>{f.title}</h3>
-              <div style={{ 
-                maxHeight: isActive ? '100px' : '0px', 
-                overflow: 'hidden', 
-                transition: 'all 0.3s ease-in-out',
-                opacity: isActive ? 1 : 0
-              }}>
-                <p style={{ fontSize: '0.82rem', color: 'var(--c-text)', margin: 0, lineHeight: 1.4 }}>{f.desc}</p>
-              </div>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: isActive ? 'var(--c-red)' : 'var(--c-heading)', transition: 'color 0.2s', margin: '0 0 0.4rem 0' }}>{f.title}</h3>
+              <p style={{ fontSize: '0.8rem', color: 'var(--c-text)', margin: 0, lineHeight: 1.45 }}>{f.desc}</p>
             </div>
           );
         })}
       </div>
 
-      {/* Right Column Features */}
-      <div style={{ position: 'absolute', right: 0, top: 0, width: '280px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 4, padding: '10px 0' }}>
+      {/* Right Column Features (Beautiful Static Cards) */}
+      <div style={{ position: 'absolute', right: 0, top: 0, width: '270px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 4 }}>
         {features.slice(3).map((f, idx) => {
           const realIdx = idx + 3;
           const isActive = activeFeature === realIdx;
@@ -246,26 +239,20 @@ export default function InteractiveDiagram() {
               onMouseEnter={() => setActiveFeature(realIdx)}
               onMouseLeave={() => setActiveFeature(null)}
               style={{
-                background: isActive ? 'white' : 'transparent',
-                border: isActive ? '1px solid #eee' : '1px solid transparent',
-                boxShadow: isActive ? '0 10px 20px rgba(0,0,0,0.04)' : 'none',
-                borderRadius: '8px',
-                padding: '0.8rem',
+                background: 'white',
+                border: isActive ? '1px solid var(--c-red)' : '1px solid #e5e7eb',
+                boxShadow: isActive ? '0 10px 25px rgba(230,0,0,0.08)' : '0 4px 12px rgba(0,0,0,0.03)',
+                borderRadius: '12px',
+                padding: '0.9rem 1rem',
                 cursor: 'pointer',
                 textAlign: 'left',
-                transition: 'all 0.3s ease',
-                opacity: activeFeature === null || isActive ? 1 : 0.3
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                transform: isActive ? 'translateY(-3px)' : 'none',
+                opacity: activeFeature === null || isActive ? 1 : 0.4
               }}
             >
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: isActive ? 'var(--c-red)' : 'var(--c-heading)', transition: 'color 0.2s', margin: '0 0 0.3rem 0' }}>{f.title}</h3>
-              <div style={{ 
-                maxHeight: isActive ? '100px' : '0px', 
-                overflow: 'hidden', 
-                transition: 'all 0.3s ease-in-out',
-                opacity: isActive ? 1 : 0
-              }}>
-                <p style={{ fontSize: '0.82rem', color: 'var(--c-text)', margin: 0, lineHeight: 1.4 }}>{f.desc}</p>
-              </div>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: isActive ? 'var(--c-red)' : 'var(--c-heading)', transition: 'color 0.2s', margin: '0 0 0.4rem 0' }}>{f.title}</h3>
+              <p style={{ fontSize: '0.8rem', color: 'var(--c-text)', margin: 0, lineHeight: 1.45 }}>{f.desc}</p>
             </div>
           );
         })}
