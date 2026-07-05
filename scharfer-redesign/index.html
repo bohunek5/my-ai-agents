@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <script>
+        // Redirect to mobile app version if screen is small or on mobile device
+        if (window.innerWidth <= 768 || /Mobi|Android/i.test(navigator.userAgent)) {
+            window.location.replace("mobile.html");
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scharfer | Profesjonalne Zasilacze Instalacyjne LED 12V 24V</title>
+    <meta name="description" content="Scharfer to producent niezawodnych, wodoodpornych zasilaczy LED IP67 (12V i 24V). Oferujemy 7 lat gwarancji, zgodność z normami i atrakcyjne warunki B2B. Zostań naszym dystrybutorem.">
+    <meta name="keywords" content="zasilacze led, wodoodporne zasilacze, zasilacze ip67, hurtownia zasilaczy, zasilacze b2b, scharfer, zasilacze 12v, zasilacze 24v">
+    <meta name="robots" content="index, follow">
+
+    <!-- Schema.org Data for SEO (B2B Business & FAQ) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Scharfer",
+          "url": "https://scharfer.com.pl",
+          "logo": "https://scharfer.com.pl/logo_scharfer.png",
+          "description": "Profesjonalne zasilacze LED 12V i 24V IP67 dedykowane dla dystrybutorów.",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "info@scharfer.com.pl",
+            "contactType": "sales"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Jakie są warunki gwarancji na zasilacze LED Scharfer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Każdy zasilacz LED marki Scharfer objęty jest pełną, 7-letnią gwarancją producenta, zapewniając spokój i bezpieczeństwo inwestycji."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Czy zasilacze posiadają certyfikat IP67?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Tak, nasze zasilacze posiadają klasę szczelności IP67, co oznacza pełną wodoszczelność i pyłoszczelność, idealne do zastosowań zewnętrznych."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Jak zostać dystrybutorem zasilaczy Scharfer?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Aby rozpocząć współpracę B2B, wystarczy wypełnić formularz w sekcji Kontakt. Oferujemy atrakcyjne rabaty, wsparcie techniczne i wyłączność terytorialną."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="logo-wrapper" style="display:flex; align-items:center; gap:20px;">
+                <a href="#home" class="logo-link" id="logo-btn">
+                    <img src="logo_scharfer.png" alt="Scharfer - Zasilacze LED" class="logo-img">
+                </a>
+                
+            </div>
+            
+            <nav class="main-nav">
+                <a href="#home" class="nav-item active" data-tab="home" data-t="navHome">Strona Główna</a>
+                <a href="#poznaj" class="nav-item" data-tab="poznaj" data-t="navPoznaj">Dlaczego Scharfer?</a>
+                <a href="#oferta" class="nav-item" data-tab="oferta" data-t="navOferta">Zasilacze LED</a>
+                <a href="#kontakt" class="nav-item" data-tab="kontakt" data-t="navKontakt">Kontakt</a>
+            </nav>
+            
+            </div>
+
+
+            <div class="header-actions" style="display: flex; gap: 10px; align-items: center;">
+                <!-- Retail link -->
+                <a href="https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0.4rem 0.8rem; border: 1px solid #eaeaea; background: #fafafa; color: #444; text-decoration: none; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: all 0.3s; white-space: nowrap;">
+                    <span style="font-size: 0.82rem; font-weight: 500; display: flex; align-items: center; gap: 4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg> Zakup detaliczny</span>
+                    <span style="font-size: 0.65rem; color: #888; border-left: 1px solid #ddd; padding-left: 8px;">www.prescot.com.pl</span>
+                </a>
+
+                <!-- Language Dropdown -->
+                <div class="language-dropdown" style="position: relative; margin-right: 1.5rem; margin-left: 0.5rem;">
+                    <button class="lang-btn" id="lang-current-btn" style="opacity: 0.7; font-size: 1rem; padding: 0.2rem; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: opacity 0.2s;">
+                        <span style="font-size: 1.1rem;">🇵🇱</span> <span style="font-size: 0.85rem; font-weight: 500;">PL</span> <svg width="8" height="5" viewBox="0 0 10 6" fill="none" style="opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="lang-menu" id="lang-dropdown">
+                        <button data-lang="pl" style="font-size: 1rem; display: flex; align-items: center; gap: 6px;"><span style="font-size: 1.1rem;">🇵🇱</span> PL</button>
+                        <button data-lang="en" style="font-size: 1rem; display: flex; align-items: center; gap: 6px;"><span style="font-size: 1.1rem;">🇬🇧</span> EN</button>
+                        <button data-lang="de" style="font-size: 1rem; display: flex; align-items: center; gap: 6px;"><span style="font-size: 1.1rem;">🇩🇪</span> DE</button>
+                        <button data-lang="lt" style="font-size: 1rem; display: flex; align-items: center; gap: 6px;"><span style="font-size: 1.1rem;">🇱🇹</span> LT</button>
+                    </div>
+                </div>
+
+                <!-- Sticky CTA for CRO -->
+                <button class="btn-primary" id="cta-distributor-btn" onclick="window.location.hash='#kontakt'; document.getElementById('kontakt-tab').classList.add('active');" style="display: flex; align-items: center; gap: 6px; padding: 0.6rem 1.2rem; font-size: 0.85rem; background-color: var(--c-primary);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    Kontakt
+                </button>
+                <button class="menu-toggle" id="hamburger-menu-btn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-drawer">
+        <div class="mobile-menu-inner">
+            <nav class="mobile-nav">
+                <a href="#home" class="mobile-nav-item active" data-tab="home" data-t="navHome">Strona Główna</a>
+                <a href="#poznaj" class="mobile-nav-item" data-tab="poznaj" data-t="navPoznaj">Dlaczego Scharfer?</a>
+                <a href="#oferta" class="mobile-nav-item" data-tab="oferta" data-t="navOferta">Zasilacze LED</a>
+                <a href="#kontakt" class="mobile-nav-item" data-tab="kontakt" data-t="navKontakt">Kontakt</a>
+            </nav>
+            <div style="flex: 1; display: flex; justify-content: center;">
+                
+                <!-- Language Dropdown -->
+                <div class="language-dropdown" style="position: relative; margin-right: 1.5rem; margin-left: 0.5rem;">
+                    <button class="lang-btn" id="lang-current-btn" style="opacity: 0.7; font-size: 1rem; padding: 0.2rem; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; gap: 4px; transition: opacity 0.2s;">
+                        <span style="font-size: 1.1rem;">🇵🇱</span> <span style="font-size: 0.85rem; font-weight: 500;">PL</span> <svg width="8" height="5" viewBox="0 0 10 6" fill="none" style="opacity: 0.5;"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="lang-menu" id="lang-dropdown">
+                        <button data-lang="pl" style="font-size: 1rem; display: flex; align-items: center; gap: 6px;"><span style="font-size: 1.1rem;">🇵🇱</span> PL</button>
+                        <button data-lang="en" style="font-size: 1rem; display: flex; align-items: center; gap: 6px;"><span style="font-size: 1.1rem;">🇬🇧</span> EN</button>
+                        <button data-lang="de" style="font-size: 1rem; display: flex; align-items: center; gap: 6px;"><span style="font-size: 1.1rem;">🇩🇪</span> DE</button>
+                        <button data-lang="lt" style="font-size: 1rem; display: flex; align-items: center; gap: 6px;"><span style="font-size: 1.1rem;">🇱🇹</span> LT</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0.6rem; border: 1px solid #eaeaea; background: #fafafa; color: #444; text-decoration: none; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: all 0.3s; margin-bottom: 10px; white-space: nowrap;">
+                <span style="font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg> Zakup detaliczny</span>
+                <span style="font-size: 0.75rem; color: #888; border-left: 1px solid #ddd; padding-left: 8px;">www.prescot.com.pl</span>
+            </a>
+            <button class="btn-primary mobile-cta" id="drawer-cta-btn" onclick="window.location.hash='#kontakt'; document.getElementById('kontakt-tab').classList.add('active'); closeMobileMenu();" style="display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                Współpraca hurtowa
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- HOME TAB -->
+        <section id="home-tab" class="view-section active">
+            <!-- Hero with Premium Generated Graphic -->
+            <div class="hero">
+                <div class="hero-bg" style="overflow: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+                    <iframe src="https://www.youtube.com/embed/2Ofm-Rvbz9A?autoplay=1&mute=1&loop=1&playlist=2Ofm-Rvbz9A&controls=0&showinfo=0&autohide=1&start=2" 
+                            style="width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; border: none;" 
+                            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div class="hero-overlay" style="background: rgba(255, 255, 255, 0.85); position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+                </div>
+                <div class="hero-container">
+                    <div class="hero-content">
+                        <h1 class="hero-title" data-t="heroTitle">
+                            <span>7 Lat gwarancji.</span> Stabilne Zasilanie. Prawdziwe <span>100%</span> mocy.
+                        </h1>
+                        <p class="hero-subtitle" data-t="heroSubtitle">
+                            Koniec z piszczeniem, awariami i spadkami napięć. Wodoodporne zasilacze 12V i 24V (IP67) stworzone do pracy pod pełnym obciążeniem. 7 lat gwarancji. Instalujesz i zapominasz.
+                        </p>
+                        <div class="hero-actions">
+                            <button class="btn-primary large" id="explore-offer-btn" data-t="exploreOffer">Zobacz Katalog Zasilaczy</button>
+                            <a href="#kontakt" class="btn-secondary large" onclick="switchTab('kontakt'); return false;">Współpraca B2B</a>
+                        </div>
+                        <div class="hero-trust">
+                            <div class="trust-item">
+                                <span class="trust-val">7</span>
+                                <span class="trust-lbl">Lat Gwarancji</span>
+                            </div>
+                            <div class="trust-item">
+                                <span class="trust-val">IP67</span>
+                                <span class="trust-lbl">Pełna Szczelność</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Zalety Zasilaczy z Poznaj Tab -->
+<div class="poznaj-hero" style="background: linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%); padding: 6rem 2rem; text-align: center; border-bottom: 1px solid var(--c-border);">
+                <div class="container" style="max-width: 800px; margin: 0 auto;">
+                    <h1 style="font-size: 3rem; color: var(--c-heading); margin-bottom: 1rem; line-height: 1.2;">Technologia bez kompromisów</h1>
+                    <p style="font-size: 1.25rem; color: var(--c-text); line-height: 1.6;">Odkryj innowacje i zabezpieczenia, które sprawiają, że zasilacze Scharfer są najczęstszym wyborem profesjonalistów w branży oświetleniowej i B2B.</p>
+                    <div class="hero-trust" style="margin-top: 3rem; justify-content: center;">
+                        <div class="trust-item" style="background: var(--c-white); padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                            <span class="trust-val" style="display: block; font-size: 1.5rem; font-weight: 800; color: var(--c-primary); margin-bottom: 0.2rem;">7</span>
+                            <span class="trust-lbl" style="font-size: 0.9rem; color: var(--c-text); font-weight: 500;">Lat Gwarancji</span>
+                        </div>
+                        <div class="trust-item" style="background: var(--c-white); padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                            <span class="trust-val" style="display: block; font-size: 1.5rem; font-weight: 800; color: var(--c-primary); margin-bottom: 0.2rem;">IP67</span>
+                            <span class="trust-lbl" style="font-size: 0.9rem; color: var(--c-text); font-weight: 500;">Pełna Szczelność</span>
+                        </div>
+                        <div class="trust-item" style="background: var(--c-white); padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                            <span class="trust-val" style="display: block; font-size: 1.5rem; font-weight: 800; color: var(--c-primary); margin-bottom: 0.2rem;">100%</span>
+                            <span class="trust-lbl" style="font-size: 0.9rem; color: var(--c-text); font-weight: 500;">Praca pod obciążeniem</span>
+                        </div>
+                        </div>
+
+                </div>
+            </div>
+
+            <div class="container section-padding" style="max-width: 1200px; margin: 0 auto;">
+                <div class="b2b-story-section">
+                    <!-- Row 1: Gwarancja -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>7 Lat Pełnej Gwarancji</h2>
+                            <p>Zaufanie to podstawa w branży B2B. Zasilacze Scharfer są projektowane tak, aby przetrwać najcięższe warunki pracy. Dlatego każdy nasz produkt objęty jest bezwarunkową, 7-letnią gwarancją producenta.</p>
+                            <p>Jako dystrybutor lub instalator nie musisz martwić się o usterki – gwarantujemy pełne wsparcie i błyskawiczną wymianę w przypadku awarii. Buduj swoją reputację na niezawodności.</p>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/sch1.webp" alt="7 lat gwarancji Scharfer">
+                        </div>
+                    </div>
+
+                    <!-- Row 2: IP67 -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Ochrona IP67 do Zadań Specjalnych</h2>
+                            <p>Deszcz, śnieg, wilgoć czy pył – to dla nas żaden problem. Obudowa zasilaczy Scharfer posiada certyfikat szczelności IP67. Są całkowicie wodoodporne i pyłoszczelne.</p>
+                            <p>Idealne rozwiązanie do oświetlenia elewacji, podświetlania basenów, banerów reklamowych i architektury ogrodowej. Wyeliminuj ryzyko zwarć w instalacjach outdoorowych.</p>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/sch2.webp" alt="Wodoodporność IP67">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: 100% Obciążenia -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Zaprojektowane do Pracy pod 100% Obciążeniem</h2>
+                            <p>Koniec z przewymiarowaniem zasilaczy! W przeciwieństwie do tańszych zamienników, technologia Scharfer pozwala na stałą pracę pod 100% zadeklarowanym obciążeniem.</p>
+                            <p>Jeśli kupujesz model 150W, otrzymujesz pełne 150W czystej, stabilnej mocy. Oznacza to mniejsze koszty instalacji (możesz użyć mniejszego zasilacza) oraz brak problemów z przegrzewaniem.</p>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/sch4.webp" alt="100% obciążenia">
+                        </div>
+                    </div>
+                    
+                    <!-- Row 4: Zgodność i Bezpieczeństwo -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Zgodność z Normami PN-EN, CE i RoHS</h2>
+                            <p>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejskie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym <strong>PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547</strong>.</p>
+                            <p>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru, przebicia prądu i niestabilnego napięcia. Sprzedawaj z czystym sumieniem certyfikowany sprzęt najwyższej klasy.</p>
+                        </div>
+                        <div class="b2b-story-img" style="display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                            <img src="assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style="width: auto; max-width: 100%; max-height: 180px; object-fit: contain; mix-blend-mode: multiply; box-shadow: none; border-radius: 0;">
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Zaawansowane Zabezpieczenia -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Zabezpieczenia OVP, SCP, OTP, OLP</h2>
+                            <p>Każdy profesjonalny zasilacz instalacyjny Scharfer wyposażony jest w aktywny, wielopoziomowy system ochrony elektroniki, zapobiegający uszkodzeniom w przypadku awarii sieci elektrycznej.</p>
+                            <ul style="list-style-type: none; padding: 0; margin-top: 1rem;">
+                                <li style="margin-bottom: 0.5rem;"><strong>OVP (Over Voltage Protection)</strong> – automatyczne odcięcie przy skokach napięcia.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>SCP (Short Circuit Protection)</strong> – błyskawiczne zabezpieczenie przeciwzwarciowe.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>OTP (Over Temperature Protection)</strong> – ochrona termiczna przed przegrzaniem.</li>
+                                <li><strong>OLP (Over Load Protection)</strong> – zabezpieczenie przeciążeniowe przy zbyt wysokim poborze prądu.</li>
+                            </ul>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/40012.png" alt="Zasilacz 12V 400W Scharfer">
+                        </div>
+                    </div>
+
+                    <!-- Row 6: Konstrukcja Termiczna -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Aluminium i Żywica Epoksydowa</h2>
+                            <p>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Zasilacze Scharfer zamknięte są w masywnej, aluminiowej obudowie, która pełni rolę radiatora.</p>
+                            <p>Wnętrze urządzenia jest w 100% zalane specjalistyczną żywicą przewodzącą ciepło. Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy nawet przy maksymalnym obciążeniu. Każda jednostka przechodzi również rygorystyczne testy <strong>Burn-in</strong> przed opuszczeniem fabryki.</p>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/sch3.webp" alt="Aluminiowa obudowa i odprowadzanie ciepła">
+                        </div>
+
+                    </div>
+                </div>
+
+<!-- Applications Section (Visual Sales Tool) -->
+            <div class="applications-section" style="max-width: 1200px; margin: 5rem auto; padding: 0 1.5rem;">
+                <div class="section-header text-center" style="margin-bottom: 3rem;">
+                    <h2 style="font-size: 2.5rem; color: var(--c-heading);">Gdzie sprawdzają się Zasilacze Scharfer?</h2>
+                    <p style="font-size: 1.1rem; color: var(--c-text); max-width: 700px; margin: 0 auto;">Niezawodność w każdej inwestycji. Zobacz, gdzie nasi dystrybutorzy z powodzeniem stosują technologię Scharfer.</p>
+                </div>
+                
+                <div class="app-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                    <!-- App 1: Domy -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_domy_1783188239361.png" alt="Zasilacz LED zewnętrzny do domu" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Domy i Rezydencje</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasilacz LED zewnętrzny do domu. Idealny do zasilania taśm LED na elewacji, podbitek i schodów. Stabilna praca na zewnątrz.</p>
+                        </div>
+                    </div>
+                    <!-- App 2: Bloki mieszkalne -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_bloki_1783188247720.png" alt="Wodoodporny zasilacz do taśm LED" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Bloki mieszkalne</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Wodoodporny zasilacz do taśm LED i opraw. Niezawodne zasilanie oświetlenia w częściach wspólnych, na elewacjach i klatkach schodowych.</p>
+                        </div>
+                    </div>
+                    <!-- App 3: Hale -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_hale_v2_1783188623293.png" alt="Zasilacze przemysłowe LED 24V" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Hale i Magazyny</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasilacze przemysłowe LED 24V. Zasilanie długich linii świetlnych i mocnych opraw w magazynach oraz na halach produkcyjnych.</p>
+                        </div>
+                    </div>
+                    <!-- App 4: Obiekty sportowe -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_sport_v2_1783188631467.png" alt="Zasilacze LED 12V i 24V dużej mocy" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Obiekty sportowe</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasilacze LED 12V i 24V dużej mocy. Profesjonalne zasilanie naświetlaczy, projektorów i taśm led na orlikach i kortach.</p>
+                        </div>
+                    </div>
+                    <!-- App 5: Architektura ogrodowa -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_ogrod_v2_1783188615253.png" alt="Zasilacz LED hermetyczny IP67" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Ogrody i Parki</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasilacz LED hermetyczny IP67. Gwarantowane bezpieczne zasilanie taśm ledowych w gruncie, w pobliżu wody i zraszaczy.</p>
+                        </div>
+                    </div>
+                    <!-- App 6: Hotele -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_hotel_1783188309904.png" alt="Zasilacze do taśm LED ze ściemniaczem" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Hotele i HoReCa</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasilacze do taśm LED współpracujące ze ściemniaczem. Zasilanie oświetlenia stref relaksu w hotelach bez irytującego piszczenia.</p>
+                        </div>
+                    </div>
+                    <!-- App 7: Kina -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_kina_v2_1783188608035.png" alt="Zasilacze LED 12V do pasków led" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Kina i Teatry</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasilacze LED 12V do pasków led. Niezawodne i bezpieczne zasilanie przygaszonego oświetlenia ciągów komunikacyjnych.</p>
+                        </div>
+                    </div>
+                    <!-- App 8: Szkoły -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_szkoly_1783188326372.png" alt="Zasilacze do opraw LED" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Szkoły i Edukacja</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Wydajne zasilacze do opraw LED. Bezpieczne zasilanie oświetlenia klas szkolnych wyposażone w zabezpieczenia przeciwzwarciowe.</p>
+                        </div>
+                    </div>
+                    <!-- App 9: Parkingi -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_parkingi_v2_1783188598862.png" alt="Zasilacze LED zewnętrzne 24V" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Parkingi Podziemne</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasilacze LED zewnętrzne 24V. Zapewniają ciągłe zasilanie liniowych systemów oświetleniowych na zadaszonych parkingach i placach.</p>
+                        </div>
+                    </div>
+                    <!-- App 10: Garaże -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_garaze_1783188344306.png" alt="Zasilacze do taśm LED 24V" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Garaże i Warsztaty</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Mocne zasilacze do taśm LED 24V. Idealne zasilanie mocnych systemów oświetlenia liniowego do pracy detalicznej.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- App 12: Wiaty i Stolarka -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="wiata_jezioro.png" alt="Oświetlenie wiat i drewnianej stolarki" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Wiaty i Stolarka Drewniana</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasilacze hermetyczne Scharfer idealnie sprawdzają się w konstrukcjach drewnianych (wiaty, altany, pergole) ze względu na wysoką odporność na wilgoć, zabezpieczenia termiczne i pełną szczelność.</p>
+                        </div>
+                    </div>
+<!-- App 11: Mosty -->
+                    <div class="app-card" style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); transition: transform 0.3s ease;">
+                        <img src="assets/app_mosty_1783188351515.png" alt="Zasilacz LED wodoszczelny" style="width: 100%; height: 250px; object-fit: cover; display: block;">
+                        <div class="app-content" style="padding: 1.5rem; background: var(--c-white);">
+                            <h3 style="margin: 0 0 0.5rem; font-size: 1.25rem;">Infrastruktura i Mosty</h3>
+                            <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasilacz LED wodoszczelny i odporny na wibracje. Przemysłowe zasilanie oświetlenia konstrukcji stalowych i mostów.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Value Proposition B2B -->
+            <div class="partnership-section">
+                <div class="partnership-img">
+                    <img src="assets/wspolpraca.webp" alt="Współpraca B2B Scharfer">
+                </div>
+                <div class="partnership-text">
+                    <h2>Zostań naszym partnerem biznesowym</h2>
+                    <p class="ps-subtitle">Budujemy długotrwałe relacje oparte na zaufaniu i zyskach dla obu stron.</p>
+                    
+                    <div class="value-list">
+                        <div class="value-item">
+                            <h4 data-t="valPrice">Korzystna cena i rabaty</h4>
+                            <p data-t="valPriceDesc">Atrakcyjne warunki handlowe i elastyczne rabaty dla stałych dystrybutorów hurtowych.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4 data-t="valAvailability">Stała dostępność zasilaczy</h4>
+                            <p data-t="valAvailabilityDesc">Stałe stany magazynowe w Polsce gwarantujące wysyłkę w 24 godziny od zamówienia.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4 data-t="valSupport">Dedykowane wsparcie techniczne</h4>
+                            <p data-t="valSupportDesc">Pomoc inżynieryjna w doborze parametrów i rozwiązywaniu problemów instalacyjnych.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4 data-t="valPartner">Zaufany partner biznesowy</h4>
+                            <p data-t="valPartnerDesc">Długofalowa współpraca oparta na partnerskich zasadach i wyłączności terytorialnej.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- FAQ Section for SEO -->
+            <div class="faq-section section-padding bg-light">
+                <div class="container">
+                    <div class="text-center">
+                        <h2 class="section-title">Często zadawane pytania (FAQ)</h2>
+                        <p class="section-subtitle">Wszystko, co musisz wiedzieć o zasilaczach LED Scharfer</p>
+                    </div>
+                    <div class="faq-accordion">
+                        <div class="faq-item">
+                            <button class="faq-question">Jakie są warunki gwarancji na zasilacze LED Scharfer? <span class="faq-icon">+</span></button>
+                            <div class="faq-answer">
+                                <p>Każdy zasilacz LED marki Scharfer objęty jest pełną, 7-letnią gwarancją producenta. Jesteśmy pewni naszej technologii i stosowanych komponentów, co pozwala nam zapewnić Ci maksymalne bezpieczeństwo inwestycji w oświetlenie.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Czy zasilacze posiadają certyfikat IP67? <span class="faq-icon">+</span></button>
+                            <div class="faq-answer">
+                                <p>Tak, zasilacze scharfer posiadają klasę szczelności IP67. Oznacza to pełną wodoszczelność i pyłoszczelność. Dzięki temu idealnie nadają się do montażu w łazienkach, elewacjach budynków, reklamach świetlnych oraz w innych trudnych warunkach zewnętrznych.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Jak zostać dystrybutorem zasilaczy Scharfer? <span class="faq-icon">+</span></button>
+                            <div class="faq-answer">
+                                <p>Aby rozpocząć współpracę B2B, wystarczy wypełnić formularz w sekcji "Kontakt B2B" lub napisać bezpośrednio na adres info@scharfer.com.pl. Nasz przedstawiciel handlowy skontaktuje się z Tobą w ciągu 24 godzin w celu przedstawienia dedykowanych warunków handlowych i rabatów hurtowych.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Czy gwarantujecie pracę pod pełnym obciążeniem? <span class="faq-icon">+</span></button>
+                            <div class="faq-answer">
+                                <p>Tak. Jedną z głównych zalet zasilaczy Scharfer jest gwarancja stabilnej pracy pod 100% zadeklarowanym obciążeniem. Nie musisz stosować dużych zapasów mocy (tzw. marginesów), jak to bywa w przypadku tańszych zamienników, co optymalizuje koszty całej instalacji LED.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Gdzie najlepiej stosować zasilacze 12V i 24V Scharfer? <span class="faq-icon">+</span></button>
+                            <div class="faq-answer">
+                                <p>Zasilacze 12V idealnie sprawdzają się do małych instalacji LED, podświetleń meblowych, gablot, kasetonów i krótkich linii światła, gdzie zasilacz ma pozostać dyskretny (np. modele 20W). Zasilacze 24V rekomendujemy przy dłuższych ciągach oświetleniowych, zapewniając stabilne napięcie na całym odcinku.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">Jakie są kluczowe przewagi (Przewaga Scharfer)? <span class="faq-icon">+</span></button>
+                            <div class="faq-answer">
+                                <p>Przewaga Scharfer to przede wszystkim: obudowa w klasie <strong>IP67</strong> zapewniająca wodoodporność i pyłoszczelność, stabilne napięcie wyjściowe, szeroki zakres wejściowy (100-250V AC), wysoka wydajność transferu, praca przy <strong>100% obciążenia</strong>, test wypalenia przy pełnym obciążeniu oraz zaawansowane zabezpieczenia przed przeciążeniem i zwarciem.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+                <section id="poznaj-tab" class="view-section">
+            <div class="poznaj-hero" style="background: linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%); padding: 6rem 2rem; border-bottom: 1px solid var(--c-border); position: relative; overflow: hidden;">
+                <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; position: relative; z-index: 2;">
+                        <h1 style="font-size: 3rem; color: var(--c-heading); margin-bottom: 1rem; line-height: 1.2;">Technologia bez kompromisów</h1>
+                        <p style="font-size: 1.25rem; color: var(--c-text); line-height: 1.6;">Odkryj innowacje i zabezpieczenia, które sprawiają, że zasilacze Scharfer są najczęstszym wyborem profesjonalistów w branży oświetleniowej i B2B.</p>
+                        <div class="hero-trust" style="margin-top: 3rem; justify-content: flex-start; flex-wrap: wrap; gap: 1rem;">
+                            <div class="trust-item" style="background: var(--c-white); padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                <span class="trust-val" style="display: block; font-size: 1.5rem; font-weight: 800; color: var(--c-primary); margin-bottom: 0.2rem;">7</span>
+                                <span class="trust-lbl" style="font-size: 0.9rem; color: var(--c-text); font-weight: 500;">Lat Gwarancji</span>
+                            </div>
+                            <div class="trust-item" style="background: var(--c-white); padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                <span class="trust-val" style="display: block; font-size: 1.5rem; font-weight: 800; color: var(--c-primary); margin-bottom: 0.2rem;">IP67</span>
+                                <span class="trust-lbl" style="font-size: 0.9rem; color: var(--c-text); font-weight: 500;">Pełna Szczelność</span>
+                            </div>
+                            <div class="trust-item" style="background: var(--c-white); padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                <span class="trust-val" style="display: block; font-size: 1.5rem; font-weight: 800; color: var(--c-primary); margin-bottom: 0.2rem;">100%</span>
+                                <span class="trust-lbl" style="font-size: 0.9rem; color: var(--c-text); font-weight: 500;">Praca pod obciążeniem</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 300px; position: relative; z-index: 2; text-align: center;">
+                        <img src="assets/scharfer3.jpg" alt="Zasilacze Scharfer" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="container section-padding" style="max-width: 1200px; margin: 0 auto;">
+                <div class="b2b-story-section">
+                    <!-- Row 1: Gwarancja -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>7 Lat Pełnej Gwarancji</h2>
+                            <p>Zaufanie to podstawa w branży B2B. Zasilacze Scharfer są projektowane tak, aby przetrwać najcięższe warunki pracy. Dlatego każdy nasz produkt objęty jest bezwarunkową, 7-letnią gwarancją producenta.</p>
+                            <p>Jako dystrybutor lub instalator nie musisz martwić się o usterki – gwarantujemy pełne wsparcie i błyskawiczną wymianę w przypadku awarii. Buduj swoją reputację na niezawodności.</p>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/sch1.webp" alt="7 lat gwarancji Scharfer">
+                        </div>
+                    </div>
+
+                    <!-- Row 2: IP67 -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Ochrona IP67 do Zadań Specjalnych</h2>
+                            <p>Deszcz, śnieg, wilgoć czy pył – to dla nas żaden problem. Obudowa zasilaczy Scharfer posiada certyfikat szczelności IP67. Są całkowicie wodoodporne i pyłoszczelne.</p>
+                            <p>Idealne rozwiązanie do oświetlenia elewacji, podświetlania basenów, banerów reklamowych i architektury ogrodowej. Wyeliminuj ryzyko zwarć w instalacjach outdoorowych.</p>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/sch2.webp" alt="Wodoodporność IP67">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: 100% Obciążenia -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Zaprojektowane do Pracy pod 100% Obciążeniem</h2>
+                            <p>Koniec z przewymiarowaniem zasilaczy! W przeciwieństwie do tańszych zamienników, technologia Scharfer pozwala na stałą pracę pod 100% zadeklarowanym obciążeniem.</p>
+                            <p>Jeśli kupujesz model 150W, otrzymujesz pełne 150W czystej, stabilnej mocy. Oznacza to mniejsze koszty instalacji (możesz użyć mniejszego zasilacza) oraz brak problemów z przegrzewaniem.</p>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/sch4.webp" alt="100% obciążenia">
+                        </div>
+                    </div>
+                    
+                    <!-- Row 4: Zgodność i Bezpieczeństwo -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Zgodność z Normami PN-EN, CE i RoHS</h2>
+                            <p>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejskie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym <strong>PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547</strong>.</p>
+                            <p>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru, przebicia prądu i niestabilnego napięcia. Sprzedawaj z czystym sumieniem certyfikowany sprzęt najwyższej klasy.</p>
+                        </div>
+                        <div class="b2b-story-img" style="display: flex; align-items: center; justify-content: center; padding: 2rem;">
+                            <img src="assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style="width: auto; max-width: 100%; max-height: 180px; object-fit: contain; mix-blend-mode: multiply; box-shadow: none; border-radius: 0;">
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Zaawansowane Zabezpieczenia -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Zabezpieczenia OVP, SCP, OTP, OLP</h2>
+                            <p>Każdy profesjonalny zasilacz instalacyjny Scharfer wyposażony jest w aktywny, wielopoziomowy system ochrony elektroniki, zapobiegający uszkodzeniom w przypadku awarii sieci elektrycznej.</p>
+                            <ul style="list-style-type: none; padding: 0; margin-top: 1rem;">
+                                <li style="margin-bottom: 0.5rem;"><strong>OVP (Over Voltage Protection)</strong> – automatyczne odcięcie przy skokach napięcia.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>SCP (Short Circuit Protection)</strong> – błyskawiczne zabezpieczenie przeciwzwarciowe.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>OTP (Over Temperature Protection)</strong> – ochrona termiczna przed przegrzaniem.</li>
+                                <li><strong>OLP (Over Load Protection)</strong> – zabezpieczenie przeciążeniowe przy zbyt wysokim poborze prądu.</li>
+                            </ul>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/40012.png" alt="Zasilacz 12V 400W Scharfer">
+                        </div>
+                    </div>
+
+                    <!-- Row 6: Konstrukcja Termiczna -->
+                    <div class="b2b-story-row">
+                        <div class="b2b-story-text">
+                            <h2>Aluminium i Żywica Epoksydowa</h2>
+                            <p>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Zasilacze Scharfer zamknięte są w masywnej, aluminiowej obudowie, która pełni rolę radiatora.</p>
+                            <p>Wnętrze urządzenia jest w 100% zalane specjalistyczną żywicą przewodzącą ciepło. Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy nawet przy maksymalnym obciążeniu. Każda jednostka przechodzi również rygorystyczne testy <strong>Burn-in</strong> przed opuszczeniem fabryki.</p>
+                        </div>
+                        <div class="b2b-story-img">
+                            <img src="assets/sch3.webp" alt="Aluminiowa obudowa i odprowadzanie ciepła">
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- OFERTA TAB (Katalog Zasilaczy LED) -->
+        <section id="oferta-tab" class="view-section">
+            <div class="oferta-hero" style="background: linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%); padding: 6rem 2rem; border-bottom: 1px solid var(--c-border); position: relative; overflow: hidden;">
+                <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 4rem; flex-wrap: wrap; flex-direction: row-reverse;">
+                    <div style="flex: 1; min-width: 300px; position: relative; z-index: 2;">
+                        <h1 style="font-size: 3rem; color: var(--c-heading); margin-bottom: 1rem; line-height: 1.2;" data-t="navOferta">Katalog Zasilaczy LED</h1>
+                        <p style="font-size: 1.25rem; color: var(--c-text); line-height: 1.6;">Niezawodne zasilacze napięciowe LED 12V i 24V. Wybierz rozwiązanie idealnie dopasowane do Twojego projektu, gwarantujące stabilność i bezpieczeństwo na lata.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 300px; position: relative; z-index: 2; text-align: center;">
+                        <img src="assets/30024.png" alt="Zasilacze LED" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-header" style="margin-top: 2rem;">
+                <div class="catalog-filters">
+                    <input type="text" class="search-input" id="catalog-search" placeholder="Filtruj po indeksie, mocy..." data-t-placeholder="searchPlaceholder">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-filter="all" data-t="allProducts">Wszystkie produkty</button>
+                        <button class="filter-btn" data-filter="12V">Tylko 12V</button>
+                        <button class="filter-btn" data-filter="24V">Tylko 24V</button>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="catalog-wrapper">
+                <div class="voltage-section" id="group-12V">
+                    <h2 class="voltage-heading" data-t="productsTitle12">Zasilacze LED Scharfer 12V</h2>
+                    <div class="products-grid" id="products-12v-container">
+                        <!-- Products rendered here -->
+                    </div>
+                </div>
+
+                <div class="voltage-section" id="group-24V">
+                    <h2 class="voltage-heading" data-t="productsTitle24">Zasilacze LED Scharfer 24V</h2>
+                    <div class="products-grid" id="products-24v-container">
+                        <!-- Products rendered here -->
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- KONTAKT TAB -->
+        <section id="kontakt-tab" class="view-section">
+            <div class="kontakt-hero" style="background: linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%); padding: 6rem 2rem; border-bottom: 1px solid var(--c-border); position: relative; overflow: hidden;">
+                <div class="container" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 4rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; position: relative; z-index: 2;">
+                        <h1 style="font-size: 3rem; color: var(--c-heading); margin-bottom: 1rem; line-height: 1.2;" data-t="contactTitle">Skontaktuj się z nami</h1>
+                        <p style="font-size: 1.25rem; color: var(--c-text); line-height: 1.6;" data-t="contactSubtitle">Chcesz zostać naszym dystrybutorem? Masz pytania techniczne dotyczące zasilaczy LED? Napisz do nas, a nasz zespół ekspertów odpowie niezwłocznie.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 300px; position: relative; z-index: 2; text-align: center;">
+                        <img src="assets/scharfer_b2b_partnership_1783107901246.png" alt="Współpraca B2B" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-details">
+                    <div class="details-card">
+                        <h2 class="details-title" style="margin-bottom: 10px;">Oficjalny Dystrybutor</h2>
+                        <img src="PRESCOT_logo.png" alt="Prescot LED" style="height: 35px; margin-bottom: 20px;">
+                        <div class="contact-line">
+                            <strong>O nas:</strong>
+                            <p style="font-size: 1rem; font-weight: 400; line-height: 1.5;">Jesteśmy autoryzowanym przedstawicielem Scharfer. Oferujemy pełne wsparcie B2B oraz atrakcyjne rabaty hurtowe.</p>
+                        </div>
+                        <div class="contact-line">
+                            <strong>Dane kontaktowe:</strong>
+                            <div style="font-size: 1rem; color: var(--c-heading); font-weight: 500; line-height: 1.6;">
+                                <strong>PRESCOT SP. Z O.O.</strong><br>
+                                ul. Wileńska 1, 11-500 Giżycko<br>
+                                NIP: 8451939947<br>
+                                Tel.: +48 87 777 64 82
+                            </div>
+                        </div>
+                        <div class="contact-line highlight">
+                            <strong>E-mail B2B:</strong>
+                            <a href="mailto:biuro@scharfer.com.pl" class="details-email">biuro@scharfer.com.pl</a>
+                        </div>
+                        <div class="map-container" style="margin-top: 2rem; border-radius: 8px; overflow: hidden; height: 250px; border: 1px solid var(--c-border);">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2334.341857997389!2d21.7583!3d54.0375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTTCsDAyJzE1LjAiTiAyMcKwNDUnMjkuOSJF!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <div class="form-header">
+                        <h3>Napisz do nas</h3>
+                        <p>Wypełnij formularz, aby nawiązać współpracę.</p>
+                    </div>
+                    <form id="contact-form" class="agency-form">
+                        <div class="form-row">
+                            <div class="form-col">
+                                <label for="first-name" data-t="formName">Imię *</label>
+                                <input type="text" id="first-name" required>
+                            </div>
+                            <div class="form-col">
+                                <label for="last-name" data-t="formSurname">Nazwisko *</label>
+                                <input type="text" id="last-name" required>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label for="email" data-t="formEmail">Adres e-mail firmowy *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="subject" data-t="formSubject">Temat (np. Współpraca hurtowa) *</label>
+                            <input type="text" id="subject" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="message" data-t="formMessage">Treść wiadomości *</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="consent" required>
+                            <label for="consent" data-t="formConsent">Akceptuję Politykę Prywatności i wyrażam zgodę na przetwarzanie danych osobowych w celu udzielenia odpowiedzi na zapytanie.</label>
+                        </div>
+                        <button type="submit" class="btn-primary submit large" data-t="formSubmit">Wyślij wiadomość</button>
+                    </form>
+                    <div class="form-msg success" id="form-success-banner" data-t="formSuccess">Twoja wiadomość została wysłana. Skontaktujemy się z Tobą wkrótce!</div>
+                    <div class="form-msg error" id="form-error-banner" data-t="formError">Wystąpił błąd serwera. Spróbuj ponownie lub napisz na info@scharfer.com.pl.</div>
+                </div>
+            </div>
+
+            <!-- FAQ Section for Installers (Contact page) -->
+            <div class="faq-section" style="max-width: 900px; margin: 4rem auto 2rem; padding: 0 1.5rem;">
+                <div class="section-header text-center" style="margin-bottom: 2rem;">
+                    <h2>Najczęściej Zadawane Pytania (FAQ)</h2>
+                </div>
+                <div class="faq-accordion">
+                    <div class="faq-item" style="border-bottom: 1px solid var(--c-border); padding: 1.5rem 0;">
+                        <h4 style="margin: 0 0 0.5rem; color: var(--c-heading);">1. Dlaczego warto wybrać zasilacze Scharfer zamiast tańszych zamienników?</h4>
+                        <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Scharfer gwarantuje pracę pod 100% zadeklarowanego obciążenia. Nie musisz dodawać tradycyjnego "20% zapasu" mocy, co pozwala na montaż mniejszego zasilacza i oszczędność miejsca w profilach. Mniej awarii, mniej wyjazdów serwisowych.</p>
+                    </div>
+                    <div class="faq-item" style="border-bottom: 1px solid var(--c-border); padding: 1.5rem 0;">
+                        <h4 style="margin: 0 0 0.5rem; color: var(--c-heading);">2. Czy modele hermetyczne (IP67) rzeczywiście sprawdzają się na zewnątrz?</h4>
+                        <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Tak. Ich wnętrze jest w 100% zalane specjalistyczną żywicą epoksydową, a aluminiowa obudowa służy za masywny radiator. Nie grozi im wilgoć, śnieg ani kondensacja pary wodnej typowa dla banerów i elewacji.</p>
+                    </div>
+                    <div class="faq-item" style="border-bottom: 1px solid var(--c-border); padding: 1.5rem 0;">
+                        <h4 style="margin: 0 0 0.5rem; color: var(--c-heading);">3. Jak realizowana jest 7-letnia gwarancja?</h4>
+                        <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Zasady B2B są proste. W przypadku udokumentowanej usterki zasilacza (co przy testach burn-in zdarza się marginalnie), błyskawicznie wymieniamy sprzęt na nowy. Szanujemy czas instalatora na budowie.</p>
+                    </div>
+                    <div class="faq-item" style="border-bottom: 1px solid var(--c-border); padding: 1.5rem 0;">
+                        <h4 style="margin: 0 0 0.5rem; color: var(--c-heading);">4. Czy zasilacze Scharfer „piszczą” przy podłączeniu pod ściemniacze PWM?</h4>
+                        <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Nie. Używamy wysokiej jakości cewek i transformatorów, które w dodatku usztywnia zalewa epoksydowa. Eliminujemy zjawisko magnetostrykcji (piszczenia) występujące często w tanich zasilaczach modułowych.</p>
+                    </div>
+                    <div class="faq-item" style="padding: 1.5rem 0;">
+                        <h4 style="margin: 0 0 0.5rem; color: var(--c-heading);">5. Kiedy otrzymam towar, jeśli zamówię dzisiaj?</h4>
+                        <p style="margin: 0; color: var(--c-text); font-size: 0.95rem;">Stany magazynowe utrzymujemy w naszym polskim centrum logistycznym (Giżycko). Zamówienia złożone do godziny 12:00 wysyłamy jeszcze tego samego dnia. Dostawa standardowo w 24h robocze.</p>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+        <!-- Footer -->
+        <footer class="footer" style="background: var(--c-bg); border-top: 1px solid var(--c-border); padding: 4rem 2rem 2rem; margin-top: 4rem;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem; border-bottom: 1px solid var(--c-border); padding-bottom: 2rem; margin-bottom: 2rem;">
+                <div style="flex: 1; min-width: 250px;">
+                    <img src="logo_scharfer.png" alt="Scharfer Logo" style="height: 40px;" class="footer-logo">
+                    <p style="color: var(--c-text); margin-top: 1rem; max-width: 300px;" data-t="footerDesc">Wyłączny dystrybutor profesjonalnych zasilaczy LED Scharfer. Niezawodność i moc dla wymagających projektów B2B.</p>
+                </div>
+                <div style="flex: 1; min-width: 250px; text-align: right;" class="footer-contact-info">
+                    <h4 style="color: var(--c-heading); margin-bottom: 1rem; font-size: 1.2rem;" data-t="footerContact">Kontakt</h4>
+                    <p style="color: var(--c-text); margin-bottom: 0.5rem;">PRESCOT Sp. z o.o.</p>
+                    <p style="color: var(--c-text); margin-bottom: 0.5rem;">NIP: 8451939947</p>
+                    <p style="color: var(--c-text); margin-bottom: 0.5rem;">Email: kontakt@prescot.pl</p>
+                    <a href="https://prescot.pl" target="_blank" style="display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem; border: 1px solid var(--c-primary); color: var(--c-primary); border-radius: 4px; text-decoration: none; font-weight: 600; transition: all 0.3s;" data-t="footerVisit">Poznaj PRESCOT LED</a>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; color: var(--c-text); font-size: 0.9rem;">
+                <p>&copy; 2026 PRESCOT Sp. z o.o. <span data-t="footerRights">Wszelkie prawa zastrzeżone.</span></p>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="#" style="color: var(--c-text); text-decoration: none;" data-t="footerPrivacy">Polityka RODO</a>
+                    <a href="#" style="color: var(--c-text); text-decoration: none;" data-t="footerTerms">Regulamin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookie-banner">
+        <div class="cookie-inner">
+            <p><span data-t="cookieText">Ta strona korzysta z plików cookies (ciasteczek), aby zapewnić Ci najlepsze doświadczenia z przeglądania.</span> <a href="#" data-t="cookiePrivacy">Dowiedz się więcej w Polityce prywatności</a></p>
+            <button class="btn-primary small" id="cookie-accept-btn" data-t="cookieAccept">Akceptuję</button>
+        </div>
+    </div>
+
+    <!-- Scroll To Top -->
+    
+
+    <!-- Scripts -->
+    <script src="translations.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
