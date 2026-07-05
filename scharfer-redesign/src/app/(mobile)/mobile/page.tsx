@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { productsData, Product } from '@/data/scharferData';
 import InteractiveDiagram from '@/components/InteractiveDiagram';
@@ -11,9 +11,19 @@ export default function MobileAppPage() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [langOpen, setLangOpen] = useState(false);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '') as Tab;
+      if (['home', 'oferta', 'info', 'kontakt'].includes(hash)) {
+        setActiveTab(hash);
+      }
+    }
+  }, []);
+
   const handleTabChange = (tab: Tab) => {
     setActiveTab(tab);
     if (typeof window !== 'undefined') {
+      window.location.hash = tab;
       window.scrollTo(0, 0);
     }
   };
@@ -171,7 +181,7 @@ export default function MobileAppPage() {
         {activeTab === 'home' && (
           <section className="view-section active">
             {/* Hero with Static Background (Optimized for Mobile) */}
-            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '3rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '360px', background: '#000', color: 'white' }}>
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '1.25rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '260px', background: '#000', color: 'white' }}>
               <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
                 <img src="assets/scharfer_city_night.png" alt="Scharfer oświetlenie miejskie" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.35 }} />
                 <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
@@ -502,7 +512,7 @@ export default function MobileAppPage() {
         {activeTab === 'info' && (
           <section className="view-section active">
             {/* Unified Page Hero */}
-            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '3.5rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '260px', background: '#000', color: 'white' }}>
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '1.25rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '160px', background: '#000', color: 'white' }}>
               <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
                 <img src="assets/scharfer_estate_night.png" alt="Scharfer oświetlenie osiedla" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }} />
                 <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
@@ -672,7 +682,7 @@ export default function MobileAppPage() {
         {activeTab === 'kontakt' && (
           <section className="view-section active">
             {/* Unified Page Hero */}
-            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '3.5rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '260px', background: '#000', color: 'white' }}>
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '1.25rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '160px', background: '#000', color: 'white' }}>
               <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
                 <img src="assets/kontakt_hero.png" alt="Biuro dystrybutora Scharfer" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }} />
                 <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />

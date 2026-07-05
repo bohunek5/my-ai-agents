@@ -38,8 +38,8 @@ export default function InteractiveDiagram() {
       y1: 90,
       x2: 510,
       y2: 195,
-      mobileLeft: '14%',
-      mobileTop: '32%'
+      mobileLeft: '10%',
+      mobileTop: '50%'
     },
     {
       title: '100% Mocy Znamionowej',
@@ -48,8 +48,8 @@ export default function InteractiveDiagram() {
       y1: 260,
       x2: 460,
       y2: 250,
-      mobileLeft: '22%',
-      mobileTop: '46%'
+      mobileLeft: '24%',
+      mobileTop: '50%'
     },
     {
       title: 'Cicha Praca (Brak piszczenia)',
@@ -58,8 +58,8 @@ export default function InteractiveDiagram() {
       y1: 430,
       x2: 540,
       y2: 295,
-      mobileLeft: '34%',
-      mobileTop: '52%'
+      mobileLeft: '38%',
+      mobileTop: '50%'
     },
     // Right side features (3, 4, 5, 6)
     {
@@ -69,8 +69,8 @@ export default function InteractiveDiagram() {
       y1: 65,
       x2: 650,
       y2: 265,
-      mobileLeft: '48%',
-      mobileTop: '48%'
+      mobileLeft: '52%',
+      mobileTop: '50%'
     },
     {
       title: 'Zabezpieczenia SCP, OVP, OTP',
@@ -79,8 +79,8 @@ export default function InteractiveDiagram() {
       y1: 195,
       x2: 730,
       y2: 305,
-      mobileLeft: '62%',
-      mobileTop: '54%'
+      mobileLeft: '66%',
+      mobileTop: '50%'
     },
     {
       title: 'Aktywny Układ PFC (PF > 0.98)',
@@ -89,8 +89,8 @@ export default function InteractiveDiagram() {
       y1: 325,
       x2: 790,
       y2: 335,
-      mobileLeft: '78%',
-      mobileTop: '62%'
+      mobileLeft: '80%',
+      mobileTop: '50%'
     },
     {
       title: '7 Lat Pełnej Gwarancji',
@@ -99,8 +99,8 @@ export default function InteractiveDiagram() {
       y1: 455,
       x2: 730,
       y2: 330,
-      mobileLeft: '88%',
-      mobileTop: '64%'
+      mobileLeft: '92%',
+      mobileTop: '50%'
     }
   ];
 
@@ -116,72 +116,84 @@ export default function InteractiveDiagram() {
   if (isMobile) {
     const currentIdx = activeFeature === null ? 0 : activeFeature;
     return (
-      <div style={{ width: '100%', padding: '10px', boxSizing: 'border-box' }}>
+      <div style={{ width: '100%', padding: '10px 5px', boxSizing: 'border-box' }}>
         {/* Hotspots container over zasilacz image */}
-        <div style={{ position: 'relative', width: '100%', height: '140px', background: '#fafafa', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #eee', overflow: 'hidden' }}>
+        <div style={{ 
+          position: 'relative', 
+          width: '100%', 
+          background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)', 
+          borderRadius: '12px', 
+          padding: '24px 12px', 
+          boxSizing: 'border-box', 
+          border: '1px solid #334155', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center' 
+        }}>
           
-          <img 
-            src="assets/40012.png" 
-            alt="Zasilacz Scharfer" 
-            style={{ 
-              width: '90%', 
-              height: 'auto', 
-              maxHeight: '110px', 
-              objectFit: 'contain',
-              filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.06))',
-              pointerEvents: 'none'
-            }} 
-          />
+          <div style={{ position: 'relative', width: '100%', display: 'block' }}>
+            <img 
+              src="assets/40012.png" 
+              alt="Zasilacz Scharfer" 
+              style={{ 
+                width: '100%', 
+                height: 'auto', 
+                display: 'block',
+                filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.55))',
+                pointerEvents: 'none'
+              }} 
+            />
 
-          {/* Render pulsing hotspots */}
-          {features.map((f, idx) => {
-            const isActive = currentIdx === idx;
-            return (
-              <div 
-                key={idx}
-                onClick={() => setActiveFeature(idx)}
-                style={{
-                  position: 'absolute',
-                  left: f.mobileLeft,
-                  top: f.mobileTop,
-                  width: '24px',
-                  height: '24px',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 10,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
+            {/* Render pulsing hotspots */}
+            {features.map((f, idx) => {
+              const isActive = currentIdx === idx;
+              return (
                 <div 
+                  key={idx}
+                  onClick={() => setActiveFeature(idx)}
                   style={{
-                    width: isActive ? '12px' : '10px',
-                    height: isActive ? '12px' : '10px',
-                    borderRadius: '50%',
-                    background: isActive ? 'var(--c-red)' : '#4b5563',
-                    border: '2px solid white',
-                    boxShadow: isActive ? '0 0 10px rgba(230,0,0,0.8)' : '0 0 5px rgba(0,0,0,0.3)',
-                    transition: 'all 0.25s ease'
+                    position: 'absolute',
+                    left: f.mobileLeft,
+                    top: f.mobileTop,
+                    width: '32px',
+                    height: '32px',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 10,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
-                />
-                {isActive && (
+                >
                   <div 
-                    className="ping-animation"
                     style={{
-                      position: 'absolute',
-                      width: '100%',
-                      height: '100%',
+                      width: isActive ? '12px' : '9px',
+                      height: isActive ? '12px' : '9px',
                       borderRadius: '50%',
-                      background: 'var(--c-red)',
-                      opacity: 0.4,
-                      zIndex: -1
+                      background: isActive ? 'var(--c-red)' : 'white',
+                      border: isActive ? '2.5px solid white' : '2px solid #4b5563',
+                      boxShadow: isActive ? '0 0 10px rgba(230,0,0,0.9)' : '0 0 5px rgba(0,0,0,0.3)',
+                      transition: 'all 0.25s ease'
                     }}
                   />
-                )}
-              </div>
-            );
-          })}
+                  {isActive && (
+                    <div 
+                      className="ping-animation"
+                      style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '50%',
+                        background: 'var(--c-red)',
+                        opacity: 0.55,
+                        zIndex: -1
+                      }}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Feature descriptive card */}
