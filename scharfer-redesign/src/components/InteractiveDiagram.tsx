@@ -15,11 +15,11 @@ interface Feature {
 export default function InteractiveDiagram() {
   const [activeFeature, setActiveFeature] = useState<number | null>(null);
 
-  // Layout bounds: width = 1400px, height = 580px
+  // Layout bounds: width = 1400px, height = 540px
   // Left column width = 290px (bounds: 0px to 290px). x1 anchor at 300px.
   // Right column width = 290px (bounds: 1110px to 1400px). x1 anchor at 1100px.
   // Center is at x = 700px.
-  // Zasilacz image width = 760px (centered around 700px, top 290px).
+  // Zasilacz image width = 760px (centered around 700px, top 280px).
   // Hotspots are precisely mapped along the slanted zasilacz body from top-left (430, 210) to bottom-right (820, 360).
   const features: Feature[] = [
     // Left side features (0, 1, 2)
@@ -101,35 +101,16 @@ export default function InteractiveDiagram() {
           {features.map((f, idx) => {
             const isActive = activeFeature === idx;
             return (
-              <g key={idx}>
-                {/* Delicate dashed connecting line visible by default */}
-                <line 
-                  x1={f.x1} 
-                  y1={f.y1} 
-                  x2={f.x2} 
-                  y2={f.y2} 
-                  stroke={isActive ? 'var(--c-red)' : '#d1d5db'} 
-                  strokeWidth={isActive ? '2.5' : '1'} 
-                  strokeDasharray={isActive ? 'none' : '3,4'}
-                  style={{ transition: 'all 0.3s ease' }}
-                />
-                {/* Animated drawing overlay line */}
-                {isActive && (
-                  <line 
-                    x1={f.x1} 
-                    y1={f.y1} 
-                    x2={f.x2} 
-                    y2={f.y2} 
-                    stroke="var(--c-red)" 
-                    strokeWidth="3"
-                    strokeDasharray="600"
-                    strokeDashoffset="600"
-                    style={{
-                      animation: 'drawSvgLine 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards'
-                    }}
-                  />
-                )}
-              </g>
+              <line 
+                key={idx}
+                x1={f.x1} 
+                y1={f.y1} 
+                x2={f.x2} 
+                y2={f.y2} 
+                stroke={isActive ? 'var(--c-red)' : '#e5e7eb'} 
+                strokeWidth={isActive ? '2.5' : '1.5'} 
+                style={{ transition: 'all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
+              />
             );
           })}
         </svg>
@@ -208,7 +189,7 @@ export default function InteractiveDiagram() {
           );
         })}
 
-        {/* Left Column Features (Smaller compact cards with tighter padding and fonts) */}
+        {/* Left Column Features (Slide left on hover) */}
         <div style={{ position: 'absolute', left: 0, top: 10, width: '290px', height: '510px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 4 }}>
           {features.slice(0, 3).map((f, idx) => {
             const isActive = activeFeature === idx;
@@ -226,7 +207,7 @@ export default function InteractiveDiagram() {
                   cursor: 'pointer',
                   textAlign: 'right',
                   transition: 'all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                  transform: isActive ? 'translateY(-3px)' : 'none',
+                  transform: isActive ? 'translateX(-8px)' : 'none',
                   opacity: activeFeature === null || isActive ? 1 : 0.45
                 }}
               >
@@ -237,7 +218,7 @@ export default function InteractiveDiagram() {
           })}
         </div>
 
-        {/* Right Column Features (Smaller compact cards with tighter padding and fonts) */}
+        {/* Right Column Features (Slide right on hover) */}
         <div style={{ position: 'absolute', right: 0, top: 10, width: '290px', height: '510px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 4 }}>
           {features.slice(3).map((f, idx) => {
             const realIdx = idx + 3;
@@ -256,7 +237,7 @@ export default function InteractiveDiagram() {
                   cursor: 'pointer',
                   textAlign: 'left',
                   transition: 'all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                  transform: isActive ? 'translateY(-3px)' : 'none',
+                  transform: isActive ? 'translateX(8px)' : 'none',
                   opacity: activeFeature === null || isActive ? 1 : 0.45
                 }}
               >
@@ -271,14 +252,6 @@ export default function InteractiveDiagram() {
 
       {/* CSS Keyframe definition in inline style tag */}
       <style jsx global>{`
-        @keyframes drawSvgLine {
-          from {
-            stroke-dashoffset: 600;
-          }
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
         .ping-animation {
           animation: pulsePing 2s infinite ease-out;
         }

@@ -874,6 +874,10 @@ img {
     opacity: 1;
 }
 
+.product-card:hover .card-zasilacz-img {
+    transform: scale(1.06);
+}
+
 .product-badges {
     position: absolute;
     top: 1.5rem;

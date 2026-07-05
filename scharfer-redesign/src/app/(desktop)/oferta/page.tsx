@@ -101,38 +101,45 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
   const powerText = powerMatch ? powerMatch[0] : '';
 
   return (
-    <div className="product-card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div className="product-badges">
-        {powerText && <span className="badge" style={{ backgroundColor: 'var(--c-red)', color: 'white', border: '1px solid var(--c-red)', fontWeight: 700 }}>{powerText}</span>}
-        <span className="badge badge-ip67">IP67</span>
-        <span className="badge" style={{ borderColor: 'var(--c-red)', color: 'var(--c-red)' }}>7 LAT GWARANCJI</span>
-      </div>
-      <div className="product-image" onClick={() => onOpenModal(product)} style={{ cursor: 'zoom-in', textAlign: 'center', padding: '1rem 0' }} title="Zobacz szczegóły techniczne">
-        <img src={product.img} alt={product.name} style={{ maxWidth: '100%', maxHeight: '160px', objectFit: 'contain' }} />
-      </div>
-      <h3 className="product-name" style={{ fontSize: '1.2rem', margin: '0.5rem 0 1rem 0', color: 'var(--c-heading)', fontWeight: 700 }}>{product.name}</h3>
-
-      <div className="product-specs" style={{ fontSize: '0.85rem', marginBottom: '1.5rem' }}>
-        <div className="spec-line" style={{ display: 'flex', justifyContent: 'space-between', padding: '0.3rem 0', borderBottom: '1px solid #f0f0f0' }}>
-          <span className="spec-label" style={{ color: '#888' }}>Napięcie</span>
-          <span className="spec-value" style={{ fontWeight: 600 }}>{product.specs.voltage} DC</span>
-        </div>
-        <div className="spec-line" style={{ display: 'flex', justifyContent: 'space-between', padding: '0.3rem 0', borderBottom: '1px solid #f0f0f0' }}>
-          <span className="spec-label" style={{ color: '#888' }}>Prąd wyjściowy</span>
-          <span className="spec-value" style={{ fontWeight: 600 }}>{product.specs.current}</span>
-        </div>
-        <div className="spec-line" style={{ display: 'flex', justifyContent: 'space-between', padding: '0.3rem 0', borderBottom: '1px solid #f0f0f0' }}>
-          <span className="spec-label" style={{ color: '#888' }}>Wymiary</span>
-          <span className="spec-value" style={{ fontWeight: 600 }}>{product.specs.dim}</span>
-        </div>
+    <div className="product-card" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '1.2rem', position: 'relative' }}>
+      {/* Sleek horizontal badge row at the top */}
+      <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', marginBottom: '1rem', zIndex: 5 }}>
+        {powerText && <span style={{ backgroundColor: 'var(--c-red)', color: 'white', border: '1px solid var(--c-red)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>{powerText}</span>}
+        <span style={{ backgroundColor: '#1e293b', color: 'white', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>IP67</span>
+        <span style={{ backgroundColor: 'white', border: '1px solid var(--c-red)', color: 'var(--c-red)', padding: '0.2rem 0.5rem', fontSize: '0.7rem', fontWeight: 800, borderRadius: '4px' }}>7 LAT GWARANCJI</span>
       </div>
 
-      <button onClick={() => onOpenModal(product)} className="btn-secondary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.8rem', fontSize: '0.85rem', borderColor: 'var(--c-red)', color: 'var(--c-red) !important' }}>
+      {/* Spacious centered image container with hover transition */}
+      <div className="product-image" onClick={() => onOpenModal(product)} style={{ cursor: 'zoom-in', textAlign: 'center', padding: '0.5rem 0 1.2rem 0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '140px' }} title="Zobacz szczegóły techniczne">
+        <img src={product.img} alt={product.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', transition: 'transform 0.3s ease' }} className="card-zasilacz-img" />
+      </div>
+
+      <h3 className="product-name" style={{ fontSize: '1.15rem', margin: '0 0 1rem 0', color: 'var(--c-heading)', fontWeight: 800, textAlign: 'center' }}>{product.name}</h3>
+
+      {/* Modern technology spec card ("ladnie w bloczku") */}
+      <div style={{ background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem' }}>
+          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Napięcie</span>
+          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{product.specs.voltage} DC</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem' }}>
+          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Prąd wyjściowy</span>
+          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{product.specs.current}</span>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Wymiary</span>
+          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{product.specs.dim}</span>
+        </div>
+      </div>
+
+      {/* Button with clean transitions (removed overriding inline color) */}
+      <button onClick={() => onOpenModal(product)} className="btn-secondary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.8rem', fontSize: '0.85rem', fontWeight: 700 }}>
         Szczegóły techniczne
       </button>
     </div>
   );
 }
+
 
 function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
   const [isZoomed, setIsZoomed] = useState(false);
