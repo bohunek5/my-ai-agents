@@ -15,75 +15,69 @@ interface Feature {
 export default function InteractiveDiagram() {
   const [activeFeature, setActiveFeature] = useState<number | null>(null);
 
-  // Layout bounds: width = 1400px, height = 680px
+  // Layout bounds: width = 1400px, height = 540px (restored to original height)
   // Left column width = 290px (bounds: 0px to 290px). x1 anchor at 300px.
   // Right column width = 290px (bounds: 1110px to 1400px). x1 anchor at 1100px.
   // Center is at x = 700px.
-  // Zasilacz image width = 760px (centered around 700px, top 340px).
-  // Hotspots are precisely aligned with the user's red open circles on the zasilacz body:
-  // Card 0 (Aluminiowa Obudowa) -> Top-Left edge of casing (510, 255)
-  // Card 1 (100% Mocy Znamionowej) -> Bottom-Left corner of casing (460, 330)
-  // Card 2 (Cicha Praca) -> Bottom-Middle flange (540, 375)
-  // Card 3 (Klasa Szczelności IP67) -> Middle-Top flat surface IP67 logo (650, 325)
-  // Card 4 (Zabezpieczenia SCP, OVP, OTP) -> Top-Right flat surface 12V 400W print (730, 365)
-  // Card 5 (Aktywny Układ PFC) -> Bottom-Right corner of casing (790, 395)
-  // Card 6 (7 Lat Pełnej Gwarancji) -> No arrow, no hotspot (static block).
+  // Zasilacz image width = 760px (centered around 700px, top 280px).
+  // Hotspots are aligned with the user's red open circles on the zasilacz body,
+  // with Spot 1 and Spot 2 shifted slightly higher.
   const features: Feature[] = [
     // Left side features (0, 1, 2)
     {
       title: 'Aluminiowa Obudowa',
       desc: 'Masywny odlew aluminiowy działający jako radiator. Całkowicie wyeliminowaliśmy wentylatory, gwarantując cichą pracę.',
       x1: 300,
-      y1: 110,
+      y1: 90,
       x2: 510,
-      y2: 255
+      y2: 195
     },
     {
       title: '100% Mocy Znamionowej',
       desc: 'Zaprojektowany do ciągłej pracy przy pełnym obciążeniu. Kupując model 150W, otrzymujesz realne 150W bez ugięć napięcia.',
       x1: 300,
-      y1: 300,
+      y1: 260,
       x2: 460,
-      y2: 330
+      y2: 250 // Shifted slightly higher
     },
     {
       title: 'Cicha Praca (Brak piszczenia)',
       desc: 'Wnętrze w 100% zalane żywicą epoksydową tłumi drgania cewek i filtrów. Zachowuje bezwzględną ciszę przy ściemnianiu.',
       x1: 300,
-      y1: 490,
+      y1: 430,
       x2: 540,
-      y2: 375
+      y2: 295 // Shifted slightly higher
     },
     // Right side features (3, 4, 5, 6)
     {
       title: 'Klasa Szczelności IP67',
       desc: 'Hermetycznie zalana konstrukcja zapobiega wnikaniu wody i kurzu. Może bezpiecznie pracować w trudnych warunkach zewnętrznych.',
       x1: 1100,
-      y1: 90,
+      y1: 65,
       x2: 650,
-      y2: 325
+      y2: 265
     },
     {
       title: 'Zabezpieczenia SCP, OVP, OTP',
       desc: 'Aktywna ochrona podłączonego oświetlenia przed skokami napięcia, zwarciem sieci oraz przegrzaniem z auto-restartem.',
       x1: 1100,
-      y1: 240,
+      y1: 195,
       x2: 730,
-      y2: 365
+      y2: 305
     },
     {
       title: 'Aktywny Układ PFC (PF > 0.98)',
       desc: 'Kompensacja współczynnika mocy minimalizuje straty energetyczne i skutecznie eliminuje zakłócenia w sieci elektrycznej.',
       x1: 1100,
-      y1: 390,
+      y1: 325,
       x2: 790,
-      y2: 395
+      y2: 335
     },
     {
       title: '7 Lat Pełnej Gwarancji',
       desc: 'Pełna ochrona dystrybutora. W przypadku usterki gwarantujemy natychmiastową wymianę na nowy produkt bezpośrednio z magazynu.',
       x1: 1100,
-      y1: 540,
+      y1: 455,
       x2: 730,
       y2: 330 // Not rendered
     }
@@ -91,7 +85,7 @@ export default function InteractiveDiagram() {
 
   return (
     <div style={{ width: '100%', overflowX: 'auto', paddingBottom: '10px', WebkitOverflowScrolling: 'touch' }}>
-      <div style={{ position: 'relative', width: '1400px', height: '680px', margin: '0 auto', overflow: 'visible' }}>
+      <div style={{ position: 'relative', width: '1400px', height: '540px', margin: '0 auto', overflow: 'visible' }}>
         
         {/* Background SVG for lines - Rendered ON TOP of zasilacz image (zIndex: 4) */}
         <svg 
@@ -123,12 +117,12 @@ export default function InteractiveDiagram() {
           })}
         </svg>
 
-        {/* Center Zasilacz Image - HUGE (760px width, centered at 340px vertically) */}
+        {/* Center Zasilacz Image - HUGE (760px width, centered at 280px vertically) */}
         <div 
           style={{ 
             position: 'absolute', 
             left: '700px', 
-            top: '340px', 
+            top: '280px', 
             transform: 'translate(-50%, -50%)', 
             zIndex: 3, 
             width: '760px', 
@@ -199,7 +193,7 @@ export default function InteractiveDiagram() {
         })}
 
         {/* Left Column Features (Slide left on hover) */}
-        <div style={{ position: 'absolute', left: 0, top: 10, width: '290px', height: '650px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 5 }}>
+        <div style={{ position: 'absolute', left: 0, top: 10, width: '290px', height: '510px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 5 }}>
           {features.slice(0, 3).map((f, idx) => {
             const isActive = activeFeature === idx;
             return (
@@ -228,7 +222,7 @@ export default function InteractiveDiagram() {
         </div>
 
         {/* Right Column Features (Slide right on hover) */}
-        <div style={{ position: 'absolute', right: 0, top: 10, width: '290px', height: '650px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 5 }}>
+        <div style={{ position: 'absolute', right: 0, top: 10, width: '290px', height: '510px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 5 }}>
           {features.slice(3).map((f, idx) => {
             const realIdx = idx + 3;
             const isActive = activeFeature === realIdx;

@@ -169,6 +169,117 @@ export default function PoznajPage() {
           </div>
         </div>
 
+        {/* Applications Section (4 4 4 Uklad) */}
+        <div className="applications-section" style={{ margin: '6rem auto 0 auto', padding: '0', borderTop: '1px solid var(--c-border)', paddingTop: '4rem' }}>
+          <div className="section-header text-center" style={{ marginBottom: '3rem', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>Gdzie sprawdzają się Zasilacze Scharfer?</h2>
+            <p style={{ fontSize: '1.1rem', color: 'var(--c-text)', maxWidth: '700px', margin: '0.5rem auto 0' }}>
+              Niezawodność w każdej inwestycji. Zobacz, gdzie nasi dystrybutorzy z powodzeniem stosują technologię Scharfer.
+            </p>
+          </div>
+          
+          <div className="app-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
+            {/* App 1: Domy */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_domy_1783188239361.png" alt="Zasilacz LED zewnętrzny do domu" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Domy i Rezydencje</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Zasilacz LED zewnętrzny do domu. Idealny do zasilania taśm LED na elewacji, podbitek i schodów. Stabilna praca na zewnątrz.</p>
+              </div>
+            </div>
+            {/* App 2: Bloki mieszkalne */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_bloki_1783188247720.png" alt="Wodoodporny zasilacz do taśm LED" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Bloki mieszkalne</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Wodoodporny zasilacz do taśm LED i opraw. Niezawodne zasilanie oświetlenia w częściach wspólnych, na elewacjach i klatkach.</p>
+              </div>
+            </div>
+            {/* App 3: Hale */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_hale_v2_1783188623293.png" alt="Zasilacze przemysłowe LED 24V" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Hale i Magazyny</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Zasilacze przemysłowe LED 24V. Zasilanie długich linii świetlnych i mocnych opraw w magazynach oraz na halach produkcyjnych.</p>
+              </div>
+            </div>
+            {/* App 4: Obiekty sportowe */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_sport_v2_1783188631467.png" alt="Zasilacze LED 12V i 24V dużej mocy" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Obiekty sportowe</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Zasilacze LED 12V i 24V dużej mocy. Profesjonalne zasilanie naświetlaczy, projektorów i taśm led na orlikach i kortach.</p>
+              </div>
+            </div>
+            
+            {/* App 5: Ogrody i parki */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_ogrod_v2_1783188615253.png" alt="Zasilacz LED hermetyczny IP67" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Ogrody & Parki</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Zasilacz LED hermetyczny IP67. Gwarantowane bezpieczne zasilanie taśm ledowych w gruncie, w pobliżu wody i zraszaczy.</p>
+              </div>
+            </div>
+            {/* App 6: Hotele */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_hotel_1783188309904.png" alt="Zasilacze do taśm LED ze ściemniaczem" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Hotele & Gastro</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Zasilacze do taśm LED współpracujące ze ściemniaczem. Zasilanie oświetlenia stref relaksu w hotelach bez pisków.</p>
+              </div>
+            </div>
+            {/* App 7: Kina */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_kina_v2_1783188608035.png" alt="Zasilacze LED 12V do pasków" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Kina & Kultura</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Zasilacze LED 12V do pasków led. Niezawodne i bezpieczne zasilanie przygaszonego oświetlenia ciągów komunikacyjnych.</p>
+              </div>
+            </div>
+            {/* App 8: Szkoły */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_szkoly_1783188326372.png" alt="Zasilacze do opraw LED" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Szkoły & Edukacja</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Wydajne zasilacze do opraw LED. Bezpieczne zasilanie oświetlenia klas szkolnych wyposażone w ochronę SCP.</p>
+              </div>
+            </div>
+            
+            {/* App 9: Parkingi */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_parkingi_v2_1783188598862.png" alt="Zasilacze LED zewnętrzne" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Parkingi Podziemne</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Zasilacze LED zewnętrzne 24V. Zapewniają ciągłe zasilanie liniowych systemów oświetleniowych na zadaszonych parkingach.</p>
+              </div>
+            </div>
+            {/* App 10: Garaże */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_garaze_1783188344306.png" alt="Mocne zasilacze do taśm LED 24V" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Garaże & Warsztaty</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Mocne zasilacze do taśm LED 24V. Idealne zasilanie mocnych systemów oświetlenia liniowego do pracy warsztatowej.</p>
+              </div>
+            </div>
+            {/* App 11: Wiaty i Stolarka */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/wiata_jezioro.png" alt="Oświetlenie wiat i drewnianej stolarki" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Wiaty & Stolarka</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Zasilacze hermetyczne Scharfer idealnie sprawdzają się w konstrukcjach drewnianych ze względu na ochronę termiczną.</p>
+              </div>
+            </div>
+            {/* App 12: Mosty */}
+            <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
+              <img src="/assets/app_mosty_1783188351515.png" alt="Zasilacz LED wodoszczelny" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+              <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
+                <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>Infrastruktura & Mosty</h3>
+                <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>Zasilacz LED wodoszczelny i odporny na wibracje. Przemysłowe zasilanie oświetlenia konstrukcji stalowych i mostów.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* FAQ Section */}
         <div className="faq-section section-padding bg-light" style={{ marginTop: '6rem', background: '#fafafa', borderRadius: '12px', padding: '3rem 2rem', border: '1px solid var(--c-border)' }}>
           <div className="text-center" style={{ textAlign: 'center', marginBottom: '3rem' }}>
