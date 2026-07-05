@@ -26,7 +26,7 @@ export default function OfertaPage() {
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
-          <img src="/assets/scharfer_city_night.png" alt="Zasilacze oświetlenia miejskiego" />
+          <img src="/assets/zasilacze_hero.png" alt="Zasilacze oświetlenia miejskiego" />
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">
@@ -135,14 +135,30 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
 }
 
 function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
+  const [isZoomed, setIsZoomed] = useState(false);
+
   return (
     <div className="product-modal active" id="product-modal" onClick={(e) => { if ((e.target as HTMLElement).id === 'product-modal') onClose(); }} style={{ display: 'flex', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, alignItems: 'center', justifyContent: 'center' }}>
       <div className="modal-content" style={{ maxWidth: '900px', maxHeight: '92vh', overflowY: 'auto', background: 'white', borderRadius: '16px', padding: '3rem', position: 'relative', display: 'flex', gap: '3rem', flexWrap: 'wrap', width: '92%', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', border: '1px solid #eee' }}>
         <span className="modal-close" onClick={onClose} style={{ position: 'absolute', top: '20px', right: '25px', fontSize: '2.5rem', cursor: 'pointer', color: '#aaa', transition: 'color 0.2s', fontWeight: 300, lineHeight: 1 }} onMouseEnter={(e) => e.currentTarget.style.color = '#111'} onMouseLeave={(e) => e.currentTarget.style.color = '#aaa'}>&times;</span>
         
-        <div className="modal-image-col" style={{ flex: 1, minWidth: '280px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fafafa', borderRadius: '12px', padding: '2rem' }}>
-          <img src={product.img} alt={product.name} style={{ maxWidth: '100%', maxHeight: '280px', objectFit: 'contain' }} />
-          <div style={{ marginTop: '1.5rem', background: '#e1f5fe', color: '#0288d1', fontSize: '0.78rem', fontWeight: 700, padding: '4px 10px', borderRadius: '20px', textTransform: 'uppercase' }}>Klasa Szczelności IP67</div>
+        <div className="modal-image-col" style={{ flex: 1, minWidth: '280px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fafafa', borderRadius: '12px', padding: '2rem', overflow: 'hidden' }}>
+          <img 
+            src={product.img} 
+            alt={product.name} 
+            onClick={() => setIsZoomed(!isZoomed)}
+            style={{ 
+              maxWidth: '100%', 
+              maxHeight: '280px', 
+              objectFit: 'contain', 
+              cursor: isZoomed ? 'zoom-out' : 'zoom-in', 
+              transform: isZoomed ? 'scale(1.8)' : 'scale(1)', 
+              transition: 'transform 0.3s ease',
+              position: 'relative',
+              zIndex: 10
+            }} 
+          />
+          <div style={{ marginTop: '1.5rem', background: '#e1f5fe', color: '#0288d1', fontSize: '0.78rem', fontWeight: 700, padding: '4px 10px', borderRadius: '20px', textTransform: 'uppercase', opacity: isZoomed ? 0 : 1, transition: 'opacity 0.2s' }}>Klasa Szczelności IP67</div>
         </div>
         
         <div className="modal-info-col" style={{ flex: 1.3, minWidth: '320px', display: 'flex', flexDirection: 'column' }}>

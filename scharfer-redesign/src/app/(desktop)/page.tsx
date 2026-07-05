@@ -178,6 +178,59 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* Budowa zasilacza - explodowany diagram */}
+      <div className="section-padding bg-light" style={{ padding: '6rem 2rem', background: '#fafafa', borderTop: '1px solid var(--c-border)', borderBottom: '1px solid var(--c-border)', overflow: 'hidden' }}>
+        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div className="text-center" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 style={{ fontSize: '2.5rem', color: 'var(--c-heading)', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
+              Budowa zasilacza Scharfer
+            </h2>
+            <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '700px', margin: '0.5rem auto 0' }}>
+              Poznaj unikalne cechy konstrukcyjne, które gwarantują niezawodność i pełną moc w każdych warunkach.
+            </p>
+          </div>
+
+          <div style={{ position: 'relative', width: '100%', maxWidth: '1000px', height: '420px', margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            {/* Center image */}
+            <div style={{ zIndex: 5, width: '320px', textAlign: 'center', position: 'relative' }}>
+              <img src="/assets/40012.png" alt="Zasilacz Scharfer 12V 400W" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.12))' }} />
+            </div>
+
+            {/* Left Top Card */}
+            <div style={{ position: 'absolute', left: '0', top: '15%', width: '300px', zIndex: 10, textAlign: 'right' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>Aluminiowa Obudowa</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Działa jako radiator skutecznie odprowadzający ciepło. Wytrzymała i odporna na uszkodzenia mechaniczne.</p>
+              {/* Line pointer */}
+              <div style={{ position: 'absolute', right: '-40px', top: '25px', width: '60px', height: '1px', background: 'var(--c-primary)', transform: 'rotate(15deg)', transformOrigin: 'left' }} />
+            </div>
+
+            {/* Left Bottom Card */}
+            <div style={{ position: 'absolute', left: '0', bottom: '15%', width: '300px', zIndex: 10, textAlign: 'right' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>100% Realnej Mocy</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Możliwość ciągłej pracy pod pełnym, zadeklarowanym obciążeniem bez spadków napięcia i ryzyka usterki.</p>
+              {/* Line pointer */}
+              <div style={{ position: 'absolute', right: '-40px', bottom: '25px', width: '60px', height: '1px', background: 'var(--c-primary)', transform: 'rotate(-15deg)', transformOrigin: 'left' }} />
+            </div>
+
+            {/* Right Top Card */}
+            <div style={{ position: 'absolute', right: '0', top: '15%', width: '300px', zIndex: 10 }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>Klasa Szczelności IP67</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Wnętrze zalane żywicą epoksydową, zapewniające wodoszczelność, pyłoszczelność i cichą pracę cewek.</p>
+              {/* Line pointer */}
+              <div style={{ position: 'absolute', left: '-40px', top: '25px', width: '60px', height: '1px', background: 'var(--c-primary)', transform: 'rotate(-15deg)', transformOrigin: 'right' }} />
+            </div>
+
+            {/* Right Bottom Card */}
+            <div style={{ position: 'absolute', right: '0', bottom: '15%', width: '300px', zIndex: 10 }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--c-heading)', marginBottom: '0.5rem' }}>Aktywne Zabezpieczenia</h3>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.4 }}>Wbudowane filtry SCP, OVP, OTP, OLP chronią podłączone oświetlenie LED przed skokami napięcia i zwarciem.</p>
+              {/* Line pointer */}
+              <div style={{ position: 'absolute', left: '-40px', bottom: '25px', width: '60px', height: '1px', background: 'var(--c-primary)', transform: 'rotate(15deg)', transformOrigin: 'right' }} />
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Applications Section (Visual Sales Tool) */}
       <div className="applications-section" style={{ maxWidth: '1200px', margin: '5rem auto 0 auto', padding: '0 1.5rem' }}>
         <div className="section-header text-center" style={{ marginBottom: '3rem', textAlign: 'center' }}>

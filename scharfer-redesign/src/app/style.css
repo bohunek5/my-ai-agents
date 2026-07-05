@@ -887,7 +887,7 @@ img {
     aspect-ratio: 4/3;
     background-color: #fcfcfc;
     border-radius: 8px;
-    margin-bottom: 4rem; z-index: 10;
+    margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
