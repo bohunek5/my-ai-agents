@@ -95,7 +95,7 @@ export default function MobileAppPage() {
     },
     {
       q: 'Jak zostać dystrybutorem zasilaczy Scharfer?',
-      a: 'Aby rozpocząć współpracę B2B, wystarczy napisać bezpośrednio na adres biuro@prescot.pl lub zadzwonić pod numer +48 87 777 64 82. Przedstawimy dedykowane warunki handlowe i rabaty hurtowe.'
+      a: 'Aby rozpocząć współpracę B2B, wystarczy napisać bezpośrednio na adres komponenty@prescot.pl lub zadzwonić pod numer +48 87 777 64 82. Przedstawimy dedykowane warunki handlowe i rabaty hurtowe.'
     },
     {
       q: 'Czy gwarantujecie pracę pod pełnym obciążeniem?',
@@ -383,8 +383,8 @@ export default function MobileAppPage() {
                   <a href="tel:+48877776482" className="contact-action-btn" style={{ background: '#f8f9fa', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
                     📞 +48 87 777 64 82
                   </a>
-                  <a href="mailto:biuro@prescot.pl" className="contact-action-btn" style={{ background: '#f8f9fa', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
-                    ✉️ biuro@prescot.pl
+                  <a href="mailto:komponenty@prescot.pl" className="contact-action-btn" style={{ background: '#f8f9fa', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
+                    ✉️ komponenty@prescot.pl
                   </a>
                 </div>
               </div>
