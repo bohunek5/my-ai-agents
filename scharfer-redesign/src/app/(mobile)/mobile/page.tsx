@@ -450,6 +450,16 @@ export default function MobileAppPage() {
                 {filteredProducts.map(p => {
                   const powerMatch = p.name.match(/\d+W/);
                   const powerText = powerMatch ? powerMatch[0] : '';
+                  
+                  const renderNameWithRedWatts = (name: string) => {
+                    const parts = name.split(/(\d+W)/);
+                    return parts.map((part, i) => 
+                      part.match(/\d+W/) 
+                        ? <span key={i} style={{ color: 'var(--c-red)' }}>{part}</span> 
+                        : part
+                    );
+                  };
+
                   return (
                     <div key={p.index} style={{ background: 'white', borderRadius: '12px', padding: '20px 15px', display: 'flex', flexDirection: 'column', alignItems: 'stretch', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: '1px solid #f1f5f9' }}>
                       {/* Sleek horizontal badge row at the top */}
@@ -468,7 +478,7 @@ export default function MobileAppPage() {
                       </div>
 
                       {/* Product Name */}
-                      <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: '0 0 1rem 0', color: 'var(--c-heading)', textAlign: 'center' }}>{p.name}</h3>
+                      <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: '0 0 1rem 0', color: 'var(--c-heading)', textAlign: 'center' }}>{renderNameWithRedWatts(p.name)}</h3>
                       
                       {/* Specs card table block */}
                       <div style={{ background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
