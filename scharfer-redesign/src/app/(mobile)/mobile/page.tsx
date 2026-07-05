@@ -303,9 +303,13 @@ export default function MobileAppPage() {
                   const powerText = powerMatch ? powerMatch[0] : '';
                   return (
                     <div key={p.index} style={{ background: 'white', borderRadius: '10px', padding: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                        <span style={{ background: 'var(--c-primary)', color: 'white', fontSize: '7px', fontWeight: 800, padding: '2px 4px', borderRadius: '3px' }}>{powerText}</span>
-                        <span style={{ background: '#eee', color: '#555', fontSize: '7px', fontWeight: 800, padding: '2px 4px', borderRadius: '3px' }}>IP67</span>
+                      <div className="specs-line" style={{ display: 'flex', gap: '0.2rem', marginBottom: '0.5rem', flexWrap: 'nowrap', width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: '2px' }}>
+                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.3rem', fontSize: '0.55rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{powerText}</span>
+                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.3rem', fontSize: '0.55rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>IP67</span>
+                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.3rem', fontSize: '0.55rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>SELV</span>
+                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.3rem', fontSize: '0.55rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>CE</span>
+                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.3rem', fontSize: '0.55rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>RoHS</span>
+                        <span style={{ backgroundColor: 'white', border: '1px solid var(--c-red)', color: 'var(--c-red)', padding: '0.15rem 0.3rem', fontSize: '0.55rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>7Y</span>
                       </div>
                       <img src={p.img} alt={p.name} style={{ maxWidth: '100%', height: '80px', objectFit: 'contain', margin: '4px 0' }} />
                       <h3 style={{ fontSize: '0.85rem', fontWeight: 700, margin: '4px 0 2px 0', color: 'var(--c-heading)' }}>{p.name}</h3>
@@ -459,21 +463,48 @@ export default function MobileAppPage() {
 
 function MobileFooter() {
   return (
-    <footer className="app-footer" style={{ textAlign: 'center', padding: '30px 20px', marginTop: '20px' }}>
-      <div className="footer-logo-m" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <img src="/logo_scharfer.png" alt="Scharfer" style={{ height: '24px' }} />
-        <div style={{ fontSize: '8px', color: '#777', marginTop: '5px', fontWeight: 600, textTransform: 'uppercase' }}>
-          Oficjalny dystrybutor:<br />
-          <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '10px', marginTop: '3px' }} />
+    <footer className="app-footer" style={{ textAlign: 'center', padding: '3rem 1.25rem 2rem 1.25rem', marginTop: '2rem', background: '#ffffff', borderTop: '1px solid #e5e7eb' }}>
+      
+      {/* Brand Column */}
+      <div className="footer-logo-m" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
+        <img src="/logo_scharfer.png" alt="Scharfer" style={{ height: '26px' }} />
+        <p style={{ fontSize: '0.78rem', color: '#6b7280', margin: 0, maxWidth: '280px', lineHeight: 1.5 }}>
+          Profesjonalne zasilacze LED w klasie IP67 o zadeklarowanej 100% wydajności.
+        </p>
+      </div>
+
+      {/* Distributor Column */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
+        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Oficjalny Dystrybutor</span>
+        <a href="https://prescot.com.pl" target="_blank" rel="noopener noreferrer">
+          <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '15px', display: 'block' }} />
+        </a>
+        <div style={{ fontSize: '0.8rem', color: '#4b5563', lineHeight: 1.5, marginTop: '0.2rem' }}>
+          <strong>Prescot Sp. z o.o.</strong><br />
+          ul. Wileńska 1, 11-500 Giżycko<br />
+          NIP: 8451939947
         </div>
       </div>
-      <p className="footer-desc-m" style={{ fontSize: '0.8rem', color: '#666', margin: '10px 0' }}>Profesjonalne zasilacze LED 12V i 24V IP67 do wymagających projektów oświetleniowych.</p>
-      <p className="footer-details-m" style={{ fontSize: '0.75rem', color: '#666', margin: '0 0 15px 0', lineHeight: 1.4 }}>
-        <strong>Prescot Sp. z o.o.</strong><br />
-        ul. Wileńska 1, 11-500 Giżycko<br />
-        NIP: 8451939947 | Tel: +48 87 777 64 82
-      </p>
-      <span className="footer-copy-m" style={{ fontSize: '0.7rem', color: '#999' }}>&copy; 2026 PRESCOT LED. Wszelkie prawa zastrzeżone.</span>
+
+      {/* Support & Contact Column */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
+        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Wsparcie i Kontakt</span>
+        <a href="mailto:komponenty@prescot.pl" style={{ color: 'var(--c-red)', fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>
+          komponenty@prescot.pl
+        </a>
+        <a href="tel:+48877776482" style={{ color: 'var(--c-heading)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
+          tel. +48 87 777 64 82
+        </a>
+      </div>
+
+      {/* Copyright Line */}
+      <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+        <span className="footer-copy-m" style={{ fontSize: '0.75rem', color: '#9ca3af' }}>&copy; {new Date().getFullYear()} Scharfer. Wszelkie prawa zastrzeżone.</span>
+        <span style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
+          Powered by <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ color: '#6b7280', textDecoration: 'none', fontWeight: 600 }}>PRESCOT LED</a>
+        </span>
+      </div>
+
     </footer>
   );
 }
