@@ -23,28 +23,21 @@ export default function OfertaPage() {
 
   return (
     <div className="view-section active">
-      {/* Oferta Hero with background image and white overlay */}
-      <div className="oferta-hero" style={{ position: 'relative', overflow: 'hidden', padding: '6rem 2rem', borderBottom: '1px solid var(--c-border)' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
-          <img src="/assets/scharfer_city_night.png" alt="Zasilacze oświetlenia miejskiego" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(255, 255, 255, 0.85)' }} />
+      {/* Unified Page Hero */}
+      <div className="page-hero">
+        <div className="page-hero-bg">
+          <img src="/assets/scharfer_city_night.png" alt="Zasilacze oświetlenia miejskiego" />
         </div>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '4rem', flexWrap: 'wrap', flexDirection: 'row-reverse' }}>
-          <div style={{ flex: 1.2, minWidth: '300px', position: 'relative', zIndex: 2 }}>
-            <h1 style={{ fontSize: '3.5rem', color: 'var(--c-heading)', marginBottom: '1.5rem', lineHeight: '1.1', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
-              Katalog Zasilaczy LED
-            </h1>
-            <p style={{ fontSize: '1.25rem', color: 'var(--c-text)', lineHeight: 1.6 }}>
-              Niezawodne zasilacze napięciowe LED 12V i 24V w klasie szczelności IP67. Wybierz rozwiązanie idealnie dopasowane do Twojego projektu, gwarantujące stabilność i bezpieczeństwo na lata.
-            </p>
-          </div>
-          <div style={{ flex: 0.8, minWidth: '300px', position: 'relative', zIndex: 2, textAlign: 'center' }}>
-            <img src="/assets/30024.png" alt="Zasilacze LED" style={{ maxWidth: '100%', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
-          </div>
+        <div className="page-hero-overlay" />
+        <div className="page-hero-content">
+          <h1 className="page-hero-title">Katalog Zasilaczy LED</h1>
+          <p className="page-hero-subtitle">
+            Niezawodne zasilacze napięciowe LED 12V i 24V w klasie szczelności IP67. Wybierz rozwiązanie idealnie dopasowane do Twojego projektu.
+          </p>
         </div>
       </div>
 
-      <div className="container section-padding" style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 1.5rem' }}>
+      <div className="container section-padding" style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 1.5rem' }}>
         {/* Filters */}
         <div className="catalog-filters" style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
           <input 

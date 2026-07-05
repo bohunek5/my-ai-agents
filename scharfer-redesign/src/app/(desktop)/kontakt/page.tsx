@@ -39,24 +39,17 @@ export default function KontaktPage() {
 
   return (
     <div className="view-section active">
-      {/* Kontakt Hero with generated neutral background image and white overlay */}
-      <div className="kontakt-hero" style={{ position: 'relative', overflow: 'hidden', padding: '6rem 2rem', borderBottom: '1px solid var(--c-border)' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
-          <img src="/assets/kontakt_hero.png" alt="Biuro dystrybutora Scharfer" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(255, 255, 255, 0.85)' }} />
+      {/* Unified Page Hero */}
+      <div className="page-hero">
+        <div className="page-hero-bg">
+          <img src="/assets/kontakt_hero.png" alt="Biuro dystrybutora Scharfer" />
         </div>
-        <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '4rem', flexWrap: 'wrap' }}>
-          <div style={{ flex: 1.2, minWidth: '300px', position: 'relative', zIndex: 2 }}>
-            <h1 style={{ fontSize: '3.5rem', color: 'var(--c-heading)', marginBottom: '1.5rem', lineHeight: '1.1', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
-              Skontaktuj się z nami
-            </h1>
-            <p style={{ fontSize: '1.25rem', color: 'var(--c-text)', lineHeight: 1.6 }}>
-              Chcesz zostać naszym dystrybutorem? Masz pytania techniczne dotyczące zasilaczy LED? Napisz do nas, a nasz zespół ekspertów odpowie niezwłocznie.
-            </p>
-          </div>
-          <div style={{ flex: 0.8, minWidth: '300px', position: 'relative', zIndex: 2, textAlign: 'center' }}>
-            <img src="/assets/kontakt_hero.png" alt="Kontakt B2B" style={{ maxWidth: '100%', borderRadius: '12px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
-          </div>
+        <div className="page-hero-overlay" />
+        <div className="page-hero-content">
+          <h1 className="page-hero-title">Skontaktuj się z nami</h1>
+          <p className="page-hero-subtitle">
+            Chcesz zostać naszym dystrybutorem? Masz pytania techniczne dotyczące zasilaczy LED? Napisz do nas, a nasz zespół ekspertów odpowie niezwłocznie.
+          </p>
         </div>
       </div>
 
