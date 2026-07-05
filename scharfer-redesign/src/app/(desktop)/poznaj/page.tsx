@@ -43,7 +43,7 @@ export default function PoznajPage() {
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
-          <img src="/assets/scharfer_hotel.png" alt="Scharfer w hotelach" />
+          <img src="/assets/scharfer_estate_night.png" alt="Scharfer oświetlenie osiedla" />
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">
