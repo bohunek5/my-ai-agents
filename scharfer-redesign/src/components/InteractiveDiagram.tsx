@@ -15,18 +15,18 @@ interface Feature {
 export default function InteractiveDiagram() {
   const [activeFeature, setActiveFeature] = useState<number | null>(null);
 
-  // Layout bounds: width = 1400px, height = 540px
+  // Layout bounds: width = 1400px, height = 680px
   // Left column width = 290px (bounds: 0px to 290px). x1 anchor at 300px.
   // Right column width = 290px (bounds: 1110px to 1400px). x1 anchor at 1100px.
   // Center is at x = 700px.
-  // Zasilacz image width = 760px (centered around 700px, top 280px).
+  // Zasilacz image width = 760px (centered around 700px, top 340px).
   // Hotspots are precisely aligned with the user's red arrow tips:
-  // Card 0 (Aluminiowa Obudowa) -> Top-Left corner (480, 230)
-  // Card 1 (100% Mocy Znamionowej) -> Bottom-Left corner (420, 250)
-  // Card 2 (Cicha Praca) -> Bottom-Middle casing (520, 290)
-  // Card 3 (Klasa Szczelności IP67) -> Top-Middle casing (580, 270)
-  // Card 4 (Zabezpieczenia SCP, OVP, OTP) -> Top-Right corner (680, 310)
-  // Card 5 (Aktywny Układ PFC) -> Bottom-Right corner (620, 330)
+  // Card 0 (Aluminiowa Obudowa) -> Top-Left corner (390, 275)
+  // Card 1 (100% Mocy Znamionowej) -> Bottom-Left flange (420, 450)
+  // Card 2 (Cicha Praca) -> Bottom-Middle casing (520, 560)
+  // Card 3 (Klasa Szczelności IP67) -> Top-Middle casing (545, 370)
+  // Card 4 (Zabezpieczenia SCP, OVP, OTP) -> Top-Right corner (620, 490)
+  // Card 5 (Aktywny Układ PFC) -> Bottom-Right corner (575, 610)
   // Card 6 (7 Lat Pełnej Gwarancji) -> No arrow, no hotspot (static block).
   const features: Feature[] = [
     // Left side features (0, 1, 2)
@@ -34,56 +34,56 @@ export default function InteractiveDiagram() {
       title: 'Aluminiowa Obudowa',
       desc: 'Masywny odlew aluminiowy działający jako radiator. Całkowicie wyeliminowaliśmy wentylatory, gwarantując cichą pracę.',
       x1: 300,
-      y1: 90,
-      x2: 480,
-      y2: 230
+      y1: 110,
+      x2: 390,
+      y2: 275
     },
     {
       title: '100% Mocy Znamionowej',
       desc: 'Zaprojektowany do ciągłej pracy przy pełnym obciążeniu. Kupując model 150W, otrzymujesz realne 150W bez ugięć napięcia.',
       x1: 300,
-      y1: 260,
+      y1: 300,
       x2: 420,
-      y2: 250
+      y2: 450
     },
     {
       title: 'Cicha Praca (Brak piszczenia)',
       desc: 'Wnętrze w 100% zalane żywicą epoksydową tłumi drgania cewek i filtrów. Zachowuje bezwzględną ciszę przy ściemnianiu.',
       x1: 300,
-      y1: 430,
+      y1: 490,
       x2: 520,
-      y2: 290
+      y2: 560
     },
     // Right side features (3, 4, 5, 6)
     {
       title: 'Klasa Szczelności IP67',
       desc: 'Hermetycznie zalana konstrukcja zapobiega wnikaniu wody i kurzu. Może bezpiecznie pracować w trudnych warunkach zewnętrznych.',
       x1: 1100,
-      y1: 65,
-      x2: 580,
-      y2: 270
+      y1: 90,
+      x2: 545,
+      y2: 370
     },
     {
       title: 'Zabezpieczenia SCP, OVP, OTP',
       desc: 'Aktywna ochrona podłączonego oświetlenia przed skokami napięcia, zwarciem sieci oraz przegrzaniem z auto-restartem.',
       x1: 1100,
-      y1: 195,
-      x2: 680,
-      y2: 310
+      y1: 240,
+      x2: 620,
+      y2: 490
     },
     {
       title: 'Aktywny Układ PFC (PF > 0.98)',
       desc: 'Kompensacja współczynnika mocy minimalizuje straty energetyczne i skutecznie eliminuje zakłócenia w sieci elektrycznej.',
       x1: 1100,
-      y1: 325,
-      x2: 620,
-      y2: 330
+      y1: 390,
+      x2: 575,
+      y2: 610
     },
     {
       title: '7 Lat Pełnej Gwarancji',
       desc: 'Pełna ochrona dystrybutora. W przypadku usterki gwarantujemy natychmiastową wymianę na nowy produkt bezpośrednio z magazynu.',
       x1: 1100,
-      y1: 455,
+      y1: 540,
       x2: 730,
       y2: 330 // Not rendered
     }
@@ -91,9 +91,9 @@ export default function InteractiveDiagram() {
 
   return (
     <div style={{ width: '100%', overflowX: 'auto', paddingBottom: '10px', WebkitOverflowScrolling: 'touch' }}>
-      <div style={{ position: 'relative', width: '1400px', height: '540px', margin: '0 auto', overflow: 'visible' }}>
+      <div style={{ position: 'relative', width: '1400px', height: '680px', margin: '0 auto', overflow: 'visible' }}>
         
-        {/* Background SVG for lines */}
+        {/* Background SVG for lines - Rendered ON TOP of zasilacz image (zIndex: 4) */}
         <svg 
           style={{ 
             position: 'absolute', 
@@ -101,7 +101,7 @@ export default function InteractiveDiagram() {
             left: 0, 
             width: '100%', 
             height: '100%', 
-            zIndex: 1, // Rendered behind the zasilacz image container (zIndex 3)
+            zIndex: 4, // Higher than image (zIndex 3) so lines go OVER the zasilacz
             pointerEvents: 'none' 
           }}
         >
@@ -123,12 +123,12 @@ export default function InteractiveDiagram() {
           })}
         </svg>
 
-        {/* Center Zasilacz Image - HUGE (760px width) */}
+        {/* Center Zasilacz Image - HUGE (760px width, centered at 340px vertically) */}
         <div 
           style={{ 
             position: 'absolute', 
             left: '700px', 
-            top: '280px', 
+            top: '340px', 
             transform: 'translate(-50%, -50%)', 
             zIndex: 3, 
             width: '760px', 
@@ -199,7 +199,7 @@ export default function InteractiveDiagram() {
         })}
 
         {/* Left Column Features (Slide left on hover) */}
-        <div style={{ position: 'absolute', left: 0, top: 10, width: '290px', height: '510px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 4 }}>
+        <div style={{ position: 'absolute', left: 0, top: 10, width: '290px', height: '650px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 5 }}>
           {features.slice(0, 3).map((f, idx) => {
             const isActive = activeFeature === idx;
             return (
@@ -228,7 +228,7 @@ export default function InteractiveDiagram() {
         </div>
 
         {/* Right Column Features (Slide right on hover) */}
-        <div style={{ position: 'absolute', right: 0, top: 10, width: '290px', height: '510px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 4 }}>
+        <div style={{ position: 'absolute', right: 0, top: 10, width: '290px', height: '650px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 5 }}>
           {features.slice(3).map((f, idx) => {
             const realIdx = idx + 3;
             const isActive = activeFeature === realIdx;
