@@ -396,7 +396,9 @@ export const translations = {
     specProtectVal: "SCP, OVP, OLP, OTP",
     specWarranty: "Gwarancja",
     specWarrantyVal: "7 lat (pełna)",
+    specWarrantyValShort: "7 LAT",
     backToCatalog: "Powrót do katalogu",
+    contactHeroSubtitle: "Chcesz zostać naszym dystrybutorem? Masz pytania techniczne dotyczące zasilaczy LED? Napisz do nas, a nasz zespół ekspertów odpowie niezwłocznie.",
     detailedTech: "Technologia i bezpieczeństwo w każdym detalu",
   },
   en: {
@@ -620,7 +622,9 @@ export const translations = {
     specProtectVal: "SCP, OVP, OLP, OTP",
     specWarranty: "Warranty",
     specWarrantyVal: "7 years (full)",
+    specWarrantyValShort: "7Y",
     backToCatalog: "Back to catalog",
+    contactHeroSubtitle: "Want to become our distributor? Have technical questions about LED power supplies? Write to us, and our expert team will respond promptly.",
     detailedTech: "Technology and safety in every detail",
   },
   de: {
@@ -839,7 +843,9 @@ export const translations = {
     specProtectVal: "SCP, OVP, OLP, OTP",
     specWarranty: "Garantie",
     specWarrantyVal: "7 Jahre (vollständig)",
+    specWarrantyValShort: "7J",
     backToCatalog: "Zurück zum Katalog",
+    contactHeroSubtitle: "Möchten Sie unser Vertriebspartner werden? Haben Sie technische Fragen zu LED-Netzteilen? Schreiben Sie uns, und unser Expertenteam wird umgehend antworten.",
     detailedTech: "Technologie und Sicherheit in jedem Detail",
   },
   lt: {
@@ -1044,7 +1050,9 @@ export const translations = {
     specProtectVal: "SCP, OVP, OLP, OTP",
     specWarranty: "Garantija",
     specWarrantyVal: "7 metai (pilna)",
+    specWarrantyValShort: "7M",
     backToCatalog: "Grįžti į katalogą",
+    contactHeroSubtitle: "Norite tapti mūsų platintoju? Turite techninių klausimų apie LED maitinimo šaltinius? Parašykite mums ir mūsų ekspertų komanda nedelsdama atsakys.",
     detailedTech: "Technologija ir saugumas kiekvienoje detalėje",
   },
 };

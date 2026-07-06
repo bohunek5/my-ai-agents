@@ -60,7 +60,7 @@ export default function HomePage() {
               {t('heroPower')}<br/>
               {t('heroReal')}<span style={{ color: 'var(--c-red)' }}>{t('hero100')}</span>{t('heroLoad')}
             </h1>
-            <p className="hero-subtitle">
+            <p className="hero-subtitle" style={{ fontWeight: 800, color: 'var(--c-heading)' }}>
               {t('heroSubtitlePc')}
             </p>
             <div className="hero-actions">

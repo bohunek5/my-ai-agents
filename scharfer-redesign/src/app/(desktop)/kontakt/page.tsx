@@ -48,7 +48,7 @@ export default function KontaktPage() {
         <div className="page-hero-content">
           <h1 className="page-hero-title">{t('contactTitle')}</h1>
           <p className="page-hero-subtitle">
-            Chcesz zostać naszym dystrybutorem? Masz pytania techniczne dotyczące zasilaczy LED? Napisz do nas, a nasz zespół ekspertów odpowie niezwłocznie.
+            {t('contactHeroSubtitle')}
           </p>
         </div>
       </div>
@@ -68,10 +68,10 @@ export default function KontaktPage() {
               <div className="contact-line">
                 <strong style={{ display: 'block', fontSize: '1rem', color: 'var(--c-heading)', marginBottom: '0.25rem' }}>{t('contactData')}</strong>
                 <div style={{ fontSize: '1rem', color: 'var(--c-heading)', fontWeight: 500, lineHeight: 1.6 }}>
-                  <strong>PRESCOT SP. Z O.O.</strong><br />
-                  ul. Wileńska 1, 11-500 Giżycko<br />
-                  NIP: 8451939947<br />
-                  Tel.: +48 87 777 64 82
+                  <strong>{t('contactAddress1')}</strong><br />
+                  {t('contactAddress2')}<br />
+                  {t('contactAddress3')}<br />
+                  Tel.: {t('contactPhone')}
                 </div>
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function KontaktPage() {
           <div className="contact-form-container" style={{ flex: 1.5, minWidth: '350px' }}>
             <div className="form-card" style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '2.5rem', boxShadow: 'var(--shadow-md)' }}>
               <h2 className="form-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)' }}>{t('contactTitle')}</h2>
-              <form onSubmit={(e) => { e.preventDefault(); alert('Formularz został wysłany. Skontaktujemy się z Tobą w ciągu 24h.'); }} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <form onSubmit={(e) => { e.preventDefault(); alert(t('contactSuccess')); }} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                   <label htmlFor="name" style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--c-heading)' }}>{t('formName')}</label>
                   <input type="text" id="name" required style={{ padding: '0.8rem', border: '1px solid var(--c-border)', borderRadius: '6px', fontSize: '0.95rem' }} />
