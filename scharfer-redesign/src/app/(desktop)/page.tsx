@@ -71,7 +71,7 @@ export default function HomePage() {
                 {t('b2bCoop')}
               </Link>
             </div>
-            <div className="hero-trust" style={{ display: 'flex', gap: '3rem', marginTop: '3rem', flexWrap: 'wrap' }}>
+            <div className="hero-trust" style={{ display: 'flex', gap: '3rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
               <div className="trust-item" style={{ display: 'flex', flexDirection: 'column' }}>
                 <span className="trust-val" style={{ color: 'var(--c-red)', fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>{t('trust7Years')}</span>
                 <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustWarranty')}</span>
