@@ -898,7 +898,7 @@ export default function MobileAppPage() {
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
             <polyline points="9 22 9 12 15 12 15 22" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'home' ? '#e60000' : '#9ca3af' }}>{t('navHome')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'home' ? '#e60000' : '#9ca3af', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%', textAlign: 'center', padding: '0 2px' }}>{t('navHome')}</span>
         </div>
         <div className={`nav-item ${activeTab === 'oferta' ? 'active' : ''}`} onClick={() => handleTabChange('oferta')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'oferta' ? '#e60000' : '#9ca3af' }}>
@@ -907,7 +907,7 @@ export default function MobileAppPage() {
             <line x1="6" y1="6" x2="6.01" y2="6" />
             <line x1="6" y1="18" x2="6.01" y2="18" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'oferta' ? '#e60000' : '#9ca3af' }}>{t('navOferta')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'oferta' ? '#e60000' : '#9ca3af', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%', textAlign: 'center', padding: '0 2px' }}>{t('navOferta')}</span>
         </div>
         <div className={`nav-item ${activeTab === 'info' ? 'active' : ''}`} onClick={() => handleTabChange('info')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'info' ? '#e60000' : '#9ca3af' }}>
@@ -915,7 +915,7 @@ export default function MobileAppPage() {
             <line x1="12" y1="16" x2="12" y2="12" />
             <line x1="12" y1="8" x2="12.01" y2="8" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'info' ? '#e60000' : '#9ca3af' }}>{t('navPoznajShort')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'info' ? '#e60000' : '#9ca3af', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%', textAlign: 'center', padding: '0 2px' }}>{t('navPoznajShort')}</span>
         </div>
         <div onClick={() => setB2cModalOpen(true)} className="nav-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer', textDecoration: 'none' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#9ca3af' }}>
@@ -923,13 +923,13 @@ export default function MobileAppPage() {
             <circle cx="20" cy="21" r="1" />
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: '#9ca3af' }}>{t('navB2C')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: '#9ca3af', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%', textAlign: 'center', padding: '0 2px' }}>{t('navB2C')}</span>
         </div>
         <div className={`nav-item ${activeTab === 'kontakt' ? 'active' : ''}`} onClick={() => handleTabChange('kontakt')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'kontakt' ? '#e60000' : '#9ca3af' }}>
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'kontakt' ? '#e60000' : '#9ca3af' }}>{t('navKontakt')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'kontakt' ? '#e60000' : '#9ca3af', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%', textAlign: 'center', padding: '0 2px' }}>{t('navKontakt')}</span>
         </div>
       </nav>
 
