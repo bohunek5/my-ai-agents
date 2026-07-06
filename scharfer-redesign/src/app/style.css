@@ -445,9 +445,9 @@ img {
 
 .hero-subtitle {
     font-size: 1.25rem;
-    color: var(--c-text);
+    color: #0f172a;
     margin-bottom: 2.5rem;
-    font-weight: 400;
+    font-weight: 800;
     max-width: 550px;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }

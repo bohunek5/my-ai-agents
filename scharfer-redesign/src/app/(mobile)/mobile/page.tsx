@@ -250,7 +250,7 @@ export default function MobileAppPage() {
                     {t('heroPower')}<br/>
                     {t('heroReal')}<span style={{ color: '#e60000' }}>{t('hero100')}</span>{t('heroLoad')}
                   </h1>
-                  <p className="hero-subtitle" style={{ fontSize: '0.95rem', padding: '0 10px', marginBottom: '25px', lineHeight: 1.4, color: '#111827', fontWeight: 600, textShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+                  <p className="hero-subtitle" style={{ fontSize: '0.95rem', padding: '0 10px', marginBottom: '25px', lineHeight: 1.4, color: '#111827', fontWeight: 800, textShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                     {t('heroSubtitle')}
                   </p>
                   
@@ -996,7 +996,7 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
       <div className="footer-logo-m" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
         <img src="/scharfer/logo_scharfer.png" alt="Scharfer" style={{ height: '26px' }} />
         <p style={{ fontSize: '0.78rem', color: '#6b7280', margin: 0, maxWidth: '280px', lineHeight: 1.5 }}>
-          Profesjonalne zasilacze LED w klasie IP67 o zadeklarowanej 100% wydajności.
+          {t('footerTagline')}
         </p>
       </div>
 
@@ -1015,22 +1015,22 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
 
       {/* Support & Contact Column */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
-        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Wsparcie i Kontakt</span>
+        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('footerSupport')}</span>
         <a href="mailto:komponenty@prescot.pl" style={{ color: '#e60000', fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>
           komponenty@prescot.pl
         </a>
         <a href="tel:+48877776482" style={{ color: 'var(--c-heading)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
-          tel. +48 87 777 64 82
+          {t('footerHotline')} +48 87 777 64 82
         </a>
       </div>
 
       {/* Copyright Line */}
       <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '0.25rem' }}>
-          <button onClick={onOpenRegulamin} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>Regulamin</button>
-          <button onClick={onOpenRodo} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>RODO</button>
+          <button onClick={onOpenRegulamin} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>{t('footerRegulamin')}</button>
+          <button onClick={onOpenRodo} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>{t('footerRodo')}</button>
         </div>
-        <span className="footer-copy-m" style={{ fontSize: '0.75rem', color: '#9ca3af' }}>&copy; {new Date().getFullYear()} Scharfer. Wszelkie prawa zastrzeżone.</span>
+        <span className="footer-copy-m" style={{ fontSize: '0.75rem', color: '#9ca3af' }}>&copy; {new Date().getFullYear()} {t('footerRights')}</span>
         <span style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
           Powered by <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ color: '#6b7280', textDecoration: 'none', fontWeight: 600 }}>PRESCOT LED</a>
         </span>

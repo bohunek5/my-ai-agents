@@ -201,7 +201,7 @@ export default function HomePage() {
       {/* Applications Section (Visual Sales Tool) */}
       <div className="applications-section" style={{ maxWidth: 'var(--max-width)', margin: '5rem auto 0 auto', padding: '0 1.5rem' }}>
         <div className="section-header text-center" style={{ marginBottom: '3rem', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '2.5rem', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif', fontWeight: 800 }}>Gdzie sprawdzają się Zasilacze Scharfer?</h2>
+          <h2 style={{ fontSize: '2.5rem', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif', fontWeight: 800 }}>{t('appTitle')}</h2>
           <p style={{ fontSize: '1.1rem', color: 'var(--c-text)', maxWidth: '700px', margin: '0.5rem auto 0' }}>
             {t('appSubtitle')}
           </p>

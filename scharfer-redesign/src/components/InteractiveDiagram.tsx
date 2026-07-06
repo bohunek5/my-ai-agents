@@ -36,7 +36,7 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
     {
       title: t('feature1Title'),
       desc: t('feature1Desc'),
-      x1: 300, y1: 90, x2: 540, y2: 210,
+      x1: 300, y1: 90, x2: 440, y2: 240,
       mobileLeft: '25.0%', mobileTop: '21%'
     },
     {

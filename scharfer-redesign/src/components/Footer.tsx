@@ -13,14 +13,14 @@ export default function Footer() {
         <div className="footer-col brand-col" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <img src="/scharfer/logo_scharfer.png" alt="Scharfer - Zasilacze LED" className="footer-logo" style={{ maxHeight: '35px', width: 'auto', alignSelf: 'flex-start', margin: 0 }} />
           <p style={{ color: '#6b7280', fontSize: '0.9rem', lineHeight: 1.6, margin: 0, maxWidth: '280px' }}>
-            Profesjonalne, hermetyczne zasilacze LED w klasie IP67 stworzone z myślą o bezkompromisowej niezawodności.
+            {t('footerTagline')}
           </p>
         </div>
 
         {/* Column 2: Prescot Sp. z o.o. (Address details) */}
         <div className="footer-col distributor-col" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-            <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Oficjalny Dystrybutor</span>
+            <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('officialDistributor')}</span>
             <div style={{ alignSelf: 'flex-start' }}>
               <img src="/scharfer/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '22px', display: 'block' }} />
             </div>
@@ -34,16 +34,16 @@ export default function Footer() {
 
         {/* Column 3: Contact Details */}
         <div className="footer-col contact-col" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Wsparcie i Kontakt</span>
+          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('footerSupport')}</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <div>
-              <span style={{ display: 'block', color: '#6b7280', fontSize: '0.8rem', marginBottom: '0.2rem' }}>Dział handlowy B2B:</span>
+              <span style={{ display: 'block', color: '#6b7280', fontSize: '0.8rem', marginBottom: '0.2rem' }}>{t('footerB2bDept')}</span>
               <a href="mailto:komponenty@prescot.pl" style={{ color: 'var(--c-red)', fontSize: '1.1rem', fontWeight: 700, textDecoration: 'none', transition: 'opacity 0.2s' }}>
                 komponenty@prescot.pl
               </a>
             </div>
             <div>
-              <span style={{ display: 'block', color: '#6b7280', fontSize: '0.8rem', marginBottom: '0.2rem' }}>Infolinia:</span>
+              <span style={{ display: 'block', color: '#6b7280', fontSize: '0.8rem', marginBottom: '0.2rem' }}>{t('footerHotline')}</span>
               <a href="tel:+48877776482" style={{ color: 'var(--c-heading)', fontSize: '1rem', fontWeight: 600, textDecoration: 'none' }}>
                 +48 87 777 64 82
               </a>
@@ -53,20 +53,20 @@ export default function Footer() {
 
         {/* Column 4: Quick Links & Legal */}
         <div className="footer-col links-col" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Nawigacja</span>
+          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('footerNav')}</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             <Link href="/poznaj" style={{ color: '#4b5563', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500, transition: 'color 0.2s' }} className="footer-link">
-              Poznaj technologię Scharfer
+              {t('footerNavPoznaj')}
             </Link>
             <Link href="/oferta" style={{ color: '#4b5563', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500, transition: 'color 0.2s' }} className="footer-link">
-              Katalog zasilaczy
+              {t('footerNavOferta')}
             </Link>
             <Link href="/kontakt" style={{ color: '#4b5563', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500, transition: 'color 0.2s' }} className="footer-link">
-              Kontakt B2B
+              {t('footerNavKontakt')}
             </Link>
             <div style={{ display: 'flex', gap: '1rem', marginTop: '0.4rem', paddingTop: '0.8rem', borderTop: '1px solid #f3f4f6' }}>
-              <Link href="/regulamin" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '0.8rem', transition: 'color 0.2s' }} className="footer-link-sub">Regulamin</Link>
-              <Link href="/rodo" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '0.8rem', transition: 'color 0.2s' }} className="footer-link-sub">RODO</Link>
+              <Link href="/regulamin" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '0.8rem', transition: 'color 0.2s' }} className="footer-link-sub">{t('footerRegulamin')}</Link>
+              <Link href="/rodo" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '0.8rem', transition: 'color 0.2s' }} className="footer-link-sub">{t('footerRodo')}</Link>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function Footer() {
       {/* Copyright Bar */}
       <div style={{ maxWidth: 'var(--max-width)', margin: '3rem auto 0 auto', padding: '1.5rem var(--spacing-lg) 0 var(--spacing-lg)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <span style={{ fontSize: '0.8rem', color: '#9ca3af' }}>
-          &copy; {new Date().getFullYear()} Scharfer. Wszelkie prawa zastrzeżone.
+          &copy; {new Date().getFullYear()} {t('footerRights')}
         </span>
         <span style={{ fontSize: '0.8rem', color: '#9ca3af' }}>
           Powered by <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ color: '#6b7280', textDecoration: 'none', fontWeight: 600 }}>PRESCOT LED</a>
