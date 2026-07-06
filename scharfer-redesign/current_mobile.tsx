@@ -1,0 +1,999 @@
+'use client';
+import { useState, useEffect } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
+import { productsData, Product } from '@/data/scharferData';
+import InteractiveDiagram from '@/components/InteractiveDiagram';
+
+type Tab = 'home' | 'oferta' | 'info' | 'kontakt';
+
+export default function MobileAppPage() {
+  const { lang, setLang, t } = useLanguage();
+  const [activeTab, setActiveTab] = useState<Tab>('home');
+  const [langOpen, setLangOpen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '') as Tab;
+      if (['home', 'oferta', 'info', 'kontakt'].includes(hash)) {
+        setActiveTab(hash);
+        setTimeout(() => window.scrollTo(0, 0), 10);
+      }
+    }
+  }, []);
+
+  const handleTabChange = (tab: Tab) => {
+    setActiveTab(tab);
+    if (typeof window !== 'undefined') {
+      window.location.hash = tab;
+      window.scrollTo(0, 0);
+    }
+  };
+
+  // Active product details modal
+  const [activeProduct, setActiveProduct] = useState<Product | null>(null);
+
+  // Home story states (which story card is expanded)
+  const [activeStory, setActiveStory] = useState<number | null>(null);
+
+  // Oferta states
+  const [filterVoltage, setFilterVoltage] = useState<'all' | '12V' | '24V'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Kontakt FAQ state
+  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  // Legal modals states
+  const [mobileRegulaminOpen, setMobileRegulaminOpen] = useState(false);
+  const [mobileRodoOpen, setMobileRodoOpen] = useState(false);
+
+  const flagEmojis: Record<string, string> = { pl: '🇵🇱', en: '🇬🇧', de: '🇩🇪', lt: '🇱🇹' };
+
+  // Filter products
+  const filteredProducts = productsData.filter(p => {
+    const matchesFilter = filterVoltage === 'all' || p.specs.voltage === filterVoltage;
+    const matchesSearch = searchQuery === '' ||
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.index.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.ean.includes(searchQuery);
+    return matchesFilter && matchesSearch;
+  });
+
+  const toggleStory = (idx: number) => {
+    setActiveStory(activeStory === idx ? null : idx);
+  };
+
+  const toggleFaq = (idx: number) => {
+    setActiveFaq(activeFaq === idx ? null : idx);
+  };
+
+  const stories = [
+    {
+      title: '7 Lat Pełnej Gwarancji',
+      icon: '🛡️',
+      body: 'Zaufanie to podstawa w branży B2B. Zasilacze Scharfer są projektowane tak, aby przetrwać najcięższe warunki pracy. Dlatego każdy nasz produkt objęty jest bezwarunkową, 7-letnią gwarancją producenta.',
+      img: 'assets/sch1.webp',
+      type: 'image'
+    },
+    {
+      title: 'Ochrona IP67 do Zadań Specjalnych',
+      icon: '💧',
+      body: 'Deszcz, śnieg, wilgoć czy pył – to dla nas żaden problem. Obudowa zasilaczy Scharfer posiada certyfikat szczelności IP67. Są całkowicie wodoodporne i pyłoszczelne.',
+      img: 'assets/sch2.webp',
+      type: 'image'
+    },
+    {
+      title: 'Praca pod 100% obciążeniem',
+      icon: '⚡',
+      body: 'Koniec z przewymiarowaniem zasilaczy! W przeciwieństwie do tańszych zamienników, technologia Scharfer pozwala na stałą pracę pod 100% zadeklarowanym obciążeniem. Kupujesz 150W i otrzymujesz 150W.',
+      img: 'assets/sch4.webp',
+      type: 'image'
+    },
+    {
+      title: 'Zgodność z Normami CE, RoHS',
+      icon: '🇪🇺',
+      body: 'Zasilacze Scharfer spełniają rygorystyczne europejskie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547.',
+      img: 'assets/ce_rohs.png',
+      type: 'contain'
+    },
+    {
+      title: 'Zabezpieczenia OVP, SCP, OTP, OLP',
+      icon: '🔌',
+      body: 'Każdy profesjonalny zasilacz instalacyjny Scharfer wyposażony jest w aktywny, wielopoziomowy system ochrony elektroniki: przeciążeniowe, przeciwzwarciowe, termiczne i nadnapięciowe.',
+      img: 'assets/40012.png',
+      type: 'image'
+    },
+    {
+      title: 'Masywne Aluminium i Żywica',
+      icon: '🌡️',
+      body: 'Trwałość zasilacza zależy od odprowadzania ciepła. Zasilacze Scharfer zamknięte są w aluminiowej obudowie-radiatorze, a ich wnętrze jest w 100% zalane żywicą epoksydową przewodzącą ciepło.',
+      img: 'assets/sch3.webp',
+      type: 'image'
+    }
+  ];
+
+  const faqItems = [
+    {
+      q: 'Jakie są warunki gwarancji na zasilacze LED Scharfer?',
+      a: 'Każdy zasilacz LED marki Scharfer objęty jest pełną, 7-letnią gwarancją producenta. Jesteśmy pewni naszej technologii i stosowanych komponentów, co pozwala nam zapewnić Ci maksymalne bezpieczeństwo inwestycji.'
+    },
+    {
+      q: 'Czy zasilacze posiadają certyfikat IP67?',
+      a: 'Tak, zasilacze posiadają klasę szczelności IP67. Oznacza to pełną wodoszczelność i pyłoszczelność, dzięki czemu idealnie nadają się do montażu na elewacjach budynków, reklamach świetlnych oraz w innych trudnych warunkach zewnętrznych.'
+    },
+    {
+      q: 'Jak zostać dystrybutorem zasilaczy Scharfer?',
+      a: 'Aby rozpocząć współpracę B2B, wystarczy napisać bezpośrednio na adres komponenty@prescot.pl lub zadzwonić pod numer +48 87 777 64 82. Przedstawimy dedykowane warunki handlowe i rabaty hurtowe.'
+    },
+    {
+      q: 'Czy gwarantujecie pracę pod pełnym obciążeniem?',
+      a: 'Tak. Jedną z głównych zalet zasilaczy Scharfer jest gwarancja stabilnej pracy pod 100% zadeklarowanym obciążeniem. Nie musisz stosować zapasów mocy (np. marginesów 20%), co optymalizuje koszty całej instalacji LED.'
+    },
+    {
+      q: 'Gdzie najlepiej stosować zasilacze 12V i 24V Scharfer?',
+      a: 'Zasilacze 12V idealnie sprawdzają się do mniejszych instalacji LED, podświetleń meblowych i gablot. Zasilacze 24V rekomendujemy przy dłuższych ciągach oświetleniowych, zapewniając stabilne napięcie na całym odcinku.'
+    },
+    {
+      q: 'Jakie są kluczowe przewagi (Przewaga Scharfer)?',
+      a: 'Przewaga Scharfer to przede wszystkim: obudowa w klasie IP67, stabilne napięcie wyjściowe, szeroki zakres wejściowy (100-250V AC), praca przy 100% obciążenia, transformatory zalewane żywicą przewodzącą ciepło, eliminacja piszczenia przy ściemniaczach oraz zaawansowane zabezpieczenia przeciwprzeciążeniowe, przeciwzwarciowe i termiczne.'
+    }
+  ];
+
+  return (
+    <div style={{ paddingTop: '75px', paddingBottom: '75px', minHeight: '100vh', background: '#f8f9fa' }}>
+      
+      {/* Mobile Header */}
+      <header className="app-header" style={{ height: '75px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 15px', borderBottom: '1px solid #eee', background: 'white', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000 }}>
+        {/* Left: Scharfer logo */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <a href="#home" onClick={(e) => { e.preventDefault(); handleTabChange('home'); }} style={{ display: 'block' }}>
+            <img src="/logo_scharfer.png" alt="Scharfer" style={{ height: '34px', width: 'auto', display: 'block' }} />
+          </a>
+        </div>
+        
+        {/* Middle: Prescot LED distributor badge */}
+        <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+          <span style={{ fontSize: '7px', fontWeight: 800, color: '#999', letterSpacing: '0.5px', textTransform: 'uppercase', display: 'block', lineHeight: 1 }}>Dystrybutor:</span>
+          <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '2px' }}>
+            <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '12px', display: 'block' }} />
+          </a>
+        </div>
+
+        {/* Right: Language Dropdown */}
+        <div className="header-right" id="lang-wrapper" style={{ position: 'relative' }}>
+          <button className="lang-btn" id="lang-btn" onClick={() => setLangOpen(!langOpen)} style={{ background: 'none', border: 'none', fontSize: '1.3rem', cursor: 'pointer', padding: '4px' }}>
+            {flagEmojis[lang]}
+          </button>
+          {langOpen && (
+            <div className="lang-dropdown active" id="lang-dropdown" style={{ display: 'flex', position: 'absolute', top: '100%', right: 0, background: 'white', borderRadius: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.15)', flexDirection: 'column', minWidth: '80px', overflow: 'hidden', border: '1px solid #eee', zIndex: 2100 }}>
+              {(['pl', 'en', 'de', 'lt'] as const).map(l => (
+                <button key={l} onClick={() => { setLang(l); setLangOpen(false); }} style={{ padding: '10px', background: 'none', border: 'none', fontSize: '0.9rem', textAlign: 'left', borderBottom: l !== 'lt' ? '1px solid #eee' : 'none' }}>
+                  {flagEmojis[l]} {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </header>
+
+      {/* Main Content Area */}
+      <main className="app-main" style={{ paddingTop: '75px' }}>
+        
+        {/* VIEW: HOME */}
+        {activeTab === 'home' && (
+          <section className="view-section active">
+            {/* Hero with Video Background (1:1 with desktop) */}
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '1.25rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', background: '#fff', color: '#111' }}>
+              <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+                <iframe 
+                  src="https://www.youtube.com/embed/2Ofm-Rvbz9A?autoplay=1&mute=1&loop=1&playlist=2Ofm-Rvbz9A&controls=0&showinfo=0&autohide=1&start=2" 
+                  style={{ width: '100vw', height: '56.25vw', minHeight: '100vh', minWidth: '177.77vh', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', border: 'none' }} 
+                  allow="autoplay; encrypted-media" 
+                  allowFullScreen
+                />
+                <div className="hero-overlay" style={{ background: 'rgba(255, 255, 255, 0.85)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+              </div>
+              
+              <div className="hero-content" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '100%', marginTop: '50px' }}>
+                <h1 className="hero-title" style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '12px', lineHeight: 1.2 }}>
+                  <span style={{ color: 'var(--c-red)' }}>7 Lat gwarancji.</span><br />Stabilne Zasilanie.<br />Prawdziwe <span style={{ color: 'var(--c-red)' }}>100%</span> mocy.
+                </h1>
+                <p className="hero-subtitle" style={{ fontSize: '1rem', color: 'var(--c-text)', marginBottom: '20px', lineHeight: 1.45, padding: '0 10px' }}>
+                  Koniec z piszczeniem, awariami i spadkami napięć. Wodoodporne zasilacze LED IP67 (12V i 24V) stworzone do pracy pod pełnym obciążeniem. 7 lat gwarancji. Instalujesz i zapominasz.
+                </p>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '30px' }}>
+                  <button onClick={() => handleTabChange('oferta')} className="btn-primary" style={{ border: 'none', padding: '14px', borderRadius: '6px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer', background: 'var(--c-red)', color: 'white' }}>
+                    Zobacz Katalog Zasilaczy
+                  </button>
+                  <button onClick={() => handleTabChange('kontakt')} className="btn-secondary" style={{ padding: '14px', borderRadius: '6px', fontWeight: 700, fontSize: '1rem', cursor: 'pointer', background: 'transparent', border: '2px solid var(--c-heading)', color: 'var(--c-heading)' }}>
+                    Współpraca B2B
+                  </button>
+                </div>
+
+                <div className="hero-trust" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '15px' }}>
+                  <div className="trust-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '30%' }}>
+                    <span className="trust-val" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--c-red)' }}>7</span>
+                    <span className="trust-lbl" style={{ fontSize: '0.7rem', color: 'var(--c-text)', fontWeight: 700, textTransform: 'uppercase' }}>Lat Gwarancji</span>
+                  </div>
+                  <div className="trust-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '30%' }}>
+                    <span className="trust-val" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--c-red)' }}>IP67</span>
+                    <span className="trust-lbl" style={{ fontSize: '0.7rem', color: 'var(--c-text)', fontWeight: 700, textTransform: 'uppercase' }}>Pełna Szczelność</span>
+                  </div>
+                  <div className="trust-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: '30%' }}>
+                    <span className="trust-val" style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--c-red)' }}>100%</span>
+                    <span className="trust-lbl" style={{ fontSize: '0.7rem', color: 'var(--c-text)', fontWeight: 700, textTransform: 'uppercase' }}>Praca pod obciążeniem</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Technology Intro Block */}
+            <div className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '3rem 1rem', textAlign: 'center', borderBottom: '1px solid #eee' }}>
+              <div className="container">
+                <h2 style={{ fontSize: '1.6rem', color: 'var(--c-heading)', marginBottom: '8px', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
+                  Technologia bez kompromisów
+                </h2>
+                <p style={{ fontSize: '0.9rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>
+                  Odkryj innowacje i zabezpieczenia, które sprawiają, że zasilacze Scharfer są najczęstszym wyborem profesjonalistów w branży oświetleniowej i B2B.
+                </p>
+              </div>
+            </div>
+
+            {/* Interactive Diagram Section (Optimized for Mobile) */}
+            <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', borderBottom: '1px solid #eee', overflow: 'hidden' }}>
+              <div className="container" style={{ padding: '0 10px' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>Budowa zasilacza - interaktywny diagram</h3>
+                <InteractiveDiagram />
+              </div>
+            </div>
+
+            {/* 6 story detailed rows in single column */}
+            <div className="container" style={{ padding: '20px 15px' }}>
+              <div className="b2b-story-section-m" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+                {/* Row 1: Gwarancja */}
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>7 Lat Pełnej Gwarancji</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Zaufanie to podstawa w branży B2B. Zasilacze Scharfer są projektowane tak, aby przetrwać najcięższe warunki pracy. Dlatego każdy nasz produkt objęty jest bezwarunkową, 7-letnią gwarancją producenta.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Jasne warunki współpracy B2B: w przypadku usterki gwarantujemy ekspresową wymianę na nowy model bezpośrednio z naszego magazynu w Polsce.</p>
+                  </div>
+                </div>
+
+                {/* Row 2: IP67 */}
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Ochrona IP67 do Zadań Specjalnych</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Deszcz, śnieg, wilgoć czy pył – to dla nas żaden problem. Obudowa zasilaczy Scharfer posiada certyfikat szczelności IP67. Są całkowicie wodoodporne i pyłoszczelne.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Idealne rozwiązanie do oświetlenia elewacji, podświetlania basenów, banerów reklamowych i architektury ogrodowej. Wyeliminuj ryzyko zwarć w instalacjach outdoorowych.</p>
+                  </div>
+                </div>
+
+                {/* Row 3: 100% Obciążenia */}
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zaprojektowane do Pracy pod 100% Obciążeniem</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Koniec z przewymiarowaniem zasilaczy! W przeciwieństwie do tańszych zamienników, technologia Scharfer pozwala na stałą pracę pod 100% zadeklarowanym obciążeniem.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Jeśli kupujesz model 150W, otrzymujesz pełne 150W czystej, stabilnej mocy. Oznacza to mniejsze koszty instalacji oraz brak problemów z przegrzewaniem.</p>
+                  </div>
+                </div>
+
+                {/* Row 4: Zgodność i Bezpieczeństwo */}
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '1/1', width: '100%', padding: '30px' }}>
+                    <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                  </div>
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zgodność z Normami PN-EN, CE i RoHS</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejskie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru.</p>
+                  </div>
+                </div>
+
+                {/* Row 5: Zabezpieczenia */}
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', padding: '15px' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zabezpieczenia OVP, SCP, OTP, OLP</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Każdy profesjonalny zasilacz instalacyjny Scharfer wyposażony jest w aktywny, wielopoziomowy system ochrony elektroniki:</p>
+                    <ul style={{ listStyleType: 'disc', paddingLeft: '15px', margin: '0 0 10px 0', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4 }}>
+                      <li><strong>OVP</strong> – automatyczne odcięcie przy skokach napięcia.</li>
+                      <li><strong>SCP</strong> – błyskawiczne zabezpieczenie przeciwzwarciowe.</li>
+                      <li><strong>OTP</strong> – ochrona termiczna przed przegrzaniem.</li>
+                      <li><strong>OLP</strong> – zabezpieczenie przeciążeniowe przy zbyt wysokim poborze.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Row 6: Termika */}
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Aluminium i Żywica Epoksydowa</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Obudowa z aluminium pełni rolę radiatora, a wnętrze jest w 100% zalane żywicą.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy. Każda jednostka przechodzi test Burn-in przed wysyłką.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Applications */}
+            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid #eee' }}>
+              <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center' }}>Gdzie sprawdzają się zasilacze?</h2>
+              <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#666', marginBottom: '20px' }}>Zobacz, gdzie nasi partnerzy z powodzeniem stosują technologię Scharfer.</p>
+              
+              <div className="app-grid-m" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '15px' }}>
+                {[
+                  { title: 'Domy i Rezydencje', desc: 'Wymagające instalacje domowe i rezydencjonalne potrzebują stabilnego zasilania taśm LED na elewacjach, schodach czy w podbitkach. Zasilacze Scharfer dzięki pełnej hermetyzacji IP67 oraz odporności na mróz i upały gwarantują bezawaryjną pracę na zewnątrz przez cały rok. Szeroki zakres napięcia wejściowego zabezpiecza domowe systemy przed nagłymi wahaniami prądu w sieci.', img: 'assets/app_domy_1783188239361.png' },
+                  { title: 'Bloki mieszkalne', desc: 'Oświetlenie klatek schodowych, korytarzy i ciągów komunikacyjnych w budynkach wielorodzinnych pracuje w trybie ciągłym i wymaga bezwzględnej niezawodności. Urządzenia Scharfer eliminują ryzyko częstych wymian serwisowych w trudno dostępnych miejscach, co znacząco obniża koszty eksploatacji dla wspólnot mieszkaniowych. Aktywny układ PFC chroni instalację budynku przed szkodliwymi zakłóceniami harmonicznymi generowanymi przez setki punktów świetlnych.', img: 'assets/app_bloki_1783188247720.png' },
+                  { title: 'Hale i Magazyny', desc: 'Wysokie hale produkcyjne oraz magazyny opierają się na długich liniach świetlnych LED o bardzo dużym poborze mocy. Zasilacze Scharfer o mocach sięgających 400W pozwalają na bezproblemowe zasilanie rozbudowanych systemów liniowych bez spadków napięcia na końcach obwodów. Pełna ochrona przed przeciążeniem i zwarciem zabezpiecza ciągłość pracy obiektów logistycznych i produkcyjnych.', img: 'assets/app_hale_v2_1783188623293.png' },
+                  { title: 'Obiekty sportowe', desc: 'Korty, orliki i boiska sportowe wymagają mocnych naświetlaczy LED i zasilania odpornego na ekstremalne obciążenia rozruchowe. Hermetyczna konstrukcja chroni podzespoły zasilacza przed wilgocią z murawy, rosą oraz bezpośrednimi opadami atmosferycznymi. Zasilacze Scharfer zapewniają stałe i niemigoczące światło, co przekłada się na bezpieczeństwo oraz wysoki komfort zawodników.', img: 'assets/app_sport_v2_1783188631467.png' },
+                  { title: 'Ogrody & Parki', desc: 'Oświetlenie ogrodowe i parkowe jest nieustannie narażone na wilgotną glebę, zalewanie przez automatyczne zraszacze oraz bezpośredni kontakt z wodą. Podwójnie uszczelniona obudowa IP67 oraz zalewa żywiczna całkowicie eliminują ryzyko wniknięcia wilgoci do wnętrza elektroniki. Zapewnia to bezpieczną pracę taśm i opraw ogrodowych bez niebezpieczeństwa przebicia prądu do gruntu.', img: 'assets/app_ogrod_v2_1783188615253.png' },
+                  { title: 'Hotele & Gastro', desc: 'W branży hotelarskiej i gastronomicznej kluczowe jest stworzenie przytulnej atmosfery poprzez płynne ściemnianie taśm LED w pokojach i restauracjach. Specjalna żywica epoksydowa wewnątrz zasilaczy Scharfer skutecznie tłumi drgania cewek, eliminując uciążliwe piszczenie podczas regulacji natężenia światła. Cicha praca urządzeń gwarantuje gościom najwyższy komfort akustyczny w strefach relaksu.', img: 'assets/app_hotel_1783188309904.png' },
+                  { title: 'Kina & Kultura', desc: 'Sale kinowe i teatralne wymagają bezwzględnej ciszy oraz precyzyjnego sterowania przygaszaniem oświetlenia awaryjnego i dekoracyjnego. Zasilacze Scharfer idealnie współpracują z nowoczesnymi systemami ściemniania, nie wprowadzając szumów ani migotania w pasmach częstotliwości audio-wideo. Masywna obudowa działa jak pasywny radiator, co eliminuje konieczność stosowania głośnych wentylatorów chłodzących.', img: 'assets/app_kina_v2_1783188608035.png' },
+                  { title: 'Szkoły & Edukacja', desc: 'Bezpieczeństwo dzieci i stabilność oświetlenia w klasach lekcyjnych to absolutny priorytet dla placówek edukacyjnych. Urządzenia Scharfer spełniają rygorystyczne normy PN-EN, posiadając atesty zapobiegające powstawaniu pożarów w wyniku zwarcia (zabezpieczenie SCP). Stabilne, pozbawione tętnień napięcie wyjściowe chroni wzrok uczniów i zapobiega szybkiemu zmęczeniu podczas nauki.', img: 'assets/app_szkoly_1783188326372.png' },
+                  { title: 'Parkingi Podziemne', desc: 'Parkingi podziemne i zadaszone garaże to miejsca o stałej, wysokiej wilgotności powietrza oraz dużym stężeniu pyłów i spalin. Całkowita szczelność IP67 zasilaczy Scharfer chroni wrażliwe komponenty przed korozyjnym działaniem agresywnego środowiska parkingowego. Niezawodne zasilanie gwarantuje nieprzerwane oświetlenie dróg ewakuacyjnych i miejsc postojowych 24 godziny na dobę.', img: 'assets/app_parkingi_v2_1783188598862.png' },
+                  { title: 'Garaże & Warsztaty', desc: 'W warsztatach samochodowych i garażach oświetlenie stanowiskowe jest narażone na pył, oleje, wibracje oraz nagłe skoki napięcia wywołane pracą ciężkich maszyn. Aktywne filtry wejściowe oraz zabezpieczenie OVP chronią zasilacze i podłączone paski LED przed uszkodzeniami elektrycznymi. Solidna, metalowa konstrukcja obudowy jest odporna na przypadkowe uderzenia mechaniczne.', img: 'assets/app_garaze_1783188344306.png' },
+                  { title: 'Wiaty & Stolarka', desc: 'Oświetlenie wiat ogrodowych, zadaszeń i architektury drewnianej wymaga zasilaczy o bardzo niskiej temperaturze pracy obudowy w celach ochrony przeciwpożarowej. Zasilacze Scharfer, dzięki pełnemu zalaniu żywicą i aluminiowemu radiatorowi, efektywnie odprowadzają ciepło na zewnątrz i nie nagrzewają się do niebezpiecznych temperatur. Spełniają one restrykcyjne wymogi montażu bezpośrednio na podłożach palnych.', img: 'wiata_jezioro.png' },
+                  { title: 'Infrastruktura & Mosty', desc: 'Iluminacja mostów, wiaduktów i obiektów inżynieryjnych wymaga sprzętu odpornego na nieustanne drgania konstrukcyjne, silny wiatr i zmienne warunki pogodowe. Hermetyczna obudowa Scharfer, w całości wypełniona elastyczną żywicą epoksydową, absorbuje wibracje i uniemożliwia pękanie połączeń lutowanych. Daje to pewność bezawaryjnej pracy oświetlenia w najbardziej ekstremalnych lokalizacjach infrastruktury.', img: 'assets/app_mosty_1783188351515.png' }
+                ].map((ap, idx) => (
+                  <div key={idx} className="app-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', border: '1px solid #eee' }}>
+                    <img src={ap.img} alt={ap.title} style={{ width: '100%', aspectRatio: '1/1', objectFit: 'contain', background: '#fafafa', padding: '10px' }} />
+                    <div className="app-card-info" style={{ padding: '15px' }}>
+                      <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0 0 6px 0', color: 'var(--c-heading)' }}>{ap.title}</h3>
+                      <p style={{ fontSize: '0.82rem', color: 'var(--c-text)', margin: 0, lineHeight: 1.45 }}>{ap.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* B2B Partnership Section */}
+            <div className="section-container" style={{ padding: '30px 15px', borderTop: '1px solid #eee', background: 'white' }}>
+              <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center' }}>{t('b2bTitle')}</h2>
+              <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#666', marginBottom: '20px' }}>Budujemy długofalowe relacje oparte na zaufaniu i zyskach dla obu stron.</p>
+              
+              <div className="partnership-card" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', padding: '15px', textAlign: 'center', marginBottom: '20px', border: '1px solid #eee', boxShadow: '0 2px 5px rgba(0,0,0,0.03)' }}>
+                <img src="/assets/scharfer_partnership.webp" alt="Współpraca" style={{ width: '100%', borderRadius: '8px', marginBottom: '12px' }} />
+                <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--c-heading)', margin: '0 0 4px 0' }}>Zostań partnerem handlowym</h3>
+                <p style={{ fontSize: '0.82rem', color: '#666', margin: 0 }}>Długofalowa współpraca i wysokie marże dla dystrybutorów.</p>
+              </div>
+
+              {[
+                { title: t('valPrice'), desc: t('valPriceDesc') },
+                { title: t('valAvailability'), desc: t('valAvailabilityDesc') },
+                { title: t('valSupport'), desc: t('valSupportDesc') },
+                { title: t('valPartner'), desc: t('valPartnerDesc') }
+              ].map((val, idx) => (
+                <div key={idx} className="value-item-m" style={{ display: 'flex', gap: '10px', background: '#f8fafc', padding: '12px', borderRadius: '8px', marginBottom: '8px', border: '1px solid #f1f5f9' }}>
+                  <span className="value-bullet" style={{ color: 'var(--c-primary)', fontWeight: 'bold' }}>🔴</span>
+                  <div className="value-desc">
+                    <h4 style={{ fontSize: '0.9rem', fontWeight: 700, margin: '0 0 2px 0', color: 'var(--c-heading)' }}>{val.title}</h4>
+                    <p style={{ fontSize: '0.78rem', color: '#555', margin: 0, lineHeight: 1.3 }}>{val.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* FAQ Section */}
+            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid #eee' }}>
+              <h3 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', marginBottom: '5px' }}>Często Zadawane Pytania (FAQ)</h3>
+              <p style={{ textAlign: 'center', fontSize: '0.82rem', color: '#666', marginBottom: '15px' }}>Wszystko, co musisz wiedzieć o zasilaczach LED Scharfer</p>
+              <div className="faq-list-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {faqItems.map((item, idx) => (
+                  <div key={idx} className={`faq-item-m ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', border: '1px solid #eee' }}>
+                    <button 
+                      className="faq-head-m" 
+                      onClick={() => toggleFaq(idx)}
+                      style={{ width: '100%', padding: '12px 15px', background: 'none', border: 'none', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', fontWeight: 700, color: 'var(--c-heading)', cursor: 'pointer' }}
+                    >
+                      <span>{item.q}</span>
+                      <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: 'var(--c-primary)' }}>{activeFaq === idx ? '−' : '+'}</span>
+                    </button>
+                    {activeFaq === idx && (
+                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: '#555', lineHeight: 1.4, borderTop: '1px solid #eee', paddingTop: '10px' }}>
+                        <p style={{ margin: 0 }}>{item.a}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <MobileFooter onOpenRegulamin={() => setMobileRegulaminOpen(true)} onOpenRodo={() => setMobileRodoOpen(true)} />
+          </section>
+        )}
+
+        {/* VIEW: OFERTA */}
+        {activeTab === 'oferta' && (
+          <section className="view-section active">
+            <div className="section-container" style={{ padding: '20px 15px' }}>
+              <h2 className="section-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '15px', textAlign: 'center' }}>Katalog Zasilaczy LED</h2>
+              
+
+
+              {/* Filters */}
+              <div style={{ marginBottom: '20px' }}>
+                <input 
+                  type="text" 
+                  className="mobile-search-bar" 
+                  placeholder="Szukaj zasilacza (np. 150W)..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  style={{ width: '100%', padding: '10px 15px', border: '1px solid #ddd', borderRadius: '8px', fontSize: '0.9rem', marginBottom: '10px' }}
+                />
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  {(['all', '12V', '24V'] as const).map(v => (
+                    <button 
+                      key={v}
+                      onClick={() => setFilterVoltage(v)}
+                      style={{ 
+                        flex: 1, 
+                        padding: '8px', 
+                        borderRadius: '6px', 
+                        border: '1px solid #ddd', 
+                        background: filterVoltage === v ? 'var(--c-primary)' : 'white', 
+                        color: filterVoltage === v ? 'white' : '#444',
+                        fontWeight: 600,
+                        fontSize: '0.82rem'
+                      }}
+                    >
+                      {v === 'all' ? 'Wszystkie' : v}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Products list */}
+              <div className="mobile-products-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '15px' }}>
+                {filteredProducts.map(p => {
+                  const powerMatch = p.name.match(/\d+W/);
+                  const powerText = powerMatch ? powerMatch[0] : '';
+                  return (
+                    <div key={p.index} style={{ background: 'white', borderRadius: '12px', padding: '20px 15px', display: 'flex', flexDirection: 'column', alignItems: 'stretch', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: '1px solid #f1f5f9' }}>
+                      {/* Sleek horizontal badge row at the top */}
+                      <div className="specs-line" style={{ display: 'flex', gap: '0.3rem', marginBottom: '1rem', flexWrap: 'nowrap', width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: '4px' }}>
+                        {powerText && <span style={{ backgroundColor: 'var(--c-red)', color: 'white', border: '1px solid var(--c-red)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{powerText}</span>}
+                        <span style={{ backgroundColor: '#1e293b', color: 'white', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>IP67</span>
+                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>SELV</span>
+                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>CE</span>
+                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>RoHS</span>
+                        <span style={{ backgroundColor: 'white', border: '1px solid var(--c-red)', color: 'var(--c-red)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>7Y</span>
+                      </div>
+                      
+                      {/* Centered Image */}
+                      <div onClick={() => setActiveProduct(p)} style={{ cursor: 'zoom-in', textAlign: 'center', padding: '0.5rem 0 1.2rem 0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '120px' }}>
+                        <img src={p.img} alt={p.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                      </div>
+
+                      {/* Product Name */}
+                      <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: '0 0 1rem 0', color: 'var(--c-heading)', textAlign: 'center' }}>{p.name}</h3>
+                      
+                      {/* Specs card table block */}
+                      <div style={{ background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem' }}>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Napięcie</span>
+                          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{p.specs.voltage} DC</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem' }}>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Prąd wyjściowy</span>
+                          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{p.specs.current}</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem' }}>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Kod EAN</span>
+                          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{p.ean}</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Wymiary</span>
+                          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.82rem' }}>{p.specs.dim}</span>
+                        </div>
+                      </div>
+
+                      {/* Details Button */}
+                      <button onClick={() => setActiveProduct(p)} className="btn-secondary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.8rem', fontSize: '0.85rem', fontWeight: 700, border: '1px solid #ddd', borderRadius: '6px', background: 'white', color: '#333', cursor: 'pointer' }}>
+                        Szczegóły techniczne
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {filteredProducts.length === 0 && (
+                <div style={{ textAlign: 'center', padding: '3rem 0', color: '#999' }}>Brak pasujących zasilaczy.</div>
+              )}
+
+              <button className="btn-full" onClick={() => handleTabChange('kontakt')} style={{ display: 'block', width: '100%', textAlign: 'center', background: 'var(--c-primary)', color: 'white', padding: '15px', borderRadius: '8px', fontWeight: 600, fontSize: '1.1rem', marginTop: '20px', border: 'none' }}>
+                ZAMÓW B2B
+              </button>
+            </div>
+            
+            {/* Footer */}
+            <MobileFooter onOpenRegulamin={() => setMobileRegulaminOpen(true)} onOpenRodo={() => setMobileRodoOpen(true)} />
+          </section>
+        )}
+
+        {/* VIEW: DLACZEGO (SCHARFER?) */}
+        {activeTab === 'info' && (
+          <section className="view-section active">
+            {/* Unified Page Hero */}
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '1.25rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '160px', background: '#fff', color: '#111' }}>
+              <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+                <img src="/assets/scharfer_estate_night.png" alt="Scharfer oświetlenie osiedla" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.15 }} />
+                <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,1) 100%)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+              </div>
+              <div className="hero-content" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '100%' }}>
+                <h1 className="hero-title" style={{ fontSize: '1.65rem', fontWeight: 800, color: '#111', marginBottom: '12px', lineHeight: 1.2 }}>
+                  Technologia bez kompromisów
+                </h1>
+                <p className="hero-subtitle" style={{ fontSize: '0.85rem', color: '#444', margin: 0, lineHeight: 1.45 }}>
+                  Odkryj innowacje i zabezpieczenia, które sprawiają, że zasilacze Scharfer są najczęstszym wyborem profesjonalistów w branży oświetleniowej i B2B.
+                </p>
+              </div>
+            </div>
+
+            {/* Interactive Diagram Section (Optimized for Mobile) */}
+            <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', borderBottom: '1px solid #eee', overflow: 'hidden' }}>
+              <div className="container" style={{ padding: '0 10px' }}>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>Budowa zasilacza - innowacje Scharfer</h3>
+                <InteractiveDiagram />
+              </div>
+            </div>
+
+            {/* Trust items */}
+            <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-around', gap: '8px', padding: '20px 15px', background: 'white', borderBottom: '1px solid #eee' }}>
+              <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-primary)' }}>7</span>
+                <span className="trust-lbl" style={{ fontSize: '0.65rem', color: '#aaa', fontWeight: 600 }}>Lat Gwarancji</span>
+              </div>
+              <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-primary)' }}>IP67</span>
+                <span className="trust-lbl" style={{ fontSize: '0.65rem', color: '#aaa', fontWeight: 600 }}>Szczelność</span>
+              </div>
+              <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-primary)' }}>100%</span>
+                <span className="trust-lbl" style={{ fontSize: '0.65rem', color: '#aaa', fontWeight: 600 }}>Obciążenia</span>
+              </div>
+            </div>
+
+            {/* 6 story detailed rows */}
+            <div className="container" style={{ padding: '20px 15px' }}>
+              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', marginBottom: '20px', color: 'var(--c-heading)' }}>Szczegółowe zalety technologii</h2>
+              <div className="b2b-story-section-m" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>7 Lat Pełnej Gwarancji</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Zaufanie to podstawa w branży B2B. Zasilacze Scharfer są projektowane tak, aby przetrwać najcięższe warunki pracy. Dlatego każdy nasz produkt objęty jest bezwarunkową, 7-letnią gwarancją producenta.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Jasne warunki współpracy B2B: w przypadku usterki gwarantujemy ekspresową wymianę na nowy model bezpośrednio z naszego magazynu w Polsce.</p>
+                  </div>
+                </div>
+
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Ochrona IP67 do Zadań Specjalnych</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Deszcz, śnieg, wilgoć czy pył – to dla nas żaden problem. Obudowa zasilaczy Scharfer posiada certyfikat szczelności IP67. Są całkowicie wodoodporne i pyłoszczelne.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Idealne rozwiązanie do oświetlenia elewacji, podświetlania basenów, banerów reklamowych i architektury ogrodowej. Wyeliminuj ryzyko zwarć w instalacjach outdoorowych.</p>
+                  </div>
+                </div>
+
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zaprojektowane do Pracy pod 100% Obciążeniem</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Koniec z przewymiarowaniem zasilaczy! W przeciwieństwie do tańszych zamienników, technologia Scharfer pozwala na stałą pracę pod 100% zadeklarowanym obciążeniem.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Jeśli kupujesz model 150W, otrzymujesz pełne 150W czystej, stabilnej mocy. Oznacza to mniejsze koszty instalacji oraz brak problemów z przegrzewaniem.</p>
+                  </div>
+                </div>
+
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '180px', padding: '15px' }}>
+                    <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                  </div>
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zgodność z Normami PN-EN, CE i RoHS</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejskie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru.</p>
+                  </div>
+                </div>
+
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zabezpieczenia OVP, SCP, OTP, OLP</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Każdy profesjonalny zasilacz instalacyjny Scharfer wyposażony jest w aktywny, wielopoziomowy system ochrony elektroniki:</p>
+                    <ul style={{ listStyleType: 'disc', paddingLeft: '15px', margin: '0 0 10px 0', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4 }}>
+                      <li><strong>OVP</strong> – automatyczne odcięcie przy skokach napięcia.</li>
+                      <li><strong>SCP</strong> – błyskawiczne zabezpieczenie przeciwzwarciowe.</li>
+                      <li><strong>OTP</strong> – ochrona termiczna przed przegrzaniem.</li>
+                      <li><strong>OLP</strong> – zabezpieczenie przeciążeniowe przy zbyt wysokim poborze.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Aluminium i Żywica Epoksydowa</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Obudowa z aluminium pełni rolę radiatora, a wnętrze jest w 100% zalane żywicą.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy. Każda jednostka przechodzi test Burn-in przed wysyłką.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Applications */}
+            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid #eee' }}>
+              <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center' }}>Gdzie sprawdzają się zasilacze?</h2>
+              <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#666', marginBottom: '20px' }}>Zobacz, gdzie nasi partnerzy z powodzeniem stosują technologię Scharfer.</p>
+              
+              <div className="app-grid-m" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '15px' }}>
+                {[
+                  { title: 'Domy i Rezydencje', desc: 'Wymagające instalacje domowe i rezydencjonalne potrzebują stabilnego zasilania taśm LED na elewacjach, schodach czy w podbitkach. Zasilacze Scharfer dzięki pełnej hermetyzacji IP67 oraz odporności na mróz i upały gwarantują bezawaryjną pracę na zewnątrz przez cały rok. Szeroki zakres napięcia wejściowego zabezpiecza domowe systemy przed nagłymi wahaniami prądu w sieci.', img: 'assets/app_domy_1783188239361.png' },
+                  { title: 'Bloki mieszkalne', desc: 'Oświetlenie klatek schodowych, korytarzy i ciągów komunikacyjnych w budynkach wielorodzinnych pracuje w trybie ciągłym i wymaga bezwzględnej niezawodności. Urządzenia Scharfer eliminują ryzyko częstych wymian serwisowych w trudno dostępnych miejscach, co znacząco obniża koszty eksploatacji dla wspólnot mieszkaniowych. Aktywny układ PFC chroni instalację budynku przed szkodliwymi zakłóceniami harmonicznymi generowanymi przez setki punktów świetlnych.', img: 'assets/app_bloki_1783188247720.png' },
+                  { title: 'Hale i Magazyny', desc: 'Wysokie hale produkcyjne oraz magazyny opierają się na długich liniach świetlnych LED o bardzo dużym poborze mocy. Zasilacze Scharfer o mocach sięgających 400W pozwalają na bezproblemowe zasilanie rozbudowanych systemów liniowych bez spadków napięcia na końcach obwodów. Pełna ochrona przed przeciążeniem i zwarciem zabezpiecza ciągłość pracy obiektów logistycznych i produkcyjnych.', img: 'assets/app_hale_v2_1783188623293.png' },
+                  { title: 'Obiekty sportowe', desc: 'Korty, orliki i boiska sportowe wymagają mocnych naświetlaczy LED i zasilania odpornego na ekstremalne obciążenia rozruchowe. Hermetyczna konstrukcja chroni podzespoły zasilacza przed wilgocią z murawy, rosą oraz bezpośrednimi opadami atmosferycznymi. Zasilacze Scharfer zapewniaja stałe i niemigoczące światło, co przekłada się na bezpieczeństwo oraz wysoki komfort zawodników.', img: 'assets/app_sport_v2_1783188631467.png' },
+                  { title: 'Ogrody & Parki', desc: 'Oświetlenie ogrodowe i parkowe jest nieustannie narażone na wilgotną glebę, zalewanie przez automatyczne zraszacze oraz bezpośredni kontakt z wodą. Podwójnie uszczelniona obudowa IP67 oraz zalewa żywiczna całkowicie eliminują ryzyko wniknięcia wilgoci do wnętrza elektroniki. Zapewnia to bezpieczną pracę taśm i opraw ogrodowych bez niebezpieczeństwa przebicia prądu do gruntu.', img: 'assets/app_ogrod_v2_1783188615253.png' },
+                  { title: 'Hotele & Gastro', desc: 'W branży hotelarskiej i gastronomicznej kluczowe jest stworzenie przytulnej atmosfery poprzez płynne ściemnianie taśm LED w pokojach i restauracjach. Specjalna żywica epoksydowa wewnątrz zasilaczy Scharfer skutecznie tłumi drgania cewek, eliminując uciążliwe piszczenie podczas regulacji natężenia światła. Cicha praca urządzeń gwarantuje gościom najwyższy komfort akustyczny w strefach relaksu.', img: 'assets/app_hotel_1783188309904.png' },
+                  { title: 'Kina & Kultura', desc: 'Sale kinowe i teatralne wymagają bezwzględnej ciszy oraz precyzyjnego sterowania przygaszaniem oświetlenia awaryjnego i dekoracyjnego. Zasilacze Scharfer idealnie współpracują z nowoczesnymi systemami ściemniania, nie wprowadzając szumów ani migotania w pasmach częstotliwości audio-wideo. Masywna obudowa działa jak pasywny radiator, co eliminuje konieczność stosowania głośnych wentylatorów chłodzących.', img: 'assets/app_kina_v2_1783188608035.png' },
+                  { title: 'Szkoły & Edukacja', desc: 'Bezpieczeństwo dzieci i stabilność oświetlenia w klasach lekcyjnych to absolutny priorytet dla placówek edukacyjnych. Urządzenia Scharfer spełniają rygorystyczne normy PN-EN, posiadając atesty zapobiegające powstawaniu pożarów w wyniku zwarcia (zabezpieczenie SCP). Stabilne, pozbawione tętnień napięcie wyjściowe chroni wzrok uczniów i zapobiega szybkiemu zmęczeniu podczas nauki.', img: 'assets/app_szkoly_1783188326372.png' },
+                  { title: 'Parkingi Podziemne', desc: 'Parkingi podziemne i zadaszone garaże to miejsca o stałej, wysokiej wilgotności powietrza oraz dużym stężeniu pyłów i spalin. Całkowita szczelność IP67 zasilaczy Scharfer chroni wrażliwe komponenty przed korozyjnym działaniem agresywnego środowiska parkingowego. Niezawodne zasilanie gwarantuje nieprzerwane oświetlenie dróg ewakuacyjnych i miejsc postojowych 24 godziny na dobę.', img: 'assets/app_parkingi_v2_1783188598862.png' },
+                  { title: 'Garaże & Warsztaty', desc: 'W warsztatach samochodowych i garażach oświetlenie stanowiskowe jest narażone na pył, oleje, wibracje oraz nagłe skoki napięcia wywołane pracą ciężkich maszyn. Aktywne filtry wejściowe oraz zabezpieczenie OVP chronią zasilacze i podłączone paski LED przed uszkodzeniami elektrycznymi. Solidna, metalowa konstrukcja obudowy jest odporna na przypadkowe uderzenia mechaniczne.', img: 'assets/app_garaze_1783188344306.png' },
+                  { title: 'Wiaty & Stolarka', desc: 'Oświetlenie wiat ogrodowych, zadaszeń i architektury drewnianej wymaga zasilaczy o bardzo niskiej temperaturze pracy obudowy w celach ochrony przeciwpożarowej. Zasilacze Scharfer, dzięki pełnemu zalaniu żywicą i aluminiowemu radiatorowi, efektywnie odprowadzają ciepło na zewnątrz i nie nagrzewają się do niebezpiecznych temperatur. Spełniają one restrykcyjne wymogi montażu bezpośrednio na podłożach palnych.', img: 'wiata_jezioro.png' },
+                  { title: 'Infrastruktura & Mosty', desc: 'Iluminacja mostów, wiaduktów i obiektów inżynieryjnych wymaga sprzętu odpornego na nieustanne drgania konstrukcyjne, silny wiatr i zmienne warunki pogodowe. Hermetyczna obudowa Scharfer, w całości wypełniona elastyczną żywicą epoksydową, absorbuje wibracje i uniemożliwia pękanie połączeń lutowanych. Daje to pewność bezawaryjnej pracy oświetlenia w najbardziej ekstremalnych lokalizacjach infrastruktury.', img: 'assets/app_mosty_1783188351515.png' }
+                ].map((ap, idx) => (
+                  <div key={idx} className="app-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', border: '1px solid #eee' }}>
+                    <img src={ap.img} alt={ap.title} style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
+                    <div className="app-card-info" style={{ padding: '15px' }}>
+                      <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0 0 6px 0', color: 'var(--c-heading)' }}>{ap.title}</h3>
+                      <p style={{ fontSize: '0.82rem', color: 'var(--c-text)', margin: 0, lineHeight: 1.45 }}>{ap.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* FAQ Section */}
+            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid #eee' }}>
+              <h3 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', marginBottom: '5px' }}>Często Zadawane Pytania (FAQ)</h3>
+              <p style={{ textAlign: 'center', fontSize: '0.82rem', color: '#666', marginBottom: '15px' }}>Wszystko, co musisz wiedzieć o zasilaczach LED Scharfer</p>
+              <div className="faq-list-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {faqItems.map((item, idx) => (
+                  <div key={idx} className={`faq-item-m ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', border: '1px solid #eee' }}>
+                    <button 
+                      className="faq-head-m" 
+                      onClick={() => toggleFaq(idx)}
+                      style={{ width: '100%', padding: '12px 15px', background: 'none', border: 'none', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', fontWeight: 700, color: 'var(--c-heading)', cursor: 'pointer' }}
+                    >
+                      <span>{item.q}</span>
+                      <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: 'var(--c-primary)' }}>{activeFaq === idx ? '−' : '+'}</span>
+                    </button>
+                    {activeFaq === idx && (
+                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: '#555', lineHeight: 1.4, borderTop: '1px solid #eee', paddingTop: '10px' }}>
+                        <p style={{ margin: 0 }}>{item.a}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <MobileFooter onOpenRegulamin={() => setMobileRegulaminOpen(true)} onOpenRodo={() => setMobileRodoOpen(true)} />
+          </section>
+        )}
+
+        {/* VIEW: KONTAKT */}
+        {activeTab === 'kontakt' && (
+          <section className="view-section active">
+            {/* Unified Page Hero */}
+            <div className="hero-m" style={{ position: 'relative', overflow: 'hidden', padding: '1.25rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '160px', background: '#000', color: 'white' }}>
+              <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+                <img src="/assets/kontakt_hero.png" alt="Biuro dystrybutora Scharfer" style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }} />
+                <div className="hero-overlay" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%)', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+              </div>
+              <div className="hero-content" style={{ position: 'relative', zIndex: 2, textAlign: 'center', maxWidth: '100%' }}>
+                <h1 className="hero-title" style={{ fontSize: '1.65rem', fontWeight: 800, color: '#fff', marginBottom: '12px', lineHeight: 1.2 }}>
+                  Skontaktuj się z nami
+                </h1>
+                <p className="hero-subtitle" style={{ fontSize: '0.85rem', color: '#ccc', margin: 0, lineHeight: 1.45 }}>
+                  Chcesz zostać naszym dystrybutorem? Masz pytania techniczne dotyczące zasilaczy LED? Napisz do nas, a nasz zespół ekspertów odpowie niezwłocznie.
+                </p>
+              </div>
+            </div>
+
+            <div className="section-container" style={{ padding: '25px 15px', background: 'white' }}>
+              <h2 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '20px', textAlign: 'center', color: 'var(--c-heading)' }}>Oficjalny Dystrybutor</h2>
+              
+              {/* Prescot Card */}
+              <div className="contact-card-m" style={{ background: 'white', borderRadius: '12px', padding: '20px', textAlign: 'center', border: '1px solid #eee', boxShadow: '0 2px 6px rgba(0,0,0,0.03)', marginBottom: '25px' }}>
+                <span className="contact-badge-label" style={{ display: 'inline-block', fontSize: '8px', background: '#eee', color: '#555', fontWeight: 800, padding: '2px 6px', borderRadius: '3px', textTransform: 'uppercase', marginBottom: '8px' }}>Oficjalny Dystrybutor</span>
+                <div style={{ margin: '8px 0 12px' }}>
+                  <img src="/PRESCOT_logo.png" alt="Prescot LED" className="contact-prescot-logo" style={{ height: '24px', display: 'block', margin: '0 auto' }} />
+                </div>
+                <p className="contact-company-name" style={{ fontSize: '1rem', fontWeight: 800, margin: '0 0 4px 0', color: 'var(--c-heading)' }}>PRESCOT SP. Z O.O.</p>
+                <p className="contact-company-details" style={{ fontSize: '0.8rem', color: '#666', margin: '0 0 15px 0', lineHeight: 1.4 }}>ul. Wileńska 1, 11-500 Giżycko<br />NIP: 8451939947</p>
+                <div className="contact-buttons-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <a href="tel:+48877776482" className="contact-action-btn" style={{ background: '#f8f9fa', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
+                    📞 +48 87 777 64 82
+                  </a>
+                  <a href="mailto:komponenty@prescot.pl" className="contact-action-btn" style={{ background: '#f8f9fa', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
+                    ✉️ komponenty@prescot.pl
+                  </a>
+                </div>
+              </div>
+
+              {/* B2B Form Card */}
+              <div className="form-card" style={{ background: 'white', border: '1px solid #eee', borderRadius: '12px', padding: '20px', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', marginBottom: '30px' }}>
+                <h2 className="form-title" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '1.25rem', color: 'var(--c-heading)' }}>Kontakt B2B</h2>
+                <form onSubmit={(e) => { e.preventDefault(); alert('Formularz został wysłany. Skontaktujemy się z Tobą w ciągu 24h.'); }} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    <label htmlFor="name" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--c-heading)' }}>{t('formName')}</label>
+                    <input type="text" id="name" required style={{ padding: '0.8rem', border: '1px solid var(--c-border)', borderRadius: '6px', fontSize: '0.9rem' }} />
+                  </div>
+                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    <label htmlFor="email" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--c-heading)' }}>{t('formEmail')}</label>
+                    <input type="email" id="email" required style={{ padding: '0.8rem', border: '1px solid var(--c-border)', borderRadius: '6px', fontSize: '0.9rem' }} />
+                  </div>
+                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    <label htmlFor="message" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--c-heading)' }}>{t('formMsg')}</label>
+                    <textarea id="message" rows={5} required style={{ padding: '0.8rem', border: '1px solid var(--c-border)', borderRadius: '6px', fontSize: '0.9rem', resize: 'vertical' }}></textarea>
+                  </div>
+                  <div className="form-checkbox" style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
+                    <input type="checkbox" id="gdpr" required style={{ marginTop: '0.2rem' }} />
+                    <label htmlFor="gdpr" style={{ fontSize: '0.78rem', color: '#666', lineHeight: 1.4 }}>{t('formGdpr')}</label>
+                  </div>
+                  <button type="submit" className="btn-primary" style={{ padding: '1rem', border: 'none', background: 'var(--c-red)', color: 'white', borderRadius: '6px', fontSize: '0.95rem', fontWeight: 600, cursor: 'pointer' }}>
+                    {t('formSend')}
+                  </button>
+                </form>
+              </div>
+
+              {/* FAQ */}
+              <h3 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', margin: '0 0 5px 0' }}>Często Zadawane Pytania</h3>
+              <p style={{ textAlign: 'center', fontSize: '0.82rem', color: '#666', marginBottom: '15px' }}>Wszystko, co musisz wiedzieć o zasilaczach LED Scharfer</p>
+              <div className="faq-list-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {faqItems.map((item, idx) => (
+                  <div key={idx} className={`faq-item-m ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', border: '1px solid #eee' }}>
+                    <button 
+                      className="faq-head-m" 
+                      onClick={() => toggleFaq(idx)}
+                      style={{ width: '100%', padding: '12px 15px', background: 'none', border: 'none', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', fontWeight: 700, color: 'var(--c-heading)', cursor: 'pointer' }}
+                    >
+                      <span>{item.q}</span>
+                      <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: 'var(--c-primary)' }}>{activeFaq === idx ? '−' : '+'}</span>
+                    </button>
+                    {activeFaq === idx && (
+                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: '#555', lineHeight: 1.4, borderTop: '1px solid #eee', paddingTop: '10px' }}>
+                        <p style={{ margin: 0 }}>{item.a}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <MobileFooter onOpenRegulamin={() => setMobileRegulaminOpen(true)} onOpenRodo={() => setMobileRodoOpen(true)} />
+          </section>
+        )}
+
+      </main>
+
+      {/* App Bottom Navigation */}
+      <nav className="app-nav" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: 'calc(70px + env(safe-area-inset-bottom))', paddingBottom: 'env(safe-area-inset-bottom)', background: 'white', display: 'flex', justifyContent: 'space-around', alignItems: 'center', boxShadow: '0 -2px 10px rgba(0,0,0,0.05)', zIndex: 2000 }}>
+        <div className={`nav-item ${activeTab === 'home' ? 'active' : ''}`} onClick={() => handleTabChange('home')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'home' ? 'var(--c-primary)' : '#9ca3af' }}>
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'home' ? 'var(--c-primary)' : '#9ca3af' }}>{t('navHome')}</span>
+        </div>
+        <div className={`nav-item ${activeTab === 'oferta' ? 'active' : ''}`} onClick={() => handleTabChange('oferta')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'oferta' ? 'var(--c-primary)' : '#9ca3af' }}>
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+            <line x1="6" y1="6" x2="6.01" y2="6" />
+            <line x1="6" y1="18" x2="6.01" y2="18" />
+          </svg>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'oferta' ? 'var(--c-primary)' : '#9ca3af' }}>{t('navOferta')}</span>
+        </div>
+        <div className={`nav-item ${activeTab === 'info' ? 'active' : ''}`} onClick={() => handleTabChange('info')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'info' ? 'var(--c-primary)' : '#9ca3af' }}>
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
+          </svg>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'info' ? 'var(--c-primary)' : '#9ca3af' }}>{t('navPoznajShort')}</span>
+        </div>
+        <a href="https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580" target="_blank" rel="noopener noreferrer" className="nav-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer', textDecoration: 'none' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#9ca3af' }}>
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: '#9ca3af' }}>{t('navB2C')}</span>
+        </a>
+        <div className={`nav-item ${activeTab === 'kontakt' ? 'active' : ''}`} onClick={() => handleTabChange('kontakt')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'kontakt' ? 'var(--c-primary)' : '#9ca3af' }}>
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'kontakt' ? 'var(--c-primary)' : '#9ca3af' }}>{t('navKontakt')}</span>
+        </div>
+      </nav>
+
+      {activeProduct && (
+        <ProductModal product={activeProduct} onClose={() => setActiveProduct(null)} />
+      )}
+
+      {/* Mobile Regulamin Modal */}
+      {mobileRegulaminOpen && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setMobileRegulaminOpen(false)}>
+          <div style={{ background: 'white', borderRadius: '16px', padding: '20px', width: '90%', maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '15px' }}>
+              <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--c-heading)' }}>Regulamin Serwisu</h3>
+              <span onClick={() => setMobileRegulaminOpen(false)} style={{ fontSize: '1.8rem', cursor: 'pointer', color: '#aaa', lineHeight: 1 }}>&times;</span>
+            </div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.6 }}>
+              <h4 style={{ margin: '10px 0 5px' }}>§ 1. Postanowienia ogólne</h4>
+              <p style={{ margin: '0 0 10px' }}>1. Regulamin określa zasady korzystania z witryny <strong>scharfer.com.pl</strong>.</p>
+              <p style={{ margin: '0 0 10px' }}>2. Właścicielem serwisu jest <strong>PRESCOT SP. Z O.O.</strong> z siedzibą w Giżycku, ul. Wileńska 1, NIP: 8451939947.</p>
+              <p style={{ margin: '0 0 10px' }}>3. Serwis ma charakter katalogu technicznego i informacyjnego B2B.</p>
+              <h4 style={{ margin: '10px 0 5px' }}>§ 2. Korzystanie z serwisu</h4>
+              <p style={{ margin: '0 0 10px' }}>1. Korzystanie jest bezpłatne.</p>
+              <p style={{ margin: '0 0 10px' }}>2. Opisy, diagramy i materiały wideo są własnością Administratora i podlegają ochronie autorskiej.</p>
+              <p style={{ margin: '0 0 10px' }}>3. Dane techniczne produktów mają charakter informacyjny i nie stanowią oferty handlowej w rozumieniu Kodeksu Cywilnego.</p>
+              <h4 style={{ margin: '10px 0 5px' }}>§ 3. Kontakt</h4>
+              <p style={{ margin: '0 0 10px' }}>1. Użytkownik może kontaktować się z dystrybutorem za pośrednictwem poczty e-mail: <strong>komponenty@prescot.pl</strong> lub infolinii: <strong>+48 87 777 64 82</strong>.</p>
+            </div>
+            <button onClick={() => setMobileRegulaminOpen(false)} className="btn-primary" style={{ width: '100%', padding: '10px', marginTop: '15px', border: 'none', background: 'var(--c-red)', backgroundColor: 'var(--c-red)', color: 'white', borderRadius: '6px', fontWeight: 600 }}>Zamknij</button>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile RODO Modal */}
+      {mobileRodoOpen && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setMobileRodoOpen(false)}>
+          <div style={{ background: 'white', borderRadius: '16px', padding: '20px', width: '90%', maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '15px' }}>
+              <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--c-heading)' }}>Polityka Prywatności i RODO</h3>
+              <span onClick={() => setMobileRodoOpen(false)} style={{ fontSize: '1.8rem', cursor: 'pointer', color: '#aaa', lineHeight: 1 }}>&times;</span>
+            </div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.6 }}>
+              <p style={{ margin: '0 0 10px' }}>Zgodnie z ogólnym rozporządzeniem o ochronie danych (RODO) z dnia 27 kwietnia 2016 r., informujemy o zasadach przetwarzania danych:</p>
+              <h4 style={{ margin: '10px 0 5px' }}>1. Administrator Danych</h4>
+              <p style={{ margin: '0 0 10px' }}>Administratorem danych osobowych jest <strong>PRESCOT SP. Z O.O.</strong> z siedzibą w Giżycku, ul. Wileńska 1, NIP: 8451939947, e-mail: <strong>komponenty@prescot.pl</strong>.</p>
+              <h4 style={{ margin: '10px 0 5px' }}>2. Cele przetwarzania</h4>
+              <p style={{ margin: '0 0 10px' }}>Dane podane w formularzu kontaktowym (imię, adres e-mail) przetwarzane są wyłącznie w celu obsługi zapytania ofertowego lub technicznego (art. 6 ust. 1 lit. f RODO – uzasadniony interes Administratora).</p>
+              <h4 style={{ margin: '10px 0 5px' }}>3. Prawa użytkownika</h4>
+              <p style={{ margin: '0 0 10px' }}>Użytkownikowi przysługuje prawo dostępu do swoich danych, sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz wniesienia skargi do PUODO.</p>
+            </div>
+            <button onClick={() => setMobileRodoOpen(false)} className="btn-primary" style={{ width: '100%', padding: '10px', marginTop: '15px', border: 'none', background: 'var(--c-red)', backgroundColor: 'var(--c-red)', color: 'white', borderRadius: '6px', fontWeight: 600 }}>Zamknij</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => void; onOpenRodo: () => void }) {
+  return (
+    <footer className="app-footer" style={{ textAlign: 'center', padding: '3rem 1.25rem 2rem 1.25rem', marginTop: '2rem', background: '#ffffff', borderTop: '1px solid #e5e7eb' }}>
+      
+      {/* Brand Column */}
+      <div className="footer-logo-m" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
+        <img src="/logo_scharfer.png" alt="Scharfer" style={{ height: '26px' }} />
+        <p style={{ fontSize: '0.78rem', color: '#6b7280', margin: 0, maxWidth: '280px', lineHeight: 1.5 }}>
+          Profesjonalne zasilacze LED w klasie IP67 o zadeklarowanej 100% wydajności.
+        </p>
+      </div>
+
+      {/* Distributor Column */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
+        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Oficjalny Dystrybutor</span>
+        <a href="https://prescot.com.pl" target="_blank" rel="noopener noreferrer">
+          <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '15px', display: 'block' }} />
+        </a>
+        <div style={{ fontSize: '0.8rem', color: '#4b5563', lineHeight: 1.5, marginTop: '0.2rem' }}>
+          <strong>Prescot Sp. z o.o.</strong><br />
+          ul. Wileńska 1, 11-500 Giżycko<br />
+          NIP: 8451939947
+        </div>
+      </div>
+
+      {/* Support & Contact Column */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
+        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Wsparcie i Kontakt</span>
+        <a href="mailto:komponenty@prescot.pl" style={{ color: 'var(--c-red)', fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>
+          komponenty@prescot.pl
+        </a>
+        <a href="tel:+48877776482" style={{ color: 'var(--c-heading)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
+          tel. +48 87 777 64 82
+        </a>
+      </div>
+
+      {/* Copyright Line */}
+      <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '0.25rem' }}>
+          <a href="/regulamin" style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}>Regulamin</a>
+          <a href="/rodo" style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline" }}>RODO</a>
+        </div>
+        <span className="footer-copy-m" style={{ fontSize: '0.75rem', color: '#9ca3af' }}>&copy; {new Date().getFullYear()} Scharfer. Wszelkie prawa zastrzeżone.</span>
+        <span style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
+          Powered by <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ color: '#6b7280', textDecoration: 'none', fontWeight: 600 }}>PRESCOT LED</a>
+        </span>
+      </div>
+
+    </footer>
+  );
+}
+
+function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const powerMatch = product.name.match(/\d+W/);
+  const powerText = powerMatch ? powerMatch[0] : '';
+
+  return (
+    <div className="product-modal active" id="product-modal" onClick={(e) => { if ((e.target as HTMLElement).id === 'product-modal') onClose(); }} style={{ display: 'flex', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, alignItems: 'center', justifyContent: 'center' }}>
+      <div className="modal-content" style={{ maxWidth: '95%', maxHeight: '90vh', overflowY: 'auto', background: 'white', borderRadius: '16px', padding: '1.5rem', position: 'relative', display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '95%', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', border: '1px solid #eee' }}>
+        <span className="modal-close" onClick={onClose} style={{ position: 'absolute', top: '10px', right: '15px', fontSize: '2rem', cursor: 'pointer', color: '#aaa', transition: 'color 0.2s', fontWeight: 300, lineHeight: 1 }}>&times;</span>
+        
+        {/* Expanded image container */}
+        <div className="modal-image-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fafafa', borderRadius: '12px', padding: '1rem', overflow: 'hidden', minHeight: '180px' }}>
+          <img 
+            src={product.img} 
+            alt={product.name} 
+            onClick={() => setIsZoomed(true)}
+            style={{ 
+              maxWidth: '100%', 
+              maxHeight: '180px', 
+              objectFit: 'contain', 
+              cursor: 'zoom-in', 
+              transition: 'transform 0.3s ease',
+              position: 'relative',
+              zIndex: 10
+            }} 
+          />
+        </div>
+        
+        <div className="modal-info-col" style={{ display: 'flex', flexDirection: 'column' }}>
+          <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1rem', color: 'var(--c-heading)', lineHeight: 1.15, fontFamily: 'Outfit, sans-serif' }}>{product.name}</h2>
+          
+          <table className="modal-specs-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
+            <tbody>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Napięcie wyjściowe</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.voltage} DC</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Prąd wyjściowy</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Moc znamionowa</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{powerText}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Kod EAN</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Wymiary</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Klasa szczelności</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: 'var(--c-red)' }}>IP67 (wodoodporny)</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: 'var(--c-red)' }}>7 Lat Gwarancji</td></tr>
+            </tbody>
+          </table>
+
+          <div className="modal-actions" style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <a href={product.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', textDecoration: 'none', padding: '0.9rem', borderRadius: '8px', background: 'var(--c-red)', color: 'white', fontWeight: 700, fontSize: '0.9rem', boxShadow: '0 4px 12px rgba(230,0,0,0.1)' }}>
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '16px', height: '16px' }}>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              Pobierz PDF karty
+            </a>
+            <button onClick={onClose} className="btn-secondary" style={{ padding: '0.8rem', borderRadius: '8px', fontWeight: 600, border: '1px solid #ddd', color: '#555', background: 'white' }}>
+              Powrót
+            </button>
+          </div>
+        </div>
+        
+        {isZoomed && (
+          <div 
+            className="product-lightbox"
+            onClick={(e) => { e.stopPropagation(); setIsZoomed(false); }}
+            style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.9)', zIndex: 11000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <img src={product.img} alt={product.name} style={{ maxWidth: '95%', maxHeight: '95%', objectFit: 'contain' }} />
+            <span onClick={() => setIsZoomed(false)} style={{ position: 'absolute', top: '20px', right: '20px', color: 'white', fontSize: '2.5rem', cursor: 'pointer' }}>&times;</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
