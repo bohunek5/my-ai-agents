@@ -354,6 +354,13 @@ export const translations = {
     faq6Q: "Jakie są kluczowe przewagi (Przewaga Scharfer)?",
     faq6A:
       "Przewaga Scharfer to przede wszystkim: obudowa w klasie IP67 zapewniająca wodoodporność i pyłoszczelność, stabilne napięcie wyjściowe, szeroki zakres wejściowy (100-250V AC), wysoka wydajność transferu, praca przy 100% obciążenia, test wypalenia przy pełnym obciążeniu oraz zaawansowane zabezpieczenia przed przeciążeniem i zwarciem.",
+
+    officialDistributor: "Oficjalny dystrybutor",
+    contactAbout: "O nas",
+    contactAboutDesc: "Jesteśmy oficjalnym dystrybutorem zasilaczy Scharfer w Polsce. Oferujemy pełne wsparcie B2B.",
+    contactData: "Dane kontaktowe",
+    faqSectionTitle: "Najczęściej zadawane pytania",
+    faqSectionDesc: "Rozwiej swoje wątpliwości na temat zasilaczy Scharfer",
     contactTitle: "Skontaktuj się z nami",
     contactSubtitle:
       "Masz pytania dotyczące współpracy hurtowej? Chcesz zamówić większą partię zasilaczy? Napisz do nas.",
@@ -545,6 +552,13 @@ export const translations = {
     faq6Q: "What are the key advantages (Scharfer Advantage)?",
     faq6A:
       "The Scharfer advantage includes: IP67 waterproof casing, stable output voltage, wide input range, high transfer efficiency, 100% load operation, burn-in testing, and advanced protections (OVP, SCP, OTP, OLP).",
+
+    officialDistributor: "Official Distributor",
+    contactAbout: "About Us",
+    contactAboutDesc: "We are the official distributor of Scharfer power supplies. We offer full B2B support.",
+    contactData: "Contact Details",
+    faqSectionTitle: "Frequently Asked Questions",
+    faqSectionDesc: "Clear your doubts about Scharfer power supplies",
     contactTitle: "Contact Us",
     contactSubtitle:
       "Do you have questions about wholesale cooperation? Want to order a larger batch? Write to us.",
@@ -730,6 +744,13 @@ export const translations = {
     faq6Q: "Was sind die Hauptvorteile (Scharfer-Vorteil)?",
     faq6A:
       "Wasserdichtes IP67-Gehäuse, stabile Ausgangsspannung, hoher Wirkungsgrad, 100% Lastbetrieb, Burn-In-Tests und fortschrittliche Schutzfunktionen.",
+
+    officialDistributor: "Offizieller Händler",
+    contactAbout: "Über uns",
+    contactAboutDesc: "Wir sind der offizielle Distributor für Scharfer-Netzteile. Wir bieten vollen B2B-Support.",
+    contactData: "Kontaktdaten",
+    faqSectionTitle: "Häufig gestellte Fragen",
+    faqSectionDesc: "Klären Sie Ihre Zweifel an Scharfer-Netzteilen",
     contactTitle: "Kontaktiere uns",
     contactSubtitle:
       "Haben Sie Fragen zur Großhandelskooperation? Möchten Sie eine größere Charge bestellen? Schreiben Sie uns.",
@@ -904,6 +925,13 @@ export const translations = {
     faq6Q: "Kokie yra pagrindiniai privalumai?",
     faq6A:
       "IP67 korpusas, stabili išėjimo įtampa, 100% apkrova, Burn-In testavimas ir apsaugos (OVP, SCP, OTP, OLP).",
+
+    officialDistributor: "Oficialus platintojas",
+    contactAbout: "Apie mus",
+    contactAboutDesc: "Esame oficialus „Scharfer“ maitinimo šaltinių platintojas. Siūlome visapusišką B2B palaikymą.",
+    contactData: "Kontaktiniai duomenys",
+    faqSectionTitle: "Dažnai užduodami klausimai",
+    faqSectionDesc: "Išsklaidykite savo abejones dėl „Scharfer“ maitinimo šaltinių",
     contactTitle: "Susisiekite su mumis",
     contactSubtitle:
       "Turite klausimų? Norite užsisakyti didesnę partiją? Parašykite mums.",

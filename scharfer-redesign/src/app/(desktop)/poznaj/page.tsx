@@ -13,28 +13,28 @@ export default function PoznajPage() {
 
   const faqItems = [
     {
-      q: t('faqQ1'),
-      a: t('faqA1')
+      q: t('faq1Q'),
+      a: t('faq1A')
     },
     {
-      q: t('faqQ2'),
-      a: t('faqA2')
+      q: t('faq2Q'),
+      a: t('faq2A')
     },
     {
-      q: t('faqQ3'),
-      a: t('faqA3')
+      q: t('faq3Q'),
+      a: t('faq3A')
     },
     {
-      q: t('faqQ4'),
-      a: t('faqA4')
+      q: t('faq4Q'),
+      a: t('faq4A')
     },
     {
-      q: t('faqQ5'),
-      a: t('faqA5')
+      q: t('faq5Q'),
+      a: t('faq5A')
     },
     {
-      q: t('faqQ6'),
-      a: t('faqA6')
+      q: t('faq6Q'),
+      a: t('faq6A')
     }
   ];
 
