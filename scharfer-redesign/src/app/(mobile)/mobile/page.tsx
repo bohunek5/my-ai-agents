@@ -628,7 +628,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Interactive Diagram Section (Optimized for Mobile) */}
-            <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', borderBottom: '1px solid #eee', overflow: 'hidden' }}>
+            <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', overflow: 'hidden' }}>
               <div className="container" style={{ padding: '0 10px' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>Budowa zasilacza - innowacje Scharfer</h3>
                 <InteractiveDiagram forceMobile={true} />

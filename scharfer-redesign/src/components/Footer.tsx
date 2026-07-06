@@ -74,7 +74,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright Bar */}
-      <div style={{ maxWidth: 'var(--max-width)', margin: '3rem auto 0 auto', padding: '1.5rem var(--spacing-lg) 0 var(--spacing-lg)', borderTop: '1px solid #f3f4f6', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+      <div style={{ maxWidth: 'var(--max-width)', margin: '3rem auto 0 auto', padding: '1.5rem var(--spacing-lg) 0 var(--spacing-lg)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <span style={{ fontSize: '0.8rem', color: '#9ca3af' }}>
           &copy; {new Date().getFullYear()} Scharfer. Wszelkie prawa zastrzeżone.
         </span>

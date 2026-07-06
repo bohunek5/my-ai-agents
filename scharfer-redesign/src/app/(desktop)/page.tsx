@@ -102,7 +102,7 @@ export default function HomePage() {
       </div>
 
       {/* Budowa zasilacza - interaktywny diagram */}
-      <div className="section-padding bg-light" style={{ padding: '4rem 2rem 0rem 2rem', background: '#fafafa', borderBottom: '1px solid var(--c-border)', overflow: 'hidden' }}>
+      <div className="section-padding bg-light" style={{ padding: '4rem 2rem 0rem 2rem', background: '#fafafa', overflow: 'hidden' }}>
         <div className="container" style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
           <InteractiveDiagram />
         </div>
