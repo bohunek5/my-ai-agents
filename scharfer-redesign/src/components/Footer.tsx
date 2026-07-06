@@ -6,7 +6,7 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="site-footer" style={{ backgroundColor: '#ffffff', padding: '4rem 0 3rem 0', borderTop: '1px solid #e5e7eb' }}>
+    <footer className="site-footer" style={{ backgroundColor: '#ffffff', padding: '4rem 0 3rem 0' }}>
       <div className="footer-inner" style={{ maxWidth: 'var(--max-width)', margin: '0 auto', padding: '0 var(--spacing-lg)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '3rem', alignItems: 'flex-start' }}>
         
         {/* Column 1: Scharfer Brand (Nothing underneath except a clean tagline) */}

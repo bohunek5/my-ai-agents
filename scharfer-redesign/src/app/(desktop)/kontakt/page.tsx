@@ -12,28 +12,28 @@ export default function KontaktPage() {
 
   const faqItems = [
     {
-      q: 'Jakie są warunki gwarancji na zasilacze LED Scharfer?',
-      a: 'Każdy zasilacz LED marki Scharfer objęty jest pełną, 7-letnią gwarancją producenta. Jesteśmy pewni naszej technologii i stosowanych komponentów, co pozwala nam zapewnić Ci maksymalne bezpieczeństwo inwestycji w oświetlenie.'
+      q: t('faqQ1'),
+      a: t('faqA1')
     },
     {
-      q: 'Czy zasilacze posiadają certyfikat IP67?',
-      a: 'Tak, zasilacze scharfer posiadają klasę szczelności IP67. Oznacza to pełną wodoszczelność i pyłoszczelność. Dzięki temu idealnie nadają się do montażu w łazienkach, elewacjach budynków, reklamach świetlnych oraz w innych trudnych warunkach zewnętrznych.'
+      q: t('faqQ2'),
+      a: t('faqA2')
     },
     {
-      q: 'Jak zostać dystrybutorem zasilaczy Scharfer?',
-      a: 'Aby rozpocząć współpracę B2B, wystarczy wypełnić formularz w sekcji "Kontakt B2B" lub napisać bezpośrednio na adres komponenty@prescot.pl. Nasz przedstawiciel handlowy skontaktuje się z Tobą w ciągu 24 godzin w celu przedstawienia dedykowanych warunków handlowych i rabatów hurtowych.'
+      q: t('faqQ3'),
+      a: t('faqA3')
     },
     {
-      q: 'Czy gwarantujecie pracę pod pełnym obciążeniem?',
-      a: 'Tak. Jedną z głównych zalet zasilaczy Scharfer jest gwarancja stabilnej pracy pod 100% zadeklarowanym obciążeniem. Nie musisz stosować dużych zapasów mocy (tzw. marginesów), jak to bywa w przypadku tańszych zamienników, co optymalizuje koszty całej instalacji LED.'
+      q: t('faqQ4'),
+      a: t('faqA4')
     },
     {
-      q: 'Gdzie najlepiej stosować zasilacze 12V i 24V Scharfer?',
-      a: 'Zasilacze 12V idealnie sprawdzają się do małych instalacji LED, podświetleń meblowych, gablot, kasetonów i krótkich linii światła, gdzie zasilacz ma pozostać dyskretny (np. modele 20W). Zasilacze 24V rekomendujemy przy dłuższych ciągach oświetleniowych, zapewniając stabilne napięcie na całym odcinku.'
+      q: t('faqQ5'),
+      a: t('faqA5')
     },
     {
-      q: 'Jakie są kluczowe przewagi (Przewaga Scharfer)?',
-      a: 'Przewaga Scharfer to przede wszystkim: obudowa w klasie IP67 zapewniająca wodoodporność i pyłoszczelność, stabilne napięcie wyjściowe, szeroki zakres wejściowy (100-250V AC), wysoka wydajność transferu, praca przy 100% obciążenia, test wypalenia przy pełnym obciążeniu oraz zaawansowane zabezpieczenia przed przeciążeniem i zwarciem.'
+      q: t('faqQ6'),
+      a: t('faqA6')
     }
   ];
 
@@ -46,7 +46,7 @@ export default function KontaktPage() {
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">
-          <h1 className="page-hero-title">Skontaktuj się z nami</h1>
+          <h1 className="page-hero-title">{t('contactTitle')}</h1>
           <p className="page-hero-subtitle">
             Chcesz zostać naszym dystrybutorem? Masz pytania techniczne dotyczące zasilaczy LED? Napisz do nas, a nasz zespół ekspertów odpowie niezwłocznie.
           </p>
@@ -59,14 +59,14 @@ export default function KontaktPage() {
           
           <div className="contact-details" style={{ flex: 1, minWidth: '300px' }}>
             <div className="details-card" style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '2.5rem', boxShadow: 'var(--shadow-md)' }}>
-              <h2 className="details-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '10px', color: 'var(--c-heading)' }}>Oficjalny Dystrybutor</h2>
+              <h2 className="details-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '10px', color: 'var(--c-heading)' }}>{t('officialDistributor')}</h2>
               <img src="/scharfer/PRESCOT_logo.png" alt="Prescot LED" style={{ height: '35px', marginBottom: '20px' }} />
               <div className="contact-line" style={{ marginBottom: '1.5rem' }}>
-                <strong style={{ display: 'block', fontSize: '1rem', color: 'var(--c-heading)', marginBottom: '0.25rem' }}>O nas:</strong>
-                <p style={{ fontSize: '1rem', fontWeight: 400, lineHeight: 1.5, color: 'var(--c-text)', margin: 0 }}>Jesteśmy autoryzowanym przedstawicielem Scharfer. Oferujemy pełne wsparcie B2B oraz atrakcyjne rabaty hurtowe.</p>
+                <strong style={{ display: 'block', fontSize: '1rem', color: 'var(--c-heading)', marginBottom: '0.25rem' }}>{t('contactAbout')}</strong>
+                <p style={{ fontSize: '1rem', fontWeight: 400, lineHeight: 1.5, color: 'var(--c-text)', margin: 0 }}>{t('contactAboutDesc')}</p>
               </div>
               <div className="contact-line">
-                <strong style={{ display: 'block', fontSize: '1rem', color: 'var(--c-heading)', marginBottom: '0.25rem' }}>Dane kontaktowe:</strong>
+                <strong style={{ display: 'block', fontSize: '1rem', color: 'var(--c-heading)', marginBottom: '0.25rem' }}>{t('contactData')}</strong>
                 <div style={{ fontSize: '1rem', color: 'var(--c-heading)', fontWeight: 500, lineHeight: 1.6 }}>
                   <strong>PRESCOT SP. Z O.O.</strong><br />
                   ul. Wileńska 1, 11-500 Giżycko<br />
@@ -79,7 +79,7 @@ export default function KontaktPage() {
 
           <div className="contact-form-container" style={{ flex: 1.5, minWidth: '350px' }}>
             <div className="form-card" style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '2.5rem', boxShadow: 'var(--shadow-md)' }}>
-              <h2 className="form-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)' }}>Kontakt B2B</h2>
+              <h2 className="form-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)' }}>{t('navContact')}</h2>
               <form onSubmit={(e) => { e.preventDefault(); alert('Formularz został wysłany. Skontaktujemy się z Tobą w ciągu 24h.'); }} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                   <label htmlFor="name" style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--c-heading)' }}>{t('formName')}</label>
@@ -109,8 +109,8 @@ export default function KontaktPage() {
         {/* FAQ Section */}
         <div className="faq-section section-padding bg-light" style={{ marginTop: '5rem', background: '#fafafa', borderRadius: '12px', padding: '3rem 2rem', border: '1px solid var(--c-border)' }}>
           <div className="text-center" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2 className="section-title" style={{ fontSize: '2rem', color: 'var(--c-heading)', fontWeight: 800 }}>Często zadawane pytania (FAQ)</h2>
-            <p className="section-subtitle" style={{ color: '#666' }}>Wszystko, co musisz wiedzieć o zasilaczach LED Scharfer</p>
+            <h2 className="section-title" style={{ fontSize: '2rem', color: 'var(--c-heading)', fontWeight: 800 }}>{t('faqSectionTitle')}</h2>
+            <p className="section-subtitle" style={{ color: '#666' }}>{t('faqSectionDesc')}</p>
           </div>
           <div className="faq-accordion" style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {faqItems.map((item, idx) => (

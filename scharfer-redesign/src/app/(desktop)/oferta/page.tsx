@@ -60,13 +60,13 @@ export default function OfertaPage() {
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
-          <img src="/scharfer/assets/scharfer_supplies_hero.png" alt="Zasilacze oświetlenia miejskiego" />
+          <img src="/scharfer/assets/scharfer_supplies_hero.png" alt={t('catalogTitle')} />
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">
-          <h1 className="page-hero-title">Katalog Zasilaczy LED</h1>
+          <h1 className="page-hero-title">{t('catalogTitle')}</h1>
           <p className="page-hero-subtitle">
-            Niezawodne zasilacze napięciowe LED 12V i 24V w klasie szczelności IP67. Wybierz rozwiązanie idealnie dopasowane do Twojego projektu.
+            {t('catalogSubtitle')}
           </p>
         </div>
       </div>
@@ -85,8 +85,8 @@ export default function OfertaPage() {
           />
           <div className="filter-group" style={{ display: 'flex', gap: '0.5rem' }}>
             <button className={`filter-btn ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>{t('allProducts')}</button>
-            <button className={`filter-btn ${filter === '12V' ? 'active' : ''}`} onClick={() => setFilter('12V')}>Tylko 12V</button>
-            <button className={`filter-btn ${filter === '24V' ? 'active' : ''}`} onClick={() => setFilter('24V')}>Tylko 24V</button>
+            <button className={`filter-btn ${filter === '12V' ? 'active' : ''}`} onClick={() => setFilter('12V')}>{t('only12V')}</button>
+            <button className={`filter-btn ${filter === '24V' ? 'active' : ''}`} onClick={() => setFilter('24V')}>{t('only24V')}</button>
           </div>
         </div>
 
@@ -94,10 +94,10 @@ export default function OfertaPage() {
         <div className="catalog-wrapper" style={{ padding: 0 }}>
           {products12v.length > 0 && (
             <div className="voltage-section" style={{ marginBottom: '4rem' }}>
-              <h2 className="voltage-heading" style={{ fontSize: '1.8rem', color: 'var(--c-heading)', borderBottom: '2px solid var(--c-red)', paddingBottom: '0.5rem', marginBottom: '2rem', fontWeight: 800 }}>Zasilacze LED Scharfer 12V</h2>
+              <h2 className="voltage-heading" style={{ fontSize: '1.8rem', color: 'var(--c-heading)', borderBottom: '2px solid var(--c-red)', paddingBottom: '0.5rem', marginBottom: '2rem', fontWeight: 800 }}>{t('heading12V')}</h2>
               <div className="products-grid">
                 {products12v.map(p => (
-                  <ProductCard key={p.index} product={p} onOpenModal={setActiveProduct} downloadLabel={t('downloadPdf')} />
+                  <ProductCard key={p.index} product={p} onOpenModal={setActiveProduct} />
                 ))}
               </div>
             </div>
@@ -105,10 +105,10 @@ export default function OfertaPage() {
 
           {products24v.length > 0 && (
             <div className="voltage-section" style={{ marginBottom: '2rem' }}>
-              <h2 className="voltage-heading" style={{ fontSize: '1.8rem', color: 'var(--c-heading)', borderBottom: '2px solid var(--c-red)', paddingBottom: '0.5rem', marginBottom: '2rem', fontWeight: 800 }}>Zasilacze LED Scharfer 24V</h2>
+              <h2 className="voltage-heading" style={{ fontSize: '1.8rem', color: 'var(--c-heading)', borderBottom: '2px solid var(--c-red)', paddingBottom: '0.5rem', marginBottom: '2rem', fontWeight: 800 }}>{t('heading24V')}</h2>
               <div className="products-grid">
                 {products24v.map(p => (
-                  <ProductCard key={p.index} product={p} onOpenModal={setActiveProduct} downloadLabel={t('downloadPdf')} />
+                  <ProductCard key={p.index} product={p} onOpenModal={setActiveProduct} />
                 ))}
               </div>
             </div>
@@ -116,7 +116,7 @@ export default function OfertaPage() {
 
           {filteredProducts.length === 0 && (
             <div style={{ textAlign: 'center', padding: '4rem 0', color: '#888' }}>
-              <h3>Brak wyników spełniających kryteria wyszukiwania.</h3>
+              <h3>{t('noResults')}</h3>
             </div>
           )}
         </div>
@@ -130,7 +130,8 @@ export default function OfertaPage() {
   );
 }
 
-function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product; onOpenModal: (p: Product) => void; downloadLabel: string }) {
+function ProductCard({ product, onOpenModal }: { product: Product; onOpenModal: (p: Product) => void; }) {
+  const { t } = useLanguage();
   const powerMatch = product.name.match(/\d+W/);
   const powerText = powerMatch ? powerMatch[0] : '';
 
@@ -153,7 +154,7 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
       </div>
 
       {/* Spacious centered image container with hover transition */}
-      <div className="product-image" onClick={() => onOpenModal(product)} style={{ cursor: 'zoom-in', textAlign: 'center', padding: '0.5rem 0 1.2rem 0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '140px' }} title="Zobacz szczegóły techniczne">
+      <div className="product-image" onClick={() => onOpenModal(product)} style={{ cursor: 'zoom-in', textAlign: 'center', padding: '0.5rem 0 1.2rem 0', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '140px' }} title={t('techDetails')}>
         <img src={product.img} alt={product.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', transition: 'transform 0.3s ease' }} className="card-zasilacz-img" />
       </div>
       {/* Large Product Name */}
@@ -164,26 +165,26 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
       {/* Modern technology spec card ("ladnie w bloczku") - stretched to full card width */}
       <div style={{ background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Moc</span>
+          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specPower')}</span>
           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{product.name.split(' ')[1] || 'MOC'}</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Prąd wyjściowy</span>
+          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specCurrent')}</span>
           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{product.specs.current}</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Kod EAN</span>
+          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specEan')}</span>
           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{product.ean}</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2px' }}>
-          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Wymiary</span>
+          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specDim')}</span>
           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{product.specs.dim}</span>
         </div>
       </div>
 
       {/* Button with clean transitions (removed overriding inline color) */}
       <button onClick={() => onOpenModal(product)} className="btn-secondary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.8rem', fontSize: '0.85rem', fontWeight: 700 }}>
-        Szczegóły techniczne
+        {t('techDetails')}
       </button>
     </div>
   );
@@ -191,6 +192,7 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
 
 
 function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
+  const { t } = useLanguage();
   const [isZoomed, setIsZoomed] = useState(false);
   
   const renderSymbolRed = (name: string) => {
@@ -226,14 +228,14 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           <h2 style={{ fontSize: '2.2rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)', lineHeight: 1.15, fontFamily: 'Outfit, sans-serif' }}>{renderSymbolRed(product.name)}</h2>
           <table className="modal-specs-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '1rem', marginBottom: '2.5rem' }}>
             <tbody>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Napięcie wyjściowe</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.voltage} DC</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Prąd wyjściowy</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Moc znamionowa</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.name.match(/\d+W/) ? product.name.match(/\d+W/)?.[0] : ''}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Kod EAN</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Wymiary (dł. x szer. x wys.)</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Klasa szczelności</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-red)' }}>IP67 (pełna wodoodporność)</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Aktywne zabezpieczenia</td><td style={{ padding: '0.9rem 0', fontWeight: 600, color: '#10b981', fontSize: '0.9rem' }}>Nadnapięciowe (OVP), Przeciwzwarciowe (SCP), Termiczne (OTP), Przeciążeniowe (OLP)</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja producenta</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-red)' }}>7 Lat Gwarancji (Pełna, realizowana w Polsce)</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specVolt')}</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.voltage} DC</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specCurrent')}</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specPowerNom')}</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.name.match(/\d+W/) ? product.name.match(/\d+W/)?.[0] : ''}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specEan')}</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specDimFull')}</td><td style={{ padding: '0.9rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specIp')}</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-red)' }}>{t('specIpVal')}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specProtect')}</td><td style={{ padding: '0.9rem 0', fontWeight: 600, color: '#10b981', fontSize: '0.9rem' }}>{t('specProtectVal')}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.9rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specWarranty')}</td><td style={{ padding: '0.9rem 0', fontWeight: 800, color: 'var(--c-red)' }}>{t('specWarrantyVal')}</td></tr>
             </tbody>
           </table>
 
@@ -243,10 +245,10 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '20px', height: '20px' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              Pobierz Kartę Katalogową PDF
+              {t('downloadPdf')}
             </a>
             <button onClick={onClose} className="btn-secondary" style={{ padding: '1rem', borderRadius: '8px', fontWeight: 600, border: '1px solid #ddd', color: '#555' }}>
-              Powrót do katalogu
+              {t('backToCatalog')}
             </button>
           </div>
         </div>

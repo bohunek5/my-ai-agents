@@ -29,7 +29,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const t = (key: string): string => {
     const dict = translations[lang] || translations['pl'];
-    return (dict as any)[key] || key;
+    return (dict as any)[key] || (translations['pl'] as any)[key] || key;
   };
 
   return (
