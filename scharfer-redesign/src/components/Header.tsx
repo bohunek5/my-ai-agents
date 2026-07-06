@@ -4,6 +4,9 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
+import WcagMenu from '@/components/WcagMenu';
+import ThemeToggle from '@/components/ThemeToggle';
+
 export default function Header() {
   const pathname = usePathname();
   const { lang, setLang, t } = useLanguage();
@@ -41,6 +44,10 @@ export default function Header() {
         </nav>
         
         <div className="header-actions" style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+          {/* Accessibility Tools */}
+          <WcagMenu />
+          <ThemeToggle />
+
           {/* Language Switcher */}
           <div className="language-switcher" style={{ position: 'relative' }}>
             <button

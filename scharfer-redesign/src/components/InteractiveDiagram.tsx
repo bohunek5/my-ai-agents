@@ -183,7 +183,6 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
           }}
         >
           {features.map((f, idx) => {
-            if (idx === 6) return null; // No arrow line for Gwarancja card
             const isActive = activeFeature === idx;
             return (
               <line 
@@ -227,7 +226,6 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
 
         {/* Pulsing Hotspots on the zasilacz */}
         {features.map((f, idx) => {
-          if (idx === 6) return null;
           const isActive = activeFeature === idx;
           return (
             <div 
@@ -312,19 +310,19 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
             return (
               <div 
                 key={realIdx}
-                onMouseEnter={() => realIdx !== 6 ? setActiveFeature(realIdx) : undefined}
-                onMouseLeave={() => realIdx !== 6 ? setActiveFeature(null) : undefined}
+                onMouseEnter={() => setActiveFeature(realIdx)}
+                onMouseLeave={() => setActiveFeature(null)}
                 style={{
                   background: 'white',
                   border: isActive ? '1.5px solid var(--c-red)' : '1.5px solid #e5e7eb',
                   boxShadow: isActive ? '0 12px 25px rgba(230,0,0,0.07)' : '0 4px 12px rgba(0,0,0,0.03)',
                   borderRadius: '12px',
                   padding: '0.75rem 0.9rem',
-                  cursor: realIdx !== 6 ? 'pointer' : 'default',
+                  cursor: 'pointer',
                   textAlign: 'left',
                   transition: 'all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                   transform: isActive ? 'translateX(8px)' : 'none',
-                  opacity: activeFeature === null || isActive || realIdx === 6 ? 1 : 0.45
+                  opacity: activeFeature === null || isActive ? 1 : 0.45
                 }}
               >
                 <h3 style={{ fontSize: '1rem', fontWeight: 800, color: isActive ? 'var(--c-red)' : 'var(--c-heading)', transition: 'color 0.2s', margin: '0 0 0.3rem 0' }}>{f.title}</h3>

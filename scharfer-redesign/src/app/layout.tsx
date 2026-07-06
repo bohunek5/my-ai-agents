@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import MobileRedirect from "@/components/MobileRedirect";
 import ScrollToTop from "@/components/ScrollToTop";
+import { AccessibilityProvider } from "@/context/AccessibilityContext";
 
 export const metadata: Metadata = {
   title: "Zasilacze LED Scharfer | 7 Lat Gwarancji | Praca pod pełnym obciążeniem 100%",
@@ -17,10 +18,12 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body>
-        <MobileRedirect>
-          <ScrollToTop />
-          {children}
-        </MobileRedirect>
+        <AccessibilityProvider>
+          <MobileRedirect>
+            <ScrollToTop />
+            {children}
+          </MobileRedirect>
+        </AccessibilityProvider>
       </body>
     </html>
   );

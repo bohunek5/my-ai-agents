@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { productsData, Product } from '@/data/scharferData';
 import InteractiveDiagram from '@/components/InteractiveDiagram';
-
+import WcagMenu from '@/components/WcagMenu';
+import ThemeToggle from '@/components/ThemeToggle';
 type Tab = 'home' | 'oferta' | 'info' | 'kontakt';
 
 export default function MobileAppPage() {
@@ -159,8 +160,12 @@ export default function MobileAppPage() {
           </a>
         </div>
 
-        {/* Right: Language Dropdown */}
-        <div className="header-right" id="lang-wrapper" style={{ position: 'relative' }}>
+        {/* Right: Controls & Language */}
+        <div className="header-right" id="lang-wrapper" style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          
+          <WcagMenu />
+          <ThemeToggle />
+
           {/* Language Switcher */}
           <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
             <button 
