@@ -11,7 +11,7 @@ export default function Footer() {
         
         {/* Column 1: Scharfer Brand (Nothing underneath except a clean tagline) */}
         <div className="footer-col brand-col" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <img src="/scharfer/logo_scharfer.png" alt="Scharfer - Zasilacze LED" className="footer-logo" style={{ maxHeight: '35px', width: 'auto', alignSelf: 'flex-start', margin: 0 }} />
+          <img src="/logo_scharfer.png" alt="Scharfer - Zasilacze LED" className="footer-logo" style={{ maxHeight: '35px', width: 'auto', alignSelf: 'flex-start', margin: 0 }} />
           <p style={{ color: '#6b7280', fontSize: '0.9rem', lineHeight: 1.6, margin: 0, maxWidth: '280px' }}>
             {t('footerTagline')}
           </p>
@@ -22,7 +22,7 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('officialDistributor')}</span>
             <div style={{ alignSelf: 'flex-start' }}>
-              <img src="/scharfer/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '22px', display: 'block' }} />
+              <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '22px', display: 'block' }} />
             </div>
           </div>
           <div style={{ color: '#4b5563', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>

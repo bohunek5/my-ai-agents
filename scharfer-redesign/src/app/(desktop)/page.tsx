@@ -127,7 +127,7 @@ export default function HomePage() {
               <p>{t('story1P2')}</p>
             </div>
             <div className="b2b-story-img">
-              <img src="/scharfer/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ borderRadius: '8px' }} />
+              <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ borderRadius: '8px' }} />
             </div>
           </div>
 
@@ -139,7 +139,7 @@ export default function HomePage() {
               <p>{t('story2P2')}</p>
             </div>
             <div className="b2b-story-img">
-              <img src="/scharfer/assets/sch2.webp" alt="Wodoodporność IP67" style={{ borderRadius: '8px' }} />
+              <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ borderRadius: '8px' }} />
             </div>
           </div>
 
@@ -151,7 +151,7 @@ export default function HomePage() {
               <p>{t('story6P2')}</p>
             </div>
             <div className="b2b-story-img">
-              <img src="/scharfer/assets/sch3.webp" alt="Aluminiowa obudowa" style={{ borderRadius: '8px' }} />
+              <img src="/assets/sch3.webp" alt="Aluminiowa obudowa" style={{ borderRadius: '8px' }} />
             </div>
           </div>
 
@@ -163,7 +163,7 @@ export default function HomePage() {
               <p>{t('story3P2')}</p>
             </div>
             <div className="b2b-story-img">
-              <img src="/scharfer/assets/sch4.webp" alt="100% obciążenia" style={{ borderRadius: '8px' }} />
+              <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ borderRadius: '8px' }} />
             </div>
           </div>
           
@@ -180,7 +180,7 @@ export default function HomePage() {
               </ul>
             </div>
             <div className="b2b-story-img">
-              <img src="/scharfer/assets/40012.png" alt="Zasilacz 12V 400W Scharfer" style={{ borderRadius: '8px' }} />
+              <img src="/assets/40012.png" alt="Zasilacz 12V 400W Scharfer" style={{ borderRadius: '8px' }} />
             </div>
           </div>
 
@@ -192,7 +192,7 @@ export default function HomePage() {
               <p>{t('story4P2')}</p>
             </div>
             <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-              <img src="/scharfer/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', mixBlendMode: 'multiply', boxShadow: 'none', borderRadius: 0 }} />
+              <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', mixBlendMode: 'multiply', boxShadow: 'none', borderRadius: 0 }} />
             </div>
           </div>
         </div>
@@ -210,7 +210,7 @@ export default function HomePage() {
         <div className="app-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem' }}>
           {/* App 1: Domy */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_domy_1783188239361.png" alt="Zasilacz LED zewnętrzny do domu" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_domy_1783188239361.png" alt="Zasilacz LED zewnętrzny do domu" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app1Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app1Desc')}</p>
@@ -218,7 +218,7 @@ export default function HomePage() {
           </div>
           {/* App 2: Bloki mieszkalne */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_bloki_1783188247720.png" alt="Wodoodporny zasilacz do taśm LED" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_bloki_1783188247720.png" alt="Wodoodporny zasilacz do taśm LED" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app2Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app2Desc')}</p>
@@ -226,7 +226,7 @@ export default function HomePage() {
           </div>
           {/* App 3: Hale */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_hale_v2_1783188623293.png" alt="Zasilacze przemysłowe LED 24V" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_hale_v2_1783188623293.png" alt="Zasilacze przemysłowe LED 24V" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app3Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app3Desc')}</p>
@@ -234,7 +234,7 @@ export default function HomePage() {
           </div>
           {/* App 4: Obiekty sportowe */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_sport_v2_1783188631467.png" alt="Zasilacze LED 12V i 24V dużej mocy" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_sport_v2_1783188631467.png" alt="Zasilacze LED 12V i 24V dużej mocy" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app4Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app4Desc')}</p>
@@ -243,7 +243,7 @@ export default function HomePage() {
           
           {/* App 5: Ogrody i parki */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_ogrod_v2_1783188615253.png" alt="Zasilacz LED hermetyczny IP67" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_ogrod_v2_1783188615253.png" alt="Zasilacz LED hermetyczny IP67" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app5Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app5Desc')}</p>
@@ -251,7 +251,7 @@ export default function HomePage() {
           </div>
           {/* App 6: Hotele */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_hotel_1783188309904.png" alt="Zasilacze do taśm LED ze ściemniaczem" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_hotel_1783188309904.png" alt="Zasilacze do taśm LED ze ściemniaczem" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app6Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app6Desc')}</p>
@@ -259,7 +259,7 @@ export default function HomePage() {
           </div>
           {/* App 7: Kina */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_kina_v2_1783188608035.png" alt="Zasilacze LED 12V do pasków" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_kina_v2_1783188608035.png" alt="Zasilacze LED 12V do pasków" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app7Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app7Desc')}</p>
@@ -267,7 +267,7 @@ export default function HomePage() {
           </div>
           {/* App 8: Szkoły */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_szkoly_1783188326372.png" alt="Zasilacze do opraw LED" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_szkoly_1783188326372.png" alt="Zasilacze do opraw LED" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app8Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app8Desc')}</p>
@@ -275,7 +275,7 @@ export default function HomePage() {
           </div>
           {/* App 9: Parkingi */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_parkingi_v2_1783188598862.png" alt="Zasilacze LED zewnętrzne" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_parkingi_v2_1783188598862.png" alt="Zasilacze LED zewnętrzne" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app9Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app9Desc')}</p>
@@ -283,7 +283,7 @@ export default function HomePage() {
           </div>
           {/* App 10: Garaże */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_garaze_1783188344306.png" alt="Mocne zasilacze do taśm LED 24V" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_garaze_1783188344306.png" alt="Mocne zasilacze do taśm LED 24V" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app10Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app10Desc')}</p>
@@ -292,7 +292,7 @@ export default function HomePage() {
 
           {/* App 11: Wiaty i Stolarka */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/wiata_jezioro.png" alt="Oświetlenie wiat i drewnianej stolarki" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/wiata_jezioro.png" alt="Oświetlenie wiat i drewnianej stolarki" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app11Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app11Desc')}</p>
@@ -300,7 +300,7 @@ export default function HomePage() {
           </div>
           {/* App 12: Mosty */}
           <div className="app-card" style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', transition: 'transform 0.3s ease' }}>
-            <img src="/scharfer/assets/app_mosty_1783188351515.png" alt="Zasilacz LED wodoszczelny" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
+            <img src="/assets/app_mosty_1783188351515.png" alt="Zasilacz LED wodoszczelny" style={{ width: '100%', height: '200px', objectFit: 'cover', display: 'block' }} />
             <div className="app-content" style={{ padding: '1.5rem', background: 'var(--c-white)' }}>
               <h3 style={{ margin: '0 0 0.5rem', fontSize: '1.2rem', fontWeight: 700 }}>{t('app12Title')}</h3>
               <p style={{ margin: 0, color: 'var(--c-text)', fontSize: '0.9rem', lineHeight: 1.5 }}>{t('app12Desc')}</p>
@@ -313,7 +313,7 @@ export default function HomePage() {
       <div className="container section-padding" style={{ maxWidth: 'var(--max-width)', margin: '4rem auto 0 auto', padding: '0 1.5rem' }}>
         <div className="partnership-section" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <div className="partnership-img" style={{ flex: 1, minWidth: '300px' }}>
-            <img src="/scharfer/assets/scharfer_partnership.webp" alt="{t('b2bCoop')} Scharfer" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.05)' }} />
+            <img src="/assets/scharfer_partnership.webp" alt="{t('b2bCoop')} Scharfer" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.05)' }} />
           </div>
           <div className="partnership-text" style={{ flex: 1, minWidth: '300px' }}>
             <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', marginBottom: '0.5rem', fontWeight: 800 }}>{t('b2bTitle')}</h2>

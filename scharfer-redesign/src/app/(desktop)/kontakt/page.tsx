@@ -42,7 +42,7 @@ export default function KontaktPage() {
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
-          <img src="/scharfer/assets/kontakt_hero.png" alt="Biuro dystrybutora Scharfer" />
+          <img src="/assets/kontakt_hero.png" alt="Biuro dystrybutora Scharfer" />
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">
@@ -60,7 +60,7 @@ export default function KontaktPage() {
           <div className="contact-details" style={{ flex: 1, minWidth: '300px' }}>
             <div className="details-card" style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '2.5rem', boxShadow: 'var(--shadow-md)' }}>
               <h2 className="details-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '10px', color: 'var(--c-heading)' }}>{t('officialDistributor')}</h2>
-              <img src="/scharfer/PRESCOT_logo.png" alt="Prescot LED" style={{ height: '35px', marginBottom: '20px' }} />
+              <img src="/PRESCOT_logo.png" alt="Prescot LED" style={{ height: '35px', marginBottom: '20px' }} />
               <div className="contact-line" style={{ marginBottom: '1.5rem' }}>
                 <strong style={{ display: 'block', fontSize: '1rem', color: 'var(--c-heading)', marginBottom: '0.25rem' }}>{t('contactAbout')}</strong>
                 <p style={{ fontSize: '1rem', fontWeight: 400, lineHeight: 1.5, color: 'var(--c-text)', margin: 0 }}>{t('contactAboutDesc')}</p>

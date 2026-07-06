@@ -72,42 +72,42 @@ export default function MobileAppPage() {
       title: t('story1Title'),
       icon: '🛡️',
       body: t('story1P1'),
-      img: '/scharfer/assets/sch1.webp',
+      img: '/assets/sch1.webp',
       type: 'image'
     },
     {
       title: t('story2Title'),
       icon: '💧',
       body: t('story2P1'),
-      img: '/scharfer/assets/sch2.webp',
+      img: '/assets/sch2.webp',
       type: 'image'
     },
     {
       title: t('story3Title'),
       icon: '⚡',
       body: t('story3P1'),
-      img: '/scharfer/assets/sch4.webp',
+      img: '/assets/sch4.webp',
       type: 'image'
     },
     {
       title: t('story4Title'),
       icon: '🇪🇺',
       body: t('story4P1'),
-      img: '/scharfer/assets/ce_rohs.png',
+      img: '/assets/ce_rohs.png',
       type: 'contain'
     },
     {
       title: t('story5Title'),
       icon: '🔌',
       body: t('story5P1'),
-      img: '/scharfer/assets/40012.png',
+      img: '/assets/40012.png',
       type: 'image'
     },
     {
       title: t('story6Title'),
       icon: '🌡️',
       body: t('story6P1'),
-      img: '/scharfer/assets/sch3.webp',
+      img: '/assets/sch3.webp',
       type: 'image'
     }
   ];
@@ -147,7 +147,7 @@ export default function MobileAppPage() {
         {/* Left: Scharfer logo */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <a href="#home" onClick={(e) => { e.preventDefault(); handleTabChange('home'); }} style={{ display: 'block' }}>
-            <img src="/scharfer/logo_scharfer.png" alt="Scharfer" style={{ height: '34px', width: 'auto', display: 'block' }} />
+            <img src="/logo_scharfer.png" alt="Scharfer" style={{ height: '34px', width: 'auto', display: 'block' }} />
           </a>
         </div>
         
@@ -155,7 +155,7 @@ export default function MobileAppPage() {
         <div style={{ position: 'absolute', left: '55%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <span style={{ fontSize: '7px', fontWeight: 800, color: '#999', letterSpacing: '0.5px', textTransform: 'uppercase', display: 'block', lineHeight: 1 }}>Dystrybutor:</span>
           <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '2px' }}>
-            <img src="/scharfer/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '12px', display: 'block' }} />
+            <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '12px', display: 'block' }} />
           </a>
         </div>
 
@@ -312,7 +312,7 @@ export default function MobileAppPage() {
               <div className="b2b-story-section-m" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
                 {/* Row 1: Gwarancja */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story1Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story1P1')}</p>
@@ -324,7 +324,7 @@ export default function MobileAppPage() {
 
                 {/* Row 2: IP67 */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story2Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story2P1')}</p>
@@ -334,7 +334,7 @@ export default function MobileAppPage() {
 
                 {/* Row 3: Termika */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story6Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story6P1')}</p>
@@ -344,7 +344,7 @@ export default function MobileAppPage() {
 
                 {/* Row 4: 100% Obciążenia */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story3Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story3P1')}</p>
@@ -354,7 +354,7 @@ export default function MobileAppPage() {
 
                 {/* Row 5: Zabezpieczenia */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <img src="/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story5Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story5P1')}</p>
@@ -370,7 +370,7 @@ export default function MobileAppPage() {
                 {/* Row 6: Zgodność i Bezpieczeństwo */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '30px' }}>
-                    <img src="/scharfer/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', height: 'auto', display: 'block' }} />
+                    <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', height: 'auto', display: 'block' }} />
                   </div>
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story4Title')}</h3>
@@ -388,18 +388,18 @@ export default function MobileAppPage() {
               
               <div className="app-grid-m" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '15px' }}>
                 {[
-                  { title: 'Domy i Rezydencje', desc: 'Wymagające instalacje domowe i rezydencjonalne potrzebują stabilnego zasilania taśm LED na elewacjach, schodach czy w podbitkach. Zasilacze Scharfer dzięki pełnej hermetyzacji IP67 oraz odporności na mróz i upały gwarantują bezawaryjną pracę na zewnątrz przez cały rok. Szeroki zakres napięcia wejściowego zabezpiecza domowe systemy przed nagłymi wahaniami prądu w sieci.', img: '/scharfer/assets/app_domy_1783188239361.png' },
-                  { title: 'Bloki mieszkalne', desc: 'Oświetlenie klatek schodowych, korytarzy i ciągów komunikacyjnych w budynkach wielorodzinnych pracuje w trybie ciągłym i wymaga bezwzględnej niezawodności. Urządzenia Scharfer eliminują ryzyko częstych wymian serwisowych w trudno dostępnych miejscach, co znacząco obniża koszty eksploatacji dla wspólnot mieszkaniowych. Aktywny układ PFC chroni instalację budynku przed szkodliwymi zakłóceniami harmonicznymi generowanymi przez setki punktów świetlnych.', img: '/scharfer/assets/app_bloki_1783188247720.png' },
-                  { title: 'Hale i Magazyny', desc: 'Wysokie hale produkcyjne oraz magazyny opierają się na długich liniach świetlnych LED o bardzo dużym poborze mocy. Zasilacze Scharfer o mocach sięgających 400W pozwalają na bezproblemowe zasilanie rozbudowanych systemów liniowych bez spadków napięcia na końcach obwodów. Pełna ochrona przed przeciążeniem i zwarciem zabezpiecza ciągłość pracy obiektów logistycznych i produkcyjnych.', img: '/scharfer/assets/app_hale_v2_1783188623293.png' },
-                  { title: 'Obiekty sportowe', desc: 'Korty, orliki i boiska sportowe wymagają mocnych naświetlaczy LED i zasilania odpornego na ekstremalne obciążenia rozruchowe. Hermetyczna konstrukcja chroni podzespoły zasilacza przed wilgocią z murawy, rosą oraz bezpośrednimi opadami atmosferycznymi. Zasilacze Scharfer zapewniają stałe i niemigoczące światło, co przekłada się na bezpieczeństwo oraz wysoki komfort zawodników.', img: '/scharfer/assets/app_sport_v2_1783188631467.png' },
-                  { title: 'Ogrody & Parki', desc: 'Oświetlenie ogrodowe i parkowe jest nieustannie narażone na wilgotną glebę, zalewanie przez automatyczne zraszacze oraz bezpośredni kontakt z wodą. Podwójnie uszczelniona obudowa IP67 oraz zalewa żywiczna całkowicie eliminują ryzyko wniknięcia wilgoci do wnętrza elektroniki. Zapewnia to bezpieczną pracę taśm i opraw ogrodowych bez niebezpieczeństwa przebicia prądu do gruntu.', img: '/scharfer/assets/app_ogrod_v2_1783188615253.png' },
-                  { title: 'Hotele & Gastro', desc: 'W branży hotelarskiej i gastronomicznej kluczowe jest stworzenie przytulnej atmosfery poprzez płynne ściemnianie taśm LED w pokojach i restauracjach. Specjalna żywica epoksydowa wewnątrz zasilaczy Scharfer skutecznie tłumi drgania cewek, eliminując uciążliwe piszczenie podczas regulacji natężenia światła. Cicha praca urządzeń gwarantuje gościom najwyższy komfort akustyczny w strefach relaksu.', img: '/scharfer/assets/app_hotel_1783188309904.png' },
-                  { title: 'Kina & Kultura', desc: 'Sale kinowe i teatralne wymagają bezwzględnej ciszy oraz precyzyjnego sterowania przygaszaniem oświetlenia awaryjnego i dekoracyjnego. Zasilacze Scharfer idealnie współpracują z nowoczesnymi systemami ściemniania, nie wprowadzając szumów ani migotania w pasmach częstotliwości audio-wideo. Masywna obudowa działa jak pasywny radiator, co eliminuje konieczność stosowania głośnych wentylatorów chłodzących.', img: '/scharfer/assets/app_kina_v2_1783188608035.png' },
-                  { title: 'Szkoły & Edukacja', desc: 'Bezpieczeństwo dzieci i stabilność oświetlenia w klasach lekcyjnych to absolutny priorytet dla placówek edukacyjnych. Urządzenia Scharfer spełniają rygorystyczne normy PN-EN, posiadając atesty zapobiegające powstawaniu pożarów w wyniku zwarcia (zabezpieczenie SCP). Stabilne, pozbawione tętnień napięcie wyjściowe chroni wzrok uczniów i zapobiega szybkiemu zmęczeniu podczas nauki.', img: '/scharfer/assets/app_szkoly_1783188326372.png' },
-                  { title: 'Parkingi Podziemne', desc: 'Parkingi podziemne i zadaszone garaże to miejsca o stałej, wysokiej wilgotności powietrza oraz dużym stężeniu pyłów i spalin. Całkowita szczelność IP67 zasilaczy Scharfer chroni wrażliwe komponenty przed korozyjnym działaniem agresywnego środowiska parkingowego. Niezawodne zasilanie gwarantuje nieprzerwane oświetlenie dróg ewakuacyjnych i miejsc postojowych 24 godziny na dobę.', img: '/scharfer/assets/app_parkingi_v2_1783188598862.png' },
-                  { title: 'Garaże & Warsztaty', desc: 'W warsztatach samochodowych i garażach oświetlenie stanowiskowe jest narażone na pył, oleje, wibracje oraz nagłe skoki napięcia wywołane pracą ciężkich maszyn. Aktywne filtry wejściowe oraz zabezpieczenie OVP chronią zasilacze i podłączone paski LED przed uszkodzeniami elektrycznymi. Solidna, metalowa konstrukcja obudowy jest odporna na przypadkowe uderzenia mechaniczne.', img: '/scharfer/assets/app_garaze_1783188344306.png' },
-                  { title: 'Wiaty & Stolarka', desc: 'Oświetlenie wiat ogrodowych, zadaszeń i architektury drewnianej wymaga zasilaczy o bardzo niskiej temperaturze pracy obudowy w celach ochrony przeciwpożarowej. Zasilacze Scharfer, dzięki pełnemu zalaniu żywicą i aluminiowemu radiatorowi, efektywnie odprowadzają ciepło na zewnątrz i nie nagrzewają się do niebezpiecznych temperatur. Spełniają one restrykcyjne wymogi montażu bezpośrednio na podłożach palnych.', img: '/scharfer/wiata_jezioro.png' },
-                  { title: 'Infrastruktura & Mosty', desc: 'Iluminacja mostów, wiaduktów i obiektów inżynieryjnych wymaga sprzętu odpornego na nieustanne drgania konstrukcyjne, silny wiatr i zmienne warunki pogodowe. Hermetyczna obudowa Scharfer, w całości wypełniona elastyczną żywicą epoksydową, absorbuje wibracje i uniemożliwia pękanie połączeń lutowanych. Daje to pewność bezawaryjnej pracy oświetlenia w najbardziej ekstremalnych lokalizacjach infrastruktury.', img: '/scharfer/assets/app_mosty_1783188351515.png' }
+                  { title: 'Domy i Rezydencje', desc: 'Wymagające instalacje domowe i rezydencjonalne potrzebują stabilnego zasilania taśm LED na elewacjach, schodach czy w podbitkach. Zasilacze Scharfer dzięki pełnej hermetyzacji IP67 oraz odporności na mróz i upały gwarantują bezawaryjną pracę na zewnątrz przez cały rok. Szeroki zakres napięcia wejściowego zabezpiecza domowe systemy przed nagłymi wahaniami prądu w sieci.', img: '/assets/app_domy_1783188239361.png' },
+                  { title: 'Bloki mieszkalne', desc: 'Oświetlenie klatek schodowych, korytarzy i ciągów komunikacyjnych w budynkach wielorodzinnych pracuje w trybie ciągłym i wymaga bezwzględnej niezawodności. Urządzenia Scharfer eliminują ryzyko częstych wymian serwisowych w trudno dostępnych miejscach, co znacząco obniża koszty eksploatacji dla wspólnot mieszkaniowych. Aktywny układ PFC chroni instalację budynku przed szkodliwymi zakłóceniami harmonicznymi generowanymi przez setki punktów świetlnych.', img: '/assets/app_bloki_1783188247720.png' },
+                  { title: 'Hale i Magazyny', desc: 'Wysokie hale produkcyjne oraz magazyny opierają się na długich liniach świetlnych LED o bardzo dużym poborze mocy. Zasilacze Scharfer o mocach sięgających 400W pozwalają na bezproblemowe zasilanie rozbudowanych systemów liniowych bez spadków napięcia na końcach obwodów. Pełna ochrona przed przeciążeniem i zwarciem zabezpiecza ciągłość pracy obiektów logistycznych i produkcyjnych.', img: '/assets/app_hale_v2_1783188623293.png' },
+                  { title: 'Obiekty sportowe', desc: 'Korty, orliki i boiska sportowe wymagają mocnych naświetlaczy LED i zasilania odpornego na ekstremalne obciążenia rozruchowe. Hermetyczna konstrukcja chroni podzespoły zasilacza przed wilgocią z murawy, rosą oraz bezpośrednimi opadami atmosferycznymi. Zasilacze Scharfer zapewniają stałe i niemigoczące światło, co przekłada się na bezpieczeństwo oraz wysoki komfort zawodników.', img: '/assets/app_sport_v2_1783188631467.png' },
+                  { title: 'Ogrody & Parki', desc: 'Oświetlenie ogrodowe i parkowe jest nieustannie narażone na wilgotną glebę, zalewanie przez automatyczne zraszacze oraz bezpośredni kontakt z wodą. Podwójnie uszczelniona obudowa IP67 oraz zalewa żywiczna całkowicie eliminują ryzyko wniknięcia wilgoci do wnętrza elektroniki. Zapewnia to bezpieczną pracę taśm i opraw ogrodowych bez niebezpieczeństwa przebicia prądu do gruntu.', img: '/assets/app_ogrod_v2_1783188615253.png' },
+                  { title: 'Hotele & Gastro', desc: 'W branży hotelarskiej i gastronomicznej kluczowe jest stworzenie przytulnej atmosfery poprzez płynne ściemnianie taśm LED w pokojach i restauracjach. Specjalna żywica epoksydowa wewnątrz zasilaczy Scharfer skutecznie tłumi drgania cewek, eliminując uciążliwe piszczenie podczas regulacji natężenia światła. Cicha praca urządzeń gwarantuje gościom najwyższy komfort akustyczny w strefach relaksu.', img: '/assets/app_hotel_1783188309904.png' },
+                  { title: 'Kina & Kultura', desc: 'Sale kinowe i teatralne wymagają bezwzględnej ciszy oraz precyzyjnego sterowania przygaszaniem oświetlenia awaryjnego i dekoracyjnego. Zasilacze Scharfer idealnie współpracują z nowoczesnymi systemami ściemniania, nie wprowadzając szumów ani migotania w pasmach częstotliwości audio-wideo. Masywna obudowa działa jak pasywny radiator, co eliminuje konieczność stosowania głośnych wentylatorów chłodzących.', img: '/assets/app_kina_v2_1783188608035.png' },
+                  { title: 'Szkoły & Edukacja', desc: 'Bezpieczeństwo dzieci i stabilność oświetlenia w klasach lekcyjnych to absolutny priorytet dla placówek edukacyjnych. Urządzenia Scharfer spełniają rygorystyczne normy PN-EN, posiadając atesty zapobiegające powstawaniu pożarów w wyniku zwarcia (zabezpieczenie SCP). Stabilne, pozbawione tętnień napięcie wyjściowe chroni wzrok uczniów i zapobiega szybkiemu zmęczeniu podczas nauki.', img: '/assets/app_szkoly_1783188326372.png' },
+                  { title: 'Parkingi Podziemne', desc: 'Parkingi podziemne i zadaszone garaże to miejsca o stałej, wysokiej wilgotności powietrza oraz dużym stężeniu pyłów i spalin. Całkowita szczelność IP67 zasilaczy Scharfer chroni wrażliwe komponenty przed korozyjnym działaniem agresywnego środowiska parkingowego. Niezawodne zasilanie gwarantuje nieprzerwane oświetlenie dróg ewakuacyjnych i miejsc postojowych 24 godziny na dobę.', img: '/assets/app_parkingi_v2_1783188598862.png' },
+                  { title: 'Garaże & Warsztaty', desc: 'W warsztatach samochodowych i garażach oświetlenie stanowiskowe jest narażone na pył, oleje, wibracje oraz nagłe skoki napięcia wywołane pracą ciężkich maszyn. Aktywne filtry wejściowe oraz zabezpieczenie OVP chronią zasilacze i podłączone paski LED przed uszkodzeniami elektrycznymi. Solidna, metalowa konstrukcja obudowy jest odporna na przypadkowe uderzenia mechaniczne.', img: '/assets/app_garaze_1783188344306.png' },
+                  { title: 'Wiaty & Stolarka', desc: 'Oświetlenie wiat ogrodowych, zadaszeń i architektury drewnianej wymaga zasilaczy o bardzo niskiej temperaturze pracy obudowy w celach ochrony przeciwpożarowej. Zasilacze Scharfer, dzięki pełnemu zalaniu żywicą i aluminiowemu radiatorowi, efektywnie odprowadzają ciepło na zewnątrz i nie nagrzewają się do niebezpiecznych temperatur. Spełniają one restrykcyjne wymogi montażu bezpośrednio na podłożach palnych.', img: '/wiata_jezioro.png' },
+                  { title: 'Infrastruktura & Mosty', desc: 'Iluminacja mostów, wiaduktów i obiektów inżynieryjnych wymaga sprzętu odpornego na nieustanne drgania konstrukcyjne, silny wiatr i zmienne warunki pogodowe. Hermetyczna obudowa Scharfer, w całości wypełniona elastyczną żywicą epoksydową, absorbuje wibracje i uniemożliwia pękanie połączeń lutowanych. Daje to pewność bezawaryjnej pracy oświetlenia w najbardziej ekstremalnych lokalizacjach infrastruktury.', img: '/assets/app_mosty_1783188351515.png' }
                 ].map((ap, idx) => (
                   <div key={idx} className="app-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', border: '1px solid #eee' }}>
                     <img src={ap.img} alt={t(`app${idx + 1}Title` as any)} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
@@ -418,7 +418,7 @@ export default function MobileAppPage() {
               <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#666', marginBottom: '20px' }}>Budujemy długofalowe relacje oparte na zaufaniu i zyskach dla obu stron.</p>
               
               <div className="partnership-card" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', padding: '15px', textAlign: 'center', marginBottom: '20px', border: '1px solid #eee', boxShadow: '0 2px 5px rgba(0,0,0,0.03)' }}>
-                <img src="/scharfer/assets/scharfer_partnership.webp" alt="Współpraca" style={{ width: '100%', borderRadius: '8px', marginBottom: '12px' }} />
+                <img src="/assets/scharfer_partnership.webp" alt="Współpraca" style={{ width: '100%', borderRadius: '8px', marginBottom: '12px' }} />
                 <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--c-heading)', margin: '0 0 4px 0' }}>{t('becomePartnerTitle')}</h3>
                 <p style={{ fontSize: '0.82rem', color: '#666', margin: 0 }}>{t('becomePartnerDesc')}</p>
               </div>
@@ -474,7 +474,7 @@ export default function MobileAppPage() {
             {/* Unified Hero for Oferta */}
             {/* Unified Mobile Hero for Oferta */}
             {/* Unified Mobile Hero for Oferta */}
-            <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/scharfer/assets/scharfer_supplies_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/assets/scharfer_supplies_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div style={{ position: 'relative', zIndex: 3 }}>
                 <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#111827', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>Katalog <span style={{ color: '#e60000' }}>Zasilaczy</span></h1>
@@ -607,7 +607,7 @@ export default function MobileAppPage() {
         {activeTab === 'info' && (
           <section className="view-section active">
             {/* Unified Page Hero */}
-            <div className="hero-m-unified" style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/scharfer/assets/scharfer_estate_night.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className="hero-m-unified" style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/assets/scharfer_estate_night.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div className="hero-content" style={{ position: 'relative', zIndex: 3, textAlign: 'center' }}>
                 <h1 className="hero-title" style={{ fontSize: '1.65rem', fontWeight: 800, color: '#111827', marginBottom: '12px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>
@@ -648,7 +648,7 @@ export default function MobileAppPage() {
               <h2 style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', marginBottom: '20px', color: 'var(--c-heading)' }}>{t('detailedTech')}</h2>
               <div className="b2b-story-section-m" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story1Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story1P1')}</p>
@@ -657,7 +657,7 @@ export default function MobileAppPage() {
                 </div>
 
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story2Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story2P1')}</p>
@@ -666,7 +666,7 @@ export default function MobileAppPage() {
                 </div>
 
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story3Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story3P1')}</p>
@@ -676,7 +676,7 @@ export default function MobileAppPage() {
 
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '180px', padding: '15px' }}>
-                    <img src="/scharfer/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                    <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                   </div>
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story4Title')}</h3>
@@ -686,7 +686,7 @@ export default function MobileAppPage() {
                 </div>
 
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <img src="/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story5Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story5P1')}</p>
@@ -700,7 +700,7 @@ export default function MobileAppPage() {
                 </div>
 
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <img src="/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story6Title')}</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>{t('story6P1')}</p>
@@ -717,18 +717,18 @@ export default function MobileAppPage() {
               
               <div className="app-grid-m" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '15px' }}>
                 {[
-                  { title: 'Domy i Rezydencje', desc: 'Wymagające instalacje domowe i rezydencjonalne potrzebują stabilnego zasilania taśm LED na elewacjach, schodach czy w podbitkach. Zasilacze Scharfer dzięki pełnej hermetyzacji IP67 oraz odporności na mróz i upały gwarantują bezawaryjną pracę na zewnątrz przez cały rok. Szeroki zakres napięcia wejściowego zabezpiecza domowe systemy przed nagłymi wahaniami prądu w sieci.', img: '/scharfer/assets/app_domy_1783188239361.png' },
-                  { title: 'Bloki mieszkalne', desc: 'Oświetlenie klatek schodowych, korytarzy i ciągów komunikacyjnych w budynkach wielorodzinnych pracuje w trybie ciągłym i wymaga bezwzględnej niezawodności. Urządzenia Scharfer eliminują ryzyko częstych wymian serwisowych w trudno dostępnych miejscach, co znacząco obniża koszty eksploatacji dla wspólnot mieszkaniowych. Aktywny układ PFC chroni instalację budynku przed szkodliwymi zakłóceniami harmonicznymi generowanymi przez setki punktów świetlnych.', img: '/scharfer/assets/app_bloki_1783188247720.png' },
-                  { title: 'Hale i Magazyny', desc: 'Wysokie hale produkcyjne oraz magazyny opierają się na długich liniach świetlnych LED o bardzo dużym poborze mocy. Zasilacze Scharfer o mocach sięgających 400W pozwalają na bezproblemowe zasilanie rozbudowanych systemów liniowych bez spadków napięcia na końcach obwodów. Pełna ochrona przed przeciążeniem i zwarciem zabezpiecza ciągłość pracy obiektów logistycznych i produkcyjnych.', img: '/scharfer/assets/app_hale_v2_1783188623293.png' },
-                  { title: 'Obiekty sportowe', desc: 'Korty, orliki i boiska sportowe wymagają mocnych naświetlaczy LED i zasilania odpornego na ekstremalne obciążenia rozruchowe. Hermetyczna konstrukcja chroni podzespoły zasilacza przed wilgocią z murawy, rosą oraz bezpośrednimi opadami atmosferycznymi. Zasilacze Scharfer zapewniaja stałe i niemigoczące światło, co przekłada się na bezpieczeństwo oraz wysoki komfort zawodników.', img: '/scharfer/assets/app_sport_v2_1783188631467.png' },
-                  { title: 'Ogrody & Parki', desc: 'Oświetlenie ogrodowe i parkowe jest nieustannie narażone na wilgotną glebę, zalewanie przez automatyczne zraszacze oraz bezpośredni kontakt z wodą. Podwójnie uszczelniona obudowa IP67 oraz zalewa żywiczna całkowicie eliminują ryzyko wniknięcia wilgoci do wnętrza elektroniki. Zapewnia to bezpieczną pracę taśm i opraw ogrodowych bez niebezpieczeństwa przebicia prądu do gruntu.', img: '/scharfer/assets/app_ogrod_v2_1783188615253.png' },
-                  { title: 'Hotele & Gastro', desc: 'W branży hotelarskiej i gastronomicznej kluczowe jest stworzenie przytulnej atmosfery poprzez płynne ściemnianie taśm LED w pokojach i restauracjach. Specjalna żywica epoksydowa wewnątrz zasilaczy Scharfer skutecznie tłumi drgania cewek, eliminując uciążliwe piszczenie podczas regulacji natężenia światła. Cicha praca urządzeń gwarantuje gościom najwyższy komfort akustyczny w strefach relaksu.', img: '/scharfer/assets/app_hotel_1783188309904.png' },
-                  { title: 'Kina & Kultura', desc: 'Sale kinowe i teatralne wymagają bezwzględnej ciszy oraz precyzyjnego sterowania przygaszaniem oświetlenia awaryjnego i dekoracyjnego. Zasilacze Scharfer idealnie współpracują z nowoczesnymi systemami ściemniania, nie wprowadzając szumów ani migotania w pasmach częstotliwości audio-wideo. Masywna obudowa działa jak pasywny radiator, co eliminuje konieczność stosowania głośnych wentylatorów chłodzących.', img: '/scharfer/assets/app_kina_v2_1783188608035.png' },
-                  { title: 'Szkoły & Edukacja', desc: 'Bezpieczeństwo dzieci i stabilność oświetlenia w klasach lekcyjnych to absolutny priorytet dla placówek edukacyjnych. Urządzenia Scharfer spełniają rygorystyczne normy PN-EN, posiadając atesty zapobiegające powstawaniu pożarów w wyniku zwarcia (zabezpieczenie SCP). Stabilne, pozbawione tętnień napięcie wyjściowe chroni wzrok uczniów i zapobiega szybkiemu zmęczeniu podczas nauki.', img: '/scharfer/assets/app_szkoly_1783188326372.png' },
-                  { title: 'Parkingi Podziemne', desc: 'Parkingi podziemne i zadaszone garaże to miejsca o stałej, wysokiej wilgotności powietrza oraz dużym stężeniu pyłów i spalin. Całkowita szczelność IP67 zasilaczy Scharfer chroni wrażliwe komponenty przed korozyjnym działaniem agresywnego środowiska parkingowego. Niezawodne zasilanie gwarantuje nieprzerwane oświetlenie dróg ewakuacyjnych i miejsc postojowych 24 godziny na dobę.', img: '/scharfer/assets/app_parkingi_v2_1783188598862.png' },
-                  { title: 'Garaże & Warsztaty', desc: 'W warsztatach samochodowych i garażach oświetlenie stanowiskowe jest narażone na pył, oleje, wibracje oraz nagłe skoki napięcia wywołane pracą ciężkich maszyn. Aktywne filtry wejściowe oraz zabezpieczenie OVP chronią zasilacze i podłączone paski LED przed uszkodzeniami elektrycznymi. Solidna, metalowa konstrukcja obudowy jest odporna na przypadkowe uderzenia mechaniczne.', img: '/scharfer/assets/app_garaze_1783188344306.png' },
-                  { title: 'Wiaty & Stolarka', desc: 'Oświetlenie wiat ogrodowych, zadaszeń i architektury drewnianej wymaga zasilaczy o bardzo niskiej temperaturze pracy obudowy w celach ochrony przeciwpożarowej. Zasilacze Scharfer, dzięki pełnemu zalaniu żywicą i aluminiowemu radiatorowi, efektywnie odprowadzają ciepło na zewnątrz i nie nagrzewają się do niebezpiecznych temperatur. Spełniają one restrykcyjne wymogi montażu bezpośrednio na podłożach palnych.', img: '/scharfer/wiata_jezioro.png' },
-                  { title: 'Infrastruktura & Mosty', desc: 'Iluminacja mostów, wiaduktów i obiektów inżynieryjnych wymaga sprzętu odpornego na nieustanne drgania konstrukcyjne, silny wiatr i zmienne warunki pogodowe. Hermetyczna obudowa Scharfer, w całości wypełniona elastyczną żywicą epoksydową, absorbuje wibracje i uniemożliwia pękanie połączeń lutowanych. Daje to pewność bezawaryjnej pracy oświetlenia w najbardziej ekstremalnych lokalizacjach infrastruktury.', img: '/scharfer/assets/app_mosty_1783188351515.png' }
+                  { title: 'Domy i Rezydencje', desc: 'Wymagające instalacje domowe i rezydencjonalne potrzebują stabilnego zasilania taśm LED na elewacjach, schodach czy w podbitkach. Zasilacze Scharfer dzięki pełnej hermetyzacji IP67 oraz odporności na mróz i upały gwarantują bezawaryjną pracę na zewnątrz przez cały rok. Szeroki zakres napięcia wejściowego zabezpiecza domowe systemy przed nagłymi wahaniami prądu w sieci.', img: '/assets/app_domy_1783188239361.png' },
+                  { title: 'Bloki mieszkalne', desc: 'Oświetlenie klatek schodowych, korytarzy i ciągów komunikacyjnych w budynkach wielorodzinnych pracuje w trybie ciągłym i wymaga bezwzględnej niezawodności. Urządzenia Scharfer eliminują ryzyko częstych wymian serwisowych w trudno dostępnych miejscach, co znacząco obniża koszty eksploatacji dla wspólnot mieszkaniowych. Aktywny układ PFC chroni instalację budynku przed szkodliwymi zakłóceniami harmonicznymi generowanymi przez setki punktów świetlnych.', img: '/assets/app_bloki_1783188247720.png' },
+                  { title: 'Hale i Magazyny', desc: 'Wysokie hale produkcyjne oraz magazyny opierają się na długich liniach świetlnych LED o bardzo dużym poborze mocy. Zasilacze Scharfer o mocach sięgających 400W pozwalają na bezproblemowe zasilanie rozbudowanych systemów liniowych bez spadków napięcia na końcach obwodów. Pełna ochrona przed przeciążeniem i zwarciem zabezpiecza ciągłość pracy obiektów logistycznych i produkcyjnych.', img: '/assets/app_hale_v2_1783188623293.png' },
+                  { title: 'Obiekty sportowe', desc: 'Korty, orliki i boiska sportowe wymagają mocnych naświetlaczy LED i zasilania odpornego na ekstremalne obciążenia rozruchowe. Hermetyczna konstrukcja chroni podzespoły zasilacza przed wilgocią z murawy, rosą oraz bezpośrednimi opadami atmosferycznymi. Zasilacze Scharfer zapewniaja stałe i niemigoczące światło, co przekłada się na bezpieczeństwo oraz wysoki komfort zawodników.', img: '/assets/app_sport_v2_1783188631467.png' },
+                  { title: 'Ogrody & Parki', desc: 'Oświetlenie ogrodowe i parkowe jest nieustannie narażone na wilgotną glebę, zalewanie przez automatyczne zraszacze oraz bezpośredni kontakt z wodą. Podwójnie uszczelniona obudowa IP67 oraz zalewa żywiczna całkowicie eliminują ryzyko wniknięcia wilgoci do wnętrza elektroniki. Zapewnia to bezpieczną pracę taśm i opraw ogrodowych bez niebezpieczeństwa przebicia prądu do gruntu.', img: '/assets/app_ogrod_v2_1783188615253.png' },
+                  { title: 'Hotele & Gastro', desc: 'W branży hotelarskiej i gastronomicznej kluczowe jest stworzenie przytulnej atmosfery poprzez płynne ściemnianie taśm LED w pokojach i restauracjach. Specjalna żywica epoksydowa wewnątrz zasilaczy Scharfer skutecznie tłumi drgania cewek, eliminując uciążliwe piszczenie podczas regulacji natężenia światła. Cicha praca urządzeń gwarantuje gościom najwyższy komfort akustyczny w strefach relaksu.', img: '/assets/app_hotel_1783188309904.png' },
+                  { title: 'Kina & Kultura', desc: 'Sale kinowe i teatralne wymagają bezwzględnej ciszy oraz precyzyjnego sterowania przygaszaniem oświetlenia awaryjnego i dekoracyjnego. Zasilacze Scharfer idealnie współpracują z nowoczesnymi systemami ściemniania, nie wprowadzając szumów ani migotania w pasmach częstotliwości audio-wideo. Masywna obudowa działa jak pasywny radiator, co eliminuje konieczność stosowania głośnych wentylatorów chłodzących.', img: '/assets/app_kina_v2_1783188608035.png' },
+                  { title: 'Szkoły & Edukacja', desc: 'Bezpieczeństwo dzieci i stabilność oświetlenia w klasach lekcyjnych to absolutny priorytet dla placówek edukacyjnych. Urządzenia Scharfer spełniają rygorystyczne normy PN-EN, posiadając atesty zapobiegające powstawaniu pożarów w wyniku zwarcia (zabezpieczenie SCP). Stabilne, pozbawione tętnień napięcie wyjściowe chroni wzrok uczniów i zapobiega szybkiemu zmęczeniu podczas nauki.', img: '/assets/app_szkoly_1783188326372.png' },
+                  { title: 'Parkingi Podziemne', desc: 'Parkingi podziemne i zadaszone garaże to miejsca o stałej, wysokiej wilgotności powietrza oraz dużym stężeniu pyłów i spalin. Całkowita szczelność IP67 zasilaczy Scharfer chroni wrażliwe komponenty przed korozyjnym działaniem agresywnego środowiska parkingowego. Niezawodne zasilanie gwarantuje nieprzerwane oświetlenie dróg ewakuacyjnych i miejsc postojowych 24 godziny na dobę.', img: '/assets/app_parkingi_v2_1783188598862.png' },
+                  { title: 'Garaże & Warsztaty', desc: 'W warsztatach samochodowych i garażach oświetlenie stanowiskowe jest narażone na pył, oleje, wibracje oraz nagłe skoki napięcia wywołane pracą ciężkich maszyn. Aktywne filtry wejściowe oraz zabezpieczenie OVP chronią zasilacze i podłączone paski LED przed uszkodzeniami elektrycznymi. Solidna, metalowa konstrukcja obudowy jest odporna na przypadkowe uderzenia mechaniczne.', img: '/assets/app_garaze_1783188344306.png' },
+                  { title: 'Wiaty & Stolarka', desc: 'Oświetlenie wiat ogrodowych, zadaszeń i architektury drewnianej wymaga zasilaczy o bardzo niskiej temperaturze pracy obudowy w celach ochrony przeciwpożarowej. Zasilacze Scharfer, dzięki pełnemu zalaniu żywicą i aluminiowemu radiatorowi, efektywnie odprowadzają ciepło na zewnątrz i nie nagrzewają się do niebezpiecznych temperatur. Spełniają one restrykcyjne wymogi montażu bezpośrednio na podłożach palnych.', img: '/wiata_jezioro.png' },
+                  { title: 'Infrastruktura & Mosty', desc: 'Iluminacja mostów, wiaduktów i obiektów inżynieryjnych wymaga sprzętu odpornego na nieustanne drgania konstrukcyjne, silny wiatr i zmienne warunki pogodowe. Hermetyczna obudowa Scharfer, w całości wypełniona elastyczną żywicą epoksydową, absorbuje wibracje i uniemożliwia pękanie połączeń lutowanych. Daje to pewność bezawaryjnej pracy oświetlenia w najbardziej ekstremalnych lokalizacjach infrastruktury.', img: '/assets/app_mosty_1783188351515.png' }
                 ].map((ap, idx) => (
                   <div key={idx} className="app-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', border: '1px solid #eee' }}>
                     <img src={ap.img} alt={t(`app${idx + 1}Title` as any)} style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
@@ -774,7 +774,7 @@ export default function MobileAppPage() {
         {activeTab === 'kontakt' && (
           <section className="view-section active">
             {/* Unified Page Hero */}
-            <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/scharfer/assets/kontakt_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/assets/kontakt_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div style={{ position: 'relative', zIndex: 3 }}>
                 <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#111827', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>{t('contactTitle')}</h1>
@@ -791,7 +791,7 @@ export default function MobileAppPage() {
               <div className="contact-card-m" style={{ background: 'white', borderRadius: '12px', padding: '20px', textAlign: 'center', border: '1px solid #eee', boxShadow: '0 2px 6px rgba(0,0,0,0.03)', marginBottom: '25px' }}>
                 <span className="contact-badge-label" style={{ display: 'inline-block', fontSize: '8px', background: '#eee', color: '#555', fontWeight: 800, padding: '2px 6px', borderRadius: '3px', textTransform: 'uppercase', marginBottom: '8px' }}>{t('officialDistributor')}</span>
                 <div style={{ margin: '8px 0 12px' }}>
-                  <img src="/scharfer/PRESCOT_logo.png" alt="Prescot LED" className="contact-prescot-logo" style={{ height: '24px', display: 'block', margin: '0 auto' }} />
+                  <img src="/PRESCOT_logo.png" alt="Prescot LED" className="contact-prescot-logo" style={{ height: '24px', display: 'block', margin: '0 auto' }} />
                 </div>
                 <p className="contact-company-name" style={{ fontSize: '1rem', fontWeight: 800, margin: '0 0 4px 0', color: 'var(--c-heading)' }}>PRESCOT SP. Z O.O.</p>
                 <p className="contact-company-details" style={{ fontSize: '0.8rem', color: '#666', margin: '0 0 15px 0', lineHeight: 1.4 }}>ul. Wileńska 1, 11-500 Giżycko<br />NIP: 8451939947</p>
@@ -878,7 +878,7 @@ export default function MobileAppPage() {
       {b2cModalOpen && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.6)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
           <div style={{ background: '#fff', borderRadius: '12px', padding: '30px 20px', width: '100%', maxWidth: '350px', textAlign: 'center', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
-            <img src="/scharfer/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '24px', margin: '0 auto 20px', display: 'block' }} />
+            <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '24px', margin: '0 auto 20px', display: 'block' }} />
             <h3 style={{ fontSize: '1.2rem', color: '#111', marginBottom: '10px', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>Przejście do sklepu B2C</h3>
             <p style={{ fontSize: '0.95rem', color: '#555', marginBottom: '25px', lineHeight: 1.5 }}>
               Zostaniesz przeniesiony na naszą główną stronę <strong>www.prescot.com.pl</strong>, gdzie możesz bezpiecznie kupić zasilacze LED Scharfer w ilości detalicznej.
@@ -994,7 +994,7 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
       
       {/* Brand Column */}
       <div className="footer-logo-m" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
-        <img src="/scharfer/logo_scharfer.png" alt="Scharfer" style={{ height: '26px' }} />
+        <img src="/logo_scharfer.png" alt="Scharfer" style={{ height: '26px' }} />
         <p style={{ fontSize: '0.78rem', color: '#6b7280', margin: 0, maxWidth: '280px', lineHeight: 1.5 }}>
           {t('footerTagline')}
         </p>
@@ -1004,7 +1004,7 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
         <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('officialDistributor')}</span>
         <div>
-          <img src="/scharfer/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '15px', display: 'block' }} />
+          <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '15px', display: 'block' }} />
         </div>
         <div style={{ fontSize: '0.8rem', color: '#4b5563', lineHeight: 1.5, marginTop: '0.2rem' }}>
           <strong>Prescot Sp. z o.o.</strong><br />

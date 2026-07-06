@@ -60,7 +60,7 @@ export default function OfertaPage() {
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
-          <img src="/scharfer/assets/scharfer_supplies_hero.png" alt={t('catalogTitle')} />
+          <img src="/assets/scharfer_supplies_hero.png" alt={t('catalogTitle')} />
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">
