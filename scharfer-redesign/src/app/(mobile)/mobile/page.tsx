@@ -209,7 +209,7 @@ export default function MobileAppPage() {
                       padding: '12px 16px',
                       border: 'none',
                       background: lang === l ? '#fef2f2' : 'white',
-                      color: lang === l ? '#dc2626' : '#374151',
+                      color: lang === l ? '#e60000' : '#374151',
                       textAlign: 'left',
                       fontSize: '1rem',
                       fontWeight: lang === l ? 600 : 500,
@@ -246,16 +246,16 @@ export default function MobileAppPage() {
               <div className="hero-container" style={{ maxWidth: '100%', position: 'relative', zIndex: 2, textAlign: 'center' }}>
                 <div className="hero-content">
                   <h1 className="hero-title" style={{ fontSize: '2.0rem', display: 'block', lineHeight: 1.2, marginBottom: '10px', color: '#111827', fontWeight: 800, textShadow: '0 2px 6px rgba(0,0,0,0.22)' }}>
-                    <span style={{ color: '#dc2626' }}>{t('heroWarranty')}</span><br/>
+                    <span style={{ color: '#e60000' }}>{t('heroWarranty')}</span><br/>
                     {t('heroPower')}<br/>
-                    {t('heroReal')}<span style={{ color: '#dc2626' }}>{t('hero100')}</span>{t('heroLoad')}
+                    {t('heroReal')}<span style={{ color: '#e60000' }}>{t('hero100')}</span>{t('heroLoad')}
                   </h1>
                   <p className="hero-subtitle" style={{ fontSize: '0.95rem', padding: '0 10px', marginBottom: '25px', lineHeight: 1.4, color: '#111827', fontWeight: 600, textShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                     {t('heroSubtitle')}
                   </p>
                   
                   <div className="hero-actions" style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '35px' }}>
-                    <button onClick={() => handleTabChange('oferta')} style={{ background: '#dc2626', color: 'white', padding: '12px 10px', borderRadius: '4px', fontWeight: 700, fontSize: '0.85rem', border: 'none', flex: 1 }}>
+                    <button onClick={() => handleTabChange('oferta')} style={{ background: '#e60000', color: 'white', padding: '12px 10px', borderRadius: '4px', fontWeight: 700, fontSize: '0.85rem', border: 'none', flex: 1 }}>
                       {t('exploreOffer')}
                     </button>
                     <button onClick={() => setB2cModalOpen(true)} style={{ background: 'transparent', color: '#111827', padding: '12px 10px', borderRadius: '4px', fontWeight: 700, fontSize: '0.85rem', border: '1px solid #111827', flex: 1 }}>
@@ -265,22 +265,22 @@ export default function MobileAppPage() {
                   
                   <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'nowrap', width: '100%', padding: '0 5px', textAlign: 'left' }}>
                     <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                      <span className="trust-val" style={{ color: '#dc2626', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust7Years')}</span>
+                      <span className="trust-val" style={{ color: '#e60000', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust7Years')}</span>
                       <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustWarranty')}</span>
                     </div>
                     <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                      <span className="trust-val" style={{ color: '#dc2626', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trustIP67')}</span>
+                      <span className="trust-val" style={{ color: '#e60000', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trustIP67')}</span>
                       <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustTightness')}</span>
                     </div>
                     <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                      <span className="trust-val" style={{ color: '#dc2626', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust100')}</span>
+                      <span className="trust-val" style={{ color: '#e60000', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust100')}</span>
                       <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustLoad')}</span>
                     </div>
                   </div>
                   
                   {/* Scroll down indicator arrow */}
                   <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center' }}>
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))', animation: 'bounce 2s infinite' }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e60000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))', animation: 'bounce 2s infinite' }}>
                       <path d="M12 5v14M19 12l-7 7-7-7" />
                     </svg>
                   </div>
@@ -438,7 +438,7 @@ export default function MobileAppPage() {
                 { title: t('valPartner'), desc: t('valPartnerDesc') }
               ].map((val, idx) => (
                 <div key={idx} className="value-item-m" style={{ display: 'flex', gap: '10px', background: '#f8fafc', padding: '12px', borderRadius: '8px', marginBottom: '8px', border: '1px solid #f1f5f9' }}>
-                  <span className="value-bullet" style={{ color: '#dc2626', fontWeight: 'bold' }}>🔴</span>
+                  <span className="value-bullet" style={{ color: '#e60000', fontWeight: 'bold' }}>🔴</span>
                   <div className="value-desc">
                     <h4 style={{ fontSize: '0.9rem', fontWeight: 700, margin: '0 0 2px 0', color: 'var(--c-heading)' }}>{val.title}</h4>
                     <p style={{ fontSize: '0.78rem', color: '#555', margin: 0, lineHeight: 1.3 }}>{val.desc}</p>
@@ -460,7 +460,7 @@ export default function MobileAppPage() {
                       style={{ width: '100%', padding: '12px 15px', background: 'none', border: 'none', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', fontWeight: 700, color: 'var(--c-heading)', cursor: 'pointer' }}
                     >
                       <span>{item.q}</span>
-                      <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#dc2626' }}>{activeFaq === idx ? '−' : '+'}</span>
+                      <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
                       <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: '#555', lineHeight: 1.4, borderTop: '1px solid #eee', paddingTop: '10px' }}>
@@ -485,7 +485,7 @@ export default function MobileAppPage() {
             <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/scharfer/assets/scharfer_supplies_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div style={{ position: 'relative', zIndex: 3 }}>
-                <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#111827', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>Katalog <span style={{ color: '#dc2626' }}>Zasilaczy</span></h1>
+                <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#111827', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>Katalog <span style={{ color: '#e60000' }}>Zasilaczy</span></h1>
                 <p style={{ fontSize: '0.95rem', color: '#111827', margin: 0, lineHeight: 1.5, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
                   Przeglądaj pełną ofertę hermetycznych zasilaczy LED Scharfer IP67 (12V i 24V).
                 </p>
@@ -516,7 +516,7 @@ export default function MobileAppPage() {
                         padding: '8px', 
                         borderRadius: '6px', 
                         border: '1px solid #ddd', 
-                        background: filterVoltage === v ? '#dc2626' : 'white', 
+                        background: filterVoltage === v ? '#e60000' : 'white', 
                         color: filterVoltage === v ? 'white' : '#444',
                         fontWeight: 600,
                         fontSize: '0.82rem'
@@ -537,19 +537,19 @@ export default function MobileAppPage() {
                   const renderSymbolRed = (name: string) => {
                     const symbolMatch = name.match(/SCH-[\d\-A]+/);
                     const symbol = symbolMatch ? symbolMatch[0] : name.split(' ')[0];
-                    return <span style={{ color: '#dc2626' }}>{symbol}</span>;
+                    return <span style={{ color: '#e60000' }}>{symbol}</span>;
                   };
 
                   return (
                     <div key={p.index} style={{ background: 'white', borderRadius: '12px', padding: '20px 15px', display: 'flex', flexDirection: 'column', alignItems: 'stretch', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: '1px solid #f1f5f9' }}>
                       {/* Sleek horizontal badge row at the top */}
                       <div className="specs-line" style={{ display: 'flex', gap: '0.3rem', marginBottom: '1rem', flexWrap: 'nowrap', width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: '4px' }}>
-                        <span style={{ backgroundColor: '#dc2626', color: 'white', border: '1px solid #dc2626', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{p.specs.voltage}</span>
+                        <span style={{ backgroundColor: '#e60000', color: 'white', border: '1px solid #e60000', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{p.specs.voltage}</span>
                         <span style={{ backgroundColor: '#1e293b', color: 'white', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>IP67</span>
                         <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>SELV</span>
                         <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>CE</span>
                         <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>RoHS</span>
-                        <span style={{ backgroundColor: 'white', border: '1px solid #dc2626', color: '#dc2626', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>7Y</span>
+                        <span style={{ backgroundColor: 'white', border: '1px solid #e60000', color: '#e60000', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>7Y</span>
                       </div>
                       
                       {/* Centered Image */}
@@ -582,7 +582,7 @@ export default function MobileAppPage() {
 
                       {/* Details & PDF Buttons */}
                       <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
-                        <a href={p.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.8rem', fontSize: '0.8rem', fontWeight: 700, borderRadius: '6px', background: '#dc2626', color: 'white', textDecoration: 'none' }}>
+                        <a href={p.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.8rem', fontSize: '0.8rem', fontWeight: 700, borderRadius: '6px', background: '#e60000', color: 'white', textDecoration: 'none' }}>
                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '14px', height: '14px' }}>
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                           </svg>
@@ -601,7 +601,7 @@ export default function MobileAppPage() {
                 <div style={{ textAlign: 'center', padding: '3rem 0', color: '#999' }}>Brak pasujących zasilaczy.</div>
               )}
 
-              <button className="btn-full" onClick={() => handleTabChange('kontakt')} style={{ display: 'block', width: '100%', textAlign: 'center', background: '#dc2626', color: 'white', padding: '15px', borderRadius: '8px', fontWeight: 600, fontSize: '1.1rem', marginTop: '20px', border: 'none' }}>
+              <button className="btn-full" onClick={() => handleTabChange('kontakt')} style={{ display: 'block', width: '100%', textAlign: 'center', background: '#e60000', color: 'white', padding: '15px', borderRadius: '8px', fontWeight: 600, fontSize: '1.1rem', marginTop: '20px', border: 'none' }}>
                 ZAMÓW B2B
               </button>
             </div>
@@ -638,15 +638,15 @@ export default function MobileAppPage() {
             {/* Trust items */}
             <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-around', gap: '8px', padding: '20px 15px', background: 'white', borderBottom: '1px solid #eee' }}>
               <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: '#dc2626' }}>7</span>
+                <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: '#e60000' }}>7</span>
                 <span className="trust-lbl" style={{ fontSize: '0.65rem', color: '#aaa', fontWeight: 600 }}>Lat Gwarancji</span>
               </div>
               <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: '#dc2626' }}>IP67</span>
+                <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: '#e60000' }}>IP67</span>
                 <span className="trust-lbl" style={{ fontSize: '0.65rem', color: '#aaa', fontWeight: 600 }}>Szczelność</span>
               </div>
               <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: '#dc2626' }}>100%</span>
+                <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: '#e60000' }}>100%</span>
                 <span className="trust-lbl" style={{ fontSize: '0.65rem', color: '#aaa', fontWeight: 600 }}>Obciążenia</span>
               </div>
             </div>
@@ -762,7 +762,7 @@ export default function MobileAppPage() {
                       style={{ width: '100%', padding: '12px 15px', background: 'none', border: 'none', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', fontWeight: 700, color: 'var(--c-heading)', cursor: 'pointer' }}
                     >
                       <span>{item.q}</span>
-                      <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#dc2626' }}>{activeFaq === idx ? '−' : '+'}</span>
+                      <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
                       <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: '#555', lineHeight: 1.4, borderTop: '1px solid #eee', paddingTop: '10px' }}>
@@ -834,7 +834,7 @@ export default function MobileAppPage() {
                     <input type="checkbox" id="gdpr" required style={{ marginTop: '0.2rem' }} />
                     <label htmlFor="gdpr" style={{ fontSize: '0.78rem', color: '#666', lineHeight: 1.4 }}>{t('formGdpr')}</label>
                   </div>
-                  <button type="submit" className="btn-primary" style={{ padding: '1rem', border: 'none', background: '#dc2626', color: 'white', borderRadius: '6px', fontSize: '0.95rem', fontWeight: 600, cursor: 'pointer' }}>
+                  <button type="submit" className="btn-primary" style={{ padding: '1rem', border: 'none', background: '#e60000', color: 'white', borderRadius: '6px', fontSize: '0.95rem', fontWeight: 600, cursor: 'pointer' }}>
                     {t('formSend')}
                   </button>
                 </form>
@@ -865,7 +865,7 @@ export default function MobileAppPage() {
                       style={{ width: '100%', padding: '12px 15px', background: 'none', border: 'none', textAlign: 'left', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', fontWeight: 700, color: 'var(--c-heading)', cursor: 'pointer' }}
                     >
                       <span>{item.q}</span>
-                      <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#dc2626' }}>{activeFaq === idx ? '−' : '+'}</span>
+                      <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
                       <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: '#555', lineHeight: 1.4, borderTop: '1px solid #eee', paddingTop: '10px' }}>
@@ -893,7 +893,7 @@ export default function MobileAppPage() {
             </p>
             <div style={{ display: 'flex', gap: '10px' }}>
               <button onClick={() => setB2cModalOpen(false)} style={{ flex: 1, padding: '12px', background: '#f3f4f6', color: '#4b5563', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Anuluj</button>
-              <button onClick={() => { setB2cModalOpen(false); window.open("https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580", "_blank"); }} style={{ flex: 1, padding: '12px', background: '#dc2626', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Przejdź</button>
+              <button onClick={() => { setB2cModalOpen(false); window.open("https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580", "_blank"); }} style={{ flex: 1, padding: '12px', background: '#e60000', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Przejdź</button>
             </div>
           </div>
         </div>
@@ -902,28 +902,28 @@ export default function MobileAppPage() {
       {/* App Bottom Navigation */}
       <nav className="app-nav" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: 'calc(70px + env(safe-area-inset-bottom))', paddingBottom: 'env(safe-area-inset-bottom)', background: 'white', display: 'flex', justifyContent: 'space-around', alignItems: 'center', boxShadow: '0 -2px 10px rgba(0,0,0,0.05)', zIndex: 2000 }}>
         <div className={`nav-item ${activeTab === 'home' ? 'active' : ''}`} onClick={() => handleTabChange('home')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'home' ? '#dc2626' : '#9ca3af' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'home' ? '#e60000' : '#9ca3af' }}>
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
             <polyline points="9 22 9 12 15 12 15 22" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'home' ? '#dc2626' : '#9ca3af' }}>{t('navHome')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'home' ? '#e60000' : '#9ca3af' }}>{t('navHome')}</span>
         </div>
         <div className={`nav-item ${activeTab === 'oferta' ? 'active' : ''}`} onClick={() => handleTabChange('oferta')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'oferta' ? '#dc2626' : '#9ca3af' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'oferta' ? '#e60000' : '#9ca3af' }}>
             <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
             <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
             <line x1="6" y1="6" x2="6.01" y2="6" />
             <line x1="6" y1="18" x2="6.01" y2="18" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'oferta' ? '#dc2626' : '#9ca3af' }}>{t('navOferta')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'oferta' ? '#e60000' : '#9ca3af' }}>{t('navOferta')}</span>
         </div>
         <div className={`nav-item ${activeTab === 'info' ? 'active' : ''}`} onClick={() => handleTabChange('info')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'info' ? '#dc2626' : '#9ca3af' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'info' ? '#e60000' : '#9ca3af' }}>
             <circle cx="12" cy="12" r="10" />
             <line x1="12" y1="16" x2="12" y2="12" />
             <line x1="12" y1="8" x2="12.01" y2="8" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'info' ? '#dc2626' : '#9ca3af' }}>{t('navPoznajShort')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'info' ? '#e60000' : '#9ca3af' }}>{t('navPoznajShort')}</span>
         </div>
         <div onClick={() => setB2cModalOpen(true)} className="nav-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer', textDecoration: 'none' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#9ca3af' }}>
@@ -934,10 +934,10 @@ export default function MobileAppPage() {
           <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: '#9ca3af' }}>{t('navB2C')}</span>
         </div>
         <div className={`nav-item ${activeTab === 'kontakt' ? 'active' : ''}`} onClick={() => handleTabChange('kontakt')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'kontakt' ? '#dc2626' : '#9ca3af' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'kontakt' ? '#e60000' : '#9ca3af' }}>
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'kontakt' ? '#dc2626' : '#9ca3af' }}>{t('navKontakt')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'kontakt' ? '#e60000' : '#9ca3af' }}>{t('navKontakt')}</span>
         </div>
       </nav>
 
@@ -965,7 +965,7 @@ export default function MobileAppPage() {
               <h4 style={{ margin: '10px 0 5px' }}>§ 3. Kontakt</h4>
               <p style={{ margin: '0 0 10px' }}>1. Użytkownik może kontaktować się z dystrybutorem za pośrednictwem poczty e-mail: <strong>komponenty@prescot.pl</strong> lub infolinii: <strong>+48 87 777 64 82</strong>.</p>
             </div>
-            <button onClick={() => setMobileRegulaminOpen(false)} className="btn-primary" style={{ width: '100%', padding: '10px', marginTop: '15px', border: 'none', background: '#dc2626', backgroundColor: '#dc2626', color: 'white', borderRadius: '6px', fontWeight: 600 }}>Zamknij</button>
+            <button onClick={() => setMobileRegulaminOpen(false)} className="btn-primary" style={{ width: '100%', padding: '10px', marginTop: '15px', border: 'none', background: '#e60000', backgroundColor: '#e60000', color: 'white', borderRadius: '6px', fontWeight: 600 }}>Zamknij</button>
           </div>
         </div>
       )}
@@ -987,7 +987,7 @@ export default function MobileAppPage() {
               <h4 style={{ margin: '10px 0 5px' }}>3. Prawa użytkownika</h4>
               <p style={{ margin: '0 0 10px' }}>Użytkownikowi przysługuje prawo dostępu do swoich danych, sprostowania, usunięcia, ograniczenia przetwarzania, wniesienia sprzeciwu oraz wniesienia skargi do PUODO.</p>
             </div>
-            <button onClick={() => setMobileRodoOpen(false)} className="btn-primary" style={{ width: '100%', padding: '10px', marginTop: '15px', border: 'none', background: '#dc2626', backgroundColor: '#dc2626', color: 'white', borderRadius: '6px', fontWeight: 600 }}>Zamknij</button>
+            <button onClick={() => setMobileRodoOpen(false)} className="btn-primary" style={{ width: '100%', padding: '10px', marginTop: '15px', border: 'none', background: '#e60000', backgroundColor: '#e60000', color: 'white', borderRadius: '6px', fontWeight: 600 }}>Zamknij</button>
           </div>
         </div>
       )}
@@ -1023,7 +1023,7 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
       {/* Support & Contact Column */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
         <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Wsparcie i Kontakt</span>
-        <a href="mailto:komponenty@prescot.pl" style={{ color: '#dc2626', fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>
+        <a href="mailto:komponenty@prescot.pl" style={{ color: '#e60000', fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>
           komponenty@prescot.pl
         </a>
         <a href="tel:+48877776482" style={{ color: 'var(--c-heading)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none' }}>
@@ -1055,7 +1055,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
   const renderSymbolRed = (name: string) => {
     const symbolMatch = name.match(/SCH-[\d\-A]+/);
     const symbol = symbolMatch ? symbolMatch[0] : name.split(' ')[0];
-    return <span style={{ color: '#dc2626' }}>{symbol}</span>;
+    return <span style={{ color: '#e60000' }}>{symbol}</span>;
   };
 
   return (
@@ -1091,13 +1091,13 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Moc znamionowa</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{powerText}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Kod EAN</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
               <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Wymiary</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Klasa szczelności</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#dc2626' }}>IP67 (wodoodporny)</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#dc2626' }}>7 Lat Gwarancji</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Klasa szczelności</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>IP67 (wodoodporny)</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>7 Lat Gwarancji</td></tr>
             </tbody>
           </table>
 
           <div className="modal-actions" style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            <a href={product.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', textDecoration: 'none', padding: '0.9rem', borderRadius: '8px', background: '#dc2626', color: 'white', fontWeight: 700, fontSize: '0.9rem', boxShadow: '0 4px 12px rgba(230,0,0,0.1)' }}>
+            <a href={product.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', textDecoration: 'none', padding: '0.9rem', borderRadius: '8px', background: '#e60000', color: 'white', fontWeight: 700, fontSize: '0.9rem', boxShadow: '0 4px 12px rgba(230,0,0,0.1)' }}>
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '16px', height: '16px' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
