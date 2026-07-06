@@ -246,26 +246,35 @@ export default function MobileAppPage() {
               <div className="hero-container" style={{ maxWidth: '100%', position: 'relative', zIndex: 2, textAlign: 'center' }}>
                 <div className="hero-content">
                   <h1 className="hero-title" style={{ fontSize: '2.0rem', display: 'block', lineHeight: 1.2, marginBottom: '10px', color: '#111827', fontWeight: 800, textShadow: '0 2px 6px rgba(0,0,0,0.22)' }}>
-                    <span>{t('heroWarranty')}</span><br/>
+                    <span style={{ color: '#dc2626' }}>{t('heroWarranty')}</span><br/>
                     {t('heroPower')}<br/>
                     {t('heroReal')}<span style={{ color: '#dc2626' }}>{t('hero100')}</span>{t('heroLoad')}
                   </h1>
-                  <p className="hero-subtitle" style={{ fontSize: '0.95rem', padding: '0 10px', marginBottom: '20px', lineHeight: 1.4, color: '#111827', fontWeight: 600, textShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+                  <p className="hero-subtitle" style={{ fontSize: '0.95rem', padding: '0 10px', marginBottom: '25px', lineHeight: 1.4, color: '#111827', fontWeight: 600, textShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                     {t('heroSubtitle')}
                   </p>
                   
-                  <div className="hero-trust" style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'nowrap', width: '100%' }}>
-                    <div className="trust-item" style={{ flex: 1, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <span className="trust-val" style={{ color: '#dc2626', fontSize: '1.4rem', fontWeight: 900, display: 'block' }}>{t('trust7Years')}</span>
-                      <span className="trust-lbl" style={{ color: '#dc2626', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '2px' }}>{t('trustWarranty')}</span>
+                  <div className="hero-actions" style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '35px' }}>
+                    <button onClick={() => handleTabChange('oferta')} style={{ background: '#dc2626', color: 'white', padding: '12px 10px', borderRadius: '4px', fontWeight: 700, fontSize: '0.85rem', border: 'none', flex: 1 }}>
+                      {t('exploreOffer')}
+                    </button>
+                    <button onClick={() => setB2cModalOpen(true)} style={{ background: 'transparent', color: '#111827', padding: '12px 10px', borderRadius: '4px', fontWeight: 700, fontSize: '0.85rem', border: '1px solid #111827', flex: 1 }}>
+                      {t('b2bCoop')}
+                    </button>
+                  </div>
+                  
+                  <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'nowrap', width: '100%', padding: '0 5px', textAlign: 'left' }}>
+                    <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <span className="trust-val" style={{ color: '#dc2626', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust7Years')}</span>
+                      <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustWarranty')}</span>
                     </div>
-                    <div className="trust-item" style={{ flex: 1, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <span className="trust-val" style={{ color: '#dc2626', fontSize: '1.4rem', fontWeight: 900, display: 'block' }}>{t('trustIP67')}</span>
-                      <span className="trust-lbl" style={{ color: '#dc2626', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '2px' }}>{t('trustTightness')}</span>
+                    <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <span className="trust-val" style={{ color: '#dc2626', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trustIP67')}</span>
+                      <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustTightness')}</span>
                     </div>
-                    <div className="trust-item" style={{ flex: 1, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <span className="trust-val" style={{ color: '#dc2626', fontSize: '1.4rem', fontWeight: 900, display: 'block' }}>{t('trust100')}</span>
-                      <span className="trust-lbl" style={{ color: '#dc2626', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '2px' }}>{t('trustLoad')}</span>
+                    <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <span className="trust-val" style={{ color: '#dc2626', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust100')}</span>
+                      <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustLoad')}</span>
                     </div>
                   </div>
                   

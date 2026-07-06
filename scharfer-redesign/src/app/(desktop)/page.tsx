@@ -56,7 +56,9 @@ export default function HomePage() {
         <div className="hero-container" style={{ maxWidth: 'var(--max-width)' }}>
           <div className="hero-content">
             <h1 className="hero-title" style={{ display: 'block' }}>
-              <span>{t('heroWarranty')}</span> {t('heroPower')} {t('heroReal')}<span>{t('hero100')}</span>{t('heroLoad')}
+              <span style={{ color: 'var(--c-red)' }}>{t('heroWarranty')}</span><br/>
+              {t('heroPower')}<br/>
+              {t('heroReal')}<span style={{ color: 'var(--c-red)' }}>{t('hero100')}</span>{t('heroLoad')}
             </h1>
             <p className="hero-subtitle">
               {t('heroSubtitlePc')}
@@ -69,18 +71,18 @@ export default function HomePage() {
                 {t('b2bCoop')}
               </Link>
             </div>
-            <div className="hero-trust">
-              <div className="trust-item">
-                <span className="trust-val" style={{ color: 'var(--c-red)' }}>{t('trust7Years')}</span>
-                <span className="trust-lbl">{t('trustWarranty')}</span>
+            <div className="hero-trust" style={{ display: 'flex', gap: '3rem', marginTop: '3rem', flexWrap: 'wrap' }}>
+              <div className="trust-item" style={{ display: 'flex', flexDirection: 'column' }}>
+                <span className="trust-val" style={{ color: 'var(--c-red)', fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>{t('trust7Years')}</span>
+                <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustWarranty')}</span>
               </div>
-              <div className="trust-item">
-                <span className="trust-val" style={{ color: 'var(--c-red)' }}>{t('trustIP67')}</span>
-                <span className="trust-lbl">{t('trustTightnessFull')}</span>
+              <div className="trust-item" style={{ display: 'flex', flexDirection: 'column' }}>
+                <span className="trust-val" style={{ color: 'var(--c-red)', fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>{t('trustIP67')}</span>
+                <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustTightnessFull')}</span>
               </div>
-              <div className="trust-item">
-                <span className="trust-val" style={{ color: 'var(--c-red)' }}>{t('trust100')}</span>
-                <span className="trust-lbl">{t('trustLoadFull')}</span>
+              <div className="trust-item" style={{ display: 'flex', flexDirection: 'column' }}>
+                <span className="trust-val" style={{ color: 'var(--c-red)', fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>{t('trust100')}</span>
+                <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustLoadFull')}</span>
               </div>
             </div>
           </div>
