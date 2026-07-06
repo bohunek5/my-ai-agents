@@ -74,15 +74,15 @@ export default function HomePage() {
             <div className="hero-trust" style={{ display: 'flex', gap: '3rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
               <div className="trust-item" style={{ display: 'flex', flexDirection: 'column' }}>
                 <span className="trust-val" style={{ color: 'var(--c-red)', fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>{t('trust7Years')}</span>
-                <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustWarranty')}</span>
+                <span className="trust-lbl" style={{ color: 'var(--c-heading)', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustWarranty')}</span>
               </div>
               <div className="trust-item" style={{ display: 'flex', flexDirection: 'column' }}>
                 <span className="trust-val" style={{ color: 'var(--c-red)', fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>{t('trustIP67')}</span>
-                <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustTightnessFull')}</span>
+                <span className="trust-lbl" style={{ color: 'var(--c-heading)', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustTightnessFull')}</span>
               </div>
               <div className="trust-item" style={{ display: 'flex', flexDirection: 'column' }}>
                 <span className="trust-val" style={{ color: 'var(--c-red)', fontSize: '2rem', fontWeight: 900, lineHeight: 1 }}>{t('trust100')}</span>
-                <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustLoadFull')}</span>
+                <span className="trust-lbl" style={{ color: 'var(--c-heading)', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustLoadFull')}</span>
               </div>
             </div>
 
@@ -98,7 +98,7 @@ export default function HomePage() {
       </div>
 
       {/* Technology Intro Block */}
-      <div id="technologie" className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '6rem 2rem', textAlign: 'center', borderBottom: '1px solid var(--c-border)' }}>
+      <div id="technologie" className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, var(--c-light-gray) 100%)', padding: '6rem 2rem', textAlign: 'center', borderBottom: '1px solid var(--c-border)' }}>
         <div className="container" style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
           <h2 style={{ fontSize: '3rem', color: 'var(--c-heading)', marginBottom: '1rem', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
             {t('techNoComp')}
@@ -110,7 +110,7 @@ export default function HomePage() {
       </div>
 
       {/* Budowa zasilacza - interaktywny diagram */}
-      <div className="section-padding bg-light" style={{ padding: '4rem 2rem 0rem 2rem', background: '#fafafa', overflow: 'hidden' }}>
+      <div className="section-padding bg-light" style={{ padding: '4rem 2rem 0rem 2rem', background: 'var(--c-light-gray)', overflow: 'hidden' }}>
         <div className="container" style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
           <InteractiveDiagram />
         </div>
@@ -317,7 +317,7 @@ export default function HomePage() {
           </div>
           <div className="partnership-text" style={{ flex: 1, minWidth: '300px' }}>
             <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', marginBottom: '0.5rem', fontWeight: 800 }}>{t('b2bTitle')}</h2>
-            <p className="ps-subtitle" style={{ fontSize: '1.1rem', color: '#666', marginBottom: '2rem' }}>{t('b2bSubtitle')}</p>
+            <p className="ps-subtitle" style={{ fontSize: '1.1rem', color: 'var(--c-text)', marginBottom: '2rem' }}>{t('b2bSubtitle')}</p>
             
             <div className="value-list" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <div className="value-item">
@@ -342,15 +342,15 @@ export default function HomePage() {
       </div>
 
       {/* FAQ Section */}
-      <div className="faq-section section-padding bg-light" style={{ background: '#fafafa', borderTop: '1px solid var(--c-border)', borderBottom: '1px solid var(--c-border)', padding: '5rem 2rem', marginTop: '5rem' }}>
+      <div className="faq-section section-padding bg-light" style={{ background: 'var(--card-bg)', borderTop: '1px solid var(--c-border)', borderBottom: '1px solid var(--c-border)', padding: '5rem 2rem', marginTop: '5rem' }}>
         <div className="container" style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div className="text-center" style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 className="section-title" style={{ fontSize: '2rem', color: 'var(--c-heading)', fontWeight: 800 }}>{t('faqTitle')}</h2>
-            <p className="section-subtitle" style={{ color: '#666' }}>{t('faqSubtitle')}</p>
+            <p className="section-subtitle" style={{ color: 'var(--c-text)' }}>{t('faqSubtitle')}</p>
           </div>
           <div className="faq-accordion" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {faqItems.map((item, idx) => (
-              <div key={idx} className={`faq-item ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '8px', overflow: 'hidden' }}>
+              <div key={idx} className={`faq-item ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'var(--card-bg)', border: '1px solid var(--c-border)', borderRadius: '8px', overflow: 'hidden' }}>
                 <button 
                   className="faq-question" 
                   onClick={() => toggleFaq(idx)}

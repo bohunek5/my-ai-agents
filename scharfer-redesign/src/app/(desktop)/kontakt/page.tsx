@@ -55,30 +55,10 @@ export default function KontaktPage() {
 
       {/* Expanded container to match header (1500px / var(--max-width)) */}
       <div className="container" style={{ maxWidth: 'var(--max-width)', margin: '0 auto', padding: '4rem var(--spacing-lg)' }}>
-        <div className="contact-grid" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap' }}>
+        <div className="contact-grid" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           
-          <div className="contact-details" style={{ flex: 1, minWidth: '300px' }}>
-            <div className="details-card" style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '2.5rem', boxShadow: 'var(--shadow-md)' }}>
-              <h2 className="details-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '10px', color: 'var(--c-heading)' }}>{t('officialDistributor')}</h2>
-              <img src="/PRESCOT_logo.png" alt="Prescot LED" style={{ height: '35px', marginBottom: '20px' }} />
-              <div className="contact-line" style={{ marginBottom: '1.5rem' }}>
-                <strong style={{ display: 'block', fontSize: '1rem', color: 'var(--c-heading)', marginBottom: '0.25rem' }}>{t('contactAbout')}</strong>
-                <p style={{ fontSize: '1rem', fontWeight: 400, lineHeight: 1.5, color: 'var(--c-text)', margin: 0 }}>{t('contactAboutDesc')}</p>
-              </div>
-              <div className="contact-line">
-                <strong style={{ display: 'block', fontSize: '1rem', color: 'var(--c-heading)', marginBottom: '0.25rem' }}>{t('contactData')}</strong>
-                <div style={{ fontSize: '1rem', color: 'var(--c-heading)', fontWeight: 500, lineHeight: 1.6 }}>
-                  <strong>{t('contactAddress1')}</strong><br />
-                  {t('contactAddress2')}<br />
-                  {t('contactAddress3')}<br />
-                  Tel.: {t('contactPhone')}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="contact-form-container" style={{ flex: 1.5, minWidth: '350px' }}>
-            <div className="form-card" style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '2.5rem', boxShadow: 'var(--shadow-md)' }}>
+          <div className="contact-form-container" style={{ flex: 1, minWidth: '350px', maxWidth: '800px' }}>
+            <div className="form-card" style={{ background: 'var(--card-bg)', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '2.5rem', boxShadow: 'var(--shadow-md)' }}>
               <h2 className="form-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)' }}>{t('contactTitle')}</h2>
               <form onSubmit={(e) => { e.preventDefault(); alert(t('contactSuccess')); }} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
@@ -94,12 +74,10 @@ export default function KontaktPage() {
                   <textarea id="message" rows={5} required style={{ padding: '0.8rem', border: '1px solid var(--c-border)', borderRadius: '6px', fontSize: '0.95rem', resize: 'vertical' }}></textarea>
                 </div>
                 <div className="form-checkbox" style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
-                  <input type="checkbox" id="gdpr" required style={{ marginTop: '0.2rem' }} />
-                  <label htmlFor="gdpr" style={{ fontSize: '0.8rem', color: '#666', lineHeight: 1.4 }}>{t('formGdpr')}</label>
+                  <input type="checkbox" id="rodo" required style={{ marginTop: '0.3rem' }} />
+                  <label htmlFor="rodo" style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5 }}>{t('formGdpr')}</label>
                 </div>
-                <button type="submit" className="btn-primary" style={{ padding: '1rem', border: 'none', background: 'var(--c-red)', color: 'white', borderRadius: '6px', fontSize: '1rem', fontWeight: 600, cursor: 'pointer' }}>
-                  {t('formSend')}
-                </button>
+                <button type="submit" className="btn-primary" style={{ padding: '1rem', borderRadius: '8px', fontWeight: 700, fontSize: '1.05rem', marginTop: '0.5rem', border: 'none', cursor: 'pointer', background: 'var(--c-red)', color: 'white' }}>{t('formSend')}</button>
               </form>
             </div>
           </div>
@@ -107,14 +85,14 @@ export default function KontaktPage() {
         </div>
 
         {/* FAQ Section */}
-        <div className="faq-section section-padding bg-light" style={{ marginTop: '5rem', background: '#fafafa', borderRadius: '12px', padding: '3rem 2rem', border: '1px solid var(--c-border)' }}>
+        <div className="faq-section section-padding bg-light" style={{ marginTop: '5rem', background: 'var(--card-bg)', borderRadius: '12px', padding: '3rem 2rem', border: '1px solid var(--c-border)' }}>
           <div className="text-center" style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 className="section-title" style={{ fontSize: '2rem', color: 'var(--c-heading)', fontWeight: 800 }}>{t('faqSectionTitle')}</h2>
-            <p className="section-subtitle" style={{ color: '#666' }}>{t('faqSectionDesc')}</p>
+            <p className="section-subtitle" style={{ color: 'var(--c-text)' }}>{t('faqSectionDesc')}</p>
           </div>
           <div className="faq-accordion" style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {faqItems.map((item, idx) => (
-              <div key={idx} className={`faq-item ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '8px', overflow: 'hidden' }}>
+              <div key={idx} className={`faq-item ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'var(--card-bg)', border: '1px solid var(--c-border)', borderRadius: '8px', overflow: 'hidden' }}>
                 <button 
                   className="faq-question" 
                   onClick={() => toggleFaq(idx)}

@@ -99,6 +99,7 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
         }}>
           {/* Zasilacz image scaled properly */}
           <img 
+            className="diagram-img-mobile"
             src="/assets/40012.png" 
             alt="Zasilacz Scharfer" 
             style={{ 
@@ -109,7 +110,6 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
               width: '100%', 
               height: 'auto', 
               display: 'block',
-              filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.15))',
               pointerEvents: 'none'
             }} 
           />
@@ -146,7 +146,7 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
         {/* Feature descriptions list (bloczki) */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {features.map((f, idx) => (
-            <div key={idx} style={{ background: 'white', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '15px', display: 'flex', gap: '15px', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
+            <div key={idx} style={{ background: 'var(--card-bg)', border: '1px solid var(--c-border)', borderRadius: '10px', padding: '15px', display: 'flex', gap: '15px', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
               <div style={{ flexShrink: 0, width: '28px', height: '28px', background: 'var(--c-red)', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 800 }}>
                 {idx + 1}
               </div>
@@ -191,7 +191,7 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
                 y1={f.y1} 
                 x2={f.x2} 
                 y2={f.y2} 
-                stroke={isActive ? 'var(--c-red)' : '#e5e7eb'} 
+                stroke={isActive ? 'var(--c-red)' : 'var(--c-border)'} 
                 strokeWidth={isActive ? '2.5' : '1.5'} 
                 style={{ transition: 'all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }}
               />
@@ -213,13 +213,13 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
           }}
         >
           <img 
+            className="diagram-img"
             src="/assets/40012.png" 
             alt="Zasilacz Scharfer 12V 400W" 
             style={{ 
               width: '100%', 
               height: 'auto', 
-              objectFit: 'contain', 
-              filter: 'drop-shadow(0 25px 60px rgba(0,0,0,0.16))'
+              objectFit: 'contain'
             }} 
           />
         </div>
@@ -283,8 +283,8 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
                 onMouseEnter={() => setActiveFeature(idx)}
                 onMouseLeave={() => setActiveFeature(null)}
                 style={{
-                  background: 'white',
-                  border: isActive ? '1.5px solid var(--c-red)' : '1.5px solid #e5e7eb',
+                  background: 'var(--card-bg)',
+                  border: isActive ? '1.5px solid var(--c-red)' : '1.5px solid var(--c-border)',
                   boxShadow: isActive ? '0 12px 25px rgba(230,0,0,0.07)' : '0 4px 12px rgba(0,0,0,0.03)',
                   borderRadius: '12px',
                   padding: '0.75rem 0.9rem',
@@ -313,8 +313,8 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
                 onMouseEnter={() => setActiveFeature(realIdx)}
                 onMouseLeave={() => setActiveFeature(null)}
                 style={{
-                  background: 'white',
-                  border: isActive ? '1.5px solid var(--c-red)' : '1.5px solid #e5e7eb',
+                  background: 'var(--card-bg)',
+                  border: isActive ? '1.5px solid var(--c-red)' : '1.5px solid var(--c-border)',
                   boxShadow: isActive ? '0 12px 25px rgba(230,0,0,0.07)' : '0 4px 12px rgba(0,0,0,0.03)',
                   borderRadius: '12px',
                   padding: '0.75rem 0.9rem',

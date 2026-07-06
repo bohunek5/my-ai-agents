@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: var(--card-bg);
   --foreground: #171717;
   
   /* Scharfer Color Palette */
@@ -14,6 +14,7 @@
   --c-red: #E60000;
   --c-red-hover: #CC0000;
   --c-red-light: rgba(230, 0, 0, 0.05);
+  --card-bg: #FFFFFF;
 }
 
 @theme inline {
@@ -23,35 +24,66 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 :root {
   --font-scale: 1;
 }
 
-[data-theme="dark"] {
-  /* Using invert filter handles all hardcoded inline styles perfectly */
-  filter: invert(1) hue-rotate(180deg);
-  background: #111;
+:root[data-theme="dark"] {
+  --background: #111111;
+  --foreground: #ffffff;
+  --card-bg: #1a1a1a;
+  --c-white: #111111;
+  --c-light-gray: #222222;
+  --c-border: #333333;
+  --c-text: #e5e5e5;
+  --c-heading: #ffffff;
+  --c-black: #ffffff;
 }
 
-/* Re-invert media, SVGs and images so they stay in original colors */
-[data-theme="dark"] img,
-[data-theme="dark"] video,
-[data-theme="dark"] iframe,
-[data-theme="dark"] .theme-toggle-btn,
-[data-theme="dark"] .wcag-toggle-btn,
-[data-theme="dark"] .sun-icon,
-[data-theme="dark"] .moon-icon {
-  filter: invert(1) hue-rotate(180deg);
+/* Fix Hero Overlays in Dark Mode (make them more transparent so videos/backgrounds are visible) */
+:root[data-theme="dark"] .hero-overlay,
+:root[data-theme="dark"] .page-hero-overlay {
+  background: rgba(0, 0, 0, 0.85) !important;
+  opacity: 1 !important;
+}
+
+/* Diagram image filters */
+.diagram-img {
+  filter: drop-shadow(0 25px 60px rgba(0,0,0,0.16));
+}
+:root[data-theme="dark"] .diagram-img {
+  filter: drop-shadow(0 25px 60px rgba(255,255,255,0.05)) !important;
+}
+.diagram-img-mobile {
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15));
+}
+:root[data-theme="dark"] .diagram-img-mobile {
+  filter: drop-shadow(0 12px 24px rgba(255,255,255,0.05)) !important;
+}
+
+/* Dynamic Logo Swapping for Dark Mode */
+:root[data-theme="dark"] img[src="/PRESCOT_logo.png"] {
+  content: url("/logonocprescotled.png");
+}
+
+:root[data-theme="dark"] img[src="/logo_scharfer.png"] {
+  content: url("/logo_scharfer_dark.png");
+}
+
+/* Header & Nav backgrounds in Dark Mode */
+:root[data-theme="dark"] .site-header {
+  background-color: rgba(26, 26, 26, 0.95) !important;
+  border-bottom-color: #333 !important;
+}
+
+:root[data-theme="dark"] .mobile-bottom-nav {
+  background-color: rgba(26, 26, 26, 0.95) !important;
+  border-top-color: #333 !important;
 }
 
 html {
+  color-scheme: light dark;
   font-size: calc(16px * var(--font-scale));
 }
 
@@ -86,7 +118,7 @@ body.wcag-highlight-links a, body.wcag-highlight-links button {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: var(--card-bg);
   border: none;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   cursor: pointer;

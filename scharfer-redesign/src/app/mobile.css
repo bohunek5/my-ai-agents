@@ -1,11 +1,3 @@
-:root {
-    --c-primary: #e60000;
-    --c-red: #E60000;
-    --c-bg: #f8f9fa;
-    --c-white: #ffffff;
-    --c-text: #4b5563;
-    --c-heading: #111827;
-}
 
 * {
     box-sizing: border-box;
@@ -64,7 +56,7 @@ a { text-decoration: none; color: inherit; }
     padding: 12px 15px;
     background: transparent;
     border: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--c-border);
     font-size: 1rem;
     text-align: left;
 }
@@ -152,11 +144,11 @@ a { text-decoration: none; color: inherit; }
 .btn-details {
     display: none;
 }
-.product-card .price { font-size: 1.2rem; font-weight: 700; color: var(--c-primary); }
+.product-card .price { font-size: 1.2rem; font-weight: 700; color: var(--c-red); }
 .product-card .badge {
     position: absolute;
     top: 8px; left: 8px;
-    background: var(--c-primary);
+    background: var(--c-red);
     color: white;
     font-size: 0.7rem;
     padding: 3px 6px;
@@ -168,7 +160,7 @@ a { text-decoration: none; color: inherit; }
     display: block;
     width: 100%;
     text-align: center;
-    background: var(--c-primary);
+    background: var(--c-red);
     color: white;
     padding: 15px;
     border-radius: 8px;
@@ -241,7 +233,7 @@ a { text-decoration: none; color: inherit; }
 }
 .contact-card h3 { margin-bottom: 15px; }
 .contact-card p { margin-bottom: 10px; font-size: 1.1rem; }
-.contact-card a { color: var(--c-primary); font-weight: 600; }
+.contact-card a { color: var(--c-red); font-weight: 600; }
 
 /* FOOTER */
 .app-footer {
@@ -251,7 +243,7 @@ a { text-decoration: none; color: inherit; }
 }
 .app-footer img { height: 30px; margin-bottom: 10px; }
 .app-footer p { font-size: 0.9rem; margin-bottom: 10px; }
-.app-footer span { font-size: 0.8rem; color: #999; }
+.app-footer span { font-size: 0.8rem; color: var(--c-text); }
 
 /* BOTTOM NAV */
 .app-nav {
@@ -273,13 +265,13 @@ a { text-decoration: none; color: inherit; }
     justify-content: center;
     width: 25%;
     height: 100%;
-    color: #9ca3af;
+    color: var(--c-text);
     font-size: 10px;
     font-weight: 600;
     gap: 4px;
 }
 .nav-item.active {
-    color: var(--c-primary);
+    color: var(--c-red);
 }
 .nav-item svg {
     transition: transform 0.2s;
@@ -288,6 +280,6 @@ a { text-decoration: none; color: inherit; }
     transform: scale(1.1);
 }
 
-.trust-item-m { display:flex; align-items:center; justify-content:center; gap:10px; font-weight:600; color:var(--c-primary); font-size:1.1rem; }
+.trust-item-m { display:flex; align-items:center; justify-content:center; gap:10px; font-weight:600; color:var(--c-red); font-size:1.1rem; }
 
 .feature-content h3 { font-size: 1.1rem; margin-bottom: 5px; color:var(--c-heading); } .feature-content p { font-size: 0.9rem; color:var(--c-text); }

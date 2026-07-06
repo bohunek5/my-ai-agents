@@ -39,7 +39,7 @@ export default function CookieBanner() {
     <div className="cookie-banner" id="cookie-banner" style={{ 
       position: 'fixed', bottom: '20px', right: '20px', left: 'auto', 
       width: '380px', maxWidth: 'calc(100vw - 40px)', 
-      background: '#fff', border: '1px solid #eee', borderRadius: '12px', 
+      background: '#fff', border: '1px solid var(--c-border)', borderRadius: '12px', 
       padding: '24px', zIndex: 99999, boxShadow: '0 10px 40px rgba(0,0,0,0.15)' 
     }}>
       {!showSettings ? (

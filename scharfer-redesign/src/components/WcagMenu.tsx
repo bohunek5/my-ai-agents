@@ -25,12 +25,12 @@ export default function WcagMenu() {
   }, []);
 
   return (
-    <div className="wcag-menu-container" ref={menuRef} style={{ position: 'relative' }}>
+    <div className="wcag-menu-container notranslate" translate="no" ref={menuRef} style={{ position: 'relative' }}>
       <button 
         className="wcag-toggle-btn" 
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Opcje ułatwień dostępu"
-        title="Ułatwienia dostępu (WCAG)"
+        aria-label={t('wcagMenuOptions')}
+        title={t('wcagMenuWcag')}
       >
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
@@ -53,10 +53,10 @@ export default function WcagMenu() {
 
       {isOpen && (
         <div className="wcag-dropdown">
-          <div className="wcag-dropdown-header">Ułatwienia dostępu</div>
+          <div className="wcag-dropdown-header">{t('wcagMenuTitle')}</div>
           
           <div className="wcag-dropdown-item">
-            <span className="wcag-item-label">Rozmiar tekstu</span>
+            <span className="wcag-item-label">{t('wcagTextSize')}</span>
             <div className="wcag-btn-group">
               <button onClick={decreaseFontSize} disabled={fontSizeMultiplier <= 1.0}>A-</button>
               <span className="wcag-multiplier">{Math.round(fontSizeMultiplier * 100)}%</span>
@@ -65,15 +65,15 @@ export default function WcagMenu() {
           </div>
 
           <button className={`wcag-dropdown-btn ${isHighContrastLinks ? 'active' : ''}`} onClick={toggleHighContrastLinks}>
-            Podświetl linki
+            {t('wcagHighlightLinks')}
           </button>
           
           <button className={`wcag-dropdown-btn ${isDyslexicFont ? 'active' : ''}`} onClick={toggleDyslexicFont}>
-            Czcionka dla dyslektyków
+            {t('wcagDyslexic')}
           </button>
 
           <button className="wcag-dropdown-btn wcag-read-btn" onClick={isReading ? stopReading : readPage}>
-            {isReading ? 'Zatrzymaj czytanie' : 'Czytaj na głos'}
+            {isReading ? t('wcagStopReading') : t('wcagReadAloud')}
           </button>
         </div>
       )}
@@ -81,7 +81,7 @@ export default function WcagMenu() {
       <style jsx>{`
         .wcag-toggle-btn {
           background: transparent;
-          border: 1px solid rgba(0,0,0,0.1);
+          border: 1px solid var(--c-border);
           color: var(--c-heading);
           cursor: pointer;
           display: flex;

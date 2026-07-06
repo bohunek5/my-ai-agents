@@ -19,7 +19,7 @@ export default function MobileRedirect({ children }: { children: React.ReactNode
   }, [pathname, router]);
 
   if (!mounted) {
-    return <div style={{ background: '#f8f9fa', minHeight: '100vh' }} />;
+    return <div style={{ background: 'var(--background)', minHeight: '100vh' }} />;
   }
 
   return <>{children}</>;

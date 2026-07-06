@@ -63,7 +63,7 @@ export default function PoznajPage() {
             <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
               {t('diagramTitle') || "Budowa i innowacje Scharfer"}
             </h2>
-            <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '700px', margin: '0.5rem auto 0' }}>
+            <p style={{ fontSize: '1.1rem', color: 'var(--c-text)', maxWidth: '700px', margin: '0.5rem auto 0' }}>
               {t('diagramSubtitle') || "Najedź na poszczególne elementy zasilacza, aby poznać jego unikalne parametry techniczne i przewagi."}
             </p>
           </div>
@@ -281,14 +281,14 @@ export default function PoznajPage() {
         </div>
 
         {/* FAQ Section */}
-        <div className="faq-section section-padding bg-light" style={{ marginTop: '6rem', background: '#fafafa', borderRadius: '12px', padding: '3rem 2rem', border: '1px solid var(--c-border)' }}>
+        <div className="faq-section section-padding bg-light" style={{ marginTop: '6rem', background: 'var(--card-bg)', borderRadius: '12px', padding: '3rem 2rem', border: '1px solid var(--c-border)' }}>
           <div className="text-center" style={{ textAlign: 'center', marginBottom: '3rem' }}>
             <h2 className="section-title" style={{ fontSize: '2rem', color: 'var(--c-heading)', fontWeight: 800 }}>{t('faqTitle')}</h2>
-            <p className="section-subtitle" style={{ color: '#666' }}>{t('faqSubtitle')}</p>
+            <p className="section-subtitle" style={{ color: 'var(--c-text)' }}>{t('faqSubtitle')}</p>
           </div>
           <div className="faq-accordion" style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {faqItems.map((item, idx) => (
-              <div key={idx} className={`faq-item ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '8px', overflow: 'hidden' }}>
+              <div key={idx} className={`faq-item ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'var(--card-bg)', border: '1px solid var(--c-border)', borderRadius: '8px', overflow: 'hidden' }}>
                 <button 
                   className="faq-question" 
                   onClick={() => toggleFaq(idx)}

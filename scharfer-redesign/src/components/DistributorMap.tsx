@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 // Dynamically import the map component so it doesn't break SSR
 const MapContent = dynamic(() => import('./MapContent'), {
   ssr: false,
-  loading: () => <div style={{ height: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8f9fa' }}>Wczytywanie mapy...</div>
+  loading: () => <div style={{ height: '600px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--background)' }}>Wczytywanie mapy...</div>
 });
 
 export default function DistributorMap() {

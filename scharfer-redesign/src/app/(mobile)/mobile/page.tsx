@@ -48,7 +48,7 @@ export default function MobileAppPage() {
   const [mobileRodoOpen, setMobileRodoOpen] = useState(false);
   const [b2cModalOpen, setB2cModalOpen] = useState(false);
 
-  const flagEmojis: Record<string, string> = { pl: '🇵🇱', en: '🇬🇧', de: '🇩🇪', lt: '🇱🇹' };
+  const flagCodes: Record<string, string> = { pl: 'pl', en: 'gb', de: 'de', lt: 'lt' };
 
   // Filter products
   const filteredProducts = productsData.filter(p => {
@@ -141,27 +141,23 @@ export default function MobileAppPage() {
   ];
 
   return (
-    <div style={{ paddingTop: '75px', paddingBottom: '75px', minHeight: '100vh', background: '#f8f9fa' }}>
+    <div style={{ paddingTop: '75px', paddingBottom: '75px', minHeight: '100vh', background: 'var(--background)' }}>
       
       {/* Mobile Header */}
-      <header className="app-header" style={{ height: '75px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 15px', borderBottom: '1px solid #eee', background: 'white', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000 }}>
-        {/* Left: Scharfer logo */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <a href="#home" onClick={(e) => { e.preventDefault(); handleTabChange('home'); }} style={{ display: 'block' }}>
-            <img src="/logo_scharfer.png" alt="Scharfer" style={{ height: '34px', width: 'auto', display: 'block' }} />
-          </a>
-        </div>
-        
-        {/* Middle: Prescot LED distributor badge */}
-        <div style={{ position: 'absolute', left: '55%', top: '50%', transform: 'translate(-50%, -50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <span style={{ fontSize: '7px', fontWeight: 800, color: '#999', letterSpacing: '0.5px', textTransform: 'uppercase', display: 'block', lineHeight: 1 }}>Dystrybutor:</span>
-          <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '2px' }}>
-            <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '12px', display: 'block' }} />
+      <header className="app-header" style={{ height: '75px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 15px', borderBottom: '1px solid var(--c-border)', background: 'var(--card-bg)', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000 }}>
+        {/* LOGO */}
+        <a href="#home" onClick={(e) => { e.preventDefault(); handleTabChange('home'); }} style={{ display: 'flex', alignItems: 'center' }}>
+          <img src="/logo_scharfer.png" alt="Scharfer - Zasilacze LED" className="logo-main" style={{ height: '36px' }} />
+        </a>
+        <div className="distributor-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', gap: '2px', marginRight: '14px', borderLeft: '1px solid var(--c-border)', paddingLeft: '8px' }}>
+          <span style={{ fontSize: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.5px', color: '#888', fontWeight: 700, lineHeight: 1 }}>{t('officialDistributor')}</span>
+          <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ display: 'flex' }}>
+            <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '7px' }} className="prescot-logo-distributor" />
           </a>
         </div>
 
         {/* Right: Controls & Language */}
-        <div className="header-right" id="lang-wrapper" style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div className="header-right" id="lang-wrapper" style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '6px' }}>
           
           <WcagMenu />
           <ThemeToggle />
@@ -174,18 +170,18 @@ export default function MobileAppPage() {
               onClick={() => setLangOpen(!langOpen)}
               style={{
                 background: langOpen ? '#f3f4f6' : 'transparent',
-                border: '1px solid #e5e7eb',
+                border: '1px solid var(--c-border)',
                 borderRadius: '20px',
-                padding: '4px 10px',
+                padding: '4px 8px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '6px',
+                gap: '4px',
                 cursor: 'pointer',
                 transition: 'all 0.2s'
               }}
             >
-              <span style={{ fontSize: '1.2rem', lineHeight: 1 }}>{flagEmojis[lang]}</span>
-              <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#374151' }}>{lang.toUpperCase()}</span>
+              <img src={`https://flagcdn.com/w20/${flagCodes[lang]}.png`} alt={lang} style={{ width: '16px', height: '11px', objectFit: 'cover', borderRadius: '2px' }} />
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--c-text)' }}>{lang.toUpperCase()}</span>
             </button>
 
             {langOpen && (
@@ -194,7 +190,7 @@ export default function MobileAppPage() {
                 top: '100%',
                 right: 0,
                 marginTop: '8px',
-                background: 'white',
+                background: 'var(--card-bg)',
                 boxShadow: '0 10px 25px -5px rgba(0,0,0,0.1)',
                 borderRadius: '12px',
                 overflow: 'hidden',
@@ -214,14 +210,14 @@ export default function MobileAppPage() {
                       padding: '12px 16px',
                       border: 'none',
                       background: lang === l ? '#fef2f2' : 'white',
-                      color: lang === l ? '#e60000' : '#374151',
+                      color: lang === l ? 'var(--c-red)' : 'var(--c-black)',
                       textAlign: 'left',
                       fontSize: '1rem',
                       fontWeight: lang === l ? 600 : 500,
                       cursor: 'pointer'
                     }}
                   >
-                    <span style={{ fontSize: '1.2rem' }}>{flagEmojis[l]}</span>
+                    <img src={`https://flagcdn.com/w20/${flagCodes[l]}.png`} alt={l} style={{ width: '20px', height: '15px', objectFit: 'cover', borderRadius: '2px' }} />
                     {l.toUpperCase()}
                   </button>
                 ))}
@@ -239,7 +235,7 @@ export default function MobileAppPage() {
           <section className="view-section active">
             {/* Hero Section (exact match with PC) */}
             <div className="hero" style={{ position: 'relative', overflow: 'hidden', minHeight: 'calc(100vh - 75px - 70px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1rem' }}>
-              <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, background: '#fff' }}>
+              <div className="hero-bg" style={{ overflow: 'hidden', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
                 <iframe 
                   src="https://www.youtube.com/embed/2Ofm-Rvbz9A?autoplay=1&mute=1&loop=1&playlist=2Ofm-Rvbz9A&controls=0&showinfo=0&autohide=1&start=2" 
                   style={{ width: '100vw', height: '56.25vw', minHeight: '100vh', minWidth: '177.77vh', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', border: 'none', zIndex: 0 }} 
@@ -250,12 +246,12 @@ export default function MobileAppPage() {
               </div>
               <div className="hero-container" style={{ maxWidth: '100%', position: 'relative', zIndex: 2, textAlign: 'center' }}>
                 <div className="hero-content">
-                  <h1 className="hero-title" style={{ fontSize: '2.0rem', display: 'block', lineHeight: 1.2, marginBottom: '10px', color: '#111827', fontWeight: 800, textShadow: '0 2px 6px rgba(0,0,0,0.22)' }}>
+                  <h1 className="hero-title" style={{ fontSize: '2.0rem', display: 'block', lineHeight: 1.2, marginBottom: '10px', color: 'var(--c-heading)', fontWeight: 800, textShadow: '0 2px 6px rgba(0,0,0,0.22)' }}>
                     <span style={{ color: '#e60000' }}>{t('heroWarranty')}</span><br/>
                     {t('heroPower')}<br/>
                     {t('heroReal')}<span style={{ color: '#e60000' }}>{t('hero100')}</span>{t('heroLoad')}
                   </h1>
-                  <p className="hero-subtitle" style={{ fontSize: '0.95rem', padding: '0 10px', marginBottom: '25px', lineHeight: 1.4, color: '#111827', fontWeight: 800, textShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+                  <p className="hero-subtitle" style={{ fontSize: '0.95rem', padding: '0 10px', marginBottom: '25px', lineHeight: 1.4, color: 'var(--c-heading)', fontWeight: 800, textShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
                     {t('heroSubtitle')}
                   </p>
                   
@@ -263,15 +259,15 @@ export default function MobileAppPage() {
                   <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'nowrap', width: '100%', padding: '0 5px', textAlign: 'left' }}>
                     <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <span className="trust-val" style={{ color: '#e60000', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust7Years')}</span>
-                      <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustWarranty')}</span>
+                      <span className="trust-lbl" style={{ color: 'var(--c-heading)', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustWarranty')}</span>
                     </div>
                     <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <span className="trust-val" style={{ color: '#e60000', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trustIP67')}</span>
-                      <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustTightness')}</span>
+                      <span className="trust-lbl" style={{ color: 'var(--c-heading)', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustTightness')}</span>
                     </div>
                     <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <span className="trust-val" style={{ color: '#e60000', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust100')}</span>
-                      <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustLoad')}</span>
+                      <span className="trust-lbl" style={{ color: 'var(--c-heading)', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustLoad')}</span>
                     </div>
                   </div>
                   
@@ -293,7 +289,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Technology Intro Block */}
-            <div id="technologie" className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '3rem 1rem', textAlign: 'center', borderBottom: '1px solid #eee' }}>
+            <div id="technologie" className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '3rem 1rem', textAlign: 'center', borderBottom: '1px solid var(--c-border)' }}>
               <div className="container">
                 <h2 style={{ fontSize: '1.6rem', color: 'var(--c-heading)', marginBottom: '8px', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
                   {t('techNoComp')}
@@ -305,7 +301,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Interactive Diagram Section (Optimized for Mobile) */}
-            <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', borderBottom: '1px solid #eee', overflow: 'hidden' }}>
+            <div className="section-padding bg-light" style={{ padding: '2rem 0', background: 'var(--card-bg)', borderBottom: '1px solid var(--c-border)', overflow: 'hidden' }}>
               <div className="container" style={{ padding: '0 10px' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>Budowa zasilacza - interaktywny diagram</h3>
                 <InteractiveDiagram forceMobile={true} />
@@ -316,7 +312,7 @@ export default function MobileAppPage() {
             <div className="container" style={{ padding: '20px 15px' }}>
               <div className="b2b-story-section-m" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
                 {/* Row 1: Gwarancja */}
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story1Title')}</h3>
@@ -328,7 +324,7 @@ export default function MobileAppPage() {
 
 
                 {/* Row 2: IP67 */}
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story2Title')}</h3>
@@ -338,7 +334,7 @@ export default function MobileAppPage() {
                 </div>
 
                 {/* Row 3: Termika */}
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story6Title')}</h3>
@@ -348,7 +344,7 @@ export default function MobileAppPage() {
                 </div>
 
                 {/* Row 4: 100% Obciążenia */}
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story3Title')}</h3>
@@ -358,7 +354,7 @@ export default function MobileAppPage() {
                 </div>
 
                 {/* Row 5: Zabezpieczenia */}
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story5Title')}</h3>
@@ -373,7 +369,7 @@ export default function MobileAppPage() {
                 </div>
 
                 {/* Row 6: Zgodność i Bezpieczeństwo */}
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '30px' }}>
                     <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', height: 'auto', display: 'block' }} />
                   </div>
@@ -387,9 +383,9 @@ export default function MobileAppPage() {
             </div>
 
             {/* Applications */}
-            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid #eee' }}>
-              <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center', color: '#111827' }}>{t('appTitle')}</h2>
-              <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#4b5563', marginBottom: '20px' }}>{t('appSubtitle')}</p>
+            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid var(--c-border)' }}>
+              <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center', color: 'var(--c-heading)' }}>{t('appTitle')}</h2>
+              <p style={{ textAlign: 'center', fontSize: '0.85rem', color: 'var(--c-text)', marginBottom: '20px' }}>{t('appSubtitle')}</p>
               
               <div className="app-grid-m" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '15px' }}>
                 {[
@@ -406,7 +402,7 @@ export default function MobileAppPage() {
                   { title: 'Wiaty & Stolarka', desc: 'Oświetlenie wiat ogrodowych, zadaszeń i architektury drewnianej wymaga zasilaczy o bardzo niskiej temperaturze pracy obudowy w celach ochrony przeciwpożarowej. Zasilacze Scharfer, dzięki pełnemu zalaniu żywicą i aluminiowemu radiatorowi, efektywnie odprowadzają ciepło na zewnątrz i nie nagrzewają się do niebezpiecznych temperatur. Spełniają one restrykcyjne wymogi montażu bezpośrednio na podłożach palnych.', img: '/wiata_jezioro.png' },
                   { title: 'Infrastruktura & Mosty', desc: 'Iluminacja mostów, wiaduktów i obiektów inżynieryjnych wymaga sprzętu odpornego na nieustanne drgania konstrukcyjne, silny wiatr i zmienne warunki pogodowe. Hermetyczna obudowa Scharfer, w całości wypełniona elastyczną żywicą epoksydową, absorbuje wibracje i uniemożliwia pękanie połączeń lutowanych. Daje to pewność bezawaryjnej pracy oświetlenia w najbardziej ekstremalnych lokalizacjach infrastruktury.', img: '/assets/app_mosty_1783188351515.png' }
                 ].map((ap, idx) => (
-                  <div key={idx} className="app-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', border: '1px solid #eee' }}>
+                  <div key={idx} className="app-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', border: '1px solid var(--c-border)' }}>
                     <img src={ap.img} alt={t(`app${idx + 1}Title` as any)} style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                     <div className="app-card-info" style={{ padding: '15px' }}>
                       <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0 0 6px 0', color: 'var(--c-heading)' }}>{t(`app${idx + 1}Title` as any)}</h3>
@@ -418,11 +414,11 @@ export default function MobileAppPage() {
             </div>
 
             {/* B2B Partnership Section */}
-            <div className="section-container" style={{ padding: '30px 15px', borderTop: '1px solid #eee', background: 'white' }}>
+            <div className="section-container" style={{ padding: '30px 15px', borderTop: '1px solid var(--c-border)', background: 'var(--card-bg)' }}>
               <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center' }}>{t('b2bTitle')}</h2>
               <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#666', marginBottom: '20px' }}>Budujemy długofalowe relacje oparte na zaufaniu i zyskach dla obu stron.</p>
               
-              <div className="partnership-card" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', padding: '15px', textAlign: 'center', marginBottom: '20px', border: '1px solid #eee', boxShadow: '0 2px 5px rgba(0,0,0,0.03)' }}>
+              <div className="partnership-card" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', padding: '15px', textAlign: 'center', marginBottom: '20px', border: '1px solid var(--c-border)', boxShadow: '0 2px 5px rgba(0,0,0,0.03)' }}>
                 <img src="/assets/scharfer_partnership.webp" alt="Współpraca" style={{ width: '100%', borderRadius: '8px', marginBottom: '12px' }} />
                 <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--c-heading)', margin: '0 0 4px 0' }}>{t('becomePartnerTitle')}</h3>
                 <p style={{ fontSize: '0.82rem', color: '#666', margin: 0 }}>{t('becomePartnerDesc')}</p>
@@ -434,23 +430,25 @@ export default function MobileAppPage() {
                 { title: t('valSupport'), desc: t('valSupportDesc') },
                 { title: t('valPartner'), desc: t('valPartnerDesc') }
               ].map((val, idx) => (
-                <div key={idx} className="value-item-m" style={{ display: 'flex', gap: '10px', background: '#f8fafc', padding: '12px', borderRadius: '8px', marginBottom: '8px', border: '1px solid #f1f5f9' }}>
+                <div key={idx} className="value-item-m" style={{ display: 'flex', gap: '10px', background: '#f8fafc', padding: '12px', borderRadius: '8px', marginBottom: '8px', border: '1px solid var(--c-border)' }}>
                   <span className="value-bullet" style={{ color: '#e60000', fontWeight: 'bold' }}>🔴</span>
                   <div className="value-desc">
                     <h4 style={{ fontSize: '0.9rem', fontWeight: 700, margin: '0 0 2px 0', color: 'var(--c-heading)' }}>{val.title}</h4>
-                    <p style={{ fontSize: '0.78rem', color: '#555', margin: 0, lineHeight: 1.3 }}>{val.desc}</p>
+                    <p style={{ fontSize: '0.78rem', color: 'var(--c-text)', margin: 0, lineHeight: 1.3 }}>{val.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* FAQ Section */}
-            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid #eee' }}>
-              <h3 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', marginBottom: '5px' }}>{t('faqSectionTitle')}</h3>
-              <p style={{ textAlign: 'center', fontSize: '0.82rem', color: '#666', marginBottom: '15px' }}>{t('faqSectionDesc')}</p>
+            <div className="section-padding bg-light" style={{ padding: '3rem 15px', background: 'var(--card-bg)', borderTop: '1px solid var(--c-border)', borderBottom: '1px solid var(--c-border)' }}>
+              <div className="text-center" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <h2 className="section-title" style={{ fontSize: '1.6rem', color: 'var(--c-heading)', fontWeight: 800, marginBottom: '10px' }}>{t('faqSectionTitle')}</h2>
+                <p className="section-subtitle" style={{ color: 'var(--c-text)', fontSize: '0.9rem' }}>{t('faqSectionDesc')}</p>
+              </div>
               <div className="faq-list-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {faqItems.map((item, idx) => (
-                  <div key={idx} className={`faq-item-m ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', border: '1px solid #eee' }}>
+                  <div key={idx} className={`faq-item-m ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'var(--card-bg)', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--c-border)' }}>
                     <button 
                       className="faq-head-m" 
                       onClick={() => toggleFaq(idx)}
@@ -460,7 +458,7 @@ export default function MobileAppPage() {
                       <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
-                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: '#555', lineHeight: 1.4, borderTop: '1px solid #eee', paddingTop: '10px' }}>
+                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)', paddingTop: '10px' }}>
                         <p style={{ margin: 0 }}>{item.a}</p>
                       </div>
                     )}
@@ -479,11 +477,11 @@ export default function MobileAppPage() {
             {/* Unified Hero for Oferta */}
             {/* Unified Mobile Hero for Oferta */}
             {/* Unified Mobile Hero for Oferta */}
-            <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/assets/scharfer_supplies_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid var(--c-border)', backgroundImage: 'url("/assets/scharfer_supplies_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div style={{ position: 'relative', zIndex: 3 }}>
-                <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#111827', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>Katalog <span style={{ color: '#e60000' }}>Zasilaczy</span></h1>
-                <p style={{ fontSize: '0.95rem', color: '#111827', margin: 0, lineHeight: 1.5, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
+                <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>Katalog <span style={{ color: '#e60000' }}>Zasilaczy</span></h1>
+                <p style={{ fontSize: '0.95rem', color: 'var(--c-heading)', margin: 0, lineHeight: 1.5, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
                   Przeglądaj pełną ofertę hermetycznych zasilaczy LED Scharfer IP67 (12V i 24V).
                 </p>
               </div>
@@ -538,15 +536,15 @@ export default function MobileAppPage() {
                   };
 
                   return (
-                    <div key={p.index} style={{ background: 'white', borderRadius: '12px', padding: '20px 15px', display: 'flex', flexDirection: 'column', alignItems: 'stretch', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: '1px solid #f1f5f9' }}>
+                    <div key={p.index} style={{ background: 'var(--card-bg)', borderRadius: '12px', padding: '20px 15px', display: 'flex', flexDirection: 'column', alignItems: 'stretch', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: '1px solid var(--c-border)' }}>
                       {/* Sleek horizontal badge row at the top */}
                       <div className="specs-line" style={{ display: 'flex', gap: '0.3rem', marginBottom: '1rem', flexWrap: 'nowrap', width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: '4px' }}>
                         <span style={{ backgroundColor: '#e60000', color: 'white', border: '1px solid #e60000', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{p.specs.voltage}</span>
-                        <span style={{ backgroundColor: '#1e293b', color: 'white', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>IP67</span>
-                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>SELV</span>
-                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>CE</span>
-                        <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>RoHS</span>
-                        <span style={{ backgroundColor: 'white', border: '1px solid #e60000', color: '#e60000', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>7Y</span>
+                        <span style={{ backgroundColor: 'var(--c-heading)', color: 'white', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>IP67</span>
+                        <span style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--c-border)', color: 'var(--c-text)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>SELV</span>
+                        <span style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--c-border)', color: 'var(--c-text)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>CE</span>
+                        <span style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--c-border)', color: 'var(--c-text)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>RoHS</span>
+                        <span style={{ backgroundColor: 'var(--card-bg)', border: '1px solid #e60000', color: '#e60000', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>7Y</span>
                       </div>
                       
                       {/* Centered Image */}
@@ -558,7 +556,7 @@ export default function MobileAppPage() {
                       <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: '0 0 1rem 0', color: 'var(--c-heading)', textAlign: 'center' }}>{renderSymbolRed(p.name)}</h3>
                       
                       {/* Modern technology spec card ("ladnie w bloczku") - centered parameters */}
-                      <div style={{ background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      <div style={{ background: '#f8fafc', border: '1px solid var(--c-border)', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
                           <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specPower')}</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{powerText || 'MOC'}</span>
@@ -585,7 +583,7 @@ export default function MobileAppPage() {
                           </svg>
                           {t('downloadPdf')}
                         </a>
-                        <button onClick={() => setActiveProduct(p)} className="btn-secondary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.8rem', fontSize: '0.8rem', fontWeight: 700, border: '1px solid #ddd', borderRadius: '6px', background: 'white', color: '#333', cursor: 'pointer' }}>
+                        <button onClick={() => setActiveProduct(p)} className="btn-secondary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.8rem', fontSize: '0.8rem', fontWeight: 700, border: '1px solid #ddd', borderRadius: '6px', background: 'var(--card-bg)', color: 'var(--foreground)', cursor: 'pointer' }}>
                           {t('detailsShort')}
                         </button>
                       </div>
@@ -612,20 +610,20 @@ export default function MobileAppPage() {
         {activeTab === 'info' && (
           <section className="view-section active">
             {/* Unified Page Hero */}
-            <div className="hero-m-unified" style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/assets/scharfer_estate_night.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className="hero-m-unified" style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid var(--c-border)', backgroundImage: 'url("/assets/scharfer_estate_night.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div className="hero-content" style={{ position: 'relative', zIndex: 3, textAlign: 'center' }}>
-                <h1 className="hero-title" style={{ fontSize: '1.65rem', fontWeight: 800, color: '#111827', marginBottom: '12px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>
+                <h1 className="hero-title" style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '12px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>
                   {t('diagramTitle')}
                 </h1>
-                <p className="hero-subtitle" style={{ fontSize: '0.85rem', color: '#111827', margin: 0, lineHeight: 1.45, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
+                <p className="hero-subtitle" style={{ fontSize: '0.85rem', color: 'var(--c-heading)', margin: 0, lineHeight: 1.45, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
                   {t('techDesc')}
                 </p>
               </div>
             </div>
 
             {/* Interactive Diagram Section (Optimized for Mobile) */}
-            <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', overflow: 'hidden' }}>
+            <div className="section-padding bg-light" style={{ padding: '2rem 0', background: 'var(--card-bg)', overflow: 'hidden' }}>
               <div className="container" style={{ padding: '0 10px' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>{t('diagramTitle')}</h3>
                 <InteractiveDiagram forceMobile={true} />
@@ -633,7 +631,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Trust items */}
-            <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-around', gap: '8px', padding: '20px 15px', background: 'white', borderBottom: '1px solid #eee' }}>
+            <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-around', gap: '8px', padding: '20px 15px', background: 'var(--card-bg)', borderBottom: '1px solid var(--c-border)' }}>
               <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: '#e60000' }}>7</span>
                 <span className="trust-lbl" style={{ fontSize: '0.65rem', color: '#aaa', fontWeight: 600 }}>Lat Gwarancji</span>
@@ -652,7 +650,7 @@ export default function MobileAppPage() {
             <div className="container" style={{ padding: '20px 15px' }}>
               <h2 style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', marginBottom: '20px', color: 'var(--c-heading)' }}>{t('detailedTech')}</h2>
               <div className="b2b-story-section-m" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/sch1.webp" alt="7 lat gwarancji Scharfer" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story1Title')}</h3>
@@ -661,7 +659,7 @@ export default function MobileAppPage() {
                   </div>
                 </div>
 
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/sch2.webp" alt="Wodoodporność IP67" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story2Title')}</h3>
@@ -670,7 +668,7 @@ export default function MobileAppPage() {
                   </div>
                 </div>
 
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story3Title')}</h3>
@@ -679,7 +677,7 @@ export default function MobileAppPage() {
                   </div>
                 </div>
 
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '180px', padding: '15px' }}>
                     <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                   </div>
@@ -690,7 +688,7 @@ export default function MobileAppPage() {
                   </div>
                 </div>
 
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/40012.png" alt="Zabezpieczenia" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story5Title')}</h3>
@@ -704,7 +702,7 @@ export default function MobileAppPage() {
                   </div>
                 </div>
 
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>{t('story6Title')}</h3>
@@ -716,9 +714,9 @@ export default function MobileAppPage() {
             </div>
 
             {/* Applications */}
-            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid #eee' }}>
-              <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center', color: '#111827' }}>{t('appTitle')}</h2>
-              <p style={{ textAlign: 'center', fontSize: '0.85rem', color: '#4b5563', marginBottom: '20px' }}>{t('appSubtitle')}</p>
+            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid var(--c-border)' }}>
+              <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center', color: 'var(--c-heading)' }}>{t('appTitle')}</h2>
+              <p style={{ textAlign: 'center', fontSize: '0.85rem', color: 'var(--c-text)', marginBottom: '20px' }}>{t('appSubtitle')}</p>
               
               <div className="app-grid-m" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '15px' }}>
                 {[
@@ -735,7 +733,7 @@ export default function MobileAppPage() {
                   { title: 'Wiaty & Stolarka', desc: 'Oświetlenie wiat ogrodowych, zadaszeń i architektury drewnianej wymaga zasilaczy o bardzo niskiej temperaturze pracy obudowy w celach ochrony przeciwpożarowej. Zasilacze Scharfer, dzięki pełnemu zalaniu żywicą i aluminiowemu radiatorowi, efektywnie odprowadzają ciepło na zewnątrz i nie nagrzewają się do niebezpiecznych temperatur. Spełniają one restrykcyjne wymogi montażu bezpośrednio na podłożach palnych.', img: '/wiata_jezioro.png' },
                   { title: 'Infrastruktura & Mosty', desc: 'Iluminacja mostów, wiaduktów i obiektów inżynieryjnych wymaga sprzętu odpornego na nieustanne drgania konstrukcyjne, silny wiatr i zmienne warunki pogodowe. Hermetyczna obudowa Scharfer, w całości wypełniona elastyczną żywicą epoksydową, absorbuje wibracje i uniemożliwia pękanie połączeń lutowanych. Daje to pewność bezawaryjnej pracy oświetlenia w najbardziej ekstremalnych lokalizacjach infrastruktury.', img: '/assets/app_mosty_1783188351515.png' }
                 ].map((ap, idx) => (
-                  <div key={idx} className="app-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', border: '1px solid #eee' }}>
+                  <div key={idx} className="app-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', border: '1px solid var(--c-border)' }}>
                     <img src={ap.img} alt={t(`app${idx + 1}Title` as any)} style={{ width: '100%', height: '160px', objectFit: 'cover' }} />
                     <div className="app-card-info" style={{ padding: '15px' }}>
                       <h3 style={{ fontSize: '1.05rem', fontWeight: 800, margin: '0 0 6px 0', color: 'var(--c-heading)' }}>{t(`app${idx + 1}Title` as any)}</h3>
@@ -747,12 +745,12 @@ export default function MobileAppPage() {
             </div>
 
             {/* FAQ Section */}
-            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid #eee' }}>
+            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid var(--c-border)' }}>
               <h3 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', marginBottom: '5px' }}>{t('faqSectionTitle')}</h3>
               <p style={{ textAlign: 'center', fontSize: '0.82rem', color: '#666', marginBottom: '15px' }}>{t('faqSectionDesc')}</p>
               <div className="faq-list-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {faqItems.map((item, idx) => (
-                  <div key={idx} className={`faq-item-m ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', border: '1px solid #eee' }}>
+                  <div key={idx} className={`faq-item-m ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'var(--card-bg)', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--c-border)' }}>
                     <button 
                       className="faq-head-m" 
                       onClick={() => toggleFaq(idx)}
@@ -762,7 +760,7 @@ export default function MobileAppPage() {
                       <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
-                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: '#555', lineHeight: 1.4, borderTop: '1px solid #eee', paddingTop: '10px' }}>
+                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)', paddingTop: '10px' }}>
                         <p style={{ margin: 0 }}>{item.a}</p>
                       </div>
                     )}
@@ -779,11 +777,11 @@ export default function MobileAppPage() {
         {activeTab === 'kontakt' && (
           <section className="view-section active">
             {/* Unified Page Hero */}
-            <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid #eee', backgroundImage: 'url("/assets/kontakt_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid var(--c-border)', backgroundImage: 'url("/assets/kontakt_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div style={{ position: 'relative', zIndex: 3 }}>
-                <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#111827', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>{t('contactTitle')}</h1>
-                <p style={{ fontSize: '0.95rem', color: '#111827', margin: 0, lineHeight: 1.5, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
+                <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>{t('contactTitle')}</h1>
+                <p style={{ fontSize: '0.95rem', color: 'var(--c-heading)', margin: 0, lineHeight: 1.5, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
                   {t('contactSubtitle')}
                 </p>
               </div>
@@ -793,8 +791,8 @@ export default function MobileAppPage() {
               <h2 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '20px', textAlign: 'center', color: 'var(--c-heading)' }}>{t('officialDistributor')}</h2>
               
               {/* Prescot Card */}
-              <div className="contact-card-m" style={{ background: 'white', borderRadius: '12px', padding: '20px', textAlign: 'center', border: '1px solid #eee', boxShadow: '0 2px 6px rgba(0,0,0,0.03)', marginBottom: '25px' }}>
-                <span className="contact-badge-label" style={{ display: 'inline-block', fontSize: '8px', background: '#eee', color: '#555', fontWeight: 800, padding: '2px 6px', borderRadius: '3px', textTransform: 'uppercase', marginBottom: '8px' }}>{t('officialDistributor')}</span>
+              <div className="contact-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', padding: '20px', textAlign: 'center', border: '1px solid var(--c-border)', boxShadow: '0 2px 6px rgba(0,0,0,0.03)', marginBottom: '25px' }}>
+                <span className="contact-badge-label" style={{ display: 'inline-block', fontSize: '8px', background: '#eee', color: 'var(--c-text)', fontWeight: 800, padding: '2px 6px', borderRadius: '3px', textTransform: 'uppercase', marginBottom: '8px' }}>{t('officialDistributor')}</span>
                 <div style={{ margin: '8px 0 12px' }}>
                   <img src="/PRESCOT_logo.png" alt="Prescot LED" className="contact-prescot-logo" style={{ height: '24px', display: 'block', margin: '0 auto' }} />
                 </div>
@@ -802,17 +800,17 @@ export default function MobileAppPage() {
                 <p className="contact-company-details" style={{ fontSize: '0.8rem', color: '#666', margin: '0 0 15px 0', lineHeight: 1.4 }}>ul. Wileńska 1, 11-500 Giżycko<br />NIP: 8451939947</p>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.694662867049!2d21.758713212876618!3d54.03362147230008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e1a49db25492d5%3A0xe97ab425264b3df3!2sWile%C5%84ska%201%2C%2011-500%20Gi%C5%BCycko!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" width="100%" height="220" style={{ border: 0, borderRadius: '8px', marginBottom: '15px' }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
                 <div className="contact-buttons-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <a href="tel:+48877776482" className="contact-action-btn" style={{ background: '#f8f9fa', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
+                  <a href="tel:+48877776482" className="contact-action-btn" style={{ background: 'var(--background)', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
                     📞 +48 87 777 64 82
                   </a>
-                  <a href="mailto:komponenty@prescot.pl" className="contact-action-btn" style={{ background: '#f8f9fa', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
+                  <a href="mailto:komponenty@prescot.pl" className="contact-action-btn" style={{ background: 'var(--background)', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
                     ✉️ komponenty@prescot.pl
                   </a>
                 </div>
               </div>
 
               {/* B2B Form Card */}
-              <div className="form-card" style={{ background: 'white', border: '1px solid #eee', borderRadius: '12px', padding: '20px', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', marginBottom: '30px' }}>
+              <div className="form-card" style={{ background: 'var(--card-bg)', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '20px', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', marginBottom: '30px' }}>
                 <h2 className="form-title" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '1.25rem', color: 'var(--c-heading)' }}>Kontakt B2B</h2>
                 <form onSubmit={(e) => { e.preventDefault(); alert('Formularz został wysłany. Skontaktujemy się z Tobą w ciągu 24h.'); }} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                   <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
@@ -838,7 +836,7 @@ export default function MobileAppPage() {
               </div>
 
               {/* Google Map */}
-              <div style={{ marginBottom: '30px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
+              <div style={{ marginBottom: '30px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
                 <iframe 
                   src="https://maps.google.com/maps?q=Wile%C5%84ska%201,%2011-500%20Gi%C5%BCycko&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                   width="100%" 
@@ -855,7 +853,7 @@ export default function MobileAppPage() {
               <p style={{ textAlign: 'center', fontSize: '0.82rem', color: '#666', marginBottom: '15px' }}>{t('faqSectionDesc')}</p>
               <div className="faq-list-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {faqItems.map((item, idx) => (
-                  <div key={idx} className={`faq-item-m ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'white', borderRadius: '8px', overflow: 'hidden', border: '1px solid #eee' }}>
+                  <div key={idx} className={`faq-item-m ${activeFaq === idx ? 'active' : ''}`} style={{ background: 'var(--card-bg)', borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--c-border)' }}>
                     <button 
                       className="faq-head-m" 
                       onClick={() => toggleFaq(idx)}
@@ -865,7 +863,7 @@ export default function MobileAppPage() {
                       <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
-                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: '#555', lineHeight: 1.4, borderTop: '1px solid #eee', paddingTop: '10px' }}>
+                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)', paddingTop: '10px' }}>
                         <p style={{ margin: 0 }}>{item.a}</p>
                       </div>
                     )}
@@ -883,13 +881,13 @@ export default function MobileAppPage() {
       {b2cModalOpen && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.6)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
           <div style={{ background: '#fff', borderRadius: '12px', padding: '30px 20px', width: '100%', maxWidth: '350px', textAlign: 'center', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
-            <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '24px', margin: '0 auto 20px', display: 'block' }} />
+            <img src="/PRESCOT_logo.png?v=day" alt="PRESCOT LED" style={{ height: '24px', margin: '0 auto 20px', display: 'block' }} />
             <h3 style={{ fontSize: '1.2rem', color: '#111', marginBottom: '10px', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>Przejście do sklepu B2C</h3>
-            <p style={{ fontSize: '0.95rem', color: '#555', marginBottom: '25px', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.95rem', color: 'var(--c-text)', marginBottom: '25px', lineHeight: 1.5 }}>
               Zostaniesz przeniesiony na naszą główną stronę <strong>www.prescot.com.pl</strong>, gdzie możesz bezpiecznie kupić zasilacze LED Scharfer w ilości detalicznej.
             </p>
             <div style={{ display: 'flex', gap: '10px' }}>
-              <button onClick={() => setB2cModalOpen(false)} style={{ flex: 1, padding: '12px', background: '#f3f4f6', color: '#4b5563', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Anuluj</button>
+              <button onClick={() => setB2cModalOpen(false)} style={{ flex: 1, padding: '12px', background: '#f3f4f6', color: 'var(--c-text)', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Anuluj</button>
               <button onClick={() => { setB2cModalOpen(false); window.open("https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580", "_blank"); }} style={{ flex: 1, padding: '12px', background: '#e60000', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Przejdź</button>
             </div>
           </div>
@@ -897,7 +895,7 @@ export default function MobileAppPage() {
       )}
 
       {/* App Bottom Navigation */}
-      <nav className="app-nav" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: 'calc(70px + env(safe-area-inset-bottom))', paddingBottom: 'env(safe-area-inset-bottom)', background: 'white', display: 'flex', justifyContent: 'space-around', alignItems: 'center', boxShadow: '0 -2px 10px rgba(0,0,0,0.05)', zIndex: 2000 }}>
+      <nav className="app-nav" style={{ position: 'fixed', bottom: 0, left: 0, right: 0, height: 'calc(70px + env(safe-area-inset-bottom))', paddingBottom: 'env(safe-area-inset-bottom)', background: 'var(--card-bg)', display: 'flex', justifyContent: 'space-around', alignItems: 'center', boxShadow: '0 -2px 10px rgba(0,0,0,0.05)', zIndex: 2000 }}>
         <div className={`nav-item ${activeTab === 'home' ? 'active' : ''}`} onClick={() => handleTabChange('home')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'home' ? '#e60000' : '#9ca3af' }}>
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -923,12 +921,12 @@ export default function MobileAppPage() {
           <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: activeTab === 'info' ? '#e60000' : '#9ca3af', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%', textAlign: 'center', padding: '0 2px' }}>{t('navPoznajShort')}</span>
         </div>
         <div onClick={() => setB2cModalOpen(true)} className="nav-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer', textDecoration: 'none' }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#9ca3af' }}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--c-text)' }}>
             <circle cx="9" cy="21" r="1" />
             <circle cx="20" cy="21" r="1" />
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
           </svg>
-          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: '#9ca3af', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%', textAlign: 'center', padding: '0 2px' }}>{t('navB2C')}</span>
+          <span style={{ fontSize: '9px', fontWeight: 600, marginTop: '3px', color: 'var(--c-text)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', width: '100%', textAlign: 'center', padding: '0 2px' }}>{t('navB2C')}</span>
         </div>
         <div className={`nav-item ${activeTab === 'kontakt' ? 'active' : ''}`} onClick={() => handleTabChange('kontakt')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '20%', height: '100%', cursor: 'pointer' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: activeTab === 'kontakt' ? '#e60000' : '#9ca3af' }}>
@@ -945,8 +943,8 @@ export default function MobileAppPage() {
       {/* Mobile Regulamin Modal */}
       {mobileRegulaminOpen && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setMobileRegulaminOpen(false)}>
-          <div style={{ background: 'white', borderRadius: '16px', padding: '20px', width: '90%', maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '15px' }}>
+          <div style={{ background: 'var(--card-bg)', borderRadius: '16px', padding: '20px', width: '90%', maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--c-border)', paddingBottom: '10px', marginBottom: '15px' }}>
               <h3 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 900, color: 'var(--c-heading)' }}>Regulamin Serwisu</h3>
               <span onClick={() => setMobileRegulaminOpen(false)} style={{ fontSize: '1.8rem', cursor: 'pointer', color: '#aaa', lineHeight: 1 }}>&times;</span>
             </div>
@@ -970,8 +968,8 @@ export default function MobileAppPage() {
       {/* Mobile RODO Modal */}
       {mobileRodoOpen && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setMobileRodoOpen(false)}>
-          <div style={{ background: 'white', borderRadius: '16px', padding: '20px', width: '90%', maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #eee', paddingBottom: '10px', marginBottom: '15px' }}>
+          <div style={{ background: 'var(--card-bg)', borderRadius: '16px', padding: '20px', width: '90%', maxHeight: '80vh', overflowY: 'auto' }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--c-border)', paddingBottom: '10px', marginBottom: '15px' }}>
               <h3 style={{ margin: 0, fontSize: '1.4rem', fontWeight: 900, color: 'var(--c-heading)' }}>Polityka Prywatności i RODO</h3>
               <span onClick={() => setMobileRodoOpen(false)} style={{ fontSize: '1.8rem', cursor: 'pointer', color: '#aaa', lineHeight: 1 }}>&times;</span>
             </div>
@@ -1000,18 +998,18 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
       {/* Brand Column */}
       <div className="footer-logo-m" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
         <img src="/logo_scharfer.png" alt="Scharfer" style={{ height: '26px' }} />
-        <p style={{ fontSize: '0.78rem', color: '#6b7280', margin: 0, maxWidth: '280px', lineHeight: 1.5 }}>
+        <p style={{ fontSize: '0.78rem', color: 'var(--c-text)', margin: 0, maxWidth: '280px', lineHeight: 1.5 }}>
           {t('footerTagline')}
         </p>
       </div>
 
       {/* Distributor Column */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
-        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('officialDistributor')}</span>
+        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('officialDistributor')}</span>
         <div>
           <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '15px', display: 'block' }} />
         </div>
-        <div style={{ fontSize: '0.8rem', color: '#4b5563', lineHeight: 1.5, marginTop: '0.2rem' }}>
+        <div style={{ fontSize: '0.8rem', color: 'var(--c-text)', lineHeight: 1.5, marginTop: '0.2rem' }}>
           <strong>Prescot Sp. z o.o.</strong><br />
           ul. Wileńska 1, 11-500 Giżycko<br />
           NIP: 8451939947
@@ -1020,7 +1018,7 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
 
       {/* Support & Contact Column */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
-        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('footerSupport')}</span>
+        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('footerSupport')}</span>
         <a href="mailto:komponenty@prescot.pl" style={{ color: '#e60000', fontSize: '1rem', fontWeight: 700, textDecoration: 'none' }}>
           komponenty@prescot.pl
         </a>
@@ -1035,9 +1033,9 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
           <button onClick={onOpenRegulamin} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>{t('footerRegulamin')}</button>
           <button onClick={onOpenRodo} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>{t('footerRodo')}</button>
         </div>
-        <span className="footer-copy-m" style={{ fontSize: '0.75rem', color: '#9ca3af' }}>&copy; {new Date().getFullYear()} {t('footerRights')}</span>
-        <span style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
-          Powered by <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ color: '#6b7280', textDecoration: 'none', fontWeight: 600 }}>PRESCOT LED</a>
+        <span className="footer-copy-m" style={{ fontSize: '0.75rem', color: 'var(--c-text)' }}>&copy; {new Date().getFullYear()} {t('footerRights')}</span>
+        <span style={{ fontSize: '0.72rem', color: 'var(--c-text)' }}>
+          Powered by <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--c-text)', textDecoration: 'none', fontWeight: 600 }}>PRESCOT LED</a>
         </span>
       </div>
 
@@ -1059,7 +1057,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
 
   return (
     <div className="product-modal active" id="product-modal" onClick={(e) => { if ((e.target as HTMLElement).id === 'product-modal') onClose(); }} style={{ display: 'flex', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', zIndex: 10000, alignItems: 'center', justifyContent: 'center' }}>
-      <div className="modal-content" style={{ maxWidth: '95%', maxHeight: '90vh', overflowY: 'auto', background: 'white', borderRadius: '16px', padding: '1.5rem', position: 'relative', display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '95%', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', border: '1px solid #eee' }}>
+      <div className="modal-content" style={{ maxWidth: '95%', maxHeight: '90vh', overflowY: 'auto', background: 'var(--card-bg)', borderRadius: '16px', padding: '1.5rem', position: 'relative', display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '95%', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)', border: '1px solid var(--c-border)' }}>
         <span className="modal-close" onClick={onClose} style={{ position: 'absolute', top: '10px', right: '15px', fontSize: '2rem', cursor: 'pointer', color: '#aaa', transition: 'color 0.2s', fontWeight: 300, lineHeight: 1 }}>&times;</span>
         
         {/* Expanded image container */}
@@ -1085,13 +1083,13 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           
           <table className="modal-specs-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
             <tbody>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specVolt')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.voltage} DC</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specCurrent')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specPowerNom')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{powerText}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specEan')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specDimFull')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specIp')}</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>{t('specIpVal')}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specWarranty')}</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>{t('specWarrantyVal')}</td></tr>
+              <tr style={{ borderBottom: '1px solid var(--c-border)' }}><td style={{ padding: '0.6rem 0', color: 'var(--c-text)', fontWeight: 500 }}>{t('specVolt')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.voltage} DC</td></tr>
+              <tr style={{ borderBottom: '1px solid var(--c-border)' }}><td style={{ padding: '0.6rem 0', color: 'var(--c-text)', fontWeight: 500 }}>{t('specCurrent')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
+              <tr style={{ borderBottom: '1px solid var(--c-border)' }}><td style={{ padding: '0.6rem 0', color: 'var(--c-text)', fontWeight: 500 }}>{t('specPowerNom')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{powerText}</td></tr>
+              <tr style={{ borderBottom: '1px solid var(--c-border)' }}><td style={{ padding: '0.6rem 0', color: 'var(--c-text)', fontWeight: 500 }}>{t('specEan')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
+              <tr style={{ borderBottom: '1px solid var(--c-border)' }}><td style={{ padding: '0.6rem 0', color: 'var(--c-text)', fontWeight: 500 }}>{t('specDimFull')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
+              <tr style={{ borderBottom: '1px solid var(--c-border)' }}><td style={{ padding: '0.6rem 0', color: 'var(--c-text)', fontWeight: 500 }}>{t('specIp')}</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>{t('specIpVal')}</td></tr>
+              <tr style={{ borderBottom: '1px solid var(--c-border)' }}><td style={{ padding: '0.6rem 0', color: 'var(--c-text)', fontWeight: 500 }}>{t('specWarranty')}</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>{t('specWarrantyVal')}</td></tr>
             </tbody>
           </table>
 
@@ -1102,7 +1100,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
               </svg>
               {t('downloadPdf')}
             </a>
-            <button onClick={onClose} className="btn-secondary" style={{ padding: '0.8rem', borderRadius: '8px', fontWeight: 600, border: '1px solid #ddd', color: '#555', background: 'white' }}>
+            <button onClick={onClose} className="btn-secondary" style={{ padding: '0.8rem', borderRadius: '8px', fontWeight: 600, border: '1px solid #ddd', color: 'var(--c-text)', background: 'var(--card-bg)' }}>
               {t('backToCatalog')}
             </button>
           </div>

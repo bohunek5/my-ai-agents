@@ -48,8 +48,8 @@ export default function MapContent() {
       {distributors.map((dist) => (
         <Marker key={dist.id} position={[dist.lat, dist.lng]} icon={redIcon}>
           <Popup>
-            <strong style={{ display: 'block', marginBottom: '5px', color: '#111827' }}>{dist.name}</strong>
-            <span style={{ fontSize: '0.8rem', color: '#6b7280' }}>Dystrybutor Scharfer</span>
+            <strong style={{ display: 'block', marginBottom: '5px', color: 'var(--c-heading)' }}>{dist.name}</strong>
+            <span style={{ fontSize: '0.8rem', color: 'var(--c-text)' }}>Dystrybutor Scharfer</span>
           </Popup>
         </Marker>
       ))}
