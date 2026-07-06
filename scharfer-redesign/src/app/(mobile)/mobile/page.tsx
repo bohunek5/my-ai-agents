@@ -254,15 +254,7 @@ export default function MobileAppPage() {
                     {t('heroSubtitle')}
                   </p>
                   
-                  <div className="hero-actions" style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '35px' }}>
-                    <button onClick={() => handleTabChange('oferta')} style={{ background: '#e60000', color: 'white', padding: '12px 10px', borderRadius: '4px', fontWeight: 700, fontSize: '0.85rem', border: 'none', flex: 1 }}>
-                      {t('exploreOffer')}
-                    </button>
-                    <button onClick={() => setB2cModalOpen(true)} style={{ background: 'transparent', color: '#111827', padding: '12px 10px', borderRadius: '4px', fontWeight: 700, fontSize: '0.85rem', border: '1px solid #111827', flex: 1 }}>
-                      {t('b2bCoop')}
-                    </button>
-                  </div>
-                  
+
                   <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'nowrap', width: '100%', padding: '0 5px', textAlign: 'left' }}>
                     <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <span className="trust-val" style={{ color: '#e60000', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust7Years')}</span>
