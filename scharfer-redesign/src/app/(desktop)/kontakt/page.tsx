@@ -79,7 +79,7 @@ export default function KontaktPage() {
 
           <div className="contact-form-container" style={{ flex: 1.5, minWidth: '350px' }}>
             <div className="form-card" style={{ background: 'white', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '2.5rem', boxShadow: 'var(--shadow-md)' }}>
-              <h2 className="form-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)' }}>{t('navContact')}</h2>
+              <h2 className="form-title" style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '1.5rem', color: 'var(--c-heading)' }}>{t('contactTitle')}</h2>
               <form onSubmit={(e) => { e.preventDefault(); alert('Formularz został wysłany. Skontaktujemy się z Tobą w ciągu 24h.'); }} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                   <label htmlFor="name" style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--c-heading)' }}>{t('formName')}</label>

@@ -555,19 +555,19 @@ export default function MobileAppPage() {
                       {/* Modern technology spec card ("ladnie w bloczku") - centered parameters */}
                       <div style={{ background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('filterPower')}</span>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specPower')}</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{powerText || 'MOC'}</span>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('productCurrent')}</span>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specCurrent')}</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{p.specs.current}</span>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('productEan')}</span>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specEan')}</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{p.ean}</span>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2px' }}>
-                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('productDimensions')}</span>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specDim')}</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{p.specs.dim}</span>
                         </div>
                       </div>
@@ -611,7 +611,7 @@ export default function MobileAppPage() {
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div className="hero-content" style={{ position: 'relative', zIndex: 3, textAlign: 'center' }}>
                 <h1 className="hero-title" style={{ fontSize: '1.65rem', fontWeight: 800, color: '#111827', marginBottom: '12px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>
-                  {t('techNoComp')}
+                  {t('diagramTitle')}
                 </h1>
                 <p className="hero-subtitle" style={{ fontSize: '0.85rem', color: '#111827', margin: 0, lineHeight: 1.45, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
                   {t('techDesc')}
@@ -622,7 +622,7 @@ export default function MobileAppPage() {
             {/* Interactive Diagram Section (Optimized for Mobile) */}
             <div className="section-padding bg-light" style={{ padding: '2rem 0', background: '#fafafa', overflow: 'hidden' }}>
               <div className="container" style={{ padding: '0 10px' }}>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>{t('diagramTitleInfo')}</h3>
+                <h3 style={{ fontSize: '1.1rem', fontWeight: 800, textAlign: 'center', marginBottom: '15px', color: 'var(--c-heading)', fontFamily: 'Outfit, sans-serif' }}>{t('diagramTitle')}</h3>
                 <InteractiveDiagram forceMobile={true} />
               </div>
             </div>
@@ -1080,13 +1080,13 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           
           <table className="modal-specs-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
             <tbody>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('filterVoltage')} wyjściowe</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.voltage} DC</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('productCurrent')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('filterPower')} znamionowa</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{powerText}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('productEan')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('productDimensions')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Klasa szczelności</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>IP67 (wodoodporny)</td></tr>
-              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>Gwarancja</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>7 Lat Gwarancji</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specVolt')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.voltage} DC</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specCurrent')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.current}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specPowerNom')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{powerText}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specEan')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.ean}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specDimFull')}</td><td style={{ padding: '0.6rem 0', fontWeight: 700, color: 'var(--c-heading)' }}>{product.specs.dim}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specIp')}</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>{t('specIpVal')}</td></tr>
+              <tr style={{ borderBottom: '1px solid #f3f4f6' }}><td style={{ padding: '0.6rem 0', color: '#6b7280', fontWeight: 500 }}>{t('specWarranty')}</td><td style={{ padding: '0.6rem 0', fontWeight: 800, color: '#e60000' }}>{t('specWarrantyVal')}</td></tr>
             </tbody>
           </table>
 
@@ -1095,10 +1095,10 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '16px', height: '16px' }}>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              Pobierz PDF karty
+              {t('downloadPdf')}
             </a>
             <button onClick={onClose} className="btn-secondary" style={{ padding: '0.8rem', borderRadius: '8px', fontWeight: 600, border: '1px solid #ddd', color: '#555', background: 'white' }}>
-              Powrót
+              {t('backToCatalog')}
             </button>
           </div>
         </div>

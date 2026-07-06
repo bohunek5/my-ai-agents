@@ -36,14 +36,14 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
     {
       title: t('feature1Title'),
       desc: t('feature1Desc'),
-      x1: 300, y1: 90, x2: 440, y2: 240,
+      x1: 300, y1: 90, x2: 440, y2: 210,
       mobileLeft: '25.0%', mobileTop: '21%'
     },
     {
       title: t('feature2Title'),
       desc: t('feature2Desc'),
       x1: 300, y1: 260, x2: 460, y2: 250,
-      mobileLeft: '24.5%', mobileTop: '42.5%'
+      mobileLeft: '28.5%', mobileTop: '33.5%'
     },
     {
       title: t('feature3Title'),
@@ -114,129 +114,36 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
             }} 
           />
 
-          {/* Render numbered hotspots exactly proportionally to PC */}
-          {features.map((f, idx) => {
-            if (idx === 6) return null; // Skip if needed, but PC has it, let's keep all
-            // PC Image width=760, centered at x=700 (so left=320)
-            // PC Image center y=280, we use a 260px high slice centered at 280 (so top=150)
-            const leftPct = ((f.x2 - 320) / 760) * 100;
-            const topPct = ((f.y2 - 150) / 260) * 100;
-            return (
-              <div 
-                key={idx}
-                style={{
-                  position: 'absolute',
-                  left: `${leftPct}%`,
-                  top: `${topPct}%`,
-                  width: '28px',
-                  height: '28px',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 10,
-                  background: 'var(--c-red)',
-                  color: 'white',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '0.85rem',
-                  fontWeight: 900,
-                  border: '2px solid white',
-                  boxShadow: '0 3px 8px rgba(220,38,38,0.6)'
-                }}
-              >
-                {idx + 1}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Feature descriptions list (bloczki) */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          {/* Render numbered hotspots using custom mobile positions */}
           {features.map((f, idx) => (
-            <div key={idx} style={{ background: 'white', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '15px', display: 'flex', gap: '15px', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
-              <div style={{ flexShrink: 0, width: '28px', height: '28px', background: 'var(--c-red)', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem', fontWeight: 800 }}>
-                {idx + 1}
-              </div>
-              <div>
-                <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--c-heading)', margin: '0 0 4px 0', fontFamily: 'Outfit, sans-serif' }}>
-                  {f.title}
-                </h4>
-                <p style={{ fontSize: '0.8rem', color: 'var(--c-text)', margin: 0, lineHeight: 1.45 }}>
-                  {f.desc}
-                </p>
-              </div>
+            <div 
+              key={idx}
+              style={{
+                position: 'absolute',
+                left: f.mobileLeft,
+                top: f.mobileTop,
+                width: '28px',
+                height: '28px',
+                transform: 'translate(-50%, -50%)',
+                zIndex: 10,
+                background: 'var(--c-red)',
+                color: 'white',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '0.85rem',
+                fontWeight: 900,
+                border: '2px solid white',
+                boxShadow: '0 3px 8px rgba(220,38,38,0.6)'
+              }}
+            >
+              {idx + 1}
             </div>
           ))}
         </div>
-      </div>
-    );
-  }
 
-  // Render Mobile Version
-  if (isMobile) {
-    return (
-      <div style={{ width: '100%', padding: '10px 5px', boxSizing: 'border-box' }}>
-        {/* Hotspots container over zasilacz image */}
-        <div style={{ 
-          position: 'relative', 
-          width: '100%', 
-          background: 'transparent', 
-          borderRadius: '12px', 
-          padding: '24px 12px', 
-          boxSizing: 'border-box', 
-          border: '1px solid #e5e7eb', 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'center',
-          marginBottom: '20px',
-          transform: 'scale(1.2)',
-          transformOrigin: 'center'
-        }}>
-          
-          <div style={{ position: 'relative', width: '100%', display: 'block' }}>
-            <img 
-              src="/scharfer/assets/40012.png" 
-              alt="Zasilacz Scharfer" 
-              style={{ 
-                width: '100%', 
-                height: 'auto', 
-                display: 'block',
-                filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.15))',
-                pointerEvents: 'none'
-              }} 
-            />
-
-            {/* Render numbered hotspots */}
-            {features.map((f, idx) => (
-              <div 
-                key={idx}
-                style={{
-                  position: 'absolute',
-                  left: f.mobileLeft,
-                  top: f.mobileTop,
-                  width: '24px',
-                  height: '24px',
-                  transform: 'translate(-50%, -50%)',
-                  zIndex: 10,
-                  background: 'var(--c-red)',
-                  color: 'white',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '0.75rem',
-                  fontWeight: 800,
-                  border: '2px solid white',
-                  boxShadow: '0 2px 6px rgba(230,0,0,0.4)'
-                }}
-              >
-                {idx + 1}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Feature descriptions list */}
+        {/* Feature descriptions list (bloczki) */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {features.map((f, idx) => (
             <div key={idx} style={{ background: 'white', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '15px', display: 'flex', gap: '15px', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>

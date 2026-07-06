@@ -47,7 +47,7 @@ export default function PoznajPage() {
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">
-          <h1 className="page-hero-title">{t('techNoComp')}</h1>
+          <h1 className="page-hero-title">{t('diagramTitle')}</h1>
           <p className="page-hero-subtitle">
             {t('techDesc')}
           </p>
