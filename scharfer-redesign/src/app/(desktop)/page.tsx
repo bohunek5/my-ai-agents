@@ -85,12 +85,20 @@ export default function HomePage() {
                 <span className="trust-lbl" style={{ color: '#1e293b', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', marginTop: '8px', letterSpacing: '1px' }}>{t('trustLoadFull')}</span>
               </div>
             </div>
+
+            {/* Scroll down indicator arrow for PC */}
+            <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center', cursor: 'pointer' }} onClick={() => document.getElementById('technologie')?.scrollIntoView({ behavior: 'smooth' })}>
+              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#e60000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))', animation: 'bounce 2s infinite' }}>
+                <path d="M12 5v14M19 12l-7 7-7-7" />
+              </svg>
+            </div>
+
           </div>
         </div>
       </div>
 
       {/* Technology Intro Block */}
-      <div className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '6rem 2rem', textAlign: 'center', borderBottom: '1px solid var(--c-border)' }}>
+      <div id="technologie" className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '6rem 2rem', textAlign: 'center', borderBottom: '1px solid var(--c-border)' }}>
         <div className="container" style={{ maxWidth: 'var(--max-width)', margin: '0 auto' }}>
           <h2 style={{ fontSize: '3rem', color: 'var(--c-heading)', marginBottom: '1rem', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
             {t('techNoComp')}

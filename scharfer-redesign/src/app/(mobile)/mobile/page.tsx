@@ -271,7 +271,7 @@ export default function MobileAppPage() {
                   </div>
                   
                   {/* Scroll down indicator arrow */}
-                  <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center' }}>
+                  <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center', cursor: 'pointer' }} onClick={() => document.getElementById('technologie')?.scrollIntoView({ behavior: 'smooth' })}>
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#e60000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))', animation: 'bounce 2s infinite' }}>
                       <path d="M12 5v14M19 12l-7 7-7-7" />
                     </svg>
@@ -288,7 +288,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Technology Intro Block */}
-            <div className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '3rem 1rem', textAlign: 'center', borderBottom: '1px solid #eee' }}>
+            <div id="technologie" className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '3rem 1rem', textAlign: 'center', borderBottom: '1px solid #eee' }}>
               <div className="container">
                 <h2 style={{ fontSize: '1.6rem', color: 'var(--c-heading)', marginBottom: '8px', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
                   {t('techNoComp')}
