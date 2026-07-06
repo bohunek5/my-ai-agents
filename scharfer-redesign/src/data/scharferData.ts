@@ -38,6 +38,20 @@ export const productsData: Product[] = [
 
 export const translations = {
   "pl": {
+    "feature1Title": "Miedziane Przewody",
+    "feature1Desc": "100% miedzi zapobiega stratom napięcia i przegrzewaniu.",
+    "feature2Title": "Aluminiowa Obudowa",
+    "feature2Desc": "Pełni funkcję radiatora, efektywnie odprowadzając ciepło.",
+    "feature3Title": "Żywica Epoksydowa",
+    "feature3Desc": "Tłumi drgania cewek i gwarantuje stabilną temperaturę.",
+    "feature4Title": "Certyfikaty CE i RoHS",
+    "feature4Desc": "Przebadane i bezpieczne według norm europejskich.",
+    "feature5Title": "Ochrona IP67",
+    "feature5Desc": "Całkowita odporność na wodę i pył w trudnych warunkach.",
+    "feature6Title": "Komplet Zabezpieczeń",
+    "feature6Desc": "OVP, SCP, OTP oraz OLP chronią Twoją instalację.",
+    "feature7Title": "Prawdziwe 100% Mocy",
+    "feature7Desc": "Zasilacz radzi sobie z pełnym obciążeniem.",
     "navHome": "Strona Główna",
     "navPoznaj": "Scharfer?",
     "navPoznajShort": "Scharfer?",
