@@ -61,7 +61,7 @@ body {
 
 @media (max-width: 768px) {
   .scroll-to-top-btn {
-    bottom: calc(90px + env(safe-area-inset-bottom));
+    bottom: calc(95px + env(safe-area-inset-bottom));
     right: 20px;
   }
 }
