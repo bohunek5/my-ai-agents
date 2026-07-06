@@ -21,9 +21,9 @@ export default function Footer() {
         <div className="footer-col distributor-col" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
             <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Oficjalny Dystrybutor</span>
-            <a href="https://prescot.com.pl" target="_blank" rel="noopener noreferrer" style={{ alignSelf: 'flex-start' }}>
+            <div style={{ alignSelf: 'flex-start' }}>
               <img src="/scharfer/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '22px', display: 'block' }} />
-            </a>
+            </div>
           </div>
           <div style={{ color: '#4b5563', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
             <strong style={{ color: 'var(--c-heading)' }}>Prescot Sp. z o.o.</strong><br />

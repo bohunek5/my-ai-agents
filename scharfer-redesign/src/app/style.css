@@ -144,7 +144,8 @@ img {
 }
 
 .btn-secondary:hover {
-    background-color: var(--c-heading);
+    background-color: var(--c-red);
+    border-color: var(--c-red);
     color: var(--c-white) !important;
 }
 

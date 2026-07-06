@@ -144,7 +144,7 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
     <div className="product-card" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '1.2rem', position: 'relative', alignItems: 'stretch' }}>
       {/* Sleek horizontal badge row at the top (forced single line with warranty at the end) */}
       <div style={{ display: 'flex', gap: '0.3rem', flexWrap: 'nowrap', marginBottom: '1rem', zIndex: 5 }}>
-        {powerText && <span style={{ backgroundColor: 'var(--c-red)', color: 'white', border: '1px solid var(--c-red)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{powerText}</span>}
+        <span style={{ backgroundColor: 'var(--c-red)', color: 'white', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{product.specs.voltage}</span>
         <span style={{ backgroundColor: '#1e293b', color: 'white', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>IP67</span>
         <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>SELV</span>
         <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>CE</span>
@@ -164,8 +164,8 @@ function ProductCard({ product, onOpenModal, downloadLabel }: { product: Product
       {/* Modern technology spec card ("ladnie w bloczku") - stretched to full card width */}
       <div style={{ background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Napięcie</span>
-          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{product.specs.voltage} DC</span>
+          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Moc</span>
+          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{product.name.split(' ')[1] || 'MOC'}</span>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
           <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Prąd wyjściowy</span>

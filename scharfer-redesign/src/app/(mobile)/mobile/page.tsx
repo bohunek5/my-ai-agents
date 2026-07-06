@@ -544,7 +544,7 @@ export default function MobileAppPage() {
                     <div key={p.index} style={{ background: 'white', borderRadius: '12px', padding: '20px 15px', display: 'flex', flexDirection: 'column', alignItems: 'stretch', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: '1px solid #f1f5f9' }}>
                       {/* Sleek horizontal badge row at the top */}
                       <div className="specs-line" style={{ display: 'flex', gap: '0.3rem', marginBottom: '1rem', flexWrap: 'nowrap', width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: '4px' }}>
-                        {powerText && <span style={{ backgroundColor: '#dc2626', color: 'white', border: '1px solid #dc2626', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{powerText}</span>}
+                        <span style={{ backgroundColor: '#dc2626', color: 'white', border: '1px solid #dc2626', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{p.specs.voltage}</span>
                         <span style={{ backgroundColor: '#1e293b', color: 'white', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>IP67</span>
                         <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>SELV</span>
                         <span style={{ backgroundColor: '#f1f5f9', border: '1px solid #e2e8f0', color: '#475569', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>CE</span>
@@ -563,8 +563,8 @@ export default function MobileAppPage() {
                       {/* Modern technology spec card ("ladnie w bloczku") - centered parameters */}
                       <div style={{ background: '#f8fafc', border: '1px solid #f1f5f9', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Napięcie</span>
-                          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{p.specs.voltage} DC</span>
+                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Moc</span>
+                          <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{powerText || 'MOC'}</span>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
                           <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Prąd wyjściowy</span>
@@ -1010,9 +1010,9 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
       {/* Distributor Column */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
         <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Oficjalny Dystrybutor</span>
-        <a href="https://prescot.com.pl" target="_blank" rel="noopener noreferrer">
+        <div>
           <img src="/scharfer/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '15px', display: 'block' }} />
-        </a>
+        </div>
         <div style={{ fontSize: '0.8rem', color: '#4b5563', lineHeight: 1.5, marginTop: '0.2rem' }}>
           <strong>Prescot Sp. z o.o.</strong><br />
           ul. Wileńska 1, 11-500 Giżycko<br />
