@@ -115,7 +115,19 @@ export default function PoznajPage() {
             </div>
           </div>
 
-          {/* Row 3: 100% Obciążenia */}
+          {/* Row 3: Konstrukcja Termiczna */}
+          <div className="b2b-story-row">
+            <div className="b2b-story-text">
+              <h2>Aluminium i Żywica Epoksydowa</h2>
+              <p>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Zasilacze Scharfer zamknięte są w masywnej, aluminiowej obudowie, która pełni rolę radiatora.</p>
+              <p>Wnętrze urządzenia jest w 100% zalane specjalistyczną żywicą przewodzącą ciepło. Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy nawet przy maksymalnym obciążeniu. Każda jednostka przechodzi również rygorystyczne testy <strong>Burn-in</strong> przed opuszczeniem fabryki.</p>
+            </div>
+            <div className="b2b-story-img">
+              <img src="/scharfer/assets/sch3.webp" alt="Aluminiowa obudowa i odprowadzanie ciepła" style={{ borderRadius: '8px' }} />
+            </div>
+          </div>
+
+          {/* Row 4: 100% Obciążenia */}
           <div className="b2b-story-row">
             <div className="b2b-story-text">
               <h2>Zaprojektowane do Pracy pod 100% Obciążeniem</h2>
@@ -124,18 +136,6 @@ export default function PoznajPage() {
             </div>
             <div className="b2b-story-img">
               <img src="/scharfer/assets/sch4.webp" alt="100% obciążenia" style={{ borderRadius: '8px' }} />
-            </div>
-          </div>
-          
-          {/* Row 4: Zgodność i Bezpieczeństwo */}
-          <div className="b2b-story-row">
-            <div className="b2b-story-text">
-              <h2>Zgodność z Normami PN-EN, CE i RoHS</h2>
-              <p>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejswie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym <strong>PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547</strong>.</p>
-              <p>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru, przebicia prądu i niestabilnego napięcia. Sprzedawaj z czystym sumieniem certyfikowany sprzęt najwyższej klasy.</p>
-            </div>
-            <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-              <img src="/scharfer/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', mixBlendMode: 'multiply', boxShadow: 'none', borderRadius: 0 }} />
             </div>
           </div>
 
@@ -155,16 +155,16 @@ export default function PoznajPage() {
               <img src="/scharfer/assets/40012.png" alt="Zasilacz 12V 400W Scharfer" style={{ borderRadius: '8px' }} />
             </div>
           </div>
-
-          {/* Row 6: Konstrukcja Termiczna */}
+          
+          {/* Row 6: Zgodność i Bezpieczeństwo */}
           <div className="b2b-story-row">
             <div className="b2b-story-text">
-              <h2>Aluminium i Żywica Epoksydowa</h2>
-              <p>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Zasilacze Scharfer zamknięte są w masywnej, aluminiowej obudowie, która pełni rolę radiatora.</p>
-              <p>Wnętrze urządzenia jest w 100% zalane specjalistyczną żywicą przewodzącą ciepło. Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy nawet przy maksymalnym obciążeniu. Każda jednostka przechodzi również rygorystyczne testy <strong>Burn-in</strong> przed opuszczeniem fabryki.</p>
+              <h2>Zgodność z Normami PN-EN, CE i RoHS</h2>
+              <p>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejswie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym <strong>PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547</strong>.</p>
+              <p>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru, przebicia prądu i niestabilnego napięcia. Sprzedawaj z czystym sumieniem certyfikowany sprzęt najwyższej klasy.</p>
             </div>
-            <div className="b2b-story-img">
-              <img src="/scharfer/assets/sch3.webp" alt="Aluminiowa obudowa i odprowadzanie ciepła" style={{ borderRadius: '8px' }} />
+            <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+              <img src="/scharfer/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', mixBlendMode: 'multiply', boxShadow: 'none', borderRadius: 0 }} />
             </div>
           </div>
         </div>

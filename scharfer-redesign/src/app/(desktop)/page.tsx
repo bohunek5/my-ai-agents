@@ -135,7 +135,19 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Row 3: 100% Obciążenia */}
+          {/* Row 3: Konstrukcja Termiczna */}
+          <div className="b2b-story-row">
+            <div className="b2b-story-text">
+              <h2>{t('story6Title')}</h2>
+              <p>{t('story6P1')}</p>
+              <p>{t('story6P2')}</p>
+            </div>
+            <div className="b2b-story-img">
+              <img src="/scharfer/assets/sch3.webp" alt="Aluminiowa obudowa" style={{ borderRadius: '8px' }} />
+            </div>
+          </div>
+
+          {/* Row 4: 100% Obciążenia */}
           <div className="b2b-story-row">
             <div className="b2b-story-text">
               <h2>{t('story3Title')}</h2>
@@ -147,18 +159,6 @@ export default function HomePage() {
             </div>
           </div>
           
-          {/* Row 4: Zgodność i Bezpieczeństwo */}
-          <div className="b2b-story-row">
-            <div className="b2b-story-text">
-              <h2>{t('story4Title')}</h2>
-              <p>{t('story4P1')}</p>
-              <p>{t('story4P2')}</p>
-            </div>
-            <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-              <img src="/scharfer/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', mixBlendMode: 'multiply', boxShadow: 'none', borderRadius: 0 }} />
-            </div>
-          </div>
-
           {/* Row 5: Zaawansowane Zabezpieczenia */}
           <div className="b2b-story-row">
             <div className="b2b-story-text">
@@ -176,15 +176,15 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Row 6: Konstrukcja Termiczna */}
+          {/* Row 6: Zgodność i Bezpieczeństwo */}
           <div className="b2b-story-row">
             <div className="b2b-story-text">
-              <h2>{t('story6Title')}</h2>
-              <p>{t('story6P1')}</p>
-              <p>{t('story6P2')}</p>
+              <h2>{t('story4Title')}</h2>
+              <p>{t('story4P1')}</p>
+              <p>{t('story4P2')}</p>
             </div>
-            <div className="b2b-story-img">
-              <img src="/scharfer/assets/sch3.webp" alt="Aluminiowa obudowa" style={{ borderRadius: '8px' }} />
+            <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+              <img src="/scharfer/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', mixBlendMode: 'multiply', boxShadow: 'none', borderRadius: 0 }} />
             </div>
           </div>
         </div>

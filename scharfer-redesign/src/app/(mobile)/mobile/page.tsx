@@ -340,25 +340,23 @@ export default function MobileAppPage() {
                   </div>
                 </div>
 
-                {/* Row 3: 100% Obciążenia */}
+                {/* Row 3: Termika */}
+                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
+                  <img src="/scharfer/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <div style={{ padding: '20px' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Aluminium i Żywica Epoksydowa</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Obudowa z aluminium pełni rolę radiatora, a wnętrze jest w 100% zalane żywicą.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy. Każda jednostka przechodzi test Burn-in przed wysyłką.</p>
+                  </div>
+                </div>
+
+                {/* Row 4: 100% Obciążenia */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
                   <img src="/scharfer/assets/sch4.webp" alt="100% obciążenia" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
                   <div style={{ padding: '20px' }}>
                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zaprojektowane do Pracy pod 100% Obciążeniem</h3>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Koniec z przewymiarowaniem zasilaczy! W przeciwieństwie do tańszych zamienników, technologia Scharfer pozwala na stałą pracę pod 100% zadeklarowanym obciążeniem.</p>
                     <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Jeśli kupujesz model 150W, otrzymujesz pełne 150W czystej, stabilnej mocy. Oznacza to mniejsze koszty instalacji oraz brak problemów z przegrzewaniem.</p>
-                  </div>
-                </div>
-
-                {/* Row 4: Zgodność i Bezpieczeństwo */}
-                <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '30px' }}>
-                    <img src="/scharfer/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', height: 'auto', display: 'block' }} />
-                  </div>
-                  <div style={{ padding: '20px' }}>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zgodność z Normami PN-EN, CE i RoHS</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejskie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547.</p>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru.</p>
                   </div>
                 </div>
 
@@ -377,13 +375,15 @@ export default function MobileAppPage() {
                   </div>
                 </div>
 
-                {/* Row 6: Termika */}
+                {/* Row 6: Zgodność i Bezpieczeństwo */}
                 <div className="b2b-story-card-m" style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <img src="/scharfer/assets/sch3.webp" alt="Aluminiowa obudowa radiator" style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }} />
+                  <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '30px' }}>
+                    <img src="/scharfer/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', height: 'auto', display: 'block' }} />
+                  </div>
                   <div style={{ padding: '20px' }}>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Aluminium i Żywica Epoksydowa</h3>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Trwałość zasilacza 12V / 24V zależy od efektywnego odprowadzania ciepła. Obudowa z aluminium pełni rolę radiatora, a wnętrze jest w 100% zalane żywicą.</p>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Eliminuje to puste przestrzenie izolacyjne, zapobiega wibracjom cewek i gwarantuje utrzymanie stabilnej temperatury pracy. Każda jednostka przechodzi test Burn-in przed wysyłką.</p>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '8px' }}>Zgodność z Normami PN-EN, CE i RoHS</h3>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, marginBottom: '8px' }}>Bezpieczeństwo przede wszystkim. Zasilacze Scharfer spełniają najbardziej rygorystyczne europejskie normy bezpieczeństwa dla urządzeń oświetleniowych, w tym PN-EN 61347-1, EN 61347-2-13, EN 55015, EN 61547.</p>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--c-text)', lineHeight: 1.5, margin: 0 }}>Posiadają pełną certyfikację CE oraz RoHS. Wybierając markę Scharfer, chronisz swój biznes oraz inwestycje swoich klientów przed ryzykiem pożaru.</p>
                   </div>
                 </div>
               </div>
