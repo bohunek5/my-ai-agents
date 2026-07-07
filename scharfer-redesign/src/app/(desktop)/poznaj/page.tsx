@@ -163,8 +163,8 @@ export default function PoznajPage() {
               <p dangerouslySetInnerHTML={{ __html: t('story4P1') }} />
               <p>{t('story4P2')}</p>
             </div>
-            <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-              <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', mixBlendMode: 'multiply', boxShadow: 'none', borderRadius: 0 }} />
+            <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', background: '#ffffff', borderRadius: '12px' }}>
+              <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', boxShadow: 'none', borderRadius: 0 }} />
             </div>
           </div>
         </div>

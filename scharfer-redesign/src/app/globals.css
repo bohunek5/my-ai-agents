@@ -17,6 +17,10 @@
   --card-bg: #FFFFFF;
 }
 
+html, body {
+  /* Removed overscroll-behavior-y: none; to restore natural scroll bounce */
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -64,7 +68,7 @@
 
 /* Dynamic Logo Swapping for Dark Mode */
 :root[data-theme="dark"] img[src="/PRESCOT_logo.png"] {
-  content: url("/logonocprescotled.png");
+  content: url("/PRESCOT_logo_dark.png");
 }
 
 :root[data-theme="dark"] img[src="/logo_scharfer.png"] {
@@ -142,3 +146,13 @@ body.wcag-highlight-links a, body.wcag-highlight-links button {
     height: 45px;
   }
 }
+
+/* ThemeLogo Toggle Classes */
+.logo-dark-variant { display: none !important; }
+:root[data-theme="dark"] .logo-light-variant { display: none !important; }
+:root[data-theme="dark"] .logo-dark-variant { display: inline-block !important; }
+img.logo-dark-variant[style*="display: inline-block"],
+img.logo-light-variant[style*="display: inline-block"] {
+    /* If style has display, we might need a wrapper, but usually block is fine for logos */
+}
+:root[data-theme="dark"] img.logo-dark-variant.inline { display: inline-block !important; }

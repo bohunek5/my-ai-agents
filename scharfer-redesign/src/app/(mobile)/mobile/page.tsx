@@ -5,6 +5,9 @@ import { productsData, Product } from '@/data/scharferData';
 import InteractiveDiagram from '@/components/InteractiveDiagram';
 import WcagMenu from '@/components/WcagMenu';
 import ThemeToggle from '@/components/ThemeToggle';
+import ThemeLogo from '@/components/ThemeLogo';
+import Link from 'next/link';
+
 type Tab = 'home' | 'oferta' | 'info' | 'kontakt';
 
 export default function MobileAppPage() {
@@ -68,51 +71,6 @@ export default function MobileAppPage() {
     setActiveFaq(activeFaq === idx ? null : idx);
   };
 
-  const stories = [
-    {
-      title: t('story1Title'),
-      icon: '🛡️',
-      body: t('story1P1'),
-      img: '/assets/sch1.webp',
-      type: 'image'
-    },
-    {
-      title: t('story2Title'),
-      icon: '💧',
-      body: t('story2P1'),
-      img: '/assets/sch2.webp',
-      type: 'image'
-    },
-    {
-      title: t('story3Title'),
-      icon: '⚡',
-      body: t('story3P1'),
-      img: '/assets/sch4.webp',
-      type: 'image'
-    },
-    {
-      title: t('story4Title'),
-      icon: '🇪🇺',
-      body: t('story4P1'),
-      img: '/assets/ce_rohs.png',
-      type: 'contain'
-    },
-    {
-      title: t('story5Title'),
-      icon: '🔌',
-      body: t('story5P1'),
-      img: '/assets/40012.png',
-      type: 'image'
-    },
-    {
-      title: t('story6Title'),
-      icon: '🌡️',
-      body: t('story6P1'),
-      img: '/assets/sch3.webp',
-      type: 'image'
-    }
-  ];
-
   const faqItems = [
     {
       q: t('faq1Q'),
@@ -145,15 +103,21 @@ export default function MobileAppPage() {
       
       {/* Mobile Header */}
       <header className="app-header" style={{ height: '75px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 15px', borderBottom: '1px solid var(--c-border)', background: 'var(--card-bg)', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 2000 }}>
-        {/* LOGO */}
-        <a href="#home" onClick={(e) => { e.preventDefault(); handleTabChange('home'); }} style={{ display: 'flex', alignItems: 'center' }}>
-          <img src="/logo_scharfer.png" alt="Scharfer - Zasilacze LED" className="logo-main" style={{ height: '36px' }} />
-        </a>
-        <div className="distributor-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', gap: '2px', marginRight: '14px', borderLeft: '1px solid var(--c-border)', paddingLeft: '8px' }}>
-          <span style={{ fontSize: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.5px', color: '#888', fontWeight: 700, lineHeight: 1 }}>{t('officialDistributor')}</span>
-          <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ display: 'flex' }}>
-            <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '7px' }} className="prescot-logo-distributor" />
-          </a>
+        {/* LOGO & Distributor */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <Link href="#home" onClick={(e) => { e.preventDefault(); handleTabChange('home'); }} style={{ display: 'flex', alignItems: 'center' }}>
+            <ThemeLogo lightSrc="/logo_scharfer.png" darkSrc="/logo_scharfer_dark.png" alt="Scharfer - Zasilacze LED" className="logo-main" style={{ height: '32px' }} />
+          </Link>
+          <div className="distributor-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', gap: '2px', borderLeft: '1px solid var(--c-border)', paddingLeft: '4px' }}>
+            <span style={{ fontSize: '0.45rem', textTransform: 'uppercase', letterSpacing: '0.2px', color: 'var(--c-text)', opacity: 0.8, fontWeight: 700, lineHeight: 1.1, display: 'block', marginBottom: '2px' }}>
+              {String(t('officialDistributor')).split(' ').map((word, idx) => (
+                <span key={idx} style={{ display: 'block' }}>{word}</span>
+              ))}
+            </span>
+            <Link href="/poznaj" style={{ display: 'block' }}>
+              <ThemeLogo lightSrc="/PRESCOT_logo.png" darkSrc="/PRESCOT_logo_dark.png" alt="PRESCOT LED" style={{ height: '6px' }} className="prescot-logo-distributor" />
+            </Link>
+          </div>
         </div>
 
         {/* Right: Controls & Language */}
@@ -209,8 +173,8 @@ export default function MobileAppPage() {
                       width: '100%',
                       padding: '12px 16px',
                       border: 'none',
-                      background: lang === l ? '#fef2f2' : 'white',
-                      color: lang === l ? 'var(--c-red)' : 'var(--c-black)',
+                      background: lang === l ? 'var(--c-light-gray)' : 'var(--card-bg)',
+                      color: lang === l ? 'var(--c-red)' : 'var(--c-text)',
                       textAlign: 'left',
                       fontSize: '1rem',
                       fontWeight: lang === l ? 600 : 500,
@@ -246,17 +210,31 @@ export default function MobileAppPage() {
               </div>
               <div className="hero-container" style={{ maxWidth: '100%', position: 'relative', zIndex: 2, textAlign: 'center' }}>
                 <div className="hero-content">
-                  <h1 className="hero-title" style={{ fontSize: '2.0rem', display: 'block', lineHeight: 1.2, marginBottom: '10px', color: 'var(--c-heading)', fontWeight: 800, textShadow: '0 2px 6px rgba(0,0,0,0.22)' }}>
-                    <span style={{ color: '#e60000' }}>{t('heroWarranty')}</span><br/>
-                    {t('heroPower')}<br/>
-                    {t('heroReal')}<span style={{ color: '#e60000' }}>{t('hero100')}</span>{t('heroLoad')}
-                  </h1>
-                  <p className="hero-subtitle" style={{ fontSize: '0.95rem', padding: '0 10px', marginBottom: '25px', lineHeight: 1.4, color: 'var(--c-heading)', fontWeight: 800, textShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-                    {t('heroSubtitle')}
-                  </p>
-                  
+                  <div style={{ transform: 'translateY(-100px)' }}>
+                    <h1 className="hero-title" style={{ fontSize: '2.0rem', display: 'block', lineHeight: 1.2, marginBottom: '10px', color: 'var(--c-heading)', fontWeight: 800, textShadow: '0 2px 6px rgba(0,0,0,0.22)' }}>
+                      <span style={{ color: '#e60000' }}>{t('heroWarranty')}</span><br/>
+                      {t('heroPower')}<br/>
+                      {t('heroReal')}<span style={{ color: '#e60000' }}>{t('hero100')}</span>{t('heroLoad')}
+                    </h1>
+                    <p className="hero-subtitle" style={{ fontSize: '0.95rem', padding: '0 10px', marginBottom: '25px', lineHeight: 1.4, color: 'var(--c-heading)', fontWeight: 800, textShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
+                      {(() => {
+                      const text = t('heroSubtitle') as string;
+                      const parts = text.split(/(Instalujesz i zapominasz\.|Install and forget\.|Installieren und vergessen\.|Įdiegi ir pamiršti\.)/);
+                      if (parts.length > 1) {
+                        return (
+                          <>
+                            {parts[0]}
+                            <span style={{ display: 'block', marginTop: '6px', whiteSpace: 'nowrap' }}>{parts[1]}</span>
+                            {parts.slice(2).join('')}
+                          </>
+                        );
+                      }
+                      return text;
+                    })()}
+                    </p>
+                  </div>
 
-                  <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', flexWrap: 'nowrap', width: '100%', padding: '0 5px', textAlign: 'left' }}>
+                  <div className="hero-trust" style={{ display: 'flex', justifyContent: 'center', gap: '30px', flexWrap: 'nowrap', width: '100%', padding: '0 5px', textAlign: 'center' }}>
                     <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <span className="trust-val" style={{ color: '#e60000', fontSize: '1.4rem', fontWeight: 900, display: 'block', lineHeight: 1 }}>{t('trust7Years')}</span>
                       <span className="trust-lbl" style={{ color: 'var(--c-heading)', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', display: 'block', marginTop: '6px', lineHeight: 1.2 }}>{t('trustWarranty')}</span>
@@ -289,7 +267,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Technology Intro Block */}
-            <div id="technologie" className="poznaj-hero" style={{ background: 'linear-gradient(135deg, var(--c-white) 0%, #eef2f6 100%)', padding: '3rem 1rem', textAlign: 'center', borderBottom: '1px solid var(--c-border)' }}>
+            <div id="technologie" className="poznaj-hero" style={{ scrollMarginTop: '70px', background: 'linear-gradient(135deg, var(--c-background) 0%, var(--c-light-gray) 100%)', padding: '3rem 1rem', textAlign: 'center', borderBottom: '1px solid var(--c-border)' }}>
               <div className="container">
                 <h2 style={{ fontSize: '1.6rem', color: 'var(--c-heading)', marginBottom: '8px', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>
                   {t('techNoComp')}
@@ -383,7 +361,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Applications */}
-            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid var(--c-border)' }}>
+            <div className="section-container" style={{ padding: '30px 15px', background: 'var(--c-background)', borderTop: '1px solid var(--c-border)' }}>
               <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center', color: 'var(--c-heading)' }}>{t('appTitle')}</h2>
               <p style={{ textAlign: 'center', fontSize: '0.85rem', color: 'var(--c-text)', marginBottom: '20px' }}>{t('appSubtitle')}</p>
               
@@ -430,7 +408,7 @@ export default function MobileAppPage() {
                 { title: t('valSupport'), desc: t('valSupportDesc') },
                 { title: t('valPartner'), desc: t('valPartnerDesc') }
               ].map((val, idx) => (
-                <div key={idx} className="value-item-m" style={{ display: 'flex', gap: '10px', background: '#f8fafc', padding: '12px', borderRadius: '8px', marginBottom: '8px', border: '1px solid var(--c-border)' }}>
+                <div key={idx} className="value-item-m" style={{ display: 'flex', gap: '10px', background: 'var(--card-bg)', padding: '12px', borderRadius: '8px', marginBottom: '8px', border: '1px solid var(--c-border)' }}>
                   <span className="value-bullet" style={{ color: '#e60000', fontWeight: 'bold' }}>🔴</span>
                   <div className="value-desc">
                     <h4 style={{ fontSize: '0.9rem', fontWeight: 700, margin: '0 0 2px 0', color: 'var(--c-heading)' }}>{val.title}</h4>
@@ -458,7 +436,7 @@ export default function MobileAppPage() {
                       <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
-                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)', paddingTop: '10px' }}>
+                      <div className="faq-body-m" style={{ padding: '15px 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)' }}>
                         <p style={{ margin: 0 }}>{item.a}</p>
                       </div>
                     )}
@@ -478,7 +456,7 @@ export default function MobileAppPage() {
             {/* Unified Mobile Hero for Oferta */}
             {/* Unified Mobile Hero for Oferta */}
             <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid var(--c-border)', backgroundImage: 'url("/assets/scharfer_supplies_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
+              <div className="page-hero-overlay" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div style={{ position: 'relative', zIndex: 3 }}>
                 <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>Katalog <span style={{ color: '#e60000' }}>Zasilaczy</span></h1>
                 <p style={{ fontSize: '0.95rem', color: 'var(--c-heading)', margin: 0, lineHeight: 1.5, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
@@ -487,7 +465,7 @@ export default function MobileAppPage() {
               </div>
             </div>
 
-            <div className="section-container" style={{ padding: '20px 15px', background: '#fff' }}>
+            <div className="section-container" style={{ padding: '20px 15px', background: 'var(--card-bg)' }}>
               
 
 
@@ -511,8 +489,8 @@ export default function MobileAppPage() {
                         padding: '8px', 
                         borderRadius: '6px', 
                         border: '1px solid #ddd', 
-                        background: filterVoltage === v ? '#e60000' : 'white', 
-                        color: filterVoltage === v ? 'white' : '#444',
+                        background: filterVoltage === v ? '#e60000' : 'var(--card-bg)', 
+                        color: filterVoltage === v ? '#fff' : 'var(--c-text)',
                         fontWeight: 600,
                         fontSize: '0.82rem'
                       }}
@@ -540,7 +518,7 @@ export default function MobileAppPage() {
                       {/* Sleek horizontal badge row at the top */}
                       <div className="specs-line" style={{ display: 'flex', gap: '0.3rem', marginBottom: '1rem', flexWrap: 'nowrap', width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: '4px' }}>
                         <span style={{ backgroundColor: '#e60000', color: 'white', border: '1px solid #e60000', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>{p.specs.voltage}</span>
-                        <span style={{ backgroundColor: 'var(--c-heading)', color: 'white', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>IP67</span>
+                        <span style={{ backgroundColor: 'var(--c-heading)', color: 'var(--card-bg)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>IP67</span>
                         <span style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--c-border)', color: 'var(--c-text)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>SELV</span>
                         <span style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--c-border)', color: 'var(--c-text)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>CE</span>
                         <span style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--c-border)', color: 'var(--c-text)', padding: '0.15rem 0.4rem', fontSize: '0.65rem', fontWeight: 800, borderRadius: '4px', whiteSpace: 'nowrap' }}>RoHS</span>
@@ -556,34 +534,34 @@ export default function MobileAppPage() {
                       <h3 style={{ fontSize: '1.1rem', fontWeight: 800, margin: '0 0 1rem 0', color: 'var(--c-heading)', textAlign: 'center' }}>{renderSymbolRed(p.name)}</h3>
                       
                       {/* Modern technology spec card ("ladnie w bloczku") - centered parameters */}
-                      <div style={{ background: '#f8fafc', border: '1px solid var(--c-border)', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specPower')}</span>
+                      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--c-border)', borderRadius: '10px', padding: '0.8rem 1rem', marginBottom: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid var(--c-border)', paddingBottom: '0.4rem', gap: '2px' }}>
+                          <span style={{ color: 'var(--c-text)', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specPower')}</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{powerText || 'MOC'}</span>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specCurrent')}</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid var(--c-border)', paddingBottom: '0.4rem', gap: '2px' }}>
+                          <span style={{ color: 'var(--c-text)', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specCurrent')}</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{p.specs.current}</span>
                         </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.4rem', gap: '2px' }}>
-                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specEan')}</span>
+                        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderBottom: '1px solid var(--c-border)', paddingBottom: '0.4rem', gap: '2px' }}>
+                          <span style={{ color: 'var(--c-text)', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specEan')}</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{p.ean}</span>
                         </div>
                         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '2px' }}>
-                          <span style={{ color: '#64748b', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specDim')}</span>
+                          <span style={{ color: 'var(--c-text)', fontSize: '0.68rem', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('specDim')}</span>
                           <span style={{ fontWeight: 800, color: 'var(--c-heading)', fontSize: '0.85rem' }}>{p.specs.dim}</span>
                         </div>
                       </div>
 
                       {/* Details & PDF Buttons */}
-                      <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
-                        <a href={p.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.8rem', fontSize: '0.8rem', fontWeight: 700, borderRadius: '6px', background: '#e60000', color: 'white', textDecoration: 'none' }}>
-                          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '14px', height: '14px' }}>
+                      <div style={{ display: 'flex', gap: '6px', marginTop: 'auto' }}>
+                        <a href={p.pdf} target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem', padding: '0.8rem 0.2rem', fontSize: '0.72rem', fontWeight: 700, borderRadius: '6px', background: '#e60000', color: 'white', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ width: '14px', height: '14px', flexShrink: 0 }}>
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                           </svg>
                           {t('downloadPdf')}
                         </a>
-                        <button onClick={() => setActiveProduct(p)} className="btn-secondary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', padding: '0.8rem', fontSize: '0.8rem', fontWeight: 700, border: '1px solid #ddd', borderRadius: '6px', background: 'var(--card-bg)', color: 'var(--foreground)', cursor: 'pointer' }}>
+                        <button onClick={() => setActiveProduct(p)} className="btn-secondary" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem', padding: '0.8rem 0.2rem', fontSize: '0.72rem', fontWeight: 700, border: '1px solid var(--c-border)', borderRadius: '6px', background: 'var(--card-bg)', color: 'var(--c-text)', cursor: 'pointer', whiteSpace: 'nowrap' }}>
                           {t('detailsShort')}
                         </button>
                       </div>
@@ -611,7 +589,7 @@ export default function MobileAppPage() {
           <section className="view-section active">
             {/* Unified Page Hero */}
             <div className="hero-m-unified" style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid var(--c-border)', backgroundImage: 'url("/assets/scharfer_estate_night.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
+              <div className="page-hero-overlay" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div className="hero-content" style={{ position: 'relative', zIndex: 3, textAlign: 'center' }}>
                 <h1 className="hero-title" style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '12px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>
                   {t('diagramTitle')}
@@ -631,7 +609,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Trust items */}
-            <div className="hero-trust" style={{ display: 'flex', justifyContent: 'space-around', gap: '8px', padding: '20px 15px', background: 'var(--card-bg)', borderBottom: '1px solid var(--c-border)' }}>
+            <div className="hero-trust" style={{ display: 'flex', justifyContent: 'center', gap: '30px', padding: '20px 15px', background: 'var(--card-bg)', borderBottom: '1px solid var(--c-border)' }}>
               <div className="trust-item" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <span className="trust-val" style={{ fontSize: '1.25rem', fontWeight: 800, color: '#e60000' }}>7</span>
                 <span className="trust-lbl" style={{ fontSize: '0.65rem', color: '#aaa', fontWeight: 600 }}>Lat Gwarancji</span>
@@ -678,7 +656,7 @@ export default function MobileAppPage() {
                 </div>
 
                 <div className="b2b-story-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 10px rgba(0,0,0,0.02)' }}>
-                  <div style={{ background: '#fafafa', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '180px', padding: '15px' }}>
+                  <div style={{ background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '180px', padding: '15px' }}>
                     <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                   </div>
                   <div style={{ padding: '20px' }}>
@@ -714,7 +692,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* Applications */}
-            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid var(--c-border)' }}>
+            <div className="section-container" style={{ padding: '30px 15px', background: 'var(--c-background)', borderTop: '1px solid var(--c-border)' }}>
               <h2 className="section-title" style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '5px', textAlign: 'center', color: 'var(--c-heading)' }}>{t('appTitle')}</h2>
               <p style={{ textAlign: 'center', fontSize: '0.85rem', color: 'var(--c-text)', marginBottom: '20px' }}>{t('appSubtitle')}</p>
               
@@ -745,7 +723,7 @@ export default function MobileAppPage() {
             </div>
 
             {/* FAQ Section */}
-            <div className="section-container" style={{ padding: '30px 15px', background: '#fafafa', borderTop: '1px solid var(--c-border)' }}>
+            <div className="section-container" style={{ padding: '30px 15px', background: 'var(--c-background)', borderTop: '1px solid var(--c-border)' }}>
               <h3 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', marginBottom: '5px' }}>{t('faqSectionTitle')}</h3>
               <p style={{ textAlign: 'center', fontSize: '0.82rem', color: '#666', marginBottom: '15px' }}>{t('faqSectionDesc')}</p>
               <div className="faq-list-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -760,7 +738,7 @@ export default function MobileAppPage() {
                       <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
-                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)', paddingTop: '10px' }}>
+                      <div className="faq-body-m" style={{ padding: '15px 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)' }}>
                         <p style={{ margin: 0 }}>{item.a}</p>
                       </div>
                     )}
@@ -778,7 +756,7 @@ export default function MobileAppPage() {
           <section className="view-section active">
             {/* Unified Page Hero */}
             <div style={{ position: 'relative', width: '100%', padding: '45px 20px', textAlign: 'center', overflow: 'hidden', borderBottom: '1px solid var(--c-border)', backgroundImage: 'url("/assets/kontakt_hero.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
+              <div className="page-hero-overlay" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(255, 255, 255, 0.88)', zIndex: 1 }} />
               <div style={{ position: 'relative', zIndex: 3 }}>
                 <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--c-heading)', marginBottom: '10px', lineHeight: 1.2, textShadow: '0 2px 6px rgba(0, 0, 0, 0.22)' }}>{t('contactTitle')}</h1>
                 <p style={{ fontSize: '0.95rem', color: 'var(--c-heading)', margin: 0, lineHeight: 1.5, fontWeight: 500, textShadow: '0 1px 4px rgba(0, 0, 0, 0.18)' }}>
@@ -787,19 +765,17 @@ export default function MobileAppPage() {
               </div>
             </div>
 
-            <div className="section-container" style={{ padding: '25px 15px', background: '#fff' }}>
+            <div className="section-container" style={{ padding: '25px 15px', background: 'var(--card-bg)' }}>
               <h2 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, marginBottom: '20px', textAlign: 'center', color: 'var(--c-heading)' }}>{t('officialDistributor')}</h2>
               
               {/* Prescot Card */}
               <div className="contact-card-m" style={{ background: 'var(--card-bg)', borderRadius: '12px', padding: '20px', textAlign: 'center', border: '1px solid var(--c-border)', boxShadow: '0 2px 6px rgba(0,0,0,0.03)', marginBottom: '25px' }}>
-                <span className="contact-badge-label" style={{ display: 'inline-block', fontSize: '8px', background: '#eee', color: 'var(--c-text)', fontWeight: 800, padding: '2px 6px', borderRadius: '3px', textTransform: 'uppercase', marginBottom: '8px' }}>{t('officialDistributor')}</span>
                 <div style={{ margin: '8px 0 12px' }}>
-                  <img src="/PRESCOT_logo.png" alt="Prescot LED" className="contact-prescot-logo" style={{ height: '24px', display: 'block', margin: '0 auto' }} />
+                  <ThemeLogo lightSrc="/PRESCOT_logo.png" darkSrc="/PRESCOT_logo_dark.png" alt="Prescot LED" className="contact-prescot-logo" style={{ height: '18px', display: 'block', margin: '0 auto' }} />
                 </div>
                 <p className="contact-company-name" style={{ fontSize: '1rem', fontWeight: 800, margin: '0 0 4px 0', color: 'var(--c-heading)' }}>PRESCOT SP. Z O.O.</p>
                 <p className="contact-company-details" style={{ fontSize: '0.8rem', color: '#666', margin: '0 0 15px 0', lineHeight: 1.4 }}>ul. Wileńska 1, 11-500 Giżycko<br />NIP: 8451939947</p>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.694662867049!2d21.758713212876618!3d54.03362147230008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e1a49db25492d5%3A0xe97ab425264b3df3!2sWile%C5%84ska%201%2C%2011-500%20Gi%C5%BCycko!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" width="100%" height="220" style={{ border: 0, borderRadius: '8px', marginBottom: '15px' }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
-                <div className="contact-buttons-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div className="contact-buttons-m" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '15px' }}>
                   <a href="tel:+48877776482" className="contact-action-btn" style={{ background: 'var(--background)', color: 'var(--c-heading)', padding: '10px', borderRadius: '6px', fontSize: '0.88rem', fontWeight: 700, textDecoration: 'none', border: '1px solid #ddd' }}>
                     📞 +48 87 777 64 82
                   </a>
@@ -807,46 +783,11 @@ export default function MobileAppPage() {
                     ✉️ komponenty@prescot.pl
                   </a>
                 </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.694662867049!2d21.758713212876618!3d54.03362147230008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e1a49db25492d5%3A0xe97ab425264b3df3!2sWile%C5%84ska%201%2C%2011-500%20Gi%C5%BCycko!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" width="100%" height="220" style={{ border: 0, borderRadius: '8px' }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
               </div>
 
-              {/* B2B Form Card */}
-              <div className="form-card" style={{ background: 'var(--card-bg)', border: '1px solid var(--c-border)', borderRadius: '12px', padding: '20px', boxShadow: '0 4px 12px rgba(0,0,0,0.03)', marginBottom: '30px' }}>
-                <h2 className="form-title" style={{ fontSize: '1.25rem', fontWeight: 800, marginBottom: '1.25rem', color: 'var(--c-heading)' }}>Kontakt B2B</h2>
-                <form onSubmit={(e) => { e.preventDefault(); alert('Formularz został wysłany. Skontaktujemy się z Tobą w ciągu 24h.'); }} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    <label htmlFor="name" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--c-heading)' }}>{t('formName')}</label>
-                    <input type="text" id="name" required style={{ padding: '0.8rem', border: '1px solid var(--c-border)', borderRadius: '6px', fontSize: '0.9rem' }} />
-                  </div>
-                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    <label htmlFor="email" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--c-heading)' }}>{t('formEmail')}</label>
-                    <input type="email" id="email" required style={{ padding: '0.8rem', border: '1px solid var(--c-border)', borderRadius: '6px', fontSize: '0.9rem' }} />
-                  </div>
-                  <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                    <label htmlFor="message" style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--c-heading)' }}>{t('formMsg')}</label>
-                    <textarea id="message" rows={5} required style={{ padding: '0.8rem', border: '1px solid var(--c-border)', borderRadius: '6px', fontSize: '0.9rem', resize: 'vertical' }}></textarea>
-                  </div>
-                  <div className="form-checkbox" style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-start' }}>
-                    <input type="checkbox" id="gdpr" required style={{ marginTop: '0.2rem' }} />
-                    <label htmlFor="gdpr" style={{ fontSize: '0.78rem', color: '#666', lineHeight: 1.4 }}>{t('formGdpr')}</label>
-                  </div>
-                  <button type="submit" className="btn-primary" style={{ padding: '1rem', border: 'none', background: '#e60000', color: 'white', borderRadius: '6px', fontSize: '0.95rem', fontWeight: 600, cursor: 'pointer' }}>
-                    {t('formSend')}
-                  </button>
-                </form>
-              </div>
 
-              {/* Google Map */}
-              <div style={{ marginBottom: '30px', borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
-                <iframe 
-                  src="https://maps.google.com/maps?q=Wile%C5%84ska%201,%2011-500%20Gi%C5%BCycko&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                  width="100%" 
-                  height="250" 
-                  style={{ border: 0, display: 'block' }} 
-                  allowFullScreen 
-                  loading="lazy"
-                  title="Mapa dojazdu do Prescot"
-                ></iframe>
-              </div>
+
 
               {/* FAQ */}
               <h3 className="section-title" style={{ fontSize: '1.3rem', fontWeight: 800, textAlign: 'center', margin: '0 0 5px 0' }}>Często Zadawane Pytania</h3>
@@ -863,7 +804,7 @@ export default function MobileAppPage() {
                       <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
-                      <div className="faq-body-m" style={{ padding: '0 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)', paddingTop: '10px' }}>
+                      <div className="faq-body-m" style={{ padding: '15px 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)' }}>
                         <p style={{ margin: 0 }}>{item.a}</p>
                       </div>
                     )}
@@ -880,14 +821,14 @@ export default function MobileAppPage() {
       {/* B2C Purchase Modal */}
       {b2cModalOpen && (
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.6)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-          <div style={{ background: '#fff', borderRadius: '12px', padding: '30px 20px', width: '100%', maxWidth: '350px', textAlign: 'center', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
-            <img src="/PRESCOT_logo.png?v=day" alt="PRESCOT LED" style={{ height: '24px', margin: '0 auto 20px', display: 'block' }} />
-            <h3 style={{ fontSize: '1.2rem', color: '#111', marginBottom: '10px', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>Przejście do sklepu B2C</h3>
+          <div style={{ background: 'var(--card-bg)', borderRadius: '12px', padding: '30px 20px', width: '100%', maxWidth: '350px', textAlign: 'center', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
+            <ThemeLogo lightSrc="/PRESCOT_logo.png" darkSrc="/PRESCOT_logo_dark.png" alt="PRESCOT LED" style={{ height: '40px', margin: '0 auto 20px', display: 'block' }} />
+            <h3 style={{ fontSize: '1.2rem', color: 'var(--c-heading)', marginBottom: '10px', fontWeight: 800, fontFamily: 'Outfit, sans-serif' }}>Przejście do sklepu B2C</h3>
             <p style={{ fontSize: '0.95rem', color: 'var(--c-text)', marginBottom: '25px', lineHeight: 1.5 }}>
               Zostaniesz przeniesiony na naszą główną stronę <strong>www.prescot.com.pl</strong>, gdzie możesz bezpiecznie kupić zasilacze LED Scharfer w ilości detalicznej.
             </p>
             <div style={{ display: 'flex', gap: '10px' }}>
-              <button onClick={() => setB2cModalOpen(false)} style={{ flex: 1, padding: '12px', background: '#f3f4f6', color: 'var(--c-text)', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Anuluj</button>
+              <button onClick={() => setB2cModalOpen(false)} style={{ flex: 1, padding: '12px', background: 'var(--c-light-gray)', color: 'var(--c-text)', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Anuluj</button>
               <button onClick={() => { setB2cModalOpen(false); window.open("https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580", "_blank"); }} style={{ flex: 1, padding: '12px', background: '#e60000', color: 'white', border: 'none', borderRadius: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Przejdź</button>
             </div>
           </div>
@@ -993,11 +934,11 @@ export default function MobileAppPage() {
 function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => void; onOpenRodo: () => void }) {
   const { t } = useLanguage();
   return (
-    <footer className="app-footer" style={{ textAlign: 'center', padding: '3rem 1.25rem 2rem 1.25rem', marginTop: '2rem', background: '#ffffff', borderTop: '1px solid #e5e7eb' }}>
+    <footer className="app-footer" style={{ textAlign: 'center', padding: '3rem 1.25rem 2rem 1.25rem', marginTop: '2rem', background: 'var(--card-bg)', borderTop: '1px solid var(--c-border)' }}>
       
       {/* Brand Column */}
       <div className="footer-logo-m" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
-        <img src="/logo_scharfer.png" alt="Scharfer" style={{ height: '26px' }} />
+        <ThemeLogo lightSrc="/logo_scharfer.png" darkSrc="/logo_scharfer_dark.png" alt="Scharfer" style={{ height: '60px' }} />
         <p style={{ fontSize: '0.78rem', color: 'var(--c-text)', margin: 0, maxWidth: '280px', lineHeight: 1.5 }}>
           {t('footerTagline')}
         </p>
@@ -1005,9 +946,11 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
 
       {/* Distributor Column */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '1.75rem' }}>
-        <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t('officialDistributor')}</span>
-        <div>
-          <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '15px', display: 'block' }} />
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px', opacity: 0.8 }}>
+          <ThemeLogo lightSrc="/PRESCOT_logo.png" darkSrc="/PRESCOT_logo_dark.png" alt="PRESCOT LED" style={{ height: '12px', display: 'block' }} />
+          <span style={{ fontSize: '0.55rem', fontWeight: 700, color: 'var(--c-text)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            {t('officialDistributor')}
+          </span>
         </div>
         <div style={{ fontSize: '0.8rem', color: 'var(--c-text)', lineHeight: 1.5, marginTop: '0.2rem' }}>
           <strong>Prescot Sp. z o.o.</strong><br />
@@ -1028,7 +971,7 @@ function MobileFooter({ onOpenRegulamin, onOpenRodo }: { onOpenRegulamin: () => 
       </div>
 
       {/* Copyright Line */}
-      <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+      <div style={{ paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '0.25rem' }}>
           <button onClick={onOpenRegulamin} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>{t('footerRegulamin')}</button>
           <button onClick={onOpenRodo} style={{ color: "#9ca3af", fontSize: "0.78rem", fontWeight: 600, textDecoration: "underline", background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>{t('footerRodo')}</button>
@@ -1061,7 +1004,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         <span className="modal-close" onClick={onClose} style={{ position: 'absolute', top: '10px', right: '15px', fontSize: '2rem', cursor: 'pointer', color: '#aaa', transition: 'color 0.2s', fontWeight: 300, lineHeight: 1 }}>&times;</span>
         
         {/* Expanded image container */}
-        <div className="modal-image-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fafafa', borderRadius: '12px', padding: '1rem', overflow: 'hidden', minHeight: '180px' }}>
+        <div className="modal-image-col" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--card-bg)', borderRadius: '12px', padding: '1rem', overflow: 'hidden', minHeight: '180px' }}>
           <img 
             src={product.img} 
             alt={product.name} 

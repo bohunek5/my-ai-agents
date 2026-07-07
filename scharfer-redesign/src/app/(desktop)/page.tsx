@@ -191,8 +191,8 @@ export default function HomePage() {
               <p>{t('story4P1')}</p>
               <p>{t('story4P2')}</p>
             </div>
-            <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-              <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', mixBlendMode: 'multiply', boxShadow: 'none', borderRadius: 0 }} />
+            <div className="b2b-story-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', background: '#ffffff', borderRadius: '12px' }}>
+              <img src="/assets/ce_rohs.png" alt="Certyfikaty CE i RoHS" style={{ width: 'auto', maxWidth: '100%', maxHeight: '180px', objectFit: 'contain', boxShadow: 'none', borderRadius: 0 }} />
             </div>
           </div>
         </div>
@@ -313,7 +313,7 @@ export default function HomePage() {
       <div className="container section-padding" style={{ maxWidth: 'var(--max-width)', margin: '4rem auto 0 auto', padding: '0 1.5rem' }}>
         <div className="partnership-section" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <div className="partnership-img" style={{ flex: 1, minWidth: '300px' }}>
-            <img src="/assets/scharfer_partnership.webp" alt="{t('b2bCoop')} Scharfer" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.05)' }} />
+            <img src="/assets/scharfer_partnership.webp" alt="Współpraca B2B Scharfer" style={{ width: '100%', borderRadius: '12px', boxShadow: '0 8px 24px rgba(0,0,0,0.05)' }} />
           </div>
           <div className="partnership-text" style={{ flex: 1, minWidth: '300px' }}>
             <h2 style={{ fontSize: '2.2rem', color: 'var(--c-heading)', marginBottom: '0.5rem', fontWeight: 800 }}>{t('b2bTitle')}</h2>
@@ -362,7 +362,7 @@ export default function HomePage() {
                   </span>
                 </button>
                 {activeFaq === idx && (
-                  <div className="faq-answer" style={{ padding: '0 1.5rem 1.5rem', color: 'var(--c-text)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                  <div className="faq-answer" style={{ padding: '1rem 1.5rem 1.5rem', color: 'var(--c-text)', fontSize: '0.95rem', lineHeight: 1.6 }}>
                     <p style={{ margin: 0 }}>{item.a}</p>
                   </div>
                 )}
@@ -371,6 +371,68 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      {/* JSON-LD for Organization */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Scharfer LED",
+            "url": "https://www.scharfer.com.pl/",
+            "logo": "https://www.scharfer.com.pl/assets/logo.png",
+            "description": "Oficjalny dystrybutor wodoodpornych zasilaczy LED IP67 z 7-letnią gwarancją.",
+            "vatID": "8451939947",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "ul. Wileńska 1",
+              "postalCode": "11-500",
+              "addressLocality": "Giżycko",
+              "addressCountry": "PL"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+48 87 777 64 82",
+              "contactType": "sales",
+              "email": "komponenty@prescot.pl",
+              "availableLanguage": ["Polish", "English"]
+            },
+            "sameAs": [
+              "https://prescot.pl",
+              "https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580"
+            ]
+          })
+        }}
+      />
+      
+      {/* JSON-LD for FAQ */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Jakie są warunki gwarancji na zasilacze LED Scharfer?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Każdy zasilacz LED marki Scharfer objęty jest pełną, 7-letnią gwarancją producenta. Jesteśmy pewni naszej technologii i stosowanych komponentów, co pozwala nam zapewnić Ci maksymalne bezpieczeństwo inwestycji w oświetlenie."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Czy zasilacze posiadają certyfikat IP67?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Tak, zasilacze scharfer posiadają klasę szczelności IP67. Oznacza to pełną wodoszczelność i pyłoszczelność."
+                }
+              }
+            ]
+          })
+        }}
+      />
     </div>
   );
 }
