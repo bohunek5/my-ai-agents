@@ -183,9 +183,9 @@ function ProductCard({ product, onOpenModal }: { product: Product; onOpenModal: 
       </div>
 
       {/* Button with clean transitions (removed overriding inline color) */}
-      <button onClick={() => onOpenModal(product)} className="btn-secondary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.8rem', fontSize: '0.85rem', fontWeight: 700 }}>
+      <a href={`/produkt/${product.index}`} onClick={(e) => { e.preventDefault(); onOpenModal(product); }} className="btn-secondary" style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', padding: '0.8rem', fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none' }}>
         {t('techDetails')}
-      </button>
+      </a>
     </div>
   );
 }
@@ -207,7 +207,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         <span className="modal-close" onClick={onClose} style={{ position: 'absolute', top: '20px', right: '25px', fontSize: '2.5rem', cursor: 'pointer', color: '#aaa', transition: 'color 0.2s', fontWeight: 300, lineHeight: 1 }} onMouseEnter={(e) => e.currentTarget.style.color = '#111'} onMouseLeave={(e) => e.currentTarget.style.color = '#aaa'}>&times;</span>
         
         {/* Expanded image container (minWidth: 360px) */}
-        <div className="modal-image-col" style={{ flex: 1.2, minWidth: '360px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fafafa', borderRadius: '12px', padding: '1.5rem', overflow: 'hidden' }}>
+        <div className="modal-image-col" style={{ flex: 1.2, minWidth: '360px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'var(--c-light-gray)', borderRadius: '12px', padding: '1.5rem', overflow: 'hidden' }}>
           <img 
             src={product.img} 
             alt={product.name} 

@@ -300,7 +300,7 @@ export default function PoznajPage() {
                   </span>
                 </button>
                 {activeFaq === idx && (
-                  <div className="faq-answer" style={{ padding: '0 1.5rem 1.5rem', color: 'var(--c-text)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                  <div className="faq-answer" style={{ padding: '1.2rem 1.5rem 1.5rem', borderTop: '1px solid var(--c-border)', color: 'var(--c-text)', fontSize: '0.95rem', lineHeight: 1.6 }}>
                     <p style={{ margin: 0 }}>{item.a}</p>
                   </div>
                 )}

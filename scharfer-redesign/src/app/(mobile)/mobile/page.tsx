@@ -436,7 +436,7 @@ export default function MobileAppPage() {
                       <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
-                      <div className="faq-body-m" style={{ padding: '15px 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)' }}>
+                      <div className="faq-body-m" style={{ padding: '15px 15px 20px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)' }}>
                         <p style={{ margin: 0 }}>{item.a}</p>
                       </div>
                     )}
@@ -738,7 +738,7 @@ export default function MobileAppPage() {
                       <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
-                      <div className="faq-body-m" style={{ padding: '15px 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)' }}>
+                      <div className="faq-body-m" style={{ padding: '15px 15px 20px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)' }}>
                         <p style={{ margin: 0 }}>{item.a}</p>
                       </div>
                     )}
@@ -804,7 +804,7 @@ export default function MobileAppPage() {
                       <span className="faq-icon-m" style={{ fontSize: '1.2rem', color: '#e60000' }}>{activeFaq === idx ? '−' : '+'}</span>
                     </button>
                     {activeFaq === idx && (
-                      <div className="faq-body-m" style={{ padding: '15px 15px 12px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)' }}>
+                      <div className="faq-body-m" style={{ padding: '15px 15px 20px', fontSize: '0.82rem', color: 'var(--c-text)', lineHeight: 1.4, borderTop: '1px solid var(--c-border)' }}>
                         <p style={{ margin: 0 }}>{item.a}</p>
                       </div>
                     )}
