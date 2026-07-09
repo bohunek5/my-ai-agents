@@ -37,7 +37,7 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
       title: t('feature1Title'),
       desc: t('feature1Desc'),
       x1: 300, y1: 90, x2: 440, y2: 180,
-      mobileLeft: '25.0%', mobileTop: '21%'
+      mobileLeft: '15.0%', mobileTop: '21%'
     },
     {
       title: t('feature2Title'),
@@ -67,7 +67,7 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
       title: t('feature6Title'),
       desc: t('feature6Desc'),
       x1: 1100, y1: 325, x2: 790, y2: 335,
-      mobileLeft: '78%', mobileTop: '58%'
+      mobileLeft: '65%', mobileTop: '58%'
     },
     {
       title: t('feature7Title'),

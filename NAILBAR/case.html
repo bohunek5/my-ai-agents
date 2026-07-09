@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+  <title>Case study | NailBar Giżycko</title>
+  <link rel="stylesheet" href="styles.css?v=20260608-1000">
+  <link rel="stylesheet" href="cases.css?v=20260608-1000">
+  <script src="app.js?v=20260608-1000" defer></script>
+  <script src="case-data.js?v=20260608-1000" defer></script>
+  <script src="cases.js?v=20260608-1000" defer></script>
+  <script src="cookie-banner.js?v=20260608-1000" defer></script>
+</head>
+<body data-page="case">
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <header class="site-header solid">
+    <div class="utility-bar">
+      <span data-i18n="utility">Salon kosmetyczny w Giżycku</span>
+      <div class="utility-actions">
+        <a class="eu-utility-link" href="/ue/" aria-label="Unia Europejska - projekty unijne">
+          <span class="eu-flag-icon" aria-hidden="true"><img src="/assets/images/eu-flag.svg?v=20260608-1000" alt=""></span>
+          <span data-i18n="euTitleShort">Unia Europejska</span>
+        </a>
+        <div class="language-switch" aria-label="Wybór języka">
+          <button class="lang-button active" type="button" data-language="pl" aria-pressed="true">🇵🇱 PL</button>
+          <button class="lang-button" type="button" data-language="en" aria-pressed="false">🇬🇧 EN</button>
+          <button class="lang-button" type="button" data-language="de" aria-pressed="false">🇩🇪 DE</button>
+        </div>
+        <a class="eu-utility-link" href="/cart/" aria-label="Koszyk" data-i18n="cartShort">Koszyk</a>
+        <button class="icon-button utility-icon" id="accessibilityOpen" type="button" aria-controls="accessibilityPanel" aria-label="Dostępność">♿</button>
+      </div>
+    </div>
+    <nav class="main-nav" aria-label="Główna nawigacja">
+      <a class="brand" href="/" aria-label="NailBar - strona główna">
+        <img src="assets/images/logo.png" alt="NailBar">
+      </a>
+      <button class="icon-button menu-toggle mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks" title="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="/#uslugi" data-i18n="navServices">Usługi</a>
+        <a href="/cases/" data-i18n="navCases">Metamorfozy</a>
+        <a href="/spacer/" data-i18n="navTour">Spacer 360</a>
+        <a href="/#doradztwo" data-i18n="navAdvice">Doradztwo</a>
+        <a href="/shop/" data-i18n="navShop">Sklep on-line</a>
+        <a href="/ue/" data-i18n="navEU">Projekty unijne</a>
+        <a href="/kontakt/" data-i18n="navContact">Kontakt</a>
+        <a class="nav-cta" href="https://booksy.com/pl-pl/69296_nailbar-malgorzata-marchelewicz_paznokcie_5694_gizycko" target="_blank" rel="noopener" data-i18n="book">Umów wizytę</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div id="caseDetail"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="assets/images/logo.png" alt="NailBar">
+      <p>NailBar manicure.pedicure.spa</p>
+    </div>
+    <address class="footer-contact">
+      <span data-i18n="footerAddressLabel">Adres</span>
+      <a href="https://www.google.com/maps/search/?api=1&query=NailBar%20Szantowa%204%2F4%2011-500%20Gi%C5%BCycko" target="_blank" rel="noopener">ul. Szantowa 4/4, 11-500 Giżycko</a>
+      <span data-i18n="footerPhoneLabel">Telefon</span>
+      <a href="tel:+48511026238">+48 511 026 238</a>
+    </address>
+    <div class="footer-links">
+      <span data-i18n="footerLinksLabel">Linki</span>
+      <a href="https://www.facebook.com/stylizacjapaznokcigizycko/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/nailbar_manicure.pedicure.spa/" target="_blank" rel="noopener">Instagram</a>
+      <a href="/regulamin.html" data-i18n="footerTerms">Regulamin</a>
+      <a href="/polityka-prywatnosci.html" data-i18n="footerPrivacy">Polityka prywatności</a>
+      <a href="#" id="cookieSettingsBtn" data-i18n="footerCookies">Ustawienia cookies</a>
+    </div>
+  </footer>
+
+  <aside class="accessibility-panel" id="accessibilityPanel" aria-label="Ustawienia dostępności" hidden>
+    <div class="panel-head"><strong data-i18n="accessibilityTitle">Dostępność</strong><button class="icon-button" id="accessibilityClose" type="button" aria-label="Zamknij">×</button></div>
+    <p class="accessibility-copy" data-i18n="accessibilityText">Włącz uproszczony tryb czarno-biały z mocniejszym kontrastem całej strony.</p>
+    <button type="button" class="accessibility-toggle alt" data-access="font" data-i18n="accessibilityFont">Powiększ czcionki</button>
+    <button type="button" class="accessibility-toggle alt" data-access="links" data-i18n="accessibilityLinks">Podkreśl linki</button>
+    <button type="button" class="accessibility-toggle" data-access="bw" data-i18n="accessibilityToggle">Włącz tryb czarno-biały</button>
+  </aside>
+</body>
+</html>

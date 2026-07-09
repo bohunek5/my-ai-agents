@@ -6,6 +6,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 import WcagMenu from '@/components/WcagMenu';
 import ThemeToggle from '@/components/ThemeToggle';
+import ThemeLogo from '@/components/ThemeLogo';
 
 export default function Header() {
   const pathname = usePathname();
@@ -24,14 +25,14 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="header-inner">
-        <div className="logo-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="logo-wrapper" style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
           <Link href="/" className="logo-link" id="logo-btn">
-            <img src="/logo_scharfer.png" alt="Scharfer - Zasilacze LED" className="logo-img" />
+            <ThemeLogo lightSrc="/logo_scharfer.png" darkSrc="/logo_scharfer_dark.png" alt="Scharfer - Zasilacze LED" className="logo-img" />
           </Link>
-          <div className="distributor-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', gap: '2px', borderLeft: '2px solid var(--c-border)', paddingLeft: '12px' }}>
+          <div className="distributor-badge" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center', gap: '2px', marginLeft: '6px' }}>
             <span style={{ fontSize: '9px', fontWeight: 700, color: 'var(--c-text)', opacity: 0.8, textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1 }}>{t('officialDistributor')}</span>
             <a href="https://prescot.pl" target="_blank" rel="noopener noreferrer" style={{ display: 'flex' }}>
-              <img src="/PRESCOT_logo.png" alt="PRESCOT LED" style={{ height: '16px' }} />
+              <ThemeLogo lightSrc="/PRESCOT_logo.png" darkSrc="/PRESCOT_logo_dark.png" alt="PRESCOT LED" style={{ height: '17px' }} />
             </a>
           </div>
         </div>
@@ -126,16 +127,16 @@ export default function Header() {
           </div>
 
           {/* Retail link */}
-          <a href="https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580" target="_blank" rel="noopener noreferrer" className="retail-btn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '0.4rem 0.8rem', border: 'none', background: 'var(--c-red)', color: '#FFFFFF', textDecoration: 'none', borderRadius: '6px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', transition: 'all 0.3s ease', whiteSpace: 'nowrap' }}>
-            <span style={{ fontSize: '0.82rem', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <a href="https://www.prescot.com.pl/pl/c/Zasilacze-LED-Scharfer/580" target="_blank" rel="noopener noreferrer" className="retail-btn" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '0.5rem 1rem', border: 'none', background: 'var(--c-red)', color: '#FFFFFF', textDecoration: 'none', borderRadius: '6px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', transition: 'all 0.3s ease', whiteSpace: 'nowrap' }}>
+            <span style={{ fontSize: '0.9rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1" />
                 <circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
               </svg>
-              {t('navB2c')}
+              {t('navB2C')}
             </span>
-            <span style={{ fontSize: '0.65rem', color: 'rgba(255, 255, 255, 0.8)', borderLeft: '1px solid rgba(255, 255, 255, 0.3)', paddingLeft: '8px' }}>www.prescot.com.pl</span>
+            <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.9)', borderLeft: '1px solid rgba(255, 255, 255, 0.4)', paddingLeft: '8px' }}>www.prescot.com.pl</span>
           </a>
         </div>
       </div>

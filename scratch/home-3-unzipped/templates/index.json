@@ -1,0 +1,376 @@
+{
+  "sections": {
+    "slideshow-v1": {
+      "type": "slideshow-v1",
+      "blocks": {
+        "13926295-9e3c-41b8-a71d-a0fd2ed4e3ca": {
+          "type": "slideshow",
+          "settings": {
+            "reverse_layout": true,
+            "subtitle": "KITCHEN ACCESSORIES",
+            "subtitle_font_size": 1.6,
+            "subtitle_font_weight": 500,
+            "subtitle_animation": "zoom-out",
+            "title": "Tools Kitchen",
+            "title_font_size": 8,
+            "title_font_weight": 400,
+            "title_animation": "zoom-out",
+            "description": "The cookware is dishwasher safe.",
+            "description_font_size": 2,
+            "description_font_weight": 500,
+            "description_animation": "zoom-out",
+            "button_text": "shop now",
+            "button_link": "shopify://collections/all",
+            "button_mode": "dark",
+            "button_style": "tertiary",
+            "button_size": "sm",
+            "button_radius": 0,
+            "button_padding": 1.4,
+            "button_animation": "zoom-out",
+            "device": "desktop",
+            "image_desktop_animation": "none",
+            "image_mobile_animation": "none",
+            "color_scheme": "",
+            "background_type": "image",
+            "background_color": "#f7f7f7",
+            "background_gradient": "",
+            "background_image_desktop": "shopify://shop_images/slide3.1.jpg",
+            "background_image_mobile": "shopify://shop_images/slide3.1.jpg",
+            "use_parallax": false,
+            "background_image_animation": "zoom-out",
+            "background_video_url": "",
+            "background_video_animation": "none",
+            "background_overlay": "",
+            "background_margin": 0
+          }
+        },
+        "slideshow_bTjihx": {
+          "type": "slideshow",
+          "settings": {
+            "reverse_layout": true,
+            "subtitle": "KITCHEN ACCESSORIES",
+            "subtitle_font_size": 1.6,
+            "subtitle_font_weight": 500,
+            "subtitle_animation": "zoom-out",
+            "title": "Cooking Utensils",
+            "title_font_size": 8,
+            "title_font_weight": 400,
+            "title_animation": "zoom-out",
+            "description": "Made of 100% Natural Teak.",
+            "description_font_size": 2,
+            "description_font_weight": 500,
+            "description_animation": "zoom-out",
+            "button_text": "shop now",
+            "button_link": "shopify://collections/all",
+            "button_mode": "dark",
+            "button_style": "tertiary",
+            "button_size": "sm",
+            "button_radius": 0,
+            "button_padding": 1.4,
+            "button_animation": "zoom-out",
+            "device": "desktop",
+            "image_desktop_animation": "none",
+            "image_mobile_animation": "none",
+            "color_scheme": "",
+            "background_type": "image",
+            "background_color": "#f7f7f7",
+            "background_gradient": "",
+            "background_image_desktop": "shopify://shop_images/slide3.2.jpg",
+            "background_image_mobile": "shopify://shop_images/slide3.2.jpg",
+            "use_parallax": false,
+            "background_image_animation": "zoom-out",
+            "background_video_url": "",
+            "background_video_animation": "none",
+            "background_overlay": "",
+            "background_margin": 0
+          }
+        }
+      },
+      "block_order": [
+        "13926295-9e3c-41b8-a71d-a0fd2ed4e3ca",
+        "slideshow_bTjihx"
+      ],
+      "settings": {
+        "width": "fullwidth",
+        "fullwidth_margin": 0,
+        "section_height_desktop": 760,
+        "section_height_mobile": 500,
+        "carousel_type": "none",
+        "changing_speed": 400,
+        "autoplay": false,
+        "autoplay_speed": 5,
+        "show_pagination": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "brand_v6_DbCegJ": {
+      "type": "brand-v2",
+      "blocks": {
+        "brand_XDBbX4": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand1.1.png",
+            "link": "shopify://collections/all",
+            "svg": ""
+          }
+        },
+        "brand_q7zFin": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand1.2.png",
+            "link": "shopify://collections/all",
+            "svg": ""
+          }
+        },
+        "brand_fGaLaw": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand1.3.png",
+            "link": "shopify://collections/all",
+            "svg": ""
+          }
+        },
+        "brand_cGGNgb": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand1.4.png",
+            "link": "shopify://collections/all",
+            "svg": ""
+          }
+        },
+        "brand_ncrfeB": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand1.5.png",
+            "link": "shopify://collections/all",
+            "svg": ""
+          }
+        },
+        "brand_ypzgFX": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/brand1.1.png",
+            "link": "shopify://collections/all",
+            "svg": ""
+          }
+        }
+      },
+      "block_order": [
+        "brand_XDBbX4",
+        "brand_q7zFin",
+        "brand_fGaLaw",
+        "brand_cGGNgb",
+        "brand_ncrfeB",
+        "brand_ypzgFX"
+      ],
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "columns_limit": 5,
+        "gap": 30,
+        "auto_play": false,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "banner_v47_9zF7U3": {
+      "type": "banner-v2",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "reverse": false,
+        "gap": 0,
+        "title": "Cutting Board",
+        "description": "The kitchen is the perfect breeding ground for odor and stain producing microbes. Bacteria, mold, and mildew can grow at an alarming rate if you leave your kitchen gadgets, like your cutting board, unprotected. At Neoflam, we have teamed up with Microban, a leader in antimicrobial technologies, to produce a safer, more effective cutting board.",
+        "image": "shopify://shop_images/banner5.1.jpg",
+        "hover": "scale_up",
+        "link": "shopify://collections/all",
+        "button_text": "shop now",
+        "button_mode": "dark",
+        "button_style": "secondary",
+        "button_size": "sm",
+        "button_radius": 0,
+        "button_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "banner_v47_V4EWXL": {
+      "type": "banner-v2",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "reverse": true,
+        "gap": 0,
+        "title": "Ceramic Cookware",
+        "description": "This simply is the most beautiful set of cookware! In addition to the soft blue (even though Cooken calls the blue “mint” it’s more of a tasteful blue-grey), there’s a pink and grey set as well. The colors are matte and muted.",
+        "image": "shopify://shop_images/banner5.2.jpg",
+        "hover": "scale_up",
+        "link": "shopify://collections/all",
+        "button_text": "shop now",
+        "button_mode": "dark",
+        "button_style": "secondary",
+        "button_size": "sm",
+        "button_radius": 0,
+        "button_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "banner_v47_rPaHmM": {
+      "type": "banner-v2",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "reverse": false,
+        "gap": 0,
+        "title": "Pots & Pans",
+        "description": "Having at least one nonstick pan is essential in every cook's kitchen, from the most professional to the very beginners. It's almost impossible to make eggs without one, they make pan searing fish a lot easier, and they keep pancakes from tearing apart in the pan.",
+        "image": "shopify://shop_images/banner5.3.jpg",
+        "hover": "scale_up",
+        "link": "shopify://collections/all",
+        "button_text": "shop now",
+        "button_mode": "dark",
+        "button_style": "secondary",
+        "button_size": "sm",
+        "button_radius": 0,
+        "button_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "product_v1_mx3A9T": {
+      "type": "product-v1",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "subtitle": "",
+        "title": "New Arrivals",
+        "collection": "product-card-style-04",
+        "limit": 12,
+        "columns_size": 4,
+        "distinct_color_scheme": false,
+        "product_card_color_scheme": "",
+        "button_text": "ALL PRODUCTS",
+        "button_link": "shopify://collections/all",
+        "button_mode": "dark",
+        "button_style": "secondary",
+        "button_size": "sm",
+        "button_radius": 0,
+        "button_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "blog_v2_FcHcCX": {
+      "type": "blog-v2",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "title": "Our Blog",
+        "blog": "blog-masonry",
+        "articles_limit": 8,
+        "columns_limit": 3,
+        "gap": 30,
+        "auto_play": false,
+        "hover": "scale_up",
+        "aspect_ratio": "1/1",
+        "button_text": "Read more",
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "instagram_v4_MMqTM3": {
+      "type": "instagram-v4",
+      "settings": {
+        "width": "fullwidth",
+        "fullwidth_margin": 0,
+        "title": "Cooken On Instagram",
+        "columns_limit": 5,
+        "limit": 5,
+        "gap": 15,
+        "access_token": "",
+        "open_mode": "newtab",
+        "icon_image": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 448 512\"><path d=\"M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z\"></path></svg>",
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 15
+      }
+    }
+  },
+  "order": [
+    "slideshow-v1",
+    "brand_v6_DbCegJ",
+    "banner_v47_9zF7U3",
+    "banner_v47_V4EWXL",
+    "banner_v47_rPaHmM",
+    "product_v1_mx3A9T",
+    "blog_v2_FcHcCX",
+    "instagram_v4_MMqTM3"
+  ]
+}

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+  <meta name="description" content="NailBar Giżycko - salon kosmetyczny, manicure, pedicure, kosmetologia i sklep online.">
+  <title>NailBar Giżycko | Salon kosmetyczny i sklep</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <header class="site-header">
+    <div class="utility-bar">
+      <span data-i18n="utility">Salon kosmetyczny w Giżycku</span>
+      <div class="utility-actions">
+        <div class="language-switch" aria-label="Wybór języka">
+          <button class="lang-button active" type="button" data-language="pl" aria-pressed="true">🇵🇱 PL</button>
+          <button class="lang-button" type="button" data-language="en" aria-pressed="false">🇬🇧 EN</button>
+          <button class="lang-button" type="button" data-language="de" aria-pressed="false">🇩🇪 DE</button>
+        </div>
+        <button class="icon-button utility-icon" id="accessibilityOpen" type="button" aria-controls="accessibilityPanel" aria-label="Dostępność">♿</button>
+      </div>
+    </div>
+    <nav class="main-nav" aria-label="Główna nawigacja">
+      <a class="brand" href="#start" aria-label="NailBar - strona główna">
+        <img src="assets/images/logo.png" alt="NailBar">
+      </a>
+      <button class="icon-button menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks" title="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#uslugi" data-i18n="navServices">Usługi</a>
+        <a href="/cases/" data-i18n="navCases">Metamorfozy</a>
+        <a href="#wycieczka" data-i18n="navTour">Wycieczka</a>
+        <a href="#doradztwo" data-i18n="navAdvice">Doradztwo</a>
+        <a href="/shop/" data-i18n="navShop">Sklep on-line</a>
+        <a href="#kontakt" data-i18n="navContact">Kontakt</a>
+        <a class="nav-cta" href="https://booksy.com/pl-pl/69296_nailbar-malgorzata-marchelewicz_paznokcie_5694_gizycko" target="_blank" rel="noopener" data-i18n="book">Umów wizytę</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="start" aria-labelledby="heroTitle">
+      <video autoplay muted loop playsinline poster="assets/images/salon-main.webp">
+        <source src="assets/images/salon.mp4" type="video/mp4">
+      </video>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="heroEyebrow">NailBar Giżycko</p>
+        <h1 id="heroTitle" data-i18n="heroTitle">Piękno dopracowane w każdym detalu</h1>
+        <p data-i18n="heroText">Manicure, pedicure, kosmetologia i pielęgnacja w spokojnym, profesjonalnym salonie.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://booksy.com/pl-pl/69296_nailbar-malgorzata-marchelewicz_paznokcie_5694_gizycko" target="_blank" rel="noopener" data-i18n="book">Umów wizytę</a>
+          <a class="button secondary" href="#wycieczka" data-i18n="seeSalon">Zobacz salon</a>
+        </div>
+      </div>
+      <a class="hero-next" href="#uslugi" aria-label="Przejdź do usług">↓</a>
+    </section>
+
+    <section class="section services" id="uslugi" aria-labelledby="servicesTitle">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="servicesEyebrow">Oferta salonu</p>
+        <h2 id="servicesTitle" data-i18n="servicesTitle">Zabiegi dobrane do Ciebie</h2>
+        <p data-i18n="servicesText">Łączymy doświadczenie, sprawdzone technologie i indywidualne doradztwo.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service-card">
+          <img src="assets/images/manicure.webp" alt="Stylizacja paznokci">
+          <div><h3 data-i18n="service1Title">Manicure i pedicure</h3><p data-i18n="service1Text">Precyzyjna stylizacja, pielęgnacja i trwały efekt.</p><a href="#kontakt" data-i18n="service1Link">Sprawdź terminy →</a></div>
+        </article>
+        <article class="service-card">
+          <img src="assets/images/kosmetyka.webp" alt="Zabieg kosmetyczny">
+          <div><h3 data-i18n="service2Title">Kosmetologia</h3><p data-i18n="service2Text">Zabiegi dopasowane do potrzeb skóry i oczekiwanych rezultatów.</p><a href="#doradztwo" data-i18n="service2Link">Dobierz zabieg →</a></div>
+        </article>
+        <article class="service-card">
+          <img src="assets/images/modelowanie.webp" alt="Modelowanie sylwetki">
+          <div><h3 data-i18n="service3Title">Modelowanie sylwetki</h3><p data-i18n="service3Text">Nowoczesne terapie wspierające pielęgnację ciała.</p><a href="#case-studies" data-i18n="service3Link">Zobacz efekty →</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section case-studies" id="case-studies" aria-labelledby="casesTitle">
+      <div class="section-heading align-left">
+        <p class="eyebrow" data-i18n="casesEyebrow">Case studies</p>
+        <h2 id="casesTitle" data-i18n="casesTitle">Efekty i metamorfozy</h2>
+        <p data-i18n="casesText">Rozbudowane ścieżki zabiegowe z opisem celu, procesu, efektu docelowego i pielęgnacji po wizycie.</p>
+      </div>
+      <div class="case-grid">
+        <article class="case-card">
+          <img src="assets/tour/103481_8.webp" alt="Metamorfoza manicure">
+          <div class="case-content"><span data-i18n="case1Tag">Stylizacja paznokci</span><h3 data-i18n="case1Title">Naturalna płytka, elegancki efekt</h3><p data-i18n="case1Text">Wzmocnienie, wyrównanie i subtelna stylizacja dopasowana do codziennej pracy.</p><a class="link-button" href="/case/#manicure-naturalny" data-i18n="caseLink">Poznaj proces →</a></div>
+        </article>
+        <article class="case-card">
+          <img src="assets/tour/103487_8.webp" alt="Metamorfoza pielęgnacyjna">
+          <div class="case-content"><span data-i18n="case2Tag">Pielęgnacja</span><h3 data-i18n="case2Title">Plan pielęgnacji skóry</h3><p data-i18n="case2Text">Diagnoza, seria zabiegów i prosta pielęgnacja domowa dobrana do potrzeb.</p><a class="link-button" href="/case/#plan-skory" data-i18n="caseLink">Poznaj proces →</a></div>
+        </article>
+        <article class="case-card">
+          <img src="assets/tour/103490_8.webp" alt="Metamorfoza sylwetki">
+          <div class="case-content"><span data-i18n="case3Tag">Modelowanie</span><h3 data-i18n="case3Title">Świadoma terapia ciała</h3><p data-i18n="case3Text">Indywidualnie dobrany harmonogram i regularne monitorowanie rezultatów.</p><a class="link-button" href="/case/#modelowanie-sylwetki" data-i18n="caseLink">Poznaj proces →</a></div>
+        </article>
+      </div>
+      <p class="cases-all-link"><a class="button secondary" href="/cases/" data-i18n="casesAll">Zobacz wszystkie case studies</a></p>
+    </section>
+
+    <section class="tour-section" id="wycieczka" aria-labelledby="tourTitle">
+      <div class="tour-copy">
+        <p class="eyebrow" data-i18n="tourEyebrow">Wirtualna wycieczka</p>
+        <h2 id="tourTitle" data-i18n="tourTitle">Poznaj salon przed wizytą</h2>
+        <p data-i18n="tourText">Przeciągnij widok, użyj strzałek lub uruchom automatyczny spacer po wnętrzach salonu.</p>
+        <div class="tour-controls">
+          <button class="icon-button" id="tourPrev" type="button" aria-label="Obróć widok w lewo">←</button>
+          <button class="icon-button" id="tourPlay" type="button" aria-label="Uruchom automatyczny obrót">▶</button>
+          <span id="tourCounter" aria-live="polite">1 / 31</span>
+          <button class="icon-button" id="tourNext" type="button" aria-label="Obróć widok w prawo">→</button>
+          <button class="button secondary light" id="tourFullscreen" type="button" data-i18n="tourFullscreen">Pełny ekran</button>
+        </div>
+      </div>
+      <div class="tour-viewer" id="tourViewer" tabindex="0" aria-label="Wirtualna wycieczka po salonie">
+        <img id="tourImage" src="assets/tour/103463_8.webp" alt="Interaktywny widok wnętrza salonu NailBar" draggable="false">
+        <div class="tour-degree" aria-hidden="true">360°</div>
+        <div class="tour-hint" data-i18n="tourHint">Przeciągnij lub użyj strzałek</div>
+        <input class="tour-scrubber" id="tourScrubber" type="range" min="0" max="30" value="0" aria-label="Pozycja widoku 360 stopni">
+      </div>
+    </section>
+
+    <section class="section advice" id="doradztwo" aria-labelledby="adviceTitle">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="adviceEyebrow">Nowa zakładka doradcza</p>
+        <h2 id="adviceTitle" data-i18n="adviceTitle">Nie wiesz, jaki zabieg wybrać?</h2>
+        <p data-i18n="adviceText">Odpowiedz na kilka pytań. Wskażemy kierunek i przygotujemy konsultację.</p>
+      </div>
+      <form class="advice-form" id="adviceForm">
+        <label><span data-i18n="adviceAreaLabel">Obszar</span>
+          <select name="area" required>
+            <option value="" data-i18n="adviceAreaPlaceholder">Wybierz obszar</option>
+            <option data-i18n="adviceArea1">Paznokcie i dłonie</option><option data-i18n="adviceArea2">Twarz i skóra</option><option data-i18n="adviceArea3">Sylwetka i ciało</option><option data-i18n="adviceArea4">Makijaż</option>
+          </select>
+        </label>
+        <label><span data-i18n="adviceGoalLabel">Najważniejszy cel</span>
+          <select name="goal" required>
+            <option value="" data-i18n="adviceGoalPlaceholder">Wybierz cel</option>
+            <option data-i18n="adviceGoal1">Natychmiastowy efekt</option><option data-i18n="adviceGoal2">Regularna pielęgnacja</option><option data-i18n="adviceGoal3">Rozwiązanie konkretnego problemu</option><option data-i18n="adviceGoal4">Przygotowanie do wydarzenia</option>
+          </select>
+        </label>
+        <label><span data-i18n="adviceContactLabel">Telefon lub e-mail</span>
+          <input name="contact" type="text" placeholder="Jak możemy się skontaktować?" data-i18n-placeholder="adviceContactPlaceholder" required>
+        </label>
+        <button class="button primary" type="submit" data-i18n="adviceSubmit">Poproś o rekomendację</button>
+        <p class="form-status" id="adviceStatus" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section social" id="social" aria-labelledby="socialTitle">
+      <div class="section-heading align-left">
+        <p class="eyebrow" data-i18n="socialEyebrow">Social wall</p>
+        <h2 id="socialTitle" data-i18n="socialTitle">Z salonu i zza kulis</h2>
+        <p data-i18n="socialText">Wybrane zdjęcia z salonu, realizacji i codziennej pracy zespołu.</p>
+      </div>
+      <div class="social-grid" id="socialGrid"></div>
+      <a class="button secondary" href="https://www.instagram.com/nailbar_manicure.pedicure.spa" target="_blank" rel="noopener" data-i18n="socialButton">Obserwuj na Instagramie</a>
+    </section>
+
+    <section class="newsletter" aria-labelledby="newsletterTitle">
+      <div>
+        <p class="eyebrow" data-i18n="newsletterEyebrow">Newsletter NailBar</p>
+        <h2 id="newsletterTitle" data-i18n="newsletterTitle">Nowości i wolne terminy bez szukania</h2>
+        <p data-i18n="newsletterText">Zostaw adres, a poinformujemy o nowościach, dostępnych terminach i premierach produktów.</p>
+      </div>
+      <form id="newsletterForm">
+        <label class="sr-only" for="newsletterEmail" data-i18n="newsletterEmailLabel">Adres e-mail</label>
+        <input id="newsletterEmail" type="email" placeholder="Twój adres e-mail" data-i18n-placeholder="newsletterEmailPlaceholder" required>
+        <label class="consent"><input type="checkbox" required> <span data-i18n="newsletterConsent">Akceptuję kontakt marketingowy i politykę prywatności.</span></label>
+        <button class="button primary" type="submit" data-i18n="newsletterSubmit">Zapisz mnie</button>
+        <p class="form-status" id="newsletterStatus" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="contact-section" id="kontakt" aria-labelledby="contactTitle">
+      <div>
+        <p class="eyebrow" data-i18n="contactEyebrow">NailBar Giżycko</p>
+        <h2 id="contactTitle" data-i18n="contactTitle">Umów wizytę lub zapytaj o zabieg</h2>
+        <p data-i18n="contactText">Najłatwiej przez Booksy. W sprawie konsultacji i produktów skorzystaj z chatu lub formularza doradczego.</p>
+      </div>
+      <div class="contact-actions">
+        <a class="button primary" href="https://booksy.com/pl-pl/69296_nailbar-malgorzata-marchelewicz_paznokcie_5694_gizycko" target="_blank" rel="noopener" data-i18n="contactBook">Rezerwacja Booksy</a>
+        <a class="button secondary" href="https://www.facebook.com/stylizacjapaznokcigizycko" target="_blank" rel="noopener" data-i18n="contactFacebook">Facebook</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="assets/images/logo.png" alt="NailBar">
+    <p data-i18n="footerText">NailBar Giżycko. Salon kosmetyczny, doradztwo i sklep on-line.</p>
+  </footer>
+
+  <aside class="accessibility-panel" id="accessibilityPanel" aria-label="Ustawienia dostępności" hidden>
+    <div class="panel-head"><strong data-i18n="accessibilityTitle">Dostępność</strong><button class="icon-button" id="accessibilityClose" type="button" aria-label="Zamknij">×</button></div>
+    <p class="accessibility-copy" data-i18n="accessibilityText">Włącz uproszczony tryb czarno-biały z mocniejszym kontrastem całej strony.</p>
+    <button type="button" class="accessibility-toggle alt" data-access="font" data-i18n="accessibilityFont">Powiększ czcionki</button>
+    <button type="button" class="accessibility-toggle alt" data-access="links" data-i18n="accessibilityLinks">Podkreśl linki</button>
+    <button type="button" class="accessibility-toggle" data-access="bw" data-i18n="accessibilityToggle">Włącz tryb czarno-biały</button>
+  </aside>
+
+  <button class="chat-launcher" id="chatLauncher" type="button" aria-expanded="false" aria-controls="chatPanel">
+    <span aria-hidden="true">💬</span><span data-i18n="chatLauncher">Zapytaj na czacie</span>
+  </button>
+  <aside class="chat-panel" id="chatPanel" aria-label="Live chat" hidden>
+    <div class="chat-head"><div><strong>NailBar</strong><span data-i18n="chatHead">Asystent online</span></div><button class="icon-button" id="chatClose" type="button" aria-label="Zamknij chat">×</button></div>
+    <div class="chat-messages" id="chatMessages" aria-live="polite"><p class="chat-bubble bot" data-i18n="chatGreeting">Dzień dobry. Dobierzemy zabieg, termin albo produkt.</p></div>
+    <div class="quick-replies">
+      <button type="button" data-quick-reply="slots" data-i18n="chatQuick1">Wolne terminy</button>
+      <button type="button" data-quick-reply="treatment" data-i18n="chatQuick2">Dobór zabiegu</button>
+      <button type="button" data-quick-reply="gift" data-i18n="chatQuick3">Prezent dla niej</button>
+      <button type="button" data-quick-reply="aftercare" data-i18n="chatQuick4">Pielęgnacja po zabiegu</button>
+    </div>
+    <form id="chatForm"><label class="sr-only" for="chatInput" data-i18n="chatInputLabel">Wiadomość</label><input id="chatInput" type="text" placeholder="Napisz wiadomość..." data-i18n-placeholder="chatPlaceholder" required><button class="icon-button send" type="submit" aria-label="Wyślij">→</button></form>
+  </aside>
+
+</body>
+</html>

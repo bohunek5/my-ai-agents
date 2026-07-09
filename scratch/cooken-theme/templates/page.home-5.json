@@ -1,0 +1,333 @@
+{
+  "sections": {
+    "banner-v8": {
+      "type": "banner-v8",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "subtitle": "",
+        "title": "HEALTHY AND HAPPY LIFE",
+        "description": "When you’ve got your health, you got everything.",
+        "link_banner": "shopify://collections/all",
+        "button_text": "SHOP NOW",
+        "button_mode": "dark",
+        "button_style": "secondary",
+        "button_size": "sm",
+        "button_radius": 0,
+        "button_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "image",
+        "background_color": "#f18f08",
+        "background_gradient": "",
+        "background_image_desktop": "shopify://shop_images/banner2.1.jpg",
+        "background_image_mobile": "shopify://shop_images/banner2.1.jpg",
+        "use_parallax": false,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 230,
+        "padding_bottom": 230
+      }
+    },
+    "banner_v4_ww6dJ6": {
+      "type": "banner-v4",
+      "name": "BANNER V4",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "hover": "scale_up",
+        "gap": 30,
+        "title1": "Cookware Set",
+        "subtitle1": "Daily Essentials",
+        "image1": "shopify://shop_images/banner4.1.jpg",
+        "link1": "shopify://collections/all",
+        "button1_text": "shop now",
+        "button1_mode": "dark",
+        "button1_style": "tertiary",
+        "button1_size": "sm",
+        "button1_radius": 0,
+        "button1_padding": 1.4,
+        "title2": "Glass Lid Set",
+        "subtitle2": "Daily Essentials",
+        "image2": "shopify://shop_images/banner4.2.jpg",
+        "link2": "shopify://collections/all",
+        "button2_text": "shop now",
+        "button2_mode": "dark",
+        "button2_style": "tertiary",
+        "button2_size": "sm",
+        "button2_radius": 0,
+        "button2_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "product_v2_RVipEA": {
+      "type": "product-v2",
+      "blocks": {
+        "tab_Acimdi": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "NEW ARRIVALS",
+            "tab_collection": "best-seller",
+            "tab_limit": 8
+          }
+        },
+        "tab_fhiGUE": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "BEST SELLERS",
+            "tab_collection": "product-card-style-05",
+            "tab_limit": 8
+          }
+        },
+        "tab_Jj7BwY": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "TOP RATES",
+            "tab_collection": "product-card-style-07",
+            "tab_limit": 8
+          }
+        }
+      },
+      "block_order": [
+        "tab_Acimdi",
+        "tab_fhiGUE",
+        "tab_Jj7BwY"
+      ],
+      "name": "PRODUCT V2",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "heading_title": "Our Best Seller",
+        "heading_align": "center",
+        "columns_size": 4,
+        "distinct_color_scheme": false,
+        "product_card_color_scheme": "",
+        "button_text": "",
+        "button_link": "shopify://collections/all",
+        "button_mode": "light",
+        "button_style": "secondary",
+        "button_size": "sm",
+        "button_radius": 0.8,
+        "button_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "policy_v2_MXy7tN": {
+      "type": "policy-v2",
+      "blocks": {
+        "policy_ycCPbQ": {
+          "type": "policy",
+          "settings": {
+            "svg": "<svg version=\"1.1\" id=\"Capa_1\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\"> <g> <g> <path d=\"M119.467,337.067c-28.237,0-51.2,22.963-51.2,51.2c0,28.237,22.963,51.2,51.2,51.2s51.2-22.963,51.2-51.2 C170.667,360.03,147.703,337.067,119.467,337.067z M119.467,422.4c-18.825,0-34.133-15.309-34.133-34.133 c0-18.825,15.309-34.133,34.133-34.133s34.133,15.309,34.133,34.133C153.6,407.091,138.291,422.4,119.467,422.4z\"></path> </g> </g> <g> <g> <path d=\"M409.6,337.067c-28.237,0-51.2,22.963-51.2,51.2c0,28.237,22.963,51.2,51.2,51.2c28.237,0,51.2-22.963,51.2-51.2 C460.8,360.03,437.837,337.067,409.6,337.067z M409.6,422.4c-18.825,0-34.133-15.309-34.133-34.133 c0-18.825,15.309-34.133,34.133-34.133c18.825,0,34.133,15.309,34.133,34.133C443.733,407.091,428.425,422.4,409.6,422.4z\"></path> </g> </g> <g> <g> <path d=\"M510.643,289.784l-76.8-119.467c-1.57-2.441-4.275-3.917-7.177-3.917H332.8c-4.719,0-8.533,3.823-8.533,8.533v213.333 c0,4.719,3.814,8.533,8.533,8.533h34.133v-17.067h-25.6V183.467h80.674l72.926,113.442v82.825h-42.667V396.8h51.2 c4.719,0,8.533-3.814,8.533-8.533V294.4C512,292.77,511.531,291.157,510.643,289.784z\"></path> </g> </g> <g> <g> <path d=\"M375.467,277.333V217.6h68.267v-17.067h-76.8c-4.719,0-8.533,3.823-8.533,8.533v76.8c0,4.719,3.814,8.533,8.533,8.533h128 v-17.067H375.467z\"></path> </g> </g> <g> <g> <path d=\"M332.8,106.667H8.533C3.823,106.667,0,110.49,0,115.2v273.067c0,4.719,3.823,8.533,8.533,8.533H76.8v-17.067H17.067v-256 h307.2v256H162.133V396.8H332.8c4.719,0,8.533-3.814,8.533-8.533V115.2C341.333,110.49,337.519,106.667,332.8,106.667z\"></path> </g> </g> <g> <g> <rect x=\"8.533\" y=\"345.6\" width=\"51.2\" height=\"17.067\"></rect> </g> </g> <g> <g> <rect x=\"179.2\" y=\"345.6\" width=\"145.067\" height=\"17.067\"></rect> </g> </g> <g> <g> <rect x=\"469.333\" y=\"345.6\" width=\"34.133\" height=\"17.067\"></rect> </g> </g> <g> <g> <rect x=\"34.133\" y=\"140.8\" width=\"298.667\" height=\"17.067\"></rect> </g> </g> <g> <g> <rect x=\"110.933\" y=\"379.733\" width=\"17.067\" height=\"17.067\"></rect> </g> </g> <g> <g> <rect x=\"401.067\" y=\"379.733\" width=\"17.067\" height=\"17.067\"></rect> </g> </g> <g> <g> <rect x=\"34.133\" y=\"72.533\" width=\"119.467\" height=\"17.067\"></rect> </g> </g> <g> <g> <rect y=\"72.533\" width=\"17.067\" height=\"17.067\"></rect> </g> </g> </svg>",
+            "title": "Free two-day delivery",
+            "subtitle": "On in-stock items ordered by 5:00 p.m.",
+            "background_color": "#ffffff"
+          }
+        },
+        "policy_7x7paG": {
+          "type": "policy",
+          "settings": {
+            "svg": "<svg version=\"1.1\" id=\"Capa_1\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0px\" y=\"0px\" viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\"> <g> <g> <path d=\"M491.729,112.971L259.261,0.745c-2.061-0.994-4.461-0.994-6.521,0L20.271,112.971c-2.592,1.251-4.239,3.876-4.239,6.754 v272.549c0,2.878,1.647,5.503,4.239,6.754l232.468,112.226c1.03,0.497,2.146,0.746,3.261,0.746s2.23-0.249,3.261-0.746 l232.468-112.226c2.592-1.251,4.239-3.876,4.239-6.754V119.726C495.968,116.846,494.32,114.223,491.729,112.971z M256,15.828 l215.217,103.897l-62.387,30.118c-0.395-0.301-0.812-0.579-1.27-0.8L193.805,45.853L256,15.828z M176.867,54.333l214.904,103.746 l-44.015,21.249L132.941,75.624L176.867,54.333z M396.799,172.307v78.546l-41.113,19.848v-78.546L396.799,172.307z M480.968,387.568L263.5,492.55V236.658l51.873-25.042c3.73-1.801,5.294-6.284,3.493-10.015 c-1.801-3.729-6.284-5.295-10.015-3.493L256,223.623l-20.796-10.04c-3.731-1.803-8.214-0.237-10.015,3.493 c-1.801,3.73-0.237,8.214,3.493,10.015l19.818,9.567V492.55L31.032,387.566V131.674l165.6,79.945 c1.051,0.508,2.162,0.748,3.255,0.748c2.788,0,5.466-1.562,6.759-4.241c1.801-3.73,0.237-8.214-3.493-10.015l-162.37-78.386 l74.505-35.968L340.582,192.52c0.033,0.046,0.07,0.087,0.104,0.132v89.999c0,2.581,1.327,4.98,3.513,6.353 c1.214,0.762,2.599,1.147,3.988,1.147c1.112,0,2.227-0.247,3.26-0.746l56.113-27.089c2.592-1.251,4.239-3.875,4.239-6.754v-90.495 l69.169-33.392V387.568z\"></path> </g> </g> <g> <g> <path d=\"M92.926,358.479L58.811,342.01c-3.732-1.803-8.214-0.237-10.015,3.493c-1.801,3.73-0.237,8.214,3.493,10.015 l34.115,16.469c1.051,0.508,2.162,0.748,3.255,0.748c2.788,0,5.466-1.562,6.759-4.241 C98.22,364.763,96.656,360.281,92.926,358.479z\"></path> </g> </g> <g> <g> <path d=\"M124.323,338.042l-65.465-31.604c-3.731-1.801-8.214-0.237-10.015,3.494c-1.8,3.73-0.236,8.214,3.494,10.015 l65.465,31.604c1.051,0.507,2.162,0.748,3.255,0.748c2.788,0,5.466-1.562,6.759-4.241 C129.617,344.326,128.053,339.842,124.323,338.042z\"></path> </g> </g> </svg>",
+            "title": "International Shipping",
+            "subtitle": "From only £3.95",
+            "background_color": "#ffffff"
+          }
+        },
+        "policy_kiKeVE": {
+          "type": "policy",
+          "settings": {
+            "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"512pt\" viewbox=\"0 0 512 512\" width=\"512pt\"><path d=\"m10.667969 266.667969c-5.890625 0-10.667969-4.78125-10.667969-10.667969 0-141.164062 114.835938-256 256-256 101.867188 0 185.921875 60.777344 243.070312 175.785156 2.625 5.292969.472657 11.671875-4.796874 14.292969-5.292969 2.648437-11.691407.472656-14.292969-4.796875-37.1875-74.796875-106.199219-163.949219-223.980469-163.949219-129.386719 0-234.667969 105.28125-234.667969 234.667969 0 5.886719-4.777343 10.667969-10.664062 10.667969zm0 0\"></path><path d=\"m501.332031 192h-85.332031c-5.886719 0-10.667969-4.777344-10.667969-10.667969 0-5.886719 4.78125-10.664062 10.667969-10.664062h74.667969v-73.773438c0-5.886719 4.777343-10.664062 10.664062-10.664062 5.890625 0 10.667969 4.777343 10.667969 10.664062v84.4375c0 5.890625-4.777344 10.667969-10.667969 10.667969zm0 0\"></path><path d=\"m256 512c-101.867188 0-185.921875-60.777344-243.070312-175.785156-2.625-5.292969-.472657-11.671875 4.796874-14.292969 5.3125-2.667969 11.671876-.449219 14.292969 4.796875 37.1875 74.796875 106.199219 163.949219 223.980469 163.949219 129.386719 0 234.667969-105.28125 234.667969-234.667969 0-5.886719 4.777343-10.667969 10.664062-10.667969 5.890625 0 10.667969 4.78125 10.667969 10.667969 0 141.164062-114.835938 256-256 256zm0 0\"></path><path d=\"m10.667969 425.769531c-5.890625 0-10.667969-4.777343-10.667969-10.664062v-84.4375c0-5.890625 4.777344-10.667969 10.667969-10.667969h85.332031c5.886719 0 10.667969 4.777344 10.667969 10.667969 0 5.886719-4.78125 10.664062-10.667969 10.664062h-74.667969v73.773438c0 5.90625-4.777343 10.664062-10.664062 10.664062zm0 0\"></path></svg>",
+            "title": "365 Day Return",
+            "subtitle": "Buy with Confidence",
+            "background_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "policy_ycCPbQ",
+        "policy_7x7paG",
+        "policy_kiKeVE"
+      ],
+      "name": "POLICY V2",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "gap": 30,
+        "limit": 3,
+        "color_scheme": "inverse",
+        "background_type": "image",
+        "background_color": "",
+        "background_gradient": "",
+        "background_image_desktop": "shopify://shop_images/bg_service2.jpg",
+        "background_image_mobile": "shopify://shop_images/bg_service2.jpg",
+        "use_parallax": false,
+        "background_image_animation": "zoom-out",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "product_v1_ByBhA7": {
+      "type": "product-v1",
+      "name": "PRODUCT V1",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "subtitle": "Don't Miss Today's Featured Deals",
+        "title": "Hot Deal",
+        "collection": "product-card-style-04",
+        "limit": 3,
+        "columns_size": 3,
+        "distinct_color_scheme": false,
+        "product_card_color_scheme": "",
+        "button_text": "",
+        "button_link": "shopify://collections/all",
+        "button_mode": "light",
+        "button_style": "secondary",
+        "button_size": "sm",
+        "button_radius": 0.8,
+        "button_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "testimonial_v2_ELdY8Q": {
+      "type": "testimonial-v2",
+      "blocks": {
+        "review_WY3CDX": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "testimonial": "Saved our business! We have no regrets! Thanks for the great service. Cooken  is worth much more than I paid Saved our business! We have no regrets! Thanks for the great service. Cooken  is worth much more!",
+            "avatar": "shopify://shop_images/people1.png",
+            "name_customer": "DESTINEE",
+            "position": "Marketing Personal"
+          }
+        },
+        "review_UKLdgi": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "testimonial": "Saved our business! We have no regrets! Thanks for the great service. Cooken  is worth much more than I paid Saved our business! We have no regrets! Thanks for the great service. Cooken  is worth much more!",
+            "avatar": "shopify://shop_images/people2.png",
+            "name_customer": "DESTINEE",
+            "position": "Marketing Personal"
+          }
+        },
+        "review_cfq7Mj": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "testimonial": "Saved our business! We have no regrets! Thanks for the great service. Cooken  is worth much more than I paid Saved our business! We have no regrets! Thanks for the great service. Cooken  is worth much more!",
+            "avatar": "shopify://shop_images/people3.png",
+            "name_customer": "DESTINEE",
+            "position": "Marketing Personal"
+          }
+        },
+        "review_z3WBM7": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "testimonial": "Saved our business! We have no regrets! Thanks for the great service. Cooken  is worth much more than I paid Saved our business! We have no regrets! Thanks for the great service. Cooken  is worth much more!",
+            "avatar": "shopify://shop_images/people4.png",
+            "name_customer": "DESTINEE",
+            "position": "Marketing Personal"
+          }
+        }
+      },
+      "block_order": [
+        "review_WY3CDX",
+        "review_UKLdgi",
+        "review_cfq7Mj",
+        "review_z3WBM7"
+      ],
+      "name": "TESTIMONIAL V2",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "title": "TESTIMONIALS",
+        "columns_carousel": 3,
+        "auto_play": true,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "newsletter_v4_PjhhEF": {
+      "type": "newsletter-v4",
+      "name": "NEWSLETTER V4",
+      "settings": {
+        "title": "GET UPDATE",
+        "subtitle": "Subscribe our newsletter and getdiscount 30% off",
+        "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" enable-background=\"new 0 0 24 24\" height=\"40\" viewbox=\"0 0 24 24\" width=\"25\"><path d=\"m8.75 17.612v4.638c0 .324.208.611.516.713.077.025.156.037.234.037.234 0 .46-.11.604-.306l2.713-3.692z\"></path><path d=\"m23.685.139c-.23-.163-.532-.185-.782-.054l-22.5 11.75c-.266.139-.423.423-.401.722.023.3.222.556.505.653l6.255 2.138 13.321-11.39-10.308 12.419 10.483 3.583c.078.026.16.04.242.04.136 0 .271-.037.39-.109.19-.116.319-.311.352-.53l2.75-18.5c.041-.28-.077-.558-.307-.722z\"></path></svg>",
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "#eeeeee",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    }
+  },
+  "order": [
+    "banner-v8",
+    "banner_v4_ww6dJ6",
+    "product_v2_RVipEA",
+    "policy_v2_MXy7tN",
+    "product_v1_ByBhA7",
+    "testimonial_v2_ELdY8Q",
+    "newsletter_v4_PjhhEF"
+  ]
+}

@@ -1,0 +1,8 @@
+# No required third-party packages for the starter environment.
+# Optional future upgrades:
+# pandas
+# numpy
+# scikit-learn
+# torch
+# openai
+

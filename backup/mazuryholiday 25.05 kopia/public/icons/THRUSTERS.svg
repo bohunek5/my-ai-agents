@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <title>THRUSTERS</title>
+  <g fill="none" stroke="black" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Arrow / Stream -->
+    <path d="M40,44 L15,64 L40,84" />
+    <line x1="15" y1="64" x2="55" y2="64" />
+    
+    <!-- Right Arrow / Stream -->
+    <path d="M88,44 L113,64 L88,84" />
+    <line x1="113" y1="64" x2="73" y2="64" />
+  </g>
+</svg>

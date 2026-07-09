@@ -1,14 +1,12 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
 export default function MobileRedirect({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const isMobile = window.innerWidth <= 768 || /Mobi|Android/i.test(navigator.userAgent);
     const isLegalPage = pathname === '/regulamin' || pathname === '/rodo';
     if (isMobile && !pathname.startsWith('/mobile') && !isLegalPage) {
@@ -17,10 +15,6 @@ export default function MobileRedirect({ children }: { children: React.ReactNode
       router.replace('/');
     }
   }, [pathname, router]);
-
-  if (!mounted) {
-    return <div style={{ background: 'var(--background)', minHeight: '100vh' }} />;
-  }
 
   return <>{children}</>;
 }

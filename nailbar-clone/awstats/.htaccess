@@ -1,0 +1,5 @@
+Options -Indexes
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.nailbar.com.pl$ [NC]
+RewriteRule ^(.*)$ http://nailbar.com.pl/awstats/$1 [R=301,L]

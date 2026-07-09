@@ -1,0 +1,80 @@
+window.NAILBAR_CASES = [
+  {
+    id: "manicure-naturalny",
+    category: "Manicure",
+    title: "Naturalna płytka i elegancka stylizacja",
+    lead: "Plan dla osoby oczekującej trwałego, subtelnego efektu odpowiedniego do codziennej pracy.",
+    cover: "assets/images/manicure.webp",
+    gallery: ["assets/tour/103476_8.webp", "assets/tour/103477_8.webp", "assets/tour/103480_8.webp"],
+    duration: "1 wizyta + regularne uzupełnienia",
+    goal: "Wzmocnienie naturalnej płytki, wyrównanie powierzchni oraz uzyskanie estetycznego efektu bez ciężkiej stylizacji.",
+    process: ["Konsultacja i ocena kondycji płytki", "Opracowanie skórek i przygotowanie paznokci", "Dobór techniki wzmocnienia", "Kolor i wykończenie dopasowane do stylu klientki", "Omówienie pielęgnacji domowej"],
+    result: "Docelowo schludne, zadbane dłonie i stylizacja dopasowana do trybu życia. Trwałość zależy od kondycji płytki i pielęgnacji.",
+    care: ["Regularne stosowanie oliwki", "Rękawiczki podczas pracy z detergentami", "Terminowe uzupełnienia", "Nieskracanie stylizacji samodzielnie"]
+  },
+  {
+    id: "pedicure-komfort",
+    category: "Pedicure",
+    title: "Pedicure pielęgnacyjny i komfort stóp",
+    lead: "Kompleksowa ścieżka pielęgnacji dla zadbanych paznokci i poprawy codziennego komfortu.",
+    cover: "assets/tour/103486_8.webp",
+    gallery: ["assets/tour/103486_8.webp", "assets/tour/103471_8.webp", "assets/tour/103482_8.webp"],
+    duration: "1 wizyta, następnie według potrzeb",
+    goal: "Uporządkowanie pielęgnacji stóp i paznokci oraz dobranie bezpiecznej częstotliwości kolejnych wizyt.",
+    process: ["Wywiad i ocena potrzeb", "Opracowanie paznokci i skórek", "Pielęgnacja skóry stóp", "Stylizacja lub naturalne wykończenie", "Zalecenia dotyczące pielęgnacji domowej"],
+    result: "Efektem docelowym jest estetyczny wygląd oraz poprawa komfortu. Zakres zabiegu zawsze zależy od indywidualnej oceny.",
+    care: ["Regularne nawilżanie", "Wygodne obuwie", "Unikanie samodzielnych agresywnych zabiegów", "Konsultacja specjalistyczna przy niepokojących zmianach"]
+  },
+  {
+    id: "plan-skory",
+    category: "Kosmetologia",
+    title: "Indywidualny plan pielęgnacji skóry",
+    lead: "Uporządkowanie pielęgnacji gabinetowej i domowej według aktualnych potrzeb skóry.",
+    cover: "assets/images/kosmetyka.webp",
+    gallery: ["assets/tour/103487_8.webp", "assets/tour/103488_8.webp", "assets/tour/103489_8.webp"],
+    duration: "Konsultacja + seria ustalana indywidualnie",
+    goal: "Rozpoznanie najważniejszych potrzeb skóry i stworzenie realistycznego planu pielęgnacji.",
+    process: ["Rozmowa o dotychczasowej pielęgnacji", "Ocena kondycji skóry", "Dobór zabiegu startowego", "Ułożenie prostego planu domowego", "Kontrola i aktualizacja planu"],
+    result: "Celem procesu jest świadoma, regularna pielęgnacja oraz dobór zabiegów adekwatnych do aktualnego stanu skóry.",
+    care: ["Konsekwentne stosowanie zaleceń", "Ochrona przeciwsłoneczna", "Niewprowadzanie wielu produktów jednocześnie", "Informowanie kosmetologa o reakcjach skóry"]
+  },
+  {
+    id: "modelowanie-sylwetki",
+    category: "Modelowanie sylwetki",
+    title: "Świadomy plan pielęgnacji ciała",
+    lead: "Program łączący konsultację, dobór technologii i regularną ocenę przebiegu terapii.",
+    cover: "assets/images/modelowanie.webp",
+    gallery: ["assets/tour/103487_8.webp", "assets/tour/103488_8.webp", "assets/tour/103489_8.webp"],
+    duration: "Plan wieloetapowy ustalany po konsultacji",
+    goal: "Dobór odpowiedniej technologii oraz częstotliwości zabiegów do oczekiwań i możliwości klientki.",
+    process: ["Konsultacja i wykluczenie przeciwwskazań", "Ustalenie obszaru i celu", "Dobór technologii", "Realizacja harmonogramu", "Ocena przebiegu i dalsze rekomendacje"],
+    result: "Rezultaty zależą od indywidualnych uwarunkowań, regularności oraz stylu życia. Nie są gwarantowane przed konsultacją.",
+    care: ["Nawodnienie i regularność", "Aktywność dopasowana do możliwości", "Stosowanie zaleceń specjalisty", "Zgłaszanie zmian zdrowotnych"]
+  },
+  {
+    id: "makijaz-okolicznosciowy",
+    category: "Makijaż",
+    title: "Makijaż dopasowany do wydarzenia",
+    lead: "Spójny efekt przygotowany z uwzględnieniem urody, stroju, światła i charakteru wydarzenia.",
+    cover: "assets/tour/103485_8.webp",
+    gallery: ["assets/tour/103463_8.webp", "assets/tour/103464_8.webp", "assets/tour/103485_8.webp"],
+    duration: "Jedna wizyta + opcjonalna próba",
+    goal: "Uzyskanie trwałego i komfortowego makijażu zgodnego z oczekiwanym stylem.",
+    process: ["Konsultacja inspiracji i stroju", "Przygotowanie skóry", "Makijaż dopasowany do typu urody", "Kontrola efektu w różnym świetle", "Wskazówki dotyczące poprawek"],
+    result: "Efektem docelowym jest spójny wygląd i dobre samopoczucie podczas wydarzenia.",
+    care: ["Dobrze nawodniona skóra przed wizytą", "Informacja o alergiach", "Zabranie inspiracji", "Delikatny demakijaż po wydarzeniu"]
+  },
+  {
+    id: "rytual-spa",
+    category: "Pielęgnacja",
+    title: "Rytuał pielęgnacyjny i domowe SPA",
+    lead: "Połączenie spokojnego zabiegu w salonie z prostymi zaleceniami do kontynuowania w domu.",
+    cover: "assets/tour/103491_8.webp",
+    gallery: ["assets/tour/103491_8.webp", "assets/tour/103492_8.webp", "assets/tour/103493_8.webp"],
+    duration: "Jedna wizyta lub regularny rytuał",
+    goal: "Dobór przyjemnej, nieskomplikowanej pielęgnacji możliwej do kontynuowania pomiędzy wizytami.",
+    process: ["Rozpoznanie preferencji", "Dobór produktów i rytuału", "Zabieg pielęgnacyjny", "Omówienie kolejności produktów", "Ustalenie częstotliwości"],
+    result: "Celem jest komfort, regularność i lepsze dopasowanie produktów do codziennych potrzeb.",
+    care: ["Regularne, łagodne stosowanie produktów", "Obserwacja reakcji skóry", "Unikanie nadmiaru kosmetyków", "Konsultacja przy podrażnieniu"]
+  }
+];

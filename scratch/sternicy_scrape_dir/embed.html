@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html><head>
+<style type="text/css">
+      html, body, #mapDiv {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+<style id="custom-sticky-header">
+        /* Base header state: fixed to top, overlays content */
+        .she-header-yes {
+            position: fixed !important;
+            top: 0 !important;
+            width: 100% !important;
+            z-index: 99999 !important;
+            transition: background 0.3s ease, backdrop-filter 0.3s ease !important;
+        }
+
+        /* Scrolled state: apply dark background and blur */
+        .she-header-yes.she-header {
+            background: rgba(0, 0, 0, 0.9) !important;
+            backdrop-filter: blur(10px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+
+        /* Top state: transparent */
+        .she-header-yes.she-header-transparent-yes {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+    </style>
+<script id="lang-persistence-script">
+    document.addEventListener('DOMContentLoaded', function() {
+        // Save language on flag click
+        var flags = document.querySelectorAll('img[src*="flagcdn.com"]');
+        flags.forEach(function(img) {
+            img.parentElement.addEventListener('click', function(e) {
+                var lang = img.getAttribute('alt').toLowerCase();
+                localStorage.setItem('preferred_lang', lang);
+            });
+        });
+
+        // Check redirection on initial entry
+        var prefLang = localStorage.getItem('preferred_lang');
+        if (prefLang) {
+            var isInternal = document.referrer && document.referrer.indexOf(window.location.hostname) !== -1;
+            if (!isInternal) {
+                var currentPath = window.location.pathname;
+                var currentLang = 'pl'; // default
+                if (currentPath.indexOf('/en/') !== -1) currentLang = 'en';
+                else if (currentPath.indexOf('/de/') !== -1) currentLang = 'de';
+
+                if (prefLang !== currentLang) {
+                    var targetFlag = document.querySelector('img[alt="' + prefLang.toUpperCase() + '"]');
+                    if (targetFlag && targetFlag.parentElement && targetFlag.parentElement.href) {
+                        window.location.replace(targetFlag.parentElement.href);
+                    }
+                }
+            }
+        }
+    });
+    </script><style id="mobile-app-ui-styles">
+    /* Hide the original mobile menu button */
+    @media (max-width: 921px) {
+        .ast-mobile-menu-buttons {
+            display: none !important;
+        }
+        
+        /* Padding for the bottom nav */
+        body {
+            padding-bottom: 70px !important;
+        }
+
+        /* Bottom Navigation Bar */
+        #mobile-bottom-nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: #fff;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 999999;
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none !important;
+            color: #555;
+            font-size: 11px;
+            font-weight: 600;
+            flex: 1;
+            padding: 5px 0;
+        }
+
+        .mobile-nav-item i {
+            font-size: 22px;
+            margin-bottom: 4px;
+            color: #046bd2; /* Primary blue */
+        }
+
+        .mobile-nav-item:hover, .mobile-nav-item:focus {
+            color: #046bd2;
+        }
+        
+        /* Make header flex space-between */
+        .ast-main-header-bar-alignment {
+            display: flex;
+            justify-content: space-between !important;
+            align-items: center !important;
+            width: 100%;
+        }
+        
+        .ast-site-header-cart {
+            display: none !important;
+        }
+        
+        /* Hide everything in header except logo and flags on mobile */
+        .ast-mobile-header-stack .main-header-bar .ast-search-menu-icon,
+        .ast-mobile-header-stack .main-header-bar .ast-builder-menu-mobile {
+            display: none !important;
+        }
+        
+        /* Ensure flags are visible and positioned correctly in header */
+        .custom-flags-mobile-container {
+            display: flex !important;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+    
+    @media (min-width: 922px) {
+        #mobile-bottom-nav {
+            display: none !important;
+        }
+        .custom-flags-mobile-container {
+            display: none !important;
+        }
+    }
+    </style></head>
+<body>
+<div id="mapDiv"></div>
+<script nonce="83YXLp8DcqzHN7Q5V0qqiw">
+      function onEmbedLoad() {
+        initEmbed([null,null,null,null,null,[[[2,"spotlit",null,null,null,null,null,[null,null,null,null,null,null,null,null,null,null,11,null,[null,null,null,null,null,null,null,null,null,null,null,null,null,1]]]],null,null,[[null,null,null,null,null,null,null,null,null,null,null,null,null,[[["5107512844518210831","4811116548256334988"],"/m/022bc0",null,[540364050,217667342],null,null,null,1,null,null,null,[[540163053,217291368],[540556142,218096210]],null,null,"gcid:locality"],0,null,null,null,0,null,0]]]],null,["en_US"],[null,null,null,"/maps/api/js/ApplicationService.GetEntityDetails","/maps/embed/upgrade204",null,"/maps/embed/record204"],null,null,null,null,null,null,null,null,"00VNaubGN6Gki-gP2rSnmQM",null,null,null,[[[37490.07998495924,21.7693789,54.03595975],[0,0,0],null,13.10000038146973],10,0,[["0x46e187df0f40bd0f:0x42c485029fd2848c","Giżycko",[54.03640499999999,21.7667342]],"Giżycko",null,null,null,null,null,null,null,null,null,["http://www.gizycko.pl/","gizycko.pl",null,null,",AOvVaw30vMKiBHMfmw18D3SYAzCY,,0ahUKEwim_PK1mcGVAxUh0gIHHVraKTMQ61gIBygD,"],null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,"ChIJD71AD9-H4UYRjITSnwKFxEI",null,null,"0ahUKEwim_PK1mcGVAxUh0gIHHVraKTMQ8BcIAygA"]],null,null,null,0,null,null,null,null,null,null,[1]]);
+      }
+      function onApiLoad() {
+        var embed = document.createElement('script');
+        embed.src = "https://maps.gstatic.com/maps-api-v3/embed/js/65/6a/init_embed.js";
+        document.body.appendChild(embed);
+      }
+    </script>
+<link as="script" href="https://maps.gstatic.com/maps-api-v3/embed/js/65/6a/init_embed.js" nonce="83YXLp8DcqzHN7Q5V0qqiw" rel="preload"/>
+<script async="" defer="" nonce="83YXLp8DcqzHN7Q5V0qqiw" src="js/js.js"></script>
+<nav id="mobile-bottom-nav"><a class="mobile-nav-item" href="index.html"><i class="fas fa-home"></i><span>Strona główna</span></a><a class="mobile-nav-item" href="fleets.html"><i class="fas fa-anchor"></i><span>Czarter</span></a><a class="mobile-nav-item" href="about.html"><i class="fas fa-info-circle"></i><span>O nas</span></a><a class="mobile-nav-item" href="contact.html"><i class="fas fa-envelope"></i><span>Kontakt</span></a></nav></body></html>

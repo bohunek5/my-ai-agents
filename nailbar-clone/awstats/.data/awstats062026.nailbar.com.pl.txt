@@ -1,0 +1,283 @@
+AWSTATS DATA FILE 8.0 (build 20240604)
+# If you remove this file, all statistics for date 202606 will be lost/reset.
+# Last config file used to build this data file was /home/nailbarpl/domains/nailbar.com.pl/awstats/.data/awstats.nailbar.com.pl.conf.
+
+# Position (offset in bytes) in this file for beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 30
+POS_GENERAL 2178                
+POS_TIME 2855                
+POS_VISITOR 6083                
+POS_DAY 6262                
+POS_DOMAIN 3357                
+POS_LOGIN 3584                
+POS_ROBOT 3739                
+POS_WORMS 3871                
+POS_EMAILSENDER 4002                
+POS_EMAILRECEIVER 4145                
+POS_SESSION 6405                
+POS_FILESIZE 8443                
+POS_REQUESTTIME 8544                
+POS_SIDER 6551                
+POS_FILETYPES 4280                
+POS_DOWNLOADS 4362                
+POS_OS 4410                
+POS_BROWSER 4489                
+POS_SCREENSIZE 4553                
+POS_UNKNOWNREFERER 4627                
+POS_UNKNOWNREFERERBROWSER 4760                
+POS_ORIGIN 4888                
+POS_SEREFERRALS 5020                
+POS_PAGEREFS 5164                
+POS_SEARCHWORDS 5312                
+POS_KEYWORDS 5464                
+POS_MISC 2519                
+POS_ERRORS 5523                
+POS_CLUSTER 3440                
+POS_SIDER_403 5774                
+POS_SIDER_404 5692                
+POS_SIDER_400 5610                
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20260604003619 19 2967 9655971019221
+FirstTime 20260601003658
+LastTime 20260604003619
+LastUpdate 20260604021247 19 0 19 0 0
+TotalVisits 7                   
+TotalUnique 1                   
+MonthHostsKnown 0                   
+MonthHostsUnknown 1                   
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+DirectorSupport 0 0 0
+FlashSupport 0 0 0
+JavaEnabled 0 0 0
+QuickTimeSupport 0 0 0
+JavascriptDisabled 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 0 0
+RealPlayerSupport 0 0 0
+PDFSupport 0 0 0
+TotalMisc 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 11 11 123649 0 0 0
+1 0 0 0 0 0 0
+2 0 0 0 0 0 0
+3 0 0 0 0 0 0
+4 0 0 0 0 0 0
+5 0 0 0 0 0 0
+6 0 0 0 0 0 0
+7 0 0 0 0 0 0
+8 0 0 0 0 0 0
+9 12 12 112303 1 1 1072
+10 0 0 0 0 0 0
+11 0 0 0 0 0 0
+12 0 0 0 0 0 0
+13 0 0 0 0 0 0
+14 4 4 56012 0 0 0
+15 0 0 0 0 0 0
+16 0 0 0 0 0 0
+17 0 0 0 0 0 0
+18 3 3 31881 0 0 0
+19 0 0 0 0 0 0
+20 0 0 0 0 0 0
+21 0 0 0 0 0 0
+22 0 0 0 0 0 0
+23 0 0 0 0 0 0
+END_TIME
+
+# Domain - Pages - Hits - Bandwidth
+# The 10 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 1
+ip 30 30 323845
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 10 first Hits must be first (order not required for others)
+BEGIN_ROBOT 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 1
+php 30 323845 0 0
+END_FILETYPES
+
+# Downloads - Hits - Bandwidth
+BEGIN_DOWNLOADS 0
+END_DOWNLOADS
+
+# OS ID - Hits
+BEGIN_OS ID - Hits - Pages 1
+Unknown 30 30
+END_OS
+
+# Browser ID - Hits - Pages
+BEGIN_BROWSER 1
+Unknown 30 30
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 1
+Installatron_Plugin/10.0.8/598 20260604003619
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 1
+Installatron_Plugin/10.0.8/598 20260604003619
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 30 30
+From1 0 0
+From2 0 0
+From3 0 0
+From4 0 0
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 0
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 10 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 0
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 0
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 0
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 1
+503 1 1072
+END_ERRORS
+
+# URL with 400 errors - Hits - Last URL referrer
+BEGIN_SIDER_400 0
+END_SIDER_400
+
+# URL with 404 errors - Hits - Last URL referrer
+BEGIN_SIDER_404 0
+END_SIDER_404
+
+# URL with 403 errors - Hits - Last URL referrer
+BEGIN_SIDER_403 0
+END_SIDER_403
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 10 first Hits must be first (order not required for others)
+BEGIN_VISITOR 1
+85.232.237.103 30 30 323845 20260604003619 20260604003619 /deleteme.wpce797d26ebab40ed99c6e727e4142f6b.php
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 4
+20260601 6 6 63762 2
+20260602 3 3 31881 1
+20260603 19 19 200196 3
+20260604 2 2 28006 1
+END_DAY
+
+# Session range - Number of visits
+BEGIN_SESSION 1
+0s-30s 6
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_SIDER 30
+/deleteme.wpce797d26ebab40ed99c6e727e4142f6b.php 1 24131 0 0
+/deleteme.chabda9065ed1664414ba332e1e3693d459.php 1 3875 0 0
+/deleteme.cha04efba1581f842189cc5cc5a6b5c2a43.php 1 3875 1 0
+/deleteme.wpc51441b595474118a1090fa9ddcc6f42.php 1 20412 0 0
+/deleteme.chad396f3f7615b46648940ab5f4ab551c4.php 1 3875 1 0
+/deleteme.wpb3d6ed79eaa44299a71043310128868b.php 1 20067 0 0
+/deleteme.cha124095b50959475390d834aecc4193d7.php 1 3875 0 0
+/deleteme.wp8f0d7019e89442c6b0f8c89fad95a5d7.php 1 24131 0 1
+/deleteme.cha487431c102cd4f6ebf465d622169cb67.php 1 3875 0 0
+/deleteme.wp195dc3ab8f2047fd9ad1a5102f5dcaed.php 1 20412 0 0
+/deleteme.cha9f8e6963f20c460796eb462da662eba1.php 1 3875 1 0
+/deleteme.wp653d37b3cc0143428fade480780f906c.php 1 24131 0 1
+/deleteme.cha1b44510960c74dd087743ba508fb2783.php 1 3875 0 0
+/deleteme.wp092c741942b445bea742c5e650f82c9a.php 1 24131 0 1
+/deleteme.cha75a94de5f25a4baab9bc7fe4feaaa2ff.php 1 3875 0 0
+/deleteme.cha0a1336ca051c40bca3010293538c1bc4.php 1 3875 1 0
+/deleteme.wp26b6ed46778d43cfaca1983c19e987c3.php 1 24131 0 0
+/deleteme.wpdaedeea8f5704633a3d03e8887427bab.php 1 20412 0 0
+/deleteme.cha626a9acaba5b4ce084b99d4b25f5a8b0.php 1 3875 0 0
+/deleteme.chaa4cf4a78736a4c7693cfccd0223552da.php 1 3875 1 0
+/deleteme.cha1581e441fd0e4be1b6248f7c0cdb75bb.php 1 3875 0 1
+/deleteme.cha2dd7776a7d1840599275279385c5446b.php 1 3875 1 0
+/deleteme.wpcb753bf3cd3c403d8a6f67d6528757e2.php 1 24131 0 1
+/deleteme.cha7f2cdf2cb6be4f3da0f45cf81ea81137.php 1 3875 0 0
+/deleteme.wp0f174943226e4c88b8704d8817afb5c2.php 1 24131 0 1
+/deleteme.cha0e5f09042f0a4858a8b68bb9d14dae46.php 1 3875 0 0
+/deleteme.chab2e2808590cf4dea92e693017e1fc2a6.php 1 3875 0 0
+/deleteme.cha01a0c1fa9a9f4ad5be482d5290d8ef34.php 1 3875 0 0
+/deleteme.chab3b1e699a4024b15a780369d581c6776.php 1 3875 1 0
+/deleteme.cha60b5ad420e0941bca897cb736431090b.php 1 3875 0 0
+END_SIDER
+
+# Payload Range - Payload Frequency
+BEGIN_FILESIZE 3
+5K+ 11
+2K-5K 19
+1K-2K 1
+END_FILESIZE
+
+# Request Time Range - Request Time Frequency
+BEGIN_REQUESTTIME 0
+END_REQUESTTIME

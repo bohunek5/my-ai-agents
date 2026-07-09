@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Deep Matrix Columns 3D — Zosia</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000201;
+        }
+
+        #status {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 8, 4, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 255, 100, 0.15);
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: rgba(0, 255, 100, 0.4);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.5s;
+            pointer-events: none;
+        }
+
+        #status.speaking {
+            border-color: rgba(0, 255, 100, 0.4);
+            color: #00ff8c;
+        }
+    </style>
+    <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+    }
+  }
+</script>
+</head>
+
+<body>
+    <div id="status">
+        <div class="dot" style="width:7px; height:7px; border-radius:50%; background:#00220a;"></div>
+        <span id="statusLabel">ZOSIA MATRIX COLUMNS</span>
+    </div>
+
+    <button id="testVoice" onclick="runTestVoice()" title="Local Mobile Test">
+        <span style="font-size:14px; margin-right:8px;">🎤</span> TEST
+    </button>
+
+    <button id="brainLink" onclick="toggleBrainSettings()" title="Connect to Mac Brain">
+        <span style="font-size:14px; margin-right:8px;">🧠</span> LINK BRAIN
+    </button>
+
+    <div id="brainSettings">
+        <div style="font-size:10px; margin-bottom:10px; opacity:0.6;">CENTRAL BRAIN SYNC (IP/NGROK)</div>
+        <input type="text" id="brainUrlInput" placeholder="np. 192.168.1.22 lub ngrok-url" />
+        <button onclick="saveBrainUrl()">SYNC NOW</button>
+    </div>
+
+    <style>
+        #testVoice,
+        #brainLink {
+            position: fixed;
+            bottom: 30px;
+            z-index: 100;
+            background: rgba(0, 255, 140, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 255, 140, 0.3);
+            color: #00ff8c;
+            padding: 12px 20px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            pointer-events: all;
+        }
+
+        #testVoice {
+            right: 180px;
+        }
+
+        #brainLink {
+            right: 30px;
+        }
+
+        #testVoice:hover,
+        #brainLink:hover {
+            background: rgba(0, 255, 140, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 140, 0.2);
+            transform: translateY(-2px);
+        }
+
+        #testVoice:active,
+        #brainLink:active {
+            transform: scale(0.95);
+        }
+
+        #brainSettings {
+            position: fixed;
+            bottom: 85px;
+            right: 30px;
+            z-index: 101;
+            background: rgba(0, 15, 10, 0.95);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 255, 140, 0.4);
+            padding: 20px;
+            border-radius: 20px;
+            width: 280px;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        #brainSettings.active {
+            display: flex;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        #brainSettings input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 140, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+            font-family: monospace;
+            font-size: 12px;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        #brainSettings button {
+            background: #00ff8c;
+            color: #000;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 10px;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <script>
+        let brainUrl = localStorage.getItem('zosia_brain_url') || '127.0.0.1';
+
+        function toggleBrainSettings() {
+            document.getElementById('brainSettings').classList.toggle('active');
+            document.getElementById('brainUrlInput').value = brainUrl;
+        }
+
+        function saveBrainUrl() {
+            let input = document.getElementById('brainUrlInput').value.trim();
+            if (input) {
+                // Remove http/https and trailing slashes for consistency
+                input = input.replace(/^https?:\/\//, '').replace(/\/$/, '');
+                brainUrl = input;
+                localStorage.setItem('zosia_brain_url', brainUrl);
+                document.getElementById('brainSettings').classList.remove('active');
+            }
+        }
+
+        function runTestVoice() {
+            const msg = new SpeechSynthesisUtterance("Testujemy synchronizację! Teraz Twój telefon jest połączony z moją świadomością. Matrix gotowy!");
+            msg.lang = 'pl-PL';
+            msg.rate = 1.1;
+            window.speechSynthesis.speak(msg);
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        let scene, camera, renderer, columns = [];
+        let isSpeaking = false;
+        let systemStatus = 'idle'; // 'idle', 'processing', 'alert', 'critical'
+        let systemPulse = 0;
+        let clock = new THREE.Clock();
+
+        const charset = "日Hｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ23456789ZOSIA";
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 5, 15);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            document.body.appendChild(renderer.domElement);
+
+            // --- INCREASED DENSITY COLUMN SYSTEM ---
+            const colCount = 220;
+            const textures = [];
+            for (let i = 0; i < 50; i++) {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = 64; canvas.height = 64;
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 50px monospace';
+                ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                ctx.fillText(charset[Math.floor(Math.random() * charset.length)], 32, 32);
+                textures.push(new THREE.CanvasTexture(canvas));
+            }
+
+            for (let i = 0; i < colCount; i++) {
+                const r = 1.0 + Math.random() * 14; // Slightly wider spread
+                const a = Math.random() * Math.PI * 2;
+                const x = Math.cos(a) * r;
+                const z = Math.sin(a) * r;
+
+                const colSpeed = 0.015 + Math.random() * 0.045;
+                const symbolsInCol = 8 + Math.floor(Math.random() * 12); // Slightly shorter columns but more of them
+                const colSymbols = [];
+
+                for (let j = 0; j < symbolsInCol; j++) {
+                    const material = new THREE.SpriteMaterial({
+                        map: textures[Math.floor(Math.random() * textures.length)],
+                        color: 0x00ff80,
+                        transparent: true,
+                        opacity: 0.15 + (j / symbolsInCol) * 0.5
+                    });
+                    const sprite = new THREE.Sprite(material);
+                    sprite.position.set(x, (j * 0.8) - (symbolsInCol * 0.4), z);
+                    sprite.scale.set(0.28, 0.28, 1); // Slightly smaller for higher density
+                    scene.add(sprite);
+
+                    colSymbols.push({
+                        mesh: sprite,
+                        yOffset: (j * 0.8) - (symbolsInCol * 0.4)
+                    });
+                }
+
+                columns.push({
+                    x: x, z: z,
+                    radius: r,
+                    angle: a,
+                    symbols: colSymbols,
+                    speed: colSpeed,
+                    yPos: Math.random() * 20 - 10,
+                    vibrateOffset: Math.random() * Math.PI * 2
+                });
+            }
+
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        async function checkVoice() {
+            try {
+                let target = brainUrl.includes(':') ? brainUrl : brainUrl + ':7777';
+                const r = await fetch('http://' + target + '/speaking', { signal: AbortSignal.timeout(500) });
+                const data = await r.json();
+                isSpeaking = data.speaking;
+
+                // ALSO CHECK SYSTEM STATUS DURING VOICE POLL
+                if (data.status) systemStatus = data.status;
+                if (data.pulse) systemPulse = data.pulse;
+            } catch (e) {
+                isSpeaking = window.speechSynthesis.speaking;
+                systemStatus = 'idle';
+            }
+
+            const st = document.getElementById('status');
+            const dot = st.querySelector('.dot');
+            const label = document.getElementById('statusLabel');
+
+            if (isSpeaking) {
+                st.classList.add('speaking');
+                dot.style.background = "#00ff8c";
+                dot.style.boxShadow = "0 0 15px #00ff8c";
+            } else {
+                st.classList.remove('speaking');
+                dot.style.background = systemStatus === 'idle' ? "#00220a" : (systemStatus === 'alert' ? "#ff3300" : "#ffcc00");
+                dot.style.boxShadow = "none";
+            }
+
+            label.innerText = `KB-CORE: ${systemStatus.toUpperCase()}`;
+        }
+        setInterval(checkVoice, 100);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const delta = clock.getElapsedTime();
+
+            columns.forEach((col) => {
+                // 1. UPDATE COLUMN BASE POSITION
+                col.yPos += col.speed;
+                if (col.yPos > 14) col.yPos = -14;
+
+                const time = delta * 0.4;
+                // GENTLER FLOAT INSTEAD OF SHAKING
+                const vibX = Math.sin(time * 2 + col.vibrateOffset) * (isSpeaking ? 0.35 : 0.05);
+                const vibZ = Math.cos(time * 2 + col.vibrateOffset) * (isSpeaking ? 0.35 : 0.05);
+
+                col.symbols.forEach((s) => {
+                    let finalY = col.yPos + s.yOffset;
+                    if (finalY > 12) finalY -= 24;
+                    if (finalY < -12) finalY += 24;
+
+                    s.mesh.position.y = finalY;
+
+                    const colorPos = (finalY + 12) / 24;
+                    let targetHue, targetSat, targetLight;
+
+                    // DYNAMIC THEME BASED ON SYSTEM STATUS
+                    if (systemStatus === 'alert') {
+                        targetHue = 0.0; targetSat = 1.0; targetLight = 0.5; // Warning Red
+                    } else if (systemStatus === 'processing') {
+                        targetHue = 0.12; targetSat = 1.0; targetLight = 0.6; // Processing Gold
+                    } else if (systemStatus === 'critical') {
+                        targetHue = 0.75; targetSat = 1.0; targetLight = 0.3; // Critical Indigo
+                    } else {
+                        // Standard Matrix Green Theme
+                        if (colorPos < 0.5) {
+                            targetHue = 0.35; targetSat = 1.0;
+                            targetLight = THREE.MathUtils.lerp(0.15, 0.5, colorPos * 2);
+                        } else {
+                            targetHue = THREE.MathUtils.lerp(0.35, 0.45, (colorPos - 0.5) * 2);
+                            targetSat = 0.8; targetLight = THREE.MathUtils.lerp(0.5, 0.7, (colorPos - 0.5) * 2);
+                        }
+                    }
+
+                    if (isSpeaking) {
+                        // HARMONIC BREATHE EFFECT
+                        const breathe = Math.sin(delta * 3 - col.radius * 0.5) * 0.5 + 0.5;
+                        const expansion = 1 + (breathe * 0.25);
+
+                        s.mesh.position.x = Math.cos(col.angle) * col.radius * expansion + vibX;
+                        s.mesh.position.z = Math.sin(col.angle) * col.radius * expansion + vibZ;
+
+                        const glowPulse = Math.sin(delta * 4 + col.vibrateOffset) * 0.5 + 0.5;
+                        s.mesh.material.color.setHSL(targetHue, targetSat, targetLight + glowPulse * 0.2);
+                        s.mesh.material.opacity = 0.4 + glowPulse * 0.4;
+
+                        let scaleBase = 0.35 + breathe * 0.1;
+                        if (systemStatus === 'processing') scaleBase *= 1.4;
+                        s.mesh.scale.set(scaleBase, scaleBase, 1);
+                    } else {
+                        s.mesh.position.x = THREE.MathUtils.lerp(s.mesh.position.x, Math.cos(col.angle) * col.radius + vibX, 0.05);
+                        s.mesh.position.z = THREE.MathUtils.lerp(s.mesh.position.z, Math.sin(col.angle) * col.radius + vibZ, 0.05);
+                        s.mesh.material.color.setHSL(targetHue, targetSat, targetLight);
+                        s.mesh.material.opacity = THREE.MathUtils.lerp(s.mesh.material.opacity, 0.25, 0.1);
+
+                        let scaleBase = 0.28;
+                        if (systemStatus === 'processing') scaleBase *= 1.2;
+                        s.mesh.scale.set(scaleBase, scaleBase, 1);
+                    }
+                });
+            });
+
+            camera.position.x = Math.sin(delta * 0.12) * 1.5;
+            camera.lookAt(0, 0, 0);
+
+            renderer.render(scene, camera);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+
+</html>

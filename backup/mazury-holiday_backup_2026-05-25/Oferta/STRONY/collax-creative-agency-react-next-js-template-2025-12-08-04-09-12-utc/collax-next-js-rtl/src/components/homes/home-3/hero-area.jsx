@@ -1,0 +1,57 @@
+import { useVideoModal } from '../../../provider/VideoProvider';
+import { HighlightTwo } from '../../../svg';
+import Link from 'next/link';
+
+const hero_contents = {
+  title: <>Collax helps your teams move work <span className="tp-highlight">
+    <HighlightTwo /><i>forward.</i></span></>,
+  text: 'At collax we specialize in designing, building, shipping and scaling beautiful, usable products with blazing-fast efficiency',
+  btn_text: 'How it Works',
+  video_title: 'Behind the scenes',
+  video_id: 'LJbkLdtEW00',
+  hero_img: '/assets/img/hero/hero-4.png'
+}
+const { title, text, btn_text, hero_img, video_id, video_title } = hero_contents;
+
+const HeroArea = () => {
+  const { playVideo } = useVideoModal();
+  return (
+    <div className="tp-hero-area-two theme-bg pt-130 p-relative fix">
+        <div className="tp-hero-shape-three ">
+          <img src="/assets/img/hero/hero-shape-3.png" alt="" />
+        </div>
+        <div className="tp-hero-circle-three"></div>
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-6 col-lg-7 col-md-12">
+              <div className="tp-hero-section-box pt-140 pb-200">
+                <div className='wow tpfadeUp' data-wow-duration=".3s" data-wow-delay=".6s">
+                  <h3 className="ct-hero-title text-white">{title}</h3>
+                </div>
+                <p className="wow tpfadeUp" data-wow-duration=".5s" data-wow-delay=".8s">{text}</p>
+                <div className="tp-hero-three-button-box d-flex align-items-center wow tpfadeUp" data-wow-duration=".7s" data-wow-delay="1s">
+                  <div className="xs-bottom-space">
+                    <Link className="tp-btn-yellow-semilar mr-55" href={'/contact'}>
+                      {btn_text}
+                    </Link>
+                  </div>
+                  <div className="tp-hero-paly-button z-index-1">
+                    <button onClick={() => playVideo(video_id)} className="popup-video">
+                      <i className="far fa-play"></i></button>
+                    <span>{video_title}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-xl-6 col-lg-5 col-md-12">
+              <div className="tp-hero-right-img wow tpfadeRight" data-wow-duration=".9s" data-wow-delay="1.2s">
+                <img src={hero_img} alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+};
+
+export default HeroArea;

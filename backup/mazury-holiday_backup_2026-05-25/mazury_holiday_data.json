@@ -1,0 +1,28 @@
+{
+  "C_Studio": {
+    "desc": "Apartamenty typu Studio znajdują się w budynku C, są to miejsce noclegowe z jednym łóżkiem podwójnym, rozkładaną sofą dla 2 osób, salonem z aneksem kuchennym, łazienką z prysznicem i tarasem z widokiem na zatokę Tracz i port Stranda. Przeznaczone dla maksymalnie 4 osób",
+    "images": []
+  },
+  "C_1_Sypialnia": {
+    "desc": "Apartamenty Giżycko \"Stranda\"\nZapraszamy do luksowych apartamentów położonych nad samym jeziorem Kisajno, leżących niedaleko od wielu atrakcji Giżycka...\nZaplanuj pobyt",
+    "images": [
+      "https://mazury.holidayimg/galerie/103793_4.jpg",
+      "https://mazury.holidayimg/galerie/103768_4.jpg",
+      "https://mazury.holidayimg/galerie/103779_4.jpg",
+      "https://mazury.holidayimg/galerie/103761_4.jpg",
+      "https://mazury.holidayimg/galerie/103772_4.jpg",
+      "https://mazury.holidayimg/galerie/103767_4.jpg"
+    ]
+  },
+  "C_2_Sypialnie": {
+    "desc": "Apartamenty Giżycko \"Stranda\"\nZapraszamy do luksowych apartamentów położonych nad samym jeziorem Kisajno, leżących niedaleko od wielu atrakcji Giżycka...\nZaplanuj pobyt",
+    "images": [
+      "https://mazury.holidayimg/galerie/103793_4.jpg",
+      "https://mazury.holidayimg/galerie/103768_4.jpg",
+      "https://mazury.holidayimg/galerie/103779_4.jpg",
+      "https://mazury.holidayimg/galerie/103761_4.jpg",
+      "https://mazury.holidayimg/galerie/103772_4.jpg",
+      "https://mazury.holidayimg/galerie/103767_4.jpg"
+    ]
+  }
+}

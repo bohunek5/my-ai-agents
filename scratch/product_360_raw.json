@@ -1,0 +1,170 @@
+{
+  "product": {
+    "id": 8291636740266,
+    "title": "360 product",
+    "body_html": "<p style=\"padding-bottom: 30px;\" data-mce-style=\"padding-bottom: 30px;\">Cheer on your favorite red and white team in eye-popping style with these red &amp; white striped game bib overalls! Each pair is made of 100 percent cotton for a comfortable, breathable fit regardless of the weather and includes easily adjustable shoulder straps for fans with long torsos. Whether you’re on rickety bleachers on a Friday night or trying to get on television at the Sunday morning tailgate, our red &amp; white striped game bibs will make you stand out in the crowd and leave an impression. These particular bib overalls are also great as casual Clauswear for any Saint Nicks who might be taking in a game during the holiday offseason!</p>\n<div style=\"--xs: 12; --md: 6;\" data-mce-style=\"--xs: 12; --md: 6;\">\n<h3>BRAND</h3>\n<p>With eye-catching artwork, step-by-step diagrams, and illustrations that break down complicated ideas into manageable concepts, The Science Book will have readers conversant in genetic engineering, black holes, and global warming in no time. Along the way are found mini-biographies of the most well-known scientists, and a glossary of helpful scientific terms. For students, and students of the world, there is no better way to explore the fascinating, strange, and mysterious world of science than in The Science Book.</p>\n</div>\n<div>\n<h3>PRODUCT DETAILS</h3>\n<ul>\n<li>You show me what is deep as sea</li>\n<li>Crew neck</li>\n<li>Short sleeves</li>\n<li>Large logo print to chest</li>\n<li>Regular fit</li>\n<li>True size</li>\n</ul>\n</div>\n<div>\n<h3>SIZE &amp; FIT</h3>\n<ul>\n<li>Model’s height: 182.5cm/6’0″</li>\n<li>Model is wearing: Size Medium</li>\n</ul>\n</div>\n<div>\n<h3>ABOUT ME</h3>\n<ul>\n<li>Soft, breathable jersey</li>\n<li>T-shirt fabric</li>\n<li>Main: 95% Cotton, 5% Elastane</li>\n</ul>\n</div>",
+    "vendor": "NovaCrest",
+    "product_type": "",
+    "created_at": "2025-11-11T02:31:22-05:00",
+    "handle": "360-product",
+    "updated_at": "2026-07-08T13:21:42-04:00",
+    "published_at": "2025-11-11T02:45:16-05:00",
+    "template_suffix": "360-product",
+    "published_scope": "web",
+    "tags": "Innovation",
+    "variants": [
+      {
+        "id": 47614170071210,
+        "product_id": 8291636740266,
+        "title": "Default Title",
+        "price": "70.00",
+        "sku": null,
+        "position": 1,
+        "compare_at_price": "80.00",
+        "fulfillment_service": "manual",
+        "inventory_management": "shopify",
+        "option1": "Default Title",
+        "option2": null,
+        "option3": null,
+        "created_at": "2025-11-11T02:31:22-05:00",
+        "updated_at": "2026-07-08T13:21:42-04:00",
+        "taxable": true,
+        "barcode": null,
+        "grams": 0,
+        "image_id": null,
+        "weight": 0,
+        "weight_unit": "kg",
+        "requires_shipping": true,
+        "quantity_rule": {
+          "min": 1,
+          "max": null,
+          "increment": 1
+        },
+        "price_currency": "USD",
+        "compare_at_price_currency": "USD",
+        "quantity_price_breaks": []
+      }
+    ],
+    "options": [
+      {
+        "id": 10547602784426,
+        "product_id": 8291636740266,
+        "name": "Title",
+        "position": 1,
+        "values": [
+          "Default Title"
+        ]
+      }
+    ],
+    "images": [
+      {
+        "id": 42773149548714,
+        "product_id": 8291636740266,
+        "position": 1,
+        "created_at": "2025-11-11T02:31:22-05:00",
+        "updated_at": "2025-11-11T02:31:24-05:00",
+        "alt": null,
+        "width": 860,
+        "height": 860,
+        "src": "https://cdn.shopify.com/s/files/1/0525/8739/7290/files/360_1.jpg?v=1762846284",
+        "variant_ids": []
+      },
+      {
+        "id": 42773149581482,
+        "product_id": 8291636740266,
+        "position": 2,
+        "created_at": "2025-11-11T02:31:22-05:00",
+        "updated_at": "2025-11-11T02:31:24-05:00",
+        "alt": null,
+        "width": 860,
+        "height": 860,
+        "src": "https://cdn.shopify.com/s/files/1/0525/8739/7290/files/360_2.jpg?v=1762846284",
+        "variant_ids": []
+      },
+      {
+        "id": 42773149614250,
+        "product_id": 8291636740266,
+        "position": 3,
+        "created_at": "2025-11-11T02:31:22-05:00",
+        "updated_at": "2025-11-11T02:31:24-05:00",
+        "alt": null,
+        "width": 860,
+        "height": 860,
+        "src": "https://cdn.shopify.com/s/files/1/0525/8739/7290/files/360_3.jpg?v=1762846284",
+        "variant_ids": []
+      },
+      {
+        "id": 42773149647018,
+        "product_id": 8291636740266,
+        "position": 4,
+        "created_at": "2025-11-11T02:31:22-05:00",
+        "updated_at": "2025-11-11T02:31:24-05:00",
+        "alt": null,
+        "width": 860,
+        "height": 860,
+        "src": "https://cdn.shopify.com/s/files/1/0525/8739/7290/files/360_4.jpg?v=1762846284",
+        "variant_ids": []
+      },
+      {
+        "id": 42773149679786,
+        "product_id": 8291636740266,
+        "position": 5,
+        "created_at": "2025-11-11T02:31:22-05:00",
+        "updated_at": "2025-11-11T02:31:24-05:00",
+        "alt": null,
+        "width": 860,
+        "height": 860,
+        "src": "https://cdn.shopify.com/s/files/1/0525/8739/7290/files/360_5.jpg?v=1762846284",
+        "variant_ids": []
+      },
+      {
+        "id": 42773149712554,
+        "product_id": 8291636740266,
+        "position": 6,
+        "created_at": "2025-11-11T02:31:22-05:00",
+        "updated_at": "2025-11-11T02:31:24-05:00",
+        "alt": null,
+        "width": 860,
+        "height": 860,
+        "src": "https://cdn.shopify.com/s/files/1/0525/8739/7290/files/360_6.jpg?v=1762846284",
+        "variant_ids": []
+      },
+      {
+        "id": 42773149745322,
+        "product_id": 8291636740266,
+        "position": 7,
+        "created_at": "2025-11-11T02:31:22-05:00",
+        "updated_at": "2025-11-11T02:31:24-05:00",
+        "alt": null,
+        "width": 860,
+        "height": 860,
+        "src": "https://cdn.shopify.com/s/files/1/0525/8739/7290/files/360_7.jpg?v=1762846284",
+        "variant_ids": []
+      },
+      {
+        "id": 42773149778090,
+        "product_id": 8291636740266,
+        "position": 8,
+        "created_at": "2025-11-11T02:31:22-05:00",
+        "updated_at": "2025-11-11T02:31:24-05:00",
+        "alt": null,
+        "width": 860,
+        "height": 860,
+        "src": "https://cdn.shopify.com/s/files/1/0525/8739/7290/files/360_8.jpg?v=1762846284",
+        "variant_ids": []
+      }
+    ],
+    "image": {
+      "id": 42773149548714,
+      "product_id": 8291636740266,
+      "position": 1,
+      "created_at": "2025-11-11T02:31:22-05:00",
+      "updated_at": "2025-11-11T02:31:24-05:00",
+      "alt": null,
+      "width": 860,
+      "height": 860,
+      "src": "https://cdn.shopify.com/s/files/1/0525/8739/7290/files/360_1.jpg?v=1762846284",
+      "variant_ids": []
+    }
+  }
+}

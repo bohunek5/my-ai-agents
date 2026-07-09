@@ -1,0 +1,62 @@
+// select2 css
+@import "~select2/dist/css/select2.css";
+// slick slider css
+@import "~slick-carousel/slick/slick.css";
+// jquery ui css
+@import "~jquery-ui/themes/base/theme.css";
+@import "~jquery-ui/themes/base/slider.css";
+// animate css
+@import "~animate.css";
+// aos css
+@import "~aos/dist/aos.css";
+
+// tailwind styles
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --main-color: #212A35;
+  --main-color-50: #e6ebf0;
+  --main-color-100: #ccd6e0;
+  --main-color-200: #99adc2;
+  --main-color-300: #6685a3;
+  --main-color-400: #335c85;
+  --main-color-500: #212A35;
+  --main-color-600: #1a222a;
+  --main-color-700: #14191f;
+  --main-color-800: #0d1115;
+  --main-color-900: #07080a;
+
+  --main-two-color: #E14E26;
+  --main-two-color-50: #fdf2ef;
+  --main-two-color-100: #fbe6df;
+  --main-two-color-200: #f6ccbf;
+  --main-two-color-300: #f2b39f;
+  --main-two-color-400: #ed997f;
+  --main-two-color-500: #E14E26;
+  --main-two-color-600: #b43e1e;
+  --main-two-color-700: #872f17;
+  --main-two-color-800: #5a1f0f;
+  --main-two-color-900: #2d1008;
+}
+
+.color-two {
+  /* color-two theme also uses Navy as primary but allows for distinction if needed. 
+     For now, keeping it consistent as per 'global' request. */
+  --main-color: #212A35;
+  --main-two-color: #E14E26;
+}
+
+// abstract
+@import "abstracts/index";
+// Component
+@import "components/index";
+// utilities
+@import "utilities/index";
+// Module
+@import "layout/index";
+// All partials
+@import "partials/index";
+// global styles
+@import "./global";

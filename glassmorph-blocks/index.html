@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PRESCOT LED COB Mix</title>
+    <style>
+      :root {
+        --glass: rgba(138, 21, 67, 0.48);
+        --glass-strong: rgba(176, 31, 85, 0.68);
+        --stroke: rgba(255, 255, 255, 0.24);
+        --text: #fff7fb;
+        --muted: rgba(255, 238, 244, 0.7);
+        --deep: #060508;
+        --wine: #741137;
+        --pink: #ff3b72;
+        --amber: #ffc25d;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        color: var(--text);
+        background: #000;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .deck {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        min-height: 620px;
+        background: #000;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .stage-glow {
+        position: absolute;
+        inset: -22%;
+        z-index: 0;
+        background:
+          radial-gradient(circle at 72% 38%, color-mix(in srgb, var(--accent) 42%, transparent), transparent 30%),
+          radial-gradient(circle at 24% 74%, rgba(255, 47, 104, 0.22), transparent 28%),
+          linear-gradient(115deg, rgba(102, 8, 41, 0.55), transparent 46%, rgba(255, 156, 58, 0.18));
+        filter: blur(34px) saturate(1.4);
+        opacity: 0.92;
+        transform: scale(1.02);
+        transition: background 700ms ease;
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: minmax(420px, 0.86fr) minmax(520px, 1.42fr);
+        gap: clamp(28px, 4.2vw, 74px);
+        align-items: center;
+        padding: clamp(92px, 8vw, 126px) clamp(32px, 4.8vw, 76px) clamp(76px, 7vw, 110px);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.02);
+        transition:
+          opacity 760ms cubic-bezier(0.2, 0.8, 0.2, 1),
+          transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1),
+          visibility 0s linear 760ms;
+      }
+
+      .slide.active {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        transition-delay: 0s;
+      }
+
+      .media {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+      }
+
+      .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 69% 50%;
+        opacity: 0.88;
+        filter: saturate(1.08) contrast(1.05);
+        transform: scale(1.08) translateX(2%);
+        transition: transform 1600ms cubic-bezier(0.16, 1, 0.3, 1), filter 760ms ease;
+      }
+
+      .slide.active .media img {
+        transform: scale(1.02) translateX(0);
+      }
+
+      .media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.72) 31%, rgba(0, 0, 0, 0.18) 72%),
+          linear-gradient(0deg, rgba(0, 0, 0, 0.82), transparent 38%, rgba(0, 0, 0, 0.5));
+      }
+
+      .copy {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        align-self: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+        color: #ffe8ef;
+        font-size: 13px;
+        font-weight: 850;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .spark {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: repeating-conic-gradient(from 4deg, var(--accent) 0 9deg, transparent 9deg 24deg);
+        filter: drop-shadow(0 0 18px var(--accent));
+        animation: spin 9s linear infinite;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 720px;
+        font-size: clamp(52px, 7.1vw, 112px);
+        line-height: 0.9;
+        letter-spacing: 0;
+        text-wrap: balance;
+      }
+
+      .lead {
+        margin: clamp(16px, 2vw, 24px) 0 0;
+        max-width: 560px;
+        color: var(--muted);
+        font-size: clamp(16px, 1.25vw, 20px);
+        line-height: 1.34;
+        font-weight: 650;
+      }
+
+      .model-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .model-code,
+      .model-use {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 8px 12px 9px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        color: rgba(255, 244, 248, 0.82);
+        background: rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .model-code {
+        color: #12080c;
+        background: var(--accent);
+        box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 42%, transparent);
+      }
+
+      .glass-pill {
+        position: relative;
+        width: min(610px, 100%);
+        margin-top: clamp(22px, 3.2vh, 36px);
+        padding: 18px 22px 20px;
+        border: 1px solid var(--stroke);
+        border-radius: 34px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 26%),
+          linear-gradient(90deg, rgba(99, 10, 45, 0.74), var(--glass-strong));
+        backdrop-filter: blur(26px) saturate(1.55);
+        -webkit-backdrop-filter: blur(26px) saturate(1.55);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.46),
+          inset 0 -2px 14px rgba(255, 255, 255, 0.08),
+          0 22px 54px rgba(0, 0, 0, 0.42),
+          0 0 55px color-mix(in srgb, var(--accent) 34%, transparent);
+        overflow: hidden;
+      }
+
+      .glass-pill::before {
+        content: "";
+        position: absolute;
+        inset: 7px 18px auto;
+        height: 36px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+        filter: blur(8px);
+      }
+
+      .glass-pill::after {
+        content: "";
+        position: absolute;
+        left: 18%;
+        right: 18%;
+        bottom: -5px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(90deg, transparent, var(--accent), var(--pink), transparent);
+        filter: blur(7px);
+      }
+
+      .pill-head,
+      .spec-row,
+      .range {
+        position: relative;
+      }
+
+      .pill-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 16px;
+      }
+
+      .pill-title {
+        display: grid;
+        gap: 3px;
+        font-size: clamp(20px, 1.75vw, 26px);
+        font-weight: 900;
+      }
+
+      .pill-title small {
+        color: rgba(255, 237, 245, 0.58);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .badge {
+        flex: 0 0 auto;
+        min-width: 74px;
+        padding: 7px 12px 8px;
+        border-radius: 11px;
+        text-align: center;
+        color: #15070d;
+        background: var(--accent);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.55),
+          0 0 20px color-mix(in srgb, var(--accent) 74%, transparent);
+        font-size: 14px;
+        font-weight: 950;
+      }
+
+      .spec-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .spec {
+        min-height: 70px;
+        padding: 12px 13px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
+          rgba(255, 255, 255, 0.045);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.15),
+          0 10px 22px rgba(28, 4, 16, 0.13);
+      }
+
+      .spec small {
+        display: block;
+        color: rgba(255, 237, 245, 0.62);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .spec strong {
+        display: block;
+        margin-top: 6px;
+        font-size: clamp(17px, 1.35vw, 22px);
+        line-height: 1.04;
+      }
+
+      .range {
+        display: grid;
+        grid-template-columns: 26px 1fr 32px;
+        gap: 12px;
+        align-items: center;
+        margin-top: 18px;
+      }
+
+      .sun {
+        width: 19px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.8);
+        position: relative;
+      }
+
+      .sun::before {
+        content: "";
+        position: absolute;
+        inset: -7px;
+        border-radius: inherit;
+        background: repeating-conic-gradient(#fff 0 10deg, transparent 10deg 37deg);
+      }
+
+      .track {
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.2);
+        overflow: hidden;
+      }
+
+      .fill {
+        display: block;
+        width: var(--power);
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #fff, var(--accent));
+        box-shadow: 0 0 18px var(--accent);
+      }
+
+      .visual-card {
+        position: relative;
+        z-index: 2;
+        min-height: min(70vh, 650px);
+        align-self: center;
+      }
+
+      .floating-card {
+        position: absolute;
+        right: clamp(6px, 2.3vw, 44px);
+        top: 47%;
+        width: min(500px, 40vw);
+        min-height: 286px;
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 42px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04)),
+          rgba(90, 10, 43, 0.34);
+        backdrop-filter: blur(22px) saturate(1.35);
+        -webkit-backdrop-filter: blur(22px) saturate(1.35);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.28),
+          0 24px 70px rgba(0, 0, 0, 0.5);
+        transform: translateY(-50%) translateX(32px);
+      }
+
+      .floating-card h2 {
+        margin: 0 0 14px;
+        font-size: clamp(24px, 2.15vw, 38px);
+        line-height: 1;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .feature {
+        display: grid;
+        grid-template-columns: 108px 1fr;
+        gap: 12px;
+        align-items: baseline;
+        padding: 10px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.055);
+      }
+
+      .feature small {
+        color: rgba(255, 237, 245, 0.55);
+        font-size: 11px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .feature strong {
+        color: rgba(255, 249, 252, 0.9);
+        font-size: 14px;
+        line-height: 1.2;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+
+      .chip {
+        padding: 10px 13px 11px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+        color: rgba(255, 246, 249, 0.82);
+        background: rgba(255, 255, 255, 0.08);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .topbar {
+        position: absolute;
+        z-index: 5;
+        inset: 22px 28px auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        pointer-events: none;
+      }
+
+      .logo {
+        pointer-events: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        min-width: clamp(200px, 22vw, 330px);
+        min-height: 58px;
+        padding: 11px 24px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 999px;
+        background: rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        font-weight: 900;
+      }
+
+      .logo img {
+        display: block;
+        width: min(248px, 17vw);
+        max-width: 100%;
+        height: auto;
+        filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.18));
+      }
+
+      .counter {
+        pointer-events: auto;
+        padding: 11px 15px 12px;
+        border-radius: 999px;
+        color: var(--muted);
+        background: rgba(0, 0, 0, 0.32);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .nav {
+        position: absolute;
+        z-index: 7;
+        left: 50%;
+        bottom: 24px;
+        display: grid;
+        grid-template-columns: 46px minmax(0, 1fr) 46px;
+        align-items: center;
+        gap: 14px;
+        width: min(980px, calc(100vw - 42px));
+        transform: translateX(-50%);
+      }
+
+      .arrow,
+      .dot {
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: #fff;
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        cursor: pointer;
+      }
+
+      .arrow {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        font-size: 28px;
+        line-height: 1;
+        transition: transform 180ms ease, background 180ms ease;
+      }
+
+      .arrow:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .dots {
+        display: flex;
+        gap: 8px;
+        min-width: 0;
+      }
+
+      .dot {
+        position: relative;
+        flex: 1 1 0;
+        min-width: 48px;
+        height: 46px;
+        padding: 0 9px;
+        border-radius: 999px;
+        overflow: hidden;
+        text-align: center;
+        font-size: 0;
+        font-weight: 900;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        transition: border-color 220ms ease, background 220ms ease, transform 220ms ease;
+      }
+
+      .dot::before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 7px;
+        border-radius: 50%;
+        background: var(--dot-color);
+        box-shadow: 0 0 12px var(--dot-color);
+      }
+
+      .dot.active {
+        flex: 2.05 1 118px;
+        border-color: rgba(255, 255, 255, 0.38);
+        background: linear-gradient(90deg, rgba(118, 17, 55, 0.88), rgba(185, 36, 93, 0.62));
+        font-size: 12px;
+        transform: translateY(-3px);
+      }
+
+      .slide.active .copy {
+        animation: copyIn 850ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .slide.active .glass-pill {
+        animation: glassIn 900ms 110ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .slide.active .floating-card {
+        animation: floatIn 900ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both, hoverCard 5.5s 1.2s ease-in-out infinite;
+      }
+
+      @keyframes copyIn {
+        from {
+          opacity: 0;
+          transform: translateY(36px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes glassIn {
+        from {
+          opacity: 0;
+          transform: translateY(34px) scale(0.96);
+          filter: blur(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          filter: blur(0);
+        }
+      }
+
+      @keyframes floatIn {
+        from {
+          opacity: 0;
+          transform: translateY(-44%) translateX(88px) rotate(2deg);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(-50%) translateX(32px) rotate(0);
+        }
+      }
+
+      @keyframes hoverCard {
+        0%,
+        100% {
+          translate: 0 0;
+        }
+        50% {
+          translate: 0 -10px;
+        }
+      }
+
+      @keyframes spin {
+        to {
+          rotate: 360deg;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .deck {
+          min-height: 100vh;
+          overflow: auto;
+        }
+
+        body {
+          overflow: auto;
+        }
+
+        .slide {
+          grid-template-columns: 1fr;
+          align-content: center;
+          min-height: 100vh;
+          padding: 94px 18px 128px;
+        }
+
+        .media img {
+          object-position: 66% 50%;
+        }
+
+        .media::after {
+          background:
+            linear-gradient(180deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.24) 42%, rgba(0, 0, 0, 0.9)),
+            linear-gradient(90deg, rgba(0, 0, 0, 0.76), transparent 85%);
+        }
+
+        .copy {
+          max-width: none;
+        }
+
+        .visual-card {
+          min-height: 220px;
+        }
+
+        .floating-card {
+          position: relative;
+          top: auto;
+          right: auto;
+          width: 100%;
+          min-height: 0;
+          transform: none;
+        }
+
+        .feature {
+          grid-template-columns: 96px 1fr;
+        }
+
+        .spec-row {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .dots {
+          display: flex;
+          overflow-x: auto;
+          padding: 4px 1px 8px;
+          scrollbar-width: none;
+        }
+
+        .dots::-webkit-scrollbar {
+          display: none;
+        }
+
+        .dot {
+          flex: 0 0 116px;
+        }
+
+        .slide.active .floating-card {
+          animation: glassIn 900ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .topbar {
+          inset: 14px 12px auto;
+        }
+
+        .slide {
+          align-content: start;
+          gap: 12px;
+          padding-top: 112px;
+          padding-bottom: 174px;
+        }
+
+        .eyebrow {
+          display: none;
+        }
+
+        .logo {
+          min-width: 150px;
+          min-height: 48px;
+          padding: 10px 18px;
+        }
+
+        .logo img {
+          width: 112px;
+        }
+
+        .counter {
+          font-size: 12px;
+        }
+
+        h1 {
+          font-size: clamp(42px, 14vw, 66px);
+        }
+
+        .glass-pill {
+          border-radius: 30px;
+          padding: 17px 17px 20px;
+        }
+
+        .pill-head {
+          align-items: flex-start;
+        }
+
+        .spec-row {
+          gap: 8px;
+        }
+
+        .spec {
+          min-height: 72px;
+          padding: 12px;
+          border-radius: 16px;
+        }
+
+        .floating-card {
+          border-radius: 30px;
+          padding: 20px;
+        }
+
+        .visual-card {
+          display: none;
+        }
+
+        .feature-grid {
+          gap: 7px;
+        }
+
+        .feature {
+          grid-template-columns: 1fr;
+          gap: 4px;
+          padding: 9px 11px;
+        }
+
+        .floating-card .chip:nth-child(n + 4) {
+          display: none;
+        }
+
+        .nav {
+          grid-template-columns: 42px minmax(0, 1fr) 42px;
+          width: calc(100vw - 20px);
+          bottom: 14px;
+          gap: 8px;
+        }
+
+        .dot.active {
+          flex-basis: 92px;
+        }
+
+        .arrow {
+          width: 42px;
+          height: 42px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="deck" aria-label="Oferta taśm LED COB PRESCOT">
+      <div class="stage-glow" aria-hidden="true"></div>
+      <header class="topbar">
+        <div class="logo">
+          <img src="assets/prescot-logo-white-color.svg" alt="PRESCOT LED" />
+        </div>
+        <div class="counter"><span id="current">01</span> / 09</div>
+      </header>
+
+      <section id="slides"></section>
+
+      <nav class="nav" aria-label="Nawigacja slajdów">
+        <button class="arrow" id="prev" aria-label="Poprzedni slajd">‹</button>
+        <div class="dots" id="dots"></div>
+        <button class="arrow" id="next" aria-label="Następny slajd">›</button>
+      </nav>
+    </main>
+
+    <script>
+      const slides = [
+        {
+          image: "assets/cob/slide-01.jpg",
+          accent: "#ffcc3a",
+          label: "01 zolty",
+          title: "COB Yellow",
+          subtitle: "Kolorowa taśma akcentowa do oznaczeń, dekoru i efektów premium bez widocznych punktów LED.",
+          model: "COB-COLOR-Y",
+          use: "akcent / reklama / ekspozycja",
+          benefit: "ciągły kolor bez punktowania",
+          system: "rolka + profil + sterowanie 12V",
+          badge: "12V",
+          tech: { voltage: "12V", type: "COB kolor", color: "żółta", density: "480 LED/m", power: "10 W/m", cut: "16.5 mm" },
+          specs: ["480 LED/m", "10 W/m", "8 mm PCB", "16.5 mm ciecie"],
+          specLabels: ["gestosc", "moc", "PCB", "ciecie"],
+          power: "76%",
+          chips: ["barwa zolta", "COB color", "reklama", "ekspozycja"]
+        },
+        {
+          image: "assets/cob/slide-02.jpg",
+          accent: "#ff8a22",
+          label: "02 orange",
+          title: "COB Orange",
+          subtitle: "Ciepły, nasycony kolor do hospitality, ekspozytorów i scen świetlnych z mocnym efektem wizualnym.",
+          model: "COB-COLOR-O",
+          use: "horeca / dekor / sceny świetlne",
+          benefit: "mocny kolor przy miękkiej linii",
+          system: "instalacje 12V i profile aluminiowe",
+          badge: "12V",
+          tech: { voltage: "12V", type: "COB kolor", color: "pomarańczowa", density: "480 LED/m", power: "10 W/m", cut: "16.5 mm" },
+          specs: ["480 LED/m", "10 W/m", "8 mm PCB", "16.5 mm ciecie"],
+          specLabels: ["gestosc", "moc", "PCB", "ciecie"],
+          power: "74%",
+          chips: ["pomarancz", "dekor", "ambient", "szyldy"]
+        },
+        {
+          image: "assets/cob/slide-03.jpg",
+          accent: "#ff344e",
+          label: "03 red",
+          title: "COB Red",
+          subtitle: "Wyrazista czerwień do linii ostrzegawczych, brandingu, barów i dynamicznych aranżacji.",
+          model: "COB-COLOR-R",
+          use: "branding / kontur / strefy",
+          benefit: "wysoka widoczność bez efektu kropek",
+          system: "sterowniki 12V, profile, ekspozytory",
+          badge: "12V",
+          tech: { voltage: "12V", type: "COB kolor", color: "czerwona", density: "480 LED/m", power: "10 W/m", cut: "16.5 mm" },
+          specs: ["480 LED/m", "10 W/m", "8 mm PCB", "16.5 mm ciecie"],
+          specLabels: ["gestosc", "moc", "PCB", "ciecie"],
+          power: "78%",
+          chips: ["czerwien", "branding", "kontur", "efekt"]
+        },
+        {
+          image: "assets/cob/slide-04.jpg",
+          accent: "#ff4fbc",
+          label: "04 pink",
+          title: "COB Pink",
+          subtitle: "Różowa linia światła do beauty, retailu, eventów i wnętrz, które mają przyciągać wzrok.",
+          model: "COB-COLOR-P",
+          use: "beauty / retail / event",
+          benefit: "efekt premium na krótkich i średnich odcinkach",
+          system: "taśma + profil mleczny lub transparentny",
+          badge: "12V",
+          tech: { voltage: "12V", type: "COB kolor", color: "różowa", density: "480 LED/m", power: "10 W/m", cut: "16.5 mm" },
+          specs: ["480 LED/m", "10 W/m", "8 mm PCB", "16.5 mm ciecie"],
+          specLabels: ["gestosc", "moc", "PCB", "ciecie"],
+          power: "72%",
+          chips: ["roz", "beauty", "event", "retail"]
+        },
+        {
+          image: "assets/cob/slide-05.jpg",
+          accent: "#52df57",
+          label: "05 green",
+          title: "COB Green",
+          subtitle: "Zielony wariant do ekspozycji produktowych, oznaczeń kierunkowych i scenografii LED.",
+          model: "COB-COLOR-G",
+          use: "wayfinding / ekspozycja / scena",
+          benefit: "czytelna linia przy niskiej wysokości profilu",
+          system: "12V, profile meblowe i reklamowe",
+          badge: "12V",
+          tech: { voltage: "12V", type: "COB kolor", color: "zielona", density: "480 LED/m", power: "10 W/m", cut: "16.5 mm" },
+          specs: ["480 LED/m", "10 W/m", "8 mm PCB", "16.5 mm ciecie"],
+          specLabels: ["gestosc", "moc", "PCB", "ciecie"],
+          power: "70%",
+          chips: ["zielen", "wayfinding", "akcent", "scena"]
+        },
+        {
+          image: "assets/cob/slide-06.jpg",
+          accent: "#3391ff",
+          label: "06 blue",
+          title: "COB Blue",
+          subtitle: "Chłodna, czysta linia do tech retailu, showroomów, gaming roomów i efektów architektonicznych.",
+          model: "COB-COLOR-B",
+          use: "showroom / tech / architektura",
+          benefit: "intensywny akcent bez punktów LED",
+          system: "12V, sterowniki, profile liniowe",
+          badge: "12V",
+          tech: { voltage: "12V", type: "COB kolor", color: "niebieska", density: "480 LED/m", power: "10 W/m", cut: "16.5 mm" },
+          specs: ["480 LED/m", "10 W/m", "8 mm PCB", "16.5 mm ciecie"],
+          specLabels: ["gestosc", "moc", "PCB", "ciecie"],
+          power: "73%",
+          chips: ["niebieski", "showroom", "tech", "architektura"]
+        },
+        {
+          image: "assets/cob/slide-07.png",
+          accent: "#ffd987",
+          label: "07 12V 2700K",
+          title: "COB 12V 2700K",
+          subtitle: "Bardzo ciepła barwa do mebli, sypialni, restauracji i światła ukrytego blisko użytkownika.",
+          model: "COB-WW-12V",
+          use: "meble / sypialnie / restauracje",
+          benefit: "ciepła, miękka linia do bliskiego kontaktu",
+          system: "12V, krótkie odcinki, precyzyjne cięcie",
+          badge: "12V",
+          tech: { voltage: "12V", type: "COB WW", color: "2700K", density: "320/528 LED/m", power: "8-10 W/m", cut: "15-25 mm" },
+          specs: ["320/528 LED/m", "8-10 W/m", "8-10 mm PCB", "25/15 mm ciecie"],
+          specLabels: ["gestosc", "moc", "PCB", "ciecie"],
+          power: "66%",
+          chips: ["2700K", "cieplo", "meble", "premium"]
+        },
+        {
+          image: "assets/cob/slide-08.jpg",
+          accent: "#ffbf58",
+          label: "08 24V 2700K",
+          title: "COB 24V 2700K",
+          subtitle: "Wariant do dłuższych odcinków i profili LED: mniej strat, stabilna linia i wygodniejszy montaż.",
+          model: "COB-WW-24V",
+          use: "dłuższe odcinki / profile / zabudowy",
+          benefit: "stabilniejsze zasilanie i mniej spadków napięcia",
+          system: "24V, zasilacz, profil, sterowanie",
+          badge: "24V",
+          tech: { voltage: "24V", type: "COB WW", color: "2700K", density: "528 LED/m", power: "11.5 W/m", cut: "45 mm" },
+          specs: ["528 LED/m", "11.5 W/m", "10 mm PCB", "45 mm ciecie"],
+          specLabels: ["gestosc", "moc", "PCB", "ciecie"],
+          power: "86%",
+          chips: ["2700K", "dluzsze odcinki", "profil LED", "B2B"]
+        },
+        {
+          image: "assets/cob/slide-09.jpg",
+          accent: "#ffe0a3",
+          label: "09 24V LB",
+          title: "COB 24V Light Bar",
+          subtitle: "Gotowa belka świetlna z efektem COB: równe światło, szybki montaż i czysty wygląd instalacji.",
+          model: "COB-LB-24V",
+          use: "moduły gotowe / półki / ekspozytory",
+          benefit: "szybki montaż bez składania profilu od zera",
+          system: "light bar 24V, przewody, montaż plug-in",
+          badge: "24V",
+          tech: { voltage: "24V", type: "Light Bar", color: "2700K", density: "COB line", power: "wg modułu", cut: "moduł" },
+          specs: ["linear bar", "do profili", "ciepla biel", "montaz plug-in"],
+          specLabels: ["typ", "montaz", "barwa", "system"],
+          power: "82%",
+          chips: ["light bar", "gotowy modul", "bez kropek", "instalator"]
+        }
+      ];
+
+      const slidesRoot = document.querySelector("#slides");
+      const dotsRoot = document.querySelector("#dots");
+      const glow = document.querySelector(".stage-glow");
+      const current = document.querySelector("#current");
+      const techFields = [
+        ["voltage", "Napięcie"],
+        ["type", "Typ"],
+        ["color", "Barwa"],
+        ["density", "LED/m"],
+        ["power", "Moc"],
+        ["cut", "Cięcie"]
+      ];
+      let index = 0;
+      let timer;
+
+      function render() {
+        slidesRoot.innerHTML = slides
+          .map((slide, i) => {
+            const specs = techFields
+              .map(([key, label]) => `<div class="spec"><small>${label}</small><strong>${slide.tech[key]}</strong></div>`)
+              .join("");
+            const chips = slide.chips.map((chip) => `<span class="chip">${chip}</span>`).join("");
+
+            return `
+              <article class="slide ${i === 0 ? "active" : ""}" style="--accent:${slide.accent}; --power:${slide.power}" aria-label="${slide.title}">
+                <div class="media"><img src="${slide.image}" alt="${slide.title}" /></div>
+                <div class="copy">
+                  <div class="eyebrow"><span class="spark"></span><span>Oferta tasmy LED COB</span></div>
+                  <h1>${slide.title}</h1>
+                  <p class="lead">${slide.subtitle}</p>
+                  <div class="model-line">
+                    <span class="model-code">${slide.model}</span>
+                    <span class="model-use">${slide.use}</span>
+                  </div>
+                  <div class="glass-pill">
+                    <div class="pill-head">
+                      <span class="pill-title"><small>Specyfikacja</small>Stały zestaw parametrów</span>
+                      <span class="badge">${slide.badge}</span>
+                    </div>
+                    <div class="spec-row">${specs}</div>
+                    <div class="range">
+                      <span class="sun" aria-hidden="true"></span>
+                      <span class="track"><span class="fill"></span></span>
+                      <span class="sun" aria-hidden="true"></span>
+                    </div>
+                  </div>
+                </div>
+                <aside class="visual-card">
+                  <div class="floating-card">
+                    <h2>Jednolita linia światła bez widocznych punktów LED.</h2>
+                    <p class="lead">COB sprawdza się tam, gdzie klient widzi światło z bliska: profile, meble, ekspozycje, lokale i projekty premium.</p>
+                    <div class="feature-grid">
+                      <div class="feature"><small>Zastosowanie</small><strong>${slide.use}</strong></div>
+                      <div class="feature"><small>Przewaga</small><strong>${slide.benefit}</strong></div>
+                      <div class="feature"><small>System</small><strong>${slide.system}</strong></div>
+                    </div>
+                    <div class="chips">${chips}</div>
+                  </div>
+                </aside>
+              </article>
+            `;
+          })
+          .join("");
+
+        dotsRoot.innerHTML = slides
+          .map(
+            (slide, i) =>
+              `<button class="dot ${i === 0 ? "active" : ""}" style="--dot-color:${slide.accent}" data-index="${i}" aria-label="Przejdz do ${slide.title}">${slide.label}</button>`
+          )
+          .join("");
+      }
+
+      function show(nextIndex) {
+        index = (nextIndex + slides.length) % slides.length;
+        document.querySelectorAll(".slide").forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+        });
+        document.querySelectorAll(".dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+        });
+        current.textContent = String(index + 1).padStart(2, "0");
+        glow.style.setProperty("--accent", slides[index].accent);
+      }
+
+      function restartAutoplay() {
+        clearInterval(timer);
+        timer = setInterval(() => show(index + 1), 5200);
+      }
+
+      render();
+      show(0);
+      restartAutoplay();
+
+      document.querySelector("#next").addEventListener("click", () => {
+        show(index + 1);
+        restartAutoplay();
+      });
+
+      document.querySelector("#prev").addEventListener("click", () => {
+        show(index - 1);
+        restartAutoplay();
+      });
+
+      dotsRoot.addEventListener("click", (event) => {
+        const dot = event.target.closest(".dot");
+        if (!dot) return;
+        show(Number(dot.dataset.index));
+        restartAutoplay();
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          show(index + 1);
+          restartAutoplay();
+        }
+        if (event.key === "ArrowLeft") {
+          show(index - 1);
+          restartAutoplay();
+        }
+      });
+    </script>
+  </body>
+</html>

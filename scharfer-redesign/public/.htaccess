@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^scharfer\.com\.pl [NC]
+RewriteRule ^(.*)$ https://www.scharfer.com.pl/$1 [L,R=301]
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<FilesMatch "\.txt$">
+    Header set Content-Type "text/plain; charset=utf-8"
+</FilesMatch>

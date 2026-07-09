@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><base href="/">
+  <title>Sklep on-line | NailBar</title>
+  <link rel="stylesheet" href="store.css">
+  <script src="store-data.js" defer></script><script src="product-360-data.js" defer></script><script src="store.js" defer></script>
+</head>
+<body data-page="shop">
+  <header class="store-header">
+    <div class="store-top"><a href="/">Salon NailBar</a><span>Darmowa dostawa od 250 zł</span></div>
+    <nav><a class="store-logo" href="/"><img src="assets/images/logo.png" alt="NailBar"></a><div class="store-nav"><a href="/">Strona główna</a><a href="/shop/" aria-current="page">Sklep on-line</a><a href="/#kontakt">Kontakt</a></div><a class="cart-link" href="/cart/">Koszyk <strong data-cart-count>0</strong></a></nav>
+  </header>
+  <main>
+    <section class="store-hero"><div><p>Sklep on-line</p><h1>Kosmetyki i perfumy</h1><span>Produkty dostępne w salonie NailBar</span></div></section>
+    <div class="breadcrumb"><a href="/">Strona główna</a><span>/</span><strong>Sklep</strong></div>
+    <div class="shop-layout">
+      <aside class="filters">
+        <h2>Kategorie</h2>
+        <button class="filter active" data-category="Wszystkie">Wszystkie produkty <span>100</span></button>
+        <button class="filter" data-category="Perfumy">Perfumy <span></span></button>
+        <button class="filter" data-category="Pielęgnacja twarzy">Do twarzy <span></span></button>
+        <button class="filter" data-category="Pielęgnacja ciała">Do ciała <span></span></button>
+        <h2>Pojemności</h2>
+        <p class="filter-note">3 ml · 10 ml · 15 ml · 30 ml · 50 ml · 100 ml · 150 ml · 200 ml · 250 ml · 300 ml · 500 ml</p>
+      </aside>
+      <section class="products-area" aria-labelledby="productsTitle">
+        <div class="products-toolbar"><div><p>Sklep NailBar</p><h2 id="productsTitle">Wszystkie produkty</h2></div><label>Szukaj<input id="storeSearch" type="search" placeholder="Nazwa produktu"></label><label>Sortowanie<select id="storeSort"><option value="default">Domyślne</option><option value="price-asc">Cena: rosnąco</option><option value="price-desc">Cena: malejąco</option><option value="name">Nazwa A-Z</option></select></label></div>
+        <p class="result-count" id="resultCount"></p>
+        <div class="store-grid" id="storeGrid"></div>
+      </section>
+    </div>
+  </main>
+  <footer><img src="assets/images/logo.png" alt="NailBar"><p>NailBar Giżycko · perfumy, pielęgnacja i zestawy prezentowe</p></footer>
+</body>
+</html>

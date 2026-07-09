@@ -1,0 +1,5 @@
+.env
+.env.info
+.env.*
+reports/*.html
+reports/*.pdf

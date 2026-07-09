@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. Radiant Shift — Gravity Speak</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #050505;
+            font-family: sans-serif;
+        }
+
+        spline-viewer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            transform: scale(1.05);
+            transform-origin: center center;
+        }
+
+        spline-viewer::part(logo) {
+            display: none !important;
+        }
+
+        .nav {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav a {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .nav a.active {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: 1px solid white;
+        }
+
+        #logo-blocker {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 170px;
+            height: 50px;
+            background: #050505;
+            z-index: 9999;
+        }
+    </style>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.94/build/spline-viewer.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="index.html">Ethereal Rings</a>
+        <a href="index2.html" class="active">Radiant Shift</a>
+        <a href="index3.html">Reactive Background</a>
+    </div>
+
+    <spline-viewer id="main-spline" url="Radiant_Shift.spline"></spline-viewer>
+    <div id="logo-blocker"></div>
+
+    <script>
+        const viewer = document.getElementById('main-spline');
+        let angle = 0;
+        let isSpeaking = false;
+
+        async function checkVoice() {
+            try {
+                const r = await fetch('http://127.0.0.1:7777/speaking');
+                const data = await r.json();
+                isSpeaking = data.speaking;
+            } catch (e) { }
+        }
+        setInterval(checkVoice, 200);
+
+        function simulateMove() {
+            if (isSpeaking) {
+                angle += 0.2; // Fast whirl
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                const radius = 500;
+
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+
+                // Attempting to find the internal canvas to force mouse events
+                const canvas = viewer.shadowRoot ? viewer.shadowRoot.querySelector('canvas') : null;
+                const target = canvas || viewer;
+
+                const moveEvent = new MouseEvent('mousemove', {
+                    clientX: x,
+                    clientY: y,
+                    screenX: x,
+                    screenY: y,
+                    bubbles: true,
+                    composed: true // Crucial for cross-shadow boundary
+                });
+
+                target.dispatchEvent(moveEvent);
+            }
+            requestAnimationFrame(simulateMove);
+        }
+
+        simulateMove();
+
+        window.addEventListener("wheel", e => e.preventDefault(), { passive: false });
+        window.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
+    </script>
+</body>
+
+</html>

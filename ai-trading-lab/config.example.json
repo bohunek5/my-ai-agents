@@ -1,0 +1,10 @@
+{
+  "symbol": "ETHUSDT",
+  "interval": "1m",
+  "agents": 100,
+  "limit": 300,
+  "starting_balance": 10000,
+  "risk_per_trade": 0.01,
+  "paper_only": true
+}
+

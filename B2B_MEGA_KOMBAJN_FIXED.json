@@ -1,0 +1,174 @@
+{
+  "name": "B2B_MEGA_KOMBAJN_FIXED",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e8e8e4cf-5cfb-4c90-a870-9b0b3e666ec2",
+      "name": "Rozpocznij TEST",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -848,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "actor",
+        "operation": "run",
+        "actorId": "compass~google-maps-extractor",
+        "inputJson": "{\n  \"searchTerms\": [ \"hurtownia elektryczna Polska\" ],\n  \"maxResults\": 1,\n  \"extractEmails\": true,\n  \"language\": \"pl\"\n}"
+      },
+      "id": "54343cef-5149-4be2-9944-c29aac1f9d57",
+      "name": "Szukaj w Google Maps",
+      "type": "n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -656,
+        -80
+      ],
+      "credentials": {
+        "apifyApi": {
+          "id": "Lx47sM1tGvdz9tSc",
+          "name": "Apify account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.email }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "1791c02d-36bb-4b50-86b3-37fb0cf659e2",
+      "name": "Tylko z E-mailem",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.email }}",
+              "operation": "notRegexMatch",
+              "value2": "(?i)(gmail\\.com|yahoo\\.com|wp\\.pl|onet\\.pl|o2\\.pl|interia\\.pl)"
+            }
+          ]
+        }
+      },
+      "id": "1d391252-8a86-46d1-b872-0465696faaa3",
+      "name": "Filtr RODO B2B",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        -96
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const firms = $input.all().map(item => item.json);\n\nif (firms.length === 0) {\n  return [{ json: { htmlReport: \"<h2>Brak firm spełniających kryteria RODO.</h2>\", count: 0 } }];\n}\n\nlet htmlContent = \"<h2>Cześć Karol! Oto Twoja bezpieczna próbka firm B2B:</h2>\";\nhtmlContent += \"<p>Agenci Antigravity odfiltrowali domeny publiczne (RODO compliance).</p>\";\nhtmlContent += \"<table border='1' cellpadding='10' cellspacing='0' style='border-collapse: collapse; width: 100%;'>\";\nhtmlContent += \"<tr style='background-color: #f2f2f2;'><th>Nazwa Firmy</th><th>E-mail</th><th>Strona WWW</th><th>Info</th></tr>\";\n\nfirms.forEach((f) => {\n  const name = f.title || f.name || \"Firma\";\n  const phone = f.phone || \"brak\";\n  htmlContent += `<tr>\n    <td><b>${name}</b></td>\n    <td><a href='mailto:${f.email}'>${f.email}</a></td>\n    <td><a href='${f.website}'>${f.website || 'Brak'}</a></td>\n    <td>Tel: ${phone}</td>\n  </tr>`;\n});\nhtmlContent += \"</table>\";\n\nreturn [{ json: { htmlReport: htmlContent, count: firms.length } }];"
+      },
+      "id": "9d4af1de-915f-4095-9e3c-a4510aa24b49",
+      "name": "Zbierz w Raport (JS)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -48,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "bohunek5@gmail.com",
+        "subject": "=\"[FIXED] Mega Kombajn: \" + $json.count + \" firma testowa\"",
+        "message": "={{ $json.htmlReport }}",
+        "options": {}
+      },
+      "id": "99e2bc3f-aeec-4a8f-a9c5-04daef588bce",
+      "name": "Wyślij Raport do Karola",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        -112
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "XyLeTwFoKwyCVCXW",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Rozpocznij TEST": {
+      "main": [
+        [
+          {
+            "node": "Szukaj w Google Maps",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Szukaj w Google Maps": {
+      "main": [
+        [
+          {
+            "node": "Tylko z E-mailem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tylko z E-mailem": {
+      "main": [
+        [
+          {
+            "node": "Filtr RODO B2B",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtr RODO B2B": {
+      "main": [
+        [
+          {
+            "node": "Zbierz w Raport (JS)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zbierz w Raport (JS)": {
+      "main": [
+        [
+          {
+            "node": "Wyślij Raport do Karola",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

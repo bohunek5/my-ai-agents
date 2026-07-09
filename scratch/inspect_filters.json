@@ -1,0 +1,9 @@
+{
+  "result": {
+    "type": "object",
+    "value": {
+      "url": "https://cooken-store-demo.myshopify.com/collections/filter-hidden",
+      "htmlSnippet": "\n    <div id=\"xo-root\">\n      \n\n\n\n\n\n\n\n\n\n\n  \n    <a class=\"xo-btn xo-btn--light xo-btn--secondary\n xo-btn--xo-skip-to-content xo-visually-hidden xo-btn--slide-up xo-skip-to-content xo-visually-hidden\" style=\"\" href=\"#xo-main-content\">\n      \n  <span class=\"xo-btn__content\">\n     \n    \n    \n      <span class=\"xo-btn__text\" data-text=\"Skip to content\">\n        Skip to content\n      </span>\n    \n    \n  </span>\n  <span class=\"xo-btn__loading\">\n    \n\n<div class=\"xo-loader-3\" style=\"--size: 8; --color: currentColor; --duration: 1000;\">\n  <div></div>\n</div>\n\n  </span>\n\n    </a>\n  \n\n\n<!-- BEGIN sections: header-group -->\n<div id=\"shopify-section-sections--18031087648938__header\" class=\"shopify-section shopify-section-group-header-group section-header\">\n\n<header class=\"header-v6 \">\n  \n  <xo-sticky xo-direction=\"none\" xo-disabled=\"\" style=\"z-index: 10000;\">\n    <xo-animate xo-type=\"fade-up\" class=\"xo-header header-v6__sticky color-background-1\" style=\"--bg-color: #ffffff; --margin: 0; opacity: 1;"
+    }
+  }
+}

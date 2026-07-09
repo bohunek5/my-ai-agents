@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+  <title>Finalizacja zamówienia | NailBar Giżycko</title>
+  <link rel="stylesheet" href="styles.css?v=20260608-1000">
+  <link rel="stylesheet" href="store.css?v=20260608-1000">
+  <script src="app.js?v=20260608-1000" defer></script>
+  <script src="store-data.js?v=20260608-1000" defer></script>
+  <script src="store.js?v=20260608-1000" defer></script>
+  <script src="cookie-banner.js?v=20260608-1000" defer></script>
+</head>
+<body data-page="checkout">
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <header class="site-header solid">
+    <div class="utility-bar">
+      <span data-i18n="utility">Salon kosmetyczny w Giżycku</span>
+      <div class="utility-actions">
+        <a class="eu-utility-link" href="/ue/" aria-label="Unia Europejska - projekty unijne">
+          <span class="eu-flag-icon" aria-hidden="true"><img src="/assets/images/eu-flag.svg?v=20260608-1000" alt=""></span>
+          <span data-i18n="euTitleShort">Unia Europejska</span>
+        </a>
+        <div class="language-switch" aria-label="Wybór języka">
+          <button class="lang-button active" type="button" data-language="pl" aria-pressed="true">🇵🇱 PL</button>
+          <button class="lang-button" type="button" data-language="en" aria-pressed="false">🇬🇧 EN</button>
+          <button class="lang-button" type="button" data-language="de" aria-pressed="false">🇩🇪 DE</button>
+        </div>
+        <a class="eu-utility-link" href="/cart/" aria-label="Koszyk" data-i18n="cartShort">Koszyk</a>
+        <button class="icon-button utility-icon" id="accessibilityOpen" type="button" aria-controls="accessibilityPanel" aria-label="Dostępność">♿</button>
+      </div>
+    </div>
+    <nav class="main-nav" aria-label="Główna nawigacja">
+      <a class="brand" href="/" aria-label="NailBar - strona główna">
+        <img src="assets/images/logo.png" alt="NailBar">
+      </a>
+      <button class="icon-button menu-toggle mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks" title="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links store-nav" id="navLinks">
+        <a href="/shop/" data-i18n="backShop">Wróć do sklepu</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="breadcrumb">
+      <a href="/shop/" data-i18n="shopShort">Sklep</a>
+      <span>/</span>
+      <a href="/cart/" data-i18n="cart">Koszyk</a>
+      <span>/</span>
+      <strong data-i18n="checkoutTrail">Finalizacja zamówienia</strong>
+    </div>
+    <form class="checkout-page" id="checkoutForm">
+      <div class="checkout-form">
+        <p class="store-kicker" data-i18n="checkoutTrail">Finalizacja</p>
+        <h1 data-i18n="orderData">Dane zamówienia</h1>
+        <fieldset>
+          <legend data-i18n="customerData">Dane klienta</legend>
+          <div class="form-grid">
+            <label><span data-i18n="name">Imię i nazwisko</span><input required name="name"></label>
+            <label><span data-i18n="email">E-mail</span><input required type="email" name="email"></label>
+            <label><span data-i18n="phone">Telefon</span><input required name="phone"></label>
+            <label><span data-i18n="street">Ulica i numer</span><input required name="street"></label>
+            <label><span data-i18n="zip">Kod pocztowy</span><input required name="zip"></label>
+            <label><span data-i18n="city">Miasto</span><input required name="city"></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend data-i18n="shipping">Dostawa</legend>
+          <div class="checkout-options">
+            <label class="choice checkout-option"><input required type="radio" name="shipping" value="inpost" checked> <span><img class="brand-logo" src="assets/checkout/logo-inpost.svg" alt="InPost"><small>Paczkomat 24/7</small></span> <strong>14,99 zł</strong></label>
+            <label class="choice checkout-option"><input type="radio" name="shipping" value="courier"> <span><img class="brand-logo" src="assets/checkout/logo-inpost.svg" alt="InPost"><small>Kurier InPost pod adres</small></span> <strong>17,99 zł</strong></label>
+            <label class="choice checkout-option"><input type="radio" name="shipping" value="pickup"> <span><strong class="salon-mark">NailBar</strong><small>Odbiór w salonie</small></span> <strong>0,00 zł</strong></label>
+          </div>
+          <div class="parcel-picker" id="parcelPicker">
+            <div class="parcel-map" aria-label="Mapa paczkomatów InPost">
+              <iframe title="Mapa OpenStreetMap - paczkomaty Giżycko" src="https://www.openstreetmap.org/export/embed.html?bbox=21.7405%2C54.0303%2C21.7955%2C54.0485&amp;layer=mapnik&amp;marker=54.0389%2C21.7697" loading="lazy"></iframe>
+              <button type="button" class="parcel-pin active" data-parcel="GIZ01M" style="left:52%;top:44%">GIZ01M</button>
+              <button type="button" class="parcel-pin" data-parcel="GIZ03N" style="left:31%;top:62%">GIZ03N</button>
+              <button type="button" class="parcel-pin" data-parcel="GIZ05A" style="left:70%;top:58%">GIZ05A</button>
+            </div>
+            <div class="parcel-list" id="parcelList" aria-live="polite"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend data-i18n="payment">Płatność</legend>
+          <div class="payment-methods">
+            <label class="choice payment-card"><input required type="radio" name="payment" value="blik" checked> <span><img class="payment-logo" src="assets/checkout/logo-blik.png" alt="BLIK"><small>Kod 6-cyfrowy w kolejnym kroku</small></span></label>
+            <label class="choice payment-card"><input type="radio" name="payment" value="card"> <span><span class="logo-pair cards"><img class="payment-logo" src="assets/checkout/logo-visa.svg" alt="Visa"><img class="payment-logo" src="assets/checkout/logo-mastercard.svg" alt="Mastercard"></span><small>Karta płatnicza</small></span></label>
+            <label class="choice payment-card"><input type="radio" name="payment" value="transfer"> <span><img class="payment-logo" src="assets/checkout/logo-p24.png" alt="Przelewy24"><small>mBank, ING, PKO, Santander</small></span></label>
+            <label class="choice payment-card"><input type="radio" name="payment" value="pickup"> <span><strong class="salon-mark">NailBar</strong><small>Tylko odbiór w salonie</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset class="checkout-final">
+          <legend>Potwierdzenia</legend>
+          <label class="choice"><input required type="checkbox"> <span>Akceptuję regulamin sklepu i politykę prywatności.</span></label>
+          <label class="choice"><input type="checkbox"> <span>Chcę otrzymać fakturę VAT</span></label>
+          <label class="choice"><input type="checkbox"> <span>Zapisz mnie na informacje o nowościach NailBar</span></label>
+          <label><span>Uwagi do zamówienia</span><textarea name="notes" rows="4" placeholder="Np. preferowana godzina odbioru albo informacja dla kuriera"></textarea></label>
+        </fieldset>
+      </div>
+      <aside class="cart-summary" id="checkoutSummary"></aside>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="assets/images/logo.png" alt="NailBar">
+      <p>NailBar manicure.pedicure.spa</p>
+    </div>
+    <address class="footer-contact">
+      <span data-i18n="footerAddressLabel">Adres</span>
+      <a href="https://www.google.com/maps/search/?api=1&query=NailBar%20Szantowa%204%2F4%2011-500%20Gi%C5%BCycko" target="_blank" rel="noopener">ul. Szantowa 4/4, 11-500 Giżycko</a>
+      <span data-i18n="footerPhoneLabel">Telefon</span>
+      <a href="tel:+48511026238">+48 511 026 238</a>
+    </address>
+    <div class="footer-links">
+      <span data-i18n="footerLinksLabel">Linki</span>
+      <a href="https://www.facebook.com/stylizacjapaznokcigizycko/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/nailbar_manicure.pedicure.spa/" target="_blank" rel="noopener">Instagram</a>
+      <a href="/regulamin.html" data-i18n="footerTerms">Regulamin</a>
+      <a href="/polityka-prywatnosci.html" data-i18n="footerPrivacy">Polityka prywatności</a>
+      <a href="#" id="cookieSettingsBtn" data-i18n="footerCookies">Ustawienia cookies</a>
+    </div>
+  </footer>
+
+  <aside class="accessibility-panel" id="accessibilityPanel" aria-label="Ustawienia dostępności" hidden>
+    <div class="panel-head"><strong data-i18n="accessibilityTitle">Dostępność</strong><button class="icon-button" id="accessibilityClose" type="button" aria-label="Zamknij">×</button></div>
+    <p class="accessibility-copy" data-i18n="accessibilityText">Włącz uproszczony tryb czarno-biały z mocniejszym kontrastem całej strony.</p>
+    <button type="button" class="accessibility-toggle alt" data-access="font" data-i18n="accessibilityFont">Powiększ czcionki</button>
+    <button type="button" class="accessibility-toggle alt" data-access="links" data-i18n="accessibilityLinks">Podkreśl linki</button>
+    <button type="button" class="accessibility-toggle" data-access="bw" data-i18n="accessibilityToggle">Włącz tryb czarno-biały</button>
+  </aside>
+</body>
+</html>

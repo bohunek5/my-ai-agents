@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+  <meta name="description" content="Projekty unijne NailBar Giżycko. Informacje o dofinansowaniu z Funduszy Europejskich.">
+  <title>Projekty unijne | NailBar Giżycko</title>
+  <link rel="stylesheet" href="styles.css?v=20260608-1000">
+  <script src="app.js?v=20260608-1000" defer></script>
+  <script src="cookie-banner.js?v=20260608-1000" defer></script>
+  <style>
+    body { background: var(--paper); }
+    .site-header { position: sticky; top: 0; background: rgba(24,23,22,.96); backdrop-filter: blur(14px); z-index: 50; }
+    .ue-page .main-nav { border-bottom: 1px solid rgba(255,255,255,.12); }
+    .ue-main { background: linear-gradient(180deg, #fffdfb 0%, #f4efea 100%); }
+    .ue-intro { padding: 70px max(20px, calc((100vw - 1320px) / 2)) 42px; }
+    .ue-intro h1 { max-width: 980px; margin-bottom: 18px; color: var(--ink); font-size: clamp(2.5rem, 5vw, 5rem); }
+    .ue-intro p:not(.eyebrow) { max-width: 780px; color: var(--muted); font-size: 1.08rem; }
+    .ue-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; padding: 0 max(20px, calc((100vw - 1320px) / 2)) 90px; align-items: start; }
+    .ue-card, .ue-side { background: #fff; border: 1px solid var(--line); }
+    .ue-logos { grid-column: 1 / -1; background: #fff; }
+    .ue-logos img { width: 100%; height: auto; }
+    .ue-card { padding: 34px; }
+    .ue-card h2, .ue-side h2 { margin-bottom: 20px; font-size: clamp(1.7rem, 3vw, 2.5rem); }
+    .ue-list { display: grid; gap: 18px; margin: 0; }
+    .ue-list div { display: grid; grid-template-columns: 190px 1fr; gap: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+    .ue-list div:last-child { border-bottom: 0; padding-bottom: 0; }
+    .ue-list dt { color: var(--accent-dark); font-weight: 800; }
+    .ue-list dd { margin: 0; color: var(--ink); }
+    .ue-side { padding: 24px; }
+    .ue-amount { display: grid; gap: 14px; margin-bottom: 24px; }
+    .ue-amount div { padding: 18px; background: var(--soft); border: 1px solid var(--line); }
+    .ue-amount span { display: block; margin-bottom: 8px; color: var(--muted); font-size: .78rem; font-weight: 800; text-transform: uppercase; }
+    .ue-amount strong { color: var(--accent-dark); font-size: 1.55rem; }
+    .ue-side ul { margin: 0; padding-left: 20px; color: var(--muted); }
+    .ue-page footer { background: var(--black); color: #fff; }
+    @media (max-width: 900px) {
+      .ue-layout { grid-template-columns: 1fr; }
+      .ue-list div { grid-template-columns: 1fr; gap: 4px; }
+      .ue-card, .ue-side { padding: 20px; }
+      .ue-logos { overflow-x: auto; }
+      .ue-logos img { width: 820px; max-width: none; }
+    }
+  </style>
+</head>
+<body class="ue-page">
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <header class="site-header solid">
+    <div class="utility-bar">
+      <span data-i18n="utility">Salon kosmetyczny w Giżycku</span>
+      <div class="utility-actions">
+        <a class="eu-utility-link" href="/ue/" aria-label="Unia Europejska - projekty unijne" aria-current="page">
+          <span class="eu-flag-icon" aria-hidden="true"><img src="/assets/images/eu-flag.svg?v=20260608-1000" alt=""></span>
+          <span data-i18n="euTitleShort">Unia Europejska</span>
+        </a>
+        <div class="language-switch" aria-label="Wybór języka">
+          <button class="lang-button active" type="button" data-language="pl" aria-pressed="true">🇵🇱 PL</button>
+          <button class="lang-button" type="button" data-language="en" aria-pressed="false">🇬🇧 EN</button>
+          <button class="lang-button" type="button" data-language="de" aria-pressed="false">🇩🇪 DE</button>
+        </div>
+        <a class="eu-utility-link" href="/cart/" aria-label="Koszyk" data-i18n="cartShort">Koszyk</a>
+        <button class="icon-button utility-icon" id="accessibilityOpen" type="button" aria-controls="accessibilityPanel" aria-label="Dostępność">♿</button>
+      </div>
+    </div>
+    <nav class="main-nav" aria-label="Główna nawigacja">
+      <a class="brand" href="/" aria-label="NailBar - strona główna">
+        <img src="assets/images/logo.png" alt="NailBar">
+      </a>
+      <button class="icon-button menu-toggle mobile-menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks" title="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="/#uslugi" data-i18n="navServices">Usługi</a>
+        <a href="/cases/" data-i18n="navCases">Metamorfozy</a>
+        <a href="/spacer/" data-i18n="navTour">Spacer 360</a>
+        <a href="/#doradztwo" data-i18n="navAdvice">Doradztwo</a>
+        <a href="/shop/" data-i18n="navShop">Sklep on-line</a>
+        <a href="/ue/" data-i18n="navEU" aria-current="page">Projekty unijne</a>
+        <a href="/kontakt/" data-i18n="navContact">Kontakt</a>
+        <a class="nav-cta" href="https://booksy.com/pl-pl/69296_nailbar-malgorzata-marchelewicz_paznokcie_5694_gizycko" target="_blank" rel="noopener" data-i18n="book">Umów wizytę</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="ue-main">
+    <section class="ue-intro" aria-labelledby="euTitle">
+      <p class="eyebrow" data-i18n="euHeroEyebrow">Projekty unijne</p>
+      <h1 id="euTitle" data-i18n="euHeroTitle">Informacja o dofinansowaniu</h1>
+      <p data-i18n="euHeroLead">Strona zawiera wymagane oznaczenia oraz informacje o projekcie realizowanym przy wsparciu Funduszy Europejskich.</p>
+    </section>
+
+    <section class="ue-layout" aria-label="Informacje o projekcie">
+      <div class="ue-logos">
+        <img src="/assets/images/belka-ue.webp?v=20260608-1000" alt="Fundusze Europejskie, Rzeczpospolita Polska, Warmia Mazury, Unia Europejska">
+      </div>
+
+      <article class="ue-card">
+        <h2 data-i18n="euProjectInfoTitle">Informacje o projekcie</h2>
+        <dl class="ue-list">
+          <div>
+            <dt data-i18n="euBeneficiaryLabel">Beneficjent</dt>
+            <dd>NAILBAR Małgorzata Marchelewicz</dd>
+          </div>
+          <div>
+            <dt data-i18n="euProjectTitleLabel">Tytuł projektu</dt>
+            <dd data-i18n="euProjectTitleVal">„Zabezpieczenie ciągłości działalności gospodarczej firmy Nailbar Małgorzata Marchelewicz w okresie epidemii”</dd>
+          </div>
+          <div>
+            <dt data-i18n="euProjectDescLabel">Opis i cele projektu</dt>
+            <dd data-i18n="euProjectDescVal">Celem projektu jest opracowanie i wdrożenie działań zabezpieczających ciągłość działalności gospodarczej firmy Nailbar Małgorzata Marchelewicz w okresie epidemii wpływających na budowanie odporności firmy na przyszłe kryzysy.</dd>
+          </div>
+          <div>
+            <dt data-i18n="euInfoLabel">Informacja</dt>
+            <dd data-i18n="euInfoVal">Sfinansowano w ramach reakcji Unii na pandemię COVID-19.</dd>
+          </div>
+        </dl>
+      </article>
+
+      <aside class="ue-side" aria-label="Wartość projektu">
+        <h2 data-i18n="euAmountsTitle">Kwoty</h2>
+        <div class="ue-amount">
+          <div>
+            <span data-i18n="euValueLabel">Wartość projektu</span>
+            <strong>278 316,00 zł</strong>
+          </div>
+          <div>
+            <span data-i18n="euContributionLabel">Wkład Funduszy Europejskich</span>
+            <strong>278 316,00 zł</strong>
+          </div>
+        </div>
+        <h2 data-i18n="euMarkingsTitle">Zestaw oznaczeń</h2>
+        <ul>
+          <li data-i18n="euMarking1">znak Fundusze Europejskie,</li>
+          <li data-i18n="euMarking2">barwy Rzeczypospolitej Polskiej,</li>
+          <li data-i18n="euMarking3">oficjalne logo promocyjne województwa i znak Unia Europejska,</li>
+          <li data-i18n="euMarking4">informacja o finansowaniu w ramach reakcji Unii na pandemię COVID-19.</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <img src="assets/images/logo.png" alt="NailBar">
+      <p>NailBar manicure.pedicure.spa</p>
+    </div>
+    <address class="footer-contact">
+      <span data-i18n="footerAddressLabel">Adres</span>
+      <a href="https://www.google.com/maps/search/?api=1&query=NailBar%20Szantowa%204%2F4%2011-500%20Gi%C5%BCycko" target="_blank" rel="noopener">ul. Szantowa 4/4, 11-500 Giżycko</a>
+      <span data-i18n="footerPhoneLabel">Telefon</span>
+      <a href="tel:+48511026238">+48 511 026 238</a>
+    </address>
+    <div class="footer-links">
+      <span data-i18n="footerLinksLabel">Linki</span>
+      <a href="https://www.facebook.com/stylizacjapaznokcigizycko/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/nailbar_manicure.pedicure.spa/" target="_blank" rel="noopener">Instagram</a>
+      <a href="/regulamin.html" data-i18n="footerTerms">Regulamin</a>
+      <a href="/polityka-prywatnosci.html" data-i18n="footerPrivacy">Polityka prywatności</a>
+      <a href="#" id="cookieSettingsBtn" data-i18n="footerCookies">Ustawienia cookies</a>
+    </div>
+  </footer>
+
+  <aside class="accessibility-panel" id="accessibilityPanel" aria-label="Ustawienia dostępności" hidden>
+    <div class="panel-head"><strong data-i18n="accessibilityTitle">Dostępność</strong><button class="icon-button" id="accessibilityClose" type="button" aria-label="Zamknij">×</button></div>
+    <p class="accessibility-copy" data-i18n="accessibilityText">Włącz uproszczony tryb czarno-biały z mocniejszym kontrastem całej strony.</p>
+    <button type="button" class="accessibility-toggle alt" data-access="font" data-i18n="accessibilityFont">Powiększ czcionki</button>
+    <button type="button" class="accessibility-toggle alt" data-access="links" data-i18n="accessibilityLinks">Podkreśl linki</button>
+    <button type="button" class="accessibility-toggle" data-access="bw" data-i18n="accessibilityToggle">Włącz tryb czarno-biały</button>
+  </aside>
+</body>
+</html>

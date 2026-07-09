@@ -1,0 +1,40 @@
+import ftplib
+import os
+import sys
+
+ftp = ftplib.FTP('wordpress2411241.home.pl')
+ftp.login('wwwscharfer@scharfer.com.pl', 'V_ZicPFY')
+ftp.cwd('autoinstalator/wordpressbeginners')
+
+# Rename index.php to avoid conflicts
+try:
+    ftp.rename('index.php', 'index.php.bak')
+except Exception as e:
+    pass
+
+print("Uploading out.zip...")
+with open('/Users/karolbohdanowicz/my-ai-agents/scharfer-redesign/out.zip', 'rb') as f:
+    ftp.storbinary('STOR out.zip', f)
+print("Uploaded out.zip")
+
+unzip_php = """<?php
+$zip = new ZipArchive;
+$res = $zip->open('out.zip');
+if ($res === TRUE) {
+  $zip->extractTo('./');
+  $zip->close();
+  echo 'OK';
+} else {
+  echo 'FAILED';
+}
+?>"""
+
+with open('/Users/karolbohdanowicz/my-ai-agents/unzip_scharfer.php', 'w') as f:
+    f.write(unzip_php)
+
+print("Uploading unzip_scharfer.php...")
+with open('/Users/karolbohdanowicz/my-ai-agents/unzip_scharfer.php', 'rb') as f:
+    ftp.storbinary('STOR unzip_scharfer.php', f)
+print("Uploaded unzip script.")
+
+ftp.quit()

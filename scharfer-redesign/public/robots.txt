@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://scharfer.com.pl/sitemap.xml

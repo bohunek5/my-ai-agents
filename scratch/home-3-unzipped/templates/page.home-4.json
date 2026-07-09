@@ -1,0 +1,359 @@
+{
+  "sections": {
+    "slideshow-v50": {
+      "type": "slideshow-v4",
+      "blocks": {
+        "61db5fa9-dcf1-46fc-8bdc-4113692462c2": {
+          "type": "slideshow",
+          "settings": {
+            "subtitle": "KITCHEN ACCESSORIES",
+            "subtitle_font_size": 1.6,
+            "subtitle_font_weight": 500,
+            "subtitle_animation": "zoom-out",
+            "title": "Cutlery Kitchen",
+            "title_font_size": 8,
+            "title_font_weight": 400,
+            "title_animation": "zoom-out",
+            "description": "Whether they're designed to speed up your cooking process or to cut down on manual labor",
+            "description_font_size": 2,
+            "description_font_weight": 500,
+            "description_animation": "zoom-out",
+            "button_text": "shop now",
+            "button_link": "shopify://collections/all",
+            "button_mode": "dark",
+            "button_style": "tertiary",
+            "button_size": "sm",
+            "button_radius": 0,
+            "button_padding": 1.4,
+            "button_animation": "zoom-out",
+            "color_scheme": "background-1",
+            "background_type": "image",
+            "background_color": "",
+            "background_gradient": "",
+            "background_image_desktop": "shopify://shop_images/slide2.1.jpg",
+            "background_image_mobile": "shopify://shop_images/slide2.1.jpg",
+            "use_parallax": false,
+            "background_image_animation": "zoom-out",
+            "background_video_url": "",
+            "background_video_animation": "none",
+            "background_overlay": "",
+            "background_margin": 0
+          }
+        },
+        "slideshow_YgbUhj": {
+          "type": "slideshow",
+          "settings": {
+            "subtitle": "",
+            "subtitle_font_size": 1.6,
+            "subtitle_font_weight": 500,
+            "subtitle_animation": "zoom-out",
+            "title": "Cooking Utensils",
+            "title_font_size": 8,
+            "title_font_weight": 400,
+            "title_animation": "zoom-out",
+            "description": "You'll want to add each one to your kitchen—and maybe buy a few for your food-loving friends too.",
+            "description_font_size": 2,
+            "description_font_weight": 500,
+            "description_animation": "zoom-out",
+            "button_text": "shop now",
+            "button_link": "shopify://collections/all",
+            "button_mode": "dark",
+            "button_style": "tertiary",
+            "button_size": "sm",
+            "button_radius": 0,
+            "button_padding": 1.4,
+            "button_animation": "zoom-out",
+            "color_scheme": "background-1",
+            "background_type": "image",
+            "background_color": "",
+            "background_gradient": "",
+            "background_image_desktop": "shopify://shop_images/slide2.2.jpg",
+            "background_image_mobile": "shopify://shop_images/slide2.2.jpg",
+            "use_parallax": false,
+            "background_image_animation": "zoom-out",
+            "background_video_url": "",
+            "background_video_animation": "none",
+            "background_overlay": "",
+            "background_margin": 0
+          }
+        }
+      },
+      "block_order": [
+        "61db5fa9-dcf1-46fc-8bdc-4113692462c2",
+        "slideshow_YgbUhj"
+      ],
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "section_height_desktop": 760,
+        "section_height_mobile": 500,
+        "carousel_type": "none",
+        "changing_speed": 400,
+        "autoplay": false,
+        "autoplay_speed": 5,
+        "show_navigation": true,
+        "show_pagination": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collection_v51_qiVVFW": {
+      "type": "collection-v1",
+      "blocks": {
+        "collection_F73NnB": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/collection3.1.png",
+            "collection": ""
+          }
+        },
+        "collection_LV7FdD": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/collection3.2.png",
+            "collection": ""
+          }
+        },
+        "collection_aJMYrV": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/collection3.3.png",
+            "collection": ""
+          }
+        },
+        "collection_QCqGLF": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/collection3.4.png",
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_F73NnB",
+        "collection_LV7FdD",
+        "collection_aJMYrV",
+        "collection_QCqGLF"
+      ],
+      "name": "COLLECTION V51",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "columns_limit": 4,
+        "gap": 0,
+        "auto_play": false,
+        "hover": "scale_up",
+        "aspect_ratio": "1/1",
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    },
+    "product_v1_bC4gAW": {
+      "type": "product-v1",
+      "name": "PRODUCT V1",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "subtitle": "Best Seller Product This Week!",
+        "title": "Best Seller",
+        "collection": "collection-title-style-02",
+        "limit": 8,
+        "columns_size": 4,
+        "distinct_color_scheme": false,
+        "product_card_color_scheme": "",
+        "button_text": "",
+        "button_link": "shopify://collections/all",
+        "button_mode": "light",
+        "button_style": "secondary",
+        "button_size": "sm",
+        "button_radius": 0.8,
+        "button_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 10,
+        "padding_bottom": 50
+      }
+    },
+    "banner_v3_VFTUFz": {
+      "type": "banner-v3",
+      "name": "BANNER V3",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "hover": "scale_up",
+        "subtitle": "We achieve this by combining cutting-edge concepts, technologies and materials to create the most innovative, healthy, colorful kitchenware and cookware in the world market today.",
+        "title": "the best thing can give to you",
+        "image": "shopify://shop_images/banner9.1.jpg",
+        "link": "shopify://collections/all",
+        "button_text": "read now",
+        "button_mode": "accent",
+        "button_style": "primary",
+        "button_size": "sm",
+        "button_radius": 0,
+        "button_padding": 1.4,
+        "color_scheme": "inverse",
+        "background_type": "color",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "product_v4_qYJHpR": {
+      "type": "product-v4",
+      "name": "PRODUCT V4",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "heading_title": "New Arrivals",
+        "subtitle": "",
+        "heading_align": "center",
+        "collection": "product-card-style-04",
+        "limit": 12,
+        "columns_size": 4,
+        "distinct_color_scheme": false,
+        "product_card_color_scheme": "",
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "banner_v6_Uyk8Um": {
+      "type": "banner-v6",
+      "name": "BANNER V6",
+      "settings": {
+        "width": "box",
+        "fullwidth_margin": 0,
+        "hover": "rotate",
+        "gap": 30,
+        "title1": "KITCHEN TOOLS <br /> DISCOVER",
+        "image1": "shopify://shop_images/banner8.1.jpg",
+        "link1": "shopify://collections/all",
+        "button1_text": "",
+        "button1_mode": "light",
+        "button1_style": "secondary",
+        "button1_size": "sm",
+        "button1_radius": 0.8,
+        "button1_padding": 1.4,
+        "title2": "HIGH QUALITY <br /> SELECTION",
+        "image2": "shopify://shop_images/banner8.2.jpg",
+        "link2": "shopify://collections/all",
+        "button2_text": "",
+        "button2_mode": "light",
+        "button2_style": "secondary",
+        "button2_size": "sm",
+        "button2_radius": 0.8,
+        "button2_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "newsletter_v4_3AGDXm": {
+      "type": "newsletter-v4",
+      "name": "NEWSLETTER V4",
+      "settings": {
+        "title": "GET UPDATE",
+        "subtitle": "Subscribe our newsletter and getdiscount 30% off",
+        "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" enable-background=\"new 0 0 24 24\" height=\"40\" viewbox=\"0 0 24 24\" width=\"25\"><path d=\"m8.75 17.612v4.638c0 .324.208.611.516.713.077.025.156.037.234.037.234 0 .46-.11.604-.306l2.713-3.692z\"></path><path d=\"m23.685.139c-.23-.163-.532-.185-.782-.054l-22.5 11.75c-.266.139-.423.423-.401.722.023.3.222.556.505.653l6.255 2.138 13.321-11.39-10.308 12.419 10.483 3.583c.078.026.16.04.242.04.136 0 .271-.037.39-.109.19-.116.319-.311.352-.53l2.75-18.5c.041-.28-.077-.558-.307-.722z\"></path></svg>",
+        "color_scheme": "",
+        "background_type": "image",
+        "background_color": "",
+        "background_gradient": "",
+        "background_image_desktop": "shopify://shop_images/newsletter.jpg",
+        "background_image_mobile": "shopify://shop_images/newsletter.jpg",
+        "use_parallax": false,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "instagram_v3_N6zdCy": {
+      "type": "instagram-v3",
+      "name": "INSTAGRAM V3",
+      "settings": {
+        "width": "fullwidth",
+        "fullwidth_margin": 0,
+        "reverse": false,
+        "title": "",
+        "access_token": "",
+        "open_mode": "newtab",
+        "button_text": "ALL PRODUCTS",
+        "button_link": "shopify://collections/all",
+        "button_mode": "light",
+        "button_style": "secondary",
+        "button_size": "sm",
+        "button_radius": 0.8,
+        "button_padding": 1.4,
+        "color_scheme": "",
+        "background_type": "color",
+        "background_color": "",
+        "background_gradient": "",
+        "use_parallax": true,
+        "background_image_animation": "none",
+        "background_video_url": "",
+        "background_video_animation": "none",
+        "background_overlay": "",
+        "background_margin": 0,
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "slideshow-v50",
+    "collection_v51_qiVVFW",
+    "product_v1_bC4gAW",
+    "banner_v3_VFTUFz",
+    "product_v4_qYJHpR",
+    "banner_v6_Uyk8Um",
+    "newsletter_v4_3AGDXm",
+    "instagram_v3_N6zdCy"
+  ]
+}

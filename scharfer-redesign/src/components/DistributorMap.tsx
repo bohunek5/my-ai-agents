@@ -29,7 +29,7 @@ export default function DistributorMap() {
   if (!isAuthenticated) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
-        <div style={{ background: '#fff', padding: '3rem', borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', textAlign: 'center', maxWidth: '400px', width: '100%' }}>
+        <div style={{ background: 'var(--card-bg)', padding: '3rem', borderRadius: '8px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', textAlign: 'center', maxWidth: '400px', width: '100%' }}>
           <h1 style={{ color: 'var(--c-heading)', fontSize: '1.5rem', marginBottom: '1rem', fontWeight: 800 }}>Wewnętrzna Mapa Dystrybutorów</h1>
           <p style={{ color: 'var(--c-text)', fontSize: '0.9rem', marginBottom: '2rem' }}>Strona zahasłowana. Podaj hasło dostępu (domyślne: mapa).</p>
           

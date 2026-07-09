@@ -1,0 +1,43 @@
+{
+  "updatedAt": "2026-03-21T14:50:39.000Z",
+  "createdAt": "2026-03-20T12:40:47.829Z",
+  "id": "s84UjxOacWDqDap6",
+  "name": "Untitled-1772916074987",
+  "description": null,
+  "active": false,
+  "isArchived": true,
+  "nodes": [],
+  "connections": {},
+  "settings": {
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": null,
+  "versionId": "40eb134f-bb43-4f3c-ae9c-c8b2cf75bfa9",
+  "activeVersionId": null,
+  "versionCounter": 3,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-03-20T12:40:47.831Z",
+      "createdAt": "2026-03-20T12:40:47.831Z",
+      "role": "workflow:owner",
+      "workflowId": "s84UjxOacWDqDap6",
+      "projectId": "Fz5umYibcNGoVlFz",
+      "project": {
+        "updatedAt": "2026-03-19T07:28:58.576Z",
+        "createdAt": "2026-03-18T19:24:19.113Z",
+        "id": "Fz5umYibcNGoVlFz",
+        "name": "Karol Bohunek <bohunek5@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "creatorId": "db23f929-c016-4d39-8890-2ae369ff840d"
+      }
+    }
+  ],
+  "tags": [],
+  "activeVersion": null
+}

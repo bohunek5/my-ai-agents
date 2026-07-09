@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" role="img" aria-label="DPD">
+  <rect width="240" height="80" rx="10" fill="#fff"/>
+  <rect x="1" y="1" width="238" height="78" rx="9" fill="none" stroke="#d8d1ca" stroke-width="2"/>
+  <path d="M44 25l34-18 34 18-34 18z" fill="#dc0032"/>
+  <path d="M44 25v31l34 18V43z" fill="#b00028"/>
+  <path d="M112 25v31L78 74V43z" fill="#79001c"/>
+  <text x="126" y="56" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="40" font-weight="900" fill="#2a2725">DPD</text>
+</svg>
