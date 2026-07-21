@@ -185,7 +185,7 @@ export default function ReservationPage() {
                     </span>
                   </div>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Luksusowy houseboat dla 8 osób. W pełni wyposażony, ogrzewany, dostosowany do niepełnosprawności.
+                    Luksusowy houseboat dla 8 osób. W pełni wyposażony, dostosowany do niepełnosprawności.
                   </p>
                   <p className="text-lg font-black text-blue-600 dark:text-blue-400">
                     {boatPrice} {t("Reservation", "pricePerDay")}

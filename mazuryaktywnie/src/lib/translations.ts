@@ -198,7 +198,7 @@ export const translations = {
       "f1Title": "Brak uprawnień",
       "f1Desc": "Nie potrzebujesz patentu motorowodnego. Wszystkiego Cię nauczymy przed rejsem.",
       "f2Title": "Pełen komfort",
-      "f2Desc": "Nasz jacht to pływający apartament z ogrzewaniem, łazienką i kuchnią.",
+      "f2Desc": "Nasz jacht to pływający apartament z łazienką i kuchnią.",
       "f3Title": "Rowery i SUP",
       "f3Desc": "Zabierz na pokład rowery elektryczne i deski SUP. Mazury to nie tylko woda!"
     },
@@ -413,7 +413,7 @@ export const translations = {
       "f1Title": "No license required",
       "f1Desc": "You don't need a motorboat license. We'll teach you everything before the cruise.",
       "f2Title": "Full comfort",
-      "f2Desc": "Our yacht is a floating apartment with heating, a bathroom, and a kitchen.",
+      "f2Desc": "Our yacht is a floating apartment with a bathroom and a kitchen.",
       "f3Title": "Bikes & SUPs",
       "f3Desc": "Take electric bikes and SUP boards on board. Masuria is not just water!"
     },
@@ -628,7 +628,7 @@ export const translations = {
       "f1Title": "Kein Patent erforderlich",
       "f1Desc": "Sie benötigen keinen Motorbootführerschein. Wir bringen Ihnen alles vor der Fahrt bei.",
       "f2Title": "Voller Komfort",
-      "f2Desc": "Unsere Yacht ist eine schwimmende Wohnung mit Heizung, Bad und Küche.",
+      "f2Desc": "Unsere Yacht ist eine schwimmende Wohnung mit Bad und Küche.",
       "f3Title": "Fahrräder & SUP",
       "f3Desc": "Nehmen Sie E-Bikes und SUP-Boards mit an Bord. Masuren ist nicht nur Wasser!"
     },
