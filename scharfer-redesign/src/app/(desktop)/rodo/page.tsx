@@ -9,7 +9,7 @@ export default function RodoPage() {
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
-          <img src="/assets/scharfer_supplies_hero.png" alt="Obowiązek informacyjny RODO Scharfer" />
+          <img src="/assets/scharfer_supplies_hero.webp" alt="Obowiązek informacyjny RODO Scharfer" />
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">

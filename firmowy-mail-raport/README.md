@@ -68,15 +68,46 @@ SENT_FOLDERS=Sent
 
 Folder wyslanych moze miec inna nazwe, np. `Sent Items`, `Wyslane`, `Wyslane elementy` albo `Elementy wyslane`. Uzyj dokladnie tej nazwy, ktora pokazal IMAP.
 
-## Tryb AI
+## Tryb AI przez OpenAI
 
-Jesli chcesz lokalna klasyfikacje tresci przez Ollama, ustaw:
+Codzienny plan dnia moze dodac sekcje AI do rozwiazywania spraw: co blokuje temat, jaki ruch wykonac teraz, czego brakuje i jaki tekst mozna wyslac. Jesli nie ustawisz API, skrypt sprobuje uzyc lokalnego `codex exec` z zalogowanego Codexa.
+
+Minimalnie ustaw:
 
 ```env
-OLLAMA_MODEL=llama3.1:8b
+OPENAI_MODEL=gpt-5.6
+OPENAI_REASONING_EFFORT=medium
+DAILY_MAIL_AI_MODEL=gpt-5.6
+DAILY_MAIL_AI_REASONING_EFFORT=medium
 ```
 
-Skrypt wysle do lokalnego Ollama tylko temat i krotki fragment tresci maila. Jesli model jest pusty albo Ollama nie dziala, raport zostanie wygenerowany bez AI.
+Opcjonalnie, dla szybszego backendu API:
+
+```env
+OPENAI_API_KEY=wstaw_lokalnie_klucz_api
+```
+
+Skrypt wysyla do AI tylko metadane raportu, tematy i krotkie fragmenty wiadomosci uzyte w planie. Nie odpisuje na maile i nie modyfikuje skrzynki. Model ma zakaz ogolnikow typu "zrob follow-up"; jesli nie ma danych, ma wskazac konkretne pytanie lub sprawdzenie, ktore odblokuje sprawe.
+
+Test bez wysylania maila:
+
+```bash
+python3 daily_action_email.py --env-file .env --days-back 2
+```
+
+Wysylka:
+
+```bash
+python3 daily_action_email.py --env-file .env --days-back 2 --send --to karol.bohdanowicz@prescot.pl
+```
+
+Awaryjnie bez AI:
+
+```bash
+python3 daily_action_email.py --env-file .env --days-back 2 --no-ai
+```
+
+Stary tryb Ollama zostaje tylko dla starszych raportow/klasyfikacji, ale dzienny plan korzysta z OpenAI API, jesli jest `OPENAI_API_KEY`.
 
 ## Raport miesieczny dla info@prescot.com.pl
 

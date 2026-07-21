@@ -42,7 +42,7 @@ export default function KontaktPage() {
       {/* Unified Page Hero */}
       <div className="page-hero">
         <div className="page-hero-bg">
-          <img src="/assets/kontakt_hero.png" alt="Biuro dystrybutora Scharfer" />
+          <img src="/assets/kontakt_hero.webp" alt="Biuro dystrybutora Scharfer" />
         </div>
         <div className="page-hero-overlay" />
         <div className="page-hero-content">
@@ -57,7 +57,7 @@ export default function KontaktPage() {
       <div className="container" style={{ maxWidth: 'var(--max-width)', margin: '0 auto', padding: '4rem var(--spacing-lg)' }}>
         <div className="contact-grid" style={{ display: 'flex', gap: '3rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           
-          <div className="contact-info-card" style={{ flex: '1 1 400px', maxWidth: '600px', background: 'var(--card-bg)', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
+          <div className="contact-info-card" style={{ flex: '1 1 100%', maxWidth: '800px', width: '100%', background: 'var(--card-bg)', borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--c-border)', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
             <div style={{ padding: '2.5rem', textAlign: 'center' }}>
               <span style={{ display: 'inline-block', fontSize: '0.8rem', background: 'var(--c-light-gray)', color: 'var(--c-heading)', border: '1px solid var(--c-border)', fontWeight: 800, padding: '4px 10px', borderRadius: '4px', textTransform: 'uppercase', marginBottom: '1.5rem', letterSpacing: '0.5px' }}>
                 {t('officialDistributor')}

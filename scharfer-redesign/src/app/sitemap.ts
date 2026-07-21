@@ -14,12 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/mobile/`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 1.0,
-    },
-    {
       url: `${baseUrl}/oferta/`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
@@ -27,12 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/kontakt/`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/mapa-dystrybutorow/`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,

@@ -104,7 +104,7 @@ export default function WeatherWidget() {
         className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-blue-50/50 dark:bg-blue-900/20 border ${isOpen ? 'border-blue-400 dark:border-blue-500' : 'border-blue-100 dark:border-blue-800/30'} rounded-lg text-sm font-bold text-gray-700 dark:text-gray-300 shadow-sm transition-all hover:bg-blue-50 dark:hover:bg-slate-800 hover:scale-105`}
         title="Aktualna pogoda w Węgorzewie (Kliknij po więcej)"
       >
-        <span className="text-[10px] uppercase tracking-wider text-gray-400 dark:text-gray-500 mr-1 hidden lg:inline">Węgorzewo</span>
+        <span className="text-[10px] uppercase tracking-wider text-black dark:text-white font-black mr-1 hidden lg:inline">Węgorzewo</span>
         {getWeatherIcon(weather.weatherCode)}
         <span>{weather.temperature}°C</span>
         <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 ml-1">

@@ -19,7 +19,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "1.5A", dim: "133×34×22 mm (L x W x H)" },
     ean: "5999863091001",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-18.pdf",
-    img: "/assets/products/1218.png",
+    img: "/assets/products/1218.webp",
   },
   {
     index: "32000A",
@@ -27,7 +27,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "1.66A", dim: "133×34×22 mm (L x W x H)" },
     ean: "5999863091025",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-20.pdf",
-    img: "/assets/products/1220.png",
+    img: "/assets/products/1220.webp",
   },
   {
     index: "32001",
@@ -35,7 +35,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "2.5A", dim: "133×34×22 mm (L x W x H)" },
     ean: "5999863091049",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-30.pdf",
-    img: "/assets/products/1230.png",
+    img: "/assets/products/1230.webp",
   },
   {
     index: "32001A",
@@ -43,7 +43,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "3.75A", dim: "163×43×32 mm (L x W x H)" },
     ean: "5999863091056",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-45.pdf",
-    img: "/assets/products/1245.png",
+    img: "/assets/products/1245.webp",
   },
   {
     index: "32002",
@@ -51,7 +51,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "5A", dim: "163×43×32 mm (L x W x H)" },
     ean: "5999863091087",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-60.pdf",
-    img: "/assets/products/1260.png",
+    img: "/assets/products/1260.webp",
   },
   {
     index: "32003",
@@ -59,7 +59,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "8.3A", dim: "190×52×37 mm (L x W x H)" },
     ean: "5999863091100",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-100.pdf",
-    img: "/assets/products/12100.png",
+    img: "/assets/products/12100.webp",
   },
   {
     index: "32004",
@@ -67,7 +67,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "12.5A", dim: "202×58×32 mm (L x W x H)" },
     ean: "5999863091124",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-150.pdf",
-    img: "/assets/products/12150.png",
+    img: "/assets/products/12150.webp",
   },
   {
     index: "32005",
@@ -75,7 +75,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "16.7A", dim: "243×65×40 mm (L x W x H)" },
     ean: "5999863091148",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-200.pdf",
-    img: "/assets/products/12200.png",
+    img: "/assets/products/12200.webp",
   },
   {
     index: "32006",
@@ -83,7 +83,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "25A", dim: "260×82×45 mm (L x W x H)" },
     ean: "5999863091162",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-300.pdf",
-    img: "/assets/products/12300.png",
+    img: "/assets/products/12300.webp",
   },
   {
     index: "32007",
@@ -91,7 +91,7 @@ export const productsData: Product[] = [
     specs: { voltage: "12V", current: "33.3A", dim: "260×82×45 mm (L x W x H)" },
     ean: "5999863091186",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/09/SCH-400.pdf",
-    img: "/assets/products/12400.png",
+    img: "/assets/products/12400.webp",
   },
   // 24V
   {
@@ -100,7 +100,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "0.75A", dim: "133×34×22 mm (L x W x H)" },
     ean: "5999863091018",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-18.pdf",
-    img: "/assets/products/2418.png",
+    img: "/assets/products/2418.webp",
   },
   {
     index: "32100A",
@@ -108,7 +108,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "0.83A", dim: "133×34×22 mm (L x W x H)" },
     ean: "5999863091032",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-20.pdf",
-    img: "/assets/products/2420.png",
+    img: "/assets/products/2420.webp",
   },
   {
     index: "32101",
@@ -116,7 +116,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "1.25A", dim: "133×34×22 mm (L x W x H)" },
     ean: "5999863091063",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-30.pdf",
-    img: "/assets/products/2430.png",
+    img: "/assets/products/2430.webp",
   },
   {
     index: "32101A",
@@ -124,7 +124,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "1.87A", dim: "163×43×32 mm (L x W x H)" },
     ean: "5999863091070",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-45.pdf",
-    img: "/assets/products/2445.png",
+    img: "/assets/products/2445.webp",
   },
   {
     index: "32102",
@@ -132,7 +132,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "2.5A", dim: "163×43×32 mm (L x W x H)" },
     ean: "5999863091094",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-60.pdf",
-    img: "/assets/products/2460.png",
+    img: "/assets/products/2460.webp",
   },
   {
     index: "32103",
@@ -140,7 +140,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "4.2A", dim: "190×52×37 mm (L x W x H)" },
     ean: "5999863091117",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-100.pdf",
-    img: "/assets/products/24100.png",
+    img: "/assets/products/24100.webp",
   },
   {
     index: "32104",
@@ -148,7 +148,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "6.25A", dim: "202×58×32 mm (L x W x H)" },
     ean: "5999863091131",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-150.pdf",
-    img: "/assets/products/24150.png",
+    img: "/assets/products/24150.webp",
   },
   {
     index: "32105",
@@ -156,7 +156,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "8.3A", dim: "243×65×40 mm (L x W x H)" },
     ean: "5999863091155",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-200.pdf",
-    img: "/assets/products/24200.png",
+    img: "/assets/products/24200.webp",
   },
   {
     index: "32106",
@@ -164,7 +164,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "12.5A", dim: "260×82×45 mm (L x W x H)" },
     ean: "5999863091179",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/02/SCH-300.pdf",
-    img: "/assets/products/24300.png",
+    img: "/assets/products/24300.webp",
   },
   {
     index: "32107",
@@ -172,7 +172,7 @@ export const productsData: Product[] = [
     specs: { voltage: "24V", current: "16.7A", dim: "260×82×45 mm (L x W x H)" },
     ean: "5999863091193",
     pdf: "https://scharfer.com.pl/wp-content/uploads/2024/09/SCH-400.pdf",
-    img: "/assets/products/24400.png",
+    img: "/assets/products/24400.webp",
   },
 ];
 

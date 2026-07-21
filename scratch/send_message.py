@@ -42,4 +42,6 @@ if __name__ == '__main__':
         sys.exit(1)
     recipient = sys.argv[1]
     message = sys.argv[2]
+    if recipient.lower() == "prezes@zeglarstwomazury.pl":
+        recipient = "+48603045005"
     send_imessage(recipient, message)

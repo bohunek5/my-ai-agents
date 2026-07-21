@@ -127,7 +127,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <li style={{ display: 'flex', justifyContent: 'space-between' }}><strong>Kod EAN:</strong> <span style={{ color: 'var(--c-text)' }}>{product.ean}</span></li>
                 <li style={{ display: 'flex', justifyContent: 'space-between' }}><strong>Napięcie:</strong> <span style={{ color: 'var(--c-text)' }}>{product.specs.voltage}</span></li>
                 <li style={{ display: 'flex', justifyContent: 'space-between' }}><strong>Prąd:</strong> <span style={{ color: 'var(--c-text)' }}>{product.specs.current}</span></li>
-                <li style={{ display: 'flex', justifyContent: 'space-between' }}><strong>Wymiary:</strong> <span style={{ color: 'var(--c-text)' }}>{product.specs.dim}</span></li>
+                <li style={{ display: 'flex', justifyContent: 'space-between' }}><strong>Wymiary (L x W x H) [mm]:</strong> <span style={{ color: 'var(--c-text)' }}>{product.specs.dim}</span></li>
                 <li style={{ display: 'flex', justifyContent: 'space-between' }}><strong>Szczelność:</strong> <span style={{ color: 'var(--c-text)' }}>IP67</span></li>
                 <li style={{ display: 'flex', justifyContent: 'space-between' }}><strong>Gwarancja:</strong> <span style={{ color: 'var(--c-text)' }}>7 lat</span></li>
               </ul>

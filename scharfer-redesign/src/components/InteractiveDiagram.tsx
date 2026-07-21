@@ -80,7 +80,7 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
   if (!mounted) {
     return (
       <div style={{ width: '100%', height: '240px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <img src="/assets/40012.png" alt="Zasilacz Scharfer" style={{ maxWidth: '85%', maxHeight: '120px', objectFit: 'contain', opacity: 0.3 }} />
+        <img src="/assets/40012.webp" alt="Zasilacz Scharfer" style={{ maxWidth: '85%', maxHeight: '120px', objectFit: 'contain', opacity: 0.3 }} />
       </div>
     );
   }
@@ -100,7 +100,7 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
           {/* Zasilacz image scaled properly */}
           <img 
             className="diagram-img-mobile"
-            src="/assets/40012.png" 
+            src="/assets/40012.webp" 
             alt="Zasilacz Scharfer" 
             style={{ 
               position: 'absolute',
@@ -214,7 +214,7 @@ export default function InteractiveDiagram({ forceMobile = false }: { forceMobil
         >
           <img 
             className="diagram-img"
-            src="/assets/40012.png" 
+            src="/assets/40012.webp" 
             alt="Zasilacz Scharfer 12V 400W" 
             style={{ 
               width: '100%', 

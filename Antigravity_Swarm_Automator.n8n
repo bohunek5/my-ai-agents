@@ -45,7 +45,14 @@
     },
     {
       "parameters": {
-        "options": {}
+        "model": "message-reply-local",
+        "options": {
+          "temperature": 0.3,
+          "topP": 0.85,
+          "numCtx": 2048,
+          "numPredict": 512,
+          "numThread": 4
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
@@ -225,7 +232,14 @@
       },
       {
         "parameters": {
-          "options": {}
+          "model": "message-reply-local",
+          "options": {
+            "temperature": 0.3,
+            "topP": 0.85,
+            "numCtx": 2048,
+            "numPredict": 512,
+            "numThread": 4
+          }
         },
         "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
         "typeVersion": 1,
