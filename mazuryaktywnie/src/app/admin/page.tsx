@@ -110,15 +110,37 @@ export default function AdminPage() {
   const [cmsHeroImage, setCmsHeroImage] = useState("");
   const [cmsSaved, setCmsSaved] = useState(false);
 
+const ALL_FULL_GALLERY_IMAGES = [
+  "/images/gallery/5S5A6951.webp",
+  "/images/gallery/5S5A6952.webp",
+  "/images/gallery/5S5A6954.webp",
+  "/images/gallery/5S5A6955.webp",
+  "/images/gallery/5S5A6957.webp",
+  "/images/gallery/5S5A6968.webp",
+  "/images/gallery/5S5A7012.webp",
+  "/images/gallery/5S5A7029.webp",
+  "/images/gallery/5S5A7031.webp",
+  "/images/gallery/5S5A7032.webp",
+  "/images/gallery/DSC04334-1024x576.webp",
+  "/images/gallery/DSC04336-1024x683.webp",
+  "/images/gallery/DSC04344-1024x576.webp",
+  "/images/gallery/DSC04352-1024x576.webp",
+  "/images/gallery/DSC04354-1024x576.webp",
+  "/images/gallery/DSC04356-1024x576.webp",
+  "/images/gallery/DSC04366-1024x576.webp",
+  "/images/gallery/DSC04369-1024x576.webp",
+  "/images/gallery/DSC04370-1024x576.webp",
+  "/images/gallery/DSC04378-1024x576.webp",
+  "/images/gallery/DSC04382-1024x576.webp",
+  "/images/gallery/DSC04393-1024x576.webp",
+  "/images/gallery/DSC04397-1024x576.webp",
+  "/images/gallery/ebikes_optimized.webp",
+  "/images/gallery/sup_boards_optimized.webp",
+  "/images/gallery/trad_bikes.webp"
+];
+
   // Gallery states
-  const [galleryImages, setGalleryImages] = useState([
-    "/images/gallery/5S5A6951.webp",
-    "/images/gallery/5S5A6966.webp",
-    "/images/gallery/5S5A6945.webp",
-    "/images/gallery/5S5A7012.webp",
-    "/images/gallery/5S5A7029.webp",
-    "/images/gallery/5S5A7031.webp"
-  ]);
+  const [galleryImages, setGalleryImages] = useState<string[]>(ALL_FULL_GALLERY_IMAGES);
   const [newImage, setNewImage] = useState("");
   const [virtualTourUrl, setVirtualTourUrl] = useState("");
   const [tourSaved, setTourSaved] = useState(false);
@@ -207,7 +229,24 @@ export default function AdminPage() {
 
       // 4. Load Gallery & Virtual Tour
       const savedGallery = localStorage.getItem("cms_gallery");
-      if (savedGallery) setGalleryImages(JSON.parse(savedGallery));
+      if (savedGallery) {
+        try {
+          const parsed = JSON.parse(savedGallery);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            const merged = [...parsed];
+            ALL_FULL_GALLERY_IMAGES.forEach(img => {
+              if (!merged.includes(img)) merged.push(img);
+            });
+            setGalleryImages(merged);
+          } else {
+            setGalleryImages(ALL_FULL_GALLERY_IMAGES);
+          }
+        } catch(e) {
+          setGalleryImages(ALL_FULL_GALLERY_IMAGES);
+        }
+      } else {
+        setGalleryImages(ALL_FULL_GALLERY_IMAGES);
+      }
       const savedTour = localStorage.getItem("virtual_tour_url");
       if (savedTour) setVirtualTourUrl(savedTour);
     }
@@ -1175,10 +1214,25 @@ export default function AdminPage() {
 
             {/* Gallery Photo Manager */}
             <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl p-8">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-                <ImageIcon className="text-blue-600 dark:text-blue-400" size={24} />
-                <span>Menedżer Zdjęć Galerii</span>
-              </h2>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    <ImageIcon className="text-blue-600 dark:text-blue-400" size={24} />
+                    <span>Menedżer Zdjęć Galerii ({galleryImages.length} zdjęć)</span>
+                  </h2>
+                  <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">Zarządzaj widocznymi zdjęciami lub dodawaj własne ścieżki zdjęć</p>
+                </div>
+                <button
+                  onClick={() => {
+                    setGalleryImages(ALL_FULL_GALLERY_IMAGES);
+                    localStorage.setItem("cms_gallery", JSON.stringify(ALL_FULL_GALLERY_IMAGES));
+                    alert("Przywrócono pełną bazę 26 zdjęć jachtu, kabin i sprzętu!");
+                  }}
+                  className="px-4 py-2.5 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 text-blue-600 dark:text-blue-300 font-bold border border-blue-200 dark:border-blue-700/50 rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer"
+                >
+                  Przywróć Pełne 26 Zdjęć
+                </button>
+              </div>
               
               <div className="flex gap-4 mb-8 max-w-xl">
                 <input 
