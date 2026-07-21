@@ -120,6 +120,8 @@ export default function AdminPage() {
     "/images/gallery/5S5A7031.webp"
   ]);
   const [newImage, setNewImage] = useState("");
+  const [virtualTourUrl, setVirtualTourUrl] = useState("");
+  const [tourSaved, setTourSaved] = useState(false);
 
   // Check login session on mount
   useEffect(() => {
@@ -203,9 +205,11 @@ export default function AdminPage() {
       const savedStripe = localStorage.getItem("payment_stripe");
       if (savedStripe) setStripeEnabled(savedStripe === "true");
 
-      // 4. Load Gallery
+      // 4. Load Gallery & Virtual Tour
       const savedGallery = localStorage.getItem("cms_gallery");
       if (savedGallery) setGalleryImages(JSON.parse(savedGallery));
+      const savedTour = localStorage.getItem("virtual_tour_url");
+      if (savedTour) setVirtualTourUrl(savedTour);
     }
   }, [isAuthenticated]);
 
@@ -1135,41 +1139,75 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* TAB 6: GALERIA ZDJĘĆ */}
+        {/* TAB 6: GALERIA ZDJĘĆ & WIRTUALNY SPACER */}
         {activeTab === "gallery" && (
-          <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl p-8 animate-in fade-in duration-300">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-              <ImageIcon className="text-blue-600 dark:text-blue-400" size={24} />
-              <span>Menedżer Zdjęć Galerii</span>
-            </h2>
-            
-            <div className="flex gap-4 mb-8 max-w-xl">
-              <input 
-                type="text" 
-                placeholder="Ścieżka do zdjęcia, np: /images/gallery/nowe.webp" 
-                value={newImage}
-                onChange={(e) => setNewImage(e.target.value)}
-                className="flex-grow p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-xs font-semibold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
-              />
-              <button 
-                onClick={handleAddImage}
-                className="px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg transition-all cursor-pointer text-xs uppercase tracking-wider"
-              >
-                Dodaj
-              </button>
+          <div className="space-y-8 animate-in fade-in duration-300">
+            {/* Virtual Tour Box */}
+            <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl p-8 max-w-2xl space-y-4">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <CalendarIcon className="text-blue-600 dark:text-blue-400" size={20} />
+                <span>Link do Wirtualnego Spaceru 3D (Matterport / Kuula / YouTube)</span>
+              </h3>
+              <p className="text-xs text-gray-500 dark:text-slate-400">
+                Wklej link iframe lub adres URL wirtualnego spaceru 360°, aby osadzić go automatycznie na stronie galerii.
+              </p>
+              <div className="flex gap-3">
+                <input 
+                  type="text" 
+                  placeholder="https://my.matterport.com/show/?m=... lub URL spaceru 3D" 
+                  value={virtualTourUrl}
+                  onChange={(e) => setVirtualTourUrl(e.target.value)}
+                  className="flex-grow p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-xs font-semibold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+                />
+                <button 
+                  onClick={() => {
+                    localStorage.setItem("virtual_tour_url", virtualTourUrl);
+                    setTourSaved(true);
+                    setTimeout(() => setTourSaved(false), 3000);
+                  }}
+                  className="px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg transition-all cursor-pointer text-xs uppercase tracking-wider flex items-center gap-2"
+                >
+                  {tourSaved ? <Check size={16} /> : null}
+                  <span>{tourSaved ? "Zapisano!" : "Zapisz Spacer"}</span>
+                </button>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {galleryImages.map((src, i) => (
-                <div key={i} className="relative aspect-square rounded-2xl overflow-hidden group border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-slate-950">
-                  <Image src={src} alt="Galeria" fill className="object-cover" />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <button onClick={() => handleRemoveImage(i)} className="p-3 bg-rose-600 text-white rounded-full hover:bg-rose-500 shadow-lg cursor-pointer">
-                      <Trash2 size={20} />
-                    </button>
+            {/* Gallery Photo Manager */}
+            <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl p-8">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                <ImageIcon className="text-blue-600 dark:text-blue-400" size={24} />
+                <span>Menedżer Zdjęć Galerii</span>
+              </h2>
+              
+              <div className="flex gap-4 mb-8 max-w-xl">
+                <input 
+                  type="text" 
+                  placeholder="Ścieżka do zdjęcia, np: /images/gallery/nowe.webp" 
+                  value={newImage}
+                  onChange={(e) => setNewImage(e.target.value)}
+                  className="flex-grow p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-xs font-semibold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
+                />
+                <button 
+                  onClick={handleAddImage}
+                  className="px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg transition-all cursor-pointer text-xs uppercase tracking-wider"
+                >
+                  Dodaj Zdjęcie
+                </button>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {galleryImages.map((src, i) => (
+                  <div key={i} className="relative aspect-square rounded-2xl overflow-hidden group border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-slate-950">
+                    <Image src={src} alt="Galeria" fill className="object-cover" />
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                      <button onClick={() => handleRemoveImage(i)} className="p-3 bg-rose-600 text-white rounded-full hover:bg-rose-500 shadow-lg cursor-pointer">
+                        <Trash2 size={20} />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         )}
