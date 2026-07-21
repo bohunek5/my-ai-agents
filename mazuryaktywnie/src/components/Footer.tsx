@@ -139,7 +139,7 @@ export default function Footer() {
               </a>
               <div className="flex items-start gap-3 text-slate-600 dark:text-slate-400">
                 <MapPin size={17} className="text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" />
-                <span>Port Stranda, ul. Pierkunowo 36<br/>11-500 Giżycko</span>
+                <span>Port Sztynort, Sztynort 10<br/>11-600 Węgorzewo</span>
               </div>
             </div>
             <Link
