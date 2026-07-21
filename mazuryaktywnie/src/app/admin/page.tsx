@@ -499,61 +499,62 @@ export default function AdminPage() {
 
   // ----------------------------------------------------
   // SCREEN 1: LOGIN GATE (If not authenticated)
+  // Adaptive Day/Night Support (Jasny / Ciemny)
   // ----------------------------------------------------
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="min-h-screen bg-gray-50 dark:bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden transition-colors duration-300">
         {/* Ambient Glows */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 dark:bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="w-full max-w-md bg-white/10 dark:bg-slate-900/80 backdrop-blur-2xl p-8 md:p-10 rounded-[2.5rem] border border-white/20 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10 animate-in fade-in zoom-in duration-300">
+        <div className="w-full max-w-md bg-white/90 dark:bg-slate-900/90 backdrop-blur-2xl p-8 md:p-10 rounded-[2.5rem] border border-gray-200 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10 animate-in fade-in zoom-in duration-300">
           <div className="flex flex-col items-center text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-3xl flex items-center justify-center text-white shadow-xl shadow-blue-500/30 mb-5 relative group">
+            <div className="w-20 h-20 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-3xl flex items-center justify-center text-white shadow-xl shadow-blue-500/30 mb-5 relative group">
               <ShieldCheck size={40} className="animate-pulse" />
             </div>
-            <h1 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight">
+            <h1 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white uppercase tracking-tight">
               Panel Admina
             </h1>
-            <p className="text-xs text-blue-300/80 uppercase tracking-widest font-bold mt-2">
+            <p className="text-xs text-blue-600 dark:text-blue-300 uppercase tracking-widest font-bold mt-2">
               Mazury Aktywnie • System Zarządzania
             </p>
           </div>
 
           <form onSubmit={handleLoginSubmit} className="space-y-5">
             {loginError && (
-              <div className="p-4 bg-rose-500/20 border border-rose-500/40 rounded-2xl flex items-center gap-3 text-rose-200 text-xs font-semibold animate-in shake">
-                <AlertCircle size={20} className="shrink-0 text-rose-400" />
+              <div className="p-4 bg-rose-50 dark:bg-rose-500/20 border border-rose-200 dark:border-rose-500/40 rounded-2xl flex items-center gap-3 text-rose-700 dark:text-rose-200 text-xs font-semibold animate-in shake">
+                <AlertCircle size={20} className="shrink-0 text-rose-500 dark:text-rose-400" />
                 <span>Nieprawidłowy login lub hasło. Spróbuj ponownie.</span>
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Login</label>
+              <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Login</label>
               <div className="relative">
-                <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-400" />
                 <input 
                   type="text" 
                   required
                   placeholder="admin"
                   value={loginUsername} 
                   onChange={(e) => setLoginUsername(e.target.value)} 
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 text-sm font-semibold transition-all"
+                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 text-sm font-semibold transition-all"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Hasło</label>
+              <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Hasło</label>
               <div className="relative">
-                <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-400" />
                 <input 
                   type="password" 
                   required
                   placeholder="••••••••"
                   value={loginPassword} 
                   onChange={(e) => setLoginPassword(e.target.value)} 
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 text-sm font-semibold transition-all"
+                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 text-sm font-semibold transition-all"
                 />
               </div>
             </div>
@@ -567,7 +568,7 @@ export default function AdminPage() {
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-white/10 text-center text-xs text-slate-500">
+          <div className="mt-8 pt-6 border-t border-gray-100 dark:border-white/10 text-center text-xs text-gray-400 dark:text-slate-500">
             Dostęp zastrzeżony wyłącznie dla upoważnionych administratorów Portu Sztynort.
           </div>
         </div>
@@ -577,40 +578,41 @@ export default function AdminPage() {
 
   // ----------------------------------------------------
   // SCREEN 2: EXPANDED ADMIN DASHBOARD (When authenticated)
+  // Adaptive Day/Night Support (Dzień / Noc)
   // ----------------------------------------------------
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 pt-24 pb-16">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950 text-gray-900 dark:text-slate-100 pt-24 pb-16 transition-colors duration-300">
       <div className="container mx-auto px-4 max-w-7xl">
         
         {/* Top Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-slate-900/80 backdrop-blur-xl p-6 rounded-3xl border border-white/10 shadow-xl">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-white dark:bg-slate-900/80 backdrop-blur-xl p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-lg dark:shadow-xl">
           <div className="flex items-center gap-4">
-            <div className="p-3 bg-blue-600/20 border border-blue-500/30 rounded-2xl text-blue-400">
+            <div className="p-3 bg-blue-50 dark:bg-blue-600/20 border border-blue-200 dark:border-blue-500/30 rounded-2xl text-blue-600 dark:text-blue-400">
               <ShieldAlert size={32} />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-2xl font-black text-white uppercase tracking-tight">
+                <h1 className="text-2xl font-black text-gray-900 dark:text-white uppercase tracking-tight">
                   Panel Administracyjny CMS
                 </h1>
-                <span className="px-2.5 py-0.5 bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold rounded-full uppercase tracking-wider">
+                <span className="px-2.5 py-0.5 bg-emerald-100 dark:bg-emerald-500/20 border border-emerald-300 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-400 text-[10px] font-bold rounded-full uppercase tracking-wider">
                   Aktywny
                 </span>
               </div>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
                 Port Sztynort • Zarządzanie rezerwacjami, cennikiem, płatnościami i treścią
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 border-white/10 pt-4 md:pt-0">
+          <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 border-gray-100 dark:border-white/10 pt-4 md:pt-0">
             <div className="text-right hidden sm:block">
-              <p className="text-xs text-slate-400">Zalogowano jako:</p>
-              <p className="text-sm font-bold text-white">Administrator (admin)</p>
+              <p className="text-xs text-gray-400 dark:text-slate-400">Zalogowano jako:</p>
+              <p className="text-sm font-bold text-gray-900 dark:text-white">Administrator (admin)</p>
             </div>
             <button
               onClick={handleLogout}
-              className="px-4 py-2.5 bg-rose-600/20 hover:bg-rose-600/30 text-rose-400 border border-rose-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer"
+              className="px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 dark:bg-rose-600/20 dark:hover:bg-rose-600/30 dark:text-rose-400 border border-rose-200 dark:border-rose-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer"
             >
               <LogOut size={16} />
               <span>Wyloguj</span>
@@ -619,13 +621,13 @@ export default function AdminPage() {
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex overflow-x-auto pb-4 mb-8 gap-2 scrollbar-hide border-b border-white/10">
+        <div className="flex overflow-x-auto pb-4 mb-8 gap-2 scrollbar-hide border-b border-gray-200 dark:border-white/10">
           <button
             onClick={() => setActiveTab("dashboard")}
             className={`px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer ${
               activeTab === "dashboard"
                 ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
-                : "bg-slate-900/60 text-slate-400 border border-white/5 hover:bg-slate-800"
+                : "bg-white dark:bg-slate-900/60 text-gray-600 dark:text-slate-400 border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-slate-800"
             }`}
           >
             <LayoutDashboard size={18} />
@@ -636,7 +638,7 @@ export default function AdminPage() {
             className={`px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer relative ${
               activeTab === "bookings"
                 ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
-                : "bg-slate-900/60 text-slate-400 border border-white/5 hover:bg-slate-800"
+                : "bg-white dark:bg-slate-900/60 text-gray-600 dark:text-slate-400 border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-slate-800"
             }`}
           >
             <CalendarRange size={18} />
@@ -652,7 +654,7 @@ export default function AdminPage() {
             className={`px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer ${
               activeTab === "payments"
                 ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
-                : "bg-slate-900/60 text-slate-400 border border-white/5 hover:bg-slate-800"
+                : "bg-white dark:bg-slate-900/60 text-gray-600 dark:text-slate-400 border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-slate-800"
             }`}
           >
             <CreditCard size={18} />
@@ -663,7 +665,7 @@ export default function AdminPage() {
             className={`px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer ${
               activeTab === "settings"
                 ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
-                : "bg-slate-900/60 text-slate-400 border border-white/5 hover:bg-slate-800"
+                : "bg-white dark:bg-slate-900/60 text-gray-600 dark:text-slate-400 border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-slate-800"
             }`}
           >
             <Settings size={18} />
@@ -674,7 +676,7 @@ export default function AdminPage() {
             className={`px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer ${
               activeTab === "cms"
                 ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
-                : "bg-slate-900/60 text-slate-400 border border-white/5 hover:bg-slate-800"
+                : "bg-white dark:bg-slate-900/60 text-gray-600 dark:text-slate-400 border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-slate-800"
             }`}
           >
             <FileText size={18} />
@@ -685,7 +687,7 @@ export default function AdminPage() {
             className={`px-5 py-3 rounded-2xl font-bold text-xs uppercase tracking-wider whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer ${
               activeTab === "gallery"
                 ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30"
-                : "bg-slate-900/60 text-slate-400 border border-white/5 hover:bg-slate-800"
+                : "bg-white dark:bg-slate-900/60 text-gray-600 dark:text-slate-400 border border-gray-200 dark:border-white/5 hover:bg-gray-100 dark:hover:bg-slate-800"
             }`}
           >
             <ImageIcon size={18} />
@@ -697,10 +699,10 @@ export default function AdminPage() {
         {activeTab === "dashboard" && (
           <div className="space-y-8 animate-in fade-in duration-300">
             {/* Quick Actions Bar */}
-            <div className="flex flex-wrap gap-4 items-center justify-between bg-gradient-to-r from-blue-900/40 to-indigo-900/40 p-6 rounded-3xl border border-blue-500/30">
+            <div className="flex flex-wrap gap-4 items-center justify-between bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/40 dark:to-indigo-900/40 p-6 rounded-3xl border border-blue-200 dark:border-blue-500/30 shadow-md dark:shadow-none">
               <div>
-                <h3 className="text-lg font-bold text-white">Szybkie Zarządzanie Systemem</h3>
-                <p className="text-xs text-slate-300">Wprowadzaj nowe czartery lub blokuj termin serwisowy w kalendarzu</p>
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white">Szybkie Zarządzanie Systemem</h3>
+                <p className="text-xs text-gray-600 dark:text-slate-300">Wprowadzaj nowe czartery lub blokuj termin serwisowy w kalendarzu</p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <button
@@ -719,7 +721,7 @@ export default function AdminPage() {
                 </button>
                 <button
                   onClick={exportBookingsToCSV}
-                  className="px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold border border-white/10 rounded-2xl transition-all flex items-center gap-2 text-xs uppercase tracking-wider cursor-pointer"
+                  className="px-5 py-3 bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-800 dark:text-slate-200 font-bold border border-gray-200 dark:border-white/10 rounded-2xl transition-all flex items-center gap-2 text-xs uppercase tracking-wider cursor-pointer shadow-sm"
                 >
                   <Download size={16} />
                   <span>Pobierz CSV</span>
@@ -729,46 +731,46 @@ export default function AdminPage() {
 
             {/* Metric Bento Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-slate-900/80 p-6 rounded-3xl border border-white/10 shadow-lg flex justify-between items-center relative overflow-hidden group">
+              <div className="bg-white dark:bg-slate-900/80 p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-lg dark:shadow-none flex justify-between items-center relative overflow-hidden group">
                 <div className="space-y-1 relative z-10">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Suma Przychodu</span>
-                  <p className="text-3xl font-black text-emerald-400">{totalRevenue.toLocaleString()} PLN</p>
-                  <p className="text-[10px] text-slate-400">Z potwierdzonych czarterów</p>
+                  <span className="text-[11px] font-bold text-gray-400 dark:text-slate-400 uppercase tracking-widest">Suma Przychodu</span>
+                  <p className="text-3xl font-black text-emerald-600 dark:text-emerald-400">{totalRevenue.toLocaleString()} PLN</p>
+                  <p className="text-[10px] text-gray-400 dark:text-slate-400">Z potwierdzonych czarterów</p>
                 </div>
-                <div className="p-4 bg-emerald-500/10 text-emerald-400 rounded-2xl border border-emerald-500/20">
+                <div className="p-4 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-2xl border border-emerald-200 dark:border-emerald-500/20">
                   <DollarSign size={28} />
                 </div>
               </div>
 
-              <div className="bg-slate-900/80 p-6 rounded-3xl border border-white/10 shadow-lg flex justify-between items-center relative overflow-hidden group">
+              <div className="bg-white dark:bg-slate-900/80 p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-lg dark:shadow-none flex justify-between items-center relative overflow-hidden group">
                 <div className="space-y-1 relative z-10">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Rezerwacje</span>
-                  <p className="text-3xl font-black text-blue-400">{activeBookingsCount}</p>
-                  <p className="text-[10px] text-slate-400">Aktywne w sezonie 2026</p>
+                  <span className="text-[11px] font-bold text-gray-400 dark:text-slate-400 uppercase tracking-widest">Rezerwacje</span>
+                  <p className="text-3xl font-black text-blue-600 dark:text-blue-400">{activeBookingsCount}</p>
+                  <p className="text-[10px] text-gray-400 dark:text-slate-400">Aktywne w sezonie 2026</p>
                 </div>
-                <div className="p-4 bg-blue-500/10 text-blue-400 rounded-2xl border border-blue-500/20">
+                <div className="p-4 bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-2xl border border-blue-200 dark:border-blue-500/20">
                   <CalendarRange size={28} />
                 </div>
               </div>
 
-              <div className="bg-slate-900/80 p-6 rounded-3xl border border-white/10 shadow-lg flex justify-between items-center relative overflow-hidden group">
+              <div className="bg-white dark:bg-slate-900/80 p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-lg dark:shadow-none flex justify-between items-center relative overflow-hidden group">
                 <div className="space-y-1 relative z-10">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Wskaźnik Obłożenia</span>
-                  <p className="text-3xl font-black text-indigo-400">{occupancyRate}%</p>
-                  <p className="text-[10px] text-slate-400">Jacht Stillo 31</p>
+                  <span className="text-[11px] font-bold text-gray-400 dark:text-slate-400 uppercase tracking-widest">Wskaźnik Obłożenia</span>
+                  <p className="text-3xl font-black text-indigo-600 dark:text-indigo-400">{occupancyRate}%</p>
+                  <p className="text-[10px] text-gray-400 dark:text-slate-400">Jacht Stillo 31</p>
                 </div>
-                <div className="p-4 bg-indigo-500/10 text-indigo-400 rounded-2xl border border-indigo-500/20">
+                <div className="p-4 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-2xl border border-indigo-200 dark:border-indigo-500/20">
                   <TrendingUp size={28} />
                 </div>
               </div>
 
-              <div className="bg-slate-900/80 p-6 rounded-3xl border border-white/10 shadow-lg flex justify-between items-center relative overflow-hidden group">
+              <div className="bg-white dark:bg-slate-900/80 p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-lg dark:shadow-none flex justify-between items-center relative overflow-hidden group">
                 <div className="space-y-1 relative z-10">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Kaucja Zwrotna</span>
-                  <p className="text-3xl font-black text-amber-400">{depositAmount} PLN</p>
-                  <p className="text-[10px] text-slate-400">Rozliczenie gotówkowe w porcie</p>
+                  <span className="text-[11px] font-bold text-gray-400 dark:text-slate-400 uppercase tracking-widest">Kaucja Zwrotna</span>
+                  <p className="text-3xl font-black text-amber-600 dark:text-amber-400">{depositAmount} PLN</p>
+                  <p className="text-[10px] text-gray-400 dark:text-slate-400">Rozliczenie gotówkowe w porcie</p>
                 </div>
-                <div className="p-4 bg-amber-500/10 text-amber-400 rounded-2xl border border-amber-500/20">
+                <div className="p-4 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-2xl border border-amber-200 dark:border-amber-500/20">
                   <ShieldCheck size={28} />
                 </div>
               </div>
@@ -776,37 +778,37 @@ export default function AdminPage() {
 
             {/* System Status Banner */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-slate-900/60 p-6 rounded-3xl border border-white/10 space-y-3">
-                <div className="flex items-center gap-2 text-blue-400 font-bold text-xs uppercase tracking-wider">
+              <div className="bg-white dark:bg-slate-900/60 p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-md dark:shadow-none space-y-3">
+                <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider">
                   <CreditCard size={18} />
                   <span>System Płatności</span>
                 </div>
-                <p className="text-sm font-semibold text-white">Przelewy24 & Stripe</p>
-                <div className="flex items-center gap-2 text-xs text-emerald-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Przelewy24 & Stripe</p>
+                <div className="flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
                   <span>Bramki aktywne w trybie live</span>
                 </div>
               </div>
 
-              <div className="bg-slate-900/60 p-6 rounded-3xl border border-white/10 space-y-3">
-                <div className="flex items-center gap-2 text-indigo-400 font-bold text-xs uppercase tracking-wider">
+              <div className="bg-white dark:bg-slate-900/60 p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-md dark:shadow-none space-y-3">
+                <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
                   <Mail size={18} />
                   <span>Poczta Powiadomień</span>
                 </div>
-                <p className="text-sm font-semibold text-white">kontakt@mazuryaktywnie.com.pl</p>
-                <div className="flex items-center gap-2 text-xs text-blue-400">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">kontakt@mazuryaktywnie.com.pl</p>
+                <div className="flex items-center gap-2 text-xs text-blue-600 dark:text-blue-400">
                   <Check size={14} />
                   <span>Adres aktywny na serwerze</span>
                 </div>
               </div>
 
-              <div className="bg-slate-900/60 p-6 rounded-3xl border border-white/10 space-y-3">
-                <div className="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wider">
+              <div className="bg-white dark:bg-slate-900/60 p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-md dark:shadow-none space-y-3">
+                <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">
                   <CalendarIcon size={18} />
                   <span>Wirtualny Spacer 3D</span>
                 </div>
-                <p className="text-sm font-semibold text-white">Gotowe miejsce pod kod iframe</p>
-                <div className="flex items-center gap-2 text-xs text-amber-300">
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Gotowe miejsce pod kod iframe</p>
+                <div className="flex items-center gap-2 text-xs text-amber-600 dark:text-amber-300">
                   <span>Dostępne w zakładce Galeria</span>
                 </div>
               </div>
@@ -818,20 +820,20 @@ export default function AdminPage() {
         {activeTab === "bookings" && (
           <div className="space-y-6 animate-in fade-in duration-300">
             {/* Filter & Search Bar */}
-            <div className="flex flex-col md:flex-row justify-between gap-4 bg-slate-900/80 p-6 rounded-3xl border border-white/10 shadow-lg">
+            <div className="flex flex-col md:flex-row justify-between gap-4 bg-white dark:bg-slate-900/80 p-6 rounded-3xl border border-gray-200 dark:border-white/10 shadow-lg">
               <div className="relative flex-grow max-w-md">
-                <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-400" />
                 <input 
                   type="text" 
                   placeholder="Szukaj po ID, nazwisku lub e-mailu..." 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-slate-950 border border-white/10 rounded-2xl text-xs font-semibold text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                  className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 rounded-2xl text-xs font-semibold text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-slate-500 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
               <div className="flex flex-wrap gap-2 items-center">
-                <span className="text-xs font-bold text-slate-400 mr-2 uppercase tracking-wider">Status:</span>
+                <span className="text-xs font-bold text-gray-500 dark:text-slate-400 mr-2 uppercase tracking-wider">Status:</span>
                 {["ALL", "Paid", "Confirmed", "Pending", "Blocked", "Cancelled"].map((st) => (
                   <button
                     key={st}
@@ -839,7 +841,7 @@ export default function AdminPage() {
                     className={`px-3 py-2 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
                       statusFilter === st
                         ? "bg-blue-600 text-white shadow-md shadow-blue-600/20"
-                        : "bg-slate-950 text-slate-400 border border-white/5 hover:bg-slate-800"
+                        : "bg-gray-100 dark:bg-slate-950 text-gray-600 dark:text-slate-400 border border-gray-200 dark:border-white/5 hover:bg-gray-200 dark:hover:bg-slate-800"
                     }`}
                   >
                     {st === "ALL" ? "Wszystkie" : st === "Paid" ? "Opłacona" : st === "Confirmed" ? "Potwierdzona" : st === "Pending" ? "Oczekuje" : st === "Blocked" ? "Zablokowany" : "Anulowane"}
@@ -849,16 +851,16 @@ export default function AdminPage() {
             </div>
 
             {/* Bookings Table */}
-            <div className="bg-slate-900/80 rounded-3xl border border-white/10 shadow-xl overflow-hidden">
-              <div className="p-6 border-b border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                  <CalendarRange size={20} className="text-blue-400" />
+            <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl overflow-hidden">
+              <div className="p-6 border-b border-gray-100 dark:border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                  <CalendarRange size={20} className="text-blue-600 dark:text-blue-400" />
                   <span>Lista Czarterów ({filteredBookings.length})</span>
                 </h2>
                 <div className="flex gap-2">
                   <button
                     onClick={() => setShowAddModal(true)}
-                    className="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer"
+                    className="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow-md"
                   >
                     <Plus size={16} />
                     <span>Nowa rezerwacja</span>
@@ -868,14 +870,14 @@ export default function AdminPage() {
 
               <div className="overflow-x-auto">
                 {filteredBookings.length === 0 ? (
-                  <div className="p-16 text-center text-slate-500 space-y-2">
-                    <AlertCircle size={32} className="mx-auto text-slate-600" />
+                  <div className="p-16 text-center text-gray-400 dark:text-slate-500 space-y-2">
+                    <AlertCircle size={32} className="mx-auto text-gray-300 dark:text-slate-600" />
                     <p className="text-sm font-semibold">Brak rezerwacji spełniających kryteria.</p>
                   </div>
                 ) : (
                   <table className="w-full text-left border-collapse text-xs">
                     <thead>
-                      <tr className="bg-slate-950 border-b border-white/10 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      <tr className="bg-gray-50 dark:bg-slate-950 border-b border-gray-200 dark:border-white/10 text-[10px] font-bold uppercase tracking-wider text-gray-400 dark:text-slate-400">
                         <th className="p-4">ID Rezerwacji</th>
                         <th className="p-4">Termin Czarteru</th>
                         <th className="p-4">Klient / Dane</th>
@@ -885,30 +887,30 @@ export default function AdminPage() {
                         <th className="p-4 text-right">Akcje</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/5 font-medium text-slate-300">
+                    <tbody className="divide-y divide-gray-100 dark:divide-white/5 font-medium text-gray-700 dark:text-slate-300">
                       {filteredBookings.map((booking) => (
-                        <tr key={booking.id} className="hover:bg-white/5 transition-colors">
-                          <td className="p-4 font-black text-blue-400">
+                        <tr key={booking.id} className="hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                          <td className="p-4 font-black text-blue-600 dark:text-blue-400">
                             <button onClick={() => setSelectedBooking(booking)} className="hover:underline flex items-center gap-1.5 cursor-pointer">
                               <span>{booking.id}</span>
                             </button>
                           </td>
-                          <td className="p-4 font-bold text-white">{booking.dates} ({booking.days}d)</td>
+                          <td className="p-4 font-bold text-gray-900 dark:text-white">{booking.dates} ({booking.days}d)</td>
                           <td className="p-4">
-                            <div className="font-bold text-slate-200">{booking.clientName || 'Klient'}</div>
-                            <div className="text-[10px] text-slate-400">{booking.clientEmail}</div>
+                            <div className="font-bold text-gray-900 dark:text-slate-200">{booking.clientName || 'Klient'}</div>
+                            <div className="text-[10px] text-gray-500 dark:text-slate-400">{booking.clientEmail}</div>
                           </td>
-                          <td className="p-4 max-w-xs truncate text-slate-400">{booking.addons}</td>
-                          <td className="p-4 font-black text-white text-sm">{booking.total} PLN</td>
+                          <td className="p-4 max-w-xs truncate text-gray-500 dark:text-slate-400">{booking.addons}</td>
+                          <td className="p-4 font-black text-gray-900 dark:text-white text-sm">{booking.total} PLN</td>
                           <td className="p-4">
                             <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                               booking.status === "Paid" || booking.status === "Confirmed"
-                                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                                ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30"
                                 : booking.status === "Blocked"
-                                ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+                                ? "bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-400 border border-amber-200 dark:border-amber-500/30"
                                 : booking.status === "Cancelled"
-                                ? "bg-rose-500/20 text-rose-400 border border-rose-500/30"
-                                : "bg-blue-500/20 text-blue-400 border border-blue-500/30"
+                                ? "bg-rose-100 dark:bg-rose-500/20 text-rose-800 dark:text-rose-400 border border-rose-200 dark:border-rose-500/30"
+                                : "bg-blue-100 dark:bg-blue-500/20 text-blue-800 dark:text-blue-400 border border-blue-200 dark:border-blue-500/30"
                             }`}>
                               {booking.status === "Paid" ? "Opłacona" : booking.status === "Confirmed" ? "Potwierdzona" : booking.status === "Blocked" ? "Zablokowany" : booking.status === "Cancelled" ? "Anulowana" : "Oczekuje"}
                             </span>
@@ -917,7 +919,7 @@ export default function AdminPage() {
                             <div className="flex justify-end gap-2">
                               <button
                                 onClick={() => setSelectedBooking(booking)}
-                                className="p-2 rounded-xl bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 border border-blue-500/30 transition-all cursor-pointer"
+                                className="p-2 rounded-xl bg-blue-50 dark:bg-blue-600/20 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-600/30 border border-blue-200 dark:border-blue-500/30 transition-all cursor-pointer"
                                 title="Podgląd i edycja"
                               >
                                 <Eye size={16} />
@@ -925,7 +927,7 @@ export default function AdminPage() {
                               {booking.status === "Pending" && (
                                 <button
                                   onClick={() => handleUpdateStatus(booking.id, "Confirmed")}
-                                  className="p-2 rounded-xl bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30 border border-emerald-500/30 transition-all cursor-pointer"
+                                  className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-600/20 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-600/30 border border-emerald-200 dark:border-emerald-500/30 transition-all cursor-pointer"
                                   title="Zatwierdź rezerwację"
                                 >
                                   <Check size={16} />
@@ -933,7 +935,7 @@ export default function AdminPage() {
                               )}
                               <button
                                 onClick={() => handleDeleteBooking(booking.id)}
-                                className="p-2 rounded-xl bg-rose-600/20 text-rose-400 hover:bg-rose-600/30 border border-rose-500/30 transition-all cursor-pointer"
+                                className="p-2 rounded-xl bg-rose-50 dark:bg-rose-600/20 text-rose-600 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-600/30 border border-rose-200 dark:border-rose-500/30 transition-all cursor-pointer"
                                 title="Usuń"
                               >
                                 <Trash2 size={16} />
@@ -953,21 +955,21 @@ export default function AdminPage() {
         {/* TAB 3: PAYMENTS & GATEWAYS */}
         {activeTab === "payments" && (
           <div className="space-y-6 animate-in fade-in duration-300">
-            <div className="bg-slate-900/80 p-8 rounded-3xl border border-white/10 shadow-xl space-y-6 max-w-3xl">
-              <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                <CreditCard className="text-blue-400" size={24} />
+            <div className="bg-white dark:bg-slate-900/80 p-8 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl space-y-6 max-w-3xl">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <CreditCard className="text-blue-600 dark:text-blue-400" size={24} />
                 <span>Konfiguracja Bramek Płatności Online</span>
               </h2>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
                 Wybierz aktywne bramki do przyjmowania szybkich płatności od klientów podczas procesu rezerwacji Stillo 31.
               </p>
 
               <form onSubmit={handleSavePayments} className="space-y-6">
-                <div className="p-6 bg-slate-950 rounded-2xl border border-white/10 space-y-4">
+                <div className="p-6 bg-gray-50 dark:bg-slate-950 rounded-2xl border border-gray-200 dark:border-white/10 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="font-bold text-sm text-white">Przelewy24 (P24)</h4>
-                      <p className="text-xs text-slate-400">Polskie szybkie przelewy i BLIK</p>
+                      <h4 className="font-bold text-sm text-gray-900 dark:text-white">Przelewy24 (P24)</h4>
+                      <p className="text-xs text-gray-500 dark:text-slate-400">Polskie szybkie przelewy i BLIK</p>
                     </div>
                     <input 
                       type="checkbox" 
@@ -977,25 +979,25 @@ export default function AdminPage() {
                     />
                   </div>
                   {p24Enabled && (
-                    <div className="pt-2 border-t border-white/5 space-y-3">
+                    <div className="pt-2 border-t border-gray-200 dark:border-white/5 space-y-3">
                       <div>
-                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">ID Sprzedawcy (Merchant ID)</label>
+                        <label className="block text-[10px] font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">ID Sprzedawcy (Merchant ID)</label>
                         <input 
                           type="text" 
                           value={p24MerchantId}
                           onChange={(e) => setP24MerchantId(e.target.value)}
-                          className="w-full p-3 rounded-xl bg-slate-900 border border-white/10 text-xs text-white"
+                          className="w-full p-3 rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 text-xs text-gray-900 dark:text-white font-medium"
                         />
                       </div>
                     </div>
                   )}
                 </div>
 
-                <div className="p-6 bg-slate-950 rounded-2xl border border-white/10 space-y-4">
+                <div className="p-6 bg-gray-50 dark:bg-slate-950 rounded-2xl border border-gray-200 dark:border-white/10 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h4 className="font-bold text-sm text-white">Stripe Payments</h4>
-                      <p className="text-xs text-slate-400">Międzynarodowe karty płatnicze Visa / Mastercard</p>
+                      <h4 className="font-bold text-sm text-gray-900 dark:text-white">Stripe Payments</h4>
+                      <p className="text-xs text-gray-500 dark:text-slate-400">Międzynarodowe karty płatnicze Visa / Mastercard</p>
                     </div>
                     <input 
                       type="checkbox" 
@@ -1005,14 +1007,14 @@ export default function AdminPage() {
                     />
                   </div>
                   {stripeEnabled && (
-                    <div className="pt-2 border-t border-white/5 space-y-3">
+                    <div className="pt-2 border-t border-gray-200 dark:border-white/5 space-y-3">
                       <div>
-                        <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Klucz Publiczny (Publishable Key)</label>
+                        <label className="block text-[10px] font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Klucz Publiczny (Publishable Key)</label>
                         <input 
                           type="text" 
                           value={stripePublicKey}
                           onChange={(e) => setStripePublicKey(e.target.value)}
-                          className="w-full p-3 rounded-xl bg-slate-900 border border-white/10 text-xs text-white"
+                          className="w-full p-3 rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 text-xs text-gray-900 dark:text-white font-medium"
                         />
                       </div>
                     </div>
@@ -1033,32 +1035,32 @@ export default function AdminPage() {
 
         {/* TAB 4: SETTINGS (PRICING & DEPOSIT) */}
         {activeTab === "settings" && (
-          <div className="bg-slate-900/80 rounded-3xl border border-white/10 shadow-xl p-8 animate-in fade-in duration-300 max-w-2xl">
-            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <DollarSign className="text-emerald-400" size={24} />
+          <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl p-8 animate-in fade-in duration-300 max-w-2xl">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+              <DollarSign className="text-emerald-600 dark:text-emerald-400" size={24} />
               <span>Konfiguracja Cennika i Kaucji (PLN / doba)</span>
             </h2>
             <form onSubmit={handleSaveSettings} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Jacht Stillo 31 (PLN / doba)</label>
-                  <input type="number" required value={boatPrice} onChange={(e) => setBoatPrice(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-sm font-bold text-white focus:outline-none focus:border-blue-500" />
+                  <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Jacht Stillo 31 (PLN / doba)</label>
+                  <input type="number" required value={boatPrice} onChange={(e) => setBoatPrice(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-sm font-bold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Kaucja Zwrotna (PLN)</label>
-                  <input type="number" required value={depositAmount} onChange={(e) => setDepositAmount(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-sm font-bold text-white focus:outline-none focus:border-blue-500" />
+                  <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Kaucja Zwrotna (PLN)</label>
+                  <input type="number" required value={depositAmount} onChange={(e) => setDepositAmount(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-sm font-bold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Deska SUP (PLN / doba)</label>
-                  <input type="number" required value={supPrice} onChange={(e) => setSupPrice(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-sm font-bold text-white focus:outline-none focus:border-blue-500" />
+                  <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Deska SUP (PLN / doba)</label>
+                  <input type="number" required value={supPrice} onChange={(e) => setSupPrice(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-sm font-bold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500" />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Rower tradycyjny (PLN / doba)</label>
-                  <input type="number" required value={bikePrice} onChange={(e) => setBikePrice(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-sm font-bold text-white focus:outline-none focus:border-blue-500" />
+                  <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Rower tradycyjny (PLN / doba)</label>
+                  <input type="number" required value={bikePrice} onChange={(e) => setBikePrice(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-sm font-bold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500" />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Rower elektryczny e-bike (PLN / doba)</label>
-                  <input type="number" required value={ebikePrice} onChange={(e) => setEbikePrice(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-sm font-bold text-white focus:outline-none focus:border-blue-500" />
+                  <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Rower elektryczny e-bike (PLN / doba)</label>
+                  <input type="number" required value={ebikePrice} onChange={(e) => setEbikePrice(Number(e.target.value))} className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-sm font-bold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500" />
                 </div>
               </div>
 
@@ -1072,18 +1074,18 @@ export default function AdminPage() {
 
         {/* TAB 5: CMS PODSTRONY */}
         {activeTab === "cms" && (
-          <div className="bg-slate-900/80 rounded-3xl border border-white/10 shadow-xl p-8 animate-in fade-in duration-300 max-w-2xl">
-            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <FileText className="text-blue-400" size={24} />
+          <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl p-8 animate-in fade-in duration-300 max-w-2xl">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+              <FileText className="text-blue-600 dark:text-blue-400" size={24} />
               <span>Zarządzanie Treścią Podstron (CMS)</span>
             </h2>
             <div className="space-y-6">
               <div>
-                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Wybierz podstronę</label>
+                <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Wybierz podstronę</label>
                 <select 
                   value={selectedPage} 
                   onChange={(e) => setSelectedPage(e.target.value)} 
-                  className="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-sm font-bold text-white focus:outline-none focus:border-blue-500 cursor-pointer"
+                  className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-sm font-bold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500 cursor-pointer"
                 >
                   <option value="glowna">Strona Główna</option>
                   <option value="stillo">Stillo 31</option>
@@ -1096,32 +1098,32 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Obrazek Tła (URL)</label>
+                <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Obrazek Tła (URL)</label>
                 <input 
                   type="text"
                   value={cmsHeroImage}
                   onChange={(e) => setCmsHeroImage(e.target.value)}
-                  className="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-xs font-semibold text-white focus:outline-none focus:border-blue-500"
+                  className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-xs font-semibold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Główny Tytuł Hero</label>
+                <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Główny Tytuł Hero</label>
                 <input 
                   type="text"
                   value={cmsHeroTitle}
                   onChange={(e) => setCmsHeroTitle(e.target.value)}
-                  className="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-sm font-bold text-white focus:outline-none focus:border-blue-500"
+                  className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-sm font-bold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Podtytuł / Opis</label>
+                <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Podtytuł / Opis</label>
                 <textarea 
                   value={cmsHeroText}
                   onChange={(e) => setCmsHeroText(e.target.value)}
                   rows={4}
-                  className="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-sm font-semibold text-white focus:outline-none focus:border-blue-500"
+                  className="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-sm font-semibold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
                 />
               </div>
 
@@ -1135,9 +1137,9 @@ export default function AdminPage() {
 
         {/* TAB 6: GALERIA ZDJĘĆ */}
         {activeTab === "gallery" && (
-          <div className="bg-slate-900/80 rounded-3xl border border-white/10 shadow-xl p-8 animate-in fade-in duration-300">
-            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <ImageIcon className="text-blue-400" size={24} />
+          <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl p-8 animate-in fade-in duration-300">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+              <ImageIcon className="text-blue-600 dark:text-blue-400" size={24} />
               <span>Menedżer Zdjęć Galerii</span>
             </h2>
             
@@ -1147,7 +1149,7 @@ export default function AdminPage() {
                 placeholder="Ścieżka do zdjęcia, np: /images/gallery/nowe.webp" 
                 value={newImage}
                 onChange={(e) => setNewImage(e.target.value)}
-                className="flex-grow p-4 rounded-2xl bg-slate-950 border border-white/10 text-xs font-semibold text-white focus:outline-none focus:border-blue-500"
+                className="flex-grow p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-xs font-semibold text-gray-900 dark:text-white focus:outline-none focus:border-blue-500"
               />
               <button 
                 onClick={handleAddImage}
@@ -1159,7 +1161,7 @@ export default function AdminPage() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {galleryImages.map((src, i) => (
-                <div key={i} className="relative aspect-square rounded-2xl overflow-hidden group border border-white/10 bg-slate-950">
+                <div key={i} className="relative aspect-square rounded-2xl overflow-hidden group border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-slate-950">
                   <Image src={src} alt="Galeria" fill className="object-cover" />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <button onClick={() => handleRemoveImage(i)} className="p-3 bg-rose-600 text-white rounded-full hover:bg-rose-500 shadow-lg cursor-pointer">
@@ -1176,94 +1178,94 @@ export default function AdminPage() {
 
       {/* MODAL 1: ADD MANUAL BOOKING */}
       {showAddModal && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-slate-900 rounded-[2.5rem] w-full max-w-xl p-8 border border-white/10 shadow-2xl relative">
-            <button onClick={() => setShowAddModal(false)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/10 text-slate-400">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] w-full max-w-xl p-8 border border-gray-200 dark:border-white/10 shadow-2xl relative">
+            <button onClick={() => setShowAddModal(false)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-500 dark:text-slate-400">
               <X size={20} />
             </button>
             
-            <h3 className="text-xl font-black text-white mb-6 flex items-center gap-2">
-              <Plus size={24} className="text-blue-400" />
+            <h3 className="text-xl font-black text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+              <Plus size={24} className="text-blue-600 dark:text-blue-400" />
               <span>Dodaj Ręczną Rezerwację</span>
             </h3>
 
             <form onSubmit={handleCreateManualBooking} className="space-y-4 text-xs">
               <div>
-                <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Imię i Nazwisko Klienta</label>
+                <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Imię i Nazwisko Klienta</label>
                 <input 
                   type="text" 
                   required
                   placeholder="np. Jan Kowalski"
                   value={newBooking.clientName}
                   onChange={(e) => setNewBooking({...newBooking, clientName: e.target.value})}
-                  className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                  className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">E-mail</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">E-mail</label>
                   <input 
                     type="email" 
                     placeholder="jan@example.com"
                     value={newBooking.clientEmail}
                     onChange={(e) => setNewBooking({...newBooking, clientEmail: e.target.value})}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Telefon</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Telefon</label>
                   <input 
                     type="text" 
                     placeholder="600 111 222"
                     value={newBooking.clientPhone}
                     onChange={(e) => setNewBooking({...newBooking, clientPhone: e.target.value})}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Termin (Daty)</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Termin (Daty)</label>
                   <input 
                     type="text" 
                     required
                     placeholder="10.08.2026 - 17.08.2026"
                     value={newBooking.dates}
                     onChange={(e) => setNewBooking({...newBooking, dates: e.target.value})}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Liczba Dni</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Liczba Dni</label>
                   <input 
                     type="number" 
                     required
                     value={newBooking.days}
                     onChange={(e) => setNewBooking({...newBooking, days: Number(e.target.value)})}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Kwota (PLN)</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Kwota (PLN)</label>
                   <input 
                     type="number" 
                     required
                     value={newBooking.total}
                     onChange={(e) => setNewBooking({...newBooking, total: Number(e.target.value)})}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Status</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Status</label>
                   <select 
                     value={newBooking.status}
                     onChange={(e) => setNewBooking({...newBooking, status: e.target.value as any})}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                   >
                     <option value="Confirmed">Potwierdzona</option>
                     <option value="Paid">Opłacona</option>
@@ -1273,13 +1275,13 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Dodatki</label>
+                <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Dodatki</label>
                 <input 
                   type="text" 
                   placeholder="np. SUP x 2, Rower e-bike x 1"
                   value={newBooking.addons}
                   onChange={(e) => setNewBooking({...newBooking, addons: e.target.value})}
-                  className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                  className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                 />
               </div>
 
@@ -1296,52 +1298,52 @@ export default function AdminPage() {
 
       {/* MODAL 2: BLOCK DATES */}
       {showBlockModal && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 rounded-[2.5rem] w-full max-w-md p-8 border border-white/10 shadow-2xl relative">
-            <button onClick={() => setShowBlockModal(false)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/10 text-slate-400">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] w-full max-w-md p-8 border border-gray-200 dark:border-white/10 shadow-2xl relative">
+            <button onClick={() => setShowBlockModal(false)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-500 dark:text-slate-400">
               <X size={20} />
             </button>
             
-            <h3 className="text-xl font-black text-white mb-4 flex items-center gap-2">
-              <Ban size={24} className="text-amber-400" />
+            <h3 className="text-xl font-black text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <Ban size={24} className="text-amber-600 dark:text-amber-400" />
               <span>Zablokuj Termin w Kalendarzu</span>
             </h3>
-            <p className="text-xs text-slate-400 mb-6">
+            <p className="text-xs text-gray-500 dark:text-slate-400 mb-6">
               Wyznaczone daty zostaną oznaczone jako niedostępne w kalendarzu dla klientów.
             </p>
 
             <form onSubmit={handleBlockDates} className="space-y-4 text-xs">
               <div>
-                <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Data Od (dd.mm.yyyy)</label>
+                <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Data Od (dd.mm.yyyy)</label>
                 <input 
                   type="text" 
                   required
                   placeholder="15.08.2026"
                   value={blockStartDate}
                   onChange={(e) => setBlockStartDate(e.target.value)}
-                  className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                  className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Data Do (dd.mm.yyyy)</label>
+                <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Data Do (dd.mm.yyyy)</label>
                 <input 
                   type="text" 
                   required
                   placeholder="20.08.2026"
                   value={blockEndDate}
                   onChange={(e) => setBlockEndDate(e.target.value)}
-                  className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                  className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                 />
               </div>
 
               <div>
-                <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Powód Blokady</label>
+                <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Powód Blokady</label>
                 <input 
                   type="text" 
                   value={blockReason}
                   onChange={(e) => setBlockReason(e.target.value)}
-                  className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 text-white text-xs font-semibold"
+                  className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                 />
               </div>
 
@@ -1358,22 +1360,22 @@ export default function AdminPage() {
 
       {/* MODAL 3: BOOKING EDIT & DETAILS */}
       {selectedBooking && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-slate-900 rounded-[2.5rem] w-full max-w-2xl p-8 border border-white/10 shadow-2xl relative my-4">
-            <button onClick={() => setSelectedBooking(null)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/10 text-slate-400">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] w-full max-w-2xl p-8 border border-gray-200 dark:border-white/10 shadow-2xl relative my-4">
+            <button onClick={() => setSelectedBooking(null)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-500 dark:text-slate-400">
               <X size={20} />
             </button>
             
-            <h3 className="text-2xl font-black text-white mb-6">Rezerwacja {selectedBooking.id}</h3>
+            <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-6">Rezerwacja {selectedBooking.id}</h3>
             
             <form onSubmit={saveBookingEdits} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Status</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Status</label>
                   <select 
                     value={selectedBooking.status}
                     onChange={(e) => setSelectedBooking({ ...selectedBooking, status: e.target.value as any })}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 font-bold text-white text-xs"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-bold text-gray-900 dark:text-white text-xs"
                   >
                     <option value="Pending">Oczekująca (Pending)</option>
                     <option value="Paid">Opłacona (Paid)</option>
@@ -1383,79 +1385,79 @@ export default function AdminPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Kwota (PLN)</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Kwota (PLN)</label>
                   <input 
                     type="number" 
                     value={selectedBooking.total}
                     onChange={(e) => setSelectedBooking({ ...selectedBooking, total: Number(e.target.value) })}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 font-bold text-white text-xs"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-bold text-gray-900 dark:text-white text-xs"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Daty Czarteru</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Daty Czarteru</label>
                   <input 
                     type="text" 
                     value={selectedBooking.dates}
                     onChange={(e) => setSelectedBooking({ ...selectedBooking, dates: e.target.value })}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 font-bold text-white text-xs"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-bold text-gray-900 dark:text-white text-xs"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Ilość dni</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Ilość dni</label>
                   <input 
                     type="number" 
                     value={selectedBooking.days}
                     onChange={(e) => setSelectedBooking({ ...selectedBooking, days: Number(e.target.value) })}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 font-bold text-white text-xs"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-bold text-gray-900 dark:text-white text-xs"
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="block font-bold text-slate-400 uppercase tracking-wider mb-1">Dodatki na pokład</label>
+                  <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Dodatki na pokład</label>
                   <input 
                     type="text" 
                     value={selectedBooking.addons}
                     onChange={(e) => setSelectedBooking({ ...selectedBooking, addons: e.target.value })}
-                    className="w-full p-3.5 rounded-xl bg-slate-950 border border-white/10 font-bold text-white text-xs"
+                    className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-bold text-gray-900 dark:text-white text-xs"
                   />
                 </div>
               </div>
 
-              <div className="border-t border-white/10 pt-4 mt-4 space-y-4">
-                <h4 className="font-bold text-white uppercase tracking-wider">Dane Kontaktowe Klienta</h4>
+              <div className="border-t border-gray-100 dark:border-white/10 pt-4 mt-4 space-y-4">
+                <h4 className="font-bold text-gray-900 dark:text-white uppercase tracking-wider">Dane Kontaktowe Klienta</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block font-bold text-slate-400 mb-1">Imię i Nazwisko</label>
+                    <label className="block font-bold text-gray-500 dark:text-slate-400 mb-1">Imię i Nazwisko</label>
                     <input 
                       type="text" 
                       value={selectedBooking.clientName || ""}
                       onChange={(e) => setSelectedBooking({ ...selectedBooking, clientName: e.target.value })}
-                      className="w-full p-3 rounded-xl bg-slate-950 border border-white/10 font-semibold text-white"
+                      className="w-full p-3 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-semibold text-gray-900 dark:text-white"
                     />
                   </div>
                   <div>
-                    <label className="block font-bold text-slate-400 mb-1">Telefon</label>
+                    <label className="block font-bold text-gray-500 dark:text-slate-400 mb-1">Telefon</label>
                     <input 
                       type="text" 
                       value={selectedBooking.clientPhone || ""}
                       onChange={(e) => setSelectedBooking({ ...selectedBooking, clientPhone: e.target.value })}
-                      className="w-full p-3 rounded-xl bg-slate-950 border border-white/10 font-semibold text-white"
+                      className="w-full p-3 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-semibold text-gray-900 dark:text-white"
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="block font-bold text-slate-400 mb-1">E-mail</label>
+                    <label className="block font-bold text-gray-500 dark:text-slate-400 mb-1">E-mail</label>
                     <input 
                       type="email" 
                       value={selectedBooking.clientEmail || ""}
                       onChange={(e) => setSelectedBooking({ ...selectedBooking, clientEmail: e.target.value })}
-                      className="w-full p-3 rounded-xl bg-slate-950 border border-white/10 font-semibold text-white"
+                      className="w-full p-3 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-semibold text-gray-900 dark:text-white"
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="block font-bold text-slate-400 mb-1">Notatki / Uwagi</label>
+                    <label className="block font-bold text-gray-500 dark:text-slate-400 mb-1">Notatki / Uwagi</label>
                     <textarea 
                       value={selectedBooking.notes || ""}
                       onChange={(e) => setSelectedBooking({ ...selectedBooking, notes: e.target.value })}
-                      className="w-full p-3 rounded-xl bg-slate-950 border border-white/10 font-semibold text-white"
+                      className="w-full p-3 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-semibold text-gray-900 dark:text-white"
                       rows={2}
                     />
                   </div>
@@ -1475,7 +1477,7 @@ export default function AdminPage() {
                   onClick={handleSendEmail}
                   disabled={isSendingEmail || emailSent}
                   className={`flex-1 py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-all cursor-pointer uppercase tracking-wider ${
-                    emailSent ? "bg-emerald-500 text-slate-950 font-black" : "bg-slate-800 text-white hover:bg-slate-700 border border-white/10"
+                    emailSent ? "bg-emerald-500 text-slate-950 font-black" : "bg-gray-900 dark:bg-slate-800 text-white hover:bg-gray-800 dark:hover:bg-slate-700 border border-gray-200 dark:border-white/10"
                   }`}
                 >
                   {emailSent ? <Check size={16} /> : <Mail size={16} />}
