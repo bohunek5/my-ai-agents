@@ -43,18 +43,37 @@ export default function PolitykaPrywatnosciPage() {
 
           {/* Body content */}
           <div className="prose dark:prose-invert max-w-none space-y-6 text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-            <p className="font-semibold text-gray-900 dark:text-white">
-              {t("Privacy", "p1")}
-            </p>
-            <p>
-              {t("Privacy", "p2")}
-            </p>
-            <div className="p-4 bg-blue-50/50 dark:bg-blue-950/10 rounded-2xl border border-blue-100/50 dark:border-blue-900/25">
+            <div className="space-y-4">
+              <p className="font-semibold text-gray-900 dark:text-white">
+                Niniejsza Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem z serwisu internetowego mazuryaktywnie.com.pl.
+              </p>
+
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">1. Zbieranie danych</h2>
+              <p>W ramach korzystania z serwisu zbieramy dane podane dobrowolnie przez Użytkownika w formularzach (np. formularz rezerwacyjny, formularz kontaktowy). Mogą to być m.in.: imię, nazwisko, adres e-mail, numer telefonu. Ponadto, podczas wizyty na stronie, automatycznie zbierane są dane informatyczne (np. adres IP, typ przeglądarki), które wykorzystywane są w celach statystycznych.</p>
+
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">2. Pliki cookies (ciasteczka)</h2>
+              <p>Nasz serwis używa plików cookies. Są to niewielkie pliki tekstowe wysyłane przez serwer www i przechowywane w pamięci Twojego urządzenia. Kiedy przeglądarka ponownie połączy się ze stroną, witryna rozpoznaje rodzaj urządzenia. Parametry pozwalają na odczytanie informacji w nich zawartych jedynie serwerowi, który je utworzył.</p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li><strong>Cookies niezbędne:</strong> Umożliwiające korzystanie z usług dostępnych w ramach serwisu, np. utrzymanie sesji, proces rezerwacji.</li>
+                <li><strong>Cookies analityczne:</strong> Umożliwiające zbieranie informacji o sposobie korzystania ze stron internetowych serwisu (np. za pomocą Google Analytics).</li>
+              </ul>
+
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">3. Bezpieczeństwo danych</h2>
+              <p>Szanujemy prawo do prywatności i dbamy o bezpieczeństwo danych. W tym celu używany jest m.in. bezpieczny protokół szyfrowania komunikacji (SSL). Dane osobowe podawane w formularzach są traktowane jako poufne i nie są widoczne dla osób nieuprawnionych.</p>
+
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">4. Udostępnianie danych</h2>
+              <p>Dane osobowe Użytkowników mogą być powierzane podmiotom trzecim jedynie w celu realizacji usług (np. systemy płatności online, infrastruktura hostingowa). Dane nie są sprzedawane ani udostępniane podmiotom trzecim w celach marketingowych bez wyraźnej zgody Użytkownika.</p>
+
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">5. Prawa użytkownika</h2>
+              <p>Każdy Użytkownik ma prawo do wglądu w swoje dane, ich poprawiania, usunięcia oraz ograniczenia przetwarzania (szczegóły i uprawnienia opisane są w zakładce RODO). Zgoda na przetwarzanie plików cookies może być w każdej chwili wycofana poprzez zmianę ustawień w przeglądarce internetowej.</p>
+            </div>
+
+            <div className="p-4 bg-blue-50/50 dark:bg-blue-950/10 rounded-2xl border border-blue-100/50 dark:border-blue-900/25 mt-8">
               <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm uppercase tracking-wide">
                 Zarządzanie plikami cookies:
               </h3>
               <p className="text-xs md:text-sm">
-                Każda przeglądarka internetowa umożliwia wyłączenie, ograniczenie lub usunięcie plików cookies. Więcej informacji o konfiguracji w popularnych przeglądarkach można znaleźć w ustawieniach pomocy danej aplikacji.
+                Każda przeglądarka internetowa umożliwia wyłączenie, ograniczenie lub usunięcie plików cookies. Więcej informacji o konfiguracji w popularnych przeglądarkach można znaleźć w sekcji pomocy danej przeglądarki.
               </p>
             </div>
           </div>

@@ -52,7 +52,7 @@ export default function OfertaPage() {
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">Stillo 31 <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500">Pływający Apartament</span></h2>
             <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg font-light">
-              Poczuj się jak w pięciogwiazdkowym hotelu, mając wokół siebie bezkres mazurskich jezior. Nasz flagowy jacht Stillo 31 to jednostka stworzona dla najbardziej wymagających. Niezależnie od pogody, ogrzewanie Webasto i przestronny salon zapewnią maksymalny komfort.
+              Poczuj się jak w pięciogwiazdkowym hotelu, mając wokół siebie bezkres mazurskich jezior. Nasz flagowy jacht Stillo 31 to jednostka stworzona dla najbardziej wymagających. Niezależnie od pogody, ogrzewanie i przestronny salon zapewnią maksymalny komfort.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Link 

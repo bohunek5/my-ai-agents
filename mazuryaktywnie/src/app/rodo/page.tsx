@@ -35,21 +35,45 @@ export default function RodoPage() {
 
           {/* Body content */}
           <div className="prose dark:prose-invert max-w-none space-y-6 text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-            <p className="font-semibold text-gray-900 dark:text-white">
-              {t("RODO", "p1")}
-            </p>
-            <p>
-              {t("RODO", "p2")}
-            </p>
-            <p>
-              {t("RODO", "p3")}
-            </p>
-            <div className="p-4 bg-blue-50/50 dark:bg-blue-950/10 rounded-2xl border border-blue-100/50 dark:border-blue-900/25">
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white">1. Administrator Danych Osobowych</h2>
+              <p>Zgodnie z art. 13 ust. 1 i ust. 2 ogólnego rozporządzenia o ochronie danych osobowych z dnia 27 kwietnia 2016 r. (RODO) informujemy, iż administratorem Twoich danych osobowych jest <strong>Mazury Aktywnie</strong>, z siedzibą: Port Sztynort, Sztynort 10, 11-600 Węgorzewo.</p>
+              
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">2. Cele i podstawy przetwarzania</h2>
+              <p>Twoje dane osobowe przetwarzane będą w następujących celach:</p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>Realizacja rezerwacji jachtu oraz dodatkowego sprzętu turystycznego (SUP, rowery) – na podstawie art. 6 ust. 1 lit. b RODO (niezbędność do wykonania umowy).</li>
+                <li>Obsługa zapytań i komunikacja (np. przez formularz kontaktowy) – na podstawie art. 6 ust. 1 lit. a RODO (zgoda) oraz art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes administratora).</li>
+                <li>Wypełnienie obowiązków prawnych ciążących na administratorze (np. rozliczenia księgowe i podatkowe) – na podstawie art. 6 ust. 1 lit. c RODO.</li>
+              </ul>
+
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">3. Odbiorcy danych</h2>
+              <p>Odbiorcami Twoich danych osobowych mogą być podmioty świadczące dla nas usługi IT, hostingowe, księgowe oraz operatorzy płatności elektronicznych (w przypadku rezerwacji online), wyłącznie na podstawie stosownych umów powierzenia przetwarzania danych.</p>
+
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">4. Okres przechowywania danych</h2>
+              <p>Twoje dane będą przechowywane przez okres niezbędny do realizacji rezerwacji, a po tym czasie przez okres wymagany przez przepisy prawa (np. podatkowego) lub do czasu przedawnienia ewentualnych roszczeń. Dane przetwarzane na podstawie zgody będą przechowywane do czasu jej cofnięcia.</p>
+
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">5. Twoje prawa</h2>
+              <p>Posiadasz prawo do:</p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>dostępu do treści swoich danych,</li>
+                <li>ich sprostowania, usunięcia lub ograniczenia przetwarzania,</li>
+                <li>przenoszenia danych,</li>
+                <li>wniesienia sprzeciwu wobec przetwarzania,</li>
+                <li>cofnięcia zgody w dowolnym momencie (bez wpływu na zgodność z prawem przetwarzania przed jej cofnięciem),</li>
+                <li>wniesienia skargi do organu nadzorczego (Prezesa Urzędu Ochrony Danych Osobowych), gdy uznasz, że przetwarzanie narusza przepisy RODO.</li>
+              </ul>
+
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">6. Wymóg podania danych</h2>
+              <p>Podanie danych osobowych jest dobrowolne, jednakże niezbędne do zawarcia umowy rezerwacji lub udzielenia odpowiedzi na zapytanie przesłane przez formularz.</p>
+            </div>
+            
+            <div className="p-4 bg-blue-50/50 dark:bg-blue-950/10 rounded-2xl border border-blue-100/50 dark:border-blue-900/25 mt-8">
               <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm uppercase tracking-wide">
                 Kontakt z administratorem danych:
               </h3>
               <p className="text-xs md:text-sm">
-                W sprawach związanych z ochroną danych osobowych możesz skontaktować się drogą elektroniczną pod adresem: <a href="mailto:kontakt@mazuryaktywnie.com.pl" className="text-blue-600 dark:text-blue-450 hover:underline font-bold">kontakt@mazuryaktywnie.com.pl</a>.
+                W sprawach związanych z ochroną danych osobowych możesz skontaktować się drogą elektroniczną pod adresem: <a href="mailto:kontakt@mazuryaktywnie.com.pl" className="text-blue-600 dark:text-blue-400 hover:underline font-bold">kontakt@mazuryaktywnie.com.pl</a>.
               </p>
             </div>
           </div>

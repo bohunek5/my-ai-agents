@@ -25,7 +25,7 @@ export default function StilloPage() {
 
   const advantages = [
     { icon: <Wind size={32} />, title: "Ster Strumieniowy", desc: "Podwójny system ułatwiający precyzyjne manewry w najciaśniejszych portach. Nawet niedoświadczony sternik poczuje się pewnie." },
-    { icon: <Flame size={32} />, title: "Ogrzewanie Webasto", desc: "Niezależny system grzewczy zapewnia ciepło i pełen komfort nawet podczas chłodniejszych jesiennych rejsów." },
+    { icon: <Flame size={32} />, title: "Ogrzewanie Pokładowe", desc: "Niezależny system grzewczy zapewnia ciepło i pełen komfort nawet podczas chłodniejszych jesiennych rejsów." },
     { icon: <Sun size={32} />, title: "Solarna Niezależność", desc: "Wydajne panele słoneczne na dachu pozwalają na długie dni poza portem bez utraty zasilania urządzeń pokładowych." },
     { icon: <Maximize size={32} />, title: "Przestronny Pokład", desc: "Ogromny pokład słoneczny idealny do opalania oraz platforma kąpielowa z drabinką dla miłośników wody." },
     { icon: <Shield size={32} />, title: "Pełne Bezpieczeństwo", desc: "Zaawansowana elektronika nawigacyjna Raymarine, głębokościomierz i kompletne wyposażenie ratunkowe." },
