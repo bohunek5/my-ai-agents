@@ -84,17 +84,27 @@ export default function KontaktPage() {
                   </div>
                 </a>
 
-                {/* Address */}
+                {/* Address & Legal Entity */}
                 <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-gray-900/40 text-gray-800 dark:text-gray-200">
                   <div className="p-3 bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 rounded-xl shrink-0">
                     <MapPin size={20} />
                   </div>
-                  <div>
-                    <span className="block text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                      Adres / Port stacjonowania
-                    </span>
-                    <span className="text-base font-bold text-gray-900 dark:text-white">Mazury Aktywnie</span>
-                    <p className="text-sm font-semibold text-gray-600 dark:text-gray-300">Port Sztynort, Sztynort 10, 11-600 Węgorzewo</p>
+                  <div className="space-y-2">
+                    <div>
+                      <span className="block text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                        Baza czarterowa / Port stacjonowania
+                      </span>
+                      <span className="text-base font-bold text-gray-900 dark:text-white">Mazury Aktywnie</span>
+                      <p className="text-sm font-semibold text-gray-600 dark:text-gray-300">Port Sztynort, Sztynort 10, 11-600 Węgorzewo</p>
+                    </div>
+                    <div className="pt-2 border-t border-gray-200 dark:border-gray-800">
+                      <span className="block text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                        Siedziba firmy i dane do faktury
+                      </span>
+                      <p className="text-sm font-bold text-gray-900 dark:text-white">Damian Nietrzeba</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-300">NIP: <strong className="text-gray-900 dark:text-white">7921916269</strong></p>
+                      <p className="text-xs text-gray-600 dark:text-gray-300">ul. Sobieskiego 9, 11-400 Kętrzyn</p>
+                    </div>
                   </div>
                 </div>
 
