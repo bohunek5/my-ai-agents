@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { ShieldCheck, Lock, Cookie, Building, CreditCard } from "lucide-react";
+import { ShieldCheck, Lock, Cookie, MapPin, CreditCard } from "lucide-react";
 import Image from "next/image";
 
 export default function PolitykaPrywatnosciPage() {
@@ -44,11 +44,11 @@ export default function PolitykaPrywatnosciPage() {
           {/* Company & Administrator Info Box */}
           <div className="p-5 bg-blue-50/50 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/30 space-y-2">
             <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider">
-              <Building size={16} />
+              <MapPin size={16} />
               <span>Administrator Danych Osobowych:</span>
             </div>
-            <p className="text-base font-black text-gray-900 dark:text-white">PRESCOT SP. Z O.O.</p>
-            <p className="text-xs text-gray-600 dark:text-gray-300">ul. Wileńska 1, 11-500 Giżycko • NIP: 8451939947 • REGON: 281489066</p>
+            <p className="text-base font-black text-gray-900 dark:text-white">Mazury Aktywnie</p>
+            <p className="text-xs text-gray-600 dark:text-gray-300">Port Sztynort, Sztynort 10, 11-600 Węgorzewo</p>
             <p className="text-xs text-gray-500 dark:text-gray-400">E-mail: kontakt@mazuryaktywnie.com.pl | Tel: 608 043 958</p>
           </div>
 
@@ -60,32 +60,32 @@ export default function PolitykaPrywatnosciPage() {
               </p>
 
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">1. Zbieranie i cel przetwarzania danych</h2>
-              <p>W ramach korzystania z serwisu zbieramy dane podane dobrowolnie przez Użytkownika w formularzach (rezerwacyjnym oraz kontaktowym). Mogą to być m.in.: imię, nazwisko, adres e-mail, numer telefonu oraz dane niezbędne do wystawienia faktury lub obsługi płatności.</p>
+              <p>W ramach korzystania z serwisu zbieramy dane podane dobrowolnie przez Użytkownika w formularzach (rezerwacyjnym oraz kontaktowym). Mogą to być m.in.: imię, nazwisko, adres e-mail oraz numer telefonu.</p>
 
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6 flex items-center gap-2">
                 <CreditCard size={20} className="text-blue-600" />
-                <span>2. Powierzanie danych operatorowi płatności Przelewy24</span>
+                <span>2. Płatności Przelewy24</span>
               </h2>
-              <p>W przypadku wybrania płatności elektronicznej online, dane osobowe Użytkownika niezbędne do zrealizowania transakcji są przekazywane operatorowi płatności: spółce <strong>PayPro S.A. (Przelewy24)</strong> z siedzibą w Poznaniu przy ul. Pastelowej 8, 60-198 Poznań, wpisanej do Rejestru Przedsiębiorców KRS pod numerem 0000347935, NIP: 7792369887.</p>
+              <p>W przypadku wybrania płatności elektronicznej online, transakcje są obsługiwane przez bezpieczny system płatności <strong>Przelewy24</strong>.</p>
 
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6 flex items-center gap-2">
                 <Cookie size={20} className="text-blue-600" />
                 <span>3. Pliki cookies (ciasteczka)</span>
               </h2>
-              <p>Nasz serwis używa plików cookies. Są to niewielkie pliki tekstowe przechowywane na urządzeniu końcowym Użytkownika. Pozwalają one na identyfikację sesji i poprawne funkcjonowanie bramki rezerwacyjnej.</p>
+              <p>Nasz serwis używa plików cookies. Są to niewielkie pliki tekstowe przechowywane na urządzeniu końcowym Użytkownika. Pozwalają one na identyfikację sesji i poprawne funkcjonowanie systemu rezerwacyjnego.</p>
               <ul className="list-disc pl-5 space-y-2">
                 <li><strong>Cookies niezbędne:</strong> Umożliwiające korzystanie z usług w ramach serwisu, m.in. proces rezerwacji oraz wybór motywu.</li>
-                <li><strong>Cookies analityczne:</strong> Służące optymalizacji działania serwisu na podstawie zbiorczych statystyk odwiedzin.</li>
+                <li><strong>Cookies analityczne:</strong> Służące optymalizacji działania serwisu.</li>
               </ul>
 
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6 flex items-center gap-2">
                 <Lock size={20} className="text-blue-600" />
                 <span>4. Bezpieczeństwo i protokół SSL</span>
               </h2>
-              <p>Szanujemy prawo do prywatności i stosujemy certyfikowane połączenie szyfrowane protokołem SSL (HTTPS). Dane osobowe podawane w formularzach są traktowane jako poufne i nie są udostępniane osobom nieuprawnionym.</p>
+              <p>Stosujemy certyfikowane połączenie szyfrowane protokołem SSL (HTTPS). Dane osobowe podawane w formularzach są traktowane jako poufne i nie są udostępniane osobom nieuprawnionym.</p>
 
               <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">5. Prawa Użytkownika</h2>
-              <p>Każdy Użytkownik posiada prawo wglądu w swoje dane, ich sprostowania, usunięcia, ograniczenia przetwarzania oraz przenoszenia danych. Szczegółowe zasady i uprawnienia zawarte są w zakładce <a href="/rodo" className="text-blue-600 font-bold underline">Regulamin i RODO</a>.</p>
+              <p>Każdy Użytkownik posiada prawo wglądu w swoje dane, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Szczegóły zawarte są w zakładce <a href="/rodo" className="text-blue-600 font-bold underline">Regulamin i RODO</a>.</p>
             </div>
 
             <div className="p-4 bg-blue-50/50 dark:bg-blue-950/10 rounded-2xl border border-blue-100/50 dark:border-blue-900/25 mt-8">
@@ -93,7 +93,7 @@ export default function PolitykaPrywatnosciPage() {
                 Kontakt ws. Ochrony Danych:
               </h3>
               <p className="text-xs md:text-sm">
-                Wszelkie zapytania dotyczące polityki prywatności oraz zgód prosimy kierować na adres: <a href="mailto:kontakt@mazuryaktywnie.com.pl" className="text-blue-600 dark:text-blue-400 hover:underline font-bold">kontakt@mazuryaktywnie.com.pl</a>.
+                Wszelkie zapytania dotyczące polityki prywatności prosimy kierować na adres: <a href="mailto:kontakt@mazuryaktywnie.com.pl" className="text-blue-600 dark:text-blue-400 hover:underline font-bold">kontakt@mazuryaktywnie.com.pl</a>.
               </p>
             </div>
           </div>

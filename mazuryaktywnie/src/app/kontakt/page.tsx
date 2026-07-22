@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
-import { Phone, Mail, MapPin, Send, CheckCircle, Building, FileText, ShieldCheck } from "lucide-react";
+import { Phone, Mail, MapPin, Send, CheckCircle, ShieldCheck } from "lucide-react";
 import SubpageHero from "@/components/SubpageHero";
 
 export default function KontaktPage() {
@@ -20,7 +20,6 @@ export default function KontaktPage() {
       return;
     }
 
-    // Success Simulation
     setStatus("success");
     setName("");
     setEmail("");
@@ -44,7 +43,7 @@ export default function KontaktPage() {
         {/* Contact Info & Form */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           
-          {/* Info Card with Full Company & Registration Details for Przelewy24 */}
+          {/* Info Card - Mazury Aktywnie Sztynort */}
           <div className="bg-white/70 dark:bg-black/40 backdrop-blur-2xl rounded-[2rem] p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-white/10 flex flex-col justify-between transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] space-y-6">
             <div className="space-y-6">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
@@ -84,32 +83,17 @@ export default function KontaktPage() {
                   </div>
                 </a>
 
-                {/* Marina Location */}
+                {/* Address */}
                 <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50 dark:bg-gray-900/40 text-gray-800 dark:text-gray-200">
                   <div className="p-3 bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300 rounded-xl shrink-0">
                     <MapPin size={20} />
                   </div>
                   <div>
                     <span className="block text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                      Port stacjonowania jachtu Stillo 31
+                      Adres / Port stacjonowania
                     </span>
-                    <span className="text-base font-bold">Port Sztynort, Sztynort 10, 11-600 Węgorzewo</span>
-                  </div>
-                </div>
-
-                {/* Full Registration Data for Przelewy24 Compliance */}
-                <div className="p-5 rounded-2xl bg-blue-50/70 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/40 text-gray-800 dark:text-gray-200 space-y-3">
-                  <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider">
-                    <Building size={16} />
-                    <span>Dane Rejestrowe Firmy (Operator Serwisu)</span>
-                  </div>
-                  <div className="space-y-1 text-sm font-semibold">
-                    <p className="text-base font-black text-gray-900 dark:text-white">PRESCOT SP. Z O.O.</p>
-                    <p className="text-xs text-gray-600 dark:text-gray-300">ul. Wileńska 1, 11-500 Giżycko</p>
-                    <div className="flex flex-wrap gap-4 text-xs font-bold text-blue-700 dark:text-blue-300 pt-1">
-                      <span>NIP: 8451939947</span>
-                      <span>REGON: 281489066</span>
-                    </div>
+                    <span className="text-base font-bold text-gray-900 dark:text-white">Mazury Aktywnie</span>
+                    <p className="text-sm font-semibold text-gray-600 dark:text-gray-300">Port Sztynort, Sztynort 10, 11-600 Węgorzewo</p>
                   </div>
                 </div>
 
