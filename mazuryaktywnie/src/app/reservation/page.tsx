@@ -36,6 +36,7 @@ export default function ReservationPage() {
   const [cardCvc, setCardCvc] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPhone, setClientPhone] = useState("");
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   // Load prices from LocalStorage
   useEffect(() => {
@@ -559,17 +560,32 @@ export default function ReservationPage() {
                     </div>
                   </div>
 
+                  {/* Mandatory Terms Agreement Checkbox for Przelewy24 / RODO Compliance */}
+                  <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/60 rounded-2xl border border-gray-150 dark:border-gray-800">
+                    <input 
+                      type="checkbox" 
+                      id="accept-terms"
+                      required
+                      checked={acceptTerms}
+                      onChange={(e) => setAcceptTerms(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer shrink-0"
+                    />
+                    <label htmlFor="accept-terms" className="text-xs text-gray-600 dark:text-gray-300 leading-snug cursor-pointer select-none">
+                      Oświadczam, że zapoznałem się i akceptuję <Link href="/rodo" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Regulamin Świadczenia Usług</Link> oraz <Link href="/polityka-prywatnosci" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Politykę Prywatności (RODO)</Link>.
+                    </label>
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={isPaying}
-                    className="w-full py-4 mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-70 transform active:scale-95"
+                    disabled={isPaying || !acceptTerms}
+                    className="w-full py-4 mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-95"
                   >
                     {isPaying ? (
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     ) : (
                       <>
                         <ShieldCheck size={18} />
-                        <span className="text-lg">Zapłać teraz</span>
+                        <span className="text-lg">Zapłać przez Przelewy24 / Kartę</span>
                       </>
                     )}
                   </button>

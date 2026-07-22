@@ -171,9 +171,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 dark:border-white/10 py-6 text-center">
+        <div className="border-t border-gray-200 dark:border-white/10 py-6 text-center space-y-2">
+          <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+            <strong>PRESCOT SP. Z O.O.</strong> • ul. Wileńska 1, 11-500 Giżycko • NIP: 8451939947 • REGON: 281489066
+          </p>
           <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} Mazury Aktywnie. Wszelkie prawa zastrzeżone. Zgodność z WCAG 2.1 AA.
+            © {new Date().getFullYear()} Mazury Aktywnie. Wszelkie prawa zastrzeżone. Płatności online obsługuje PayPro S.A. (Przelewy24). Zgodność z WCAG 2.1 AA.
           </p>
         </div>
       </div>
