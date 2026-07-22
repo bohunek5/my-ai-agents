@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
+import Link from "next/link";
 import { Phone, Mail, MapPin, Send, CheckCircle, ShieldCheck } from "lucide-react";
 import SubpageHero from "@/components/SubpageHero";
 
@@ -167,7 +168,7 @@ export default function KontaktPage() {
                   className="mt-0.5 w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
                 />
                 <label htmlFor="contact-consent" className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed cursor-pointer select-none">
-                  {t("Contact", "rodoConsent")}
+                  Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z <Link href="/rodo" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Regulaminem Świadczenia Usług</Link> oraz <Link href="/polityka-prywatnosci" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Polityką Prywatności (RODO)</Link> w celu obsługi zapytania.
                 </label>
               </div>
 

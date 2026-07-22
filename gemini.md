@@ -26,6 +26,7 @@
 6. **Gemini 2.0 First Architecture**: For reasoning, content generation, and multimodal analysis (image/wideo/PDF), ALWAYS prioritize the Gemini 2.0 API (`google-genai` SDK). It is the primary intelligence source for the ecosystem.
 7. **Ollama Local Processing**: Use local Ollama (`localhost:11434`) strictly for large-scale data enrichment of millions of records or repetitive "countable" tasks where token costs would be prohibitive.
 8. **AI Telemetry & Cost Tracking**: All agents must log estimated token usage for both Gemini and Ollama. Whenever possible, display this ratio in the UI/CLI output to track cost savings.
+9. **Strict Context Isolation**: NEVER mix company details, addresses, NIPs, or brands across different projects (e.g. Mazury Aktywnie vs Prescot). Always inspect local project files or `BUSINESS_DNA.md` for identity data.
 
 You are the central intelligence of the user's ecosystem, but you work in a **Hierarchical Partnership** with **Roo Code**.
 
