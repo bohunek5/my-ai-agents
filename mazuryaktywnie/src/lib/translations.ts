@@ -125,14 +125,31 @@ export const translations = {
     },
     "RODO": {
       "title": "Klauzula Informacyjna RODO",
-      "p1": "Zgodnie z art. 13 ust. 1 i ust. 2 ogólnego rozporządzenia o ochronie danych osobowych z dnia 27 kwietnia 2016 r. (RODO) informujemy, iż administratorem Twoich danych osobowych jest Mazury Aktywnie.",
-      "p2": "Twoje dane osobowe przetwarzane będą w celu realizacji rezerwacji jachtu oraz dodatkowego sprzętu turystycznego (SUP, rowery) na podstawie art. 6 ust. 1 lit. b RODO.",
-      "p3": "Posiadasz prawo dostępu do treści swoich danych oraz prawo ich sprostowania, usunięcia, ograniczenia przetwarzania, prawo do przenoszenia danych, prawo wniesienia sprzeciwu."
+      "subtitle": "Informacje o przetwarzaniu danych osobowych (GDPR / RODO).",
+      "eyebrow": "Ochrona Danych Osobowych",
+      "adminTitle": "Administrator Danych Osobowych:",
+      "adminDesc": "Mazury Aktywnie, Port Sztynort, Sztynort 10, 11-600 Węgorzewo. Kontakt: kontakt@mazuryaktywnie.com.pl | tel. 608 043 958",
+      "sec1Title": "1. Administrator Danych",
+      "sec1Text": "Zgodnie z art. 13 RODO informujemy, że administratorem Twoich danych osobowych jest Mazury Aktywnie z bazą stacjonowania w Port Sztynort, Sztynort 10, 11-600 Węgorzewo.",
+      "sec2Title": "2. Cele i Podstawy Przetwarzania",
+      "sec2Text": "Dane osobowe są przetwarzane w celu realizacji rezerwacji czarteru jachtu Stillo 31 oraz sprzętu rekreacyjnego (art. 6 ust. 1 lit. b RODO), obsługi zapytań (art. 6 ust. 1 lit. f RODO) oraz obowiązków księgowo-podatkowych (art. 6 ust. 1 lit. c RODO).",
+      "sec3Title": "3. Odbiorcy Danych",
+      "sec3Text": "Odbiorcami danych mogą być podmioty techniczne wspierające serwis oraz operator płatności Przelewy24 w zakresie niezbędnym do realizacji transakcji.",
+      "sec4Title": "4. Twoje Prawa",
+      "sec4Text": "Posiadasz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych oraz wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (PUODO)."
     },
     "Privacy": {
-      "title": "Polityka Prywatności i Plików Cookies",
-      "p1": "Niniejsza Polityka określa zasady przetwarzania i ochrony danych osobowych użytkowników korzystających z serwisu mazuryaktywnie.com.pl.",
-      "p2": "Serwis korzysta z plików cookies (ciasteczek) w celu poprawnego działania systemu rezerwacji oraz celów statystycznych. Możesz w każdej chwili zmienić ustawienia cookies w swojej przeglądarce."
+      "title": "Regulamin Serwisu & Polityka Prywatności",
+      "subtitle": "Zasady rezerwacji online, czarteru Stillo 31, płatności Przelewy24 oraz polityka plików cookies.",
+      "eyebrow": "Regulamin i Prywatność",
+      "sec1Title": "§ 1. Postanowienia Ogólne i Rezerwacja",
+      "sec1Text": "Serwis internetowy mazuryaktywnie.com.pl prowadzi rezerwacje online czarteru jachtu motorowego Stillo 31 oraz wynajmu desek SUP i rowerów. Usługodawcą jest Mazury Aktywnie, Port Sztynort, Sztynort 10, 11-600 Węgorzewo. Składanie rezerwacji wymaga akceptacji niniejszego Regulaminu.",
+      "sec2Title": "§ 2. Płatności Online (Przelewy24)",
+      "sec2Text": "Ceny podane w serwisie są cenami brutto w walucie PLN. Obsługę płatności elektronicznych (przelewy bankowe, BLIK, karty płatnicze) prowadzi operator Przelewy24. Przy wydaniu jachtu pobierana jest kaucja zwrotna rozliczana po zakończeniu czarteru.",
+      "sec3Title": "§ 3. Reklamacje i Prawo Odstąpienia",
+      "sec3Text": "Zgodnie z art. 38 ust. 1 pkt 12 Ustawy o prawach konsumenta, prawo odstąpienia od umowy zakwaterowania i wypoczynku na oznaczony okres jest wyłączone. Reklamacje można zgłaszać na adres: kontakt@mazuryaktywnie.com.pl. Czas rozpatrzenia wynosi 14 dni.",
+      "sec4Title": "§ 4. Polityka Prywatności i Pliki Cookies",
+      "sec4Text": "Serwis wykorzystuje pliki cookies (ciasteczka) niezbędne do działania bramki rezerwacji i utrzymania sesji. Dane przesyłane w formularzach chronione są szyfrowanym połączeniem SSL (HTTPS)."
     },
     "Admin": {
       "title": "Panel Administratora (CMS)",
@@ -340,14 +357,31 @@ export const translations = {
     },
     "RODO": {
       "title": "GDPR Information Clause",
-      "p1": "Pursuant to Art. 13 sec. 1 and sec. 2 of the General Data Protection Regulation of 27 April 2016 (GDPR), we inform you that the administrator of your personal data is Mazury Aktywnie.",
-      "p2": "Your personal data will be processed for the purpose of completing the yacht and additional equipment (SUP, bikes) booking on the basis of Art. 6 sec. 1 lit. b GDPR.",
-      "p3": "You have the right to access your data, rectify it, erase it, restrict processing, object, and request data portability."
+      "subtitle": "Information on the processing of personal data (GDPR / RODO).",
+      "eyebrow": "Personal Data Protection",
+      "adminTitle": "Personal Data Controller:",
+      "adminDesc": "Mazury Aktywnie, Port Sztynort, Sztynort 10, 11-600 Węgorzewo, Poland. Contact: kontakt@mazuryaktywnie.com.pl | tel. +48 608 043 958",
+      "sec1Title": "1. Data Controller",
+      "sec1Text": "In accordance with Art. 13 of the GDPR, we inform you that the controller of your personal data is Mazury Aktywnie based in Port Sztynort, Sztynort 10, 11-600 Węgorzewo, Poland.",
+      "sec2Title": "2. Purposes and Legal Grounds",
+      "sec2Text": "Personal data is processed for the fulfillment of Stillo 31 yacht charters and equipment rental (Art. 6(1)(b) GDPR), handling inquiries (Art. 6(1)(f) GDPR), and accounting obligations (Art. 6(1)(c) GDPR).",
+      "sec3Title": "3. Data Recipients",
+      "sec3Text": "Data recipients may include IT infrastructure providers and the payment operator Przelewy24 to the extent necessary to process transactions.",
+      "sec4Title": "4. Your Rights",
+      "sec4Text": "You have the right to access, rectify, erase, restrict processing, transfer your data, and lodge a complaint with the Personal Data Protection Office (PUODO)."
     },
     "Privacy": {
-      "title": "Privacy Policy and Cookies",
-      "p1": "This Policy defines the rules for processing and protecting personal data of users using the mazuryaktywnie.com.pl website.",
-      "p2": "The website uses cookies to function properly and for statistical purposes. You can change your cookie settings in your browser at any time."
+      "title": "Terms of Service & Privacy Policy",
+      "subtitle": "Online booking rules, Stillo 31 yacht charter, Przelewy24 payments, and cookie policy.",
+      "eyebrow": "Terms & Privacy",
+      "sec1Title": "§ 1. General Provisions & Booking",
+      "sec1Text": "The website mazuryaktywnie.com.pl handles online bookings for Stillo 31 motor yacht charter, SUP boards, and bicycle rentals. Service Provider: Mazury Aktywnie, Port Sztynort, Sztynort 10, 11-600 Węgorzewo, Poland. Making a reservation requires acceptance of these Terms.",
+      "sec2Title": "§ 2. Online Payments (Przelewy24)",
+      "sec2Text": "Prices listed are gross prices in PLN. Electronic payments (bank transfers, BLIK, credit/debit cards) are processed by Przelewy24. A refundable deposit is collected upon yacht takeover and settled after charter completion.",
+      "sec3Title": "§ 3. Complaints & Right of Withdrawal",
+      "sec3Text": "Under consumer law, the right to withdraw from contracts for leisure/accommodation services for a specific period is excluded. Complaints should be sent to: kontakt@mazuryaktywnie.com.pl and will be processed within 14 days.",
+      "sec4Title": "§ 4. Privacy & Cookie Policy",
+      "sec4Text": "The site uses essential cookies for the booking engine and session management. All form transmissions are secured with SSL (HTTPS) encryption."
     },
     "Admin": {
       "title": "Administrator Panel (CMS)",
@@ -555,14 +589,31 @@ export const translations = {
     },
     "RODO": {
       "title": "DSGVO-Informationsklausel",
-      "p1": "Gemäß Art. 13 Abs. 1 und Abs. 2 der Datenschutz-Grundverordnung vom 27. April 2016 (DSGVO) informieren wir Sie, dass der Administrator Ihrer personenbezogenen Daten Mazury Aktywnie ist.",
-      "p2": "Ihre personenbezogenen Daten werden zum Zweck der Abwicklung der Yacht- und Zusatzausrüstungsbuchung (SUP, Fahrräder) auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO verarbeitet.",
-      "p3": "Sie haben das Recht auf Auskunft über Ihre Daten, Berichtigung, Löschung, Einschränkung der Verarbeitung, Widerspruch sowie Datenübertragbarkeit."
+      "subtitle": "Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.",
+      "eyebrow": "Datenschutz",
+      "adminTitle": "Verantwortlicher für die Datenverarbeitung:",
+      "adminDesc": "Mazury Aktywnie, Port Sztynort, Sztynort 10, 11-600 Węgorzewo, Polen. Kontakt: kontakt@mazuryaktywnie.com.pl | Tel. +48 608 043 958",
+      "sec1Title": "1. Verantwortlicher",
+      "sec1Text": "Gemäß Art. 13 DSGVO informieren wir Sie, dass der Verantwortliche für Ihre Daten Mazury Aktywnie mit Sitz in Port Sztynort, Sztynort 10, 11-600 Węgorzewo, Polen ist.",
+      "sec2Title": "2. Zwecke und Rechtsgrundlagen",
+      "sec2Text": "Personenbezogene Daten werden zur Abwicklung von Stillo 31 Yachtcharter- und Verleihbuchungen (Art. 6 Abs. 1 lit. b DSGVO), Bearbeitung von Anfragen (Art. 6 Abs. 1 lit. f DSGVO) und steuerlichen Pflichten (Art. 6 Abs. 1 lit. c DSGVO) verarbeitet.",
+      "sec3Title": "3. Datenempfänger",
+      "sec3Text": "Datenempfänger können IT-Dienstleister sowie der Zahlungsanbieter Przelewy24 sein, soweit dies für die Transaktionsabwicklung erforderlich ist.",
+      "sec4Title": "4. Ihre Rechte",
+      "sec4Text": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Beschwerde bei der Datenschutzbehörde."
     },
     "Privacy": {
-      "title": "Datenschutz und Cookies",
-      "p1": "Diese Richtlinie definiert die Regeln für die Verarbeitung und den Schutz personenbezogener Daten von Nutzern, die die Website mazuryaktywnie.com.pl nutzen.",
-      "p2": "Die Website verwendet Cookies, um ordnungsgemäß zu funktionieren und für statistische Zwecke. Sie können Ihre Cookie-Einstellungen in Ihrem Browser jederzeit ändern."
+      "title": "AGB & Datenschutzbestimmungen",
+      "subtitle": "Online-Buchungsregeln, Stillo 31 Yachtcharter, Przelewy24-Zahlungen und Cookie-Richtlinie.",
+      "eyebrow": "AGB & Datenschutz",
+      "sec1Title": "§ 1. Allgemeine Bestimmungen & Buchung",
+      "sec1Text": "Die Website mazuryaktywnie.com.pl führt Online-Buchungen für Stillo 31 Motoryacht-Charter, SUP-Boards und Fahrradverleih durch. Dienstanbieter: Mazury Aktywnie, Port Sztynort, Sztynort 10, 11-600 Węgorzewo, Polen. Eine Buchung erfordert die Zustimmung zu diesen AGB.",
+      "sec2Title": "§ 2. Online-Zahlungen (Przelewy24)",
+      "sec2Text": "Alle angegebenen Preise sind Bruttopreise in PLN. Elektronische Zahlungen werden über den Anbieter Przelewy24 abgewickelt. Bei der Yachtübernahme wird eine Kaution erhoben, die nach Charterende abgerechnet wird.",
+      "sec3Title": "§ 3. Reklamationen & Rücktrittsrecht",
+      "sec3Text": "Das Rücktrittsrecht für Freizeit- und Beherbergungsdienstleistungen zu einem bestimmten Termin ist gesetzlich ausgeschlossen. Reklamationen senden Sie an: kontakt@mazuryaktywnie.com.pl (Bearbeitungszeit: 14 Tage).",
+      "sec4Title": "§ 4. Datenschutz & Cookies",
+      "sec4Text": "Die Website verwendet erforderliche Cookies für das Buchungssystem. Alle Formularübertragungen sind per SSL (HTTPS) verschlüsselt."
     },
     "Admin": {
       "title": "Administrator-Panel (CMS)",

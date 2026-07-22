@@ -1,101 +1,112 @@
 "use client";
 
 import { useLanguage } from "@/contexts/LanguageContext";
-import { ShieldCheck, Lock, Cookie, MapPin, CreditCard } from "lucide-react";
-import Image from "next/image";
+import { ShieldCheck, FileText, MapPin, CreditCard, RefreshCw, Scale, CheckCircle2, Lock, Cookie } from "lucide-react";
+import SubpageHero from "@/components/SubpageHero";
 
 export default function PolitykaPrywatnosciPage() {
   const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
-      <section className="relative h-[40dvh] md:h-[50dvh] flex flex-col justify-end items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image src="/images/gallery/5S5A7029.webp" alt="Polityka Prywatności" fill className="object-cover" priority />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 pb-12 flex flex-col items-center text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tighter drop-shadow-lg mb-4">
-            {t("Privacy", "title")}
-          </h1>
-          <p className="text-white/90 text-sm md:text-base max-w-2xl">
-            Informacje o prywatności, ochronie danych osobowych oraz plikach cookies w serwisie mazuryaktywnie.com.pl.
-          </p>
-        </div>
-      </section>
-      <div className="container mx-auto px-4 max-w-3xl py-8 md:py-16">
-        <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 dark:border-gray-700 space-y-8">
+      <SubpageHero
+        title={t("Privacy", "title")}
+        subtitle={t("Privacy", "subtitle")}
+        eyebrow={t("Privacy", "eyebrow")}
+        image="/images/gallery/5S5A7029.webp"
+      />
+      <div className="container mx-auto px-4 max-w-4xl py-8 md:py-16">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 dark:border-gray-700 space-y-10">
           
           {/* Header */}
           <div className="flex items-center gap-4 border-b border-gray-100 dark:border-gray-700 pb-6">
-            <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-2xl text-blue-600 dark:text-blue-400">
-              <ShieldCheck size={32} />
+            <div className="p-3.5 bg-blue-50 dark:bg-blue-900/30 rounded-2xl text-blue-600 dark:text-blue-400 shrink-0">
+              <Scale size={36} />
             </div>
             <div>
-              <h1 className="text-3xl font-black text-gray-900 dark:text-white">
+              <h1 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white">
                 {t("Privacy", "title")}
               </h1>
               <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-widest font-bold mt-1">
-                Polityka Prywatności i Plików Cookies
+                Mazury Aktywnie • Port Sztynort • Przelewy24
               </p>
             </div>
           </div>
 
-          {/* Company & Administrator Info Box */}
-          <div className="p-5 bg-blue-50/50 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/30 space-y-2">
-            <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold text-xs uppercase tracking-wider">
-              <MapPin size={16} />
-              <span>Administrator Danych Osobowych:</span>
+          {/* Key Summary Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-semibold">
+            <div className="p-5 bg-blue-50/60 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/40 space-y-1.5">
+              <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider text-[11px]">
+                <MapPin size={16} />
+                <span>Mazury Aktywnie:</span>
+              </div>
+              <p className="font-black text-sm text-gray-900 dark:text-white">Port Sztynort, Sztynort 10</p>
+              <p className="text-gray-600 dark:text-gray-300">11-600 Węgorzewo, Polska</p>
+              <p className="text-gray-500 dark:text-gray-400">E-mail: kontakt@mazuryaktywnie.com.pl | Tel: 608 043 958</p>
             </div>
-            <p className="text-base font-black text-gray-900 dark:text-white">Mazury Aktywnie</p>
-            <p className="text-xs text-gray-600 dark:text-gray-300">Port Sztynort, Sztynort 10, 11-600 Węgorzewo</p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">E-mail: kontakt@mazuryaktywnie.com.pl | Tel: 608 043 958</p>
+
+            <div className="p-5 bg-emerald-50/60 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/40 space-y-1.5">
+              <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider text-[11px]">
+                <CreditCard size={16} />
+                <span>Płatności Online:</span>
+              </div>
+              <p className="font-black text-sm text-gray-900 dark:text-white">Przelewy24</p>
+              <p className="text-gray-600 dark:text-gray-300">Szybkie przelewy, BLIK, karty Visa / Mastercard</p>
+              <p className="text-gray-500 dark:text-gray-400">Szyfrowany protokół SSL (HTTPS)</p>
+            </div>
           </div>
 
-          {/* Body content */}
-          <div className="prose dark:prose-invert max-w-none space-y-6 text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-            <div className="space-y-4">
-              <p className="font-semibold text-gray-900 dark:text-white">
-                Niniejsza Polityka Prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem z serwisu internetowego mazuryaktywnie.com.pl oraz składaniem rezerwacji online.
-              </p>
-
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">1. Zbieranie i cel przetwarzania danych</h2>
-              <p>W ramach korzystania z serwisu zbieramy dane podane dobrowolnie przez Użytkownika w formularzach (rezerwacyjnym oraz kontaktowym). Mogą to być m.in.: imię, nazwisko, adres e-mail oraz numer telefonu.</p>
-
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6 flex items-center gap-2">
-                <CreditCard size={20} className="text-blue-600" />
-                <span>2. Płatności Przelewy24</span>
+          {/* Full Multilingual Text */}
+          <div className="space-y-8 text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+            
+            {/* § 1 */}
+            <section className="space-y-3">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2 border-b border-gray-100 dark:border-gray-700 pb-2">
+                <FileText className="text-blue-600" size={20} />
+                <span>{t("Privacy", "sec1Title")}</span>
               </h2>
-              <p>W przypadku wybrania płatności elektronicznej online, transakcje są obsługiwane przez bezpieczny system płatności <strong>Przelewy24</strong>.</p>
+              <p>{t("Privacy", "sec1Text")}</p>
+            </section>
 
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6 flex items-center gap-2">
-                <Cookie size={20} className="text-blue-600" />
-                <span>3. Pliki cookies (ciasteczka)</span>
+            {/* § 2 */}
+            <section className="space-y-3">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2 border-b border-gray-100 dark:border-gray-700 pb-2">
+                <CreditCard className="text-blue-600" size={20} />
+                <span>{t("Privacy", "sec2Title")}</span>
               </h2>
-              <p>Nasz serwis używa plików cookies. Są to niewielkie pliki tekstowe przechowywane na urządzeniu końcowym Użytkownika. Pozwalają one na identyfikację sesji i poprawne funkcjonowanie systemu rezerwacyjnego.</p>
-              <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Cookies niezbędne:</strong> Umożliwiające korzystanie z usług w ramach serwisu, m.in. proces rezerwacji oraz wybór motywu.</li>
-                <li><strong>Cookies analityczne:</strong> Służące optymalizacji działania serwisu.</li>
-              </ul>
+              <p>{t("Privacy", "sec2Text")}</p>
+            </section>
 
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6 flex items-center gap-2">
-                <Lock size={20} className="text-blue-600" />
-                <span>4. Bezpieczeństwo i protokół SSL</span>
+            {/* § 3 */}
+            <section className="space-y-3">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2 border-b border-gray-100 dark:border-gray-700 pb-2">
+                <RefreshCw className="text-blue-600" size={20} />
+                <span>{t("Privacy", "sec3Title")}</span>
               </h2>
-              <p>Stosujemy certyfikowane połączenie szyfrowane protokołem SSL (HTTPS). Dane osobowe podawane w formularzach są traktowane jako poufne i nie są udostępniane osobom nieuprawnionym.</p>
+              <p>{t("Privacy", "sec3Text")}</p>
+            </section>
 
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mt-6">5. Prawa Użytkownika</h2>
-              <p>Każdy Użytkownik posiada prawo wglądu w swoje dane, ich sprostowania, usunięcia oraz ograniczenia przetwarzania. Szczegóły zawarte są w zakładce <a href="/rodo" className="text-blue-600 font-bold underline">Regulamin i RODO</a>.</p>
+            {/* § 4 */}
+            <section className="space-y-3">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2 border-b border-gray-100 dark:border-gray-700 pb-2">
+                <Cookie className="text-blue-600" size={20} />
+                <span>{t("Privacy", "sec4Title")}</span>
+              </h2>
+              <p>{t("Privacy", "sec4Text")}</p>
+            </section>
+
+            <div className="p-5 bg-blue-50/50 dark:bg-blue-950/20 rounded-2xl border border-blue-100/50 dark:border-blue-900/30 flex items-start gap-3">
+              <CheckCircle2 size={24} className="text-blue-600 shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-bold text-gray-900 dark:text-white text-sm uppercase tracking-wide">
+                  Kontakt / Support:
+                </h3>
+                <p className="text-xs md:text-sm mt-1">
+                  E-mail: <a href="mailto:kontakt@mazuryaktywnie.com.pl" className="text-blue-600 dark:text-blue-400 hover:underline font-bold">kontakt@mazuryaktywnie.com.pl</a> | Tel: <strong>608 043 958</strong>
+                </p>
+              </div>
             </div>
 
-            <div className="p-4 bg-blue-50/50 dark:bg-blue-950/10 rounded-2xl border border-blue-100/50 dark:border-blue-900/25 mt-8">
-              <h3 className="font-bold text-gray-900 dark:text-white mb-2 text-sm uppercase tracking-wide">
-                Kontakt ws. Ochrony Danych:
-              </h3>
-              <p className="text-xs md:text-sm">
-                Wszelkie zapytania dotyczące polityki prywatności prosimy kierować na adres: <a href="mailto:kontakt@mazuryaktywnie.com.pl" className="text-blue-600 dark:text-blue-400 hover:underline font-bold">kontakt@mazuryaktywnie.com.pl</a>.
-              </p>
-            </div>
           </div>
 
         </div>
