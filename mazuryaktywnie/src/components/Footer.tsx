@@ -71,10 +71,10 @@ export default function Footer() {
              </div>
              <div className="text-center max-w-3xl">
                 <p className="text-sm sm:text-base font-medium text-white/90">
-                  Projekt współfinansowany ze środków Unii Europejskiej w ramach Europejskiego Funduszu Rozwoju Regionalnego.
+                  {t("Footer", "euBanner")}
                 </p>
                 <span className="text-sm text-blue-200 group-hover:text-white font-bold uppercase tracking-widest mt-3 inline-block transition-colors">
-                  Dowiedz się więcej o dofinansowaniu &rarr;
+                  {t("Footer", "euButton")}
                 </span>
              </div>
           </div>
@@ -100,7 +100,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
-              Luksusowy czarter jachtu motorowego Stillo 31 bez patentu na Mazurach. Połącz wypoczynek z aktywnym zwiedzaniem na deskach SUP i rowerach elektrycznych.
+              {t("Footer", "desc")}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl">
               {[
@@ -108,9 +108,13 @@ export default function Footer() {
                 { icon: <Waves size={18} />, label: "SUP", href: "/oferta#sup" },
                 { icon: <Bike size={18} />, label: "Rowery", href: "/oferta#rowery" },
               ].map((item) => (
-                <Link key={item.label} href={item.href} className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 px-3 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors cursor-pointer group">
-                  <span className="text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">{item.icon}</span>
-                  <span className="group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">{item.label}</span>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 p-3 text-xs font-bold text-slate-800 dark:text-slate-200 transition-colors hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                  <span className="text-blue-600 dark:text-blue-400">{item.icon}</span>
+                  <span>{item.label}</span>
                 </Link>
               ))}
             </div>
@@ -118,9 +122,9 @@ export default function Footer() {
 
           <div className="space-y-4">
             <h3 className="font-bold text-slate-900 dark:text-white uppercase tracking-[0.18em] text-xs">
-              {t("Footer", "contact")}
+              {t("Footer", "contactTitle")}
             </h3>
-            <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+            <div className="space-y-3 text-sm">
               <a 
                 href="tel:608043958" 
                 className="flex items-center gap-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
@@ -146,21 +150,21 @@ export default function Footer() {
               href="/reservation"
               className="mt-6 inline-flex items-center justify-center rounded-2xl bg-blue-600 px-6 py-3 text-sm font-bold text-white transition-all hover:bg-blue-500 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-blue-900/20"
             >
-              Zarezerwuj online
+              {t("Footer", "bookOnline")}
             </Link>
           </div>
 
           <div className="space-y-4">
             <h3 className="font-bold text-slate-900 dark:text-white uppercase tracking-[0.18em] text-xs">
-              Dokumenty i klauzule
+              {t("Footer", "legalTitle")}
             </h3>
             <div className="flex flex-col gap-3">
               {[
-                { href: "/polityka-prywatnosci", label: "Regulamin & Polityka Prywatności", icon: <FileText size={15} /> },
-                { href: "/rodo", label: "Klauzula RODO", icon: <FileText size={15} /> },
-                { href: "/fundusze", label: "Fundusze Europejskie", icon: <FileText size={15} /> },
-                { href: "/audyt-wcag", label: "Deklaracja Dostępności WCAG", icon: <FileText size={15} /> },
-                { href: "/admin", label: "Panel Administracyjny (CMS)", icon: <FileText size={15} /> },
+                { href: "/polityka-prywatnosci", label: t("Footer", "termsAndPrivacy"), icon: <FileText size={15} /> },
+                { href: "/rodo", label: t("Footer", "rodoClause"), icon: <FileText size={15} /> },
+                { href: "/fundusze", label: t("Footer", "euFunds"), icon: <FileText size={15} /> },
+                { href: "/audyt-wcag", label: t("Footer", "wcag"), icon: <FileText size={15} /> },
+                { href: "/admin", label: t("Footer", "adminCms"), icon: <FileText size={15} /> },
               ].map((item) => (
                 <Link key={item.href} href={item.href} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 transition-colors hover:text-blue-600 dark:hover:text-blue-400 font-medium">
                   <span className="text-blue-600/50 dark:text-blue-400/50">{item.icon}</span>

@@ -210,10 +210,10 @@ export default function Header() {
             <button
               onClick={() => setWcagModalOpen(true)}
               className="p-2 sm:px-3 sm:py-2 md:px-4 md:py-3 rounded-full sm:rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 md:gap-2 cursor-pointer transition-all bg-yellow-400 hover:bg-yellow-500 text-slate-900 shadow-sm sm:shadow-md hover:scale-105"
-              aria-label="Otwórz opcje dostępności (WCAG)"
+              aria-label={t("Navigation", "accessibility")}
             >
               <Accessibility className="w-5 h-5 sm:w-[18px] sm:h-[18px] md:w-[20px] md:h-[20px]" />
-              <span className="hidden sm:inline">Dostępność</span>
+              <span className="hidden sm:inline">{t("Navigation", "accessibility")}</span>
             </button>
 
             {/* Hamburger Menu removed - using BottomNav on mobile */}

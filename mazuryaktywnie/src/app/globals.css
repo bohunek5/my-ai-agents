@@ -223,3 +223,90 @@ html.wcag-no-animations * {
   animation: wave 2s infinite ease-in-out;
   transform-origin: bottom center;
 }
+
+/* High Contrast Custom React DayPicker Styling for Dark and Light Mode */
+.rdp {
+  --rdp-cell-size: 42px;
+  --rdp-accent-color: #2563eb;
+  --rdp-background-color: #dbeafe;
+  margin: 0;
+}
+
+.dark .rdp {
+  --rdp-accent-color: #2563eb;
+  --rdp-background-color: #1e3a8a;
+  color: #f3f4f6;
+}
+
+.dark .rdp-caption_label {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+}
+
+.dark .rdp-nav_button {
+  color: #60a5fa !important;
+}
+
+.dark .rdp-nav_button:hover {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.dark .rdp-head_cell {
+  color: #9ca3af !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  font-size: 0.75rem !important;
+}
+
+.dark .rdp-day {
+  color: #e5e7eb !important;
+  font-weight: 600 !important;
+  border-radius: 0.5rem !important;
+}
+
+.dark .rdp-day:hover:not(.rdp-day_outside):not(.rdp-day_selected) {
+  background-color: rgba(59, 130, 246, 0.25) !important;
+  color: #60a5fa !important;
+}
+
+/* Range Middle */
+.rdp-day_range_middle {
+  background-color: #dbeafe !important;
+  color: #1e40af !important;
+  font-weight: 800 !important;
+  border-radius: 0 !important;
+}
+
+.dark .rdp-day_range_middle {
+  background-color: #1e3a8a !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  border-radius: 0 !important;
+}
+
+/* Start & End of Range */
+.rdp-day_range_start {
+  border-top-left-radius: 9999px !important;
+  border-bottom-left-radius: 9999px !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+}
+
+.rdp-day_range_end {
+  border-top-right-radius: 9999px !important;
+  border-bottom-right-radius: 9999px !important;
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+}
+
+.dark .rdp-day_selected:not(.rdp-day_range_start):not(.rdp-day_range_end):not(.rdp-day_range_middle) {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+}
+

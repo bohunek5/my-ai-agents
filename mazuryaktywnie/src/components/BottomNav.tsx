@@ -15,9 +15,9 @@ export default function BottomNav() {
   };
 
   const allLinks = [
-    { href: "/", label: "Start", icon: <Home size={22} /> },
-    { href: "/oferta", label: "Oferta", icon: <Info size={22} /> },
-    { href: "/reservation", label: "Rezerwacja", icon: <CalendarCheck size={22} /> },
+    { href: "/", label: t("Navigation", "home"), icon: <Home size={22} /> },
+    { href: "/oferta", label: t("Navigation", "offer"), icon: <Info size={22} /> },
+    { href: "/reservation", label: t("Navigation", "reservation"), icon: <CalendarCheck size={22} /> },
     { href: "/stillo", label: t("Navigation", "stillo31"), icon: <Ship size={22} /> },
     { href: "/galeria", label: t("Navigation", "gallery"), icon: <ImageIcon size={22} /> },
     { href: "/kontakt", label: t("Navigation", "contact"), icon: <Phone size={22} /> },

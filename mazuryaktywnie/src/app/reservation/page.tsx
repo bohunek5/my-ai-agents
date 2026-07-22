@@ -162,44 +162,37 @@ export default function ReservationPage() {
           {/* Options Column */}
           <div className="lg:col-span-2 space-y-8">
             
-            {/* 1. Boat Selection */}
-            <div className="bg-white/70 dark:bg-black/40 backdrop-blur-2xl p-5 md:p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-white/10 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
-              <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+            {/* 1. Boat info */}
+            <div className="bg-white/70 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-white/10 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] space-y-4">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
                 <Ship size={24} className="text-blue-600 dark:text-blue-400 shrink-0" />
-                <span>1. Wybierz jacht</span>
+                <span>{t("Reservation", "step1Title")}</span>
               </h2>
-              
-              <div className="relative rounded-2xl overflow-hidden border-2 border-blue-600 dark:border-blue-400 p-4 flex flex-col sm:flex-row items-center gap-6">
-                <div className="relative w-full sm:w-48 h-40 sm:h-32 rounded-xl overflow-hidden shrink-0">
-                  <Image 
-                    src="/images/gallery/5S5A6951.webp" 
-                    alt="Jacht Stillo 31" 
-                    fill 
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex-grow space-y-2 text-center sm:text-left">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Stillo 31</h3>
-                    <span className="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider self-center sm:self-auto">
-                      {t("Reservation", "boatSelected")}
-                    </span>
+              <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden shadow-lg border border-gray-150 dark:border-gray-800">
+                <Image 
+                  src="/images/gallery/5S5A7031.webp" 
+                  alt="Stillo 31" 
+                  fill 
+                  className="object-cover hover:scale-105 transition-transform duration-700" 
+                  priority
+                />
+                <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md p-4 rounded-xl text-white flex justify-between items-center">
+                  <div>
+                    <h3 className="font-black text-lg">Stillo 31 (2026)</h3>
+                    <p className="text-xs text-gray-300">Luksusowy jacht motorowy • Bez patentu</p>
                   </div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
-                    Luksusowy houseboat dla 8 osób. W pełni wyposażony, dostosowany do niepełnosprawności.
-                  </p>
-                  <p className="text-lg font-black text-blue-600 dark:text-blue-400">
-                    {boatPrice} {t("Reservation", "pricePerDay")}
-                  </p>
+                  <div className="text-right">
+                    <span className="text-xl font-black text-blue-400">{boatPrice} {t("Reservation", "pricePerDay")}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* 2. Equipment Options */}
-            <div className="bg-white/70 dark:bg-black/40 backdrop-blur-2xl p-5 md:p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-white/10 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
+            {/* 2. Optional Extras */}
+            <div className="bg-white/70 dark:bg-black/40 backdrop-blur-2xl p-6 md:p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-white/10 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
               <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                 <Plus size={24} className="text-blue-600 dark:text-blue-400 shrink-0" />
-                <span>2. Wybierz opcje dodatkowe</span>
+                <span>{t("Reservation", "step2Title")}</span>
               </h2>
 
               <div className="space-y-4">
@@ -303,7 +296,7 @@ export default function ReservationPage() {
             <div className="bg-white/70 dark:bg-black/40 backdrop-blur-2xl p-5 md:p-10 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)] border border-white/50 dark:border-white/10 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
               <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                 <Calendar size={24} className="text-blue-600 dark:text-blue-400 shrink-0" />
-                <span>3. Wybierz termin czarteru</span>
+                <span>{t("Reservation", "step3Title")}</span>
               </h2>
 
               <div className="flex flex-col items-center overflow-x-auto pb-4 w-full">
