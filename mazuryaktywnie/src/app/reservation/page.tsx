@@ -571,7 +571,7 @@ export default function ReservationPage() {
                       className="mt-0.5 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer shrink-0"
                     />
                     <label htmlFor="accept-terms" className="text-xs text-gray-600 dark:text-gray-300 leading-snug cursor-pointer select-none">
-                      Oświadczam, że zapoznałem się i akceptuję <Link href="/rodo" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Regulamin Świadczenia Usług</Link> oraz <Link href="/polityka-prywatnosci" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Politykę Prywatności (RODO)</Link>.
+                      Oświadczam, że zapoznałem się i akceptuję <Link href="/regulamin" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Regulamin Świadczenia Usług</Link> oraz <Link href="/polityka-prywatnosci" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Politykę Prywatności (RODO)</Link>.
                     </label>
                   </div>
 

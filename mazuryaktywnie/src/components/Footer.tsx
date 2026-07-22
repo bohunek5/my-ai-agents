@@ -156,8 +156,9 @@ export default function Footer() {
             </h3>
             <div className="flex flex-col gap-3">
               {[
+                { href: "/regulamin", label: "Regulamin Serwisu", icon: <FileText size={15} /> },
                 { href: "/polityka-prywatnosci", label: t("Footer", "privacyPolicy"), icon: <FileText size={15} /> },
-                { href: "/rodo", label: t("Footer", "rodo"), icon: <FileText size={15} /> },
+                { href: "/rodo", label: "Klauzula RODO", icon: <FileText size={15} /> },
                 { href: "/fundusze", label: "Fundusze Europejskie", icon: <FileText size={15} /> },
                 { href: "/audyt-wcag", label: "Deklaracja Dostępności WCAG", icon: <FileText size={15} /> },
                 { href: "/admin", label: "Panel Administracyjny (CMS)", icon: <FileText size={15} /> },
