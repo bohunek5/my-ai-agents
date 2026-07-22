@@ -132,9 +132,9 @@ export const translations = {
       "sec2Title": "2. Cele i Podstawy Przetwarzania",
       "sec2Text": "Dane osobowe są przetwarzane w celu realizacji rezerwacji czarteru jachtu Stillo 31 oraz sprzętu rekreacyjnego (art. 6 ust. 1 lit. b RODO), obsługi zapytań (art. 6 ust. 1 lit. f RODO) oraz obowiązków księgowo-podatkowych (art. 6 ust. 1 lit. c RODO).",
       "sec3Title": "3. Odbiorcy Danych",
-      "sec3Text": "Odbiorcami danych mogą być podmioty techniczne wspierające serwis oraz operator płatności Przelewy24 w zakresie niezbędnym do realizacji transakcji.",
+      "sec3Text": "Odbiorcami danych mogą być podmioty techniczne wspierające serwis, dostawcy usług hostingowych oraz operator płatności Przelewy24 (PayPro S.A.) w zakresie niezbędnym do realizacji transakcji.",
       "sec4Title": "4. Twoje Prawa",
-      "sec4Text": "Posiadasz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych oraz wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (PUODO)."
+      "sec4Text": "Posiadasz prawo dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych oraz wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (PUODO, ul. Stawki 2, 00-193 Warszawa)."
     },
     "Privacy": {
       "title": "Regulamin Serwisu & Polityka Prywatności",
@@ -143,9 +143,9 @@ export const translations = {
       "sec1Title": "§ 1. Postanowienia Ogólne i Rezerwacja",
       "sec1Text": "Serwis internetowy mazuryaktywnie.com.pl prowadzi rezerwacje online czarteru jachtu motorowego Stillo 31 oraz wynajmu desek SUP i rowerów. Usługodawcą jest Damian Nietrzeba z siedzibą przy ul. Sobieskiego 9, 11-400 Kętrzyn, NIP: 7921916269 (Baza czarterowa: Port Sztynort, Sztynort 10, 11-600 Węgorzewo). Składanie rezerwacji wymaga akceptacji niniejszego Regulaminu.",
       "sec2Title": "§ 2. Płatności Online (Przelewy24)",
-      "sec2Text": "Ceny podane w serwisie są cenami brutto w walucie PLN. Obsługę płatności elektronicznych (przelewy bankowe, BLIK, karty płatnicze) prowadzi operator Przelewy24. Przy wydaniu jachtu pobierana jest kaucja zwrotna rozliczana po zakończeniu czarteru.",
+      "sec2Text": "Ceny podane w serwisie są cenami brutto w walucie PLN. Obsługę płatności elektronicznych (przelewy bankowe, BLIK, karty płatnicze) prowadzi operator Przelewy24 (PayPro S.A.). Przy wydaniu jachtu pobierana jest kaucja zwrotna rozliczana po zakończeniu czarteru.",
       "sec3Title": "§ 3. Reklamacje i Prawo Odstąpienia",
-      "sec3Text": "Zgodnie z art. 38 ust. 1 pkt 12 Ustawy o prawach konsumenta, prawo odstąpienia od umowy zakwaterowania i wypoczynku na oznaczony okres jest wyłączone. Reklamacje można zgłaszać na adres e-mail: kontakt@mazuryaktywnie.com.pl lub pisemnie na adres siedziby: ul. Sobieskiego 9, 11-400 Kętrzyn. Czas rozpatrzenia wynosi 14 dni.",
+      "sec3Text": "Zgodnie z art. 38 ust. 1 pkt 12 Ustawy o prawach konsumenta, prawo odstąpienia od umowy zakwaterowania i wypoczynku na oznaczony okres jest wyłączone. Reklamacje można zgłaszać na adres e-mail: kontakt@mazuryaktywnie.com.pl lub pisemnie na adres odbiorcy: Damian Nietrzeba, ul. Sobieskiego 9, 11-400 Kętrzyn. Czas rozpatrzenia wynosi 14 dni.",
       "sec4Title": "§ 4. Polityka Prywatności i Pliki Cookies",
       "sec4Text": "Serwis wykorzystuje pliki cookies (ciasteczka) niezbędne do działania bramki rezerwacji i utrzymania sesji. Dane przesyłane w formularzach chronione są szyfrowanym połączeniem SSL (HTTPS)."
     },
@@ -361,9 +361,9 @@ export const translations = {
       "sec2Title": "2. Purposes and Legal Grounds",
       "sec2Text": "Personal data is processed for the fulfillment of Stillo 31 yacht charters and equipment rental (Art. 6(1)(b) GDPR), handling inquiries (Art. 6(1)(f) GDPR), and accounting obligations (Art. 6(1)(c) GDPR).",
       "sec3Title": "3. Data Recipients",
-      "sec3Text": "Data recipients may include IT infrastructure providers and the payment operator Przelewy24 to the extent necessary to process transactions.",
+      "sec3Text": "Data recipients may include IT infrastructure providers and the payment operator Przelewy24 (PayPro S.A.) to the extent necessary to process transactions.",
       "sec4Title": "4. Your Rights",
-      "sec4Text": "You have the right to access, rectify, erase, restrict processing, transfer your data, and lodge a complaint with the Personal Data Protection Office (PUODO)."
+      "sec4Text": "You have the right to access, rectify, erase, restrict processing, transfer your data, and lodge a complaint with the Personal Data Protection Office (PUODO, ul. Stawki 2, 00-193 Warsaw, Poland)."
     },
     "Privacy": {
       "title": "Terms of Service & Privacy Policy",
@@ -372,9 +372,9 @@ export const translations = {
       "sec1Title": "§ 1. General Provisions & Booking",
       "sec1Text": "The website mazuryaktywnie.com.pl handles online bookings for Stillo 31 motor yacht charter, SUP boards, and bicycle rentals. Service Provider: Damian Nietrzeba, registered office: ul. Sobieskiego 9, 11-400 Kętrzyn, Poland, VAT ID (NIP): 7921916269 (Charter Base: Port Sztynort, Sztynort 10, 11-600 Węgorzewo). Making a reservation requires acceptance of these Terms.",
       "sec2Title": "§ 2. Online Payments (Przelewy24)",
-      "sec2Text": "Prices listed are gross prices in PLN. Electronic payments (bank transfers, BLIK, credit/debit cards) are processed by Przelewy24. A refundable deposit is collected upon yacht takeover and settled after charter completion.",
+      "sec2Text": "Prices listed are gross prices in PLN. Electronic payments (bank transfers, BLIK, credit/debit cards) are processed by Przelewy24 (PayPro S.A.). A refundable deposit is collected upon yacht takeover and settled after charter completion.",
       "sec3Title": "§ 3. Complaints & Right of Withdrawal",
-      "sec3Text": "Under consumer law, the right to withdraw from contracts for leisure/accommodation services for a specific period is excluded. Complaints should be sent to: kontakt@mazuryaktywnie.com.pl or by mail to the registered office: ul. Sobieskiego 9, 11-400 Kętrzyn. Complaints will be processed within 14 days.",
+      "sec3Text": "Under consumer law, the right to withdraw from contracts for leisure/accommodation services for a specific period is excluded. Complaints should be sent to: kontakt@mazuryaktywnie.com.pl or by mail to the recipient: Damian Nietrzeba, ul. Sobieskiego 9, 11-400 Kętrzyn, Poland. Complaints will be processed within 14 days.",
       "sec4Title": "§ 4. Privacy & Cookie Policy",
       "sec4Text": "The site uses essential cookies for the booking engine and session management. All form transmissions are secured with SSL (HTTPS) encryption."
     },
@@ -590,9 +590,9 @@ export const translations = {
       "sec2Title": "2. Zwecke und Rechtsgrundlagen",
       "sec2Text": "Personenbezogene Daten werden zur Abwicklung von Stillo 31 Yachtcharter- und Verleihbuchungen (Art. 6 Abs. 1 lit. b DSGVO), Bearbeitung von Anfragen (Art. 6 Abs. 1 lit. f DSGVO) und steuerlichen Pflichten (Art. 6 Abs. 1 lit. c DSGVO) verarbeitet.",
       "sec3Title": "3. Datenempfänger",
-      "sec3Text": "Datenempfänger können IT-Dienstleister sowie der Zahlungsanbieter Przelewy24 sein, soweit dies für die Transaktionsabwicklung erforderlich ist.",
+      "sec3Text": "Datenempfänger können IT-Dienstleister sowie der Zahlungsanbieter Przelewy24 (PayPro S.A.) sein, soweit dies für die Transaktionsabwicklung erforderlich ist.",
       "sec4Title": "4. Ihre Rechte",
-      "sec4Text": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Beschwerde bei der Datenschutzbehörde."
+      "sec4Text": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Beschwerde bei der Datenschutzbehörde (UODO, ul. Stawki 2, 00-193 Warschau, Polen)."
     },
     "Privacy": {
       "title": "AGB & Datenschutzbestimmungen",
@@ -601,9 +601,9 @@ export const translations = {
       "sec1Title": "§ 1. Allgemeine Bestimmungen & Buchung",
       "sec1Text": "Die Website mazuryaktywnie.com.pl führt Online-Buchungen für Stillo 31 Motoryacht-Charter, SUP-Boards und Fahrradverleih durch. Dienstanbieter: Damian Nietrzeba, Firmensitz: ul. Sobieskiego 9, 11-400 Kętrzyn, Polen, NIP: 7921916269 (Charter-Basis: Port Sztynort, Sztynort 10, 11-600 Węgorzewo). Eine Buchung erfordert die Zustimmung zu diesen AGB.",
       "sec2Title": "§ 2. Online-Zahlungen (Przelewy24)",
-      "sec2Text": "Alle angegebenen Preise sind Bruttopreise in PLN. Elektronische Zahlungen werden über den Anbieter Przelewy24 abgewickelt. Bei der Yachtübernahme wird eine Kaution erhoben, die nach Charterende abgerechnet wird.",
+      "sec2Text": "Alle angegebenen Preise sind Bruttopreise in PLN. Elektronische Zahlungen werden über den Anbieter Przelewy24 (PayPro S.A.) abgewickelt. Bei der Yachtübernahme wird eine Kaution erhoben, die nach Charterende abgerechnet wird.",
       "sec3Title": "§ 3. Reklamationen & Rücktrittsrecht",
-      "sec3Text": "Das Rücktrittsrecht für Freizeit- und Beherbergungsdienstleistungen zu einem bestimmten Termin ist gesetzlich ausgeschlossen. Reklamationen senden Sie an: kontakt@mazuryaktywnie.com.pl oder per Post an den Firmensitz: ul. Sobieskiego 9, 11-400 Kętrzyn (Bearbeitungszeit: 14 Tage).",
+      "sec3Text": "Das Rücktrittsrecht für Freizeit- und Beherbergungsdienstleistungen zu einem bestimmten Termin ist gesetzlich ausgeschlossen. Reklamationen senden Sie an: kontakt@mazuryaktywnie.com.pl oder per Post an den Empfänger: Damian Nietrzeba, ul. Sobieskiego 9, 11-400 Kętrzyn, Polen (Bearbeitungszeit: 14 Tage).",
       "sec4Title": "§ 4. Datenschutz & Cookies",
       "sec4Text": "Die Website verwendet erforderliche Cookies für das Buchungssystem. Alle Formularübertragungen sind per SSL (HTTPS) verschlüsselt."
     },

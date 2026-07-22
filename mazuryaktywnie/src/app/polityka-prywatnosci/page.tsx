@@ -35,14 +35,21 @@ export default function PolitykaPrywatnosciPage() {
 
           {/* Key Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-semibold">
-            <div className="p-5 bg-blue-50/60 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/40 space-y-1.5">
+            <div className="p-5 bg-blue-50/60 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/40 space-y-2">
               <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider text-[11px]">
                 <MapPin size={16} />
-                <span>Mazury Aktywnie:</span>
+                <span>Usługodawca / Siedziba firmy:</span>
               </div>
-              <p className="font-black text-sm text-gray-900 dark:text-white">Port Sztynort, Sztynort 10</p>
-              <p className="text-gray-600 dark:text-gray-300">11-600 Węgorzewo, Polska</p>
-              <p className="text-gray-500 dark:text-gray-400">E-mail: kontakt@mazuryaktywnie.com.pl | Tel: 608 043 958</p>
+              <p className="font-black text-sm text-gray-900 dark:text-white">Damian Nietrzeba (Mazury Aktywnie)</p>
+              <p className="text-gray-700 dark:text-gray-300">ul. Sobieskiego 9, 11-400 Kętrzyn • NIP: 7921916269</p>
+              
+              <div className="pt-2 border-t border-blue-100 dark:border-blue-900/40 space-y-0.5">
+                <span className="block text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                  Baza czarterowa / Port stacjonowania:
+                </span>
+                <p className="text-gray-900 dark:text-white font-bold text-xs">Port Sztynort, Sztynort 10, 11-600 Węgorzewo</p>
+                <p className="text-gray-500 dark:text-gray-400">E-mail: kontakt@mazuryaktywnie.com.pl | Tel: 608 043 958</p>
+              </div>
             </div>
 
             <div className="p-5 bg-emerald-50/60 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/40 space-y-1.5">
@@ -50,7 +57,7 @@ export default function PolitykaPrywatnosciPage() {
                 <CreditCard size={16} />
                 <span>Płatności Online:</span>
               </div>
-              <p className="font-black text-sm text-gray-900 dark:text-white">Przelewy24</p>
+              <p className="font-black text-sm text-gray-900 dark:text-white">Przelewy24 (PayPro S.A.)</p>
               <p className="text-gray-600 dark:text-gray-300">Szybkie przelewy, BLIK, karty Visa / Mastercard</p>
               <p className="text-gray-500 dark:text-gray-400">Szyfrowany protokół SSL (HTTPS)</p>
             </div>

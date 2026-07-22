@@ -34,12 +34,25 @@ export default function RodoPage() {
           </div>
 
           {/* Administrator Info Box */}
-          <div className="p-5 bg-blue-50/60 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/40 space-y-1.5 text-xs font-semibold">
+          <div className="p-5 bg-blue-50/60 dark:bg-blue-950/20 rounded-2xl border border-blue-100 dark:border-blue-900/40 space-y-2 text-xs font-semibold">
             <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider text-[11px]">
               <MapPin size={16} />
               <span>{t("RODO", "adminTitle")}</span>
             </div>
-            <p className="text-gray-700 dark:text-gray-300 font-medium">{t("RODO", "adminDesc")}</p>
+            <p className="text-gray-900 dark:text-white font-black text-sm">
+              Damian Nietrzeba (Mazury Aktywnie) • NIP: 7921916269
+            </p>
+            <p className="text-gray-700 dark:text-gray-300">
+              <strong>Siedziba firmy:</strong> ul. Sobieskiego 9, 11-400 Kętrzyn
+            </p>
+            
+            <div className="pt-2 border-t border-blue-100 dark:border-blue-900/40 space-y-0.5">
+              <span className="block text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                Baza czarterowa / Port stacjonowania:
+              </span>
+              <p className="text-gray-900 dark:text-white font-bold text-xs">Port Sztynort, Sztynort 10, 11-600 Węgorzewo</p>
+              <p className="text-gray-500 dark:text-gray-400">E-mail: kontakt@mazuryaktywnie.com.pl | Tel: 608 043 958</p>
+            </div>
           </div>
 
           {/* RODO Body Content */}
