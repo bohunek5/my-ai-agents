@@ -1,0 +1,184 @@
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.25rem;
+    border-right: 1px solid var(--glass-border);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    /* Higher z-index to kill "streaks" from main content */
+    background: var(--background);
+}
+
+.top {
+    margin-bottom: 3rem;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    width: 100%;
+}
+
+.logoImg {
+    width: 90%;
+    max-width: 220px;
+    height: auto;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.userBadge {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    background: var(--glass-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--glass-border);
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    min-height: 52px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: white;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+    flex: 1;
+}
+
+.name {
+    font-size: 1.1rem;
+    font-weight: 850;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    color: var(--foreground);
+}
+
+.roleBadge {
+    font-size: 0.7rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.875rem 1rem;
+    color: var(--muted-foreground);
+    text-decoration: none;
+    border-radius: 0.75rem;
+    transition: all 0.2s;
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.navItem:hover,
+.activeNav {
+    background: var(--glass-bg);
+    color: var(--foreground);
+    font-weight: 700;
+}
+
+[data-theme='light'] .navItem:hover,
+[data-theme='light'] .activeNav {
+    background: rgba(225, 78, 38, 0.1);
+    color: var(--primary);
+}
+
+.activeNav {
+    border-left: 4px solid var(--primary);
+    background: var(--primary-glow);
+}
+
+.bottom {
+    border-top: 1px solid var(--glass-border);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.logout:hover {
+    color: var(--destructive);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.statusFooter {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    margin-top: 1rem;
+    border: 1px solid var(--glass-border);
+}
+
+[data-theme='light'] .statusFooter {
+    background: #F1F5F9;
+    color: #64748b;
+}
+
+.pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
+    animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}

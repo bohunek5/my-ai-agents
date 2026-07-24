@@ -1,0 +1,48 @@
+{
+  "mcpServers": {
+    "stitch": {
+      "serverUrl": "https://stitch.googleapis.com/mcp",
+      "headers": {
+        "X-Goog-Api-Key": "UZUPELNIJ_NOWYM_KLUCZEM_STITCH_GOOGLE_API"
+      }
+    },
+    "notebooklm": {
+      "command": "uv",
+      "args": [
+        "tool",
+        "run",
+        "--from",
+        "notebooklm-mcp-server",
+        "notebooklm-mcp"
+      ]
+    },
+    "GitKraken": {
+      "args": [
+        "mcp",
+        "--host=antigravity",
+        "--source=gitlens",
+        "--scheme=antigravity"
+      ],
+        "command": "UZUPELNIJ_SCIEZKE_DO_GITKRAKEN_GITLENS_GK",
+      "type": "stdio"
+    },
+    "n8n": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mpiliukov/n8n-mcp"
+      ],
+      "env": {
+        "npm_config_cache": "/tmp/npm_cache",
+        "N8N_API_URL": "http://localhost:5678/api/v1",
+        "N8N_API_KEY": "UZUPELNIJ_NOWYM_KLUCZEM_N8N"
+      }
+    },
+    "google-workspace": {
+      "command": "node",
+      "args": [
+        "UZUPELNIJ_SCIEZKE_DO_GOOGLE_WORKSPACE_MCP_PROXY"
+      ]
+    }
+  }
+}

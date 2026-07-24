@@ -1,0 +1,4 @@
+interface:
+  display_name: "Natural Writing Quality"
+  short_description: "Writes and edits natural, concrete prose without generic AI-style filler."
+  default_prompt: "Write or revise this text so it sounds natural, specific, and useful. Remove generic AI-like phrasing, unsupported significance claims, filler, and awkward formatting while preserving the intended meaning."

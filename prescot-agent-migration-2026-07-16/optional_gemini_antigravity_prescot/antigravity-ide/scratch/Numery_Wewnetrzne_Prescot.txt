@@ -1,0 +1,46 @@
+LISTA NUMERÓW WEWNĘTRZNYCH - PRESCOT
+Osoba / Dział
+Nr Wewnętrzny
+ZARZĄD
+Zarząd (ogólny)
+31
+Krzysztof Bara
+61
+Radosław Narwojsz
+62
+SEKRETARIAT
+Sylwia Suska
+25
+KSIĘGOWOŚĆ
+Agnieszka Bara
+52
+Karolina Laskowska
+51
+MAGAZYNY
+Magazyn Wydań
+71
+Montaż
+81
+Produkcja
+80
+PRESCOT SP. Z O.O.
+Adam Garbowski
+34
+Dariusz Nita
+35
+Anna Galor
+36
+Anna Asztemborska
+37
+DZIAŁ GRAFICZNY
+Kinga Bohdanowicz
+91
+Karol Bohdanowicz
+92
+PRESCOT S.C.
+Jarosław Badowski
+21
+Iwona Baczewska
+22
+Marcin Górniewicz
+24

@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "GitHub: Push sklepSC",
+            "type": "shell",
+            "command": "git add sklepSC/ && git commit -m 'Zapis sklepSC' && git push",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "GitHub: Push ALL",
+            "type": "shell",
+            "command": "git add . && git commit -m 'Szybki zapis' && git push",
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+KOMPLEKSOWY AUDYT SEO I TECHNICZNY
+Sklep: prescot.com.plData wykonania audytu: 2 Czerwca 2026
+PODSUMOWANIE (EXECUTIVE SUMMARY)
+Niniejszy dokument przedstawia aktualny stan techniczny oraz SEO sklepu internetowego prescot.com.pl po wdrożeniu krytycznych poprawek. Główne i najbardziej niszczycielskie błędy w architekturze sklepu (powielanie domen) zostały całkowicie wyeliminowane. Sklep jest gotowy na przyjęcie wzmożonego ruchu z wyszukiwarek, a kluczowe znaczniki na stronie głównej zostały perfekcyjnie zoptymalizowane pod kątem sprzedażowym.
+1. ARCHITEKTURA DOMEN I LINKOWANIE WEWNĘTRZNE
+Status: WZOROWY
+•Rozwiązano problem "dwóch domen" (Duplicate Content): Błąd polegający na tym, że nawigacja sklepu generowała linki do domeny technicznej (sklep107225.shoparena.pl) został wyeliminowany. 100% linków wewnątrz sklepu kieruje teraz na prawidłową, główną domenę prescot.com.pl.
+•Przekierowania 301: Ustawiono prawidłowe przekierowania w konfiguracji serwera, co oznacza, że żaden klient ani bot Google nie zabłądzi. Siła pozycjonowania nie rozprasza się już na dwa różne adresy.
+2. ZNACZNIKI META STRONY GŁÓWNEJ
+Status: ZAAWANSOWANY
+•Tytuł strony (Title): Skonstruowany profesjonalnie. Łączy w sobie najważniejsze słowa kluczowe (Producent oświetlenia LED, taśmy LED) z mocnymi benefitami, które klikają klienci ("Polska produkcja", "7 lat gwarancji").
+•Opis (Meta Description): Wdrożono nowy, unikalny i sprzedażowy opis, z zachowaniem optymalnej długości, który zachęca do wejścia w wynikach wyszukiwania.
+3. OPISY KATEGORII I PRODUKTÓW
+Status: WYMAGA WDROŻENIA
+•Obecnie drzewo kategorii oraz poszczególne działy wciąż operują na podstawowych, technicznych opisach generowanych automatycznie przez dostawcę.
+•Rekomendacja i Kolejny Krok: Wykorzystanie przygotowanego pliku bazy danych (CSV), w którym znajdują się setki profesjonalnie napisanych, sprzedażowych opisów (stworzonych technikami perswazyjnymi) dla wszystkich wariantów taśm LED. Należy zaimportować bazę z nowymi opisami do panelu Shoper.
+4. GRAFIKA I WYDAJNOŚĆ
+Status: DO POPRAWY
+•Strona główna (tzw. kafelki / banery modułowe) nie zawiera znaczników opisowych (atrybutów ALT). Oznacza to, że Google widzi grafikę, ale nie wie co na niej jest.
+•Zaleca się dopisanie prostych opisków na zapleczu do głównych grafik u góry strony (np. "Systemy profili LED Kluś do budowy oświetlenia").
+5. ANALITYKA I ŚLEDZENIE ZDARZEŃ
+Status: KRYTYCZNY BRAK
+•Sklep w obecnej formie sprzedaje "w ciemno". Nie ma wdrożonych zaawansowanych tagów śledzących zachowania użytkowników, odrzucone koszyki czy ścieżki konwersji.
+•Kolejny krok przed startem kampanii: Pilna instalacja Google Tag Managera, Google Analytics 4 (GA4) oraz wdrożenie Piksela Mety (Facebook Pixel) pod przyszłe kampanie retargetingowe i remarketing. Wdrożenie tzw. "wpinek" jest absolutnie konieczne, aby zbierać dane o odwiedzających z płatnego i darmowego ruchu.
+Dokument sporządzony automatycznie w środowisku analitycznym Antigravity IDE.

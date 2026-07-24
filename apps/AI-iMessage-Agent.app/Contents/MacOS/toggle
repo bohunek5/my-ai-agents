@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec /Users/karolbohdanowicz/my-ai-agents/tools/toggle_imessage_ai_agent.sh

@@ -1,0 +1,139 @@
+# 📬 Zaktualizowana Instrukcja Wdrożenia Stopki z Opiniami Google dla Prescot LED
+
+Przebudowałem stopkę zgodnie z wytycznymi — **całkowicie usunąłem logotypy firmowe Prescot oraz stopki informacyjne**, aby nie dublowały się z Twoją główną, firmową stopką mailową. 
+
+To jest dedykowany, ultra-czysty i skupiony wyłącznie na konwersji **widget opinii Google**, który wklejasz bezpośrednio pod swoją standardową stopką!
+
+---
+
+## 🛠️ Co zostało zrobione?
+
+1. **Generowanie Kodów QR**:
+   - Dwa kontrastowe kody QR (500x500px, PNG) są gotowe i czekają w katalogu projektowym:
+     - [qr_prescot_hurtownia.png](file:///Users/karolbohdanowicz/my-ai-agents/assets/qr_prescot_hurtownia.png) — linkuje do opinii Hurtowni.
+     - [qr_prescot_led.png](file:///Users/karolbohdanowicz/my-ai-agents/assets/qr_prescot_led.png) — linkuje do opinii Producenta LED.
+
+2. **Wyczyszczenie Kodu HTML**:
+   - Usunięto banner z logo Prescot.
+   - Dodano stylowy, dyskretny pasek w oryginalnych kolorach Google na samej górze widgetu (czysty HTML/CSS, zero grafik).
+   - Usunięto sekcję copyright oraz adresy e-mail wsparcia technicznego.
+   - Skrócono marginesy i zoptymalizowano układ pod kątem doklejenia bezpośrednio pod podpisem e-mail.
+   - Plik z kodem: [prescot-opinion-signature.html](file:///Users/karolbohdanowicz/my-ai-agents/prescot-opinion-signature.html).
+
+---
+
+## 🚀 Wdrożenie w 3 szybkich krokach:
+
+### KROK 1: Wrzuć oba kody QR na swój serwer
+Wgraj pliki z folderu `assets/` na swój publiczny serwer (np. przez FTP do katalogu `/assets/` lub bibliotekę mediów WordPress):
+- `assets/qr_prescot_hurtownia.png`
+- `assets/qr_prescot_led.png`
+
+### KROK 2: Podmień ścieżki do obrazków w kodzie HTML
+Otwórz plik `prescot-opinion-signature.html` i zmień lokalne ścieżki na pełne adresy URL z Twojego serwera:
+* W linii **42**: Zmień `assets/qr_prescot_hurtownia.png` na np. `https://prescot.pl/assets/qr_prescot_hurtownia.png`
+* W linii **71**: Zmień `assets/qr_prescot_led.png` na np. `https://prescot.pl/assets/qr_prescot_led.png`
+
+### KROK 3: Połącz ze swoją stopką
+Otwórz wygenerowany kod w przeglądarce, zaznacz go (`Ctrl+A`), skopiuj (`Ctrl+C`) i wklej w ustawieniach programu pocztowego **bezpośrednio pod swoją dotychczasową stopką firmową**.
+
+---
+
+## 📝 Kod Źródłowy widgetu (Bez logo, gotowy do skopiowania)
+
+```html
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 600px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03); margin: 0 auto; overflow: hidden; border-collapse: separate; font-family: 'Plus Jakarta Sans', Arial, sans-serif;">
+    
+    <!-- Pasek kolorów Google -->
+    <tr>
+        <td colspan="2" style="padding: 0; line-height: 0;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td width="25%" height="5" style="background-color: #4285F4; height: 5px; line-height: 0;"></td>
+                    <td width="25%" height="5" style="background-color: #EA4335; height: 5px; line-height: 0;"></td>
+                    <td width="25%" height="5" style="background-color: #FBBC05; height: 5px; line-height: 0;"></td>
+                    <td width="25%" height="5" style="background-color: #34A853; height: 5px; line-height: 0;"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Nagłówek -->
+    <tr>
+        <td colspan="2" align="center" style="padding: 28px 24px 16px 24px;">
+            <h2 style="margin: 0; font-size: 18px; font-weight: 800; color: #0f172a; letter-spacing: -0.02em; line-height: 1.3;">
+                Twoja opinia buduje nasz wspólny sukces!
+            </h2>
+            <p style="margin: 6px 0 0 0; font-size: 13px; color: #64748b; font-weight: 500; line-height: 1.4;">
+                Wybierz profil, z którym współpracujesz i zostaw swoją ocenę. To tylko 15 sekund!
+            </p>
+        </td>
+    </tr>
+
+    <!-- Dwie kolumny -->
+    <tr>
+        <!-- 1. HURTOWNIA ELEKTRYCZNA -->
+        <td style="padding: 16px 10px 24px 24px; width: 50%;" valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; height: 100%; border-collapse: separate;">
+                <tr>
+                    <td align="center" style="padding: 20px 16px 10px 16px;">
+                        <span style="display: inline-block; padding: 4px 8px; background-color: #e0f2fe; border: 1px solid #bae6fd; border-radius: 6px; color: #0284c7; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">1. HURTOWNIA ELEKTRYCZNA</span>
+                        <h3 style="margin: 0; font-size: 14px; font-weight: 800; color: #0f172a; line-height: 1.3;">Prescot Hurtownia</h3>
+                        <p style="margin: 4px 0 8px 0; font-size: 11px; color: #64748b; font-weight: 500;">Obsługa instalatorów i inwestycji</p>
+                        <div style="margin-bottom: 8px;">
+                            <span style="color: #fbbf24; font-size: 20px; letter-spacing: 1px;">★★★★★</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 0 16px 20px 16px;">
+                        <div style="background-color: #ffffff; border: 1px solid #e2e8f0; padding: 8px; border-radius: 10px; display: inline-block;">
+                            <img src="assets/qr_prescot_hurtownia.png" alt="QR Hurtownia" width="115" height="115" style="display: block; border: 0;" />
+                        </div>
+                        <p style="margin: 6px 0 14px 0; font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;">Zeskanuj telefonem • Scan me</p>
+                        <a href="https://g.page/r/CU2BEKwr33l4EAE/review" target="_blank" style="display: inline-block; background-color: #4285F4; color: #ffffff; text-decoration: none; padding: 10px 18px; font-size: 11px; font-weight: 700; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.03em;">
+                            Oceń Hurtownię &rarr;
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        
+        <!-- 2. PRODUCENT LED -->
+        <td style="padding: 16px 24px 24px 10px; width: 50%;" valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; height: 100%; border-collapse: separate;">
+                <tr>
+                    <td align="center" style="padding: 20px 16px 10px 16px;">
+                        <span style="display: inline-block; padding: 4px 8px; background-color: #fef3c7; border: 1px solid #fde68a; border-radius: 6px; color: #b45309; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">2. PRODUCENT OŚWIETLENIA</span>
+                        <h3 style="margin: 0; font-size: 14px; font-weight: 800; color: #0f172a; line-height: 1.3;">Prescot Oświetlenie LED</h3>
+                        <p style="margin: 4px 0 8px 0; font-size: 11px; color: #64748b; font-weight: 500;">Polska produkcja i technologie</p>
+                        <div style="margin-bottom: 8px;">
+                            <span style="color: #fbbf24; font-size: 20px; letter-spacing: 1px;">★★★★★</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 0 16px 20px 16px;">
+                        <div style="background-color: #ffffff; border: 1px solid #e2e8f0; padding: 8px; border-radius: 10px; display: inline-block;">
+                            <img src="assets/qr_prescot_led.png" alt="QR Producent" width="115" height="115" style="display: block; border: 0;" />
+                        </div>
+                        <p style="margin: 6px 0 14px 0; font-size: 9px; color: #94a3b8; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;">Zeskanuj telefonem • Scan me</p>
+                        <a href="https://g.page/r/CbRiaD5vucd5EAE/review" target="_blank" style="display: inline-block; background-color: #4285F4; color: #ffffff; text-decoration: none; padding: 10px 18px; font-size: 11px; font-weight: 700; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.03em;">
+                            Oceń Producenta &rarr;
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Stopka -->
+    <tr>
+        <td colspan="2" align="center" style="padding: 0 24px 20px 24px;">
+            <p style="margin: 0; font-size: 11px; color: #64748b; line-height: 1.5; font-weight: 600;">
+                Każda ocena to dla nas ogromna motywacja. Dziękujemy! • Thank you!
+            </p>
+        </td>
+    </tr>
+</table>
+```

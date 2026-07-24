@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LOOK Preview</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar" aria-label="LOOK controls">
+        <div class="brand">
+          <span class="mark" aria-hidden="true"></span>
+          <div>
+            <h1>LOOK</h1>
+            <p>multi-device localhost preview</p>
+          </div>
+        </div>
+
+        <form class="url-form" id="urlForm">
+          <input id="urlInput" name="url" type="text" inputmode="url" spellcheck="false" autocomplete="off" aria-label="Preview URL">
+          <button type="submit">Load</button>
+          <button type="button" id="rotateButton" title="Rotate both devices">Obroc ekran</button>
+          <button type="button" id="refreshButton" title="Refresh all devices">Refresh</button>
+          <button type="button" id="resetButton" class="danger" title="Reset previews and clear local cache">Reset cache</button>
+        </form>
+      </header>
+
+      <section class="stage" aria-label="Device previews">
+        <article class="device phone portrait" data-kind="phone" data-device="iPhone 16 Pro">
+          <div class="device-label"><span>iPhone 16 Pro</span><strong>402 x 874</strong></div>
+          <div class="hardware">
+            <div class="speaker"></div>
+            <iframe title="iPhone portrait preview" loading="eager"></iframe>
+          </div>
+        </article>
+
+        <article class="device tablet landscape" data-kind="tablet" data-device="iPad Pro 11">
+          <div class="device-label"><span>iPad Pro 11</span><strong>1194 x 834</strong></div>
+          <div class="hardware">
+            <div class="camera"></div>
+            <iframe title="iPad landscape preview" loading="eager"></iframe>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

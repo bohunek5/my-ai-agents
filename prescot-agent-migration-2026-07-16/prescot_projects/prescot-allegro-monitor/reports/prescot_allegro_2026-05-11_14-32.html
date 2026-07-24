@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitoring Allegro Prescot LED</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f3f6fa; color: #172634; }
+    header { background: #172634; color: #fff; padding: 32px; }
+    header h1 { margin: 0 0 8px; font-size: 32px; }
+    header p { margin: 0; color: #cbd5e1; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 20px 32px; }
+    .stat { background: #fff; border: 1px solid #dbe4ef; padding: 18px; border-radius: 10px; }
+    .stat strong { display: block; font-size: 28px; }
+    main { padding: 0 32px 40px; }
+    .offer { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 18px; background: #fff; border: 1px solid #dbe4ef; border-left: 7px solid #94a3b8; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+    .risk-high { border-left-color: #dc2626; }
+    .risk-medium { border-left-color: #f97316; }
+    .risk-low { border-left-color: #16a34a; }
+    .thumb { background: #eef2f7; border-radius: 8px; min-height: 110px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .thumb img { max-width: 100%; max-height: 140px; object-fit: contain; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .meta span { background: #eef2f7; padding: 5px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+    .meta .risk { background: #172634; color: #fff; }
+    h2 { font-size: 18px; margin: 0 0 8px; }
+    a { color: #0056b3; }
+    p { margin: 6px 0; line-height: 1.45; }
+    .price { font-size: 20px; font-weight: 800; color: #dc2626; }
+    @media (max-width: 760px) {
+      .stats { grid-template-columns: 1fr 1fr; padding: 16px; }
+      main { padding: 0 16px 28px; }
+      .offer { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Monitoring Allegro - Prescot LED</h1>
+    <p>Raport wygenerowany: 2026-05-11 14:32</p>
+  </header>
+  <section class="stats">
+    <div class="stat"><span>Oferty</span><strong>3</strong></div>
+    <div class="stat"><span>Prescot related</span><strong>2</strong></div>
+    <div class="stat"><span>Ryzyko średnie</span><strong>1</strong></div>
+    <div class="stat"><span>Ryzyko wysokie</span><strong>0</strong></div>
+  </section>
+  <main>
+    
+            <article class="offer risk-medium">
+              <div class="thumb"></div>
+              <div class="content">
+                <div class="meta">
+                  <span class="risk">średnie</span>
+                  <span>taśma LED COB 24V</span>
+                  <span>prescot taśma led</span>
+                </div>
+                <h2><a href="https://allegro.pl/oferta/sample-1" target="_blank" rel="noreferrer">Taśma LED COB PRESCOT 24V neutralna 4000K 5m</a></h2>
+                <p class="price">129.99 zł</p>
+                <p><strong>Sprzedawca:</strong> obcy_sprzedawca</p>
+                <p><strong>Powody:</strong> w tytule występuje marka: prescot | wykryte frazy produktowe: taśma led, tasma led, cob, 24v | sprzedawca obcy: obcy_sprzedawca</p>
+                <p><strong>Akcja:</strong> sprawdzić sprzedawcę, cenę i zgodność opisu z marką Prescot</p>
+                
+              </div>
+            </article>
+            
+            <article class="offer risk-low">
+              <div class="thumb"></div>
+              <div class="content">
+                <div class="meta">
+                  <span class="risk">niskie</span>
+                  <span>taśma LED COB 24V</span>
+                  <span>prescot led cob</span>
+                </div>
+                <h2><a href="https://allegro.pl/oferta/sample-3" target="_blank" rel="noreferrer">Taśma LED COB 24V bardzo mocna bez marki</a></h2>
+                <p class="price">59.90 zł</p>
+                <p><strong>Sprzedawca:</strong> konkurencja_led</p>
+                <p><strong>Powody:</strong> wykryte frazy produktowe: taśma led, tasma led, cob, 24v | sprzedawca obcy: konkurencja_led</p>
+                <p><strong>Akcja:</strong> zostawić jako kontekst konkurencji lub odfiltrować</p>
+                
+              </div>
+            </article>
+            
+            <article class="offer risk-low">
+              <div class="thumb"></div>
+              <div class="content">
+                <div class="meta">
+                  <span class="risk">niskie</span>
+                  <span>taśma LED COB 48V</span>
+                  <span>taśma led 48v prescot</span>
+                </div>
+                <h2><a href="https://allegro.pl/oferta/sample-2" target="_blank" rel="noreferrer">PRESCOT LED taśma 48V COB 10W/m rolka</a></h2>
+                <p class="price">89.00 zł</p>
+                <p><strong>Sprzedawca:</strong> UZUPELNIJ_LOGIN_ALLEGRO</p>
+                <p><strong>Powody:</strong> w tytule występuje marka: prescot, prescot led | wykryte frazy produktowe: cob, 48v | sprzedawca jest na liście własnych kont</p>
+                <p><strong>Akcja:</strong> monitorować</p>
+                
+              </div>
+            </article>
+            
+  </main>
+</body>
+</html>

@@ -1,0 +1,508 @@
+/* ═══════════════════════════════════════════
+   Schedule.module.css – Terminarz Handlowca
+═══════════════════════════════════════════ */
+
+.aurora {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(ellipse 60% 40% at 20% 10%, rgba(245, 158, 11, 0.04) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 60%);
+}
+
+/* ── Header ── */
+.header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--foreground);
+    margin: 0 0 0.3rem 0;
+    letter-spacing: -0.5px;
+}
+
+[data-theme='light'] .title {
+    color: #0f172a;
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    color: var(--muted-foreground);
+    margin: 0;
+    font-weight: 600;
+}
+
+.statBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 12px;
+    padding: 0.6rem 1rem;
+    color: #f59e0b;
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* ── Layout split ── */
+.contentGrid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    min-height: 0;
+}
+
+@media (max-width: 1100px) {
+    .contentGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Lewa kolumna ── */
+.leftCol {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ═══ KALENDARZ ═══ */
+.calendarBox {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='light'] .calendarBox {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+.calNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.calMonthLabel {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--foreground);
+    letter-spacing: 0.5px;
+}
+
+[data-theme='light'] .calMonthLabel {
+    color: #0f172a;
+}
+
+.calNavBtn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--muted-foreground);
+    transition: all 0.2s;
+}
+
+.calNavBtn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--foreground);
+}
+
+[data-theme='light'] .calNavBtn {
+    background: #f1f5f9;
+    border-color: #e2e8f0;
+    color: #475569;
+}
+
+/* 7-column grid */
+.calGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.calDayHeader {
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: var(--muted-foreground);
+    padding: 0.4rem 0;
+    text-transform: uppercase;
+}
+
+.calDay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 0.4rem 0;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.15s;
+    min-height: 48px;
+}
+
+.calDay:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='light'] .calDay:hover {
+    background: #f8fafc;
+}
+
+.calDayNum {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--foreground);
+    line-height: 1;
+}
+
+[data-theme='light'] .calDayNum {
+    color: #1e293b;
+}
+
+.calDayOtherMonth .calDayNum {
+    opacity: 0.25;
+}
+
+.calDayToday {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.07) !important;
+}
+
+.calDayToday .calDayNum {
+    color: #f59e0b;
+    font-weight: 900;
+}
+
+.calDaySelected {
+    background: rgba(99, 102, 241, 0.15) !important;
+    border-color: rgba(99, 102, 241, 0.4) !important;
+}
+
+.calDaySelected .calDayNum {
+    color: #818cf8;
+    font-weight: 900;
+}
+
+.calDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: block;
+}
+
+/* ═══ PEŁNA LISTA ═══ */
+.allListBox {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    padding: 1.25rem;
+    max-height: 360px;
+    overflow-y: auto;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='light'] .allListBox {
+    background: #ffffff;
+    border-color: #e2e8f0;
+}
+
+.allListHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+[data-theme='light'] .allListHeader {
+    border-color: #e2e8f0;
+}
+
+.listEntry {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border: 1px solid transparent;
+}
+
+.listEntry:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.listEntryActive {
+    background: rgba(99, 102, 241, 0.08) !important;
+    border-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+[data-theme='light'] .listEntry:hover {
+    background: #f8fafc;
+}
+
+[data-theme='light'] .listEntryActive {
+    background: rgba(99, 102, 241, 0.06) !important;
+}
+
+.listDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.listInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.listName {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+[data-theme='light'] .listName {
+    color: #0f172a;
+}
+
+.listMeta {
+    font-size: 0.7rem;
+    color: var(--muted-foreground);
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-top: 1px;
+}
+
+.listStatus {
+    font-size: 0.65rem;
+    font-weight: 900;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+}
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted-foreground);
+}
+
+.emptyState p {
+    font-weight: 700;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.emptyState span {
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+
+/* ── Prawa kolumna – dzień ── */
+.rightCol {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: sticky;
+    top: 1rem;
+}
+
+.dayHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.dayTitle {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--foreground);
+    letter-spacing: -0.3px;
+}
+
+[data-theme='light'] .dayTitle {
+    color: #0f172a;
+}
+
+.todayBadge {
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #f59e0b;
+    border-radius: 8px;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.dayEmpty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 4rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    color: var(--muted-foreground);
+    text-align: center;
+}
+
+.dayEmpty p {
+    margin: 0;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+[data-theme='light'] .dayEmpty {
+    background: #fafafa;
+    border-color: #e2e8f0;
+}
+
+.dayCards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Karta kontaktu na dany dzień */
+.dayCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.dayCard:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme='light'] .dayCard {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Kolorowy pasek statusu po lewej */
+.dayCardBar {
+    height: 4px;
+    width: 100%;
+}
+
+.dayCardContent {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.dayCardTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.dayCardName {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--foreground);
+    margin-bottom: 0.2rem;
+}
+
+[data-theme='light'] .dayCardName {
+    color: #0f172a;
+}
+
+.dayCardMeta {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    font-weight: 600;
+}
+
+.dayCardStatus {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 10px;
+    border: 1px solid;
+    font-size: 0.7rem;
+    font-weight: 900;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+}
+
+.dayCardPhone {
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+    font-weight: 600;
+}
+
+.dayCardAnalysis {
+    font-size: 0.78rem;
+    color: var(--muted-foreground);
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+    padding: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+[data-theme='light'] .dayCardAnalysis {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    color: #475569;
+}

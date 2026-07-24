@@ -1,0 +1,361 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background);
+}
+
+.main {
+    flex: 1;
+    margin-left: 300px;
+    padding: 2.5rem;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 950;
+    margin-bottom: 0.5rem;
+    color: var(--foreground);
+    letter-spacing: -1.5px;
+}
+
+.subtitle {
+    color: var(--muted-foreground);
+    font-weight: 500;
+}
+
+.overview {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.statsCard {
+    padding: 1.5rem 2rem;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.accent {
+    background: rgba(225, 78, 38, 0.05);
+    border-color: rgba(225, 78, 38, 0.1);
+}
+
+.statsIcon {
+    width: 52px;
+    height: 52px;
+    background: rgba(225, 78, 38, 0.08);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+}
+
+.statsIconBlue {
+    width: 52px;
+    height: 52px;
+    background: rgba(59, 130, 246, 0.08);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3b82f6;
+}
+
+.statsIconAmber {
+    color: #fbbf24;
+}
+
+.statsInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.statsLabel {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.statsValue {
+    font-size: 1.6rem;
+    font-weight: 950;
+    color: var(--foreground);
+}
+
+.contentWrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-premium);
+}
+
+.filtersBar {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--muted);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.filterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+}
+
+.filterGroup label {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.select {
+    padding: 0.75rem 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--foreground);
+    width: 100%;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(225, 78, 38, 0.1);
+}
+
+.tableContainer {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+    padding: 0 1rem;
+    /* adding padding inside so rows don't touch border directly */
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+    text-align: left;
+}
+
+.table th,
+.table td {
+    padding: 1rem 1.5rem;
+}
+
+.table th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted-foreground);
+    font-weight: 800;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.table tr {
+    transition: all 0.2s;
+}
+
+.table tbody tr {
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.table td:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.table td:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px var(--primary);
+}
+
+.valColor {
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.valSubColor {
+    color: var(--muted-foreground);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.noDataCell {
+    text-align: center;
+    padding: 4rem;
+    color: var(--muted-foreground);
+    font-weight: 600;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    background: var(--muted);
+}
+
+.pageInfo {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--muted-foreground);
+}
+
+.pageControls {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.pageBtn {
+    padding: 0.6rem 1.25rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--foreground);
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pageBtn:hover:not(:disabled) {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+.pageBtn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Custom Scrollbar */
+.tableContainer::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+    background-color: var(--glass-border);
+    border-radius: 10px;
+}
+
+.repName {
+    font-weight: 800;
+}
+
+.qtyValue {
+    font-size: 1.2rem;
+}
+
+
+.searchBar {
+    width: 350px;
+    position: relative;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    color: var(--foreground);
+    transition: all 0.3s;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 20px rgba(225, 78, 38, 0.1);
+}
+
+
+.searchIcon {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #475569;
+    pointer-events: none;
+}
+
+.searchInput {
+    padding-left: 3.5rem !important;
+}
+
+.crossSellSummaryBox {
+    margin-bottom: 1rem;
+    color: var(--muted-foreground);
+    font-size: 0.85rem;
+}
+
+.crossSellBoxSuccess {
+    background: rgba(34, 197, 94, 0.05) !important;
+    border-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+
+.sortableHeader {
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.sortableHeader:hover {
+    background: rgba(255, 255, 255, 0.05);
+}

@@ -1,0 +1,14 @@
+# ANTIGRAVITY HIERARCHY RULES
+# Antigravity (Gemini 2.0) is the Master Orchestrator. Codex (GPT-5.4) is the Technical Execution Agent.
+
+prefix_rule(pattern=["npm", "start"], decision="allow")
+prefix_rule(pattern=["curl", "-s", "-X", "POST", "http://127.0.0.1:8787/v1/generate"], decision="allow")
+prefix_rule(pattern=["curl", "-s", "http://127.0.0.1:8787"], decision="allow")
+
+# OPERATIONAL PROTOCOLS
+# 1. Always check /Users/karolbohdanowicz/my-ai-agents/.agent/knowledge/growth_log.md for context.
+# 2. Follow B.L.A.S.T. (Blueprint -> Link -> Architect -> Stylize -> Trigger).
+# 3. Report major technical wins to Antigravity via growth_log.md.
+# 4. If uncertain about architecture, ASK ANTIGRAVITY (Boss) via the bridge.
+
+alias(name="raportuj", command="echo 'Reporting to Antigravity...' >> /Users/karolbohdanowicz/my-ai-agents/.agent/knowledge/growth_log.md")

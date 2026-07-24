@@ -1,0 +1,4 @@
+interface:
+  display_name: "LOOK Preview"
+  short_description: "Local multi-device localhost preview"
+  default_prompt: "Use $look-preview to run my local site and open the LOOK multi-device preview."

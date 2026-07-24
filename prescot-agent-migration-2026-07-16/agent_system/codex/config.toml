@@ -1,0 +1,15 @@
+model = "gpt-5.5"
+model_reasoning_effort = "medium"
+personality = "pragmatic"
+sandbox_mode = "danger-full-access"
+approval_policy = "never"
+service_tier = "priority"
+
+[projects."/Users/karolbohdanowicz/my-ai-agents"]
+trust_level = "trusted"
+
+[projects."/"]
+trust_level = "trusted"
+
+[plugins."github@openai-curated"]
+enabled = true

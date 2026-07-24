@@ -1,0 +1,41 @@
+    color: #4b5563 !important;
+}
+
+/* WYGLĄD NOCNY - brutalne nadpisanie przez klasy Shopera */
+/* Gdy Shoper włącza tryb ciemny dodając klasę .root_theme-dark */
+body.root_theme-dark .prescot-usp-wrapper {
+    background-color: #354956 !important; /* Twój firmowy granat */
+    color: #ffffff !important;
+    border-radius: 12px;
+}
+body.root_theme-dark .prescot-usp-lead,
+body.root_theme-dark .prescot-usp-card-desc {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+</style>
+
+<div class="prescot-usp-wrapper">
+    <div class="prescot-usp-container">
+        <!-- Nagłówek i Lead -->
+        <div class="prescot-usp-header">
+            <h2 class="prescot-usp-title">Dlaczego Prescot?</h2>
+            <p class="prescot-usp-lead">
+                Jesteśmy polskim producentem i hurtownią elektryczną z Giżycka. Własna produkcja taśm LED, gwarancja 7 lat i autoryzowana dystrybucja Kluś oraz Scharfer — to nas wyróżnia.
+            </p>
+        </div>
+
+        <!-- Siatka USP -->
+        <div class="prescot-usp-grid">
+            
+            <!-- Karta 1: 7 lat gwarancji -->
+            <div class="prescot-usp-card">
+                <div class="prescot-usp-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 28px; height: 28px; min-width: 28px; color: inherit;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="prescot-usp-card-title">7 lat gwarancji</h3>
+                <p class="prescot-usp-card-desc">
+                    Nasze taśmy LED i zasilacze objęte są 7-letnią gwarancją — najdłuższą na polskim rynku. To nie marketing, to zobowiązanie wynikające z jakości naszej produkcji.
+                </p>
+            </div>

@@ -1,0 +1,158 @@
+# 📬 Instrukcja Wdrożenia Stopki Email z Opiniami Google dla Prescot LED
+
+Przygotowałem dla Ciebie w pełni profesjonalną, zoptymalizowaną pod kątem konwersji i zgodną z standardami klientów pocztowych (Gmail, Outlook, Apple Mail, systemy CRM typu Brevo/n8n) stopkę HTML. 
+
+Stopka zawiera **dwie niezależne sekcje** (Hurtownia oraz Producent LED) z przyciskami do bezpośredniego kliknięcia oraz dedykowanymi kodami QR, które klienci mogą szybko zeskanować telefonem z ekranu komputera lub wydruku.
+
+---
+
+## 🛠️ Co zostało zrobione?
+
+1. **Generowanie Kodów QR**:
+   - Pomyślnie wygenerowałem dwa dedykowane, kontrastowe kody QR w wysokiej rozdzielczości (500x500px), zoptymalizowane pod kątem bezbłędnego skanowania aparatami telefonów.
+   - **Pliki graficzne zostały zapisane w Twoim katalogu projektowym:**
+     - [qr_prescot_hurtownia.png](file:///Users/karolbohdanowicz/my-ai-agents/assets/qr_prescot_hurtownia.png) — linkuje do: `https://g.page/r/CU2BEKwr33l4EAE/review`
+     - [qr_prescot_led.png](file:///Users/karolbohdanowicz/my-ai-agents/assets/qr_prescot_led.png) — linkuje do: `https://g.page/r/CbRiaD5vucd5EAE/review`
+
+2. **Przygotowanie Kodu HTML**:
+   - Stworzyłem plik [prescot-opinion-signature.html](file:///Users/karolbohdanowicz/my-ai-agents/prescot-opinion-signature.html). 
+   - Kod opiera się na tabelach (`<table>`) i stylach inline, co gwarantuje stabilne wyświetlanie na urządzeniach mobilnych i w restrykcyjnych klientach pocztowych (Outlook nie rozsypie układu).
+
+---
+
+## 🚀 Jak wdrożyć stopkę w 3 prostych krokach?
+
+### KROK 1: Wrzuć grafiki na swój serwer (Hosting obrazków)
+Aby stopka wyświetlała się poprawnie u odbiorców wiadomości, grafiki muszą być umieszczone w sieci na publicznym serwerze (np. na serwerze strony `prescot.pl`).
+
+Wgraj do swojego folderu z zasobami (np. przez FTP do katalogu `/assets/` lub przez panel WordPress/ERP) następujące 3 pliki:
+1. Logo Prescot: `PRESCOT_logo_biale+kolor-01.svg` (znajdziesz je w głównym katalogu projektu)
+2. Kod QR Hurtowni: `assets/qr_prescot_hurtownia.png`
+3. Kod QR LED: `assets/qr_prescot_led.png`
+
+### KROK 2: Podmień linki w pliku HTML
+Otwórz plik `prescot-opinion-signature.html` i podmień lokalne ścieżki na pełne adresy URL Twojego serwera:
+
+* W linii **11**: Zmień `PRESCOT_logo_biale+kolor-01.svg` na np. `https://prescot.pl/wp-content/uploads/PRESCOT_logo_biale+kolor-01.svg`
+* W linii **33**: Zmień `assets/qr_prescot_hurtownia.png` na np. `https://prescot.pl/assets/qr_prescot_hurtownia.png`
+* W linii **62**: Zmień `assets/qr_prescot_led.png` na np. `https://prescot.pl/assets/qr_prescot_led.png`
+
+### KROK 3: Dodaj stopkę do programu pocztowego
+* **Gmail / Outlook Web / CRM (n8n / Brevo / ActiveCampaign)**: Otwórz wygenerowany plik HTML w przeglądarce, zaznacz całą zawartość (`Ctrl+A` lub `Cmd+A`), skopiuj (`Ctrl+C` / `Cmd+C`) i wklej bezpośrednio w pole edytora stopki w swoim programie pocztowym.
+* **Outlook Desktop**: Możesz wkleić kod HTML bezpośrednio do folderu stopek Outlooka na dysku: `C:\Users\NAZWA_UZYTKOWNIKA\AppData\Roaming\Microsoft\Signatures` jako plik `.htm`.
+
+---
+
+## 📊 Wygląd i Funkcjonalności Stopki
+
+> [!NOTE]
+> **Zasada działania i UX**:
+> - **Górna belka**: Premium ciemny granat (`#0f172a`) z podświetlonym logo Prescot LED.
+> - **Karta Lewa (Hurtownia)**: Jasnoniebieska plakietka, złote gwiazdki oceny, kod QR do szybkiego skanowania oraz wyrazisty przycisk CTA "Zostaw opinię".
+> - **Karta Prawa (Producent LED)**: Morska plakietka, złote gwiazdki oceny, kod QR oraz dedykowany przycisk CTA.
+> - **Dolna sekcja**: Elegancka informacja podsumowująca w języku polskim i angielskim, która dodatkowo motywuje do kliknięcia ("Twój głos pomaga nam rozwijać polską markę...").
+
+---
+
+## 📝 Kod Źródłowy stopki (Gotowy do skopiowania)
+
+Poniżej znajduje się pełny kod stopki, który znajdziesz również w pliku [prescot-opinion-signature.html](file:///Users/karolbohdanowicz/my-ai-agents/prescot-opinion-signature.html):
+
+```html
+<table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 650px; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); margin: 0 auto; overflow: hidden; border-collapse: separate; font-family: 'Plus Jakarta Sans', Arial, sans-serif;">
+    
+    <!-- Nagłówek Stopki -->
+    <tr>
+        <td colspan="2" align="center" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 24px 20px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom: 3px solid #00e5ff;">
+            <!-- PODMIEŃ NA ADRES URL SERWERA -->
+            <img src="PRESCOT_logo_biale+kolor-01.svg" alt="Prescot LED Logo" height="38" style="display: block; height: 38px; border: 0;" />
+            <p style="margin: 8px 0 0 0; color: #94a3b8; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">Podziel się swoją opinią • Share your feedback</p>
+        </td>
+    </tr>
+
+    <!-- Sekcje z Opiniami -->
+    <tr>
+        <!-- 1. HURTOWNIA ELEKTRYCZNA -->
+        <td style="padding: 24px 12px 24px 24px; width: 50%;" valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; height: 100%; border-collapse: separate;">
+                <tr>
+                    <td align="center" style="padding: 20px 16px 12px 16px;">
+                        <span style="display: inline-block; padding: 4px 8px; background-color: #e0f2fe; border: 1px solid #bae6fd; border-radius: 6px; color: #0284c7; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Profil Hurtowni</span>
+                        <h3 style="margin: 0; font-size: 15px; font-weight: 800; color: #0f172a; line-height: 1.3;">Prescot Hurtownia Elektryczna</h3>
+                        <p style="margin: 4px 0 10px 0; font-size: 11px; color: #64748b; font-weight: 500;">Twój partner w instalacjach i biznesie</p>
+                        <div style="margin-bottom: 12px;">
+                            <span style="color: #f59e0b; font-size: 18px; letter-spacing: 2px;">★★★★★</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 0 16px 20px 16px;">
+                        <!-- PODMIEŃ NA ADRES URL SERWERA -->
+                        <div style="background-color: #ffffff; border: 1px solid #cbd5e1; padding: 8px; border-radius: 8px; display: inline-block;">
+                            <img src="assets/qr_prescot_hurtownia.png" alt="QR Code Hurtownia" width="110" height="110" style="display: block; border: 0;" />
+                        </div>
+                        <p style="margin: 6px 0 12px 0; font-size: 9px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;">Zeskanuj telefonem • Scan me</p>
+                        <a href="https://g.page/r/CU2BEKwr33l4EAE/review" target="_blank" style="display: inline-block; background-color: #2979ff; color: #ffffff; text-decoration: none; padding: 10px 18px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid #1c68e0; text-transform: uppercase; letter-spacing: 0.02em;">
+                            Zostaw opinię &rarr;
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        
+        <!-- 2. PRODUCENT I IMPORTER LED -->
+        <td style="padding: 24px 24px 24px 12px; width: 50%;" valign="top">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; height: 100%; border-collapse: separate;">
+                <tr>
+                    <td align="center" style="padding: 20px 16px 12px 16px;">
+                        <span style="display: inline-block; padding: 4px 8px; background-color: #e0f7fa; border: 1px solid #b2ebf2; border-radius: 6px; color: #00838f; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Profil Fabryczny</span>
+                        <h3 style="margin: 0; font-size: 15px; font-weight: 800; color: #0f172a; line-height: 1.3;">Prescot Producent LED</h3>
+                        <p style="margin: 4px 0 10px 0; font-size: 11px; color: #64748b; font-weight: 500;">Polska produkcja i innowacje</p>
+                        <div style="margin-bottom: 12px;">
+                            <span style="color: #f59e0b; font-size: 18px; letter-spacing: 2px;">★★★★★</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding: 0 16px 20px 16px;">
+                        <!-- PODMIEŃ NA ADRES URL SERWERA -->
+                        <div style="background-color: #ffffff; border: 1px solid #cbd5e1; padding: 8px; border-radius: 8px; display: inline-block;">
+                            <img src="assets/qr_prescot_led.png" alt="QR Code LED" width="110" height="110" style="display: block; border: 0;" />
+                        </div>
+                        <p style="margin: 6px 0 12px 0; font-size: 9px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;">Zeskanuj telefonem • Scan me</p>
+                        <a href="https://g.page/r/CbRiaD5vucd5EAE/review" target="_blank" style="display: inline-block; background-color: #00b8d4; color: #ffffff; text-decoration: none; padding: 10px 18px; font-size: 12px; font-weight: 700; border-radius: 8px; border: 1px solid #00acc1; text-transform: uppercase; letter-spacing: 0.02em;">
+                            Zostaw opinię &rarr;
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <!-- Dziękujemy! -->
+    <tr>
+        <td colspan="2" align="center" style="padding: 0 24px 20px 24px;">
+            <p style="margin: 0; font-size: 11px; color: #64748b; line-height: 1.5; font-weight: 500;">
+                Twój głos pomaga nam rozwijać polską markę i stale podnosić jakość obsługi.<br>
+                <strong>Dziękujemy, że jesteś z nami! • Thank you for choosing us!</strong>
+            </p>
+        </td>
+    </tr>
+
+    <!-- Stopka informacyjna -->
+    <tr>
+        <td colspan="2" align="center" style="background-color: #0f172a; padding: 14px 20px; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td align="left" style="font-size: 11px; color: #94a3b8; font-weight: 600;">
+                        &copy; 2026 <a href="https://prescot.pl" target="_blank" style="color: #00e5ff; text-decoration: none; font-weight: 700;">PRESCOT LED</a>
+                    </td>
+                    <td align="right" style="font-size: 11px; color: #64748b;">
+                        Wsparcie: <a href="mailto:kontakt@prescot.pl" style="color: #94a3b8; text-decoration: none; font-weight: 600;">kontakt@prescot.pl</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+```

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pl" class="dark scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Idealne Linie Światła | LUMINA COB</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#000000",
+                        surface: "#0a0a0a",
+                        primary: "#ffffff",
+                    },
+                    fontFamily: {
+                        display: ["Outfit", "sans-serif"],
+                        body: ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass-nav {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-bg {
+            background-image: radial-gradient(circle at center, transparent 0%, #000000 80%), url('hero.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #71717a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .rgb-text {
+            background: linear-gradient(90deg, #ff0055, #00ffaa, #0055ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 5s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .premium-card {
+            background: linear-gradient(145deg, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 100%);
+            border: 1px solid rgba(255,255,255,0.03);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            transform-style: preserve-3d;
+        }
+
+        .ambient-glow {
+            transition: background 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-white selection:text-black">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="font-display font-black text-2xl tracking-tighter">LUMINA</div>
+            <div class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-gray-400">
+                <a href="#mono" class="hover:text-white transition-colors">MONO</a>
+                <a href="#rgb" class="hover:text-white transition-colors">RGB/CCT</a>
+                <a href="#digital" class="hover:text-white transition-colors">DIGITAL</a>
+                <a href="#special" class="hover:text-white transition-colors">SPECIAL</a>
+            </div>
+            <button class="bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors transform hover:scale-105 duration-300">
+                OFERTA
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-screen flex flex-col justify-center items-center hero-bg overflow-hidden">
+        <div class="absolute inset-0 bg-black/40 z-0"></div>
+        <div class="relative z-10 text-center px-4" data-aos="fade-up" data-aos-duration="1500">
+            <p class="font-body text-gray-400 uppercase tracking-[0.3em] mb-4 text-sm font-semibold">Absolutna Perfekcja</p>
+            <h1 class="font-display font-black text-6xl md:text-8xl lg:text-9xl tracking-tighter gradient-text leading-[0.9] drop-shadow-2xl">
+                LINIE<br/>ŚWIATŁA
+            </h1>
+            <p class="font-body text-xl text-gray-400 mt-8 max-w-xl mx-auto font-light leading-relaxed">
+                Rewolucyjna gęstość technologii COB LED. Całkowity brak widocznych punktów świetlnych. Stworzone dla bezkompromisowej architektury.
+            </p>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50" data-aos="fade-in" data-aos-delay="1000">
+            <span class="text-xs uppercase tracking-widest font-bold">Odkryj</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- Interactive Mono & Color Simulator -->
+    <section id="mono" class="relative min-h-screen py-32 overflow-hidden flex items-center" 
+             x-data="{ 
+                activeColor: 'WW', 
+                glowColor: 'rgba(255, 250, 220, 0.15)',
+                colors: {
+                    'WW27': { name: '2700K', desc: 'Głęboka, relaksująca biel', glow: 'rgba(255, 218, 145, 0.2)' },
+                    'WW': { name: '3000K', desc: 'Klasyczna, ciepła biel', glow: 'rgba(255, 250, 220, 0.15)' },
+                    'NW': { name: '4000K', desc: 'Nowoczesna, czysta biel', glow: 'rgba(230, 245, 255, 0.15)' },
+                    'RED': { name: 'Red', desc: 'Czerwony neon', glow: 'rgba(255, 0, 0, 0.2)' },
+                    'BLUE': { name: 'Blue', desc: 'Głęboki błękit', glow: 'rgba(0, 100, 255, 0.2)' }
+                }
+             }">
+        
+        <!-- Ambient Background Glow tied to activeColor -->
+        <div class="absolute inset-0 ambient-glow z-0" :style="`background: radial-gradient(circle at center, ${glowColor} 0%, transparent 70%);`"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right" data-aos-duration="1000">
+                <h2 class="font-display text-5xl md:text-7xl font-bold mb-6 tracking-tight">Czysta<br/>Barwa.</h2>
+                <p class="text-xl text-gray-400 font-light mb-12 max-w-md">
+                    Wybierz idealną temperaturę dla swojego projektu. Symulacja w czasie rzeczywistym.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <!-- WW27 -->
+                    <button @click="activeColor = 'WW27'; glowColor = colors['WW27'].glow" 
+                            :class="activeColor === 'WW27' ? 'border-white text-white' : 'border-white/20 text-gray-500'"
+                            class="px-6 py-3 rounded-full border transition-all duration-300 font-bold tracking-widest text-sm hover:border-white/50">
+                        2700K
+                    </button>
+                    <!-- WW -->
+                    <button @click="activeColor = 'WW'; glowColor = colors['WW'].glow" 
+                            :class="activeColor === 'WW' ? 'border-white text-white' : 'border-white/20 text-gray-500'"
+                            class="px-6 py-3 rounded-full border transition-all duration-300 font-bold tracking-widest text-sm hover:border-white/50">
+                        3000K
+                    </button>
+                    <!-- NW -->
+                    <button @click="activeColor = 'NW'; glowColor = colors['NW'].glow" 
+                            :class="activeColor === 'NW' ? 'border-white text-white' : 'border-white/20 text-gray-500'"
+                            class="px-6 py-3 rounded-full border transition-all duration-300 font-bold tracking-widest text-sm hover:border-white/50">
+                        4000K
+                    </button>
+                </div>
+                <div class="flex flex-wrap gap-4">
+                    <button @click="activeColor = 'RED'; glowColor = colors['RED'].glow" 
+                            :class="activeColor === 'RED' ? 'border-red-500 text-red-500' : 'border-white/20 text-gray-500'"
+                            class="px-6 py-3 rounded-full border transition-all duration-300 font-bold tracking-widest text-sm hover:border-red-500/50">
+                        RED
+                    </button>
+                    <button @click="activeColor = 'BLUE'; glowColor = colors['BLUE'].glow" 
+                            :class="activeColor === 'BLUE' ? 'border-blue-500 text-blue-500' : 'border-white/20 text-gray-500'"
+                            class="px-6 py-3 rounded-full border transition-all duration-300 font-bold tracking-widest text-sm hover:border-blue-500/50">
+                        BLUE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic visual representation -->
+            <div class="relative h-[400px] rounded-3xl premium-card flex flex-col justify-center items-center text-center p-8 overflow-hidden js-tilt" data-aos="fade-left" data-aos-duration="1000">
+                <div class="absolute inset-0 ambient-glow opacity-30" :style="`background: ${glowColor};`"></div>
+                
+                <h3 class="font-display text-4xl font-bold z-10 transition-colors duration-500" x-text="colors[activeColor].name"></h3>
+                <p class="text-gray-400 mt-2 z-10" x-text="colors[activeColor].desc"></p>
+                
+                <!-- Glowing line representing the strip -->
+                <div class="absolute bottom-1/4 w-3/4 h-1 rounded-full ambient-glow z-10" :style="`background: ${glowColor}; box-shadow: 0 0 40px 5px ${glowColor};`"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scrollytelling RGB & Digital Section -->
+    <section id="rgb" class="relative max-w-7xl mx-auto px-6 py-32">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 relative items-start">
+            
+            <!-- Sticky Image Left -->
+            <div class="hidden lg:block sticky top-32 h-[70vh] rounded-3xl overflow-hidden premium-card group" data-aos="fade-right">
+                <div class="absolute inset-0 bg-[url('rgb.png')] bg-cover bg-center opacity-60 mix-blend-screen group-hover:scale-110 transition-transform duration-1000"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                <div class="absolute bottom-10 left-10">
+                    <p class="text-sm font-bold tracking-widest uppercase text-gray-400 mb-2">Technologia</p>
+                    <h3 class="font-display text-4xl font-bold rgb-text">RGB & Digital</h3>
+                </div>
+            </div>
+
+            <!-- Scrolling Text Right -->
+            <div class="flex flex-col gap-[30vh] pt-[10vh] pb-[20vh]">
+                
+                <div data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+                    <h3 class="font-display text-5xl font-bold mb-6">RGB</h3>
+                    <p class="text-xl text-gray-400 font-light leading-relaxed">
+                        Czyste widmo światła. Tradycyjne sterowanie kolorami podniesione do ekstremum dzięki gęstości technologii COB. Perfekcyjne mieszanie barw bez efektu pikselozy.
+                    </p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+                    <h3 class="font-display text-5xl font-bold mb-6">RGBW & RGB+CCT</h3>
+                    <p class="text-xl text-gray-400 font-light leading-relaxed mb-6">
+                        Dlaczego wybierać? Dodatkowy, niezależny chip białego fosforu. RGBW daje idealną, czystą biel, a <strong>RGB+CCT</strong> pozwala na płynną zmianę od 2700K do 6000K, zachowując pełną paletę kolorów.
+                    </p>
+                    <div class="w-full h-2 rounded-full flex overflow-hidden">
+                        <div class="w-1/3 bg-gradient-to-r from-red-500 via-green-500 to-blue-500"></div>
+                        <div class="w-1/3 bg-[#FFFAF0]"></div>
+                        <div class="w-1/3 bg-[#F0F8FF]"></div>
+                    </div>
+                </div>
+                
+                <div id="digital" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+                    <h3 class="font-display text-5xl font-bold mb-6"><span class="text-purple-400">Digital</span> Mono & CCT</h3>
+                    <p class="text-xl text-gray-400 font-light leading-relaxed">
+                        Inteligentna komunikacja w jednej barwie. Adresowalne układy pozwalają na falowanie światła, efekt "płynięcia" i zapalania strefowego. Idealne do nowoczesnych korytarzy i schodów.
+                    </p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+                    <h3 class="font-display text-5xl font-bold mb-6"><span class="text-cyan-400">Digital</span> RGBW / CCT+RGB</h3>
+                    <p class="text-xl text-gray-400 font-light leading-relaxed">
+                        Szczytowe osiągnięcie architektury świetlnej. Indywidualnie adresowane piksele łączące pełną paletę barw z diodą czysto białą. Scenariusze świetlne ogranicza tylko wyobraźnia.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Special (Bento 3D Tilt) -->
+    <section id="special" class="py-32 bg-[#050505]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-24" data-aos="fade-up">
+                <h2 class="font-display text-5xl md:text-7xl font-bold mb-6 tracking-tight">Zadania<br/>Specjalne.</h2>
+                <p class="text-xl text-gray-400 font-light mx-auto max-w-2xl">
+                    Rozwiązania inżynieryjne dla projektów, które nie uznają kompromisów.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- IP67 Waterproof -->
+                <div class="premium-card rounded-3xl p-10 md:col-span-2 relative overflow-hidden h-[400px] flex flex-col justify-end" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2" data-aos="fade-up" data-aos-delay="0">
+                    <div class="absolute inset-0 bg-[url('waterproof.png')] bg-cover bg-center opacity-40 mix-blend-screen pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                    <div class="relative z-10 transform translate-z-20">
+                        <span class="text-xs font-bold uppercase tracking-widest text-blue-400 mb-4 block">Outdoor / Aqua</span>
+                        <h3 class="font-display text-4xl font-bold mb-2">Koszulka IP67</h3>
+                        <p class="text-gray-400 max-w-lg">Pełna ochrona w najtrudniejszych warunkach. Wysokiej jakości silikon. Dostępne w barwach WW i NW.</p>
+                    </div>
+                </div>
+
+                <!-- Free Cut -->
+                <div class="premium-card rounded-3xl p-10 relative overflow-hidden h-[400px] flex flex-col justify-center" data-tilt data-tilt-max="10" data-tilt-glare data-tilt-max-glare="0.1" data-aos="fade-up" data-aos-delay="100">
+                    <span class="material-symbols-outlined text-white/20 absolute top-10 right-10 text-6xl">content_cut</span>
+                    <div class="relative z-10 transform translate-z-20">
+                        <h3 class="font-display text-3xl font-bold mb-4">Free Cut</h3>
+                        <p class="text-gray-400">Tnij dokładnie tam, gdzie kończy się profil. Zero ograniczeń i czarnych plam na końcach linii świetlnej.</p>
+                    </div>
+                </div>
+
+                <!-- Slim 3mm -->
+                <div class="premium-card rounded-3xl p-10 md:col-span-3 border-t border-white/10 relative overflow-hidden flex flex-col md:flex-row items-center justify-between" data-tilt data-tilt-max="2" data-tilt-glare data-tilt-max-glare="0.1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="max-w-2xl transform translate-z-20 mb-8 md:mb-0">
+                        <span class="text-xs font-bold uppercase tracking-widest text-primary mb-4 block">Ultra Narrow</span>
+                        <h3 class="font-display text-4xl font-bold mb-4">Slim 3mm & Nano</h3>
+                        <p class="text-gray-400">Gdy liczy się każdy milimetr. Zaprojektowane do wpuszczania w fronty meblowe i najpłytsze szczeliny w architekturze wnętrz.</p>
+                    </div>
+                    <div class="flex-shrink-0 w-full md:w-auto flex flex-col items-center transform translate-z-30">
+                        <div class="w-64 h-1 bg-white shadow-[0_0_30px_5px_rgba(255,255,255,0.7)] rounded-full"></div>
+                        <span class="text-[10px] text-gray-500 mt-4 tracking-[0.2em] font-bold">3 MILIMETRY SZEROKOŚCI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="font-display font-black text-2xl tracking-tighter text-white/50">LUMINA</div>
+            <p class="text-gray-600 text-sm">© 2026. Idealne linie światła. Bez kompromisów.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            once: true,
+            offset: 50,
+        });
+
+        // Initialize Tilt.js for cards missing the data-tilt attribute if needed, 
+        // though we added data-tilt directly to HTML elements which auto-initializes.
+    </script>
+</body>
+</html>

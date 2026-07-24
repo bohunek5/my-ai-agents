@@ -279,9 +279,9 @@ html.wcag-no-animations * {
 }
 
 .dark .rdp-day_range_middle {
-  background-color: #1e3a8a !important;
-  color: #ffffff !important;
-  font-weight: 900 !important;
+  background-color: rgba(59, 130, 246, 0.3) !important;
+  color: #93c5fd !important;
+  font-weight: 800 !important;
   border-radius: 0 !important;
 }
 
@@ -295,6 +295,13 @@ html.wcag-no-animations * {
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
 }
 
+.dark .rdp-day_range_start,
+.dark .rdp-day_range_end {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.5) !important;
+}
+
 .rdp-day_range_end {
   border-top-right-radius: 9999px !important;
   border-bottom-right-radius: 9999px !important;
@@ -302,6 +309,12 @@ html.wcag-no-animations * {
   color: #ffffff !important;
   font-weight: 900 !important;
   box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+}
+
+/* Disable word-breaking and hyphens (prevent splitting words in regulations/WCAG) */
+h1, h2, h3, h4, h5, h6, p, li, span, div {
+  hyphens: none !important;
+  word-break: normal;
 }
 
 .dark .rdp-day_selected:not(.rdp-day_range_start):not(.rdp-day_range_end):not(.rdp-day_range_middle) {

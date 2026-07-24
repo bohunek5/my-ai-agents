@@ -1,0 +1,8 @@
+prescot-agent-migration-2026-07-16
+Updated: 2026-07-17
+Added/expanded: publish-github-pages.sh one-command GitHub repo + push + Pages workflow + API enable attempt
+Added/expanded: GITHUB_FTP_DEPLOY_NOWY_PC.md and deployment_templates for GitHub Actions FTP/GitHub Pages
+Added/expanded: INSTALACJE_NOWY_PC_FULL.md with full installation checklist
+Sanitized: MCP API keys, local absolute MCP executable paths, and copied FTP helper credentials replaced with placeholders/env vars
+Added earlier: web_and_voice_environment, INSTRUKCJA_NOWY_PC.md, voice-bridge, LOOK, apps, dr-karol-companion sources
+Excluded: node_modules, build outputs, target, caches, env/secrets/auth/token/key files, logs, special device/socket files

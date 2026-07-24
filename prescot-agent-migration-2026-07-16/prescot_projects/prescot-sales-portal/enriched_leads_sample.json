@@ -1,0 +1,53 @@
+[
+    {
+        "id": "xls-ADECOR",
+        "name": "ADECOR",
+        "industry": "Kontrahent Prescot",
+        "city": "Bydgoszcz",
+        "companyAnalysis": "",
+        "purchaseHistory": "• Sterownik LED MiLight WIFI mostek iOS An droid WL-BOX2 | Ilość: 1 | Cena: 0.00 | Wartość: 0.00 PLN ŁĄCZNIE: 1 sztuk / 0.00 PLN",
+        "suggestions": "Rekomendowany focus: Utrzymanie relacji i monitoring zapasów zasilaczy Scharfer.",
+        "phone": "",
+        "email": "ADECOR@ONET.PL",
+        "person": "Kontakt firmowy",
+        "type": "new_lead",
+        "assignedTo": "iwonab",
+        "salesPotential": "",
+        "icebreaker": "",
+        "fullProfile": ""
+    },
+    {
+        "id": "xls-BCStudio",
+        "name": "B-C Studio",
+        "industry": "Kontrahent Prescot",
+        "city": "Kraków",
+        "companyAnalysis": "",
+        "purchaseHistory": "Brak historii zakupów.",
+        "suggestions": "Rekomendowany focus: Utrzymanie relacji i monitoring zapasów zasilaczy Scharfer.",
+        "phone": "501 41 66 05",
+        "email": "bc@bcstudio.com.pl",
+        "person": "Kontakt firmowy",
+        "type": "new_lead",
+        "assignedTo": "iwonab",
+        "salesPotential": "",
+        "icebreaker": "",
+        "fullProfile": ""
+    },
+    {
+        "id": "xls-ELMARK",
+        "name": "EL-MARK",
+        "industry": "Kontrahent Prescot",
+        "city": "Uwieliny",
+        "companyAnalysis": "",
+        "purchaseHistory": "Brak historii zakupów.",
+        "suggestions": "Rekomendowany focus: Utrzymanie relacji i monitoring zapasów zasilaczy Scharfer.",
+        "phone": "",
+        "email": "el.mark@vp.pl",
+        "person": "Kontakt firmowy",
+        "type": "new_lead",
+        "assignedTo": "iwonab",
+        "salesPotential": "",
+        "icebreaker": "",
+        "fullProfile": ""
+    }
+]

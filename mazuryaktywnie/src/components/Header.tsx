@@ -131,7 +131,6 @@ export default function Header() {
     { href: "/oferta", labelKey: "offer" },
     { href: "/stillo", labelKey: "stillo31" },
     { href: "/galeria", labelKey: "gallery" },
-    { href: "/reservation", labelKey: "reservation" },
     { href: "/kontakt", labelKey: "contact" }
   ];
 
@@ -209,12 +208,19 @@ export default function Header() {
             {/* WCAG Toggle Button */}
             <button
               onClick={() => setWcagModalOpen(true)}
-              className="p-2 sm:px-3 sm:py-2 md:px-4 md:py-3 rounded-full sm:rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center gap-1.5 md:gap-2 cursor-pointer transition-all bg-yellow-400 hover:bg-yellow-500 text-slate-900 shadow-sm sm:shadow-md hover:scale-105"
+              className="p-2 sm:px-3 sm:py-2 md:px-4 md:py-3 rounded-full sm:rounded-xl flex items-center justify-center gap-1.5 md:gap-2 cursor-pointer transition-all bg-yellow-400 hover:bg-yellow-500 text-slate-900 shadow-sm sm:shadow-md hover:scale-105"
               aria-label={t("Navigation", "accessibility")}
             >
               <Accessibility className="w-5 h-5 sm:w-[18px] sm:h-[18px] md:w-[20px] md:h-[20px]" />
-              <span className="hidden sm:inline">{t("Navigation", "accessibility")}</span>
             </button>
+
+            {/* Reservation Button */}
+            <Link
+              href="/reservation"
+              className="p-2 px-3 sm:px-4 md:px-5 sm:py-2 md:py-3 rounded-full sm:rounded-xl font-bold text-xs sm:text-sm md:text-base flex items-center justify-center cursor-pointer transition-all bg-yellow-400 hover:bg-yellow-500 text-slate-900 shadow-sm sm:shadow-md hover:scale-105 whitespace-nowrap"
+            >
+              {t("Navigation", "reservation")}
+            </Link>
 
             {/* Hamburger Menu removed - using BottomNav on mobile */}
           </div>
@@ -236,8 +242,8 @@ export default function Header() {
             >
               <X size={20} />
             </button>
-            <h2 id="wcag-title" className="text-xl font-black mb-6 text-slate-900 dark:text-white flex items-center gap-2">
-              <Accessibility className="text-yellow-500" />
+            <h2 id="wcag-title" className="text-lg md:text-xl font-black mb-6 text-slate-900 dark:text-white flex items-center gap-2">
+              <Accessibility className="text-yellow-500 shrink-0" />
               Narzędzia Dostępności
             </h2>
             

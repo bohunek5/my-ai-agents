@@ -1,0 +1,264 @@
+PRESCOT LED
+Raport: Audyt sklepu + Szablony opisow + Plan SEO
+prescot.com.pl
+Czerwiec 2026
+Zawartosc dokumentu:
+Czesc 1 — Audyt sklepu: oceny, co dziala, co wymaga naprawy (7 obszarow)
+Czesc 2 — Szablony opisow produktow: 5 serii (Premium, Slim, COB, Delux, Digital)
+Czesc 3 — Plan SEO: gotowe meta descriptions dla strony glownej i 7 kategorii + szablon dla produktow
+CZESC 1 — Audyt sklepu prescot.com.pl
+Data audytu: czerwiec 2026 · Platforma: Shoper Storefront
+Metodologia:
+Przeanalizowano 4 poziomy sklepu: strona glowna, strona kategorii (Tasmy LED), strona produktu oraz regulamin. Audyt obejmuje UX, zaufanie klienta, tresc produktow, SEO, obsluge klienta i techniczne dzialanie sklepu.
+Oceny ogolne
+Obszar
+Ocena
+Filtracja i nawigacja produktowa
+9 / 10 — bardzo dobrze
+Informacje zakupowe (cena, dostawa, czas)
+8 / 10 — dobrze
+Spojnosc domeny
+3 / 10 — krytyczne
+Opisy produktow
+4 / 10 — wymaga poprawy
+SEO (meta, alt, keywords)
+2 / 10 — krytyczne
+Obsluga klienta
+5 / 10 — do poprawy
+Zaufanie (opinie, gwarancja)
+7 / 10 — dobrze
+Co dziala dobrze
+Filtry na kategoriach sa wyjatkowo rozbudowane: napiecie, CRI, IP, szerokosc, typ diody, PCB, polska produkcja, gwarancja
+151 produktow z polska produkcja — silny wyroznik rynkowy
+7 lat gwarancji widoczne juz w menu — mocny argument zakupowy
+Cena, dostepnosc, czas wysylki i koszt dostawy widoczne na stronie produktu
+Wideo produktowe na stronie glownej
+Wishlist i tryb jasny/ciemny
+Problemy do naprawienia
+1. KRYTYCZNE — Trzy domeny jednoczesnie
+Sklep uzywa 3 roznych domen bez logiki:
+prescot.com.pl — strona glowna Storefront
+sklep107225.shoparena.pl — techniczna domena Shopera (wyglada nieprofesjonalnie)
+prescot.pl — strona B2B
+Efekt: klient klika w menu i laduje na adresie sklep107225.shoparena.pl — wyglada jak przekierowanie na inny sklep lub phishing. Niszczy zaufanie i szkodzi SEO.
+Rozwiazanie: Panel Shoper -> Ustawienia -> Ogolne -> Domena — przypisz prescot.com.pl jako glowna domene sklepu. Wszystkie linki powinny byc na jednej domenie.
+2. KRYTYCZNE — SEO praktycznie nie istnieje
+Meta keywords strony glownej: tylko slowo 'sklep' — Google ignoruje meta keywords od 2009 roku
+Meta description strony glownej = tytul strony — Google generuje wlasny, losowy opis
+Meta description kategorii Tasmy LED: 'Tasmy LED' — dwa slowa
+Banery graficzne bez tekstow alt (alt='') — niewidoczne dla Google i czytnikow ekranu
+3. WAZNE — Opisy produktow sa identyczne dla calej serii
+Kazdy produkt Premium ma dokladnie ten sam tekst opisu
+Klient nie wie czym rozni sie 4mm od 8mm, 12V od 24V — musi sie domyslic
+Google traktuje powielone tresci jako duplikaty — negatywny wplyw na pozycje
+4. UWAGA — Widget ceny pokazuje blad
+Na stronie produktu widoczne: '-0%' i '+0%' przy cenie — wyglada jak uszkodzony widget promocji
+Klient widzi blad zamiast czystej ceny — obniża zaufanie
+Sprawdz w Shoperze ustawienia wyswietlania cen i wylacz widget promocji gdy nie ma aktywnej promocji
+5. UWAGA — Godziny obslugi klienta
+Telefon dostepny tylko 7:00-15:00 — klient kupujacy wieczorem lub w weekend nie ma kontaktu
+Brak widocznego adresu email ani chatu na stronie glownej
+Rozwiazanie: dodaj formularz kontaktowy lub adres email widoczny w naglowku, rozważ chatbot
+CZESC 2 — Szablony opisow produktow
+Gotowe szablony do wklejenia w Shoperze. Podstaw wartosci w miejsce [NAWIASAW].
+Jak uzywac:
+1. Znajdz szablon dla swojej serii (Premium, Slim, COB, Delux, Digital).
+2. Skopiuj tekst OPIS GLOWNY i wklej do pola Opis w Shoperze.
+3. Podstaw parametry w miejsce [NAWIASAW] i usun nawiasy.
+4. Zacznij od top 20 bestsellerow — to daje 80% efektu.
+SERIA PREMIUM
+Zastosowanie: oświetlenie strefowe, zabudowy meblowe, sufity podwieszane, blaty, lustra.
+OPIS GLOWNY:
+Tasma LED PRESCOT Premium to sprawdzony wybor do oswietlenia dekoracyjnego i funkcjonalnego. Sprawdza sie wszedzie tam, gdzie potrzebujesz rownomiernego, przyjemnego swiatla — od blatu roboczego w kuchni, przez lustro w lazience, po sufit podwieszany w salonie.
+Dostepna na metry — zamawiasz dokladnie tyle, ile potrzebujesz. Mozesz ja ciac co 50 mm, co eliminuje odpad materialu.
+Produkowana w Polsce, na sprawdzonym podlozu PCB z wyselekcjonowanymi diodami SMD2835. Objetą [X] latami gwarancji Prescot.
+Barwa
+[BARWA] — np. Ciepla 3000K / Neutralna 4000K / Zimna 6500K
+Napiecie
+[NAPIECIE] — 12V DC / 24V DC
+Jasnosc
+[JASNOSC] lm/m
+Moc
+[MOC] W/m
+Szerokos
+[SZEROKOSC] mm — np. 8 mm
+Gwarancja
+[X] lat — 3 / 5 / 7 lat Prescot
+Sprzedaz
+Na metry / Rolka 5 m / Rolka 10 m
+SERIA PREMIUM SLIM (4 mm / 3 mm)
+Zastosowanie: wąskie profile KLUS, schody, zabudowy gdzie 8 mm nie wchodzi.
+OPIS GLOWNY:
+Tasma LED PRESCOT Premium Slim [SZEROKOSC] mm — zaprojektowana do waskich profili aluminiowych i zabudow, gdzie standardowe 8 mm tasmy po prostu nie zmieszcza. Idealna do profili KLUS, oswietlenia schodow, listew meblowych i szklanych polek.
+Pomimo malej szerokosci zapewnia [JASNOSC] lm/m. Dostepna na metry. [X] lat gwarancji Prescot. Polska produkcja.
+Szerokosc
+[SZEROKOSC] mm — 3 mm lub 4 mm
+Barwa
+[BARWA] — 3000K / 4000K / 6500K
+Napiecie
+[NAPIECIE] — 12V / 24V DC
+Jasnosc
+[JASNOSC] lm/m
+Typ diody
+COB / SMD2835
+Gwarancja
+[X] lat
+Sprzedaz
+Na metry / Rolka 5 m
+SERIA PREMIUM COB
+Zastosowanie: hotele, restauracje, sklepy — wszdzie gdzie liczy sie estetyka bez widocznych punktow.
+OPIS GLOWNY:
+Tasma LED PRESCOT Premium COB to wybor dla wymagajacych instalacji, gdzie standardowe tasmy SMD zostawiaja widoczne punkty swietlne. Technologia COB (Chip-on-Board) rozsmiada setki mikrodiod na calej dlugosci — efekt to ciagla, jednorodna linia swiatla.
+Sprawdza sie w hotelach, restauracjach, salonach meblowych. [JASNOSC] lm/m przy CRI [CRI]. [X] lat gwarancji. Polska produkcja.
+Barwa
+[BARWA] — 3000K / 4000K / 6500K / CCT
+Napiecie
+[NAPIECIE] — 12V / 24V DC
+Jasnosc
+[JASNOSC] lm/m
+CRI
+[CRI] — Ra80 / Ra90 / Ra95
+LED/m
+[LED/m] — np. 384 LED/m
+IP
+IP20 / IP65 / IP67
+Gwarancja
+[X] lat
+SERIA DELUX
+Zastosowanie: instalacje profesjonalne, sklepy, biura, praca 8-16h dziennie.
+OPIS GLOWNY:
+Tasma LED PRESCOT Delux to top oferty Prescot. Grubsze podloze PCB (4 oz miedzi) zapewnia lepsze odprowadzenie ciepla — co bezposrednio przekłada sie na trwalosc przez cale lata uzytkowania.
+[JASNOSC] lm/m przy CRI [CRI]. Wiecej swiatla i lepsze odwzorowanie kolorow niz w serii Premium. Dla ekspozycji sklepowych, biur i wszedzie gdzie tasma pracuje wiele godzin dziennie. [X] lat gwarancji. Polska produkcja.
+PCB
+4 oz miedzi (lepsze chłodzenie = dluzsza zywotnos)
+Barwa
+[BARWA] — 3000K / 4000K / 6500K
+CRI
+[CRI] — Ra80 / Ra90 / Ra95 / Ra97
+Jasnosc
+[JASNOSC] lm/m
+Gwarancja
+[X] lat — do 7 lat Prescot
+Sprzedaz
+Na metry / Rolka
+SERIA DIGITAL LED
+Zastosowanie: efekty swietlne, animacje, smart home, WLED, DMX.
+OPIS GLOWNY:
+Tasma LED PRESCOT Digital to tasma adresowalna — kazda dioda sterowana niezaleznie. Pelna dowolnosc efektow: animacje, tecza, fale swietlne, tryb muzyczny. Wspoluracuje ze sterownikami WLED, DMX, Arduino, Home Assistant, Alexa, Google Home.
+Chip [CHIP — np. WS2812B / SK6812 / WS2815]. [NAPIECIE] DC. Rolka [ROLKA] m.
+Chip
+[CHIP] — WS2812B / SK6812 / WS2815 / WS2811
+Napiecie
+[NAPIECIE] — 5V / 12V DC
+LED/m
+[LED/m] — 60 / 100 / 144 LED/m
+Kolory
+RGB / RGBW / RGB+WW
+Sterowniki
+WLED, DMX, Arduino, Home Assistant
+IP
+IP20 / IP65 / IP67
+CZESC 3 — Plan SEO
+Gotowe meta descriptions do wklejenia + szablon dla produktow + kolejnosc wdrozenia.
+Wazne: meta keywords sa ignorowane przez Google od 2009 roku. Skup sie na meta description i title tag.
+Meta descriptions — gotowe do wklejenia
+Gdzie zmienic: Panel -> Wyglad i tresci -> Ustawienia SEO (strona glowna) lub Panel -> Produkty -> Kategorie -> edytuj -> zakladka SEO (kategorie).
+Strona glowna
+Sciezka: Panel -> Wyglad i tresci -> Ustawienia SEO -> Meta description
+PRZED (obecne)
+Prescot - Oswietlenie LED - Hurtownia Elektryczna
+PO (zalecane)
+Tasmy LED, profile aluminiowe i zasilacze LED — polska produkcja, gwarancja do 7 lat. Hurtownia elektryczna Prescot. Wysylka 24h, dostawa InPost.
+Znaki
+145 / 155
+Tasmy LED (glowna kategoria)
+Sciezka: Produkty -> Kategorie -> Tasmy LED -> SEO
+PRZED (obecne)
+Tasmy LED
+PO (zalecane)
+Tasmy LED 12V i 24V — Premium, Delux, COB, Digital. Polska produkcja, gwarancja do 7 lat. Ponad 350 produktow. Filtruj wg CRI, IP, szerokosci. Wysylka 24h.
+Znaki
+154 / 155
+Tasmy LED niska jasnosc
+Sciezka: Produkty -> Kategorie -> Tasmy LED niska jasnosc -> SEO
+PRZED (obecne)
+(brak / identyczny z nadrzedna)
+PO (zalecane)
+Tasmy LED o niskiej jasnosci do oswietlenia dekoracyjnego, schodow i podswietlenia mebli. Barwy cieple i neutralne. Polska produkcja, gwarancja Prescot.
+Znaki
+152 / 155
+Tasmy LED srednia jasnosc
+Sciezka: Produkty -> Kategorie -> Tasmy LED srednia jasnosc -> SEO
+PRZED (obecne)
+(brak / identyczny)
+PO (zalecane)
+Tasmy LED sredniej jasnosci — idealne do kuchni, lazienek i biur. SMD2835, CRI80-Ra90. Dostepne na metry. Polska produkcja. Prescot.
+Znaki
+133 / 155
+Tasmy LED wysoka jasnosc
+Sciezka: Produkty -> Kategorie -> Tasmy LED wysoka jasnosc -> SEO
+PRZED (obecne)
+(brak / identyczny)
+PO (zalecane)
+Tasmy LED wysokiej jasnosci — sufity podwieszane, hale, oswietlenie glowne. Wysoki CRI, duza moc. Polska produkcja, gwarancja do 7 lat. Prescot.
+Znaki
+149 / 155
+Profile LED KLUS
+Sciezka: Produkty -> Kategorie -> Profile do tasm LED -> SEO
+PRZED (obecne)
+(brak / zbyt krotki)
+PO (zalecane)
+Profile aluminiowe LED KLUS — wpuszczane, natynkowe i narozne. Oslony mleczne i transparentne. Szeroki wybor zaślepek i uchwytow. Prescot.
+Znaki
+144 / 155
+Zasilacze LED
+Sciezka: Produkty -> Kategorie -> Zasilacze LED -> SEO
+PRZED (obecne)
+(brak / zbyt krotki)
+PO (zalecane)
+Zasilacze LED 12V i 24V — hermetyczne i otwarte, od 30W do 600W. Gwarancja do 7 lat. Marka Scharfer. Dobierz zasilacz do swojej tasmy LED. Prescot.
+Znaki
+151 / 155
+Tasmy Digital LED
+Sciezka: Produkty -> Kategorie -> Tasmy Digital LED -> SEO
+PRZED (obecne)
+(brak / identyczny)
+PO (zalecane)
+Tasmy LED adresowalne WS2812B, SK6812, WS2815. Efekty, animacje, WLED, smart home. Kazda dioda sterowana niezaleznie. Polska hurtownia LED Prescot.
+Znaki
+152 / 155
+Szablon meta description dla produktow
+WZOR (max 155 znakow):
+Tasma LED [SERIA] [SZEROKOSC]mm [BARWA] [NAPIECIE] — [JASNOSC]lm/m, [X] lat gwarancji. Polska produkcja. Dostepna na metry. Prescot.
+Przyklad Premium (143 znaki):
+Tasma LED Premium Slim 4mm 3000K 12V — 1000lm/m, 5 lat gwarancji. Polska produkcja. Dostepna na metry. Prescot.
+Przyklad Delux (151 znakow):
+Tasma LED Delux 10mm 4000K 24V — 1800lm/m, CRI95, PCB 4oz, 7 lat gwarancji. Do instalacji profesjonalnych. Polska produkcja. Prescot.
+Tytuly stron (title tag)
+Strona glowna
+Tasmy LED, Zasilacze, Profile — Prescot Hurtownia LED
+Tasmy LED
+Tasmy LED Premium, COB, Delux | Prescot
+Profile LED
+Profile Aluminiowe LED KLUS | Prescot
+Zasilacze LED
+Zasilacze LED 12V 24V | Gwarancja 7 lat | Prescot
+Digital LED
+Tasmy LED Adresowalne WS2812B | Prescot
+Produkt (wzor)
+[Seria] [Barwa] [Napiecie] | [X] lat gwarancji | Prescot
+Kolejnosc wdrozenia
+Etap
+Co robic
+Szacowany czas
+1. PILNE
+Strona glowna + 7 kategorii z tego dokumentu
+1-2 godziny (copy-paste)
+2. WAZNE
+Top 20 bestsellerow — opisy + meta description
+3-4 godziny
+3. POZNIEJ
+Pozostale produkty — import CSV z szablonem
+Przygotowanie CSV: 1-2 dni
+Naslepny krok po wdrozeniu SEO: zaloz Google Search Console (search.google.com/search-console) i dodaj prescot.com.pl. Zglos strony do ponownego indeksowania. Efekty widoczne po 4-12 tygodniach.
+Przygotowane dla Prescot sp. z o.o. · prescot.com.pl · Czerwiec 2026

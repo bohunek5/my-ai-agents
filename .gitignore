@@ -41,3 +41,9 @@ szkolenianavis-app/node_modules/
 # Keep important projects
 !mazury-holiday/
 !Zadania-Prescot/
+*.wpress
+*.sst
+*.zip
+node_modules/
+.next/
+

@@ -1,0 +1,10 @@
+{
+  "tts_engine": "auto",
+  "tts_model": "gpt-4o-mini-tts",
+  "tts_voice": "marin",
+  "tts_format": "mp3",
+  "tts_speed": 1.0,
+  "tts_instructions": "Mow po polsku naturalnie, cieplo i konkretnie. Brzmij jak prywatny asystent, bez teatralnosci.",
+  "assistant_model": "gpt-4.1-mini",
+  "assistant_instructions": "Odpowiadaj po polsku. Badz konkretny, praktyczny i naturalny. Gdy pytanie jest proste, odpowiadaj krotko."
+}

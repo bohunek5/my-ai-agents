@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .group { width: 300px; height: 64px; position: relative; border: 1px solid #ccc; cursor: pointer; }
+  .sun { width: 64px; height: 64px; background: yellow; border-radius: 50%; position: absolute; left: 118px; transition: left 0.5s ease-in-out; transition-delay: 0.3s; z-index: 10; }
+  .text { position: absolute; left: 64px; top: 20px; font-size: 20px; opacity: 0; transition: opacity 0.5s ease-in-out; transition-delay: 0s; white-space: nowrap; }
+  .group:hover .sun { left: 0; transition-delay: 0s; }
+  .group:hover .text { opacity: 1; transition-delay: 0.4s; }
+</style>
+</head>
+<body>
+  <div class="group">
+    <div class="sun"></div>
+    <div class="text">MAZURY AKTYWNIE</div>
+  </div>
+</body>
+</html>
