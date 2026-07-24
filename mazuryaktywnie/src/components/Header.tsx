@@ -208,7 +208,7 @@ export default function Header() {
             {/* WCAG Toggle Button */}
             <button
               onClick={() => setWcagModalOpen(true)}
-              className="p-2 sm:px-3 sm:py-2 md:px-4 md:py-3 rounded-full sm:rounded-xl flex items-center justify-center gap-1.5 md:gap-2 cursor-pointer transition-all bg-yellow-400 hover:bg-yellow-500 text-slate-900 shadow-sm sm:shadow-md hover:scale-105"
+              className="p-2 sm:px-3 sm:py-2 md:px-4 md:py-3 rounded-full sm:rounded-xl flex items-center justify-center gap-1.5 md:gap-2 cursor-pointer transition-all bg-blue-500 hover:bg-blue-600 text-white shadow-sm sm:shadow-md hover:scale-105"
               aria-label={t("Navigation", "accessibility")}
             >
               <Accessibility className="w-5 h-5 sm:w-[18px] sm:h-[18px] md:w-[20px] md:h-[20px]" />
@@ -243,7 +243,7 @@ export default function Header() {
               <X size={20} />
             </button>
             <h2 id="wcag-title" className="text-lg md:text-xl font-black mb-6 text-slate-900 dark:text-white flex items-center gap-2">
-              <Accessibility className="text-yellow-500 shrink-0" />
+              <Accessibility className="text-blue-500 shrink-0" />
               Narzędzia Dostępności
             </h2>
             
