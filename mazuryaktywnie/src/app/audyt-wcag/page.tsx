@@ -8,7 +8,7 @@ export default function WcagAuditPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="flex flex-col min-h-screen pt-20 bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div className="flex flex-col min-h-screen pt-16 bg-gray-50 dark:bg-gray-900 transition-colors">
       <div className="container mx-auto px-4 max-w-4xl py-6 md:py-12">
         <Link
           href="/"
@@ -18,7 +18,7 @@ export default function WcagAuditPage() {
           Wróć na stronę główną
         </Link>
         
-        <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-8">
+        <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 dark:text-white mb-8">
           Deklaracja Dostępności (WCAG 2.1 AA)
         </h1>
         

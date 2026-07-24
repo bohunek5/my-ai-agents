@@ -211,7 +211,7 @@ export default function ReservationPage() {
                   <div className="flex items-center justify-center gap-3 shrink-0">
                     <button 
                       onClick={() => setSupCount(Math.max(0, supCount - 1))}
-                      className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+                      className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 cursor-pointer transition-colors"
                       aria-label="Zmniejsz"
                     >
                       <Minus size={18} />
@@ -219,7 +219,7 @@ export default function ReservationPage() {
                     <span className="w-8 text-center font-black text-xl">{supCount}</span>
                     <button 
                       onClick={() => setSupCount(Math.min(4, supCount + 1))}
-                      className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+                      className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 cursor-pointer transition-colors"
                       aria-label="Zwiększ"
                     >
                       <Plus size={18} />
@@ -242,7 +242,7 @@ export default function ReservationPage() {
                   <div className="flex items-center justify-center gap-3 shrink-0">
                     <button 
                       onClick={() => setBikeCount(Math.max(0, bikeCount - 1))}
-                      className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+                      className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 cursor-pointer transition-colors"
                       aria-label="Zmniejsz"
                     >
                       <Minus size={18} />
@@ -250,7 +250,7 @@ export default function ReservationPage() {
                     <span className="w-8 text-center font-black text-xl">{bikeCount}</span>
                     <button 
                       onClick={() => setBikeCount(Math.min(4, bikeCount + 1))}
-                      className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+                      className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 cursor-pointer transition-colors"
                       aria-label="Zwiększ"
                     >
                       <Plus size={18} />
@@ -273,7 +273,7 @@ export default function ReservationPage() {
                   <div className="flex items-center justify-center gap-3 shrink-0">
                     <button 
                       onClick={() => setEbikeCount(Math.max(0, ebikeCount - 1))}
-                      className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+                      className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 cursor-pointer transition-colors"
                       aria-label="Zmniejsz"
                     >
                       <Minus size={18} />
@@ -281,7 +281,7 @@ export default function ReservationPage() {
                     <span className="w-8 text-center font-black text-xl">{ebikeCount}</span>
                     <button 
                       onClick={() => setEbikeCount(Math.min(4, ebikeCount + 1))}
-                      className="p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+                      className="p-3 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 cursor-pointer transition-colors"
                       aria-label="Zwiększ"
                     >
                       <Plus size={18} />

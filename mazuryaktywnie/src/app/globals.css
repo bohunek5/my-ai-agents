@@ -227,14 +227,14 @@ html.wcag-no-animations * {
 /* High Contrast Custom React DayPicker Styling for Dark and Light Mode */
 .rdp {
   --rdp-cell-size: 42px;
-  --rdp-accent-color: #2563eb;
-  --rdp-background-color: #dbeafe;
+  --rdp-accent-color: #06b6d4;
+  --rdp-background-color: #cffafe;
   margin: 0;
 }
 
 .dark .rdp {
-  --rdp-accent-color: #2563eb;
-  --rdp-background-color: #1e3a8a;
+  --rdp-accent-color: #06b6d4;
+  --rdp-background-color: #164e63;
   color: #f3f4f6;
 }
 
@@ -266,21 +266,21 @@ html.wcag-no-animations * {
 }
 
 .dark .rdp-day:hover:not(.rdp-day_outside):not(.rdp-day_selected) {
-  background-color: rgba(59, 130, 246, 0.25) !important;
-  color: #60a5fa !important;
+  background-color: rgba(6, 182, 212, 0.25) !important;
+  color: #22d3ee !important;
 }
 
 /* Range Middle */
 .rdp-day_range_middle {
-  background-color: #dbeafe !important;
-  color: #1e40af !important;
+  background-color: #cffafe !important;
+  color: #164e63 !important;
   font-weight: 800 !important;
   border-radius: 0 !important;
 }
 
 .dark .rdp-day_range_middle {
-  background-color: rgba(59, 130, 246, 0.3) !important;
-  color: #93c5fd !important;
+  background-color: rgba(6, 182, 212, 0.3) !important;
+  color: #67e8f9 !important;
   font-weight: 800 !important;
   border-radius: 0 !important;
 }
@@ -289,26 +289,26 @@ html.wcag-no-animations * {
 .rdp-day_range_start {
   border-top-left-radius: 9999px !important;
   border-bottom-left-radius: 9999px !important;
-  background-color: #2563eb !important;
+  background-color: #06b6d4 !important;
   color: #ffffff !important;
   font-weight: 900 !important;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4) !important;
 }
 
 .dark .rdp-day_range_start,
 .dark .rdp-day_range_end {
-  background-color: #3b82f6 !important;
+  background-color: #06b6d4 !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.5) !important;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.5) !important;
 }
 
 .rdp-day_range_end {
   border-top-right-radius: 9999px !important;
   border-bottom-right-radius: 9999px !important;
-  background-color: #2563eb !important;
+  background-color: #06b6d4 !important;
   color: #ffffff !important;
   font-weight: 900 !important;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4) !important;
 }
 
 /* Disable word-breaking and hyphens (prevent splitting words in regulations/WCAG) */
@@ -318,8 +318,7 @@ h1, h2, h3, h4, h5, h6, p, li, span, div {
 }
 
 .dark .rdp-day_selected:not(.rdp-day_range_start):not(.rdp-day_range_end):not(.rdp-day_range_middle) {
-  background-color: #2563eb !important;
-  color: #ffffff !important;
+  background-color: #06b6d4 !important;
+  color: white !important;
   border-radius: 9999px !important;
 }
-
