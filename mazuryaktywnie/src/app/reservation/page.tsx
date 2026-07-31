@@ -300,7 +300,7 @@ export default function ReservationPage() {
               </h2>
 
               <div className="flex flex-col items-center overflow-x-auto pb-4 w-full">
-                <div className="min-w-max">
+                <div className="min-w-max flex flex-col items-center">
                   <DayPicker
                     mode="range"
                     selected={range}
@@ -313,6 +313,24 @@ export default function ReservationPage() {
                     ]}
                     className="mx-auto border border-gray-150 dark:border-gray-700 p-2 sm:p-4 rounded-2xl dark:bg-gray-900 bg-white"
                   />
+                  
+                  {/* Legenda pod kalendarzem */}
+                  <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm text-gray-700 dark:text-gray-300 font-medium">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded bg-green-100 border border-green-500 dark:bg-green-900/40 dark:border-green-400"></div>
+                      <span>Dostępne</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded bg-red-100 border border-red-500 dark:bg-red-900/40 dark:border-red-400 flex items-center justify-center relative">
+                         <div className="absolute w-[120%] h-[1px] bg-red-500 dark:bg-red-400 rotate-45 rounded"></div>
+                      </div>
+                      <span>Niedostępne</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded-full bg-cyan-500 dark:bg-cyan-500 shadow-[0_2px_8px_rgba(6,182,212,0.5)]"></div>
+                      <span>Twój wybór</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
