@@ -67,11 +67,32 @@ open_status_bar() {
   fi
 }
 
+valid_agent_pid() {
+  local pid="${1:-}"
+  [[ "$pid" =~ ^[0-9]+$ ]] || return 1
+  [[ "$pid" -gt 1 ]] || return 1
+  kill -0 "$pid" >/dev/null 2>&1 || return 1
+  /bin/ps -p "$pid" -o command= 2>/dev/null | /usr/bin/grep -F "$ROOT/tools/imessage_ai_agent.py" >/dev/null
+}
+
+wait_for_exit() {
+  local pid="$1"
+  local attempts="${2:-30}"
+  local index
+  for ((index = 0; index < attempts; index++)); do
+    if ! kill -0 "$pid" >/dev/null 2>&1; then
+      return 0
+    fi
+    sleep 0.2
+  done
+  return 1
+}
+
 is_running() {
   if [[ -f "$PID_FILE" ]]; then
     local pid
     pid="$(cat "$PID_FILE" 2>/dev/null || true)"
-    if [[ -n "$pid" ]] && kill -0 "$pid" >/dev/null 2>&1; then
+    if valid_agent_pid "$pid"; then
       return 0
     fi
     rm -f "$PID_FILE"
@@ -81,16 +102,23 @@ is_running() {
 }
 
 turn_off() {
+  local pid=""
+  if [[ -f "$PID_FILE" ]]; then
+    pid="$(cat "$PID_FILE" 2>/dev/null || true)"
+  fi
+
   launchctl bootout "gui/$(id -u)" "$PLIST" >/dev/null 2>&1 || true
   rm -f "$PLIST"
-  if [[ -f "$PID_FILE" ]]; then
-    local pid
-    pid="$(cat "$PID_FILE" 2>/dev/null || true)"
-    if [[ -n "$pid" ]]; then
-      kill "$pid" >/dev/null 2>&1 || true
+
+  if valid_agent_pid "$pid"; then
+    kill -TERM "$pid" >/dev/null 2>&1 || true
+    if ! wait_for_exit "$pid"; then
+      kill -KILL "$pid" >/dev/null 2>&1 || true
+      wait_for_exit "$pid" 10 || true
     fi
-    rm -f "$PID_FILE"
   fi
+
+  rm -f "$PID_FILE"
   printf "off\n" > "$STATUS_FILE"
   set_app_icon off
   set_finder_label 2

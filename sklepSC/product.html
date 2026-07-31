@@ -2,22 +2,39 @@
 
 <html lang="pl">
 <head>
+  <link rel="icon" type="image/svg+xml" href="images/PRESCOT_pattern2.svg">
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Prescot LED - Produkt</title>
+<script>if (window.matchMedia('(max-width: 768px)').matches) document.write('<script src="js/mobile-app-shell.js"><\/script>');</script>
+<title>Produkt | Prescot LED — Producent taśm LED i hurtownia elektryczna</title>
+<meta name="description" content="Poznaj parametry, warianty i dostępność produktów Prescot LED do profesjonalnych i domowych systemów oświetlenia."/>
+<meta property="og:locale" content="pl_PL"/>
+<meta property="og:type" content="product"/>
+<meta property="og:site_name" content="Prescot LED"/>
+<meta property="og:title" content="Produkt | Prescot LED — Producent taśm LED i hurtownia elektryczna"/>
+<meta property="og:description" content="Parametry, warianty i dostępność produktów Prescot LED do systemów oświetlenia."/>
+<meta property="og:image" content="https://bohunek5.github.io/sklepSC/images/slide_okladka.webp"/>
+<meta property="og:image:type" content="image/webp"/>
+<meta property="og:image:width" content="2000"/>
+<meta property="og:image:height" content="1333"/>
+<meta property="og:image:alt" content="Taśmy LED, zasilacze i sterowanie oświetleniem"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Produkt | Prescot LED — Producent taśm LED"/>
+<meta name="twitter:description" content="Parametry, warianty i dostępność produktów Prescot LED do systemów oświetlenia."/>
+<meta name="twitter:image" content="https://bohunek5.github.io/sklepSC/images/slide_okladka.webp"/>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Theme CSS -->
-<link href="assets/xo-webcomponents.min.css?v=2" rel="stylesheet"/>
-<link href="assets/main.min.css?v=2" rel="stylesheet"/>
+<link href="assets/xo-webcomponents.min.css" rel="stylesheet"/>
+<link href="assets/main.min.css" rel="stylesheet"/>
 <!-- Model Viewer library for 3D/AR models -->
 <script src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js" type="module"></script>
 <style>
     :root {
       --primary-color: #0b1a30;
-      --accent-color: #ff5a00;
+      --accent-color: #0b1a30;
       --text-color: #333333;
       --light-bg: #f4f6f9;
       --white: #ffffff;
@@ -90,7 +107,7 @@
     .mockup-nav ul {
       display: flex;
       list-style: none;
-      gap: 12px;
+      gap: 26px;
       align-items: center;
     }
 
@@ -893,13 +910,13 @@
       background: transparent;
       outline: none;
       font-size: 14px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       width: 140px;
       transition: width 0.3s ease;
       color: var(--primary-color);
     }
     .mockup-search-container input::placeholder {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       color: rgba(11, 26, 48, 0.6);
     }
 
@@ -1082,7 +1099,9 @@
 
     /* Prevent product title wrapping */
     .mockup-product-title {
-      white-space: nowrap !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       width: 100% !important;
@@ -1145,7 +1164,7 @@
     }
     
 
-    /* Prescot LED Clean Product Layout Override */
+    /* Prescot LED product layout override */
     .product-container {
         padding: 40px 5% !important;
         background: #ffffff;
@@ -1282,100 +1301,91 @@
     .product-popup-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(12px) saturate(160%);
+      -webkit-backdrop-filter: blur(12px) saturate(160%);
       z-index: 10000;
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: fadeInOverlay 0.3s ease;
+      animation: fadeInOverlay 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     @keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
     .product-popup-box {
-      background: #fff;
-      border-radius: 20px;
-      padding: 35px 40px;
-      max-width: 520px;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 600px;
       width: 90%;
       position: relative;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.2);
-      animation: popIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+      animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    @keyframes popIn { from { transform: scale(0.9) translateY(20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+    @keyframes popIn { 
+      from { transform: scale(0.95) translateY(20px); opacity: 0; } 
+      to { transform: scale(1) translateY(0); opacity: 1; } 
+    }
     .popup-close {
       position: absolute;
-      top: 15px; right: 18px;
-      background: none; border: none;
-      font-size: 20px; cursor: pointer;
-      color: #999;
-      transition: color 0.2s;
+      top: 20px; right: 24px;
+      background: rgba(0,0,0,0.04); border: none;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; cursor: pointer;
+      color: #64748b;
+      transition: all 0.25s ease;
     }
-    .popup-close:hover { color: #000; }
-    .product-popup-box h3 {
-      margin-bottom: 20px;
-      font-size: 20px;
-      font-weight: 700;
+    .popup-close:hover { background: rgba(0,0,0,0.08); color: #0f172a; transform: scale(1.05); }
+    
+    /* === BENTO GRID (PARAMETRY) === */
+    .bento-title {
+      font-size: 22px; font-weight: 800; color: var(--primary-color);
+      margin-bottom: 24px; text-align: center; letter-spacing: -0.5px;
     }
+    .spec-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;
+    }
+    .spec-bento-card {
+      background: #f8fafc; padding: 16px; border-radius: 16px; 
+      border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease; text-align: center;
+    }
+    .spec-bento-card:hover {
+      transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+      border-color: rgba(11,26,48,0.1);
+    }
+    .spec-bento-card span { display: block; font-size: 12px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .spec-bento-card strong { display: block; font-size: 15px; color: var(--primary-color); font-weight: 800; }
+    .premium-badge {
+      grid-column: 1 / -1; background: linear-gradient(135deg, rgba(253, 224, 71, 0.2) 0%, rgba(250, 204, 21, 0.05) 100%);
+    }
+    .premium-badge span { color: #a16207; font-weight: 700; margin-bottom: 4px; }
+    .premium-badge strong { font-size: 16px; color: #854d0e; font-weight: 900; }
 
-    /* === SPEC TABLE === */
-    .spec-table {
-      width: 100%;
-      border-collapse: collapse;
+    /* === LIQUID GLASS (BARWA ŚWIATŁA) === */
+    .liquid-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; justify-content: center;
     }
-    .spec-table td {
-      padding: 10px 0;
-      font-size: 14px;
-      border-bottom: 1px solid #f0f0f0;
+    .liquid-grid > div:last-child:nth-child(7) { grid-column: 2; } /* Center the 7th element if it's alone */
+    .liquid-option {
+      text-align: center; cursor: pointer; padding: 16px 8px; border-radius: 20px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid transparent;
     }
-    .spec-table td:first-child {
-      color: #888;
-      width: 45%;
+    .liquid-option:hover {
+      background: #f8fafc; transform: translateY(-4px); border-color: rgba(0,0,0,0.04);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.04);
     }
-    .spec-table td:last-child {
-      text-align: right;
+    .liquid-circle {
+      width: 56px; height: 56px; margin: 0 auto 12px;
+      background: var(--ct-color); border-radius: 50%; border: 2px solid rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px var(--ct-color); opacity: 0.9;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    /* === COLOR TEMP GRID === */
-    .color-temp-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+    .liquid-option:hover .liquid-circle {
+      box-shadow: 0 8px 24px var(--ct-color), inset 0 2px 4px rgba(255,255,255,0.4);
+      transform: scale(1.15); opacity: 1; border-color: transparent;
     }
-    .color-temp-option {
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .color-temp-option:hover {
-      transform: translateY(-3px);
-    }
-    .ct-circle {
-      width: 48px; height: 48px;
-      
-      margin: 0 auto 8px;
-      background: var(--ct-color);
-      border: 2px solid rgba(0,0,0,0.08);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-    .ct-rgb {
-      background: var(--ct-color) !important;
-    }
-    .color-temp-option:hover .ct-circle {
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-      transform: scale(1.08);
-    }
-    .color-temp-option span {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--primary-color);
-    }
-    .color-temp-option small {
-      font-size: 11px;
-      color: #999;
-    }
+    .liquid-title { display: block; font-size: 14px; font-weight: 800; color: var(--primary-color); margin-bottom: 2px; }
+    .liquid-subtitle { display: block; font-size: 12px; color: #64748b; font-weight: 500; }
 
     /* === VARIANT CARDS (original + 20% bigger) === */
     .variants-grid {
@@ -1633,10 +1643,16 @@
     }
     .mobile-nav-items {
       display: flex;
-      justify-content: space-around;
-      align-items: flex-end;
+      justify-content: space-between;
+      align-items: center;
       height: 65px;
-      padding: 0 5px 8px 5px;
+      padding: 0 10px 8px 10px;
+      gap: 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .mobile-nav-items::-webkit-scrollbar {
+      display: none;
     }
     .mobile-nav-item {
       display: flex;
@@ -1972,7 +1988,7 @@
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus, 
     input:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+      -webkit-box-shadow: 0 0 0 1000px #f3f3f3 inset !important;
       -webkit-text-fill-color: #0b1a30 !important;
       transition: background-color 5000s ease-in-out 0s !important;
     }
@@ -2011,15 +2027,8 @@
       padding: 0 !important;
       margin-bottom: 5px !important;
     }
-    .mockup-product-img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      transition: all 0.3s ease !important;
-    }
-    .mockup-product-card:hover .mockup-product-img {
-      transform: scale(1.05) !important;
-    }
+    .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
+    .mockup-product-card:hover .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
     .mockup-product-info {
       padding: 10px 0 0 !important;
       text-align: center !important;
@@ -2351,7 +2360,7 @@
       .size-swatch {
         flex: 0 0 auto !important;
         min-width: 48px !important;
-        min-height: 40px !important;
+        min-height: 28px !important;
         padding: 10px 14px !important;
         border-radius: 8px !important;
         text-align: center !important;
@@ -2952,6 +2961,14 @@
     }
     /* --- ULTIMATE DROPDOWN OVERRIDE END --- */
 
+
+  /* Hide Category Text Above Product Card Blocks */
+  .mockup-product-category,
+  p.mockup-product-category,
+  div.mockup-product-category {
+    display: none !important;
+  }
+
 </style>
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
 <style>
@@ -3328,7 +3345,7 @@
     .magic-dropdown ul li a:hover {
       background: rgba(0,0,0,0.06) !important;
       border-color: rgba(0,0,0,0.12) !important;
-      color: #ff5e00 !important; /* Orange text on hover */
+      color: #0b1a30 !important; /* Orange text on hover */
     }
   
     /* --- ULTIMATE DROPDOWN OVERRIDE START --- */
@@ -3617,236 +3634,614 @@
       color: #0b1a30 !important;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
     }
-
-    /* Mockup Blog Cards Styling */
-    .mockup-blog-card {
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #f0f0f0;
-      transition: all 0.3s ease;
-    }
-    .mockup-blog-card:hover {
-      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-      transform: translateY(-3px);
-    }
-    .mockup-blog-img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-    .mockup-blog-content {
-      padding: 25px;
-    }
-    .mockup-blog-date {
-      font-size: 12px;
-      color: #ccc;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-      display: block;
-    }
-    .mockup-blog-title {
-      font-family: 'Outfit', sans-serif;
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--primary-color);
-      margin-bottom: 15px;
-      line-height: 1.3;
-    }
-    .mockup-blog-excerpt {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    .mockup-blog-link {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--primary-color);
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 2px solid var(--accent-color);
-      padding-bottom: 2px;
-      transition: all 0.3s ease;
-    }
-    .mockup-blog-link:hover {
-      color: var(--accent-color);
-    }
 </style>
 
+<link rel="stylesheet" href="css/prescot-responsive.css">
 <style>
-/* Clean Search Bar Styling */
-.mockup-search-container {
-  display: flex !important;
-  align-items: center !important;
-  background: rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  border-radius: 99px !important;
-  padding: 6px 16px !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
+/* --- STICKY RIGHT BLOCK (BUY BOX / PRODUCT META) --- */
+@media (min-width: 1025px) {
+  .product-container {
+    display: grid !important;
+    grid-template-columns: 1.15fr 0.85fr !important;
+    gap: 50px !important;
+    align-items: start !important; /* Essential for sticky sidebar */
+  }
 
-.mockup-search-container:focus-within {
-  background: rgba(255, 255, 255, 0.22) !important;
-  border-color: rgba(255, 255, 255, 0.55) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
-}
+  .product-gallery {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    min-width: 0 !important;
+  }
 
-.mockup-search-container input {
-  border: none !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  outline: none !important;
-  font-size: 13px !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-weight: 500 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  box-shadow: none !important;
-  letter-spacing: 0.3px !important;
-}
+  .product-meta {
+    position: sticky !important;
+    top: 110px !important;
+    align-self: start !important;
+    z-index: 10 !important;
+    overflow: visible !important;
+    margin-bottom: 40px !important;
+  }
 
-.mockup-search-container input::placeholder {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  color: rgba(255, 255, 255, 0.75) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.75) !important;
-  opacity: 1 !important;
-  font-weight: 400 !important;
-}
-
-.mockup-search-container button {
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  padding: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.mockup-search-container button svg {
-  stroke: #ffffff !important;
-  transition: stroke 0.3s ease !important;
-}
-
-/* Scrolled Header Search Bar State */
-.mockup-header.scrolled .mockup-search-container {
-  background: rgba(11, 26, 48, 0.05) !important;
-  border-color: rgba(11, 26, 48, 0.15) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container:focus-within {
-  background: rgba(11, 26, 48, 0.08) !important;
-  border-color: rgba(11, 26, 48, 0.3) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input {
-  color: #0b1a30 !important;
-  -webkit-text-fill-color: #0b1a30 !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input::placeholder {
-  color: rgba(11, 26, 48, 0.6) !important;
-  -webkit-text-fill-color: rgba(11, 26, 48, 0.6) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container button svg {
-  stroke: #0b1a30 !important;
-}
-
-/* Autofill Overrides */
-.mockup-search-container input:-webkit-autofill,
-.mockup-search-container input:-webkit-autofill:hover, 
-.mockup-search-container input:-webkit-autofill:focus, 
-.mockup-search-container input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-  -webkit-text-fill-color: #ffffff !important;
-  transition: background-color 50000s ease-in-out 0s !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill,
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:hover, 
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:focus, 
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:active {
-  -webkit-text-fill-color: #0b1a30 !important;
+  /* Custom smooth scrollbar for sticky product meta */
+  .product-meta::-webkit-scrollbar {
+    width: 5px;
+  }
+  .product-meta::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .product-meta::-webkit-scrollbar-thumb {
+    background: rgba(11, 26, 48, 0.15);
+    border-radius: 10px;
+  }
+  .product-meta::-webkit-scrollbar-thumb:hover {
+    background: rgba(11, 26, 48, 0.3);
+  }
 }
 </style>
+
+<style id="html-description-styles">
+  .product-html-description {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #334155;
+    padding: 10px 0;
+  }
+  .product-html-description p {
+    margin-bottom: 18px;
+    line-height: 1.85;
+  }
+  .product-html-description strong, .product-html-description b {
+    color: #0b1a30;
+    font-weight: 700;
+  }
+  .product-html-description ul, .product-html-description ol {
+    margin: 16px 0 22px 24px;
+    padding-left: 8px;
+  }
+  .product-html-description li {
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+  .product-html-description h1, 
+  .product-html-description h2, 
+  .product-html-description h3, 
+  .product-html-description h4 {
+    font-family: 'Outfit', sans-serif;
+    color: #0b1a30;
+    margin: 28px 0 14px 0;
+    font-weight: 700;
+  }
+  .product-html-description table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+  }
+  .product-html-description table td, .product-html-description table th {
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+  }
+  .product-html-description table tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+</style>
+
+
+<style id="clean-typography-no-truncation">
+  /* Clean, natural multi-line product titles without truncation or clipped words */
+  .mockup-product-title,
+  .mockup-product-title a,
+  .product-title,
+  #pTitle {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    text-overflow: clip !important;
+    overflow: visible !important;
+    line-height: 1.4 !important;
+  }
+
+  .mockup-product-title {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    min-height: 42px !important;
+    margin: 8px 0 12px 0 !important;
+  }
+
+  .product-title, #pTitle {
+    font-size: clamp(22px, 3vw, 32px) !important;
+    font-weight: 800 !important;
+    color: #0b1a30 !important;
+    letter-spacing: -0.4px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Rich HTML Description Formatting */
+  .product-html-description {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    font-size: 15px !important;
+    line-height: 1.85 !important;
+    color: #334155 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .product-html-description p {
+    margin-bottom: 20px !important;
+    line-height: 1.85 !important;
+  }
+
+  .product-html-description strong, 
+  .product-html-description b {
+    color: #0b1a30 !important;
+    font-weight: 700 !important;
+  }
+
+  .product-html-description ul, 
+  .product-html-description ol {
+    margin: 18px 0 24px 24px !important;
+    padding-left: 10px !important;
+  }
+
+  .product-html-description li {
+    margin-bottom: 10px !important;
+    line-height: 1.75 !important;
+  }
+
+  .product-html-description table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 24px 0 !important;
+    display: block !important;
+    overflow-x: auto !important;
+  }
+
+  .product-html-description table td, 
+  .product-html-description table th {
+    padding: 12px 16px !important;
+    border: 1px solid #e2e8f0 !important;
+    font-size: 14px !important;
+  }
+
+  .product-html-description table tr:nth-child(even) {
+    background-color: #f8fafc !important;
+  }
+</style>
+
+
+<style id="scrolled-nav-visibility-override">
+  /* Guaranteed 100% Contrast for Scrolled Header Navigation */
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active),
+  body .mockup-header.scrolled .mockup-nav ul li a:not(.active) {
+    color: #0b1a30 !important;
+    background: rgba(11, 26, 48, 0.06) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    font-weight: 600 !important;
+  }
+
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active):hover,
+  body .mockup-header.scrolled .mockup-nav ul li a:not(.active):hover {
+    background: rgba(11, 26, 48, 0.14) !important;
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.25) !important;
+  }
+
+  body .mockup-header.scrolled .mockup-nav > ul > li > a.active,
+  body .mockup-header.scrolled .mockup-nav ul li a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border-color: #0b1a30 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+</style>
+
+
+<style id="ultimate-header-footer-fix">
+  /* Force 100% Crisp Visibility for All Header Navigation Links regardless of scroll state */
+  body .mockup-header .mockup-nav ul li a:not(.active),
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a:not(.active),
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active) {
+    color: #0b1a30 !important;
+    background: rgba(11, 26, 48, 0.06) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a:not(.active):hover,
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a:not(.active):hover,
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active):hover {
+    background: rgba(11, 26, 48, 0.14) !important;
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.25) !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a.active,
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a.active,
+  body .mockup-header.scrolled .mockup-nav > ul > li > a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border: 1px solid #0b1a30 !important;
+    font-weight: 700 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+
+  /* Footer White + Orange Logo Styling */
+  footer .footer-logo img,
+  .mockup-footer .footer-logo img {
+    height: 32px !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+</style>
+
+
+<style id="product-title-4-lines-override">
+  /* Force Up to 4 Full Lines for Product Titles (No Word Truncation) */
+  .mockup-product-title,
+  .mockup-product-title a,
+  div.mockup-product-title,
+  h3.mockup-product-title {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    overflow: visible !important;
+    max-height: none !important;
+    min-height: 72px !important;
+    line-height: 1.35 !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #0b1a30 !important;
+    margin-bottom: 8px !important;
+    text-overflow: clip !important;
+  }
+
+  .mockup-product-title a:hover {
+    color: var(--accent-color, #0b1a30) !important;
+  }
+</style>
+
+
+<style id="buy-now-tight-margin-override">
+  /* Eliminate Excessive Gap Below Kup Teraz Button */
+  #buyItNow,
+  .buy-it-now-btn {
+    margin-bottom: 8px !important;
+  }
+
+  #productVariantsContainer:empty {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .info-banners-container {
+    margin-top: 10px !important;
+    padding-top: 12px !important;
+    border-top: 1px solid #e2e8f0 !important;
+    gap: 8px !important;
+  }
+
+  .info-banner-card {
+    padding: 10px 14px !important;
+  }
+</style>
+
+
+
+<style id="custom-nav-configurator-cta-style">
+  /* Clean Unified Header Navigation */
+  body .mockup-header .mockup-nav ul li a,
+  body .mockup-header.scrolled .mockup-nav ul li a {
+    text-decoration: none !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #0b1a30 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    transition: all 0.2s ease !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a:hover,
+  body .mockup-header.scrolled .mockup-nav ul li a:hover {
+    background: rgba(11, 26, 48, 0.08) !important;
+    color: #0b1a30 !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a.active,
+  body .mockup-header.scrolled .mockup-nav ul li a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border: 1px solid #0b1a30 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+
+  /* Scrolled Header Styling - Crisp Navy Elements */
+  body .mockup-header.scrolled {
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  body .mockup-header.scrolled .mockup-action-icon,
+  body .mockup-header .mockup-action-icon {
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.15) !important;
+  }
+
+  /* Footer White Logo Styling */
+  footer .footer-logo img,
+  .mockup-footer .footer-logo img {
+    height: 32px !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+</style>
+
+
+
+<style id="square-product-images-override">
+  /* Full Square Fill Product Cards (object-fit: cover) */
+  .mockup-product-media,
+  div.mockup-product-media {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    margin-bottom: 8px !important;
+    background-color: #f4f6f9 !important;
+    display: block !important;
+  }
+
+  .mockup-product-img,
+  .mockup-product-media img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: inherit !important;
+    padding: 0 !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .mockup-product-card:hover .mockup-product-img,
+  .mockup-product-card:hover .mockup-product-media img {
+    transform: scale(1.05) !important;
+  }
+
+  /* Hide category text line above product card blocks */
+  .mockup-product-category,
+  p.mockup-product-category,
+  div.mockup-product-category {
+    display: none !important;
+  }
+</style>
+
+
+  <link rel="stylesheet" href="css/configurator.css">
+
+<style id="global-premium-overrides">
+/* Premium Footer CSS */
+.premium-footer {
+  background: var(--primary-color, #0b1a30) !important;
+  color: #fff !important;
+  padding: 80px 8% 40px !important;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-family: 'Outfit', sans-serif;
+  margin-top: auto;
+}
+.premium-footer .footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.premium-footer .footer-logo img {
+  height: 38px !important;
+  opacity: 1 !important;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
+.premium-footer .brand-desc {
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+.premium-footer .social-links {
+  display: flex;
+  gap: 15px;
+}
+.premium-footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+.premium-footer .social-links a:hover {
+  background: var(--accent-color, #0b1a30);
+  transform: translateY(-3px);
+}
+.premium-footer h3 {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+.premium-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.premium-footer ul li {
+  margin-bottom: 12px;
+}
+.premium-footer ul li a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.premium-footer ul li a:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+.premium-footer .contact-info li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.premium-footer .contact-info i {
+  font-size: 20px;
+  color: var(--accent-color, #0b1a30);
+  margin-top: 2px;
+}
+.premium-footer .footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
+.premium-footer .payment-methods {
+  display: flex;
+  gap: 15px;
+  font-size: 24px;
+  color: rgba(255,255,255,0.5);
+}
+@media (max-width: 992px) {
+  .premium-footer .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .premium-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .premium-footer .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+/* Logo Header Fix */
+.site-header .brand {
+  display: flex !important;
+  align-items: center !important;
+  height: 100%;
+}
+.site-header .brand img {
+  height: 36px !important;
+  max-width: 170px !important;
+  object-fit: contain !important;
+  transform: none;
+}
+@media (max-width: 768px) {
+  .site-header .brand img {
+    height: 32px !important;
+  }
+}
+</style>
+
+  <link rel="stylesheet" href="css/custom-buttons.css">
+
+
+
 </head>
 <body>
-<header class="mockup-header" id="mainHeader">
-<div class="mockup-header-logo">
-<a href="index.html"><img alt="Prescot Logo" id="headerLogo" src="images/logo-white.png"/></a>
-</div>
-<nav class="mockup-nav">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="shop.html">Sklep</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="about.html">O nas</a></li>
-<li><a href="contact.html">Kontakt</a></li>
-</ul>
-</nav>
-<div class="mockup-actions">
-<div class="mockup-search-container">
-<input id="headerSearchInput" placeholder="Czego szukasz..." type="text"/>
-<button aria-label="Szukaj" id="headerSearchBtn">
-<svg fill="none" height="18" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
-</button>
-</div>
-<button aria-label="Konto użytkownika" class="mockup-action-icon">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-</button>
-<a aria-label="Lista Życzeń" class="mockup-action-icon wishlist-trigger" href="#">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-</a>
-<a aria-label="Koszyk" class="mockup-action-icon" href="cart.html" style="position: relative;">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
-<span class="cart-badge"></span>
-</a>
-<button class="menu-toggle" id="menuToggle">
-<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
-</button>
-</div>
-</header>
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="shop.html">Sklep</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="about.html">O nas</a></li>
-<li><a href="contact.html">Kontakt</a></li>
-</ul>
-<div class="mobile-socials">
-<a href="#"><i class="ph ph-instagram-logo"></i></a>
-<a href="#"><i class="ph ph-facebook-logo"></i></a>
-<a href="#"><i class="ph ph-pinterest-logo"></i></a>
-</div>
+<header class="site-header" id="siteHeader">
+    <a class="brand" href="index.html" aria-label="Prescot — strona główna">
+      <img src="images/logo-white.png" data-dark="images/logo-dark.png" data-light="images/logo-white.png" alt="Prescot">
+    </a>
+    <nav class="desktop-nav" aria-label="Nawigacja główna">
+      <a href="index.html">Home</a>
+      <a class="active" href="shop.html">Sklep</a>
+      <a href="blog.html">Wiedza</a>
+      <a href="about.html">O nas</a>
+      <a href="contact.html">Kontakt</a>
+      
+      <a  href="ai-shopping.html"><img class="gemini-icon" src="images/prescot-pattern.png" style="width: 18px; height: 18px; object-fit: contain; margin-right: 6px; vertical-align: middle;">Zakup AI</a>
+    </nav>
+    <div class="header-actions">
+      <form class="header-search" action="shop.html" role="search">
+        <label class="sr-only" for="configSearch">Szukaj produktu</label>
+        <input id="configSearch" name="q" type="search" placeholder="SKU, barwa, moc…">
+        <button type="submit" aria-label="Szukaj">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+        </button>
+      </form>
+      <a class="header-icon" href="javascript:void(0);" onclick="openCartDrawer();" aria-label="Koszyk">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 7H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Otwórz menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Nawigacja mobilna" hidden>
+      <a href="index.html">Home</a>
+      <a class="active" href="shop.html">Sklep</a>
+      <a href="blog.html">Wiedza</a>
+      <a href="about.html">O nas</a>
+      <a href="contact.html">Kontakt</a>
+      
+      <a  href="ai-shopping.html"><img class="gemini-icon" src="images/prescot-pattern.png" style="width: 18px; height: 18px; object-fit: contain; margin-right: 6px; vertical-align: middle;">Zakup AI</a>
+    </nav>
+  </header>
+
 </div>
 <section class="page-hero" style="background: url('images/okladka-produkty.webp') center 28% / cover no-repeat; height: 35vh; min-height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 90px 20px 20px; text-align: center; position: relative; box-sizing: border-box;">
   <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11, 26, 48, 0.455);"></div>
   <div style="position: relative; z-index: 1;">
-    <h1 id="heroProductTitle" style="color: #fff; font-size: 48px; font-weight: 800; font-family: 'Outfit', sans-serif; margin-bottom: 10px; text-transform: uppercase; letter-spacing: -1px; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">Produkt</h1>
-    <p id="heroProductCategory" style="color: #eee; font-size: 16px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--accent-color);">Prescot LED</p>
+    <h1 id="heroProductTitle" style="max-width: min(1100px, calc(100vw - 64px)); color: #fff; font-size: clamp(20px, 2.1vw, 27px); line-height: 1.38; font-weight: 500; font-family: 'Inter', sans-serif; margin: 0 auto 10px; text-transform: none; letter-spacing: 0; text-wrap: balance; text-shadow: 0 3px 16px rgba(0,0,0,0.72);">Produkt</h1>
+    
   </div>
 </section>
 <main class="product-container">
 <!-- Tiny Breadcrumbs Bar -->
-<div class="product-breadcrumbs" style="grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #888; margin-bottom: -15px; font-family: 'Inter', sans-serif; flex-wrap: wrap; background: #fafafa; padding: 10px 15px; border-radius: 8px; border: 1px solid #f0f0f0;">
-<a href="index.html" style="color: #666; text-decoration: none; display: flex; align-items: center; gap: 4px; font-weight: 500;">
-<svg fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-        Główna
-      </a>
-<span style="opacity: 0.5;">/</span>
-<a href="shop.html" style="color: #666; text-decoration: none; font-weight: 500;">Sklep</a>
-<span style="opacity: 0.5;">/</span>
-<a href="shop.html" id="breadcrumbCategory" style="color: #666; text-decoration: none; font-weight: 500;">Kategoria</a>
-<span style="opacity: 0.5;">/</span>
-<span id="breadcrumbTitle" style="color: var(--primary-color); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">Nazwa produktu</span>
+<div class="product-breadcrumbs" id="dynamicBreadcrumbs" style="grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #64748b; margin-bottom: -10px; font-family: 'Inter', sans-serif; flex-wrap: wrap; background: #f8fafc; padding: 12px 18px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+  <!-- Breadcrumbs generated dynamically in JS -->
 </div>
 <section class="product-gallery">
 <div class="gallery-main-wrapper" style="position: relative;">
@@ -3898,8 +4293,168 @@
             Bardzo polecam.</p>
 </div>
 </div>
+</section>
+<section class="product-meta">
+<div class="product-brand" id="pCategory">PRESCOT LED</div>
+<h1 class="product-title" id="pTitle"></h1>
+<div class="product-rating">
+        ★★★★★ <span>(14 recenzji)</span>
 </div>
-
+<div class="product-price" id="pPrice"></div>
+<p class="product-desc" id="pDesc"></p>
+<!-- Options -->
+<div class="product-option" id="colorContainer">
+<h4 class="option-title">Kolor</h4>
+<div class="option-swatches" id="pColors"></div>
+</div>
+<div class="product-option" id="sizeContainer">
+<h4 class="option-title">Rozmiar</h4>
+<div class="option-swatches" id="pSizes"></div>
+</div>
+<!-- Stock Alert -->
+<div class="stock-alert">
+  <i class="ph-fill ph-fire"></i> Śpiesz się! Zostało tylko kilka sztuk w magazynie!
+</div>
+<div class="stock-bar"><div class="stock-bar-fill" style="width: 15%;"></div></div>
+<!-- Actions & Features Row (Shopify Style) -->
+<div class="product-actions-bar" id="productActionsBar"></div>
+<!-- Parametry Popup -->
+<div class="product-popup-overlay" id="popupParametry" style="display:none;">
+<div class="product-popup-box bento-popup">
+<button class="popup-close" onclick="document.getElementById('popupParametry').style.display='none'">✕</button>
+<h3 class="bento-title">⚡ Parametry techniczne</h3>
+<div class="spec-grid">
+  <div class="spec-bento-card">
+    <span>Napięcie</span>
+    <strong>12V / 24V DC</strong>
+  </div>
+  <div class="spec-bento-card">
+    <span>Moc</span>
+    <strong>14.4W/m</strong>
+  </div>
+  <div class="spec-bento-card">
+    <span>Diody</span>
+    <strong>60 LED/m (SMD)</strong>
+  </div>
+  <div class="spec-bento-card">
+    <span>Strumień św.</span>
+    <strong>1200 lm/m</strong>
+  </div>
+  <div class="spec-bento-card">
+    <span>CRI (Ra)</span>
+    <strong>≥ 90</strong>
+  </div>
+  <div class="spec-bento-card">
+    <span>Kąt świecenia</span>
+    <strong>120°</strong>
+  </div>
+  <div class="spec-bento-card">
+    <span>Szczelność</span>
+    <strong>IP20 / IP65 / IP67</strong>
+  </div>
+  <div class="spec-bento-card">
+    <span>Żywotność</span>
+    <strong>50 000h</strong>
+  </div>
+  <div class="spec-bento-card premium-badge">
+    <span>Gwarancja producenta</span>
+    <strong>5 lat gwarancji Premium</strong>
+  </div>
+</div>
+</div>
+</div>
+<!-- Barwa światła Popup -->
+<div class="product-popup-overlay" id="popupBarwa" style="display:none;">
+<div class="product-popup-box bento-popup" style="max-width: 600px; padding: 40px; border-radius: 24px;">
+<button class="popup-close" onclick="document.getElementById('popupBarwa').style.display='none'">✕</button>
+<h3 class="bento-title" style="font-size: 22px; font-weight: 800; color: var(--primary-color); margin-bottom: 24px; text-align: center; letter-spacing: -0.5px;">🎨 Paleta barw światła</h3>
+<div class="color-temp-grid liquid-grid">
+  <div class="color-temp-option liquid-option" style="--ct-color: #ffcc66;">
+    <div class="ct-circle liquid-circle"></div>
+    <span class="liquid-title">2700K</span>
+    <small class="liquid-subtitle">Ciepła biel</small>
+  </div>
+  <div class="color-temp-option liquid-option" style="--ct-color: #ffe0a0;">
+    <div class="ct-circle liquid-circle"></div>
+    <span class="liquid-title">3000K</span>
+    <small class="liquid-subtitle">Ciepła biel</small>
+  </div>
+  <div class="color-temp-option liquid-option" style="--ct-color: #fff5e0;">
+    <div class="ct-circle liquid-circle"></div>
+    <span class="liquid-title">4000K</span>
+    <small class="liquid-subtitle">Neutralna</small>
+  </div>
+  <div class="color-temp-option liquid-option" style="--ct-color: #f0f4ff;">
+    <div class="ct-circle liquid-circle"></div>
+    <span class="liquid-title">5000K</span>
+    <small class="liquid-subtitle">Dzienna biel</small>
+  </div>
+  <div class="color-temp-option liquid-option" style="--ct-color: #dce8ff;">
+    <div class="ct-circle liquid-circle"></div>
+    <span class="liquid-title">6500K</span>
+    <small class="liquid-subtitle">Zimna biel</small>
+  </div>
+  <div class="color-temp-option liquid-option" style="--ct-color: linear-gradient(135deg, #ff0040, #00ff80, #0080ff);">
+    <div class="ct-circle liquid-circle ct-rgb"></div>
+    <span class="liquid-title">RGB</span>
+    <small class="liquid-subtitle">16M kolorów</small>
+  </div>
+  <div class="color-temp-option liquid-option" style="--ct-color: linear-gradient(135deg, #ff3366, #33ff66, #3366ff, #ffe0a0, #dce8ff);">
+    <div class="ct-circle liquid-circle ct-rgb"></div>
+    <span class="liquid-title">RGBCCT</span>
+    <small class="liquid-subtitle">RGB + Biel</small>
+  </div>
+</div>
+</div>
+</div>
+<!-- Zapytaj o produkt Popup -->
+<div class="product-popup-overlay" id="popupZapytaj" style="display:none; z-index: 9999;">
+  <div class="product-popup-box" style="max-width: 500px; padding: 30px;">
+    <button class="popup-close" onclick="document.getElementById('popupZapytaj').style.display='none'">✕</button>
+    <h3 style="margin-bottom: 20px; font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--primary-color);">Zapytaj o produkt</h3>
+    <form id="askQuestionForm" onsubmit="return submitProductInquiry(event);">
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #333;">Twoje Imię</label>
+        <input type="text" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; font-family: inherit;" placeholder="np. Jan Kowalski">
+      </div>
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #333;">Twój Adres E-mail</label>
+        <input type="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; font-family: inherit;" placeholder="np. jan@example.com">
+      </div>
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #333;">Treść pytania</label>
+        <textarea id="askQuestionTextarea" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; height: 120px; font-family: inherit; resize: vertical;" placeholder="Wpisz treść swojego zapytania..."></textarea>
+      </div>
+      <button type="submit" class="inquiry-submit-btn">
+        <span class="btn-slide-wrap">
+          <span class="btn-txt-default">Wyślij zapytanie</span>
+          <span class="btn-txt-hover">Wyślij</span>
+        </span>
+      </button>
+    </form>
+  </div>
+</div>
+<div class="product-purchase-box">
+<div class="purchase-actions-row">
+<div class="quantity-selector">
+<button class="quantity-btn" id="qtyMinus">-</button>
+<input class="quantity-input" id="qtyInput" readonly="" type="text" value="1"/>
+<button class="quantity-btn" id="qtyPlus">+</button>
+</div>
+<button class="add-to-cart-btn" id="addToCart">
+<span class="btn-slide-wrap">
+<span class="btn-txt-default">Dodaj do koszyka</span>
+<span class="btn-txt-hover"><i class="ph ph-shopping-cart-simple" style="margin-right: 6px;"></i> Dodaj teraz!</span>
+</span>
+</button>
+</div>
+<button class="buy-it-now-btn" id="buyItNow">
+<span class="btn-slide-wrap">
+<span class="btn-txt-default">Kup teraz (Szybka płatność)</span>
+<span class="btn-txt-hover"><i class="ph ph-shopping-cart-simple" style="margin-right: 6px;"></i> Przejdź do kasy</span>
+</span>
+</button>
+<div id="productVariantsContainer"></div>
 <!-- Info Banners Container (Shopify Style) -->
 <div class="info-banners-container">
   <!-- Card 1: Salon Pickup -->
@@ -3937,158 +4492,6 @@
     <img src="images/5_i_7.webp" alt="Taśma LED Delux Pro 7 lat gwarancji" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #f1f5f9;">
   </div>
 </div>
-
-</section>
-<section class="product-meta">
-<div class="product-brand" id="pCategory">PRESCOT LED</div>
-<h1 class="product-title" id="pTitle"></h1>
-<div class="product-rating">
-        ★★★★★ <span>(14 recenzji)</span>
-</div>
-<div class="product-price" id="pPrice"></div>
-<p class="product-desc" id="pDesc"></p>
-<!-- Options -->
-<div class="product-option" id="colorContainer">
-<h4 class="option-title">Kolor</h4>
-<div class="option-swatches" id="pColors"></div>
-</div>
-<div class="product-option" id="sizeContainer">
-<h4 class="option-title">Rozmiar</h4>
-<div class="option-swatches" id="pSizes"></div>
-</div>
-<!-- Stock Alert -->
-<div class="stock-alert">
-  <i class="ph-fill ph-fire"></i> Śpiesz się! Zostało tylko kilka sztuk w magazynie!
-</div>
-<div class="stock-bar"><div class="stock-bar-fill" style="width: 15%;"></div></div>
-<!-- Actions & Features Row (Shopify Style) -->
-<div class="product-actions-bar" id="productActionsBar"></div>
-
-<!-- Rozwijane Parametry Techniczne -->
-<details class="product-accordion" style="margin-top: 15px; border: 1px solid #eee; border-radius: 8px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
-  <summary style="padding: 15px 20px; font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 600; color: var(--primary-color); cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; user-select: none;">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <i class="ph ph-sliders" style="color: var(--accent-color); font-size: 18px;"></i> Parametry techniczne
-    </div>
-    <i class="ph ph-caret-down" style="color: #999;"></i>
-  </summary>
-  <div style="padding: 0 20px 20px;">
-    <table class="spec-table-inline" style="width: 100%; border-collapse: collapse;">
-      <!-- Wypełniane dynamicznie przez JS -->
-    </table>
-  </div>
-</details>
-<style>
-  .product-accordion summary::-webkit-details-marker { display: none; }
-  .product-accordion[open] summary .ph-caret-down { transform: rotate(180deg); }
-  .product-accordion summary .ph-caret-down { transition: transform 0.3s ease; }
-</style>
-<!-- Parametry Popup -->
-<div class="product-popup-overlay" id="popupParametry" style="display:none;">
-<div class="product-popup-box">
-<button class="popup-close" onclick="document.getElementById('popupParametry').style.display='none'">✕</button>
-<h3>⚡ Parametry techniczne</h3>
-<table class="spec-table">
-<tr><td>Napięcie</td><td><strong>12V / 24V DC</strong></td></tr>
-<tr><td>Moc</td><td><strong>14.4W/m</strong></td></tr>
-<tr><td>Diody</td><td><strong>60 LED/m (SMD 5050)</strong></td></tr>
-<tr><td>Strumień świetlny</td><td><strong>1200 lm/m</strong></td></tr>
-<tr><td>CRI (Ra)</td><td><strong>≥ 90</strong></td></tr>
-<tr><td>Kąt świecenia</td><td><strong>120°</strong></td></tr>
-<tr><td>Klasa szczelności</td><td><strong>IP20 / IP65 / IP67</strong></td></tr>
-<tr><td>Żywotność</td><td><strong>50 000h</strong></td></tr>
-<tr><td>Gwarancja</td><td><strong>5 lat</strong></td></tr>
-</table>
-</div>
-</div>
-<!-- Barwa światła Popup -->
-<div class="product-popup-overlay" id="popupBarwa" style="display:none;">
-<div class="product-popup-box">
-<button class="popup-close" onclick="document.getElementById('popupBarwa').style.display='none'">✕</button>
-<h3>🎨 Barwa światła</h3>
-<div class="color-temp-grid">
-<div class="color-temp-option" style="--ct-color: #ffcc66;">
-<div class="ct-circle"></div>
-<span>2700K</span>
-<small>Ciepła biel</small>
-</div>
-<div class="color-temp-option" style="--ct-color: #ffe0a0;">
-<div class="ct-circle"></div>
-<span>3000K</span>
-<small>Ciepła biel</small>
-</div>
-<div class="color-temp-option" style="--ct-color: #fff5e0;">
-<div class="ct-circle"></div>
-<span>4000K</span>
-<small>Neutralna</small>
-</div>
-<div class="color-temp-option" style="--ct-color: #f0f4ff;">
-<div class="ct-circle"></div>
-<span>5000K</span>
-<small>Dzienna biel</small>
-</div>
-<div class="color-temp-option" style="--ct-color: #dce8ff;">
-<div class="ct-circle"></div>
-<span>6500K</span>
-<small>Zimna biel</small>
-</div>
-<div class="color-temp-option" style="--ct-color: linear-gradient(135deg, #ff0040, #00ff80, #0080ff);">
-<div class="ct-circle ct-rgb"></div>
-<span>RGB</span>
-<small>16M kolorów</small>
-</div>
-<div class="color-temp-option" style="--ct-color: linear-gradient(135deg, #ff3366, #33ff66, #3366ff, #ffe0a0, #dce8ff);">
-<div class="ct-circle ct-rgb"></div>
-<span>RGBCCT</span>
-<small>RGB + Biel</small>
-</div>
-</div>
-</div>
-</div>
-<!-- Zapytaj o produkt Popup -->
-<div class="product-popup-overlay" id="popupZapytaj" style="display:none; z-index: 9999;">
-  <div class="product-popup-box" style="max-width: 500px; padding: 30px;">
-    <button class="popup-close" onclick="document.getElementById('popupZapytaj').style.display='none'">✕</button>
-    <h3 style="margin-bottom: 20px; font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--primary-color);">Zapytaj o produkt</h3>
-    <form id="askQuestionForm" onsubmit="event.preventDefault(); alert('Dziękujemy! Twoja wiadomość została wysłana. Odpowiemy w ciągu 24 godzin.'); document.getElementById('popupZapytaj').style.display='none';">
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #333;">Twoje Imię</label>
-        <input type="text" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; font-family: inherit;" placeholder="np. Jan Kowalski">
-      </div>
-      <div style="margin-bottom: 15px;">
-        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #333;">Twój Adres E-mail</label>
-        <input type="email" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; font-family: inherit;" placeholder="np. jan@example.com">
-      </div>
-      <div style="margin-bottom: 20px;">
-        <label style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: #333;">Treść pytania</label>
-        <textarea id="askQuestionTextarea" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; height: 120px; font-family: inherit; resize: vertical;" placeholder="Wpisz treść swojego zapytania..."></textarea>
-      </div>
-      <button type="submit" class="buy-it-now-btn" style="background: var(--primary-color) !important; color: #fff !important; width: 100%; border: none !important; cursor: pointer; height: 48px; border-radius: 8px; font-weight: 700; text-transform: uppercase; font-size: 13px; display: flex; align-items: center; justify-content: center;">Wyślij zapytanie</button>
-    </form>
-  </div>
-</div>
-<div class="product-purchase-box">
-<div class="purchase-actions-row">
-<div class="quantity-selector">
-<button class="quantity-btn" id="qtyMinus">-</button>
-<input class="quantity-input" id="qtyInput" readonly="" type="text" value="1"/>
-<button class="quantity-btn" id="qtyPlus">+</button>
-</div>
-<button class="add-to-cart-btn" id="addToCart">
-<span class="btn-slide-wrap">
-<span class="btn-txt-default">Dodaj do koszyka</span>
-<span class="btn-txt-hover"><i class="ph ph-shopping-cart-simple" style="margin-right: 6px;"></i> Dodaj teraz!</span>
-</span>
-</button>
-</div>
-<button class="buy-it-now-btn" id="buyItNow">
-<span class="btn-slide-wrap">
-<span class="btn-txt-default">Kup teraz (Szybka płatność)</span>
-<span class="btn-txt-hover"><i class="ph ph-shopping-cart-simple" style="margin-right: 6px;"></i> Przejdź do kasy</span>
-</span>
-</button>
-<div id="productVariantsContainer" style="margin-top: 20px;"></div>
-
 </div>
 </section>
 </main>
@@ -4161,79 +4564,58 @@
 </div>
 </section>
 
-<!-- 4-column features showcase grid (Shopify style) -->
-<section style="max-width: 1800px; margin: 40px auto; padding: 0 5%; border-top: 1px solid #eee; padding-top: 40px;">
-<div class="product-features-grid">
-<div style="text-align: center; padding: 20px;">
-<div style="font-size: 36px; margin-bottom: 15px; color: var(--accent-color);"><i class="ph ph-shield-check"></i></div>
-<h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary-color); margin-bottom: 8px;">Do 7 Lat Gwarancji</h3>
-<p style="font-size: 13px; color: #666; line-height: 1.6;">Na serię taśm LED Delux oraz zasilacze Scharfer.</p>
-</div>
-<div style="text-align: center; padding: 20px;">
-<div style="font-size: 36px; margin-bottom: 15px; color: var(--accent-color);"><i class="ph ph-truck"></i></div>
-<h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary-color); margin-bottom: 8px;">Szybka Wysyłka</h3>
-<p style="font-size: 13px; color: #666; line-height: 1.6;">Wysyłka w 24h. Darmowa dostawa od 500 zł.</p>
-</div>
-<div style="text-align: center; padding: 20px;">
-<div style="font-size: 36px; margin-bottom: 15px; color: var(--accent-color);"><i class="ph ph-globe"></i></div>
-<h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary-color); margin-bottom: 8px;">Wsparcie Techniczne</h3>
-<p style="font-size: 13px; color: #666; line-height: 1.6;">Profesjonalne doradztwo i pomoc techniczna.</p>
-</div>
-<div style="text-align: center; padding: 20px;">
-<div style="font-size: 36px; margin-bottom: 15px; color: var(--accent-color);"><i class="ph ph-lock-key"></i></div>
-<h3 style="font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; color: var(--primary-color); margin-bottom: 8px;">Bezpieczne Zakupy</h3>
-<p style="font-size: 13px; color: #666; line-height: 1.6;">Szyfrowane płatności i bezproblemowe zwroty do 30 dni.</p>
-</div>
-</div>
-</section>
-
 <!-- FOOTER -->
-<footer class="mockup-footer">
-<div class="footer-grid">
-<div class="footer-col">
-<div class="footer-logo">
-<img alt="Prescot Logo" src="images/logo-white.png" style="height: 26px; opacity: 0.9; margin-bottom: 5px; max-width: 100%;"/>
-</div>
-<p style="margin-top: 15px;">Prescot LED to profesjonalny dostawca najwyższej jakości taśm LED, profili aluminiowych, nowoczesnych sterowników oraz niezawodnych zasilaczy hermetycznych.</p><p style="margin-top: 15px; color: #ccc;"><strong>PRESCOT LED</strong><br/>ul. Przykładowa 12<br/>00-001 Warszawa<br/>kontakt@prescot.com.pl</p>
-</div>
-<div class="footer-col">
-<h3>Link</h3>
-<ul>
-<li><a href="shop.html">Wszystkie produkty</a></li>
-<li><a href="shop.html?cat=Tasma%20LED">Taśmy LED</a></li>
-<li><a href="shop.html?cat=Sterowniki%20LED">Sterowniki LED</a></li>
-<li><a href="shop.html?cat=Zasilacze">Zasilacze</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h3>Wsparcie</h3>
-<ul>
-<li><a href="about.html">O nas</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="contact.html">Kontakt</a></li>
-<li><a href="#">FAQ</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h3>Newsletter</h3>
-<p style="margin-bottom: 20px;">Zapisz się, aby otrzymywać informacje o nowych kolekcjach i ofertach specjalnych.</p>
-<div class="newsletter-glass-box" style="display: flex; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 4px; width: 100%;">
-<input aria-label="E-mail" placeholder="Twój e-mail" style="border: none; background: transparent; color: #fff; padding: 8px 12px; width: 100%; font-size: 13px; font-family: \'Inter\', sans-serif; outline: none;" type="email"/>
-<button onmouseout="this.style.background='rgba(255, 255, 255, 0.15)'" onmouseover="this.style.background='rgba(255, 255, 255, 0.25)'" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; font-weight: 600; font-size: 11px; padding: 8px 20px; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">OK</button>
-</div>
-</div>
-</div>
-<div class="footer-bottom">
-<p>© 2026 Prescot LED. Wszelkie prawa zastrzeżone.</p>
-<div style="display: flex; gap: 8px; align-items: center;">
-<span style="font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.5px;">Płatności:</span>
-<span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600;">Visa</span>
-<span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600;">Mastercard</span>
-<span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600;">BLIK</span>
-<span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 11px; color: rgba(255,255,255,0.4); font-weight: 600;">Przelewy24</span>
-</div>
-</div>
+
+<footer class="mockup-footer premium-footer">
+  <div class="footer-grid">
+    <div class="footer-col brand-col">
+      <div class="footer-logo">
+        <img alt="Prescot Logo" src="images/logo-white.png" />
+      </div>
+      <p class="brand-desc">Tworzymy oświetlenie jutra. Prescot LED to bezkompromisowa jakość, zaawansowana technologia COB i inteligentne systemy sterowania światłem dla profesjonalistów.</p>
+      <div class="social-links">
+        <a href="#"><i class="ph ph-facebook-logo"></i></a>
+        <a href="#"><i class="ph ph-instagram-logo"></i></a>
+        <a href="#"><i class="ph ph-youtube-logo"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Odkryj</h3>
+      <ul>
+        <li><a href="shop.html">Produkty Premium</a></li>
+        
+        <li><a href="#">Bestsellery</a></li>
+        <li><a href="#">Nowości 2026</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Wsparcie</h3>
+      <ul>
+        <li><a href="contact.html">Kontakt & Pomoc</a></li>
+        <li><a href="#">Gwarancja 5 Lat</a></li>
+        <li><a href="#">Baza Wiedzy</a></li>
+        <li><a href="#">Polityka Prywatności</a></li>
+      </ul>
+    </div>
+    <div class="footer-col contact-col">
+      <h3>Dane firmy</h3>
+      <ul class="contact-info">
+        <li><i class="ph ph-buildings"></i> PRESCOT sp. z o.o.</li>
+        <li><i class="ph ph-map-pin"></i> ul. Wileńska 1, 11-500 Giżycko</li>
+        <li><i class="ph ph-identification-card"></i> NIP 8451939947</li>
+        <li><i class="ph ph-phone"></i> <a href="tel:+48874282118">+48 87 428 21 18</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 PRESCOT LED. Wszelkie prawa zastrzeżone.</p>
+    <div class="payment-methods">
+      <i class="ph ph-stripe-logo"></i>
+      <i class="ph ph-paypal-logo"></i>
+    </div>
+  </div>
 </footer>
+
 <!-- App Data & Logic -->
 <script src="js/products-data.js"></script>
 <script src="js/shared-popups.js"></script>
@@ -4318,11 +4700,11 @@
     }
 
     // Load Product Data into DOM
-    document.title = `Prescot LED - ${product.title}`;
+    document.title = `${product.title} | Prescot LED — Producent taśm LED i hurtownia elektryczna`;
     document.getElementById('pTitle').textContent = product.title;
     document.getElementById('pCategory').textContent = product.category;
     document.getElementById('pPrice').innerHTML = `${product.price.toFixed(2)} zł <span class="price-unit">/ ${product.category === "Taśmy LED" ? "metr" : "szt."}</span>`;
-    document.getElementById('pDesc').textContent = product.description;
+    const pDescEl = document.getElementById('pDesc'); if (pDescEl) pDescEl.style.display = 'none';
 
     // Render Actions Bar dynamically (Shopify Style)
     const actionsBar = document.getElementById('productActionsBar');
@@ -4330,7 +4712,13 @@
       actionsBar.innerHTML = '';
       const items = [];
 
-      // 1. Parametry technical specifications (removed, now an accordion)
+      // 1. Parametry technical specifications (always show)
+      items.push(`
+        <button class="product-action-item" onclick="document.getElementById('popupParametry').style.display='flex'">
+          <i class="ph ph-file-text"></i>
+          <span>Parametry techniczne</span>
+        </button>
+      `);
 
       // 2. Barwy światła light color guide (only for Taśmy LED or Sterowniki LED)
       if (product.category === "Taśmy LED" || product.category === "Sterowniki LED") {
@@ -4473,29 +4861,36 @@
     if (heroTitle) heroTitle.textContent = product.title;
     if (heroCat) heroCat.textContent = product.category;
 
-    // Populate Breadcrumbs dynamically
-    const bCat = document.getElementById('breadcrumbCategory');
-    if (bCat) {
-      bCat.textContent = product.category;
-      bCat.href = `shop.html?cat=${encodeURIComponent(product.category)}`;
-    }
-    const bTitle = document.getElementById('breadcrumbTitle');
-    if (bTitle) {
-      bTitle.textContent = product.title;
-    }
-    const bMiniImg = document.getElementById('breadcrumbMiniImg');
-    if (bMiniImg) {
-      bMiniImg.src = product.image;
-    }
-    const bMiniTitle = document.getElementById('breadcrumbMiniTitle');
-    if (bMiniTitle) {
-      bMiniTitle.textContent = product.title;
+        // Populate Breadcrumbs dynamically with exact closed network navigation
+    const bcContainer = document.getElementById('dynamicBreadcrumbs');
+    if (bcContainer) {
+      let parts = [];
+      parts.push(`
+        <a href="index.html" style="color: #64748b; text-decoration: none; display: flex; align-items: center; gap: 5px; font-weight: 500;">
+          <svg fill="none" height="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24" width="13" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Główna
+        </a>
+      `);
+      parts.push(`<span style="color: #cbd5e1;">/</span>`);
+      parts.push(`<a href="shop.html" style="color: #64748b; text-decoration: none; font-weight: 500;">Sklep</a>`);
+
+      // Category in shop
+      const catName = product.category || "Taśmy LED";
+      parts.push(`<span style="color: #cbd5e1;">/</span>`);
+      parts.push(`<a href="shop.html?category=${encodeURIComponent(catName)}" style="color: #64748b; text-decoration: none; font-weight: 600;">${catName}</a>`);
+
+      // Product Title
+      parts.push(`<span style="color: #cbd5e1;">/</span>`);
+      parts.push(`<span style="color: #0b1a30; font-weight: 700;">${product.title}</span>`);
+
+      bcContainer.innerHTML = parts.join(' ');
     }
 
-    // Load description and bottom variants inside descTab
-    document.getElementById('descTab').innerHTML = `
-      <p style="font-size: 15px; line-height: 1.8; color: #555; margin-bottom: 30px;">${product.description}</p>
-    `;
+    // Load description with full HTML formatting inside bottom descTab
+    const descTabEl = document.getElementById('descTab');
+    if (descTabEl) {
+      descTabEl.innerHTML = `<div class="product-html-description">${product.description}</div>`;
+    }
 
     // Main Image & Gallery
     const mainImg = document.getElementById('mainImg');
@@ -4630,25 +5025,26 @@
     const popupBarwa = document.getElementById('popupBarwa');
 
     // Populate specs overlay dynamically
-    const specTable = document.querySelector('#popupParametry .spec-table');
-    const specTableInline = document.querySelector('.spec-table-inline');
-    const { specs } = getProductSpecs(product);
-    
-    if (specTable && specs.length > 0) {
-      specTable.innerHTML = specs.map(s => `
-        <tr><td>${s.name}</td><td><strong>${s.value}</strong></td></tr>
-      `).join('');
-    }
-    if (specTableInline && specs.length > 0) {
-      specTableInline.innerHTML = specs.map(s => `
-        <tr style="border-bottom: 1px solid #f5f5f5;">
-          <td style="padding: 10px 0; color: #666; font-size: 13px;">${s.name}</td>
-          <td style="padding: 10px 0; text-align: right; font-weight: 600; color: #1a1a1a; font-size: 13px;">${s.value}</td>
-        </tr>
-      `).join('');
-    } else if (specTableInline) {
-      const accordion = specTableInline.closest('.product-accordion');
-      if (accordion) accordion.style.display = 'none';
+    const specGrid = document.querySelector('#popupParametry .spec-grid');
+    if (specGrid) {
+      const { specs } = getProductSpecs(product);
+      if (specs.length > 0) {
+        // Build base specs
+        let specsHtml = specs.map(s => `
+          <div class="spec-bento-card">
+            <span>${s.name}</span>
+            <strong>${s.value}</strong>
+          </div>
+        `).join('');
+        // Append premium badge dynamically
+        specsHtml += `
+          <div class="spec-bento-card premium-badge">
+            <span>Gwarancja producenta</span>
+            <strong>5 lat gwarancji Premium</strong>
+          </div>
+        `;
+        specGrid.innerHTML = specsHtml;
+      }
     }
 
     // Populate barwa light temp overlay dynamically
@@ -4657,15 +5053,12 @@
       const { barwy } = getProductSpecs(product);
       if (barwy.length > 0) {
         barwaGrid.innerHTML = barwy.map(b => `
-          <div class="color-temp-option" style="background: ${b.color}; border: 1px solid #ddd; padding: 15px; border-radius: 8px; text-align: center;">
-            <div class="ct-circle" style="background: #fff; border: 1px solid #ccc; width: 30px; height: 30px;  margin: 0 auto 10px;"></div>
-            <span style="font-weight: 700; color: #1a1a1a; display: block; font-size: 14px;">${b.label}</span>
-            <small style="color: #666; font-size: 11px; display: block; margin-top: 4px;">${b.desc}</small>
+          <div class="color-temp-option liquid-option" style="--ct-color: ${b.color};">
+            <div class="ct-circle liquid-circle ${b.color.includes('linear-gradient') ? 'ct-rgb' : ''}"></div>
+            <span class="liquid-title">${b.label}</span>
+            <small class="liquid-subtitle">${b.desc}</small>
           </div>
         `).join('');
-        barwaGrid.style.display = 'grid';
-        barwaGrid.style.gridTemplateColumns = `repeat(auto-fit, minmax(130px, 1fr))`;
-        barwaGrid.style.gap = '15px';
       } else if (btnBarwa) {
         btnBarwa.style.display = 'none';
       }
@@ -4715,6 +5108,16 @@
     const sixtyViewerContainer = document.getElementById('sixtyViewerContainer');
     const sixtyImg = document.getElementById('sixtyImg');
     const sixtyLoading = document.getElementById('sixtyLoading');
+    const product360Images = Array.isArray(product.images360) ? product.images360.filter(Boolean) : [];
+    const product360Pattern = typeof product.images360Pattern === 'string' ? product.images360Pattern : '';
+    const totalSixtyImages = product360Pattern
+      ? (product.images360Count || 39)
+      : Math.max(1, product360Images.length);
+
+    function getSixtyImageSource(index) {
+      if (product360Pattern) return product360Pattern.replace('{index}', index);
+      return product360Images[index - 1] || product360Images[0] || product.images[0];
+    }
 
     // 1. Show triggers if product supports them
     if (product.has3D) {
@@ -4724,13 +5127,12 @@
       trigger360.style.display = 'flex';
 
       // Preload 360 images
-      const imagesCount = product.images360Count || 39;
-      const pattern = product.images360Pattern;
+      const imagesCount = totalSixtyImages;
       let loadedCount = 0;
       const preloadedImages = [];
 
       for (let i = 1; i <= imagesCount; i++) {
-        const src = pattern.replace('{index}', i);
+        const src = getSixtyImageSource(i);
         const img = new Image();
         img.src = src;
         img.onload = () => {
@@ -4743,7 +5145,7 @@
       }
 
       // Set initial image
-      sixtyImg.src = pattern.replace('{index}', 1);
+      sixtyImg.src = getSixtyImageSource(1);
     }
 
     const mainVideo = document.getElementById('mainVideo');
@@ -4821,13 +5223,12 @@
 
     // 3. 360 Degree Rotation Logic
     let activeSixtyIndex = 1;
-    const totalSixtyImages = product.images360Count || 39;
 
     function showSixtyImage(index) {
       if (index < 1) index = totalSixtyImages;
       if (index > totalSixtyImages) index = 1;
       activeSixtyIndex = index;
-      sixtyImg.src = product.images360Pattern.replace('{index}', index);
+      sixtyImg.src = getSixtyImageSource(index);
     }
 
     // Drag / Swipe Interaction
@@ -5005,7 +5406,6 @@
 
         const cardHTML = `
           <div class="mockup-product-card" data-id="${p.id}">
-            <p class="mockup-product-category">${p.category}</p>
             <div class="mockup-product-media" style="position: relative; overflow: hidden;">
               <img src="${p.images[0]}" alt="${p.title}" class="mockup-product-img">
               ${p.video ? `
@@ -5026,8 +5426,11 @@
               <p class="mockup-product-price">
                 ${p.price.toFixed(2)} zł <span class="price-unit">/ ${p.category === "Taśmy LED" ? "metr" : "szt."}</span>
               </p>
-              <button class="mockup-btn qv-add-cart-btn" data-id="${p.id}" style="width: 100%; margin-top: 12px; padding: 10px 20px !important; font-size: 11px !important;">
-                Dodaj do koszyka
+              <button class="add-to-cart-btn qv-add-cart-btn" data-id="${p.id}" type="button" aria-label="Dodaj do koszyka" style="width: 100%; margin-top: 12px; cursor: pointer;">
+                <span class="btn-slide-wrap">
+                  <span class="btn-txt-default">Dodaj do koszyka</span>
+                  <span class="btn-txt-hover"><i class="ph ph-shopping-cart-simple" style="margin-right: 6px;"></i>Dodaj teraz!</span>
+                </span>
               </button>
             </div>
           </div>
@@ -5039,7 +5442,7 @@
     
     // Sticky Cart Logic
     const stickyCartBar = document.getElementById('stickyCartBar');
-    const mainCartBtn = document.getElementById('mainAddToCartBtn');
+    const mainCartBtn = document.getElementById('addToCart');
     
     if (stickyCartBar && mainCartBtn && product) {
       document.getElementById('stickyCartImg').src = product.images[0];
@@ -5096,7 +5499,6 @@
 
           const cardHTML = `
             <div class="mockup-product-card" data-id="${p.id}">
-              <p class="mockup-product-category">${p.category}</p>
               <div class="mockup-product-media" style="position: relative; overflow: hidden;">
                 <img src="${p.images[0]}" alt="${p.title}" class="mockup-product-img">
                 ${p.video ? `
@@ -5117,8 +5519,11 @@
                 <p class="mockup-product-price">
                   ${p.price.toFixed(2)} zł <span class="price-unit">/ ${p.category === "Taśmy LED" ? "metr" : "szt."}</span>
                 </p>
-              <button class="mockup-btn qv-add-cart-btn" data-id="${p.id}" style="width: 100%; margin-top: 12px; padding: 10px 20px !important; font-size: 11px !important;">
-                Dodaj do koszyka
+              <button class="add-to-cart-btn qv-add-cart-btn" data-id="${p.id}" type="button" aria-label="Dodaj do koszyka" style="width: 100%; margin-top: 12px; cursor: pointer;">
+                <span class="btn-slide-wrap">
+                  <span class="btn-txt-default">Dodaj do koszyka</span>
+                  <span class="btn-txt-hover"><i class="ph ph-shopping-cart-simple" style="margin-right: 6px;"></i>Dodaj teraz!</span>
+                </span>
               </button>
               </div>
             </div>
@@ -5136,9 +5541,11 @@
     // Mobile Navigation Toggle
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+    }
 
     // Delivery Countdown & Estimator Logic
     const countdownEl = document.getElementById('deliveryCountdown');
@@ -5209,7 +5616,6 @@
     updateDeliveryEstimator();
     setInterval(updateDeliveryEstimator, 1000);
   </script>
-
 <!-- Sticky Add to Cart -->
 <div class="sticky-cart-bar" id="stickyCartBar">
 <div class="sticky-cart-container">
@@ -5228,30 +5634,13 @@
 </div>
 </div>
 <!-- Mobile Bottom Navigation -->
-<nav class="mobile-bottom-nav">
-<div class="mobile-nav-items">
-<a class="mobile-nav-item active" href="index.html">
-<i class="ph ph-house"></i>
-<span>Home</span>
-</a>
-<a class="mobile-nav-item" href="javascript:void(0);" onclick="openMobileCategories();">
-<i class="ph ph-squares-four"></i>
-<span>Kategorie</span>
-</a>
-<a class="mobile-nav-item" href="blog.html">
-<i class="ph ph-article"></i>
-<span>Blog</span>
-</a>
-<a class="mobile-nav-item" href="about.html">
-<i class="ph ph-info"></i>
-<span>O nas</span>
-</a>
-<a class="mobile-nav-item" href="contact.html">
-<i class="ph ph-envelope-simple"></i>
-<span>Kontakt</span>
-</a>
-</div>
-</nav>
+<nav class="config-bottom-nav" aria-label="Skróty mobilne">
+    <a href="index.html" class="active"><span class="bottom-main-icon"><i class="ph ph-house" aria-hidden="true"></i></span><span>Start</span></a>
+    <a href="shop.html" ><i class="ph ph-storefront" aria-hidden="true"></i><span>Sklep</span></a>
+    
+    <a href="ai-shopping.html" ><i class="ph ph-sparkle" aria-hidden="true"></i><span>Zakup AI</span></a>
+    <button id="mobileCartButton" type="button"  onclick="openCartDrawer && openCartDrawer()"><i class="ph ph-shopping-cart-simple" aria-hidden="true"></i><span>Koszyk</span></button>
+  </nav>
 <script>
     // iOS Safari Zoom-Out Hack on Blur
     document.querySelectorAll('input').forEach(input => {
@@ -5591,5 +5980,356 @@
   <i class="ph ph-check-circle" style="font-size: 18px; color: #00e5ff;"></i>
   <span>Skopiowano link do produktu!</span>
 </div>
+
+    <script id="standard-header-scroll-script">
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById('siteHeader') || document.querySelector('.site-header') || document.querySelector('.mockup-header');
+      const headerLogo = document.querySelector('.brand img') || document.querySelector('.mockup-header-logo img');
+      function handleScroll() {
+        if (window.scrollY > 40) {
+          if (header) header.classList.add('scrolled');
+          if (headerLogo) headerLogo.src = 'images/logo-dark.png';
+        } else {
+          if (header) header.classList.remove('scrolled');
+          if (headerLogo) headerLogo.src = 'images/logo-white.png';
+        }
+      }
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+    });
+  </script>
+
+  <script src="js/smart-search.js"></script>
+
+
+
+
+<!-- MOBILE UI FIXES -->
+<style class="mobile-ui-fixes">
+/* 1. Main Page White Gap Fix */
+body.index-page .site-header {
+  position: absolute !important;
+  top: 0; left: 0; right: 0; width: 100%;
+  z-index: 1000;
+}
+body.index-page .site-header.scrolled {
+  position: fixed !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+body.index-page .site-header:not(.scrolled) {
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+
+/* 2. Hero Banner Spacing on Mobile */
+@media (max-width: 768px) {
+  .mockup-hero-slider, .hero-section {
+    padding-bottom: 110px !important;
+  }
+  .scroll-down-circle {
+    bottom: 110px !important;
+  }
+  
+  /* 3. Standardize Mobile Top Header */
+  .site-header {
+    padding: 10px 15px !important;
+    min-height: 60px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  .site-header .brand img,
+  .mockup-header-logo img {
+    height: 22px !important;
+    max-width: 120px !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+  }
+  .site-header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-left: auto !important;
+  }
+  /* Force cart and search visibility on mobile */
+  .site-header .header-search {
+    display: none !important; /* Hide full search bar to save space, rely on AI/Menu */
+  }
+  .site-header .header-icon {
+    display: inline-flex !important;
+    color: var(--primary-color) !important;
+  }
+  .site-header .header-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    stroke: var(--primary-color) !important;
+  }
+  .menu-toggle {
+    display: none !important; /* Hide old hamburger */
+  }
+}
+
+/* 4. New Bottom Navigation */
+.new-glass-nav {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  width: auto;
+  background: rgba(11, 26, 48, 0.90) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  z-index: 9999;
+  padding: 8px 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+}
+.new-glass-nav .mobile-nav-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  height: 50px;
+}
+.new-glass-nav .mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: rgba(255,255,255,0.6) !important;
+  text-decoration: none !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease;
+  width: 20%;
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  padding-bottom: 2px;
+}
+.new-glass-nav .mobile-nav-item i {
+  font-size: 22px;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+}
+.new-glass-nav .nav-ai-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  margin-bottom: 4px;
+  filter: grayscale(1) brightness(2);
+  transition: all 0.3s ease;
+}
+.new-glass-nav .mobile-nav-item.active {
+  color: #00e5ff !important;
+}
+.new-glass-nav .mobile-nav-item.active i {
+  color: #00e5ff !important;
+  filter: drop-shadow(0 0 8px rgba(0,229,255,0.6));
+}
+.new-glass-nav .nav-center-pill {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0b1a30, #1a365d);
+  border: 2px solid #00e5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+.new-glass-nav .nav-center-pill:active {
+  transform: translateX(-50%) scale(0.95);
+}
+.new-glass-nav .nav-center-pill i {
+  font-size: 24px;
+  margin-bottom: 0;
+  color: #00e5ff;
+}
+.new-glass-nav .mobile-nav-item:hover {
+  color: #fff !important;
+}
+.new-glass-nav .mobile-nav-item:hover .nav-ai-icon {
+  filter: none;
+}
+@media (max-width: 768px) {
+  .new-glass-nav {
+    display: block !important;
+  }
+  .mockup-footer {
+    margin-bottom: 100px !important;
+  }
+}
+/* 5. Mobile Category Banners (Wężej, 1 linia) */
+@media (max-width: 768px) {
+  .category-banner-card, .category-banner-card.sub-card {
+    height: 180px !important; /* Wężej w pionie */
+    padding: 20px 15px !important;
+  }
+  .category-banner-card h3, .category-banner-card.sub-card h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    margin-bottom: 0 !important;
+  }
+  .category-banner-card div > span, .category-banner-card.sub-card div > span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 11px !important;
+  }
+}
+</style>
+<!-- END MOBILE UI FIXES -->
+
+
+<style id="urgent-mobile-fixes-3">
+/* FIX 1: White patch on navy nav on mobile */
+.new-glass-nav a.active, 
+.new-glass-nav .mobile-nav-item.active {
+  background: transparent !important;
+  color: #00e5ff !important;
+}
+.new-glass-nav .nav-center-pill {
+  background: linear-gradient(135deg, #0b1a30, #1a365d) !important;
+  border: 2px solid #00e5ff !important;
+  border-radius: 50% !important; /* ensure it's round and no white corners */
+}
+.new-glass-nav .nav-center-pill i {
+  background: transparent !important;
+}
+
+/* FIX 2: Scroll arrow overlap & Huge category banners */
+@media (max-width: 768px) {
+  .scroll-down-arrow {
+    bottom: 140px !important; /* Move higher to not overlap */
+  }
+  .hero-section, .mockup-hero-slider, .page-hero {
+    padding-bottom: 140px !important;
+  }
+
+  /* Force ALL category banners to be slim */
+  .category-banner-card, 
+  .category-banner-card.sub-card, 
+  .mockup-category-card, 
+  .category-card,
+  .shop-category-card {
+    height: 160px !important;
+    min-height: 160px !important;
+    padding: 20px 15px !important;
+  }
+  .category-banner-card h3, 
+  .category-banner-card.sub-card h3, 
+  .mockup-category-card h3, 
+  .glass-cat-title,
+  .category-card h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    margin-bottom: 4px !important;
+  }
+  .category-banner-card div > span, 
+  .category-banner-card.sub-card div > span, 
+  .mockup-category-card p, 
+  .glass-cat-subtitle,
+  .category-card p {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 11px !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+}
+</style>
+
+
+<style id="global-config-nav-css">
+@property --nav-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes nav-spin {
+  0% { --nav-angle: 0deg; }
+  100% { --nav-angle: 360deg; }
+}
+
+.config-bottom-nav { display: none; }
+@media (max-width: 768px) {
+  .config-bottom-nav { 
+    position: fixed; inset: auto 0 0; z-index: 950; height: 76px; 
+    display: grid; grid-template-columns: repeat(5,1fr); 
+    padding: 7px 8px calc(6px + env(safe-area-inset-bottom)); 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    background: rgba(6,16,28,.95); 
+    backdrop-filter: blur(24px) saturate(180%); 
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* The Animated Border */
+  .config-bottom-nav::before {
+    content: '';
+    position: absolute;
+    inset: -2px 0 0 0; /* Only top border glow */
+    background: conic-gradient(
+        from var(--nav-angle), 
+        transparent 10%, #00e5ff 25%, 
+        transparent 35%, #ff0055 50%, 
+        transparent 60%, #00e5ff 75%, 
+        transparent 85%, #ff0055 100%
+    );
+    animation: nav-spin 4s linear infinite;
+    z-index: -1;
+    opacity: 0.9;
+  }
+  
+  .config-bottom-nav a, .config-bottom-nav button { 
+    min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; border: 0; 
+    color: rgba(255,255,255,.6); background: transparent; text-decoration: none; font-size: 10px; font-weight: 500; cursor: pointer; transition: all 0.3s ease;
+  }
+  .config-bottom-nav i { font-size: 22px; margin-bottom: 2px; transition: all 0.3s ease; }
+  .config-bottom-nav a:hover, .config-bottom-nav button:hover { color: #fff; }
+  .config-bottom-nav .active { color: #fff; }
+  
+  .bottom-main-icon { 
+    width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; 
+    margin-top: -24px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: #fff; 
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.0)); 
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  .bottom-main-icon i { font-size: 24px; margin-bottom: 0; }
+  .config-bottom-nav .active .bottom-main-icon {
+    border: 2px solid #00e5ff;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    background: rgba(0, 229, 255, 0.1);
+    color: #00e5ff;
+  }
+  
+  .site-header.scrolled .header-icon svg, .mockup-header.scrolled .header-icon svg {
+    stroke: #0b1a30 !important;
+  }
+  .menu-toggle, .menu-button {
+    display: block !important;
+  }
+}
+</style>
+
 </body>
 </html>

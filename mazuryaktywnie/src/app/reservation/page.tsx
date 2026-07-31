@@ -307,7 +307,10 @@ export default function ReservationPage() {
                     onSelect={setRange}
                     locale={getLocale()}
                     min={1}
-                    disabled={{ before: new Date() }}
+                    disabled={[
+                      { before: new Date(2026, 8, 7) }, // Zablokowane do 6 września włącznie
+                      { after: new Date(2026, 9, 31) }  // Zablokowane od 1 listopada
+                    ]}
                     className="mx-auto border border-gray-150 dark:border-gray-700 p-2 sm:p-4 rounded-2xl dark:bg-gray-900 bg-white"
                   />
                 </div>

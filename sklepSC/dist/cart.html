@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="pl">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/assets/PRESCOT_pattern2-B7-uF5zG.svg">
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Prescot LED - Koszyk</title>
+<script>if (window.matchMedia('(max-width: 768px)').matches) document.write('<script src="js/mobile-app-shell.js"><\/script>');</script>
+<title>Koszyk | Prescot LED — Producent taśm LED i hurtownia elektryczna</title>
+<meta name="description" content="Koszyk zakupowy Prescot LED."/>
+<meta name="robots" content="noindex, nofollow"/>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -13,7 +17,7 @@
 <style>
     :root {
       --primary-color: #0b1a30;
-      --accent-color: #ff5a00;
+      --accent-color: #0b1a30;
       --text-color: #333333;
       --light-bg: #f4f6f9;
       --white: #ffffff;
@@ -81,7 +85,7 @@
     .mockup-nav ul {
       display: flex;
       list-style: none;
-      gap: 12px;
+      gap: 22px;
       align-items: center;
     }
 
@@ -419,12 +423,12 @@
       cursor: pointer;
       transition: all 0.3s ease;
       margin-top: 15px;
-      box-shadow: 0 8px 24px rgba(255, 94, 0, 0.2);
+      box-shadow: 0 8px 24px rgba(11, 26, 48, 0.2);
     }
     .checkout-btn:hover {
       background: #e05300;
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(255, 94, 0, 0.3);
+      box-shadow: 0 12px 32px rgba(11, 26, 48, 0.3);
     }
     
     .checkout-btn:active {
@@ -612,13 +616,13 @@
       background: transparent;
       outline: none;
       font-size: 14px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       width: 140px;
       transition: width 0.3s ease;
       color: var(--primary-color);
     }
     .mockup-search-container input::placeholder {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       color: rgba(11, 26, 48, 0.6);
     }
     
@@ -813,10 +817,16 @@
     }
     .mobile-nav-items {
       display: flex;
-      justify-content: space-around;
-      align-items: flex-end;
+      justify-content: space-between;
+      align-items: center;
       height: 65px;
-      padding: 0 5px 8px 5px;
+      padding: 0 10px 8px 10px;
+      gap: 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .mobile-nav-items::-webkit-scrollbar {
+      display: none;
     }
     .mobile-nav-item {
       display: flex;
@@ -1150,7 +1160,7 @@
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus, 
     input:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+      -webkit-box-shadow: 0 0 0 1000px #f3f3f3 inset !important;
       -webkit-text-fill-color: #0b1a30 !important;
       transition: background-color 5000s ease-in-out 0s !important;
     }
@@ -1189,15 +1199,8 @@
       padding: 0 !important;
       margin-bottom: 5px !important;
     }
-    .mockup-product-img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      transition: all 0.3s ease !important;
-    }
-    .mockup-product-card:hover .mockup-product-img {
-      transform: scale(1.05) !important;
-    }
+    .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
+    .mockup-product-card:hover .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
     .mockup-product-info {
       padding: 10px 0 0 !important;
       text-align: center !important;
@@ -1572,6 +1575,14 @@
       border: 1px solid rgba(0, 0, 0, 0.06) !important;
     }
     /* --- ULTIMATE DROPDOWN OVERRIDE END --- */
+
+
+  /* Hide Category Text Above Product Card Blocks */
+  .mockup-product-category,
+  p.mockup-product-category,
+  div.mockup-product-category {
+    display: none !important;
+  }
 
 </style>
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -1957,7 +1968,7 @@
     .magic-dropdown ul li a:hover {
       background: rgba(0,0,0,0.06) !important;
       border-color: rgba(0,0,0,0.12) !important;
-      color: #ff5e00 !important; /* Orange text on hover */
+      color: #0b1a30 !important; /* Orange text on hover */
     }
   
     /* --- ULTIMATE DROPDOWN OVERRIDE START --- */
@@ -2248,159 +2259,401 @@
     }
 </style>
 
-<style>
-/* Clean Search Bar Styling */
-.mockup-search-container {
-  display: flex !important;
-  align-items: center !important;
-  background: rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  border-radius: 99px !important;
-  padding: 6px 16px !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
 
-.mockup-search-container:focus-within {
-  background: rgba(255, 255, 255, 0.22) !important;
-  border-color: rgba(255, 255, 255, 0.55) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
-}
+<style id="scrolled-nav-visibility-override">
+  /* Guaranteed 100% Contrast for Scrolled Header Navigation */
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active),
+  body .mockup-header.scrolled .mockup-nav ul li a:not(.active) {
+    color: #0b1a30 !important;
+    background: rgba(11, 26, 48, 0.06) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    font-weight: 600 !important;
+  }
 
-.mockup-search-container input {
-  border: none !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  outline: none !important;
-  font-size: 13px !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-weight: 500 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  box-shadow: none !important;
-  letter-spacing: 0.3px !important;
-}
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active):hover,
+  body .mockup-header.scrolled .mockup-nav ul li a:not(.active):hover {
+    background: rgba(11, 26, 48, 0.14) !important;
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.25) !important;
+  }
 
-.mockup-search-container input::placeholder {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  color: rgba(255, 255, 255, 0.75) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.75) !important;
+  body .mockup-header.scrolled .mockup-nav > ul > li > a.active,
+  body .mockup-header.scrolled .mockup-nav ul li a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border-color: #0b1a30 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+</style>
+
+
+<style id="ultimate-header-footer-fix">
+  /* Force 100% Crisp Visibility for All Header Navigation Links regardless of scroll state */
+  body .mockup-header .mockup-nav ul li a:not(.active),
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a:not(.active),
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active) {
+    color: #0b1a30 !important;
+    background: rgba(11, 26, 48, 0.06) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a:not(.active):hover,
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a:not(.active):hover,
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active):hover {
+    background: rgba(11, 26, 48, 0.14) !important;
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.25) !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a.active,
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a.active,
+  body .mockup-header.scrolled .mockup-nav > ul > li > a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border: 1px solid #0b1a30 !important;
+    font-weight: 700 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+
+  /* Footer White + Orange Logo Styling */
+  footer .footer-logo img,
+  .mockup-footer .footer-logo img {
+    height: 32px !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+</style>
+
+
+<style id="product-title-4-lines-override">
+  /* Force Up to 4 Full Lines for Product Titles (No Word Truncation) */
+  .mockup-product-title,
+  .mockup-product-title a,
+  div.mockup-product-title,
+  h3.mockup-product-title {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    overflow: visible !important;
+    max-height: none !important;
+    min-height: 72px !important;
+    line-height: 1.35 !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #0b1a30 !important;
+    margin-bottom: 8px !important;
+    text-overflow: clip !important;
+  }
+
+  .mockup-product-title a:hover {
+    color: var(--accent-color, #0b1a30) !important;
+  }
+</style>
+
+
+
+<style id="custom-nav-configurator-cta-style">
+  /* Clean Unified Header Navigation */
+  body .mockup-header .mockup-nav ul li a,
+  body .mockup-header.scrolled .mockup-nav ul li a {
+    text-decoration: none !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #0b1a30 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    transition: all 0.2s ease !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a:hover,
+  body .mockup-header.scrolled .mockup-nav ul li a:hover {
+    background: rgba(11, 26, 48, 0.08) !important;
+    color: #0b1a30 !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a.active,
+  body .mockup-header.scrolled .mockup-nav ul li a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border: 1px solid #0b1a30 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+
+  /* Scrolled Header Styling - Crisp Navy Elements */
+  body .mockup-header.scrolled {
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  body .mockup-header.scrolled .mockup-action-icon,
+  body .mockup-header .mockup-action-icon {
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.15) !important;
+  }
+
+  /* Footer White Logo Styling */
+  footer .footer-logo img,
+  .mockup-footer .footer-logo img {
+    height: 32px !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+</style>
+
+
+
+<style id="square-product-images-override">
+  /* Full Square Fill Product Cards (object-fit: cover) */
+  .mockup-product-media,
+  div.mockup-product-media {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    margin-bottom: 8px !important;
+    background-color: #f4f6f9 !important;
+    display: block !important;
+  }
+
+  .mockup-product-img,
+  .mockup-product-media img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: inherit !important;
+    padding: 0 !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .mockup-product-card:hover .mockup-product-img,
+  .mockup-product-card:hover .mockup-product-media img {
+    transform: scale(1.05) !important;
+  }
+
+  /* Hide category text line above product card blocks */
+  .mockup-product-category,
+  p.mockup-product-category,
+  div.mockup-product-category {
+    display: none !important;
+  }
+</style>
+
+
+
+<style id="global-premium-overrides">
+/* Premium Footer CSS */
+.premium-footer {
+  background: var(--primary-color, #0b1a30) !important;
+  color: #fff !important;
+  padding: 80px 8% 40px !important;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-family: 'Outfit', sans-serif;
+  margin-top: auto;
+}
+.premium-footer .footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.premium-footer .footer-logo img {
+  height: 38px !important;
   opacity: 1 !important;
-  font-weight: 400 !important;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
+.premium-footer .brand-desc {
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+.premium-footer .social-links {
+  display: flex;
+  gap: 15px;
+}
+.premium-footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+.premium-footer .social-links a:hover {
+  background: var(--accent-color, #0b1a30);
+  transform: translateY(-3px);
+}
+.premium-footer h3 {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+.premium-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.premium-footer ul li {
+  margin-bottom: 12px;
+}
+.premium-footer ul li a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.premium-footer ul li a:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+.premium-footer .contact-info li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.premium-footer .contact-info i {
+  font-size: 20px;
+  color: var(--accent-color, #0b1a30);
+  margin-top: 2px;
+}
+.premium-footer .footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
+.premium-footer .payment-methods {
+  display: flex;
+  gap: 15px;
+  font-size: 24px;
+  color: rgba(255,255,255,0.5);
+}
+@media (max-width: 992px) {
+  .premium-footer .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .premium-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .premium-footer .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
 }
 
-.mockup-search-container button {
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  padding: 0 !important;
+/* Logo Header Fix */
+.site-header .brand {
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
+  height: 100%;
 }
-
-.mockup-search-container button svg {
-  stroke: #ffffff !important;
-  transition: stroke 0.3s ease !important;
+.site-header .brand img {
+  height: 36px !important;
+  max-width: 170px !important;
+  object-fit: contain !important;
+  transform: none;
 }
-
-/* Scrolled Header Search Bar State */
-.mockup-header.scrolled .mockup-search-container {
-  background: rgba(11, 26, 48, 0.05) !important;
-  border-color: rgba(11, 26, 48, 0.15) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container:focus-within {
-  background: rgba(11, 26, 48, 0.08) !important;
-  border-color: rgba(11, 26, 48, 0.3) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input {
-  color: #0b1a30 !important;
-  -webkit-text-fill-color: #0b1a30 !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input::placeholder {
-  color: rgba(11, 26, 48, 0.6) !important;
-  -webkit-text-fill-color: rgba(11, 26, 48, 0.6) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container button svg {
-  stroke: #0b1a30 !important;
-}
-
-/* Autofill Overrides */
-.mockup-search-container input:-webkit-autofill,
-.mockup-search-container input:-webkit-autofill:hover, 
-.mockup-search-container input:-webkit-autofill:focus, 
-.mockup-search-container input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-  -webkit-text-fill-color: #ffffff !important;
-  transition: background-color 50000s ease-in-out 0s !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill,
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:hover, 
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:focus, 
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:active {
-  -webkit-text-fill-color: #0b1a30 !important;
+@media (max-width: 768px) {
+  .site-header .brand img {
+    height: 32px !important;
+  }
 }
 </style>
-  <script type="module" crossorigin src="/assets/cart-BBhaAl9v.js"></script>
+
+
+
+
+  <script>window.location.replace("index.html?cart=open");</script>
+  <script type="module" crossorigin src="/assets/cart-C-LoMkPO.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-Dezn_h7o.js">
-  <link rel="stylesheet" crossorigin href="/assets/main-BAlXFKIm.css">
+  <link rel="stylesheet" crossorigin href="/assets/main-s0ab0Jqi.css">
+  <link rel="stylesheet" crossorigin href="/assets/custom-buttons-AzkvWn4v.css">
 </head>
 <body>
-<header class="mockup-header" id="mainHeader">
-<div class="mockup-header-logo">
-<a href="index.html"><img alt="Prescot Logo" id="headerLogo" src="/assets/logo-white-BOpLtG3H.png"/></a>
-</div>
-<nav class="mockup-nav">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="shop.html">Sklep</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="about.html">O nas</a></li>
-<li><a href="contact.html">Kontakt</a></li>
-</ul>
-</nav>
-<div class="mockup-actions">
-<div class="mockup-search-container">
-<input id="headerSearchInput" placeholder="Czego szukasz..." type="text"/>
-<button aria-label="Szukaj" id="headerSearchBtn">
-<svg fill="none" height="18" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
-</button>
-</div>
-<button aria-label="Konto użytkownika" class="mockup-action-icon">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-</button>
-<a aria-label="Lista Życzeń" class="mockup-action-icon wishlist-trigger" href="#">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-</a>
-<a aria-label="Koszyk" class="mockup-action-icon" class="active" href="cart.html" style="position: relative;">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
-<span class="cart-badge"></span>
-</a>
-<button class="menu-toggle" id="menuToggle">
-<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
-</button>
-</div>
-</header>
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="shop.html">Sklep</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="about.html">O nas</a></li>
-<li><a href="contact.html">Kontakt</a></li>
-</ul>
-<div class="mobile-socials">
-<a href="#"><i class="ph ph-instagram-logo"></i></a>
-<a href="#"><i class="ph ph-facebook-logo"></i></a>
-<a href="#"><i class="ph ph-pinterest-logo"></i></a>
-</div>
+<header class="site-header" id="siteHeader">
+    <a class="brand" href="index.html" aria-label="Prescot — strona główna">
+      <img src="/assets/logo-white-BOpLtG3H.png" data-dark="images/logo-dark.png" data-light="images/logo-white.png" alt="Prescot">
+    </a>
+    <nav class="desktop-nav" aria-label="Nawigacja główna">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Sklep</a>
+      <a href="blog.html">Wiedza</a>
+      <a href="about.html">O nas</a>
+      <a href="contact.html">Kontakt</a>
+      
+      <a  href="ai-shopping.html"><img class="gemini-icon" src="/assets/prescot-pattern--1wGaVOr.png" style="width: 18px; height: 18px; object-fit: contain; margin-right: 6px; vertical-align: middle;">Zakup AI</a>
+    </nav>
+    <div class="header-actions">
+      <form class="header-search" action="shop.html" role="search">
+        <label class="sr-only" for="configSearch">Szukaj produktu</label>
+        <input id="configSearch" name="q" type="search" placeholder="SKU, barwa, moc…">
+        <button type="submit" aria-label="Szukaj">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+        </button>
+      </form>
+      <a class="header-icon" href="javascript:void(0);" onclick="openCartDrawer();" aria-label="Koszyk">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 7H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Otwórz menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Nawigacja mobilna" hidden>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Sklep</a>
+      <a href="blog.html">Wiedza</a>
+      <a href="about.html">O nas</a>
+      <a href="contact.html">Kontakt</a>
+      
+      <a  href="ai-shopping.html"><img class="gemini-icon" src="/assets/prescot-pattern--1wGaVOr.png" style="width: 18px; height: 18px; object-fit: contain; margin-right: 6px; vertical-align: middle;">Zakup AI</a>
+    </nav>
+  </header>
+
 </div>
 <main class="cart-container">
 <h1 class="cart-title">Twój Koszyk</h1>
@@ -2440,72 +2693,66 @@
 </section>
 </div>
 </main>
-<footer class="mockup-footer">
-<div class="footer-grid">
-<div class="footer-col">
-<div class="footer-logo">
-<img alt="Prescot Logo" src="/assets/logo-white-BOpLtG3H.png" style="height: 26px; opacity: 0.9; margin-bottom: 5px; max-width: 100%;"/>
-</div>
-<p style="margin-top: 15px;">Prescot LED to profesjonalny dostawca najwyższej jakości taśm LED, profili aluminiowych, nowoczesnych sterowników oraz niezawodnych zasilaczy hermetycznych.</p><p style="margin-top: 15px; color: #ccc;"><strong>PRESCOT LED</strong><br/>ul. Przykładowa 12<br/>00-001 Warszawa<br/>kontakt@prescot.com.pl</p>
-</div>
-<div class="footer-col">
-<h3>Link</h3>
-<ul>
-<li><a href="#">Kolekcje</a></li>
-<li><a href="#">Wszystkie Produkty</a></li>
-<li><a href="#">Nowości</a></li>
-<li><a href="#">Wyprzedaż</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h3>Wsparcie</h3>
-<ul>
-<li><a href="#">Polityka Prywatności</a></li>
-<li><a href="#">Regulamin</a></li>
-<li><a href="#">Wysyłka i Zwroty</a></li>
-<li><a href="#">FAQ</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h3>Newsletter</h3>
-<p style="margin-bottom: 20px;">Zapisz się, aby otrzymywać informacje o nowych kolekcjach i ofertach specjalnych.</p>
-<div class="newsletter-glass-box" style="display: flex; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 4px; width: 100%;">
-<input aria-label="E-mail" placeholder="Twój e-mail" style="border: none; background: transparent; color: #fff; padding: 8px 12px; width: 100%; font-size: 13px; font-family: \'Inter\', sans-serif; outline: none;" type="email"/>
-<button onmouseout="this.style.background='rgba(255, 255, 255, 0.15)'" onmouseover="this.style.background='rgba(255, 255, 255, 0.25)'" style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; font-weight: 600; font-size: 11px; padding: 8px 20px; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;">OK</button>
-</div>
-</div>
-</div>
-<div class="footer-bottom">
-<p>© 2026 Prescot LED. Wszelkie prawa zastrzeżone.</p>
-<p>Powered by PRESCOT LED</p>
-</div>
+
+<footer class="mockup-footer premium-footer">
+  <div class="footer-grid">
+    <div class="footer-col brand-col">
+      <div class="footer-logo">
+        <img alt="Prescot Logo" src="/assets/logo-white-BOpLtG3H.png" />
+      </div>
+      <p class="brand-desc">Tworzymy oświetlenie jutra. Prescot LED to bezkompromisowa jakość, zaawansowana technologia COB i inteligentne systemy sterowania światłem dla profesjonalistów.</p>
+      <div class="social-links">
+        <a href="#"><i class="ph ph-facebook-logo"></i></a>
+        <a href="#"><i class="ph ph-instagram-logo"></i></a>
+        <a href="#"><i class="ph ph-youtube-logo"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>Odkryj</h3>
+      <ul>
+        <li><a href="shop.html">Produkty Premium</a></li>
+        
+        <li><a href="#">Bestsellery</a></li>
+        <li><a href="#">Nowości 2026</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>Wsparcie</h3>
+      <ul>
+        <li><a href="contact.html">Kontakt & Pomoc</a></li>
+        <li><a href="#">Gwarancja 5 Lat</a></li>
+        <li><a href="#">Baza Wiedzy</a></li>
+        <li><a href="#">Polityka Prywatności</a></li>
+      </ul>
+    </div>
+    <div class="footer-col contact-col">
+      <h3>Dane firmy</h3>
+      <ul class="contact-info">
+        <li><i class="ph ph-buildings"></i> PRESCOT sp. z o.o.</li>
+        <li><i class="ph ph-map-pin"></i> ul. Wileńska 1, 11-500 Giżycko</li>
+        <li><i class="ph ph-identification-card"></i> NIP 8451939947</li>
+        <li><i class="ph ph-phone"></i> <a href="tel:+48874282118">+48 87 428 21 18</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 PRESCOT LED. Wszelkie prawa zastrzeżone.</p>
+    <div class="payment-methods">
+      <i class="ph ph-stripe-logo"></i>
+      <i class="ph ph-paypal-logo"></i>
+    </div>
+  </div>
 </footer>
+
 <!-- App Logic -->
 <!-- Mobile Bottom Navigation -->
-<nav class="mobile-bottom-nav">
-<div class="mobile-nav-items">
-<a class="mobile-nav-item active" href="index.html">
-<i class="ph ph-house"></i>
-<span>Home</span>
-</a>
-<a class="mobile-nav-item" href="javascript:void(0);" onclick="openMobileCategories();">
-<i class="ph ph-squares-four"></i>
-<span>Kategorie</span>
-</a>
-<a class="mobile-nav-item" href="blog.html">
-<i class="ph ph-article"></i>
-<span>Blog</span>
-</a>
-<a class="mobile-nav-item" href="about.html">
-<i class="ph ph-info"></i>
-<span>O nas</span>
-</a>
-<a class="mobile-nav-item" href="contact.html">
-<i class="ph ph-envelope-simple"></i>
-<span>Kontakt</span>
-</a>
-</div>
-</nav>
+<nav class="config-bottom-nav" aria-label="Skróty mobilne">
+    <a href="index.html" ><i class="ph ph-house" aria-hidden="true"></i><span>Start</span></a>
+    <a href="shop.html" ><i class="ph ph-storefront" aria-hidden="true"></i><span>Sklep</span></a>
+    
+    <a href="ai-shopping.html" ><i class="ph ph-sparkle" aria-hidden="true"></i><span>Zakup AI</span></a>
+    <button id="mobileCartButton" type="button" class="active" onclick="openCartDrawer && openCartDrawer()"><span class="bottom-main-icon"><i class="ph ph-shopping-cart-simple" aria-hidden="true"></i></span><span>Koszyk</span></button>
+  </nav>
 <style>
     
     @media (max-width: 768px) {
@@ -2589,5 +2836,304 @@
     /* --- ULTIMATE DROPDOWN OVERRIDE END --- */
 
 </style>
+
+    <script id="standard-header-scroll-script">
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById('siteHeader') || document.querySelector('.site-header') || document.querySelector('.mockup-header');
+      const headerLogo = document.querySelector('.brand img') || document.querySelector('.mockup-header-logo img');
+      function handleScroll() {
+        if (window.scrollY > 40) {
+          if (header) header.classList.add('scrolled');
+          if (headerLogo) headerLogo.src = 'images/logo-dark.png';
+        } else {
+          if (header) header.classList.remove('scrolled');
+          if (headerLogo) headerLogo.src = 'images/logo-white.png';
+        }
+      }
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+    });
+  </script>
+
+  <script src="js/smart-search.js"></script>
+
+
+
+
+<!-- MOBILE UI FIXES -->
+<style class="mobile-ui-fixes">
+/* 1. Main Page White Gap Fix */
+body.index-page .site-header {
+  position: absolute !important;
+  top: 0; left: 0; right: 0; width: 100%;
+  z-index: 1000;
+}
+body.index-page .site-header.scrolled {
+  position: fixed !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+body.index-page .site-header:not(.scrolled) {
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+
+/* 2. Hero Banner Spacing on Mobile */
+@media (max-width: 768px) {
+  .mockup-hero-slider, .hero-section {
+    padding-bottom: 110px !important;
+  }
+  .scroll-down-circle {
+    bottom: 110px !important;
+  }
+  
+  /* 3. Standardize Mobile Top Header */
+  .site-header {
+    padding: 10px 15px !important;
+    min-height: 60px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  .site-header .brand img,
+  .mockup-header-logo img {
+    height: 22px !important;
+    max-width: 120px !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+  }
+  .site-header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-left: auto !important;
+  }
+  /* Force cart and search visibility on mobile */
+  .site-header .header-search {
+    display: none !important; /* Hide full search bar to save space, rely on AI/Menu */
+  }
+  .site-header .header-icon {
+    display: inline-flex !important;
+    color: var(--primary-color) !important;
+  }
+  .site-header .header-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    stroke: var(--primary-color) !important;
+  }
+  .menu-toggle {
+    display: none !important; /* Hide old hamburger */
+  }
+}
+
+/* 4. New Bottom Navigation */
+.new-glass-nav {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  width: auto;
+  background: rgba(11, 26, 48, 0.90) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  z-index: 9999;
+  padding: 8px 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+}
+.new-glass-nav .mobile-nav-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  height: 50px;
+}
+.new-glass-nav .mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: rgba(255,255,255,0.6) !important;
+  text-decoration: none !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease;
+  width: 20%;
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  padding-bottom: 2px;
+}
+.new-glass-nav .mobile-nav-item i {
+  font-size: 22px;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+}
+.new-glass-nav .nav-ai-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  margin-bottom: 4px;
+  filter: grayscale(1) brightness(2);
+  transition: all 0.3s ease;
+}
+.new-glass-nav .mobile-nav-item.active {
+  color: #00e5ff !important;
+}
+.new-glass-nav .mobile-nav-item.active i {
+  color: #00e5ff !important;
+  filter: drop-shadow(0 0 8px rgba(0,229,255,0.6));
+}
+.new-glass-nav .nav-center-pill {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0b1a30, #1a365d);
+  border: 2px solid #00e5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+.new-glass-nav .nav-center-pill:active {
+  transform: translateX(-50%) scale(0.95);
+}
+.new-glass-nav .nav-center-pill i {
+  font-size: 24px;
+  margin-bottom: 0;
+  color: #00e5ff;
+}
+.new-glass-nav .mobile-nav-item:hover {
+  color: #fff !important;
+}
+.new-glass-nav .mobile-nav-item:hover .nav-ai-icon {
+  filter: none;
+}
+@media (max-width: 768px) {
+  .new-glass-nav {
+    display: block !important;
+  }
+  .mockup-footer {
+    margin-bottom: 100px !important;
+  }
+}
+/* 5. Mobile Category Banners (Wężej, 1 linia) */
+@media (max-width: 768px) {
+  .category-banner-card, .category-banner-card.sub-card {
+    height: 180px !important; /* Wężej w pionie */
+    padding: 20px 15px !important;
+  }
+  .category-banner-card h3, .category-banner-card.sub-card h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    margin-bottom: 0 !important;
+  }
+  .category-banner-card div > span, .category-banner-card.sub-card div > span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 11px !important;
+  }
+}
+</style>
+<!-- END MOBILE UI FIXES -->
+
+
+<style id="urgent-mobile-fixes-3">
+/* FIX 1: White patch on navy nav on mobile */
+.new-glass-nav a.active, 
+.new-glass-nav .mobile-nav-item.active {
+  background: transparent !important;
+  color: #00e5ff !important;
+}
+.new-glass-nav .nav-center-pill {
+  background: linear-gradient(135deg, #0b1a30, #1a365d) !important;
+  border: 2px solid #00e5ff !important;
+  border-radius: 50% !important; /* ensure it's round and no white corners */
+}
+.new-glass-nav .nav-center-pill i {
+  background: transparent !important;
+}
+
+/* FIX 2: Scroll arrow overlap & Huge category banners */
+@media (max-width: 768px) {
+  .scroll-down-arrow {
+    bottom: 140px !important; /* Move higher to not overlap */
+  }
+  .hero-section, .mockup-hero-slider, .page-hero {
+    padding-bottom: 140px !important;
+  }
+
+  /* Force ALL category banners to be slim */
+  .category-banner-card, 
+  .category-banner-card.sub-card, 
+  .mockup-category-card, 
+  .category-card,
+  .shop-category-card {
+    height: 160px !important;
+    min-height: 160px !important;
+    padding: 20px 15px !important;
+  }
+  .category-banner-card h3, 
+  .category-banner-card.sub-card h3, 
+  .mockup-category-card h3, 
+  .glass-cat-title,
+  .category-card h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    margin-bottom: 4px !important;
+  }
+  .category-banner-card div > span, 
+  .category-banner-card.sub-card div > span, 
+  .mockup-category-card p, 
+  .glass-cat-subtitle,
+  .category-card p {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 11px !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+}
+</style>
+
+
+<style id="global-config-nav-css">
+.config-bottom-nav { display: none; }
+/* Exact bottom nav styles from led-configurator.css */
+@media (max-width: 768px) {
+  .config-bottom-nav { position: fixed; inset: auto 0 0; z-index: 950; height: 76px; display: grid; grid-template-columns: repeat(5,1fr); padding: 7px 8px calc(6px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,0.1); background: rgba(6,16,28,.98); backdrop-filter: blur(20px); }
+  .config-bottom-nav a, .config-bottom-nav button { min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; border: 0; color: rgba(255,255,255,.5); background: transparent; text-decoration: none; font-size: 8px; font-weight: 600; cursor: pointer; }
+  .config-bottom-nav i { font-size: 20px; }
+  .config-bottom-nav .active { color: #fff; }
+  .bottom-main-icon { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; margin-top: -20px; border: 2px solid #00e5ff; border-radius: 50%; color: #00e5ff; background: #10233a; box-shadow: 0 0 22px rgba(40,215,255,.2); }
+  .bottom-main-icon i { font-size: 21px; }
+  
+  /* Only force dark icons on white headers (scrolled) */
+  .site-header.scrolled .header-icon svg, .mockup-header.scrolled .header-icon svg {
+    stroke: #0b1a30 !important;
+  }
+  .menu-toggle, .menu-button {
+    display: block !important;
+  }
+}
+</style>
+
 </body>
 </html>

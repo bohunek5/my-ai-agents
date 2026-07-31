@@ -1,6 +1,6 @@
 # AI iMessage Agent przez OpenAI
 
-Ten agent czyta nowe iMessage/SMS z lokalnej bazy macOS Messages i odpisuje tylko kontaktom z allowlisty, jesli allowlista istnieje.
+Ten agent czyta nowe iMessage/SMS z lokalnej bazy macOS Messages i odpisuje tylko kontaktom z allowlisty.
 
 ## 1. Konfiguracja modelu
 
@@ -37,7 +37,7 @@ Nie wpisuj klucza API do repo.
 
 ## 2. Allowlista
 
-Jesli chcesz ograniczyc automatyczne odpowiedzi do konkretnych osob:
+Dodaj osoby, którym agent może automatycznie odpisywać:
 
 ```bash
 nano "$HOME/Library/Application Support/iMessageAIAgent/allowlist.txt"
@@ -50,7 +50,7 @@ Jedna osoba na linie, np.:
 prezes@zeglarstwomazury.pl
 ```
 
-Jesli pliku nie ma albo jest pusty, agent zachowa dotychczasowy tryb i moze reagowac szerzej.
+Numery są porównywane niezależnie od spacji i prefiksu `+48`. Jeśli pliku nie ma albo jest pusty, automatyczne odpowiedzi są zablokowane. Prywatny kanał sterowania nadal działa. Starszy, szerszy tryb można przywrócić ustawieniem `IMESSAGE_AI_REQUIRE_ALLOWLIST=0`.
 
 ## 3. Start/stop
 
@@ -62,6 +62,8 @@ tools/toggle_imessage_ai_agent.sh status
 
 Ikona korzysta z tego samego skryptu.
 
+Pozycja `Zamknij program i wyłącz AI` zatrzymuje agenta, kończy jego aktywne zadania Codex i zamyka ikonę. Aplikacja nie uruchamia się wtedy ponownie; wróci po kolejnym logowaniu albo po ręcznym uruchomieniu.
+
 ## 4. Jak agent odpowiada
 
 - uzywa OpenAI Responses API,
@@ -69,6 +71,7 @@ Ikona korzysta z tego samego skryptu.
 - pisze krotko i po polsku,
 - nie wymysla faktow, cen ani terminow,
 - nie odpisuje na kody, hasla, BLIK, banki i tematy wymagajace osobistej decyzji,
+- nie odpowiada automatycznie w czatach grupowych,
 - gdy model uzna temat za ryzykowny, zwraca `NIE_ODPISUJ`, a skrypt nic nie wysyla.
 
 ## 5. Kanał sterowania Karola

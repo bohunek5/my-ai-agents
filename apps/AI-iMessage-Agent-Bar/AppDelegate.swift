@@ -26,14 +26,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         stateItem.tag = 100
         menu.addItem(stateItem)
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Przelacz ON/OFF", action: #selector(toggleAgent), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Wlacz AI", action: #selector(turnOn), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Wylacz AI", action: #selector(turnOff), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Przełącz ON/OFF", action: #selector(toggleAgent), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Włącz AI", action: #selector(turnOn), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Wyłącz AI", action: #selector(turnOff), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Pokaz log", action: #selector(showLog), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Otworz folder aplikacji", action: #selector(openFolder), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Pokaż log", action: #selector(showLog), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Otwórz folder aplikacji", action: #selector(openFolder), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Zamknij ikonke", action: #selector(quit), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: "Zamknij program i wyłącz AI", action: #selector(quit), keyEquivalent: "q"))
         return menu
     }
 
@@ -42,7 +42,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         isOn = output == "on"
         statusItem.button?.image = makeDotImage(on: isOn)
         if let stateItem = statusItem.menu?.item(withTag: 100) {
-            stateItem.title = isOn ? "Status: wlaczony" : "Status: wylaczony"
+            stateItem.title = isOn ? "Status: włączony" : "Status: wyłączony"
         }
     }
 
@@ -70,10 +70,30 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func quit() {
+        timer?.invalidate()
+        timer = nil
+        let result = runControlWithStatus(["off"])
+        guard result.exitCode == 0 else {
+            let alert = NSAlert()
+            alert.alertStyle = .critical
+            alert.messageText = "Nie udało się wyłączyć AI"
+            alert.informativeText = result.output.isEmpty
+                ? "Program pozostaje otwarty. Sprawdź log i spróbuj ponownie."
+                : result.output
+            alert.runModal()
+            timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
+                self?.refreshStatus()
+            }
+            return
+        }
         NSApplication.shared.terminate(nil)
     }
 
     private func runControl(_ arguments: [String]) -> String {
+        runControlWithStatus(arguments).output
+    }
+
+    private func runControlWithStatus(_ arguments: [String]) -> (output: String, exitCode: Int32) {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: "/bin/bash")
         process.arguments = [controlScript] + arguments
@@ -86,9 +106,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             try process.run()
             process.waitUntilExit()
             let data = pipe.fileHandleForReading.readDataToEndOfFile()
-            return String(data: data, encoding: .utf8) ?? ""
+            return (String(data: data, encoding: .utf8) ?? "", process.terminationStatus)
         } catch {
-            return ""
+            return (error.localizedDescription, -1)
         }
     }
 

@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+  <link rel="icon" type="image/svg+xml" href="images/PRESCOT_pattern2.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prescot LED - Sklep</title>
+  <script>if (window.matchMedia('(max-width: 768px)').matches) document.write('<script src="js/mobile-app-shell.js"><\/script>');</script>
+  <link rel="preload" as="image" href="images/led_shop_hero.png" fetchpriority="high">
+  <title>Sklep LED | Prescot LED — Producent taśm LED i hurtownia elektryczna</title>
+  <meta name="description" content="Sklep Prescot LED: taśmy LED, zasilacze, sterowniki, profile i akcesoria do kompletnych systemów oświetlenia.">
+  <link rel="canonical" href="https://bohunek5.github.io/sklepSC/shop.html">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Prescot LED">
+  <meta property="og:title" content="Sklep LED | Prescot LED — Producent taśm LED i hurtownia elektryczna">
+  <meta property="og:description" content="Taśmy LED, zasilacze, sterowniki, profile i akcesoria do kompletnych systemów oświetlenia.">
+  <meta property="og:url" content="https://bohunek5.github.io/sklepSC/shop.html">
+  <meta property="og:image" content="https://bohunek5.github.io/sklepSC/images/slide_okladka.webp">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="2000">
+  <meta property="og:image:height" content="1333">
+  <meta property="og:image:alt" content="Taśmy LED, zasilacze i sterowanie oświetleniem">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sklep LED | Prescot LED — Producent taśm LED">
+  <meta name="twitter:description" content="Taśmy LED, zasilacze, sterowniki, profile i akcesoria do kompletnych systemów oświetlenia.">
+  <meta name="twitter:image" content="https://bohunek5.github.io/sklepSC/images/slide_okladka.webp">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,13 +31,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Theme CSS -->
-  <link rel="stylesheet" href="assets/xo-webcomponents.min.css?v=2">
-  <link rel="stylesheet" href="assets/main.min.css?v=2">
+  <link rel="stylesheet" href="assets/xo-webcomponents.min.css">
+  <link rel="stylesheet" href="assets/main.min.css">
   
   <style>
     :root {
       --primary-color: #0b1a30;
-      --accent-color: #ff5a00;
+      --accent-color: #0b1a30;
       --text-color: #333333;
       --light-bg: #f4f6f9;
       --white: #ffffff;
@@ -85,7 +105,7 @@
     .mockup-nav ul {
       display: flex;
       list-style: none;
-      gap: 12px;
+      gap: 26px;
       align-items: center;
     }
 
@@ -422,16 +442,9 @@
       background-color: var(--light-bg);
     }
 
-    .mockup-product-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
-    }
+    .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
 
-    .mockup-product-card:hover .mockup-product-img {
-      transform: scale(1.05);
-    }
+    .mockup-product-card:hover .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
 
     .product-actions-hover {
       position: absolute;
@@ -491,7 +504,7 @@
       font-weight: 500;
       transition: var(--transition);
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
       white-space: normal;
@@ -512,29 +525,70 @@
       color: var(--primary-color);
     }
 
-    /* Pagination */
-    .pagination-container {
+    /* Ultra-sleek Compact Centered Pagination */
+    .pagination-wrapper {
       display: flex;
       justify-content: center;
-      gap: 10px;
-      margin-top: 50px;
+      align-items: center;
+      width: 100%;
+      margin: 45px 0 25px 0;
+    }
+
+    .pagination-container {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 99px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      max-width: 95%;
     }
 
     .pagination-btn {
-      padding: 10px 18px;
-      border: 1px solid #ddd;
-      background: var(--white);
+      min-width: 36px;
+      height: 36px;
+      padding: 0 10px;
+      border-radius: 50px;
+      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      color: #1e293b;
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
-      font-weight: 500;
-      font-size: 14px;
-      transition: var(--transition);
-      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
     }
 
-    .pagination-btn:hover, .pagination-btn.active {
-      background: var(--primary-color);
-      color: var(--white);
-      border-color: var(--primary-color);
+    .pagination-btn:hover {
+      background: var(--primary-color, #0b1a30);
+      color: #ffffff;
+      border-color: var(--primary-color, #0b1a30);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(11, 26, 48, 0.2);
+    }
+
+    .pagination-btn.active {
+      background: var(--primary-color, #0b1a30);
+      color: #ffffff;
+      border-color: var(--primary-color, #0b1a30);
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(11, 26, 48, 0.25);
+    }
+
+    .pagination-ellipsis {
+      padding: 0 6px;
+      color: #94a3b8;
+      font-weight: 700;
+      font-size: 14px;
     }
 
     /* Injected styles for shared modal */
@@ -715,13 +769,13 @@
       background: transparent;
       outline: none;
       font-size: 14px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       width: 140px;
       transition: width 0.3s ease;
       color: var(--primary-color);
     }
     .mockup-search-container input::placeholder {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       color: rgba(11, 26, 48, 0.6);
     }
     
@@ -916,10 +970,16 @@
     }
     .mobile-nav-items {
       display: flex;
-      justify-content: space-around;
-      align-items: flex-end;
+      justify-content: space-between;
+      align-items: center;
       height: 65px;
-      padding: 0 5px 8px 5px;
+      padding: 0 10px 8px 10px;
+      gap: 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .mobile-nav-items::-webkit-scrollbar {
+      display: none;
     }
     .mobile-nav-item {
       display: flex;
@@ -984,14 +1044,14 @@
       }
       
       .mockup-header-logo img {
-        height: 28px !important;
+        height: auto !important; max-width: 140px !important;
         width: auto !important;
         object-fit: contain !important;
         max-width: 120px !important;
       }
       .mockup-action-icon {
         width: 36px !important;
-        height: 32px !important;
+        height: auto !important; max-width: 120px !important;
       }
       .mockup-action-icon svg {
         width: 16px !important;
@@ -1831,7 +1891,7 @@
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus, 
     input:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+      -webkit-box-shadow: 0 0 0 1000px #f3f3f3 inset !important;
       -webkit-text-fill-color: #0b1a30 !important;
       transition: background-color 5000s ease-in-out 0s !important;
     }
@@ -1870,15 +1930,8 @@
       padding: 0 !important;
       margin-bottom: 5px !important;
     }
-    .mockup-product-img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      transition: all 0.3s ease !important;
-    }
-    .mockup-product-card:hover .mockup-product-img {
-      transform: scale(1.05) !important;
-    }
+    .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
+    .mockup-product-card:hover .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
     .mockup-product-info {
       padding: 10px 0 0 !important;
       text-align: center !important;
@@ -1983,7 +2036,9 @@
 
     /* Prevent product title wrapping */
     .mockup-product-title {
-      white-space: nowrap !important;
+      white-space: normal !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       width: 100% !important;
@@ -2174,7 +2229,7 @@
       .mockup-search-container button {
         right: 4px !important;
         width: 28px !important;
-        height: 28px !important;
+        height: auto !important; max-width: 140px !important;
       }
       /* Adjust header items to fit search */
       .mockup-header-logo img {
@@ -2276,7 +2331,7 @@
     /* --- END MOBILE UI FIXES --- */
     @media (max-width: 1024px) {
       .mockup-search-container {
-        height: 32px !important;
+        height: auto !important; max-width: 120px !important;
         border-radius: 16px !important;
         padding: 0 10px !important;
       }
@@ -2360,6 +2415,14 @@
       border: 1px solid rgba(0, 0, 0, 0.06) !important;
     }
     /* --- ULTIMATE DROPDOWN OVERRIDE END --- */
+
+
+  /* Hide Category Text Above Product Card Blocks */
+  .mockup-product-category,
+  p.mockup-product-category,
+  div.mockup-product-category {
+    display: none !important;
+  }
 
 </style>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -2786,7 +2849,7 @@
     .magic-dropdown ul li a:hover {
       background: rgba(0,0,0,0.06) !important;
       border-color: rgba(0,0,0,0.12) !important;
-      color: #ff5e00 !important; /* Orange text on hover */
+      color: #0b1a30 !important; /* Orange text on hover */
     }
   
     /* --- ULTIMATE DROPDOWN OVERRIDE START --- */
@@ -3098,160 +3161,815 @@
     }
 </style>
 
-<style>
-/* Clean Search Bar Styling */
-.mockup-search-container {
-  display: flex !important;
-  align-items: center !important;
-  background: rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  border-radius: 99px !important;
-  padding: 6px 16px !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
+<link rel="stylesheet" href="css/prescot-responsive.css">
 
-.mockup-search-container:focus-within {
-  background: rgba(255, 255, 255, 0.22) !important;
-  border-color: rgba(255, 255, 255, 0.55) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
-}
+<style id="clean-typography-no-truncation">
+  /* Clean, natural multi-line product titles without truncation or clipped words */
+  .mockup-product-title,
+  .mockup-product-title a,
+  .product-title,
+  #pTitle {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    text-overflow: clip !important;
+    overflow: visible !important;
+    line-height: 1.4 !important;
+  }
 
-.mockup-search-container input {
-  border: none !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  outline: none !important;
-  font-size: 13px !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-weight: 500 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  box-shadow: none !important;
-  letter-spacing: 0.3px !important;
-}
+  .mockup-product-title {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    min-height: 42px !important;
+    margin: 8px 0 12px 0 !important;
+  }
 
-.mockup-search-container input::placeholder {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  color: rgba(255, 255, 255, 0.75) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.75) !important;
+  .product-title, #pTitle {
+    font-size: clamp(22px, 3vw, 32px) !important;
+    font-weight: 800 !important;
+    color: #0b1a30 !important;
+    letter-spacing: -0.4px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Rich HTML Description Formatting */
+  .product-html-description {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    font-size: 15px !important;
+    line-height: 1.85 !important;
+    color: #334155 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .product-html-description p {
+    margin-bottom: 20px !important;
+    line-height: 1.85 !important;
+  }
+
+  .product-html-description strong, 
+  .product-html-description b {
+    color: #0b1a30 !important;
+    font-weight: 700 !important;
+  }
+
+  .product-html-description ul, 
+  .product-html-description ol {
+    margin: 18px 0 24px 24px !important;
+    padding-left: 10px !important;
+  }
+
+  .product-html-description li {
+    margin-bottom: 10px !important;
+    line-height: 1.75 !important;
+  }
+
+  .product-html-description table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 24px 0 !important;
+    display: block !important;
+    overflow-x: auto !important;
+  }
+
+  .product-html-description table td, 
+  .product-html-description table th {
+    padding: 12px 16px !important;
+    border: 1px solid #e2e8f0 !important;
+    font-size: 14px !important;
+  }
+
+  .product-html-description table tr:nth-child(even) {
+    background-color: #f8fafc !important;
+  }
+</style>
+
+
+<style id="scrolled-header-styles">
+  /* Scrolled Header Styling */
+  .mockup-header.scrolled {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .mockup-header.scrolled .mockup-nav > ul > li > a {
+    color: #0b1a30 !important;
+    background: rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .mockup-header.scrolled .mockup-nav > ul > li > a:hover {
+    background: rgba(0, 0, 0, 0.08) !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+    color: #000000 !important;
+  }
+
+  .mockup-header.scrolled .mockup-nav > ul > li > a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border-color: #0b1a30 !important;
+  }
+
+  .mockup-header.scrolled .mockup-action-icon {
+    background: rgba(11, 26, 48, 0.05) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    color: #0b1a30 !important;
+  }
+
+  .mockup-header.scrolled .mockup-action-icon:hover {
+    background: rgba(11, 26, 48, 0.12) !important;
+    border-color: rgba(11, 26, 48, 0.25) !important;
+    color: #0b1a30 !important;
+  }
+
+  .mockup-header.scrolled .mockup-search-container {
+    background: rgba(0, 0, 0, 0.04) !important;
+    border: 1.5px solid rgba(11, 26, 48, 0.25) !important;
+  }
+
+  .mockup-header.scrolled .mockup-search-container input {
+    color: #0b1a30 !important;
+  }
+
+  .mockup-header.scrolled .mockup-search-container input::placeholder {
+    color: rgba(11, 26, 48, 0.6) !important;
+  }
+
+  .mockup-header.scrolled .mockup-search-container button svg {
+    stroke: #0b1a30 !important;
+  }
+</style>
+
+
+
+
+
+
+
+<style id="prescot-horizontal-ribbon-styles">
+  /* Sticky Glassmorphic Filter Ribbon */
+  .prescot-glass-hub {
+    position: sticky !important;
+    top: 92px !important;
+    z-index: 995 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(11, 26, 48, 0.07) !important;
+    border-radius: 18px !important;
+    padding: 12px 20px !important;
+    margin-bottom: 25px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  /* Ribbon Header Row */
+  .hub-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  /* Status Tag: "Aktualnie jesteś: ..." */
+  .hub-status-breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #475569;
+  }
+
+  .status-highlight-badge {
+    background: #0b1a30;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 99px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(11, 26, 48, 0.15);
+  }
+
+  .hub-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 18px;
+    background: rgba(11, 26, 48, 0.06);
+    color: #0b1a30;
+    border: 1px solid rgba(11, 26, 48, 0.12);
+    border-radius: 99px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+  }
+
+  .hub-toggle-btn:hover {
+    background: #0b1a30;
+    color: #ffffff;
+    border-color: #0b1a30;
+  }
+
+  .hub-active-badge {
+    background: var(--accent-color, #0b1a30);
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 800;
+    padding: 1px 7px;
+    border-radius: 99px;
+  }
+
+  /* Compact Horizontal Expandable Content (Along Screen Width!) */
+  .hub-expandable-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease,
+                transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                margin 0.3s ease;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 1px solid transparent;
+  }
+
+  .prescot-glass-hub.is-open .hub-expandable-content {
+    max-height: 240px; /* Extremely compact height along width! */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top-color: rgba(11, 26, 48, 0.08);
+  }
+
+  /* Horizontal Filter Strips (Width-Based Scrollable Rows) */
+  .horizontal-ribbon-row { 
+    display: flex; 
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    gap: 8px; 
+    margin-bottom: 12px; 
+    padding: 5px 5px 12px 5px; 
+    align-items: center; 
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .horizontal-ribbon-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ribbon-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #64748b;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    padding-right: 6px;
+    flex-shrink: 0;
+  }
+
+  .filter-chip {
+    padding: 8px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: #f8fafc;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .filter-chip:hover {
+    background: #ffffff;
+    color: var(--primary-color, #0b1a30);
+    border-color: rgba(11, 26, 48, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(11, 26, 48, 0.08);
+  }
+
+  .filter-chip.active {
+    background: var(--primary-color, #0b1a30) !important;
+    color: #ffffff !important;
+    border-color: var(--primary-color, #0b1a30) !important;
+    font-weight: 700 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(11, 26, 48, 0.25) !important;
+  }
+</style>
+
+
+
+
+
+
+
+<style id="ultimate-header-visibility-fix">
+  /* Force fixed header with solid glass background on shop page */
+  body .mockup-header {
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(11, 26, 48, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+  }
+
+  /* Navigation Links - 100% High Contrast Visibility */
+  body .mockup-header .mockup-nav ul li a,
+  body .mockup-nav ul li a {
+    color: #0b1a30 !important;
+    background: rgba(11, 26, 48, 0.05) !important;
+    border: 1px solid rgba(11, 26, 48, 0.1) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 9px 20px !important;
+    border-radius: 99px !important;
+    transition: all 0.25s ease !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a:hover,
+  body .mockup-nav ul li a:hover {
+    background: rgba(11, 26, 48, 0.12) !important;
+    border-color: rgba(11, 26, 48, 0.2) !important;
+    color: #0b1a30 !important;
+    transform: translateY(-1px) !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a.active,
+  body .mockup-nav ul li a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border-color: #0b1a30 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 15px rgba(11, 26, 48, 0.2) !important;
+  }
+
+  /* Action Icons (Account, Wishlist, Cart) */
+  body .mockup-header .mockup-action-icon,
+  body .mockup-action-icon {
+    background: rgba(11, 26, 48, 0.06) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    color: #0b1a30 !important;
+    border-radius: 50% !important;
+  }
+
+  body .mockup-header .mockup-action-icon:hover,
+  body .mockup-action-icon:hover {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border-color: #0b1a30 !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* Search Container */
+  body .mockup-header .mockup-search-container,
+  body .mockup-search-container {
+    background: rgba(11, 26, 48, 0.04) !important;
+    border: 1.5px solid rgba(11, 26, 48, 0.18) !important;
+    border-radius: 99px !important;
+  }
+
+  body .mockup-header .mockup-search-container input,
+  body .mockup-search-container input {
+    color: #0b1a30 !important;
+  }
+
+  body .mockup-header .mockup-search-container input::placeholder,
+  body .mockup-search-container input::placeholder {
+    color: rgba(11, 26, 48, 0.55) !important;
+  }
+
+  body .mockup-header .mockup-search-container button svg,
+  body .mockup-search-container button svg {
+    stroke: #0b1a30 !important;
+  }
+</style>
+
+
+<style id="scrolled-nav-visibility-override">
+  /* Guaranteed 100% Contrast for Scrolled Header Navigation */
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active),
+  body .mockup-header.scrolled .mockup-nav ul li a:not(.active) {
+    color: #0b1a30 !important;
+    background: rgba(11, 26, 48, 0.06) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    font-weight: 600 !important;
+  }
+
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active):hover,
+  body .mockup-header.scrolled .mockup-nav ul li a:not(.active):hover {
+    background: rgba(11, 26, 48, 0.14) !important;
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.25) !important;
+  }
+
+  body .mockup-header.scrolled .mockup-nav > ul > li > a.active,
+  body .mockup-header.scrolled .mockup-nav ul li a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border-color: #0b1a30 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+</style>
+
+
+<style id="ultimate-header-footer-fix">
+  /* Force 100% Crisp Visibility for All Header Navigation Links regardless of scroll state */
+  body .mockup-header .mockup-nav ul li a:not(.active),
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a:not(.active),
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active) {
+    color: #0b1a30 !important;
+    background: rgba(11, 26, 48, 0.06) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a:not(.active):hover,
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a:not(.active):hover,
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active):hover {
+    background: rgba(11, 26, 48, 0.14) !important;
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.25) !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a.active,
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a.active,
+  body .mockup-header.scrolled .mockup-nav > ul > li > a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border: 1px solid #0b1a30 !important;
+    font-weight: 700 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+
+  /* Footer White + Orange Logo Styling */
+  footer .footer-logo img,
+  .mockup-footer .footer-logo img {
+    height: auto !important; max-width: 120px !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+</style>
+
+
+<style id="product-title-4-lines-override">
+  /* Force Up to 4 Full Lines for Product Titles (No Word Truncation) */
+  .mockup-product-title,
+  .mockup-product-title a,
+  div.mockup-product-title,
+  h3.mockup-product-title {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    overflow: visible !important;
+    max-height: none !important;
+    min-height: 72px !important;
+    line-height: 1.35 !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #0b1a30 !important;
+    margin-bottom: 8px !important;
+    text-overflow: clip !important;
+  }
+
+  .mockup-product-title a:hover {
+    color: var(--accent-color, #0b1a30) !important;
+  }
+</style>
+
+
+
+<style id="custom-nav-configurator-cta-style">
+  /* Clean Unified Header Navigation */
+  body .mockup-header .mockup-nav ul li a,
+  body .mockup-header.scrolled .mockup-nav ul li a {
+    text-decoration: none !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #0b1a30 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    transition: all 0.2s ease !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a:hover,
+  body .mockup-header.scrolled .mockup-nav ul li a:hover {
+    background: rgba(11, 26, 48, 0.08) !important;
+    color: #0b1a30 !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a.active,
+  body .mockup-header.scrolled .mockup-nav ul li a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border: 1px solid #0b1a30 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+
+  /* Scrolled Header Styling - Crisp Navy Elements */
+  body .mockup-header.scrolled {
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  body .mockup-header.scrolled .mockup-action-icon,
+  body .mockup-header .mockup-action-icon {
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.15) !important;
+  }
+
+  /* Footer White Logo Styling */
+  footer .footer-logo img,
+  .mockup-footer .footer-logo img {
+    height: auto !important; max-width: 120px !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+</style>
+
+
+
+<style id="square-product-images-override">
+  /* Full Square Fill Product Cards (object-fit: cover) */
+  .mockup-product-media,
+  div.mockup-product-media {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    margin-bottom: 8px !important;
+    background-color: #f4f6f9 !important;
+    display: block !important;
+  }
+
+  .mockup-product-img,
+  .mockup-product-media img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: inherit !important;
+    padding: 0 !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .mockup-product-card:hover .mockup-product-img,
+  .mockup-product-card:hover .mockup-product-media img {
+    transform: scale(1.05) !important;
+  }
+
+  /* Hide category text line above product card blocks */
+  .mockup-product-category,
+  p.mockup-product-category,
+  div.mockup-product-category {
+    display: none !important;
+  }
+</style>
+
+
+  <link rel="stylesheet" href="css/configurator.css">
+
+<style id="global-premium-overrides">
+/* Premium Footer CSS */
+.premium-footer {
+  background: var(--primary-color, #0b1a30) !important;
+  color: #fff !important;
+  padding: 80px 8% 40px !important;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-family: 'Outfit', sans-serif;
+  margin-top: auto;
+}
+.premium-footer .footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.premium-footer .footer-logo img {
+  height: 38px !important;
   opacity: 1 !important;
-  font-weight: 400 !important;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
+.premium-footer .brand-desc {
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+.premium-footer .social-links {
+  display: flex;
+  gap: 15px;
+}
+.premium-footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+.premium-footer .social-links a:hover {
+  background: var(--accent-color, #0b1a30);
+  transform: translateY(-3px);
+}
+.premium-footer h3 {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+.premium-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.premium-footer ul li {
+  margin-bottom: 12px;
+}
+.premium-footer ul li a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.premium-footer ul li a:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+.premium-footer .contact-info li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.premium-footer .contact-info i {
+  font-size: 20px;
+  color: var(--accent-color, #0b1a30);
+  margin-top: 2px;
+}
+.premium-footer .footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
+.premium-footer .payment-methods {
+  display: flex;
+  gap: 15px;
+  font-size: 24px;
+  color: rgba(255,255,255,0.5);
+}
+@media (max-width: 992px) {
+  .premium-footer .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .premium-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .premium-footer .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
 }
 
-.mockup-search-container button {
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  padding: 0 !important;
+/* Logo Header Fix */
+.site-header .brand {
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
+  height: 100%;
 }
-
-.mockup-search-container button svg {
-  stroke: #ffffff !important;
-  transition: stroke 0.3s ease !important;
+.site-header .brand img {
+  height: 36px !important;
+  max-width: 170px !important;
+  object-fit: contain !important;
+  transform: none;
 }
-
-/* Scrolled Header Search Bar State */
-.mockup-header.scrolled .mockup-search-container {
-  background: rgba(11, 26, 48, 0.05) !important;
-  border-color: rgba(11, 26, 48, 0.15) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container:focus-within {
-  background: rgba(11, 26, 48, 0.08) !important;
-  border-color: rgba(11, 26, 48, 0.3) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input {
-  color: #0b1a30 !important;
-  -webkit-text-fill-color: #0b1a30 !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input::placeholder {
-  color: rgba(11, 26, 48, 0.6) !important;
-  -webkit-text-fill-color: rgba(11, 26, 48, 0.6) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container button svg {
-  stroke: #0b1a30 !important;
-}
-
-/* Autofill Overrides */
-.mockup-search-container input:-webkit-autofill,
-.mockup-search-container input:-webkit-autofill:hover, 
-.mockup-search-container input:-webkit-autofill:focus, 
-.mockup-search-container input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-  -webkit-text-fill-color: #ffffff !important;
-  transition: background-color 50000s ease-in-out 0s !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill,
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:hover, 
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:focus, 
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:active {
-  -webkit-text-fill-color: #0b1a30 !important;
+@media (max-width: 768px) {
+  .site-header .brand img {
+    height: auto !important; max-width: 120px !important;
+  }
 }
 </style>
+
+  <link rel="stylesheet" href="css/custom-buttons.css">
+
+
+
+  <link rel="stylesheet" href="css/advanced-filters.css">
+  <link rel="stylesheet" href="css/shop-catalog.css">
 </head>
-<body>
+<body class="shop-page">
   
-  <header class="mockup-header" id="mainHeader">
-<div class="mockup-header-logo">
-<a href="index.html"><img alt="Prescot Logo" id="headerLogo" src="images/logo-white.png"/></a>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="index.html" aria-label="Prescot — strona główna">
+      <img src="images/logo-white.png" data-dark="images/logo-dark.png" data-light="images/logo-white.png" alt="Prescot">
+    </a>
+    <nav class="desktop-nav" aria-label="Nawigacja główna">
+      <a href="index.html">Home</a>
+      <a class="active" href="shop.html">Sklep</a>
+      <a href="blog.html">Wiedza</a>
+      <a href="about.html">O nas</a>
+      <a href="contact.html">Kontakt</a>
+      
+      <a  href="ai-shopping.html"><img class="gemini-icon" src="images/prescot-pattern.png" style="width: 18px; height: 18px; object-fit: contain; margin-right: 6px; vertical-align: middle;">Zakup AI</a>
+    </nav>
+    <div class="header-actions">
+      <form class="header-search" action="shop.html" role="search">
+        <label class="sr-only" for="configSearch">Szukaj produktu</label>
+        <input id="configSearch" name="q" type="search" placeholder="SKU, barwa, moc…">
+        <button type="submit" aria-label="Szukaj">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+        </button>
+      </form>
+      <a class="header-icon" href="javascript:void(0);" onclick="openCartDrawer();" aria-label="Koszyk">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 7H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Otwórz menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Nawigacja mobilna" hidden>
+      <a href="index.html">Home</a>
+      <a class="active" href="shop.html">Sklep</a>
+      <a href="blog.html">Wiedza</a>
+      <a href="about.html">O nas</a>
+      <a href="contact.html">Kontakt</a>
+      
+      <a  href="ai-shopping.html"><img class="gemini-icon" src="images/prescot-pattern.png" style="width: 18px; height: 18px; object-fit: contain; margin-right: 6px; vertical-align: middle;">Zakup AI</a>
+    </nav>
+  </header>
+
 </div>
-<nav class="mockup-nav">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a class="active" href="shop.html">Sklep</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="about.html">O nas</a></li>
-<li><a href="contact.html">Kontakt</a></li>
-</ul>
-</nav>
-<div class="mockup-actions">
-<div class="mockup-search-container">
-<input id="headerSearchInput" placeholder="Czego szukasz..." type="text"/>
-<button aria-label="Szukaj" id="headerSearchBtn">
-<svg fill="none" height="18" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
-</button>
-</div>
-<button aria-label="Konto użytkownika" class="mockup-action-icon">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-</button>
-<a aria-label="Lista Życzeń" class="mockup-action-icon wishlist-trigger" href="#">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-</a>
-<a aria-label="Koszyk" class="mockup-action-icon" href="cart.html" style="position: relative;">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
-<span class="cart-badge"></span>
-</a>
-<button class="menu-toggle" id="menuToggle">
-<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
-</button>
-</div>
-</header>
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a class="active" href="shop.html">Sklep</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="about.html">O nas</a></li>
-<li><a href="contact.html">Kontakt</a></li>
-</ul>
-<div class="mobile-socials">
-<a href="#"><i class="ph ph-instagram-logo"></i></a>
-<a href="#"><i class="ph ph-facebook-logo"></i></a>
-<a href="#"><i class="ph ph-pinterest-logo"></i></a>
-</div>
-</div>
-  <section class="page-hero" style="background: url('images/kuchnia.jpg') center/cover no-repeat; height: 35vh; min-height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 90px 20px 20px; text-align: center; position: relative; box-sizing: border-box;">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11, 26, 48, 0.6);"></div>
+  <section class="page-hero" style="background: url('images/led_shop_hero.png') center/cover no-repeat; filter: contrast(1.08) brightness(1.05);  height: 35vh; min-height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 90px 20px 20px; text-align: center; position: relative; box-sizing: border-box;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(11, 26, 48, 0.18) 0%, rgba(11, 26, 48, 0.5) 100%);"></div>
     <div style="position: relative; z-index: 1;">
       <h1 style="color: #fff; font-size: 48px; font-weight: 800; font-family: 'Outfit', sans-serif; margin-bottom: 10px; text-transform: uppercase; letter-spacing: -1px; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">Nasz Sklep</h1>
       <p style="color: #eee; font-size: 16px;">Sprawdź pełną ofertę Prescot LED</p>
@@ -3270,99 +3988,233 @@
     </div>
   </section>
 <main class="shop-container">
+    <!-- === ADVANCED FILTERS UI (B2B/B2C) === -->
     
-    <!-- Mobile specific toolbar imitating Envato screenshot -->
-    <div class="mobile-shop-toolbar-v2">
-      
-      
-      <div class="mobile-filter-row">
-        <button class="mobile-filter-pill" id="mobileFiltersBtn">
-          <i class="ph ph-sliders"></i> Filtry <i class="ph ph-caret-down"></i>
-        </button>
-        <button class="mobile-filter-pill" id="mobileCategoryBtn">
-          Kategoria <i class="ph ph-caret-down"></i>
-        </button>
-        <button class="mobile-filter-pill" id="mobileSortBtn">
-          Sortuj <i class="ph ph-caret-down"></i>
-        </button>
-      </div>
-
-      <!-- Mobile Category Dropdown List -->
-      <div class="mobile-dropdown-panel" id="mobileCategoryDropdown" style="display: none; background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; margin-top: 10px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-        <ul class="mobile-dropdown-list" id="mobileCategoriesList" style="list-style: none; padding: 0; margin: 0;">
-          <!-- Category items will be generated here -->
-        </ul>
-      </div>
-
-      <!-- Mobile Sort Dropdown List -->
-      <div class="mobile-dropdown-panel" id="mobileSortDropdown" style="display: none; background: #fff; border: 1px solid #e5e7eb; border-radius: 16px; margin-top: 10px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-        <ul class="mobile-dropdown-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
-          <li class="mobile-sort-item active" data-sort="default" style="padding: 10px; cursor: pointer; border-radius: 8px; transition: background 0.3s; font-size: 14px;">Sortuj: Domyślnie</li>
-          <li class="mobile-sort-item" data-sort="price-asc" style="padding: 10px; cursor: pointer; border-radius: 8px; transition: background 0.3s; font-size: 14px;">Cena: rosnąco</li>
-          <li class="mobile-sort-item" data-sort="price-desc" style="padding: 10px; cursor: pointer; border-radius: 8px; transition: background 0.3s; font-size: 14px;">Cena: malejąco</li>
-          <li class="mobile-sort-item" data-sort="title-asc" style="padding: 10px; cursor: pointer; border-radius: 8px; transition: background 0.3s; font-size: 14px;">Nazwa: A-Z</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Toolbar on top -->
-    <div class="shop-toolbar" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 25px; width: 100%;">
-      <div style="display: flex; gap: 15px; align-items: center;">
-        <button class="filter-toggle-btn" id="filterToggle" style="padding: 10px 24px; border: 1px solid #ddd; background: #fff; font-weight: 600; cursor: pointer; font-size: 13px; display: flex; align-items: center; gap: 8px; border-radius: 30px; transition: var(--transition); text-transform: uppercase; letter-spacing: 1px; font-family: inherit;">
-          <span>⚙️</span> Filtruj
-        </button>
-        <div id="resultsCount" style="font-size: 13px; color: #777;">Pokazano 0-0 z 0 wyników</div>
-      </div>
-      <select class="sort-select" id="shopSortSelect">
-        <option value="default">Sortuj: Domyślnie</option>
-        <option value="price-asc">Cena: rosnąco</option>
-        <option value="price-desc">Cena: malejąco</option>
-        <option value="title-asc">Nazwa: A-Z</option>
-      </select>
-    </div>
-
-    <div class="shop-main-layout">
-      <!-- Hidden collapsible filters panel -->
-      <aside class="shop-sidebar" id="shopSidebar">
-        <!-- Search widget removed -->
-
-        <div class="filter-widget">
-          <h3 class="filter-title">Kategorie</h3>
-          <ul class="filter-list" id="categoriesList">
-            <!-- Loaded dynamically -->
-          </ul>
+    <!-- Mobile FAB -->
+    <button id="mobileFabFilterBtn" class="mobile-fab-filter">
+      <i class="ph ph-faders"></i> Filtruj i Sortuj <span id="fabFilterCount">(0)</span>
+    </button>
+    
+    <!-- Backdrop for mobile sheet -->
+    <div id="filterBackdrop" class="filter-backdrop"></div>
+    
+    <!-- Filter Container (Sidebar on Desktop, Bottom Sheet on Mobile) -->
+    <div id="advancedFilterContainer" class="advanced-filter-container">
+      <div class="filter-sheet-header">
+        <div>
+          <h3>Filtry i kategorie</h3>
         </div>
-        
-        <div class="filter-widget">
-          <h3 class="filter-title">Kolor</h3>
-          <div class="filter-color-dots" id="colorsList">
-            <div class="color-dot active" data-color="all" style="background: linear-gradient(45deg, #f00, #0f0, #00f); border: 1px solid #ddd;" title="Wszystkie"></div>
-            <div class="color-dot" data-color="#000000" style="background: #000;" title="Czarny"></div>
-            <div class="color-dot" data-color="#ffffff" style="background: #fff; border: 1px solid #ddd;" title="Biały"></div>
-            <div class="color-dot" data-color="#556b2f" style="background: #556b2f;" title="Oliwkowy"></div>
-            <div class="color-dot" data-color="#ff8c00" style="background: #ff8c00;" title="Pomarańczowy"></div>
-            <div class="color-dot" data-color="#1e90ff" style="background: #1e90ff;" title="Niebieski"></div>
+        <div class="filter-header-actions">
+          <button id="catalogResetFilters" class="catalog-reset-filters" type="button">Wyczyść</button>
+          <button id="closeFilterSheetBtn" class="close-sheet-btn" type="button" aria-label="Zamknij filtry"><i class="ph ph-x" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      
+      <div class="filter-scroll-area">
+        <div class="filter-group catalog-category-group">
+          <div class="filter-group-title">Kategorie produktów</div>
+          <div id="shopCategoryFilters" class="catalog-category-list" role="group" aria-label="Kategorie produktów"></div>
+        </div>
+
+        <!-- B2C / B2B Toggle -->
+        <div class="filter-toggle-wrapper">
+          <div class="pro-toggle-switch" id="proToggleSwitch">
+            <div class="toggle-slider"></div>
+            <button class="toggle-btn active" data-mode="b2c" type="button"><i class="ph ph-house-line" aria-hidden="true"></i>Strefy</button>
+            <button class="toggle-btn" data-mode="b2b" type="button"><i class="ph ph-toolbox" aria-hidden="true"></i>Parametry</button>
           </div>
         </div>
 
-        <div class="filter-widget">
-          <h3 class="filter-title">Cena</h3>
-          <ul class="filter-list" id="priceRangesList">
-            <li class="active" data-range="all">Wszystkie ceny</li>
-            <li data-range="0-50">$0.00 - $50.00</li>
-            <li data-range="50-100">$50.00 - $100.00</li>
-            <li data-range="100+">$100.00+</li>
-          </ul>
+        <!-- B2C Filters -->
+        <div id="b2cFilters" class="filter-mode-section active">
+          <div class="filter-group">
+            <div class="filter-group-title">Gdzie montujesz?</div>
+            <div class="horizontal-scroll-pills">
+              <button class="filter-pill b2c-pill" data-type="room" data-val="Łazienka/Prysznic">Łazienka/Prysznic</button>
+              <button class="filter-pill b2c-pill" data-type="room" data-val="Kuchnia pod szafki">Kuchnia pod szafki</button>
+              <button class="filter-pill b2c-pill" data-type="room" data-val="Salon">Salon / Sufit</button>
+              <button class="filter-pill b2c-pill" data-type="room" data-val="Schody">Schody</button>
+              <button class="filter-pill b2c-pill" data-type="room" data-val="Sypialnia">Sypialnia</button>
+              <button class="filter-pill b2c-pill" data-type="room" data-val="Podłoga">Podłoga</button>
+              <button class="filter-pill b2c-pill" data-type="room" data-val="Garaż">Garaż / Warsztat</button>
+              <button class="filter-pill b2c-pill" data-type="room" data-val="Elewacja">Elewacja (zewnętrzne)</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <div class="filter-group-title">Czego oczekujesz?</div>
+            <div class="horizontal-scroll-pills">
+              <button class="filter-pill b2c-pill" data-type="expect" data-val="Brak kropek">Brak kropek na taśmie (COB)</button>
+              <button class="filter-pill b2c-pill" data-type="expect" data-val="Zmienne kolory">Zmienne kolory (RGB/CCT)</button>
+              <button class="filter-pill b2c-pill" data-type="expect" data-val="Mocne światło">Mocne światło do pracy</button>
+              <button class="filter-pill b2c-pill" data-type="expect" data-val="Subtelne oświetlenie">Subtelne oświetlenie dekoracyjne</button>
+              <button class="filter-pill b2c-pill" data-type="expect" data-val="Długa żywotność">Długa żywotność (Premium)</button>
+              <button class="filter-pill b2c-pill" data-type="expect" data-val="Smart">Sterowanie Smart (Wi-Fi/Zigbee)</button>
+              <button class="filter-pill b2c-pill" data-type="expect" data-val="Wąski profil">Wąski profil (do 5mm)</button>
+            </div>
+          </div>
         </div>
-      </aside>
+        
+        <!-- B2B Filters -->
+        <div id="b2bFilters" class="filter-mode-section">
+          <div class="filter-group">
+            <div class="filter-group-title">Napięcie (V)</div>
+            <div class="horizontal-scroll-pills">
+              <button class="filter-pill b2b-pill" data-type="voltage" data-val="12V">12V</button>
+              <button class="filter-pill b2b-pill" data-type="voltage" data-val="24V">24V</button>
+              <button class="filter-pill b2b-pill" data-type="voltage" data-val="48V">48V</button>
+              <button class="filter-pill b2b-pill" data-type="voltage" data-val="230V">230V</button>
+            </div>
+          </div>
+          
 
-      <section class="shop-content">
-        <div class="shop-grid" id="shopGrid">
+          
+          <div class="filter-group">
+            <div class="filter-group-title">Szerokość PCB (mm)</div>
+            <div class="horizontal-scroll-pills">
+              <button class="filter-pill b2b-pill" data-type="pcb" data-val="4mm">4 mm</button>
+              <button class="filter-pill b2b-pill" data-type="pcb" data-val="8mm">8 mm</button>
+              <button class="filter-pill b2b-pill" data-type="pcb" data-val="10mm">10 mm</button>
+              <button class="filter-pill b2b-pill" data-type="pcb" data-val="12mm">12 mm</button>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <div class="filter-group-title">CRI (Oddawanie barw)</div>
+            <div class="horizontal-scroll-pills">
+              <button class="filter-pill b2b-pill" data-type="cri" data-val="CRI>80">CRI>80</button>
+              <button class="filter-pill b2b-pill" data-type="cri" data-val="CRI>90">CRI>90</button>
+              <button class="filter-pill b2b-pill" data-type="cri" data-val="CRI>95">CRI>95</button>
+              <button class="filter-pill b2b-pill" data-type="cri" data-val="CRI>98">CRI>98</button>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <div class="filter-group-title">R9 (Czerwień)</div>
+            <div class="horizontal-scroll-pills">
+              <button class="filter-pill b2b-pill" data-type="r9" data-val="R9>50">R9>50</button>
+              <button class="filter-pill b2b-pill" data-type="r9" data-val="R9>80">R9>80</button>
+              <button class="filter-pill b2b-pill" data-type="r9" data-val="R9>90">R9>90</button>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <div class="filter-group-title">Grubość PCB (w OZ)</div>
+            <div class="horizontal-scroll-pills">
+              <button class="filter-pill b2b-pill" data-type="oz" data-val="1oz">1 OZ</button>
+              <button class="filter-pill b2b-pill" data-type="oz" data-val="2oz">2 OZ</button>
+              <button class="filter-pill b2b-pill" data-type="oz" data-val="3oz">3 OZ</button>
+              <button class="filter-pill b2b-pill" data-type="oz" data-val="4oz">4 OZ</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Removed Profile and Cover Filters -->
+        
+        <div class="filter-group">
+          <div class="filter-group-title">Barwa światła</div>
+          <div class="horizontal-scroll-pills">
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="2700k" title="Bardzo ciepła, nastrojowa biel">
+              <div class="swatch-circle"></div>
+              <span>2700K</span>
+            </button>
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="3000k" title="Ciepła, uniwersalna biel">
+              <div class="swatch-circle"></div>
+              <span>3000K</span>
+            </button>
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="3200k" title="Łagodnie ciepła biel">
+              <div class="swatch-circle"></div>
+              <span>3200K</span>
+            </button>
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="neutralna">
+              <div class="swatch-circle"></div>
+              <span>Neutralna 4000K</span>
+            </button>
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="zimna">
+              <div class="swatch-circle"></div>
+              <span>Zimna 6000K</span>
+            </button>
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="rgb">
+              <div class="swatch-circle"></div>
+              <span>RGB</span>
+            </button>
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="cct">
+              <div class="swatch-circle"></div>
+              <span>CCT</span>
+            </button>
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="rgbw">
+              <div class="swatch-circle"></div>
+              <span>RGBW</span>
+            </button>
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="rgb-cct">
+              <div class="swatch-circle"></div>
+              <span>RGB+CCT</span>
+            </button>
+            <button class="color-swatch-btn filter-pill" data-type="color" data-val="cyfrowe-mono">
+              <div class="swatch-circle"></div>
+              <span>Cyfrowe MONO</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="filter-group">
+          <div class="filter-group-title">Cena (PLN)</div>
+          <!-- Fake CSS Histogram -->
+          <div class="css-histogram">
+            <div class="hist-bar" style="height: 20%;"></div>
+            <div class="hist-bar" style="height: 50%;"></div>
+            <div class="hist-bar" style="height: 100%;"></div>
+            <div class="hist-bar" style="height: 80%;"></div>
+            <div class="hist-bar" style="height: 40%;"></div>
+            <div class="hist-bar" style="height: 10%;"></div>
+          </div>
+          <div class="horizontal-scroll-pills" style="margin-top: 8px;">
+            <button class="filter-pill filter-pill-price" data-type="price" data-val="0-50">0-50</button>
+            <button class="filter-pill filter-pill-price" data-type="price" data-val="50-100">50-100</button>
+            <button class="filter-pill filter-pill-price" data-type="price" data-val="100-250">100-250</button>
+            <button class="filter-pill filter-pill-price" data-type="price" data-val="250+">250+</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sticky Footer inside Sheet -->
+      <div class="filter-sheet-footer">
+        <button id="applyFiltersBtn" class="apply-filters-btn">Pokaż produkty</button>
+      </div>
+    </div>
+    
+    <!-- Main content area wrapper -->
+    <div class="shop-grid-wrapper" style="flex: 1;">
+      <header class="shop-catalog-toolbar">
+        <div class="shop-catalog-heading">
+          <h2 style="display: flex; align-items: baseline; margin: 0;"><span id="shopCatalogTitle">Produkty</span><span id="shopResultSummary" style="font-size: 16px; color: #64748b; font-weight: normal; margin-left: 8px;">(Wczytuję...)</span></h2>
+        </div>
+        <div class="shop-toolbar-controls">
+          <label class="catalog-sort-control" for="shopSortSelect">
+            <span>Sortowanie</span>
+            <select id="shopSortSelect" class="sort-select">
+              <option value="default">Polecane</option>
+              <option value="price-asc">Cena: od najniższej</option>
+              <option value="price-desc">Cena: od najwyższej</option>
+              <option value="title-asc">Nazwa: A–Z</option>
+            </select>
+          </label>
+        </div>
+      </header>
+
+      <!-- Active Chips Row -->
+      <div id="activeChipsContainer" class="active-chips-container">
+        <!-- Dynamically populated -->
+      </div>
+    <div class="shop-main-layout">
+      <section class="shop-content" style="width: 100%;">
+<div class="shop-grid" id="shopGrid">
           <!-- Products render dynamically -->
         </div>
 
-        <div class="pagination-container" id="shopPagination">
-          <!-- Pagination controls render dynamically -->
+        <div class="pagination-wrapper">
+          <div class="pagination-container" id="shopPagination" role="navigation" aria-label="Stronicowanie produktów">
+            <!-- Pagination controls render dynamically -->
+          </div>
         </div>
       </section>
     </div>
@@ -3385,737 +4237,1270 @@
     </div>
   </section>
 
-  <footer class="mockup-footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <div class="footer-logo">
-          <img src="images/logo-white.png" alt="Prescot Logo" style="height: 26px; opacity: 0.9; margin-bottom: 5px; max-width: 100%;">
-        </div>
-        <p style="margin-top: 15px;">Prescot LED to profesjonalny dostawca najwyższej jakości taśm LED, profili aluminiowych, nowoczesnych sterowników oraz niezawodnych zasilaczy hermetycznych.</p><p style="margin-top: 15px; color: #ccc;"><strong>PRESCOT LED</strong><br>ul. Przykładowa 12<br>00-001 Warszawa<br>kontakt@prescot.com.pl</p>
+  
+<footer class="mockup-footer premium-footer">
+  <div class="footer-grid">
+    <div class="footer-col brand-col">
+      <div class="footer-logo">
+        <img alt="Prescot Logo" src="images/logo-white.png" />
       </div>
-      <div class="footer-col">
-        <h3>Link</h3>
-        <ul>
-          <li><a href="#">Kolekcje</a></li>
-          <li><a href="#">Wszystkie Produkty</a></li>
-          <li><a href="#">Nowości</a></li>
-          <li><a href="#">Wyprzedaż</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Wsparcie</h3>
-        <ul>
-          <li><a href="#">Polityka Prywatności</a></li>
-          <li><a href="#">Regulamin</a></li>
-          <li><a href="#">Wysyłka i Zwroty</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Newsletter</h3>
-        <p style="margin-bottom: 20px;">Zapisz się, aby otrzymywać informacje o nowych kolekcjach i ofertach specjalnych.</p>
-        <div class="newsletter-glass-box" style="display: flex; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 4px; width: 100%;">
-          <input type="email" placeholder="Twój e-mail" style="border: none; background: transparent; color: #fff; padding: 8px 12px; width: 100%; font-size: 13px; font-family: \'Inter\', sans-serif; outline: none;" aria-label="E-mail">
-          <button style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; font-weight: 600; font-size: 11px; padding: 8px 20px; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255, 255, 255, 0.25)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.15)'">OK</button>
-        </div>
+      <p class="brand-desc">Tworzymy oświetlenie jutra. Prescot LED to bezkompromisowa jakość, zaawansowana technologia COB i inteligentne systemy sterowania światłem dla profesjonalistów.</p>
+      <div class="social-links">
+        <a href="#"><i class="ph ph-facebook-logo"></i></a>
+        <a href="#"><i class="ph ph-instagram-logo"></i></a>
+        <a href="#"><i class="ph ph-youtube-logo"></i></a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Prescot LED. Wszelkie prawa zastrzeżone.</p>
-      <p>Powered by PRESCOT LED</p>
+    <div class="footer-col">
+      <h3>Odkryj</h3>
+      <ul>
+        <li><a href="shop.html">Produkty Premium</a></li>
+        
+        <li><a href="#">Bestsellery</a></li>
+        <li><a href="#">Nowości 2026</a></li>
+      </ul>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h3>Wsparcie</h3>
+      <ul>
+        <li><a href="contact.html">Kontakt & Pomoc</a></li>
+        <li><a href="#">Gwarancja 5 Lat</a></li>
+        <li><a href="#">Baza Wiedzy</a></li>
+        <li><a href="#">Polityka Prywatności</a></li>
+      </ul>
+    </div>
+    <div class="footer-col contact-col">
+      <h3>Dane firmy</h3>
+      <ul class="contact-info">
+        <li><i class="ph ph-buildings"></i> PRESCOT sp. z o.o.</li>
+        <li><i class="ph ph-map-pin"></i> ul. Wileńska 1, 11-500 Giżycko</li>
+        <li><i class="ph ph-identification-card"></i> NIP 8451939947</li>
+        <li><i class="ph ph-phone"></i> <a href="tel:+48874282118">+48 87 428 21 18</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 PRESCOT LED. Wszelkie prawa zastrzeżone.</p>
+    <div class="payment-methods">
+      <i class="ph ph-stripe-logo"></i>
+      <i class="ph ph-paypal-logo"></i>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    // Mobile Collapsible Footer Columns
-    document.querySelectorAll('.footer-col h3').forEach(h3 => {
-      h3.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          const col = h3.parentElement;
-          col.classList.toggle('active');
-        }
-      });
-    });
 
-    // Mobile Navigation Toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
+  <nav class="config-bottom-nav" aria-label="Skróty mobilne">
+    <a href="index.html" ><i class="ph ph-house" aria-hidden="true"></i><span>Start</span></a>
+    <a href="shop.html" class="active"><span class="bottom-main-icon"><i class="ph ph-storefront" aria-hidden="true"></i></span><span>Sklep</span></a>
     
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
+    <a href="ai-shopping.html" ><i class="ph ph-sparkle" aria-hidden="true"></i><span>Zakup AI</span></a>
+    <button id="mobileCartButton" type="button"  onclick="openCartDrawer && openCartDrawer()"><i class="ph ph-shopping-cart-simple" aria-hidden="true"></i><span>Koszyk</span></button>
+  </nav>
 
-    // Mobile Sidebar Filters Toggle
-    const filterToggle = document.getElementById('filterToggle');
-    const shopSidebar = document.getElementById('shopSidebar');
-    const shopMainLayout = document.querySelector('.shop-main-layout');
-
-    if (filterToggle) {
-      filterToggle.addEventListener('click', () => {
-        shopSidebar.classList.toggle('active');
-        if (shopMainLayout) {
-          shopMainLayout.classList.toggle('has-sidebar');
-        }
-      });
-    }
-  </script>
-
-  <!-- Load Shared Interactive Popups Script and Dynamic Render Logic -->
+  <!-- Shared Data & Scripts -->
   <script src="js/products-data.js"></script>
   <script src="js/shared-popups.js"></script>
   <script>
-
-    // State Variables
-    let currentCategory = 'all';
-    let currentColor = 'all';
-    let currentPriceRange = 'all';
-    let currentSearch = '';
-    let currentSort = 'default';
-    let currentPage = 1;
-    const itemsPerPage = 9;
-
-    // Filter lists
-    const categoriesList = document.getElementById('categoriesList');
-    const colorsList = document.getElementById('colorsList');
-    const priceRangesList = document.getElementById('priceRangesList');
-    const shopGrid = document.getElementById('shopGrid');
-    const shopPagination = document.getElementById('shopPagination');
-    const resultsCount = document.getElementById('resultsCount');
-    const shopSearchInput = document.getElementById('shopSearchInput');
-    const shopSortSelect = document.getElementById('shopSortSelect');
-
-    // Parse search, category, color, and price from URL params if present
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlSearch = urlParams.get('search');
-    if (urlSearch) {
-      currentSearch = urlSearch.toLowerCase().trim();
-      if (shopSearchInput) shopSearchInput.value = urlSearch;
-    }
-    const urlCategory = urlParams.get('category') || urlParams.get('cat');
-    if (urlCategory) {
-      const decoded = decodeURIComponent(urlCategory).toLowerCase().trim();
-      if (decoded.includes('tasm') || decoded.includes('taśm')) {
-        currentCategory = 'Taśmy LED';
-      } else if (decoded.includes('zasilacz')) {
-        currentCategory = 'Zasilacze LED';
-      } else if (decoded.includes('sterownik')) {
-        currentCategory = 'Sterowniki LED';
-      } else if (decoded.includes('akcesor')) {
-        currentCategory = 'Akcesoria';
-      } else {
-        currentCategory = urlCategory;
-      }
-    }
-    const urlColor = urlParams.get('color');
-    if (urlColor) {
-      currentColor = urlColor;
-    }
-    const urlPrice = urlParams.get('price');
-    if (urlPrice) {
-      currentPriceRange = urlPrice;
-    }
-
-    // Initialize Categories filter
-    function buildCategoriesFilter() {
-      // Get unique categories and count them
-      const categoryCounts = {};
-      products.forEach(p => {
-        categoryCounts[p.category] = (categoryCounts[p.category] || 0) + 1;
-      });
-
-      const allActive = currentCategory === 'all' ? 'class="active"' : '';
-      categoriesList.innerHTML = `<li ${allActive} data-cat="all">Wszystkie produkty <span>(${products.length})</span></li>`;
+    document.addEventListener('DOMContentLoaded', () => {
       
-      Object.keys(categoryCounts).sort().forEach(cat => {
-        const catActive = currentCategory === cat ? 'class="active"' : '';
-        categoriesList.insertAdjacentHTML('beforeend', `
-          <li ${catActive} data-cat="${cat}">${cat} <span>(${categoryCounts[cat]})</span></li>
-        `);
-      });
+      // Header Search Bar Handler for shop.html
+      const headerSearchInput = document.getElementById('headerSearchInput') || document.getElementById('configSearch');
+      const headerSearchBtn = document.getElementById('headerSearchBtn') || headerSearchInput?.closest('form')?.querySelector('button[type="submit"]');
+      const headerSearchForm = headerSearchInput?.closest('form');
 
-      // Bind category selectors
-      categoriesList.querySelectorAll('li').forEach(li => {
-        li.addEventListener('click', (e) => {
-          categoriesList.querySelectorAll('li').forEach(l => l.classList.remove('active'));
-          li.classList.add('active');
-          currentCategory = li.dataset.cat;
+      function executeHeaderSearch() {
+        if (!headerSearchInput) return;
+        const val = headerSearchInput.value.toLowerCase().trim();
+        currentSearch = val;
+        currentPage = 1;
+        
+        // Update URL search query cleanly without page reload
+        const newUrl = new URL(window.location.href);
+        if (val) {
+          newUrl.searchParams.set('search', val);
+        } else {
+          newUrl.searchParams.delete('search');
+        }
+        window.history.pushState({}, '', newUrl);
+
+        renderFilteredProducts();
+      }
+
+      if (headerSearchBtn) {
+        headerSearchBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          executeHeaderSearch();
+        });
+      }
+
+      if (headerSearchForm) {
+        headerSearchForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          executeHeaderSearch();
+        });
+      }
+
+      if (headerSearchInput) {
+        headerSearchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            executeHeaderSearch();
+          }
+        });
+        headerSearchInput.addEventListener('input', (e) => {
+          currentSearch = e.target.value.toLowerCase().trim();
           currentPage = 1;
           renderFilteredProducts();
         });
+      }
+
+
+      // 1. Mobile Footer & Navigation Toggles
+      document.querySelectorAll('.footer-col h3').forEach(h3 => {
+        h3.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+            h3.parentElement.classList.toggle('active');
+          }
+        });
       });
 
-      // Build mobile categories filter list
-      const mobileCategoriesList = document.getElementById('mobileCategoriesList');
-      if (mobileCategoriesList) {
-        mobileCategoriesList.innerHTML = `<li class="mobile-cat-item ${currentCategory === 'all' ? 'active' : ''}" data-cat="all" style="padding: 10px; cursor: pointer; border-radius: 8px; transition: background 0.3s; font-size: 14px; display: flex; justify-content: space-between; align-items: center; color: #555;">Wszystkie produkty <span>(${products.length})</span></li>`;
-        Object.keys(categoryCounts).sort().forEach(cat => {
-          const isActive = currentCategory === cat ? 'active' : '';
-          mobileCategoriesList.insertAdjacentHTML('beforeend', `
-            <li class="mobile-cat-item ${isActive}" data-cat="${cat}" style="padding: 10px; cursor: pointer; border-radius: 8px; transition: background 0.3s; font-size: 14px; display: flex; justify-content: space-between; align-items: center; color: #555;">${cat} <span>(${categoryCounts[cat]})</span></li>
-          `);
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('active');
+        });
+      }
+
+      // 2. Prescot Glass Hub Card Toggle
+      const prescotGlassHub = document.getElementById('prescotGlassHub');
+      const hubToggleBtn = document.getElementById('hubToggleBtn');
+      const activeFilterBadge = document.getElementById('activeFilterBadge');
+
+      if (prescotGlassHub && hubToggleBtn) {
+        hubToggleBtn.addEventListener('click', () => {
+          prescotGlassHub.classList.toggle('is-open');
+        });
+      }
+
+      // 3. State Variables
+      let currentCategory = 'all';
+      let currentColor = 'all';
+      let currentPriceRange = 'all';
+      let currentVoltage = 'all';
+      let currentColorTemp = 'all';
+      let currentLumens = 'all';
+      let currentIP = 'all';
+      let currentRoom = 'all';
+      let currentExpectation = 'all';
+      let currentPCB = 'all';
+      let currentCRI = 'all';
+      let currentR9 = 'all';
+      let currentOZ = 'all';
+      let currentCover = 'all';
+      let currentProfileColor = 'all';
+      let currentProfile = 'all';
+      let currentSearch = '';
+      let currentSort = 'default';
+      let currentPage = 1;
+      const itemsPerPage = 24;
+
+      // DOM Elements
+      const shopGrid = document.getElementById('shopGrid');
+      const shopPagination = document.getElementById('shopPagination');
+      const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+      const topCategoryPills = document.getElementById('topCategoryPills');
+      const statusHighlightBadge = document.getElementById('statusHighlightBadge');
+      const shopCategoryFilters = document.getElementById('shopCategoryFilters');
+      const shopSortSelect = document.getElementById('shopSortSelect');
+      const shopResultSummary = document.getElementById('shopResultSummary');
+      const shopCatalogTitle = document.getElementById('shopCatalogTitle');
+
+      function updateShopCatalogTitle() {
+        if (!shopCatalogTitle) return;
+        const fullLabel = currentCategory === 'all' ? 'Produkty' : currentCategory;
+        const branches = String(fullLabel)
+          .split(/\s*(?:\/|›|>|→)\s*/)
+          .map((branch) => branch.trim())
+          .filter(Boolean);
+        shopCatalogTitle.textContent = branches.at(-1) || 'Produkty';
+        shopCatalogTitle.title = currentCategory === 'all' ? 'Produkty' : currentCategory;
+      }
+
+      // Helper function to bind Chip Container
+      function bindChipContainer(containerId, onSelectCallback) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const chips = container.querySelectorAll('.filter-chip');
+        chips.forEach(chip => {
+          chip.addEventListener('click', () => {
+            chips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            const val = chip.dataset.val || chip.dataset.sort;
+            onSelectCallback(val);
+          });
+        });
+      }
+
+      // Bind All Ribbon Chip Groups
+      bindChipContainer('sortChips', (val) => {
+        currentSort = val;
+        currentPage = 1;
+        renderFilteredProducts();
+      });
+
+      bindChipContainer('voltageChips', (val) => {
+        currentVoltage = val;
+        currentPage = 1;
+        renderFilteredProducts();
+      });
+
+      bindChipContainer('colorTempChips', (val) => {
+        currentColorTemp = val;
+        currentPage = 1;
+        renderFilteredProducts();
+      });
+
+      bindChipContainer('lumensChips', (val) => {
+        currentLumens = val;
+        currentPage = 1;
+        renderFilteredProducts();
+      });
+
+      bindChipContainer('ipChips', (val) => {
+        currentIP = val;
+        currentPage = 1;
+        renderFilteredProducts();
+      });
+
+      bindChipContainer('priceRangeChips', (val) => {
+        currentPriceRange = val;
+        currentPage = 1;
+        renderFilteredProducts();
+      });
+
+      shopSortSelect?.addEventListener('change', (event) => {
+        currentSort = event.target.value;
+        currentPage = 1;
+        renderFilteredProducts();
+      });
+
+      window.addEventListener('prescot:filters-change', (event) => {
+        const filters = event.detail || {};
+        currentVoltage = filters.voltage || 'all';
+        currentColorTemp = filters.color || 'all';
+        currentPriceRange = filters.price || 'all';
+        currentRoom = filters.room || 'all';
+        currentExpectation = filters.expect || 'all';
+        currentPCB = filters.pcb || 'all';
+        currentCRI = filters.cri || 'all';
+        currentR9 = filters.r9 || 'all';
+        currentOZ = filters.oz || 'all';
+        currentCover = filters.cover || 'all';
+        currentProfileColor = filters.profile_color || 'all';
+        currentProfile = filters.profile || 'all';
+        currentPage = 1;
+        renderFilteredProducts();
+      });
+
+      // 4. Parse URL params
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlSearch = urlParams.get('search') || urlParams.get('q');
+      if (urlSearch) {
+        currentSearch = urlSearch.toLowerCase().trim();
+      }
+      const urlCategory = urlParams.get('category') || urlParams.get('cat');
+      if (urlCategory) {
+        const decodedCat = decodeURIComponent(urlCategory).trim();
+        if (typeof products !== 'undefined' && Array.isArray(products)) {
+          const match = products.find(p => p.category === decodedCat || p.category.toLowerCase().includes(decodedCat.toLowerCase()) || decodedCat.toLowerCase().includes(p.category.toLowerCase()));
+          if (match) {
+            currentCategory = match.category;
+          } else {
+            currentCategory = decodedCat;
+          }
+        }
+      }
+
+      // 5. Build Top Category Scroll Pills Bar
+      function buildTopCategoryPills() {
+        if (!topCategoryPills || typeof products === 'undefined') return;
+        const catCounts = {};
+        products.forEach(p => {
+          if (p.category) {
+            catCounts[p.category] = (catCounts[p.category] || 0) + 1;
+          }
         });
 
-        // Bind mobile category selectors
-        mobileCategoriesList.querySelectorAll('.mobile-cat-item').forEach(li => {
-          li.addEventListener('click', () => {
-            mobileCategoriesList.querySelectorAll('.mobile-cat-item').forEach(l => l.classList.remove('active'));
-            li.classList.add('active');
-            currentCategory = li.dataset.cat;
+        let html = `<button class="filter-chip ${currentCategory === 'all' ? 'active' : ''}" data-cat="all">Wszystkie produkty (${products.length})</button>`;
+        Object.keys(catCounts).sort().forEach(cat => {
+          const isActive = currentCategory === cat ? 'active' : '';
+          html += `<button class="filter-chip ${isActive}" data-cat="${cat}">${cat} (${catCounts[cat]})</button>`;
+        });
+        topCategoryPills.innerHTML = html;
+
+        topCategoryPills.querySelectorAll('.filter-chip').forEach(btn => {
+          btn.addEventListener('click', () => {
+            topCategoryPills.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.dataset.cat;
             currentPage = 1;
-            
-            // Sync with desktop selector
-            if (categoriesList) {
-              categoriesList.querySelectorAll('li').forEach(l => {
-                if (l.dataset.cat === currentCategory) l.classList.add('active');
-                else l.classList.remove('active');
-              });
+            renderFilteredProducts();
+          });
+        });
+      }
+
+      function setCategory(category) {
+        currentCategory = category;
+        currentPage = 1;
+        const nextURL = new URL(window.location.href);
+        if (category === 'all') nextURL.searchParams.delete('category');
+        else nextURL.searchParams.set('category', category);
+        window.history.replaceState({}, '', nextURL);
+        buildSidebarCategoryFilters();
+        buildTopCategoryPills();
+        renderFilteredProducts();
+      }
+
+      function buildSidebarCategoryFilters() {
+        if (!shopCategoryFilters || typeof products === 'undefined') return;
+        const categoryCounts = products.reduce((counts, product) => {
+          if (product.category) counts[product.category] = (counts[product.category] || 0) + 1;
+          return counts;
+        }, {});
+        const categories = [
+          ['all', 'Wszystkie produkty', products.length],
+          ...Object.entries(categoryCounts)
+            .sort((first, second) => second[1] - first[1])
+            .map(([category, count]) => [category, category, count])
+        ];
+
+        shopCategoryFilters.innerHTML = '';
+        categories.forEach(([value, label, count]) => {
+          const button = document.createElement('button');
+          button.className = 'catalog-category-option';
+          button.type = 'button';
+          button.dataset.category = value;
+          button.classList.toggle('active', currentCategory === value);
+          button.setAttribute('aria-pressed', String(currentCategory === value));
+          button.innerHTML = `<span>${label}</span><strong>${count}</strong>`;
+          button.addEventListener('click', () => setCategory(value));
+          shopCategoryFilters.appendChild(button);
+        });
+      }
+
+      buildTopCategoryPills();
+      buildSidebarCategoryFilters();
+
+      // 6. Reset Filters Button
+      if (resetFiltersBtn) {
+        resetFiltersBtn.addEventListener('click', () => {
+          currentCategory = 'all';
+          currentColor = 'all';
+          currentPriceRange = 'all';
+          currentVoltage = 'all';
+          currentColorTemp = 'all';
+          currentLumens = 'all';
+          currentIP = 'all';
+          currentSearch = '';
+          currentSort = 'default';
+          currentPage = 1;
+
+          // Reset Active Chips
+          const resetContainerChips = (containerId) => {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.querySelectorAll('.filter-chip').forEach(c => {
+              const val = c.dataset.val || c.dataset.sort;
+              if (val === 'all' || val === 'default') c.classList.add('active');
+              else c.classList.remove('active');
+            });
+          };
+
+          resetContainerChips('sortChips');
+          resetContainerChips('voltageChips');
+          resetContainerChips('colorTempChips');
+          resetContainerChips('lumensChips');
+          resetContainerChips('ipChips');
+          resetContainerChips('priceRangeChips');
+
+          buildTopCategoryPills();
+          renderFilteredProducts();
+        });
+      }
+
+      window.resetPrimaryShopFilters = function resetPrimaryShopFilters() {
+        currentCategory = 'all';
+        currentSearch = '';
+        currentSort = 'default';
+        currentPage = 1;
+        if (headerSearchInput) headerSearchInput.value = '';
+        if (shopSortSelect) shopSortSelect.value = 'default';
+        const nextURL = new URL(window.location.href);
+        nextURL.searchParams.delete('category');
+        nextURL.searchParams.delete('cat');
+        nextURL.searchParams.delete('search');
+        nextURL.searchParams.delete('q');
+        window.history.replaceState({}, '', nextURL);
+        buildSidebarCategoryFilters();
+        buildTopCategoryPills();
+        renderFilteredProducts();
+      };
+
+      window.resetShopCatalogFilters = function resetShopCatalogFilters() {
+        window.resetAdvancedShopFilters?.();
+        window.resetPrimaryShopFilters();
+      };
+
+      // 7. Update Active Filter Count Badge & Status Highlight Text
+      function updateActiveFilterBadge(totalFilteredCount) {
+        let activeCount = 0;
+        if (currentCategory !== 'all') activeCount++;
+        if (currentVoltage !== 'all') activeCount++;
+        if (currentColorTemp !== 'all') activeCount++;
+        if (currentLumens !== 'all') activeCount++;
+        if (currentIP !== 'all') activeCount++;
+        if (currentPriceRange !== 'all') activeCount++;
+        if (currentSearch !== '') activeCount++;
+
+        if (activeFilterBadge) {
+          if (activeCount > 0) {
+            activeFilterBadge.textContent = activeCount;
+            activeFilterBadge.style.display = 'inline-block';
+          } else {
+            activeFilterBadge.style.display = 'none';
+          }
+        }
+
+        if (statusHighlightBadge) {
+          let statusText = 'Wszystkie produkty';
+          if (currentCategory !== 'all') {
+            statusText = currentCategory;
+          } else if (currentVoltage !== 'all') {
+            statusText = `Napięcie ${currentVoltage}`;
+          } else if (currentColorTemp !== 'all') {
+            statusText = `Barwa ${currentColorTemp}`;
+          } else if (currentPriceRange !== 'all') {
+            statusText = `Cena ${currentPriceRange} zł`;
+          }
+          statusHighlightBadge.textContent = `${statusText} (${totalFilteredCount})`;
+        }
+      }
+
+      const normalizeCatalogText = (value) => String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase();
+
+      function productSpecText(product) {
+        return normalizeCatalogText([
+          product.title,
+          product.category,
+          product.original_category,
+          ...Object.entries(product.attributes || {}).flat()
+        ].join(' '));
+      }
+
+      function productFullText(product) {
+        return `${productSpecText(product)} ${normalizeCatalogText(product.description)}`;
+      }
+
+      function productIPRating(product) {
+        const matches = productSpecText(product).match(/\bip\s*(\d{2})\b/g) || [];
+        return Math.max(0, ...matches.map((match) => Number(match.replace(/\D/g, ''))));
+      }
+
+      function matchesRoom(product, room) {
+        if (room === 'all') return true;
+        const spec = productSpecText(product);
+        const full = productFullText(product);
+        const category = normalizeCatalogText(product.category);
+        if (room.includes('Łazienka')) return productIPRating(product) >= 63 || /\blazien|prysznic|wilgoc/.test(full);
+        if (room.includes('Kuchnia')) {
+          return /kuchni|podszaf|blat/.test(full) || /tasmy led|akcesoria/.test(category) && /profil|tasma led|opraw/.test(spec);
+        }
+        if (room.includes('Salon')) return /salon|sufit|wn[eę]k|dekorac/.test(full) || /tasmy led|sterowniki led/.test(category);
+        return true;
+      }
+
+      function matchesExpectation(product, expectation) {
+        if (expectation === 'all') return true;
+        const spec = productSpecText(product);
+        if (expectation.includes('Brak kropek')) return /\bcob\b/.test(spec);
+        if (expectation.includes('Zmienne kolory')) return /\brgbw?\b|\bcct\b|wielokolor/.test(spec);
+        if (expectation.includes('Mocne światło')) {
+          const wattMatches = [...spec.matchAll(/(\d+(?:[.,]\d+)?)\s*w\s*\/?\s*m\b/g)]
+            .map((match) => Number(match[1].replace(',', '.')));
+          const lumenMatches = [...spec.matchAll(/(\d+)\s*lm\s*\/?\s*m?\b/g)]
+            .map((match) => Number(match[1]));
+          return wattMatches.some((value) => value >= 14) || lumenMatches.some((value) => value >= 900);
+        }
+        return true;
+      }
+
+      // 8. Primary Filter and Render Function
+      function getFilteredProducts(state) {
+        if (typeof products === 'undefined' || !Array.isArray(products)) return [];
+        let filtered = [...products];
+
+        if (state.search) {
+          const normalizedSearch = normalizeCatalogText(state.search);
+          filtered = filtered.filter((product) => productFullText(product).includes(normalizedSearch));
+        }
+        if (state.category !== 'all') {
+          const targetCategory = normalizeCatalogText(state.category);
+          filtered = filtered.filter((product) => {
+            const productCategory = normalizeCatalogText(product.category);
+            return productCategory === targetCategory || productCategory.includes(targetCategory) || targetCategory.includes(productCategory);
+          });
+        }
+        if (state.price !== 'all') {
+          if (state.price === '0-50') filtered = filtered.filter(p => p.price <= 50);
+          else if (state.price === '50-100') filtered = filtered.filter(p => p.price > 50 && p.price <= 100);
+          else if (state.price === '100-250') filtered = filtered.filter(p => p.price > 100 && p.price <= 250);
+          else if (state.price === '250+') filtered = filtered.filter(p => p.price > 250);
+        }
+        if (state.voltage !== 'all') {
+          const targetVoltage = normalizeCatalogText(state.voltage).replace(/\s/g, '');
+          filtered = filtered.filter((product) => productSpecText(product).replace(/\s/g, '').includes(targetVoltage));
+        }
+        if (state.colorTemp !== 'all') {
+          filtered = filtered.filter((product) => {
+            const spec = productSpecText(product);
+            if (state.colorTemp === '2700k') return /2700k|ww27/.test(spec);
+            if (state.colorTemp === '3000k') return /3000k|ww30/.test(spec);
+            if (state.colorTemp === '3200k') return /3200k|ww32/.test(spec);
+            if (state.colorTemp === 'neutralna') return /neutralna|3500k|4000k|4500k/.test(spec);
+            if (state.colorTemp === 'zimna') return /zimna|5000k|6000k|6500k/.test(spec);
+            if (state.colorTemp === 'rgb') return /\brgb\b/.test(spec);
+            if (state.colorTemp === 'cct') return /\bcct\b/.test(spec);
+            if (state.colorTemp === 'rgbw') return /\brgbw\b/.test(spec);
+            if (state.colorTemp === 'rgb-cct') return /\brgb\+?cct\b/.test(spec);
+            if (state.colorTemp === 'cyfrowe-mono') return /cyfrow[ea] mono|\bmono\b/.test(spec);
+            return true;
+          });
+        }
+        if (state.lumens !== 'all') {
+          filtered = filtered.filter(p => {
+            const attrJ = (p.attributes && p.attributes["Jasność"]) || (p.attributes && p.attributes["Strumień świetlny"]) || "";
+            const title = p.title || "";
+            const match = (attrJ + " " + title).match(/(\d+)\s*lm/i);
+            if (match) {
+              const lm = parseInt(match[1], 10);
+              if (state.lumens === 'low') return lm < 600;
+              if (state.lumens === 'mid') return lm >= 600 && lm <= 1000;
+              if (state.lumens === 'high') return lm > 1000;
+            }
+            return true;
+          });
+        }
+        if (state.ip !== 'all') {
+          filtered = filtered.filter(p => {
+            if (state.ip === 'IP20') return productIPRating(p) === 20;
+            if (state.ip === 'IP65+') return productIPRating(p) >= 63;
+            return true;
+          });
+        }
+        if (state.room !== 'all') {
+          filtered = filtered.filter((product) => matchesRoom(product, state.room));
+        }
+        if (state.expect !== 'all') {
+          filtered = filtered.filter((product) => matchesExpectation(product, state.expect));
+        }
+        if (state.pcb !== 'all') {
+            const reqPCB = state.pcb.toLowerCase().replace(/\s+/g, '');
+            filtered = filtered.filter(p => {
+              const specList = p.specs ? p.specs.map(s => s.toLowerCase().replace(/\s+/g, '')) : [];
+              return specList.some(s => s.includes('pcb') && s.includes(reqPCB)) || 
+                     (p.title && p.title.toLowerCase().replace(/\s+/g, '').includes(reqPCB));
+            });
+        }
+        if (state.cri !== 'all') {
+            const reqCRI = state.cri.toLowerCase().replace(/\s+/g, '');
+            filtered = filtered.filter(p => {
+              const specList = p.specs ? p.specs.map(s => s.toLowerCase().replace(/\s+/g, '')) : [];
+              return specList.some(s => s.includes(reqCRI)) || 
+                     (p.title && p.title.toLowerCase().replace(/\s+/g, '').includes(reqCRI));
+            });
+        }
+        if (state.r9 !== 'all') {
+            const reqR9 = state.r9.toLowerCase().replace(/\s+/g, '');
+            filtered = filtered.filter(p => {
+              const specList = p.specs ? p.specs.map(s => s.toLowerCase().replace(/\s+/g, '')) : [];
+              return specList.some(s => s.includes(reqR9)) || 
+                     (p.title && p.title.toLowerCase().replace(/\s+/g, '').includes(reqR9));
+            });
+        }
+        if (state.oz !== 'all') {
+            const reqOZ = state.oz.toLowerCase().replace(/\s+/g, '');
+            filtered = filtered.filter(p => {
+              const specList = p.specs ? p.specs.map(s => s.toLowerCase().replace(/\s+/g, '')) : [];
+              return specList.some(s => s.includes(reqOZ)) || 
+                     (p.title && p.title.toLowerCase().replace(/\s+/g, '').includes(reqOZ));
+            });
+        }
+        if (state.cover !== 'all') {
+            const reqCover = state.cover.toLowerCase();
+            filtered = filtered.filter(p => {
+              const specList = p.specs ? p.specs.map(s => s.toLowerCase()) : [];
+              return specList.some(s => s.includes(reqCover)) || 
+                     (p.title && p.title.toLowerCase().includes(reqCover));
+            });
+        }
+        if (state.profileColor !== 'all') {
+            const reqColor = state.profileColor.toLowerCase();
+            filtered = filtered.filter(p => {
+              const specList = p.specs ? p.specs.map(s => s.toLowerCase()) : [];
+              return specList.some(s => s.includes(reqColor)) || 
+                     (p.title && p.title.toLowerCase().includes(reqColor));
+            });
+        }
+        if (state.profile !== 'all') {
+          const profilePatterns = {
+            Wpuszczany: /wpuszcz|do zabudowy/i,
+            GK: /g-k|gk|gips/i,
+            Nawierzchniowy: /nawierzch|natynk/i,
+            Kątowy: /k\u0105tow|naro\u017c/i,
+            Zwieszany: /zwiesz/i,
+            Zewnętrzny: /zewn\u0119trz|elewac/i
+          };
+          const pattern = profilePatterns[state.profile];
+          if (pattern) filtered = filtered.filter((product) => pattern.test(productSpecText(product)));
+        }
+
+        return filtered;
+      }
+
+      function updateFilterAvailability(currentState) {
+        const typeMap = {
+          room: 'room',
+          expect: 'expect',
+          voltage: 'voltage',
+          color: 'colorTemp',
+          pcb: 'pcb',
+          cri: 'cri',
+          r9: 'r9',
+          oz: 'oz',
+          cover: 'cover',
+          profile_color: 'profileColor',
+          profile: 'profile',
+          price: 'price'
+        };
+
+        const pills = document.querySelectorAll('.advanced-filter-container .filter-pill, .advanced-filter-container .color-swatch-btn, .advanced-filter-container .svg-filter-btn');
+        
+        pills.forEach(pill => {
+          if (pill.classList.contains('active')) {
+             pill.classList.remove('unavailable');
+             pill.disabled = false;
+             return;
+          }
+          const type = pill.dataset.type;
+          const val = pill.dataset.val;
+          const stateKey = typeMap[type];
+          
+          if (!stateKey) return;
+          
+          const testState = { ...currentState };
+          testState[stateKey] = val;
+          
+          const matchingProducts = getFilteredProducts(testState);
+          if (matchingProducts.length === 0) {
+             pill.classList.add('unavailable');
+             pill.disabled = true;
+          } else {
+             pill.classList.remove('unavailable');
+             pill.disabled = false;
+          }
+        });
+      }
+
+      function renderFilteredProducts() {
+        if (typeof products === 'undefined' || !Array.isArray(products)) {
+          console.error("Products array is undefined!");
+          if (shopGrid) shopGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 100px 0; color: #ef4444;">Błąd ładowania bazy produktów. Odśwież stronę.</div>`;
+          return;
+        }
+
+        updateShopCatalogTitle();
+        
+        const currentState = {
+          search: currentSearch,
+          category: currentCategory,
+          price: currentPriceRange,
+          voltage: currentVoltage,
+          colorTemp: currentColorTemp,
+          lumens: currentLumens,
+          ip: currentIP,
+          room: currentRoom,
+          expect: currentExpectation,
+          pcb: currentPCB,
+          cri: currentCRI,
+          r9: currentR9,
+          oz: currentOZ,
+          cover: currentCover,
+          profileColor: currentProfileColor,
+          profile: currentProfile
+        };
+
+        let filtered = getFilteredProducts(currentState);
+        
+        // Update filter UI dynamically
+        updateFilterAvailability(currentState);
+
+        // Sorting
+        if (currentSort === 'price-asc') {
+          filtered.sort((a, b) => a.price - b.price);
+        } else if (currentSort === 'price-desc') {
+          filtered.sort((a, b) => b.price - a.price);
+        } else if (currentSort === 'title-asc') {
+          filtered.sort((a, b) => a.title.localeCompare(b.title));
+        }
+
+        updateActiveFilterBadge(filtered.length);
+
+        // Pagination Calculations
+        const totalItems = filtered.length;
+        const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+
+        if (currentPage > totalPages) currentPage = totalPages;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+
+        const itemsToShow = filtered.slice(startIndex, endIndex);
+        if (shopResultSummary) {
+          shopResultSummary.textContent = totalItems
+            ? `(${totalItems})`
+            : '(0)';
+        }
+        window.updateAdvancedFilterProductCount?.(totalItems);
+
+        // Render Grid
+        if (shopGrid) {
+          shopGrid.innerHTML = '';
+          if (itemsToShow.length === 0) {
+            shopGrid.innerHTML = `
+              <div class="catalog-empty-state">
+                <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+                <h3>Brak produktów dla tych filtrów</h3>
+                <p>Usuń część kryteriów albo wróć do pełnej oferty.</p>
+                <button type="button" onclick="window.resetShopCatalogFilters()">Wyczyść filtry</button>
+              </div>
+            `;
+            if (shopPagination) shopPagination.innerHTML = '';
+            return;
+          }
+
+          itemsToShow.forEach(p => {
+            let thirdBtn = '';
+            if (p.has3D) {
+              thirdBtn = `
+                <button class="action-btn-circle qv-3d-btn" data-id="${p.id}" aria-label="Podgląd 3D">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: auto;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </button>
+              `;
+            } else if (p.has360) {
+              thirdBtn = `
+                <button class="action-btn-circle qv-360-btn" data-id="${p.id}" aria-label="Podgląd 360">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: auto;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                </button>
+              `;
             }
 
-            // Close mobile dropdown
-            const mobileCatDropdown = document.getElementById('mobileCategoryDropdown');
-            if (mobileCatDropdown) mobileCatDropdown.style.display = 'none';
-            renderFilteredProducts();
+            const productImage = p.images?.[0] || 'images/okladka-produkty.webp';
+            const stockValue = Number.parseFloat(String(p.stock || '0').replace(',', '.'));
+            const productCode = p.kod_handlowy || p.kod_katalogowy || p.attributes?.Kod_produktu || '';
+            const hasDiscount = Number(p.compareAtPrice) > Number(p.price);
+            const discountPercent = hasDiscount
+              ? Math.round((1 - Number(p.price) / Number(p.compareAtPrice)) * 100)
+              : 0;
+
+            const cardHTML = `
+              <div class="mockup-product-card" data-id="${p.id}">
+                <div class="mockup-product-media" style="position: relative; overflow: hidden;">
+                  <div class="catalog-product-badges">
+                    <span class="catalog-stock-badge ${stockValue > 0 ? 'is-available' : 'is-unavailable'}">${stockValue > 0 ? 'Dostępny' : 'Na zamówienie'}</span>
+                    ${discountPercent > 0 ? `<span class="catalog-sale-badge">−${discountPercent}%</span>` : ''}
+                  </div>
+                  <img src="${productImage}" alt="${p.title}" class="mockup-product-img" loading="lazy" onerror="this.onerror=null;this.src='images/okladka-produkty.webp'">
+                  ${p.video ? `
+                    <video class="mockup-product-video" data-src="${p.video}" loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></video>
+                  ` : ''}
+                  <div class="product-actions-hover">
+                    <button class="action-btn-circle qv-wishlist-btn" data-id="${p.id}" aria-label="Dodaj do listy życzeń">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: auto;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </button>
+                    <button class="action-btn-circle qv-eye-btn" data-id="${p.id}" aria-label="Szybki podgląd">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: auto;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                    ${thirdBtn}
+                  </div>
+                </div>
+                <div class="mockup-product-info">
+                  <div class="catalog-product-meta">
+                    <span>${p.category || 'Produkt LED'}</span>
+                    ${productCode ? `<small>${productCode}</small>` : ''}
+                  </div>
+                  <h3 class="mockup-product-title"><a href="product.html?id=${p.id}">${p.title}</a></h3>
+                  <p class="mockup-product-price">
+                    <span class="catalog-current-price">${p.price.toFixed(2)} zł</span>
+                    ${hasDiscount ? `<del>${Number(p.compareAtPrice).toFixed(2)} zł</del>` : ''}
+                    <span class="price-unit">/ ${p.category && p.category.includes("Taśmy") ? "metr" : "szt."}</span>
+                  </p>
+                  <div class="catalog-card-actions">
+                    <button class="add-to-cart-btn qv-add-cart-btn" type="button" data-id="${p.id}" aria-label="Dodaj do koszyka">
+                      <span class="btn-slide-wrap">
+                        <span class="btn-txt-default">Dodaj do koszyka</span>
+                        <span class="btn-txt-hover"><i class="ph ph-shopping-cart-simple" style="margin-right: 6px;"></i> Dodaj teraz!</span>
+                      </span>
+                    </button>
+                    <button class="buy-it-now-btn catalog-quick-buy-btn" type="button" data-id="${p.id}" aria-label="Szybki zakup">
+                      <span class="btn-slide-wrap">
+                        <span class="btn-txt-default">Szybki zakup</span>
+                        <span class="btn-txt-hover">Przejdź do podsumowania</span>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `;
+            shopGrid.insertAdjacentHTML('beforeend', cardHTML);
           });
-        });
+        }
+
+        // Render Pagination Controls
+        if (shopPagination) {
+          shopPagination.innerHTML = '';
+          if (totalPages > 1) {
+            if (currentPage > 1) {
+              const prevBtn = document.createElement('button');
+              prevBtn.className = 'pagination-btn';
+              prevBtn.textContent = '◀';
+              prevBtn.addEventListener('click', () => {
+                currentPage--;
+                renderFilteredProducts();
+                window.scrollTo({ top: 350, behavior: 'smooth' });
+              });
+              shopPagination.appendChild(prevBtn);
+            }
+
+            const appendPageButton = (pageNumber) => {
+              const pageBtn = document.createElement('button');
+              pageBtn.className = `pagination-btn ${pageNumber === currentPage ? 'active' : ''}`;
+              pageBtn.textContent = pageNumber;
+              pageBtn.setAttribute('aria-label', `Strona ${pageNumber}`);
+              if (pageNumber === currentPage) pageBtn.setAttribute('aria-current', 'page');
+              pageBtn.addEventListener('click', () => {
+                currentPage = pageNumber;
+                renderFilteredProducts();
+                window.scrollTo({ top: 350, behavior: 'smooth' });
+              });
+              shopPagination.appendChild(pageBtn);
+            };
+
+            const pageWindow = window.innerWidth <= 768 ? 1 : 2;
+            const visiblePages = totalPages <= 7
+              ? Array.from({ length: totalPages }, (_, index) => index + 1)
+              : [...new Set([
+                  1,
+                  totalPages,
+                  ...Array.from(
+                    { length: pageWindow * 2 + 1 },
+                    (_, index) => currentPage - pageWindow + index
+                  )
+                ])]
+                  .filter(pageNumber => pageNumber >= 1 && pageNumber <= totalPages)
+                  .sort((a, b) => a - b);
+
+            let previousPage = 0;
+            visiblePages.forEach(pageNumber => {
+              if (previousPage && pageNumber - previousPage > 1) {
+                const ellipsis = document.createElement('span');
+                ellipsis.className = 'pagination-ellipsis';
+                ellipsis.textContent = '…';
+                ellipsis.setAttribute('aria-hidden', 'true');
+                shopPagination.appendChild(ellipsis);
+              }
+              appendPageButton(pageNumber);
+              previousPage = pageNumber;
+            });
+
+            if (currentPage < totalPages) {
+              const nextBtn = document.createElement('button');
+              nextBtn.className = 'pagination-btn';
+              nextBtn.textContent = '▶';
+              nextBtn.addEventListener('click', () => {
+                currentPage++;
+                renderFilteredProducts();
+                window.scrollTo({ top: 350, behavior: 'smooth' });
+              });
+              shopPagination.appendChild(nextBtn);
+            }
+          }
+        }
+
+        // Re-bind hover actions for popups
+        if (typeof initSharedPopups === 'function') {
+          initSharedPopups();
+        }
       }
-    }
 
-    // Colors filter binding
-    colorsList.querySelectorAll('.color-dot').forEach(dot => {
-      if (dot.dataset.color === currentColor) {
-        colorsList.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-      }
-      dot.addEventListener('click', (e) => {
-        colorsList.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-        currentColor = dot.dataset.color;
-        currentPage = 1;
-        renderFilteredProducts();
-      });
-    });
-
-    // Price range binding
-    priceRangesList.querySelectorAll('li').forEach(li => {
-      if (li.dataset.range === currentPriceRange) {
-        priceRangesList.querySelectorAll('li').forEach(l => l.classList.remove('active'));
-        li.classList.add('active');
-      }
-      li.addEventListener('click', (e) => {
-        priceRangesList.querySelectorAll('li').forEach(l => l.classList.remove('active'));
-        li.classList.add('active');
-        currentPriceRange = li.dataset.range;
-        currentPage = 1;
-        renderFilteredProducts();
-      });
-    });
-
-    // Search input binding
-    if (shopSearchInput) {
-      shopSearchInput.addEventListener('input', (e) => {
-        currentSearch = e.target.value.toLowerCase().trim();
-        currentPage = 1;
-        renderFilteredProducts();
-      });
-    }
-
-    // Sort select binding
-    shopSortSelect.addEventListener('change', (e) => {
-      currentSort = e.target.value;
-      currentPage = 1;
+      // Initial Call
       renderFilteredProducts();
     });
-
-    // Focus search input on header search icon click
-    const searchHeaderIcon = document.getElementById('searchHeaderIcon');
-    if (searchHeaderIcon && shopSearchInput) {
-      searchHeaderIcon.addEventListener('click', () => {
-        shopSearchInput.focus();
-        shopSearchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
-    }
-
-    // Primary filter and render function
-    function renderFilteredProducts() {
-      let filtered = [...products];
-
-      // 1. Search Filter
-      if (currentSearch) {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes(currentSearch) || p.description.toLowerCase().includes(currentSearch));
-      }
-
-      // 2. Category Filter
-      if (currentCategory !== 'all') {
-        filtered = filtered.filter(p => p.category === currentCategory);
-      }
-
-      // 3. Color Filter
-      if (currentColor !== 'all') {
-        filtered = filtered.filter(p => p.colors && p.colors.includes(currentColor));
-      }
-
-      // 4. Price Filter
-      if (currentPriceRange !== 'all') {
-        if (currentPriceRange === '0-50') {
-          filtered = filtered.filter(p => p.price <= 50);
-        } else if (currentPriceRange === '50-100') {
-          filtered = filtered.filter(p => p.price > 50 && p.price <= 100);
-        } else if (currentPriceRange === '100+') {
-          filtered = filtered.filter(p => p.price > 100);
-        }
-      }
-
-      // 5. Sorting
-      if (currentSort === 'price-asc') {
-        filtered.sort((a, b) => a.price - b.price);
-      } else if (currentSort === 'price-desc') {
-        filtered.sort((a, b) => b.price - a.price);
-      } else if (currentSort === 'title-asc') {
-        filtered.sort((a, b) => a.title.localeCompare(b.title));
-      }
-
-      // 6. Pagination Calculations
-      const totalItems = filtered.length;
-      const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
-      
-      if (currentPage > totalPages) currentPage = totalPages;
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
-
-      const itemsToShow = filtered.slice(startIndex, endIndex);
-
-      // Render Toolbar Result Count
-      resultsCount.textContent = totalItems > 0 
-        ? `Pokazano ${startIndex + 1}-${endIndex} z ${totalItems} wyników`
-        : 'Pokazano 0 wyników';
-
-      // Render Grid
-      shopGrid.innerHTML = '';
-      if (itemsToShow.length === 0) {
-        shopGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 100px 0; color: #999;">Brak produktów spełniających wybrane kryteria.</div>`;
-        shopPagination.innerHTML = '';
-        return;
-      }
-
-      itemsToShow.forEach(p => {
-        let thirdBtn = '';
-        if (p.has3D) {
-          thirdBtn = `
-            <button class="action-btn-circle qv-3d-btn" data-id="${p.id}" aria-label="Podgląd 3D">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: auto;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-            </button>
-          `;
-        } else if (p.has360) {
-          thirdBtn = `
-            <button class="action-btn-circle qv-360-btn" data-id="${p.id}" aria-label="Podgląd 360">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: auto;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-            </button>
-          `;
-        }
-
-        const cardHTML = `
-          <div class="mockup-product-card" data-id="${p.id}">
-            <p class="mockup-product-category">${p.category}</p>
-            <div class="mockup-product-media" style="position: relative; overflow: hidden;">
-              <img src="${p.images[0]}" alt="${p.title}" class="mockup-product-img">
-              ${p.video ? `
-                <video class="mockup-product-video" data-src="${p.video}" loop muted playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></video>
-              ` : ''}
-              <div class="product-actions-hover">
-                <button class="action-btn-circle qv-wishlist-btn" data-id="${p.id}" aria-label="Dodaj do listy życzeń">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: auto;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                </button>
-                <button class="action-btn-circle qv-eye-btn" data-id="${p.id}" aria-label="Szybki podgląd">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display: block; margin: auto;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                </button>
-                ${thirdBtn}
-              </div>
-            </div>
-            <div class="mockup-product-info">
-              <h3 class="mockup-product-title"><a href="product.html?id=${p.id}">${p.title}</a></h3>
-              <p class="mockup-product-price">
-                ${p.price.toFixed(2)} zł <span class="price-unit">/ ${p.category === "Taśmy LED" ? "metr" : "szt."}</span>
-              </p>
-              <button class="mockup-btn qv-add-cart-btn" data-id="${p.id}" style="width: 100%; margin-top: 10px; padding: 0 10px !important; font-size: 11px !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; justify-content: center; align-items: center; height: 36px;">
-                Dodaj do koszyka
-              </button>
-            </div>
-          </div>
-        `;
-        shopGrid.insertAdjacentHTML('beforeend', cardHTML);
-      });
-
-      // Render Pagination Buttons
-      shopPagination.innerHTML = '';
-      if (totalPages > 1) {
-        if (currentPage > 1) {
-          const prevBtn = document.createElement('button');
-          prevBtn.className = 'pagination-btn';
-          prevBtn.textContent = '◀';
-          prevBtn.addEventListener('click', () => {
-            currentPage--;
-            renderFilteredProducts();
-            window.scrollTo({ top: 350, behavior: 'smooth' });
-          });
-          shopPagination.appendChild(prevBtn);
-        }
-
-        for (let i = 1; i <= totalPages; i++) {
-          const pageBtn = document.createElement('button');
-          pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
-          pageBtn.textContent = i;
-          pageBtn.addEventListener('click', () => {
-            currentPage = i;
-            renderFilteredProducts();
-            window.scrollTo({ top: 350, behavior: 'smooth' });
-          });
-          shopPagination.appendChild(pageBtn);
-        }
-
-        if (currentPage < totalPages) {
-          const nextBtn = document.createElement('button');
-          nextBtn.className = 'pagination-btn';
-          nextBtn.textContent = '▶';
-          nextBtn.addEventListener('click', () => {
-            currentPage++;
-            renderFilteredProducts();
-            window.scrollTo({ top: 350, behavior: 'smooth' });
-          });
-          shopPagination.appendChild(nextBtn);
-        }
-      }
-
-      // Re-bind hover actions (quick view, cart) for dynamically created elements
-      initSharedPopups();
-
-      // Handled globally by initGlobalCardVideos inside shared-popups.js
-    }
-
-    // Header Search bar logic for shop.html
-    
-        // Header Scroll Effect
-    const header = document.getElementById('mainHeader');
-    const headerLogo = document.getElementById('headerLogo');
-    const hasHero = document.querySelector('.page-hero, .mockup-hero-slider, .hero, .hero-section');
-    
-    if (!hasHero && header) {
-      header.classList.add('scrolled');
-      if (headerLogo) headerLogo.src = 'images/logo-dark.png';
-      header.classList.add('force-scrolled');
-    }
-    
-    window.addEventListener('scroll', () => {
-      if (!header) return;
-      if (header.classList.contains('force-scrolled')) return;
-      
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-        if (headerLogo) headerLogo.src = 'images/logo-dark.png';
-      } else {
-        header.classList.remove('scrolled');
-        if (headerLogo) headerLogo.src = 'images/logo-white.png';
-      }
-    });
-
-    const headerSearchInput = document.getElementById('headerSearchInput');
-    const headerSearchBtn = document.getElementById('headerSearchBtn');
-    
-    function performHeaderSearch() {
-      if (headerSearchInput) {
-        const q = headerSearchInput.value.trim();
-        currentSearch = q.toLowerCase();
-        if (shopSearchInput) {
-          shopSearchInput.value = q;
-        }
-        currentPage = 1;
-        renderFilteredProducts();
-      }
-    }
-    
-    if (headerSearchInput) {
-      headerSearchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          performHeaderSearch();
-        }
-      });
-    }
-    if (headerSearchBtn) {
-      headerSearchBtn.addEventListener('click', performHeaderSearch);
-    }
-
-    // Run Initial Setup
-    
-    // Mobile specific logic
-    const mobileSearchInput = document.getElementById('mobileSearchInput');
-    const mobileSearchClear = document.getElementById('mobileSearchClear');
-    const mobileSearchAction = document.getElementById('mobileSearchAction');
-    const mobileFiltersBtn = document.getElementById('mobileFiltersBtn');
-    
-    if (mobileSearchInput) {
-      mobileSearchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          currentSearch = mobileSearchInput.value.trim().toLowerCase();
-          currentPage = 1;
-          renderFilteredProducts();
-        }
-      });
-      mobileSearchInput.addEventListener('input', () => {
-         if(mobileSearchInput.value) {
-            mobileSearchClear.style.display = 'block';
-         } else {
-            mobileSearchClear.style.display = 'none';
-         }
-      });
-    }
-    if (mobileSearchClear) {
-      mobileSearchClear.style.display = 'none';
-      mobileSearchClear.addEventListener('click', () => {
-        mobileSearchInput.value = '';
-        mobileSearchClear.style.display = 'none';
-        currentSearch = '';
-        currentPage = 1;
-        renderFilteredProducts();
-      });
-    }
-    if (mobileSearchAction) {
-      mobileSearchAction.addEventListener('click', () => {
-        currentSearch = mobileSearchInput.value.trim().toLowerCase();
-        currentPage = 1;
-        renderFilteredProducts();
-      });
-    }
-    if (mobileFiltersBtn) {
-      mobileFiltersBtn.addEventListener('click', () => {
-        // Close other mobile dropdowns
-        const catDropdown = document.getElementById('mobileCategoryDropdown');
-        const sortDropdown = document.getElementById('mobileSortDropdown');
-        if (catDropdown) catDropdown.style.display = 'none';
-        if (sortDropdown) sortDropdown.style.display = 'none';
-        
-        const sidebar = document.getElementById('shopSidebar');
-        if (sidebar) {
-          if (sidebar.classList.contains('active')) {
-            sidebar.classList.remove('active');
-          } else {
-            sidebar.classList.add('active');
-          }
-        }
-      });
-    }
-
-    // Mobile Category Button Toggle
-    const mobileCategoryBtn = document.getElementById('mobileCategoryBtn');
-    const mobileCategoryDropdown = document.getElementById('mobileCategoryDropdown');
-    if (mobileCategoryBtn && mobileCategoryDropdown) {
-      mobileCategoryBtn.addEventListener('click', () => {
-        // Close other mobile dropdowns
-        const sortDropdown = document.getElementById('mobileSortDropdown');
-        if (sortDropdown) sortDropdown.style.display = 'none';
-        const sidebar = document.getElementById('shopSidebar');
-        if (sidebar) sidebar.classList.remove('active');
-        
-        // Toggle category dropdown
-        if (mobileCategoryDropdown.style.display === 'none' || mobileCategoryDropdown.style.display === '') {
-          mobileCategoryDropdown.style.display = 'block';
-        } else {
-          mobileCategoryDropdown.style.display = 'none';
-        }
-      });
-    }
-
-    // Mobile Sort Button Toggle
-    const mobileSortBtn = document.getElementById('mobileSortBtn');
-    const mobileSortDropdown = document.getElementById('mobileSortDropdown');
-    if (mobileSortBtn && mobileSortDropdown) {
-      mobileSortBtn.addEventListener('click', () => {
-        // Close other mobile dropdowns
-        const catDropdown = document.getElementById('mobileCategoryDropdown');
-        if (catDropdown) catDropdown.style.display = 'none';
-        const sidebar = document.getElementById('shopSidebar');
-        if (sidebar) sidebar.classList.remove('active');
-        
-        // Toggle sort dropdown
-        if (mobileSortDropdown.style.display === 'none' || mobileSortDropdown.style.display === '') {
-          mobileSortDropdown.style.display = 'block';
-        } else {
-          mobileSortDropdown.style.display = 'none';
-        }
-      });
-    }
-
-    // Bind Mobile Sort Selection Click Event
-    if (mobileSortDropdown) {
-      mobileSortDropdown.querySelectorAll('.mobile-sort-item').forEach(item => {
-        item.addEventListener('click', () => {
-          mobileSortDropdown.querySelectorAll('.mobile-sort-item').forEach(l => l.classList.remove('active'));
-          item.classList.add('active');
-          currentSort = item.dataset.sort;
-          
-          // Update desktop select dropdown to sync state
-          const desktopSortSelect = document.getElementById('shopSortSelect');
-          if (desktopSortSelect) {
-            desktopSortSelect.value = currentSort;
-          }
-          
-          // Close sort dropdown and reload product grid
-          mobileSortDropdown.style.display = 'none';
-          currentPage = 1;
-          renderFilteredProducts();
-        });
-      });
-    }
-
-    buildCategoriesFilter();
-    renderFilteredProducts();
   </script>
 
 
-  <!-- Mobile Bottom Navigation -->
-  <nav class="mobile-bottom-nav">
-    <div class="mobile-nav-items">
-      <a href="index.html" class="mobile-nav-item ">
-        <i class="ph ph-house"></i>
-        <span>Home</span>
-      </a>
-      <a href="javascript:void(0);" onclick="openMobileCategories();" class="mobile-nav-item active">
-        <i class="ph ph-squares-four"></i>
-        <span>Kategorie</span>
-      </a>
-      <a href="blog.html" class="mobile-nav-item ">
-        <i class="ph ph-article"></i>
-        <span>Blog</span>
-      </a>
-      <a href="about.html" class="mobile-nav-item ">
-        <i class="ph ph-info"></i>
-        <span>O nas</span>
-      </a>
-      <a href="contact.html" class="mobile-nav-item ">
-        <i class="ph ph-envelope-simple"></i>
-        <span>Kontakt</span>
-      </a>
-    </div>
-  </nav>
-
-  <script>
-    // iOS Safari Zoom-Out Hack on Blur
-    document.querySelectorAll('input').forEach(input => {
-      input.addEventListener('blur', () => {
-        if (window.innerWidth <= 768) {
-          const meta = document.querySelector('meta[name="viewport"]');
-          if (meta) {
-            meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-            setTimeout(() => {
-              meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0';
-            }, 300);
-          }
+    <script id="standard-header-scroll-script">
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById('siteHeader') || document.querySelector('.site-header') || document.querySelector('.mockup-header');
+      const headerLogo = document.querySelector('.brand img') || document.querySelector('.mockup-header-logo img');
+      function handleScroll() {
+        if (window.scrollY > 40) {
+          if (header) header.classList.add('scrolled');
+          if (headerLogo) headerLogo.src = 'images/logo-dark.png';
+        } else {
+          if (header) header.classList.remove('scrolled');
+          if (headerLogo) headerLogo.src = 'images/logo-white.png';
         }
-      });
-    });
-  
-    // Robust mobile filter toggle
-    const mFilterBtn = document.getElementById('mobileFiltersBtn');
-    if (mFilterBtn) {
-      mFilterBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const sidebar = document.getElementById('shopSidebar');
-        if (sidebar) {
-          sidebar.classList.toggle('active');
-        }
-      });
-    }
-
-</script>
-<style>
-    
-    @media (max-width: 768px) {
-      .add-to-cart-btn, .buy-it-now-btn, .mockup-btn {
-        background: var(--accent-color) !important;
-        color: var(--white) !important;
-        border: none !important;
-        font-weight: 600 !important;
-        padding: 6px 12px !important;
-        font-size: 11px !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
       }
-    }
-    
-    
-    
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+    });
+  </script>
+
+  <script src="js/smart-search.js"></script>
 
 
-    
 
 
-    
+<!-- MOBILE UI FIXES -->
+<style class="mobile-ui-fixes">
+/* 1. Main Page White Gap Fix */
+body.index-page .site-header {
+  position: absolute !important;
+  top: 0; left: 0; right: 0; width: 100%;
+  z-index: 1000;
+}
+body.index-page .site-header.scrolled {
+  position: fixed !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+body.index-page .site-header:not(.scrolled) {
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
 
 
-    /* --- ULTIMATE DROPDOWN OVERRIDE START --- */
-    body .mockup-header:not(.scrolled) .magic-dropdown ul li a,
-    body .mockup-header.scrolled .magic-dropdown ul li a,
-    body .mockup-nav .magic-dropdown ul li a,
-    body .magic-dropdown ul li a {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      color: var(--primary-color) !important;
-      padding: 12px 15px !important;
-      border-radius: 8px !important;
-      transition: all 0.3s ease !important;
-      font-size: 14px !important;
-      font-weight: 500 !important;
-    }
-    
-    body .mockup-header:not(.scrolled) .magic-dropdown ul li a:hover,
-    body .mockup-header.scrolled .magic-dropdown ul li a:hover,
-    body .mockup-nav .magic-dropdown ul li a:hover,
-    body .magic-dropdown ul li a:hover {
-      background: rgba(0, 0, 0, 0.05) !important;
-      color: var(--primary-color) !important;
-      transform: translateX(5px) !important;
-      border: none !important;
-    }
+/* 2. Hero Banner Spacing on Mobile */
+@media (max-width: 768px) {
+  .mockup-hero-slider, .hero-section {
+    padding-bottom: 110px !important;
+  }
+  .scroll-down-circle {
+    bottom: 110px !important;
+  }
+  
+  /* 3. Standardize Mobile Top Header */
+  .site-header {
+    padding: 10px 15px !important;
+    min-height: 60px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  .site-header .brand img,
+  .mockup-header-logo img {
+    height: 22px !important;
+    max-width: 120px !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+  }
+  .site-header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-left: auto !important;
+  }
+  /* Force cart and search visibility on mobile */
+  .site-header .header-search {
+    display: none !important; /* Hide full search bar to save space, rely on AI/Menu */
+  }
+  .site-header .header-icon {
+    display: inline-flex !important;
+    color: var(--primary-color) !important;
+  }
+  .site-header .header-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    stroke: var(--primary-color) !important;
+  }
+  .menu-toggle {
+    display: none !important; /* Hide old hamburger */
+  }
+}
 
-    body .magic-dropdown {
-      background: rgba(255, 255, 255, 0.98) !important;
-      backdrop-filter: blur(24px) saturate(150%) !important;
-      border: 1px solid rgba(0, 0, 0, 0.08) !important;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.1) !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      position: absolute !important;
-      top: 100% !important;
-      transition: all 0.3s ease !important;
-    }
-    
-    body .has-mega-menu:hover .magic-dropdown {
-      opacity: 1 !important;
-      visibility: visible !important;
-    }
-    
-    /* Ensure the active tile is strictly enforced (White tile, navy text) */
-    body .mockup-header:not(.scrolled) .mockup-nav a.active,
-    body .mockup-header.scrolled .mockup-nav a.active {
-      background: #ffffff !important;
-      border: 2px solid #ffffff !important;
-      color: var(--primary-color) !important;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
-    }
-    
-    /* Ensure regular links are properly colored */
-    body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a:not(.active) {
-      color: var(--white) !important;
-      background: rgba(255, 255, 255, 0.08) !important;
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    }
-    
-    body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active) {
-      color: var(--primary-color) !important;
-      background: rgba(0, 0, 0, 0.04) !important;
-      border: 1px solid rgba(0, 0, 0, 0.06) !important;
-    }
-    /* --- ULTIMATE DROPDOWN OVERRIDE END --- */
-
+/* 4. New Bottom Navigation */
+.new-glass-nav {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  width: auto;
+  background: rgba(11, 26, 48, 0.90) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  z-index: 9999;
+  padding: 8px 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+}
+.new-glass-nav .mobile-nav-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  height: 50px;
+}
+.new-glass-nav .mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: rgba(255,255,255,0.6) !important;
+  text-decoration: none !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease;
+  width: 20%;
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  padding-bottom: 2px;
+}
+.new-glass-nav .mobile-nav-item i {
+  font-size: 22px;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+}
+.new-glass-nav .nav-ai-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  margin-bottom: 4px;
+  filter: grayscale(1) brightness(2);
+  transition: all 0.3s ease;
+}
+.new-glass-nav .mobile-nav-item.active {
+  color: #00e5ff !important;
+}
+.new-glass-nav .mobile-nav-item.active i {
+  color: #00e5ff !important;
+  filter: drop-shadow(0 0 8px rgba(0,229,255,0.6));
+}
+.new-glass-nav .nav-center-pill {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0b1a30, #1a365d);
+  border: 2px solid #00e5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+.new-glass-nav .nav-center-pill:active {
+  transform: translateX(-50%) scale(0.95);
+}
+.new-glass-nav .nav-center-pill i {
+  font-size: 24px;
+  margin-bottom: 0;
+  color: #00e5ff;
+}
+.new-glass-nav .mobile-nav-item:hover {
+  color: #fff !important;
+}
+.new-glass-nav .mobile-nav-item:hover .nav-ai-icon {
+  filter: none;
+}
+@media (max-width: 768px) {
+  .new-glass-nav {
+    display: block !important;
+  }
+  .mockup-footer {
+    margin-bottom: 100px !important;
+  }
+}
+/* 5. Mobile Category Banners (Wężej, 1 linia) */
+@media (max-width: 768px) {
+  .category-banner-card, .category-banner-card.sub-card {
+    height: 180px !important; /* Wężej w pionie */
+    padding: 20px 15px !important;
+  }
+  .category-banner-card h3, .category-banner-card.sub-card h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    margin-bottom: 0 !important;
+  }
+  .category-banner-card div > span, .category-banner-card.sub-card div > span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 11px !important;
+  }
+}
 </style>
+<!-- END MOBILE UI FIXES -->
+
+  <script src="js/advanced-filters.js"></script>
+
+<style id="urgent-mobile-fixes-3">
+/* FIX 1: White patch on navy nav on mobile */
+.new-glass-nav a.active, 
+.new-glass-nav .mobile-nav-item.active {
+  background: transparent !important;
+  color: #00e5ff !important;
+}
+.new-glass-nav .nav-center-pill {
+  background: linear-gradient(135deg, #0b1a30, #1a365d) !important;
+  border: 2px solid #00e5ff !important;
+  border-radius: 50% !important; /* ensure it's round and no white corners */
+}
+.new-glass-nav .nav-center-pill i {
+  background: transparent !important;
+}
+
+/* FIX 2: Scroll arrow overlap & Huge category banners */
+@media (max-width: 768px) {
+  .scroll-down-arrow {
+    bottom: 140px !important; /* Move higher to not overlap */
+  }
+  .hero-section, .mockup-hero-slider, .page-hero {
+    padding-bottom: 140px !important;
+  }
+
+  /* Force ALL category banners to be slim */
+  .category-banner-card, 
+  .category-banner-card.sub-card, 
+  .mockup-category-card, 
+  .category-card,
+  .shop-category-card {
+    height: 160px !important;
+    min-height: 160px !important;
+    padding: 20px 15px !important;
+  }
+  .category-banner-card h3, 
+  .category-banner-card.sub-card h3, 
+  .mockup-category-card h3, 
+  .glass-cat-title,
+  .category-card h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    margin-bottom: 4px !important;
+  }
+  .category-banner-card div > span, 
+  .category-banner-card.sub-card div > span, 
+  .mockup-category-card p, 
+  .glass-cat-subtitle,
+  .category-card p {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 11px !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+}
+</style>
+
+
+<style id="global-config-nav-css">
+@property --nav-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes nav-spin {
+  0% { --nav-angle: 0deg; }
+  100% { --nav-angle: 360deg; }
+}
+
+.config-bottom-nav { display: none; }
+@media (max-width: 768px) {
+  .config-bottom-nav { 
+    position: fixed; inset: auto 0 0; z-index: 950; height: 76px; 
+    display: grid; grid-template-columns: repeat(5,1fr); 
+    padding: 7px 8px calc(6px + env(safe-area-inset-bottom)); 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    background: rgba(6,16,28,.95); 
+    backdrop-filter: blur(24px) saturate(180%); 
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* The Animated Border */
+  .config-bottom-nav::before {
+    content: '';
+    position: absolute;
+    inset: -2px 0 0 0; /* Only top border glow */
+    background: conic-gradient(
+        from var(--nav-angle), 
+        transparent 10%, #00e5ff 25%, 
+        transparent 35%, #ff0055 50%, 
+        transparent 60%, #00e5ff 75%, 
+        transparent 85%, #ff0055 100%
+    );
+    animation: nav-spin 4s linear infinite;
+    z-index: -1;
+    opacity: 0.9;
+  }
+  
+  .config-bottom-nav a, .config-bottom-nav button { 
+    min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; border: 0; 
+    color: rgba(255,255,255,.6); background: transparent; text-decoration: none; font-size: 10px; font-weight: 500; cursor: pointer; transition: all 0.3s ease;
+  }
+  .config-bottom-nav i { font-size: 22px; margin-bottom: 2px; transition: all 0.3s ease; }
+  .config-bottom-nav a:hover, .config-bottom-nav button:hover { color: #fff; }
+  .config-bottom-nav .active { color: #fff; }
+  
+  .bottom-main-icon { 
+    width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; 
+    margin-top: -24px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: #fff; 
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.0)); 
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  .bottom-main-icon i { font-size: 24px; margin-bottom: 0; }
+  .config-bottom-nav .active .bottom-main-icon {
+    border: 2px solid #00e5ff;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    background: rgba(0, 229, 255, 0.1);
+    color: #00e5ff;
+  }
+  
+  .site-header.scrolled .header-icon svg, .mockup-header.scrolled .header-icon svg {
+    stroke: #0b1a30 !important;
+  }
+  .menu-toggle, .menu-button {
+    display: block !important;
+  }
+}
+</style>
+
 </body>
 </html>

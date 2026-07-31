@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import atexit
 import json
 import os
 import re
@@ -35,6 +36,7 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "message-reply-local")
 POLL_SECONDS = int(os.getenv("IMESSAGE_AI_POLL_SECONDS", "8"))
 CONTEXT_LIMIT = int(os.getenv("IMESSAGE_AI_CONTEXT_LIMIT", "30"))
 ALLOW_OLLAMA_FALLBACK = os.getenv("IMESSAGE_AI_ALLOW_OLLAMA_FALLBACK", "").lower() in {"1", "true", "yes", "on"}
+REQUIRE_ALLOWLIST = env_bool("IMESSAGE_AI_REQUIRE_ALLOWLIST", True)
 CONTROL_EMAIL = os.getenv("IMESSAGE_AI_CONTROL_EMAIL", "prezes@zeglarstwomazury.pl").strip().lower()
 CONTROL_PHONE = os.getenv("IMESSAGE_AI_CONTROL_PHONE", "603045005").strip()
 CONTROL_REPLY_TARGET = os.getenv("IMESSAGE_AI_CONTROL_REPLY_TARGET", CONTROL_PHONE).strip()
@@ -60,6 +62,7 @@ CONTROL_COMMAND_TIMEOUT = int(os.getenv("IMESSAGE_AI_CONTROL_TIMEOUT", "120"))
 MAX_SMS_CHARS = int(os.getenv("IMESSAGE_AI_CONTROL_MAX_CHARS", "1200"))
 RUNNING_CODEX_TASKS = {}
 SHUTDOWN_REQUESTED = False
+CLEANUP_COMPLETE = False
 
 
 def log(message):
@@ -376,6 +379,7 @@ def start_codex_task(prompt, state):
             stdout=log_handle,
             stderr=subprocess.STDOUT,
             text=True,
+            start_new_session=True,
         )
     except Exception as exc:
         log_handle.close()
@@ -385,6 +389,7 @@ def start_codex_task(prompt, state):
         {
             "id": task_id,
             "pid": process.pid,
+            "pgid": process.pid,
             "prompt": prompt.strip(),
             "prompt_path": str(prompt_path),
             "log_path": str(log_path),
@@ -551,8 +556,75 @@ def send_startup_notice(state):
 def request_shutdown(signum=None, frame=None):
     global SHUTDOWN_REQUESTED
     SHUTDOWN_REQUESTED = True
+    write_status("stopping")
+
+
+def stop_codex_tasks(state):
+    changed = False
+    runtimes = list(RUNNING_CODEX_TASKS.items())
+
+    for _, runtime in runtimes:
+        process = runtime["process"]
+        if process.poll() is None:
+            try:
+                os.killpg(process.pid, signal.SIGTERM)
+            except OSError:
+                pass
+
+    deadline = time.monotonic() + 4
+    while time.monotonic() < deadline:
+        if all(runtime["process"].poll() is not None for _, runtime in runtimes):
+            break
+        time.sleep(0.05)
+
+    for _, runtime in runtimes:
+        process = runtime["process"]
+        if process.poll() is None:
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except OSError:
+                pass
+
+    for task_id, runtime in runtimes:
+        process = runtime["process"]
+        if process.poll() is None:
+            try:
+                process.wait(timeout=1)
+            except subprocess.TimeoutExpired:
+                try:
+                    process.kill()
+                except OSError:
+                    pass
+        try:
+            runtime["log_handle"].close()
+        except Exception:
+            pass
+        RUNNING_CODEX_TASKS.pop(task_id, None)
+        for task in state.get("control_tasks", []):
+            if task.get("id") != task_id or task.get("notified"):
+                continue
+            task["notified"] = True
+            task["exit_code"] = process.poll()
+            task["finished"] = time.strftime("%Y-%m-%d %H:%M:%S")
+            task["note"] = "stopped together with iMessage agent"
+            changed = True
+            break
+    if changed:
+        save_state(state)
+
+
+def cleanup_runtime():
+    global CLEANUP_COMPLETE
+    if CLEANUP_COMPLETE:
+        return
+    CLEANUP_COMPLETE = True
+    try:
+        stop_codex_tasks(load_state())
+    except Exception as exc:
+        log(f"Could not stop every background Codex task: {exc}")
     write_status("off")
     clear_pid()
+    log("Agent stopped by control request or signal.")
 
 
 def extract_text(row_text, attributed_body):
@@ -653,7 +725,16 @@ def new_messages(after_rowid):
         m.attributedBody,
         h.id as sender_id,
         h.service,
-        m.is_from_me
+        m.is_from_me,
+        COALESCE(
+            (
+                SELECT COUNT(DISTINCT chj.handle_id)
+                FROM chat_message_join AS cmj
+                JOIN chat_handle_join AS chj ON chj.chat_id = cmj.chat_id
+                WHERE cmj.message_id = m.ROWID
+            ),
+            1
+        ) AS participant_count
     FROM message m
     LEFT JOIN handle h ON m.handle_id = h.ROWID
     WHERE m.ROWID > ?
@@ -758,6 +839,13 @@ def should_skip_auto_reply(text):
     if any(word in low for word in ["bank", "blik", "przelew", "haslo", "password", "2fa"]):
         return "wiadomosc dotyczy pieniedzy lub danych wrazliwych"
     return ""
+
+
+def is_group_message(participant_count):
+    try:
+        return int(participant_count) > 1
+    except (TypeError, ValueError):
+        return False
 
 def generate_reply_ollama(sender, incoming, system_prompt):
     payload = {
@@ -897,6 +985,7 @@ def main():
     model = os.getenv("IMESSAGE_AI_MODEL") or os.getenv("OPENAI_MODEL") or "gpt-5.6"
     write_status("on")
     write_pid()
+    atexit.register(cleanup_runtime)
     notify("AI iMessage wlaczony", f"Agent dziala w tle przez OpenAI ({model}).")
     log(
         f"Agent started with OpenAI model={model}, ollama_fallback={ALLOW_OLLAMA_FALLBACK}, "
@@ -932,8 +1021,10 @@ def main():
 
         row_text_cache = {}
         latest_auto_row_by_sender = {}
-        for rowid, text, attributed_body, sender, service, is_from_me in rows:
+        for rowid, text, attributed_body, sender, service, is_from_me, participant_count in rows:
             if not sender:
+                continue
+            if is_group_message(participant_count):
                 continue
             incoming = extract_text(text, attributed_body)
             row_text_cache[int(rowid)] = incoming
@@ -946,7 +1037,7 @@ def main():
                 continue
             latest_auto_row_by_sender[sender.lower()] = int(rowid)
 
-        for rowid, text, attributed_body, sender, service, is_from_me in rows:
+        for rowid, text, attributed_body, sender, service, is_from_me, participant_count in rows:
             max_seen = max(max_seen, int(rowid))
             if not sender:
                 continue
@@ -959,6 +1050,10 @@ def main():
                 continue
 
             incoming_clean = clean_message_text(incoming)
+
+            if is_group_message(participant_count):
+                log(f"Skipped {rowid} from {sender}: group chat with {participant_count} participants")
+                continue
 
             if is_control_message(sender, bool(is_from_me)):
                 if incoming_clean in recent_replies or looks_like_own_control_reply(incoming_clean):
@@ -982,7 +1077,11 @@ def main():
             if is_from_me:
                 continue
 
-            if allowlist and normalized_sender not in allowlist:
+            if REQUIRE_ALLOWLIST and not allowlist:
+                log(f"Skipped {rowid} from {sender}: allowlist is required but empty")
+                continue
+
+            if allowlist and not handle_matches(normalized_sender, allowlist):
                 log(f"Skipped {rowid} from {sender}: not in allowlist")
                 continue
 
@@ -1017,9 +1116,7 @@ def main():
 
         time.sleep(POLL_SECONDS)
 
-    write_status("off")
-    clear_pid()
-    log("Agent stopped by control request or signal.")
+    cleanup_runtime()
 
 
 if __name__ == "__main__":

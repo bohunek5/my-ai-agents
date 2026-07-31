@@ -322,3 +322,15 @@ h1, h2, h3, h4, h5, h6, p, li, span, div {
   color: white !important;
   border-radius: 9999px !important;
 }
+
+/* Zablokowane daty (zarezerwowane) na czerwono */
+.rdp-day_disabled {
+  color: #ef4444 !important;
+  text-decoration: line-through;
+  opacity: 0.8 !important;
+}
+
+.dark .rdp-day_disabled {
+  color: #f87171 !important;
+  opacity: 0.8 !important;
+}

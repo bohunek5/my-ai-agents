@@ -1,9 +1,29 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pl">
 <head>
+  <link rel="icon" type="image/svg+xml" href="/assets/PRESCOT_pattern2-B7-uF5zG.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prescot LED - Kontakt</title>
+  <script>if (window.matchMedia('(max-width: 768px)').matches) document.write('<script src="js/mobile-app-shell.js"><\/script>');</script>
+  <link rel="preload" as="image" href="/assets/led_office-_orYE83a.png" fetchpriority="high">
+  <title>Kontakt | Prescot LED — Producent taśm LED i hurtownia elektryczna</title>
+  <meta name="description" content="Skontaktuj się z Prescot sp. z o.o. lub bezpośrednio z działem handlowym w sprawie produktów, wycen i współpracy.">
+  <link rel="canonical" href="https://bohunek5.github.io/sklepSC/contact.html">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Prescot LED">
+  <meta property="og:title" content="Kontakt | Prescot LED — Producent taśm LED i hurtownia elektryczna">
+  <meta property="og:description" content="Dane firmy i bezpośredni kontakt z działem handlowym Prescot LED.">
+  <meta property="og:url" content="https://bohunek5.github.io/sklepSC/contact.html">
+  <meta property="og:image" content="https://bohunek5.github.io/sklepSC/images/slide_okladka.webp">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="2000">
+  <meta property="og:image:height" content="1333">
+  <meta property="og:image:alt" content="Taśmy LED, zasilacze i sterowanie oświetleniem">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kontakt | Prescot LED — Producent taśm LED">
+  <meta name="twitter:description" content="Dane firmy i bezpośredni kontakt z działem handlowym Prescot LED.">
+  <meta name="twitter:image" content="https://bohunek5.github.io/sklepSC/images/slide_okladka.webp">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +35,7 @@
   <style>
     :root {
       --primary-color: #0b1a30;
-      --accent-color: #ff5a00;
+      --accent-color: #0b1a30;
       --text-color: #333333;
       --light-bg: #f4f6f9;
       --white: #ffffff;
@@ -83,7 +103,7 @@
     .mockup-nav ul {
       display: flex;
       list-style: none;
-      gap: 12px;
+      gap: 26px;
       align-items: center;
     }
 
@@ -250,71 +270,373 @@
 
     /* Contact Page Content */
     .contact-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 60px;
-      padding: 80px 3%;
-      max-width: 1800px;
+      padding: 80px 5%;
+      max-width: 1320px;
       margin: 0 auto;
     }
 
-    .contact-info h2 {
-      font-size: 32px;
-      margin-bottom: 25px;
+    .contact-intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(480px, 1.15fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .contact-heading {
+      position: sticky;
+      top: 110px;
+    }
+
+    .contact-eyebrow {
+      display: block;
+      margin-bottom: 12px;
+      color: #e14e26;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .contact-heading h2 {
+      max-width: 560px;
+      margin-bottom: 18px;
+      font-size: clamp(34px, 4vw, 54px);
       font-weight: 700;
+      letter-spacing: -.035em;
+      line-height: 1.04;
     }
 
-    .contact-info p {
-      font-size: 15px;
-      color: #666;
-      margin-bottom: 40px;
-    }
-
-    .info-item {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 30px;
-    }
-
-    .info-icon {
-      font-size: 24px;
-      color: var(--accent-color);
-    }
-
-    .info-text h4 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
-
-    .info-text p {
-      font-size: 14px;
-      color: #777;
+    .contact-heading p {
+      max-width: 570px;
       margin: 0;
+      color: #657286;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .company-card {
+      padding: 34px;
+      border: 1px solid #dce4ed;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 18px 48px rgba(11, 26, 48, .08);
+    }
+
+    .company-card-header {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    .company-card-icon {
+      display: inline-flex;
+      width: 46px;
+      height: 46px;
+      flex: 0 0 46px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      color: #fff;
+      background: #0b1a30;
+      font-size: 23px;
+    }
+
+    .company-card h3 {
+      margin: 0 0 3px;
+      font-size: 22px;
+      letter-spacing: -.02em;
+    }
+
+    .company-card-header p {
+      margin: 0;
+      color: #718095;
+      font-size: 13px;
+    }
+
+    .company-primary-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .company-detail {
+      display: flex;
+      min-height: 72px;
+      gap: 12px;
+      align-items: center;
+      padding: 14px;
+      border-radius: 13px;
+      background: #f4f7fa;
+    }
+
+    .company-detail i {
+      color: #e14e26;
+      font-size: 21px;
+    }
+
+    .company-detail small,
+    .company-detail strong {
+      display: block;
+    }
+
+    .company-detail small {
+      margin-bottom: 2px;
+      color: #7b899b;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .company-detail strong,
+    .company-detail a {
+      color: #14253d;
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+
+    .company-detail a:hover {
+      color: #e14e26;
+    }
+
+    .company-legal {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 9px;
+      margin: 0;
+    }
+
+    .company-legal div {
+      padding: 12px;
+      border: 1px solid #e2e8ef;
+      border-radius: 11px;
+    }
+
+    .company-legal dt {
+      color: #7c8999;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .company-legal dd {
+      margin: 2px 0 0;
+      color: #14253d;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .company-registry-note {
+      margin: 17px 0 0;
+      color: #7a8797;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .sales-section {
+      margin-top: 72px;
+    }
+
+    .contact-section-heading {
+      display: flex;
+      gap: 24px;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 25px;
+    }
+
+    .contact-section-heading h2 {
+      margin: 0;
+      font-size: clamp(28px, 3vw, 40px);
+      letter-spacing: -.03em;
+    }
+
+    .contact-section-heading p {
+      max-width: 540px;
+      margin: 0;
+      color: #68778a;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .sales-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .sales-card {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      padding: 28px;
+      overflow: hidden;
+      border: 1px solid #dfe6ee;
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: 0 12px 32px rgba(11, 26, 48, .06);
+      transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+    }
+
+    .sales-card::before {
+      position: absolute;
+      top: 0;
+      right: 28px;
+      left: 28px;
+      height: 3px;
+      border-radius: 0 0 999px 999px;
+      background: #e14e26;
+      content: "";
+      opacity: 0;
+      transform: scaleX(.55);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+
+    .sales-card:hover {
+      border-color: #cfd9e4;
+      box-shadow: 0 18px 42px rgba(11, 26, 48, .1);
+      transform: translateY(-3px);
+    }
+
+    .sales-card:hover::before {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .sales-card:last-child {
+      grid-column: 1 / -1;
+      width: calc(50% - 10px);
+      justify-self: center;
+    }
+
+    .sales-card-number {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      border-radius: 10px;
+      color: #e14e26;
+      background: #fff1ec;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .sales-card h3 {
+      margin: 0 0 5px;
+      font-size: 21px;
+      letter-spacing: -.015em;
+    }
+
+    .sales-card > p {
+      margin: 0 0 22px;
+      color: #758397;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .sales-card-links {
+      display: grid;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .sales-card-links a,
+    .sales-card-links span {
+      display: flex;
+      min-width: 0;
+      min-height: 42px;
+      gap: 10px;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 11px;
+      color: #263a53;
+      background: #f6f8fb;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.4;
+      text-decoration: none;
+      transition: color .2s ease, background-color .2s ease;
+    }
+
+    .sales-card-links a {
+      overflow-wrap: normal;
+    }
+
+    .sales-card-links a:hover {
+      color: #e14e26;
+      background: #fff1ec;
+    }
+
+    .sales-card-links i {
+      flex: 0 0 auto;
+      color: #e14e26;
+      font-size: 17px;
     }
 
     /* Contact Form */
     .contact-form-wrapper {
-      background: var(--light-bg);
-      padding: 50px;
-      border-radius: 4px;
+      display: grid;
+      grid-template-columns: minmax(240px, .65fr) minmax(0, 1.35fr);
+      gap: 50px;
+      align-items: start;
+      margin-top: 72px;
+      padding: 42px;
+      border-radius: 20px;
+      background: #f1f5f8;
     }
 
     .contact-form-wrapper h3 {
-      font-size: 24px;
-      margin-bottom: 30px;
+      margin: 0 0 12px;
+      font-size: 30px;
       font-weight: 700;
+      letter-spacing: -.025em;
+    }
+
+    .contact-form-wrapper > div > p {
+      margin: 0;
+      color: #68778a;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .contact-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
 
     .form-group {
-      margin-bottom: 20px;
+      margin: 0;
+    }
+
+    .form-group.is-wide {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      color: #354961;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
     }
 
     .form-control {
       width: 100%;
       padding: 15px;
       border: 1px solid #ddd;
-      border-radius: 4px;
+      border-radius: 10px;
       background: var(--white);
       font-family: inherit;
       font-size: 14px;
@@ -327,12 +649,14 @@
     }
 
     textarea.form-control {
-      height: 150px;
-      resize: none;
+      height: 145px;
+      resize: vertical;
     }
 
     .submit-btn {
-      width: 100%;
+      grid-column: 1 / -1;
+      width: max-content;
+      min-width: 210px;
       padding: 16px;
       background: var(--primary-color);
       color: var(--white);
@@ -342,7 +666,7 @@
       letter-spacing: 2px;
       font-size: 13px;
       cursor: pointer;
-      border-radius: 99px;
+      border-radius: 10px;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
@@ -350,24 +674,8 @@
     .submit-btn:hover {
       background: var(--accent-color);
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(255, 90, 0, 0.2);
+      box-shadow: 0 8px 25px rgba(11, 26, 48, 0.2);
       color: #fff;
-    }
-
-    /* Styled Map Mockup */
-    .map-mockup {
-      width: 100%;
-      height: 400px;
-      background: #e5e3df;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      color: #555;
-      padding: 30px;
-      text-align: center;
-      border: 1px solid #ddd;
     }
 
     /* Injected popup styles */
@@ -448,9 +756,15 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
-      .contact-container {
+      .contact-intro-grid,
+      .contact-form-wrapper {
         grid-template-columns: 1fr;
-        gap: 50px;
+      }
+      .contact-heading {
+        position: static;
+      }
+      .sales-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
       .footer-grid {
         grid-template-columns: 1fr 1fr;
@@ -474,7 +788,40 @@
         display: block;
       }
       .contact-form-wrapper {
-        padding: 30px;
+        gap: 28px;
+        padding: 28px;
+      }
+      .contact-container {
+        padding: 55px 16px 70px;
+      }
+      .contact-intro-grid {
+        gap: 30px;
+      }
+      .company-card {
+        padding: 22px;
+      }
+      .company-primary-details,
+      .company-legal,
+      .sales-grid,
+      .contact-form-grid {
+        grid-template-columns: 1fr;
+      }
+      .sales-card:last-child {
+        grid-column: auto;
+        width: 100%;
+      }
+      .contact-section-heading {
+        display: block;
+      }
+      .contact-section-heading p {
+        margin-top: 10px;
+      }
+      .sales-section,
+      .contact-form-wrapper {
+        margin-top: 50px;
+      }
+      .submit-btn {
+        width: 100%;
       }
       .footer-grid {
         grid-template-columns: 1fr;
@@ -524,13 +871,13 @@
       background: transparent;
       outline: none;
       font-size: 14px;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       width: 140px;
       transition: width 0.3s ease;
       color: var(--primary-color);
     }
     .mockup-search-container input::placeholder {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Courier New', Courier, monospace;
       color: rgba(11, 26, 48, 0.6);
     }
     
@@ -725,10 +1072,16 @@
     }
     .mobile-nav-items {
       display: flex;
-      justify-content: space-around;
-      align-items: flex-end;
+      justify-content: space-between;
+      align-items: center;
       height: 65px;
-      padding: 0 5px 8px 5px;
+      padding: 0 10px 8px 10px;
+      gap: 2px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .mobile-nav-items::-webkit-scrollbar {
+      display: none;
     }
     .mobile-nav-item {
       display: flex;
@@ -1062,7 +1415,7 @@
     input:-webkit-autofill:hover, 
     input:-webkit-autofill:focus, 
     input:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+      -webkit-box-shadow: 0 0 0 1000px #f3f3f3 inset !important;
       -webkit-text-fill-color: #0b1a30 !important;
       transition: background-color 5000s ease-in-out 0s !important;
     }
@@ -1101,15 +1454,8 @@
       padding: 0 !important;
       margin-bottom: 5px !important;
     }
-    .mockup-product-img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      transition: all 0.3s ease !important;
-    }
-    .mockup-product-card:hover .mockup-product-img {
-      transform: scale(1.05) !important;
-    }
+    .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
+    .mockup-product-card:hover .mockup-product-img { width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
     .mockup-product-info {
       padding: 10px 0 0 !important;
       text-align: center !important;
@@ -1476,6 +1822,14 @@
       border: 1px solid rgba(0, 0, 0, 0.06) !important;
     }
     /* --- ULTIMATE DROPDOWN OVERRIDE END --- */
+
+
+  /* Hide Category Text Above Product Card Blocks */
+  .mockup-product-category,
+  p.mockup-product-category,
+  div.mockup-product-category {
+    display: none !important;
+  }
 
 </style>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -1902,7 +2256,7 @@
     .magic-dropdown ul li a:hover {
       background: rgba(0,0,0,0.06) !important;
       border-color: rgba(0,0,0,0.12) !important;
-      color: #ff5e00 !important; /* Orange text on hover */
+      color: #0b1a30 !important; /* Orange text on hover */
     }
   
     /* --- ULTIMATE DROPDOWN OVERRIDE START --- */
@@ -2214,161 +2568,402 @@
     }
 </style>
 
-<style>
-/* Clean Search Bar Styling */
-.mockup-search-container {
-  display: flex !important;
-  align-items: center !important;
-  background: rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  border-radius: 99px !important;
-  padding: 6px 16px !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
 
-.mockup-search-container:focus-within {
-  background: rgba(255, 255, 255, 0.22) !important;
-  border-color: rgba(255, 255, 255, 0.55) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
-}
+<style id="scrolled-nav-visibility-override">
+  /* Guaranteed 100% Contrast for Scrolled Header Navigation */
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active),
+  body .mockup-header.scrolled .mockup-nav ul li a:not(.active) {
+    color: #0b1a30 !important;
+    background: rgba(11, 26, 48, 0.06) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    font-weight: 600 !important;
+  }
 
-.mockup-search-container input {
-  border: none !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  outline: none !important;
-  font-size: 13px !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  font-weight: 500 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  box-shadow: none !important;
-  letter-spacing: 0.3px !important;
-}
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active):hover,
+  body .mockup-header.scrolled .mockup-nav ul li a:not(.active):hover {
+    background: rgba(11, 26, 48, 0.14) !important;
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.25) !important;
+  }
 
-.mockup-search-container input::placeholder {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  color: rgba(255, 255, 255, 0.75) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.75) !important;
+  body .mockup-header.scrolled .mockup-nav > ul > li > a.active,
+  body .mockup-header.scrolled .mockup-nav ul li a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border-color: #0b1a30 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+</style>
+
+
+<style id="ultimate-header-footer-fix">
+  /* Force 100% Crisp Visibility for All Header Navigation Links regardless of scroll state */
+  body .mockup-header .mockup-nav ul li a:not(.active),
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a:not(.active),
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active) {
+    color: #0b1a30 !important;
+    background: rgba(11, 26, 48, 0.06) !important;
+    border: 1px solid rgba(11, 26, 48, 0.12) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a:not(.active):hover,
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a:not(.active):hover,
+  body .mockup-header.scrolled .mockup-nav > ul > li > a:not(.active):hover {
+    background: rgba(11, 26, 48, 0.14) !important;
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.25) !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a.active,
+  body .mockup-header:not(.scrolled) .mockup-nav > ul > li > a.active,
+  body .mockup-header.scrolled .mockup-nav > ul > li > a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border: 1px solid #0b1a30 !important;
+    font-weight: 700 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+
+  /* Footer White + Orange Logo Styling */
+  footer .footer-logo img,
+  .mockup-footer .footer-logo img {
+    height: 32px !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+</style>
+
+
+<style id="product-title-4-lines-override">
+  /* Force Up to 4 Full Lines for Product Titles (No Word Truncation) */
+  .mockup-product-title,
+  .mockup-product-title a,
+  div.mockup-product-title,
+  h3.mockup-product-title {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4 !important;
+    -webkit-box-orient: vertical !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    overflow: visible !important;
+    max-height: none !important;
+    min-height: 72px !important;
+    line-height: 1.35 !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #0b1a30 !important;
+    margin-bottom: 8px !important;
+    text-overflow: clip !important;
+  }
+
+  .mockup-product-title a:hover {
+    color: var(--accent-color, #0b1a30) !important;
+  }
+</style>
+
+
+
+<style id="custom-nav-configurator-cta-style">
+  /* Clean Unified Header Navigation */
+  body .mockup-header .mockup-nav ul li a,
+  body .mockup-header.scrolled .mockup-nav ul li a {
+    text-decoration: none !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    color: #0b1a30 !important;
+    padding: 8px 18px !important;
+    border-radius: 99px !important;
+    transition: all 0.2s ease !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a:hover,
+  body .mockup-header.scrolled .mockup-nav ul li a:hover {
+    background: rgba(11, 26, 48, 0.08) !important;
+    color: #0b1a30 !important;
+  }
+
+  body .mockup-header .mockup-nav ul li a.active,
+  body .mockup-header.scrolled .mockup-nav ul li a.active {
+    background: #0b1a30 !important;
+    color: #ffffff !important;
+    border: 1px solid #0b1a30 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(11, 26, 48, 0.2) !important;
+  }
+
+  /* Scrolled Header Styling - Crisp Navy Elements */
+  body .mockup-header.scrolled {
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  body .mockup-header.scrolled .mockup-action-icon,
+  body .mockup-header .mockup-action-icon {
+    color: #0b1a30 !important;
+    border-color: rgba(11, 26, 48, 0.15) !important;
+  }
+
+  /* Footer White Logo Styling */
+  footer .footer-logo img,
+  .mockup-footer .footer-logo img {
+    height: 32px !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+</style>
+
+
+
+<style id="square-product-images-override">
+  /* Full Square Fill Product Cards (object-fit: cover) */
+  .mockup-product-media,
+  div.mockup-product-media {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    margin-bottom: 8px !important;
+    background-color: #f4f6f9 !important;
+    display: block !important;
+  }
+
+  .mockup-product-img,
+  .mockup-product-media img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: inherit !important;
+    padding: 0 !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .mockup-product-card:hover .mockup-product-img,
+  .mockup-product-card:hover .mockup-product-media img {
+    transform: scale(1.05) !important;
+  }
+
+  /* Hide category text line above product card blocks */
+  .mockup-product-category,
+  p.mockup-product-category,
+  div.mockup-product-category {
+    display: none !important;
+  }
+</style>
+
+
+
+<style id="global-premium-overrides">
+/* Premium Footer CSS */
+.premium-footer {
+  background: var(--primary-color, #0b1a30) !important;
+  color: #fff !important;
+  padding: 80px 8% 40px !important;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-family: 'Outfit', sans-serif;
+  margin-top: auto;
+}
+.premium-footer .footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+.premium-footer .footer-logo img {
+  height: 38px !important;
   opacity: 1 !important;
-  font-weight: 400 !important;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+}
+.premium-footer .brand-desc {
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+.premium-footer .social-links {
+  display: flex;
+  gap: 15px;
+}
+.premium-footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+.premium-footer .social-links a:hover {
+  background: var(--accent-color, #0b1a30);
+  transform: translateY(-3px);
+}
+.premium-footer h3 {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+.premium-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.premium-footer ul li {
+  margin-bottom: 12px;
+}
+.premium-footer ul li a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.premium-footer ul li a:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+.premium-footer .contact-info li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.premium-footer .contact-info i {
+  font-size: 20px;
+  color: var(--accent-color, #0b1a30);
+  margin-top: 2px;
+}
+.premium-footer .footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
+.premium-footer .payment-methods {
+  display: flex;
+  gap: 15px;
+  font-size: 24px;
+  color: rgba(255,255,255,0.5);
+}
+@media (max-width: 992px) {
+  .premium-footer .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .premium-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .premium-footer .footer-bottom {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
 }
 
-.mockup-search-container button {
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  padding: 0 !important;
+/* Logo Header Fix */
+.site-header .brand {
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
+  height: 100%;
 }
-
-.mockup-search-container button svg {
-  stroke: #ffffff !important;
-  transition: stroke 0.3s ease !important;
+.site-header .brand img {
+  height: 36px !important;
+  max-width: 170px !important;
+  object-fit: contain !important;
+  transform: none;
 }
-
-/* Scrolled Header Search Bar State */
-.mockup-header.scrolled .mockup-search-container {
-  background: rgba(11, 26, 48, 0.05) !important;
-  border-color: rgba(11, 26, 48, 0.15) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container:focus-within {
-  background: rgba(11, 26, 48, 0.08) !important;
-  border-color: rgba(11, 26, 48, 0.3) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input {
-  color: #0b1a30 !important;
-  -webkit-text-fill-color: #0b1a30 !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input::placeholder {
-  color: rgba(11, 26, 48, 0.6) !important;
-  -webkit-text-fill-color: rgba(11, 26, 48, 0.6) !important;
-}
-
-.mockup-header.scrolled .mockup-search-container button svg {
-  stroke: #0b1a30 !important;
-}
-
-/* Autofill Overrides */
-.mockup-search-container input:-webkit-autofill,
-.mockup-search-container input:-webkit-autofill:hover, 
-.mockup-search-container input:-webkit-autofill:focus, 
-.mockup-search-container input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
-  -webkit-text-fill-color: #ffffff !important;
-  transition: background-color 50000s ease-in-out 0s !important;
-}
-
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill,
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:hover, 
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:focus, 
-.mockup-header.scrolled .mockup-search-container input:-webkit-autofill:active {
-  -webkit-text-fill-color: #0b1a30 !important;
+@media (max-width: 768px) {
+  .site-header .brand img {
+    height: 32px !important;
+  }
 }
 </style>
-  <link rel="stylesheet" crossorigin href="/assets/main-BAlXFKIm.css">
+
+
+
+
+  <link rel="stylesheet" crossorigin href="/assets/main-s0ab0Jqi.css">
+  <link rel="stylesheet" crossorigin href="/assets/custom-buttons-AzkvWn4v.css">
 </head>
 <body>
   
-  <header class="mockup-header" id="mainHeader">
-<div class="mockup-header-logo">
-<a href="index.html"><img alt="Prescot Logo" id="headerLogo" src="/assets/logo-white-BOpLtG3H.png"/></a>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="index.html" aria-label="Prescot — strona główna">
+      <img src="/assets/logo-white-BOpLtG3H.png" data-dark="images/logo-dark.png" data-light="images/logo-white.png" alt="Prescot">
+    </a>
+    <nav class="desktop-nav" aria-label="Nawigacja główna">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Sklep</a>
+      <a href="blog.html">Wiedza</a>
+      <a href="about.html">O nas</a>
+      <a class="active" href="contact.html">Kontakt</a>
+      
+      <a  href="ai-shopping.html"><img class="gemini-icon" src="/assets/prescot-pattern--1wGaVOr.png" style="width: 18px; height: 18px; object-fit: contain; margin-right: 6px; vertical-align: middle;">Zakup AI</a>
+    </nav>
+    <div class="header-actions">
+      <form class="header-search" action="shop.html" role="search">
+        <label class="sr-only" for="configSearch">Szukaj produktu</label>
+        <input id="configSearch" name="q" type="search" placeholder="SKU, barwa, moc…">
+        <button type="submit" aria-label="Szukaj">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+        </button>
+      </form>
+      <a class="header-icon" href="javascript:void(0);" onclick="openCartDrawer();" aria-label="Koszyk">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 7H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Otwórz menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Nawigacja mobilna" hidden>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Sklep</a>
+      <a href="blog.html">Wiedza</a>
+      <a href="about.html">O nas</a>
+      <a class="active" href="contact.html">Kontakt</a>
+      
+      <a  href="ai-shopping.html"><img class="gemini-icon" src="/assets/prescot-pattern--1wGaVOr.png" style="width: 18px; height: 18px; object-fit: contain; margin-right: 6px; vertical-align: middle;">Zakup AI</a>
+    </nav>
+  </header>
+
 </div>
-<nav class="mockup-nav">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="shop.html">Sklep</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="about.html">O nas</a></li>
-<li><a class="active" href="contact.html">Kontakt</a></li>
-</ul>
-</nav>
-<div class="mockup-actions">
-<div class="mockup-search-container">
-<input id="headerSearchInput" placeholder="Czego szukasz..." type="text"/>
-<button aria-label="Szukaj" id="headerSearchBtn">
-<svg fill="none" height="18" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
-</button>
-</div>
-<button aria-label="Konto użytkownika" class="mockup-action-icon">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-</button>
-<a aria-label="Lista Życzeń" class="mockup-action-icon wishlist-trigger" href="#">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-</a>
-<a aria-label="Koszyk" class="mockup-action-icon" href="cart.html" style="position: relative;">
-<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
-<span class="cart-badge"></span>
-</a>
-<button class="menu-toggle" id="menuToggle">
-<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="21" y1="12" y2="12"></line><line x1="3" x2="21" y1="6" y2="6"></line><line x1="3" x2="21" y1="18" y2="18"></line></svg>
-</button>
-</div>
-</header>
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="shop.html">Sklep</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="about.html">O nas</a></li>
-<li><a class="active" href="contact.html">Kontakt</a></li>
-</ul>
-<div class="mobile-socials">
-<a href="#"><i class="ph ph-instagram-logo"></i></a>
-<a href="#"><i class="ph ph-facebook-logo"></i></a>
-<a href="#"><i class="ph ph-pinterest-logo"></i></a>
-</div>
-</div>
-  <section class="page-hero" style="background: url('/assets/stairs-BagZlvzc.jpg') center/cover no-repeat; height: 35vh; min-height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 90px 20px 20px; text-align: center; position: relative; box-sizing: border-box;">
-    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(11, 26, 48, 0.6);"></div>
+  <section class="page-hero" style="background: url('/assets/led_office-_orYE83a.png') center/cover no-repeat; filter: contrast(1.08) brightness(1.05); image-rendering: -webkit-optimize-contrast; height: 35vh; min-height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 90px 20px 20px; text-align: center; position: relative; box-sizing: border-box;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(11, 26, 48, 0.18) 0%, rgba(11, 26, 48, 0.5) 100%);"></div>
     <div style="position: relative; z-index: 1;">
       <h1 style="color: #fff; font-size: 48px; font-weight: 800; font-family: 'Outfit', sans-serif; margin-bottom: 10px; text-transform: uppercase; letter-spacing: -1px; text-shadow: 0 4px 12px rgba(0,0,0,0.3);">Kontakt</h1>
       <p style="color: #eee; font-size: 16px;">Jesteśmy do Twojej dyspozycji</p>
@@ -2388,104 +2983,213 @@
   </section>
 <main>
     <div class="contact-container">
-      <section class="contact-info">
-        <h2>Skontaktuj się z nami</h2>
-        <p>Masz pytania dotyczące naszych systemów oświetlenia LED lub potrzebujesz wsparcia technicznego? Chętnie odpowiemy na Twoje wiadomości. Nasz dział obsługi klienta jest dostępny od poniedziałku do piątku w godzinach 9:00 - 17:00.</p>
-        
-        <div class="info-item">
-          <div class="icon-glass-md">📍</div>
-          <div class="info-text">
-            <h4>Adres siedziby</h4>
-            <p>ul. Przykładowa 12, 00-001 Warszawa</p>
-          </div>
+      <section class="contact-intro-grid" aria-labelledby="contactDetailsTitle">
+        <div class="contact-heading">
+          <h2 id="contactDetailsTitle">Porozmawiajmy o Twoim projekcie</h2>
+          <p>Skontaktuj się bezpośrednio z działem handlowym w sprawie produktów, wycen i współpracy. Dane rejestrowe oraz adres siedziby znajdziesz obok.</p>
         </div>
 
-        <div class="info-item">
-          <div class="icon-glass-md">📞</div>
-          <div class="info-text">
-            <h4>Telefon</h4>
-            <p>+48 22 123 45 67</p>
+        <article class="company-card">
+          <div class="company-card-header">
+            <span class="company-card-icon"><i class="ph ph-buildings" aria-hidden="true"></i></span>
+            <div>
+              <h3>PRESCOT sp. z o.o.</h3>
+              <p>Producent i importer oświetlenia LED</p>
+            </div>
           </div>
+
+          <div class="company-primary-details">
+            <div class="company-detail">
+              <i class="ph ph-map-pin" aria-hidden="true"></i>
+              <div>
+                <small>Adres siedziby</small>
+                <strong>ul. Wileńska 1<br>11-500 Giżycko</strong>
+              </div>
+            </div>
+            <div class="company-detail">
+              <i class="ph ph-phone" aria-hidden="true"></i>
+              <div>
+                <small>Telefon firmowy</small>
+                <a href="tel:+48874282118">+48 87 428 21 18</a>
+              </div>
+            </div>
+            <div class="company-detail">
+              <i class="ph ph-envelope-simple" aria-hidden="true"></i>
+              <div>
+                <small>Sekretariat</small>
+                <a href="mailto:sekretariat@prescot.pl">sekretariat@prescot.pl</a>
+              </div>
+            </div>
+            <div class="company-detail">
+              <i class="ph ph-navigation-arrow" aria-hidden="true"></i>
+              <div>
+                <small>Dojazd</small>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=Prescot+Wile%C5%84ska+1+Gi%C5%BCycko" target="_blank" rel="noopener">Pokaż na mapie</a>
+              </div>
+            </div>
+          </div>
+
+          <dl class="company-legal">
+            <div><dt>NIP</dt><dd>8451939947</dd></div>
+            <div><dt>REGON</dt><dd>280351610</dd></div>
+            <div><dt>KRS</dt><dd>0000319434</dd></div>
+          </dl>
+          <p class="company-registry-note">Sąd Rejonowy w Olsztynie, VIII Wydział Gospodarczy KRS. Kapitał zakładowy: 200 000 PLN.</p>
+        </article>
+      </section>
+
+      <section class="sales-section" aria-labelledby="salesTeamTitle">
+        <div class="contact-section-heading">
+          <div>
+            <span class="contact-eyebrow">Dział handlowy</span>
+            <h2 id="salesTeamTitle">Skontaktuj się z handlowcem</h2>
+          </div>
+          <p>Wybierz dowolnego opiekuna. Każdy kontakt zawiera numer centrali z numerem wewnętrznym, telefon komórkowy i bezpośredni adres e-mail.</p>
         </div>
 
-        <div class="info-item">
-          <div class="icon-glass-md">✉️</div>
-          <div class="info-text">
-            <h4>E-mail</h4>
-            <p>kontakt@prescot.com.pl</p>
-          </div>
+        <div class="sales-grid">
+          <article class="sales-card">
+            <span class="sales-card-number">01</span>
+            <h3>Adam Garbowski</h3>
+            <p>Dział handlowy</p>
+            <div class="sales-card-links">
+              <span><i class="ph ph-phone" aria-hidden="true"></i>+48 87 428 21 18, wew. 34</span>
+              <a href="tel:+48609428570"><i class="ph ph-device-mobile" aria-hidden="true"></i>+48 609 428 570</a>
+              <a href="mailto:adam.garbowski@prescot.pl"><i class="ph ph-envelope-simple" aria-hidden="true"></i>adam.garbowski@prescot.pl</a>
+            </div>
+          </article>
+          <article class="sales-card">
+            <span class="sales-card-number">02</span>
+            <h3>Iwona Baczewska</h3>
+            <p>Dział handlowy</p>
+            <div class="sales-card-links">
+              <span><i class="ph ph-phone" aria-hidden="true"></i>+48 87 428 21 18, wew. 22</span>
+              <a href="tel:+48720858005"><i class="ph ph-device-mobile" aria-hidden="true"></i>+48 720 858 005</a>
+              <a href="mailto:iwona.baczewska@prescot.pl"><i class="ph ph-envelope-simple" aria-hidden="true"></i>iwona.baczewska@prescot.pl</a>
+            </div>
+          </article>
+          <article class="sales-card">
+            <span class="sales-card-number">03</span>
+            <h3>Dariusz Nita</h3>
+            <p>Dział handlowy</p>
+            <div class="sales-card-links">
+              <span><i class="ph ph-phone" aria-hidden="true"></i>+48 87 428 21 18, wew. 35</span>
+              <a href="tel:+48570123681"><i class="ph ph-device-mobile" aria-hidden="true"></i>+48 570 123 681</a>
+              <a href="mailto:dariusz.nita@prescot.pl"><i class="ph ph-envelope-simple" aria-hidden="true"></i>dariusz.nita@prescot.pl</a>
+            </div>
+          </article>
+          <article class="sales-card">
+            <span class="sales-card-number">04</span>
+            <h3>Anna Galor</h3>
+            <p>Dział handlowy</p>
+            <div class="sales-card-links">
+              <span><i class="ph ph-phone" aria-hidden="true"></i>+48 87 428 21 18, wew. 23</span>
+              <a href="tel:+48730901909"><i class="ph ph-device-mobile" aria-hidden="true"></i>+48 730 901 909</a>
+              <a href="mailto:anna.galor@prescot.pl"><i class="ph ph-envelope-simple" aria-hidden="true"></i>anna.galor@prescot.pl</a>
+            </div>
+          </article>
+          <article class="sales-card">
+            <span class="sales-card-number">05</span>
+            <h3>Anna Asztemborska</h3>
+            <p>Dział handlowy</p>
+            <div class="sales-card-links">
+              <span><i class="ph ph-phone" aria-hidden="true"></i>+48 87 428 21 18, wew. 37</span>
+              <a href="tel:+48661436744"><i class="ph ph-device-mobile" aria-hidden="true"></i>+48 661 436 744</a>
+              <a href="mailto:anna.asztemborska@prescot.pl"><i class="ph ph-envelope-simple" aria-hidden="true"></i>anna.asztemborska@prescot.pl</a>
+            </div>
+          </article>
         </div>
       </section>
 
-      <section class="contact-form-wrapper">
-        <h3>Napisz do nas</h3>
-        <form onsubmit="handleSubmit(event)">
+      <section class="contact-form-wrapper" aria-labelledby="contactFormTitle">
+        <div>
+          <span class="contact-eyebrow">Formularz kontaktowy</span>
+          <h3 id="contactFormTitle">Napisz do nas</h3>
+          <p>Wypełnij formularz, a przygotujemy wiadomość do sekretariatu w Twoim programie pocztowym.</p>
+        </div>
+        <form class="contact-form-grid" onsubmit="handleSubmit(event)">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Imię i nazwisko" required>
+            <label for="contactName">Imię i nazwisko</label>
+            <input id="contactName" name="name" type="text" class="form-control" autocomplete="name" required>
           </div>
           <div class="form-group">
-            <input type="email" class="form-control" placeholder="E-mail" required>
+            <label for="contactEmail">E-mail</label>
+            <input id="contactEmail" name="email" type="email" class="form-control" autocomplete="email" required>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Temat">
+            <label for="contactPhone">Telefon</label>
+            <input id="contactPhone" name="phone" type="tel" class="form-control" autocomplete="tel">
           </div>
           <div class="form-group">
-            <textarea class="form-control" placeholder="Twoja wiadomość..." required></textarea>
+            <label for="contactSubject">Temat</label>
+            <input id="contactSubject" name="subject" type="text" class="form-control" required>
           </div>
-          <button type="submit" class="submit-btn">Wyślij wiadomość</button>
+          <div class="form-group is-wide">
+            <label for="contactMessage">Wiadomość</label>
+            <textarea id="contactMessage" name="message" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn inquiry-submit-btn">
+            <span class="btn-slide-wrap">
+              <span class="btn-txt-default">Wyślij wiadomość</span>
+              <span class="btn-txt-hover">Wyślij</span>
+            </span>
+          </button>
         </form>
       </section>
     </div>
-
-    <div style="padding: 0 3% 80px; max-width: 1800px; margin: 0 auto;">
-      <div class="map-mockup">
-        <h3 style="margin-bottom: 10px;">Główna Siedziba</h3>
-        <p style="color: #666; max-width: 400px; margin-bottom: 20px;">Warszawa. Zapraszamy do kontaktu oraz wizyty w naszej centrali.</p>
-        <div style="width: 100px; height: 2px; background: var(--accent-color);"></div>
-      </div>
-    </div>
   </main>
 
-  <footer class="mockup-footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <div class="footer-logo">
-          <img src="/assets/logo-white-BOpLtG3H.png" alt="Prescot Logo" style="height: 26px; opacity: 0.9; margin-bottom: 5px; max-width: 100%;">
-        </div>
-        <p style="margin-top: 15px;">Prescot LED to profesjonalny dostawca najwyższej jakości taśm LED, profili aluminiowych, nowoczesnych sterowników oraz niezawodnych zasilaczy hermetycznych.</p><p style="margin-top: 15px; color: #ccc;"><strong>PRESCOT LED</strong><br>ul. Przykładowa 12<br>00-001 Warszawa<br>kontakt@prescot.com.pl</p>
+  
+<footer class="mockup-footer premium-footer">
+  <div class="footer-grid">
+    <div class="footer-col brand-col">
+      <div class="footer-logo">
+        <img alt="Prescot Logo" src="/assets/logo-white-BOpLtG3H.png" />
       </div>
-      <div class="footer-col">
-        <h3>Link</h3>
-        <ul>
-          <li><a href="#">Kolekcje</a></li>
-          <li><a href="#">Wszystkie Produkty</a></li>
-          <li><a href="#">Nowości</a></li>
-          <li><a href="#">Wyprzedaż</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Wsparcie</h3>
-        <ul>
-          <li><a href="#">Polityka Prywatności</a></li>
-          <li><a href="#">Regulamin</a></li>
-          <li><a href="#">Wysyłka i Zwroty</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Newsletter</h3>
-        <p style="margin-bottom: 20px;">Zapisz się, aby otrzymywać informacje o nowych kolekcjach i ofertach specjalnych.</p>
-        <div class="newsletter-glass-box" style="display: flex; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 4px; width: 100%;">
-          <input type="email" placeholder="Twój e-mail" style="border: none; background: transparent; color: #fff; padding: 8px 12px; width: 100%; font-size: 13px; font-family: \'Inter\', sans-serif; outline: none;" aria-label="E-mail">
-          <button style="background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; font-weight: 600; font-size: 11px; padding: 8px 20px; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255, 255, 255, 0.25)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.15)'">OK</button>
-        </div>
+      <p class="brand-desc">Tworzymy oświetlenie jutra. Prescot LED to bezkompromisowa jakość, zaawansowana technologia COB i inteligentne systemy sterowania światłem dla profesjonalistów.</p>
+      <div class="social-links">
+        <a href="#"><i class="ph ph-facebook-logo"></i></a>
+        <a href="#"><i class="ph ph-instagram-logo"></i></a>
+        <a href="#"><i class="ph ph-youtube-logo"></i></a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Prescot LED. Wszelkie prawa zastrzeżone.</p>
-      <p>Powered by PRESCOT LED</p>
+    <div class="footer-col">
+      <h3>Odkryj</h3>
+      <ul>
+        <li><a href="shop.html">Produkty Premium</a></li>
+        
+        <li><a href="#">Bestsellery</a></li>
+        <li><a href="#">Nowości 2026</a></li>
+      </ul>
     </div>
-  </footer>
+    <div class="footer-col">
+      <h3>Wsparcie</h3>
+      <ul>
+        <li><a href="contact.html">Kontakt & Pomoc</a></li>
+        <li><a href="#">Gwarancja 5 Lat</a></li>
+        <li><a href="#">Baza Wiedzy</a></li>
+        <li><a href="#">Polityka Prywatności</a></li>
+      </ul>
+    </div>
+    <div class="footer-col contact-col">
+      <h3>Dane firmy</h3>
+      <ul class="contact-info">
+        <li><i class="ph ph-buildings"></i> PRESCOT sp. z o.o.</li>
+        <li><i class="ph ph-map-pin"></i> ul. Wileńska 1, 11-500 Giżycko</li>
+        <li><i class="ph ph-identification-card"></i> NIP 8451939947</li>
+        <li><i class="ph ph-phone"></i> <a href="tel:+48874282118">+48 87 428 21 18</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 PRESCOT LED. Wszelkie prawa zastrzeżone.</p>
+    <div class="payment-methods">
+      <i class="ph ph-stripe-logo"></i>
+      <i class="ph ph-paypal-logo"></i>
+    </div>
+  </div>
+</footer>
+
 
   <script>
     // Mobile Collapsible Footer Columns
@@ -2499,18 +3203,31 @@
     });
 
     // Mobile Navigation Toggle
-    const menuToggle = document.getElementById('menuToggle');
+    const menuToggle = document.getElementById('menuToggle') || document.getElementById('menuButton');
     const mobileMenu = document.getElementById('mobileMenu');
-    
-    menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('active');
-    });
+
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+    }
 
     // Handle Form Submit
     function handleSubmit(e) {
       e.preventDefault();
-      window.showToast('Wiadomość została wysłana pomyślnie! Odpowiemy w ciągu 24h.', 'success');
-      e.target.reset();
+      const data = new FormData(e.target);
+      const subject = data.get('subject') || 'Wiadomość ze strony Prescot';
+      const body = [
+        `Imię i nazwisko: ${data.get('name') || ''}`,
+        `E-mail: ${data.get('email') || ''}`,
+        `Telefon: ${data.get('phone') || '—'}`,
+        '',
+        data.get('message') || ''
+      ].join('\n');
+      window.location.href = `mailto:sekretariat@prescot.pl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (typeof window.showToast === 'function') {
+        window.showToast('Otwieramy wiadomość do sekretariatu.', 'info');
+      }
     }
   </script>
 
@@ -2572,29 +3289,12 @@
 
 
   <!-- Mobile Bottom Navigation -->
-  <nav class="mobile-bottom-nav">
-    <div class="mobile-nav-items">
-      <a href="index.html" class="mobile-nav-item ">
-        <i class="ph ph-house"></i>
-        <span>Home</span>
-      </a>
-      <a href="javascript:void(0);" onclick="openMobileCategories();" class="mobile-nav-item ">
-        <i class="ph ph-squares-four"></i>
-        <span>Kategorie</span>
-      </a>
-      <a href="blog.html" class="mobile-nav-item ">
-        <i class="ph ph-article"></i>
-        <span>Blog</span>
-      </a>
-      <a href="about.html" class="mobile-nav-item ">
-        <i class="ph ph-info"></i>
-        <span>O nas</span>
-      </a>
-      <a href="contact.html" class="mobile-nav-item active">
-        <i class="ph ph-envelope-simple"></i>
-        <span>Kontakt</span>
-      </a>
-    </div>
+  <nav class="config-bottom-nav" aria-label="Skróty mobilne">
+    <a href="index.html" class="active"><span class="bottom-main-icon"><i class="ph ph-house" aria-hidden="true"></i></span><span>Start</span></a>
+    <a href="shop.html" ><i class="ph ph-storefront" aria-hidden="true"></i><span>Sklep</span></a>
+    
+    <a href="ai-shopping.html" ><i class="ph ph-sparkle" aria-hidden="true"></i><span>Zakup AI</span></a>
+    <button id="mobileCartButton" type="button"  onclick="openCartDrawer && openCartDrawer()"><i class="ph ph-shopping-cart-simple" aria-hidden="true"></i><span>Koszyk</span></button>
   </nav>
 
 <style>
@@ -2689,5 +3389,304 @@
     /* --- ULTIMATE DROPDOWN OVERRIDE END --- */
 
 </style>
+
+    <script id="standard-header-scroll-script">
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById('siteHeader') || document.querySelector('.site-header') || document.querySelector('.mockup-header');
+      const headerLogo = document.querySelector('.brand img') || document.querySelector('.mockup-header-logo img');
+      function handleScroll() {
+        if (window.scrollY > 40) {
+          if (header) header.classList.add('scrolled');
+          if (headerLogo) headerLogo.src = 'images/logo-dark.png';
+        } else {
+          if (header) header.classList.remove('scrolled');
+          if (headerLogo) headerLogo.src = 'images/logo-white.png';
+        }
+      }
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      handleScroll();
+    });
+  </script>
+
+  <script src="js/smart-search.js"></script>
+
+
+
+
+<!-- MOBILE UI FIXES -->
+<style class="mobile-ui-fixes">
+/* 1. Main Page White Gap Fix */
+body.index-page .site-header {
+  position: absolute !important;
+  top: 0; left: 0; right: 0; width: 100%;
+  z-index: 1000;
+}
+body.index-page .site-header.scrolled {
+  position: fixed !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+body.index-page .site-header:not(.scrolled) {
+  background: transparent !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+
+/* 2. Hero Banner Spacing on Mobile */
+@media (max-width: 768px) {
+  .mockup-hero-slider, .hero-section {
+    padding-bottom: 110px !important;
+  }
+  .scroll-down-circle {
+    bottom: 110px !important;
+  }
+  
+  /* 3. Standardize Mobile Top Header */
+  .site-header {
+    padding: 10px 15px !important;
+    min-height: 60px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+  .site-header .brand img,
+  .mockup-header-logo img {
+    height: 22px !important;
+    max-width: 120px !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+  }
+  .site-header .header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-left: auto !important;
+  }
+  /* Force cart and search visibility on mobile */
+  .site-header .header-search {
+    display: none !important; /* Hide full search bar to save space, rely on AI/Menu */
+  }
+  .site-header .header-icon {
+    display: inline-flex !important;
+    color: var(--primary-color) !important;
+  }
+  .site-header .header-icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    stroke: var(--primary-color) !important;
+  }
+  .menu-toggle {
+    display: none !important; /* Hide old hamburger */
+  }
+}
+
+/* 4. New Bottom Navigation */
+.new-glass-nav {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+  width: auto;
+  background: rgba(11, 26, 48, 0.90) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 24px !important;
+  z-index: 9999;
+  padding: 8px 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+}
+.new-glass-nav .mobile-nav-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  height: 50px;
+}
+.new-glass-nav .mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  color: rgba(255,255,255,0.6) !important;
+  text-decoration: none !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease;
+  width: 20%;
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  padding-bottom: 2px;
+}
+.new-glass-nav .mobile-nav-item i {
+  font-size: 22px;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+}
+.new-glass-nav .nav-ai-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  margin-bottom: 4px;
+  filter: grayscale(1) brightness(2);
+  transition: all 0.3s ease;
+}
+.new-glass-nav .mobile-nav-item.active {
+  color: #00e5ff !important;
+}
+.new-glass-nav .mobile-nav-item.active i {
+  color: #00e5ff !important;
+  filter: drop-shadow(0 0 8px rgba(0,229,255,0.6));
+}
+.new-glass-nav .nav-center-pill {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0b1a30, #1a365d);
+  border: 2px solid #00e5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 15px rgba(0, 229, 255, 0.3);
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+.new-glass-nav .nav-center-pill:active {
+  transform: translateX(-50%) scale(0.95);
+}
+.new-glass-nav .nav-center-pill i {
+  font-size: 24px;
+  margin-bottom: 0;
+  color: #00e5ff;
+}
+.new-glass-nav .mobile-nav-item:hover {
+  color: #fff !important;
+}
+.new-glass-nav .mobile-nav-item:hover .nav-ai-icon {
+  filter: none;
+}
+@media (max-width: 768px) {
+  .new-glass-nav {
+    display: block !important;
+  }
+  .mockup-footer {
+    margin-bottom: 100px !important;
+  }
+}
+/* 5. Mobile Category Banners (Wężej, 1 linia) */
+@media (max-width: 768px) {
+  .category-banner-card, .category-banner-card.sub-card {
+    height: 180px !important; /* Wężej w pionie */
+    padding: 20px 15px !important;
+  }
+  .category-banner-card h3, .category-banner-card.sub-card h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    margin-bottom: 0 !important;
+  }
+  .category-banner-card div > span, .category-banner-card.sub-card div > span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 11px !important;
+  }
+}
+</style>
+<!-- END MOBILE UI FIXES -->
+
+
+<style id="urgent-mobile-fixes-3">
+/* FIX 1: White patch on navy nav on mobile */
+.new-glass-nav a.active, 
+.new-glass-nav .mobile-nav-item.active {
+  background: transparent !important;
+  color: #00e5ff !important;
+}
+.new-glass-nav .nav-center-pill {
+  background: linear-gradient(135deg, #0b1a30, #1a365d) !important;
+  border: 2px solid #00e5ff !important;
+  border-radius: 50% !important; /* ensure it's round and no white corners */
+}
+.new-glass-nav .nav-center-pill i {
+  background: transparent !important;
+}
+
+/* FIX 2: Scroll arrow overlap & Huge category banners */
+@media (max-width: 768px) {
+  .scroll-down-arrow {
+    bottom: 140px !important; /* Move higher to not overlap */
+  }
+  .hero-section, .mockup-hero-slider, .page-hero {
+    padding-bottom: 140px !important;
+  }
+
+  /* Force ALL category banners to be slim */
+  .category-banner-card, 
+  .category-banner-card.sub-card, 
+  .mockup-category-card, 
+  .category-card,
+  .shop-category-card {
+    height: 160px !important;
+    min-height: 160px !important;
+    padding: 20px 15px !important;
+  }
+  .category-banner-card h3, 
+  .category-banner-card.sub-card h3, 
+  .mockup-category-card h3, 
+  .glass-cat-title,
+  .category-card h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    margin-bottom: 4px !important;
+  }
+  .category-banner-card div > span, 
+  .category-banner-card.sub-card div > span, 
+  .mockup-category-card p, 
+  .glass-cat-subtitle,
+  .category-card p {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-size: 11px !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+}
+</style>
+
+
+<style id="global-config-nav-css">
+.config-bottom-nav { display: none; }
+/* Exact bottom nav styles from led-configurator.css */
+@media (max-width: 768px) {
+  .config-bottom-nav { position: fixed; inset: auto 0 0; z-index: 950; height: 76px; display: grid; grid-template-columns: repeat(5,1fr); padding: 7px 8px calc(6px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,0.1); background: rgba(6,16,28,.98); backdrop-filter: blur(20px); }
+  .config-bottom-nav a, .config-bottom-nav button { min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; border: 0; color: rgba(255,255,255,.5); background: transparent; text-decoration: none; font-size: 8px; font-weight: 600; cursor: pointer; }
+  .config-bottom-nav i { font-size: 20px; }
+  .config-bottom-nav .active { color: #fff; }
+  .bottom-main-icon { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; margin-top: -20px; border: 2px solid #00e5ff; border-radius: 50%; color: #00e5ff; background: #10233a; box-shadow: 0 0 22px rgba(40,215,255,.2); }
+  .bottom-main-icon i { font-size: 21px; }
+  
+  /* Only force dark icons on white headers (scrolled) */
+  .site-header.scrolled .header-icon svg, .mockup-header.scrolled .header-icon svg {
+    stroke: #0b1a30 !important;
+  }
+  .menu-toggle, .menu-button {
+    display: block !important;
+  }
+}
+</style>
+
 </body>
 </html>
