@@ -754,7 +754,8 @@ customStyles.innerHTML = `
     body .mobile-bottom-nav .cart-badge {
       display: none !important;
     }
-    body .config-bottom-nav .mobile-home-pattern {
+    body .config-bottom-nav .mobile-home-pattern,
+    body .mobile-bottom-nav .mobile-home-pattern {
       display: block !important;
       width: 29px !important;
       height: 22px !important;
@@ -764,13 +765,15 @@ customStyles.innerHTML = `
       animation: prescotMobilePatternShimmer 3.2s ease-in-out infinite !important;
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     }
-    body .config-bottom-nav > .mobile-home-link .mobile-bottom-icon {
+    body .config-bottom-nav > .mobile-home-link .mobile-bottom-icon,
+    body .mobile-bottom-nav > .mobile-home-link .mobile-bottom-icon {
       width: 29px !important;
       height: 29px !important;
       min-width: 29px !important;
       min-height: 29px !important;
     }
-    body .config-bottom-nav > .mobile-home-link.active .mobile-bottom-icon {
+    body .config-bottom-nav > .mobile-home-link.active .mobile-bottom-icon,
+    body .mobile-bottom-nav > .mobile-home-link.active .mobile-bottom-icon {
       width: 29px !important;
       height: 29px !important;
       min-width: 29px !important;
@@ -780,11 +783,14 @@ customStyles.innerHTML = `
       background: transparent !important;
       box-shadow: none !important;
     }
-    body .config-bottom-nav > .mobile-home-link.active .mobile-home-pattern {
+    body .config-bottom-nav > .mobile-home-link.active .mobile-home-pattern,
+    body .mobile-bottom-nav > .mobile-home-link.active .mobile-home-pattern {
       transform: scale(1.13) !important;
     }
     body .config-bottom-nav > a:hover .mobile-bottom-icon,
-    body .config-bottom-nav > button:hover .mobile-bottom-icon {
+    body .config-bottom-nav > button:hover .mobile-bottom-icon,
+    body .mobile-bottom-nav > a:hover .mobile-bottom-icon,
+    body .mobile-bottom-nav > button:hover .mobile-bottom-icon {
       transform: scale(1.06) !important;
     }
   }
@@ -1704,7 +1710,7 @@ function initSharedPopups() {
           id: p.id,
           title: p.title,
           price: p.price,
-          image: p.images[0]
+          image: (p.images && p.images[0]) ? p.images[0] : 'images/okladka-produkty.webp'
         });
         updateWishlistStorage();
         showToast('Dodano produkt do listy życzeń!', 'wishlist');
@@ -1883,7 +1889,7 @@ function initSharedPopups() {
     recList.innerHTML = `
       <div style="display: flex; align-items: center; gap: 15px; background: #fff; padding: 10px; border-radius: 8px; border: 1px solid #eee;">
         <div style="width: 50px; height: 50px; flex-shrink: 0; background: #fff; border: 1px solid #eee; border-radius: 6px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-          <img src="${rec.images[0]}" style="width: 100%; height: 100%; object-fit: contain;">
+          <img src="${rec.images && rec.images[0] ? rec.images[0] : 'images/okladka-produkty.webp'}" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.onerror=null;this.src='images/okladka-produkty.webp'">
         </div>
         <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
           <h5 style="font-size: 13px; font-weight: 600; color: #1a1a1a; margin: 0; line-height: 1.2;">${rec.title}</h5>
@@ -1906,7 +1912,7 @@ function initSharedPopups() {
             id: p.id,
             title: p.title,
             price: p.price,
-            image: p.images[0],
+            image: (p.images && p.images[0]) ? p.images[0] : 'images/okladka-produkty.webp',
             qty: 1,
             color: p.colors && p.colors[0],
             size: p.sizes && p.sizes[0]
@@ -2090,7 +2096,7 @@ function initSharedPopups() {
     } else {
       if (qvImage) {
         qvImage.style.display = 'block';
-        qvImage.src = selectedProduct.images[0];
+        qvImage.src = (selectedProduct.images && selectedProduct.images[0]) ? selectedProduct.images[0] : 'images/okladka-produkty.webp';
       }
     }
 
@@ -2367,7 +2373,7 @@ function initSharedPopups() {
         id: selectedProduct.id,
         title: selectedProduct.title,
         price: selectedProduct.price,
-        image: selectedProduct.images[0],
+        image: (selectedProduct.images && selectedProduct.images[0]) ? selectedProduct.images[0] : 'images/okladka-produkty.webp',
         qty: qvQty,
         color: selectedColor,
         size: selectedSize
@@ -2408,7 +2414,7 @@ function initSharedPopups() {
           id: p.id,
           title: p.title,
           price: p.price,
-          image: p.images[0]
+          image: (p.images && p.images[0]) ? p.images[0] : 'images/okladka-produkty.webp'
         });
         updateWishlistStorage();
         showToast('Dodano produkt do listy życzeń!', 'wishlist');
@@ -2438,7 +2444,7 @@ function initSharedPopups() {
         id: p.id,
         title: p.title,
         price: p.price,
-        image: p.images[0],
+        image: (p.images && p.images[0]) ? p.images[0] : 'images/okladka-produkty.webp',
         qty: 1,
         color: p.colors?.[0] || null,
         size: p.sizes?.[0] || null
@@ -2481,7 +2487,7 @@ function initSharedPopups() {
         id: p.id,
         title: p.title,
         price: p.price,
-        image: p.images[0],
+        image: (p.images && p.images[0]) ? p.images[0] : 'images/okladka-produkty.webp',
         qty: 1,
         color: p.colors?.[0] || null,
         size: p.sizes?.[0] || null
@@ -2601,9 +2607,12 @@ function initSharedPopups() {
         return `
           <div class="mockup-product-card" data-id="${p.id}">
             <div class="mockup-product-media" style="position: relative; overflow: hidden; width: 100%; aspect-ratio: 1/1;">
-              <img src="${p.images[0]}" alt="${p.title}" class="mockup-product-img">
+              <img src="${p.images && p.images[0] ? p.images[0] : 'images/okladka-produkty.webp'}" alt="${p.title}" class="mockup-product-img" onerror="this.onerror=null;this.src='images/okladka-produkty.webp'">
               ${p.video ? `
                 <video class="mockup-product-video" src="${p.video}" loop muted playsinline autoplay style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;"></video>
+              ` : ''}
+              ${p.has360 && p.images360Pattern ? `
+                <img class="mockup-product-360" data-pattern="${p.images360Pattern}" data-count="${p.images360Count || 36}" src="${p.images360Pattern.replace('{index}', '1')}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.3s ease; pointer-events: none; background: #fff;">
               ` : ''}
               <div class="product-actions-hover">
                 <button class="action-btn-circle qv-wishlist-btn" data-id="${p.id}" aria-label="Dodaj do listy życzeń">
@@ -2773,46 +2782,73 @@ function initSharedPopups() {
     });
   }
 
-  // --- GLOBAL CARD HOVER & MOBILE VIEWPORT AUTOPLAY FOR VIDEOS ---
-  function initGlobalCardVideos() {
+  // --- GLOBAL CARD HOVER & MOBILE VIEWPORT AUTOPLAY FOR MEDIA (VIDEOS & 360) ---
+  function initGlobalCardMedia() {
     const cards = document.querySelectorAll('.mockup-product-card');
     
     cards.forEach(card => {
       const video = card.querySelector('.mockup-product-video');
-      if (!video) return;
-
-      // Listen to the 'playing' event to smoothly fade in the wideo
-      // This ensures we never show a gray blank block during loading or if playback fails!
-      video.addEventListener('playing', () => {
-        video.style.opacity = '1';
-      });
-
-      // Desktop Hover
-      card.addEventListener('mouseenter', () => {
+      const img360 = card.querySelector('.mockup-product-360');
+      
+      const playVideo = () => {
+        if (!video) return;
         if (card.videoTimeout) clearTimeout(card.videoTimeout);
         const dataSrc = video.getAttribute('data-src');
         if (dataSrc && video.getAttribute('src') !== dataSrc) {
           video.setAttribute('src', dataSrc);
           video.load();
         }
-        video.play().catch(err => console.log("Hover video play blocked:", err));
-      });
+        video.play().catch(err => console.log("Media play blocked:", err));
+      };
 
-      card.addEventListener('mouseleave', () => {
+      const stopVideo = () => {
+        if (!video) return;
         if (card.videoTimeout) clearTimeout(card.videoTimeout);
         video.style.opacity = '0';
         video.pause();
+      };
+
+      let active360Index = 1;
+      const play360 = () => {
+        if (!img360) return;
+        img360.style.opacity = '1';
+        const totalImages = parseInt(img360.getAttribute('data-count') || 36, 10);
+        const pattern = img360.getAttribute('data-pattern');
+        if (card.sixtyTimeout) clearInterval(card.sixtyTimeout);
+        card.sixtyTimeout = setInterval(() => {
+          active360Index++;
+          if (active360Index > totalImages) active360Index = 1;
+          img360.src = pattern.replace('{index}', active360Index);
+        }, 120);
+      };
+
+      const stop360 = () => {
+        if (!img360) return;
+        if (card.sixtyTimeout) clearInterval(card.sixtyTimeout);
+        img360.style.opacity = '0';
+      };
+
+      if (video) {
+        video.addEventListener('playing', () => {
+          video.style.opacity = '1';
+        });
+      }
+
+      // Desktop Hover
+      card.addEventListener('mouseenter', () => {
+        playVideo();
+        if (!video && img360) play360(); // Only play 360 if no video, to avoid heavy processing
       });
 
-      // Touchstart (Mobile user gesture helper to bypass strict iOS autoplay blocks)
+      card.addEventListener('mouseleave', () => {
+        stopVideo();
+        stop360();
+      });
+
+      // Touchstart
       card.addEventListener('touchstart', () => {
-        if (card.videoTimeout) clearTimeout(card.videoTimeout);
-        const dataSrc = video.getAttribute('data-src');
-        if (dataSrc && video.getAttribute('src') !== dataSrc) {
-          video.setAttribute('src', dataSrc);
-          video.load();
-        }
-        video.play().catch(err => console.log("Touch video play blocked:", err));
+        playVideo();
+        if (!video && img360) play360();
       }, { passive: true });
     });
 
@@ -2829,27 +2865,46 @@ function initSharedPopups() {
         entries.forEach(entry => {
           const card = entry.target;
           const video = card.querySelector('.mockup-product-video');
-          if (!video) return;
+          const img360 = card.querySelector('.mockup-product-360');
+          if (!video && !img360) return;
 
           if (entry.isIntersecting) {
-            if (card.videoTimeout) clearTimeout(card.videoTimeout);
-            card.videoTimeout = setTimeout(() => {
-              const dataSrc = video.getAttribute('data-src');
-              if (dataSrc && video.getAttribute('src') !== dataSrc) {
-                video.setAttribute('src', dataSrc);
-                video.load();
+            if (card.mediaTimeout) clearTimeout(card.mediaTimeout);
+            card.mediaTimeout = setTimeout(() => {
+              if (video) {
+                const dataSrc = video.getAttribute('data-src');
+                if (dataSrc && video.getAttribute('src') !== dataSrc) {
+                  video.setAttribute('src', dataSrc);
+                  video.load();
+                }
+                video.play().catch(err => console.log("Viewport autoplay play blocked:", err));
+              } else if (img360) {
+                img360.style.opacity = '1';
+                const totalImages = parseInt(img360.getAttribute('data-count') || 36, 10);
+                const pattern = img360.getAttribute('data-pattern');
+                let active360Index = parseInt(img360.getAttribute('data-current') || 1, 10);
+                if (card.sixtyTimeout) clearInterval(card.sixtyTimeout);
+                card.sixtyTimeout = setInterval(() => {
+                  active360Index++;
+                  if (active360Index > totalImages) active360Index = 1;
+                  img360.src = pattern.replace('{index}', active360Index);
+                  img360.setAttribute('data-current', active360Index);
+                }, 120);
               }
-              video.play().catch(err => {
-                console.log("Viewport autoplay play blocked:", err);
-              });
             }, 300); // Trigger after 300ms of staying in viewport
           } else {
-            if (card.videoTimeout) {
-              clearTimeout(card.videoTimeout);
-              card.videoTimeout = null;
+            if (card.mediaTimeout) {
+              clearTimeout(card.mediaTimeout);
+              card.mediaTimeout = null;
             }
-            video.style.opacity = '0';
-            video.pause();
+            if (video) {
+              video.style.opacity = '0';
+              video.pause();
+            }
+            if (img360) {
+              if (card.sixtyTimeout) clearInterval(card.sixtyTimeout);
+              img360.style.opacity = '0';
+            }
           }
         });
       }, observerOptions);
@@ -2858,7 +2913,7 @@ function initSharedPopups() {
     }
   }
 
-  initGlobalCardVideos();
+  initGlobalCardMedia();
 }
 
 // --- INJECT MOBILE CATEGORIES DRAWER ---
@@ -2890,7 +2945,7 @@ function injectMobileCategoriesDrawer() {
 function upgradeMobileCommerceNavigation() {
   const path = window.location.pathname.split('/').pop() || 'index.html';
   const icon = (content) => `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${content}</svg>`;
-  const homePatternIcon = '<img class="mobile-home-pattern" src="images/PRESCOT_pattern2.svg" alt="" aria-hidden="true">';
+  const homePatternIcon = '<img class="mobile-home-pattern" src="images/prescot-pattern.png" alt="" aria-hidden="true">';
   const entries = [
     { label: 'Home', href: 'index.html', active: path === '' || path === 'index.html', icon: icon('<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>') },
     { label: 'Kategorie', action: true, onClick: 'openMobileCategories()', active: false, icon: icon('<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>') },
