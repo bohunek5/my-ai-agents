@@ -348,13 +348,26 @@ h1, h2, h3, h4, h5, h6, p, li, span, div {
   background-color: rgba(22, 163, 74, 0.4) !important;
 }
 
-/* Zablokowane daty (zarezerwowane) na czerwono z obwódką */
+/* Zablokowane daty (zarezerwowane) na czerwono z obwódką i ukośnym przekreśleniem */
 .rdp-day_disabled {
   background-color: #fee2e2 !important; /* red-100 */
   color: #b91c1c !important; /* red-700 */
   border: 1px solid #ef4444 !important; /* red-500 */
-  text-decoration: line-through;
   opacity: 0.8 !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.rdp-day_disabled::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  width: 120%;
+  height: 2px;
+  background-color: #ef4444; /* red-500 */
+  transform: translateY(-50%) rotate(45deg);
+  z-index: 1;
 }
 
 .dark .rdp-day_disabled {
@@ -362,4 +375,8 @@ h1, h2, h3, h4, h5, h6, p, li, span, div {
   color: #f87171 !important;
   border: 1px solid rgba(248, 113, 113, 0.4) !important;
   opacity: 0.8 !important;
+}
+
+.dark .rdp-day_disabled::after {
+  background-color: rgba(248, 113, 113, 0.8);
 }
