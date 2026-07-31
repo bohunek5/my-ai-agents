@@ -269,20 +269,20 @@ html.wcag-no-animations * {
   border-radius: 0.5rem !important;
 }
 
-.dark .rdp-day:hover:not(.rdp-day_outside):not(.rdp-day_selected) {
+.dark .rdp-day:hover:not(.rdp-outside):not(.rdp-selected) {
   background-color: rgba(6, 182, 212, 0.25) !important;
   color: #22d3ee !important;
 }
 
 /* Range Middle */
-.rdp-day_range_middle {
+.rdp-range_middle {
   background-color: #cffafe !important;
   color: #164e63 !important;
   font-weight: 800 !important;
   border-radius: 0 !important;
 }
 
-.dark .rdp-day_range_middle {
+.dark .rdp-range_middle {
   background-color: rgba(6, 182, 212, 0.3) !important;
   color: #67e8f9 !important;
   font-weight: 800 !important;
@@ -290,7 +290,7 @@ html.wcag-no-animations * {
 }
 
 /* Start & End of Range */
-.rdp-day_range_start {
+.rdp-range_start {
   border-top-left-radius: 9999px !important;
   border-bottom-left-radius: 9999px !important;
   background-color: #06b6d4 !important;
@@ -299,14 +299,14 @@ html.wcag-no-animations * {
   box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4) !important;
 }
 
-.dark .rdp-day_range_start,
-.dark .rdp-day_range_end {
+.dark .rdp-range_start,
+.dark .rdp-range_end {
   background-color: #06b6d4 !important;
   color: #ffffff !important;
   box-shadow: 0 4px 14px rgba(6, 182, 212, 0.5) !important;
 }
 
-.rdp-day_range_end {
+.rdp-range_end {
   border-top-right-radius: 9999px !important;
   border-bottom-right-radius: 9999px !important;
   background-color: #06b6d4 !important;
@@ -321,35 +321,35 @@ h1, h2, h3, h4, h5, h6, p, li, span, div {
   word-break: normal;
 }
 
-.dark .rdp-day_selected:not(.rdp-day_range_start):not(.rdp-day_range_end):not(.rdp-day_range_middle) {
+.dark .rdp-selected:not(.rdp-range_start):not(.rdp-range_end):not(.rdp-range_middle) {
   background-color: #06b6d4 !important;
   color: white !important;
   border-radius: 9999px !important;
 }
 
 /* Dostępne dni (zielone) */
-.rdp-day:not(.rdp-day_disabled):not(.rdp-day_selected):not(.rdp-day_outside):not(.rdp-day_hidden) {
+.rdp-day:not(.rdp-disabled):not(.rdp-selected):not(.rdp-outside):not(.rdp-hidden) {
   background-color: #dcfce7 !important; /* green-100 */
   color: #166534 !important; /* green-800 */
   border: 1px solid #22c55e !important; /* green-500 */
 }
 
-.dark .rdp-day:not(.rdp-day_disabled):not(.rdp-day_selected):not(.rdp-day_outside):not(.rdp-day_hidden) {
+.dark .rdp-day:not(.rdp-disabled):not(.rdp-selected):not(.rdp-outside):not(.rdp-hidden) {
   background-color: rgba(22, 163, 74, 0.2) !important;
   color: #4ade80 !important;
   border: 1px solid rgba(74, 222, 128, 0.4) !important;
 }
 
-.rdp-day:hover:not(.rdp-day_disabled):not(.rdp-day_selected):not(.rdp-day_outside):not(.rdp-day_hidden) {
+.rdp-day:hover:not(.rdp-disabled):not(.rdp-selected):not(.rdp-outside):not(.rdp-hidden) {
   background-color: #bbf7d0 !important; /* green-200 */
 }
 
-.dark .rdp-day:hover:not(.rdp-day_disabled):not(.rdp-day_selected):not(.rdp-day_outside):not(.rdp-day_hidden) {
+.dark .rdp-day:hover:not(.rdp-disabled):not(.rdp-selected):not(.rdp-outside):not(.rdp-hidden) {
   background-color: rgba(22, 163, 74, 0.4) !important;
 }
 
 /* Zablokowane daty (zarezerwowane) na czerwono z obwódką i ukośnym przekreśleniem */
-.rdp-day_disabled {
+.rdp-disabled {
   background-color: #fee2e2 !important; /* red-100 */
   color: #b91c1c !important; /* red-700 */
   border: 1px solid #ef4444 !important; /* red-500 */
@@ -358,7 +358,7 @@ h1, h2, h3, h4, h5, h6, p, li, span, div {
   overflow: hidden;
 }
 
-.rdp-day_disabled::after {
+.rdp-disabled::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -370,13 +370,13 @@ h1, h2, h3, h4, h5, h6, p, li, span, div {
   z-index: 1;
 }
 
-.dark .rdp-day_disabled {
+.dark .rdp-disabled {
   background-color: rgba(220, 38, 38, 0.2) !important;
   color: #f87171 !important;
   border: 1px solid rgba(248, 113, 113, 0.4) !important;
   opacity: 0.8 !important;
 }
 
-.dark .rdp-day_disabled::after {
+.dark .rdp-disabled::after {
   background-color: rgba(248, 113, 113, 0.8);
 }
