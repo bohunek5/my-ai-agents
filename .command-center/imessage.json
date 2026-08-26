@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "allowedSender": "+48603045005",
+  "account": "prezes@zeglarstwomazury.pl",
+  "chatGuid": "any;-;+48603045005",
+  "prefix": "DOWODCA:",
+  "model": "gpt-5.6-sol",
+  "trustedConversation": true,
+  "lastMessageId": 0,
+  "modeUntil": 0,
+  "processing": false,
+  "lastCommand": "",
+  "lastReport": "Kanał gotowy do pierwszego polecenia.",
+  "lastError": "Włącz Full Disk Access dla Agent Command Center",
+  "processedCount": 0,
+  "inFlightMessageId": 0,
+  "inFlightStartedAt": 0,
+  "updatedAt": 1787728025331
+}

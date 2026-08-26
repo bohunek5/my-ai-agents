@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css?v=58">
+  <link rel="stylesheet" href="styles.css?v=60">
 
   <!-- Structured Data (Schema.org) -->
   <script type="application/ld+json">
@@ -334,7 +334,7 @@
             <circle class="orbit-ring orbit-ring-inner" cx="380" cy="380" r="262" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="440 140 350 150 290 140" />
           </svg>
 
-          <!-- 8 Circular Nodes along the Orbit -->
+          <!-- 9 Circular Nodes along the Orbit -->
           <div class="wheel-orbit" id="wheel-orbit">
             
             <!-- Node 0 (Top / 0°): Radlight Central Logo (Active default) -->
@@ -344,52 +344,59 @@
               </div>
             </button>
 
-            <!-- Node 1 (Top-Right / 45°): Mazury Holiday -->
+            <!-- Node 1 (Top-Right / 40°): Mazury Holiday -->
             <button class="wheel-node" data-index="1" data-service-id="apartamenty" aria-label="Apartamenty Mazury" title="Apartamenty — Mazury Holiday">
               <div class="node-icon-box logo-type">
                 <img src="images/512X512-mh.png" alt="Mazury Holiday Apartamenty">
               </div>
             </button>
 
-            <!-- Node 2 (Right / 90°): Zarządzanie Najmem -->
+            <!-- Node 2 (Right / 80°): Zarządzanie Najmem -->
             <button class="wheel-node" data-index="2" data-service-id="najem" aria-label="Zarządzanie Najmem" title="Zarządzanie Najmem">
               <div class="node-icon-box">
                 <img src="images/real-estate-agent-holding-key-with-house-shaped-keychain--1536x1024.jpg" alt="Zarządzanie Najmem">
               </div>
             </button>
 
-            <!-- Node 3 (Bottom-Right / 135°): Pralnia Giżycko -->
+            <!-- Node 3 (Bottom-Right / 120°): Pralnia Giżycko -->
             <button class="wheel-node" data-index="3" data-service-id="pralnia" aria-label="Pralnia Przemysłowa Giżycko" title="Pralnia Giżycko">
               <div class="node-icon-box logo-type">
                 <img src="images/logo-kwadrat.jpg" alt="Pralnia Giżycko">
               </div>
             </button>
 
-            <!-- Node 4 (Bottom / 180°): Usługi Sprzątające -->
+            <!-- Node 4 (Bottom / 160°): Usługi Sprzątające -->
             <button class="wheel-node" data-index="4" data-service-id="sprzatanie" aria-label="Usługi Sprzątające" title="Usługi Sprzątające">
               <div class="node-icon-box">
-                <img src="images/modern-office-2025-02-22-16-24-55-utc-2048x1365.jpg" alt="Usługi Sprzątające">
+                <img src="images/pralnia-1536x863.png" alt="Usługi Sprzątające">
               </div>
             </button>
 
-            <!-- Node 5 (Bottom-Left / 225°): Hale i Magazyny -->
+            <!-- Node 5 (Bottom-Left / 200°): Hale i Magazyny -->
             <button class="wheel-node" data-index="5" data-service-id="magazyny" aria-label="Hale i Magazyny Giżycko" title="Hale i Magazyny">
               <div class="node-icon-box">
                 <img src="images/DJI_0121small-1536x1171.jpg" alt="Hale i Magazyny">
               </div>
             </button>
 
-            <!-- Node 6 (Left / 270°): Helipad Mazury -->
+            <!-- Node 6 (Left / 240°): Helipad Mazury -->
             <button class="wheel-node" data-index="6" data-service-id="helipad" aria-label="Lądowisko Śmigłowców Helipad" title="Helipad Mazury">
               <div class="node-icon-box logo-type">
                 <img src="images/512X512-heli.png" alt="Helipad Mazury">
               </div>
             </button>
 
-            <!-- Node 7 (Top-Left / 315°): Zimowanie Jachtów & Czarter -->
+            <!-- Node 7 (Top-Left / 315° on Desktop): Zimowanie Jachtów & Czarter -->
             <button class="wheel-node" data-index="7" data-service-id="zimowanie" aria-label="Zimowanie Jachtów Giżycko" title="Zimowanie i Czarter Jachtów">
               <div class="node-icon-box logo-type">
-                <img src="images/LOGO-ALL-BOAT.jpg" alt="Zimowanie Jachtów All Boat">
+                <img src="images/LOGO-ALL-BOAT.jpg" alt="Zimowanie i Czarter Jachtów">
+              </div>
+            </button>
+
+            <!-- Node 8 (Mobile-Only 9th node): Czarter Stillo 30 VIP -->
+            <button class="wheel-node wheel-node-mobile-only" data-index="8" data-service-id="czarter" aria-label="Czarter Jachtów Motorowych Stillo 30" title="Czarter Jachtów Motorowych Stillo 30">
+              <div class="node-icon-box">
+                <img src="images/103945_3.jpg" alt="Czarter Jachtów Motorowych Stillo 30">
               </div>
             </button>
 
@@ -397,7 +404,7 @@
 
           <!-- Central Hub: Service Round Badge (like orbital nodes), Title, Domain & Action Box with Mail/Phone/Website -->
           <div class="wheel-center-hub" id="wheel-center-hub" role="button" tabindex="0" title="Kliknij, aby przejść do oferty">
-            <div class="hub-inner-core">
+            <div class="hub-inner-core" id="hub-inner-core">
               
               <!-- Center Circular Node/Badge (Same design as orbital circles) -->
               <div class="hub-avatar is-standalone-logo" id="hub-avatar">
@@ -406,30 +413,18 @@
                 </div>
               </div>
 
-              <!-- Main Title & Subtitle (Service Name & Domain / Tagline) -->
+              <!-- Main Title & CTA Link (Read More) -->
               <h2 class="hub-title" id="hub-title">Poznaj Radlight</h2>
-              <a href="uslugi.html" class="hub-cta-link" id="hub-cta-link"><span id="hub-cta-text" data-i18n="btnReadMoreHub">Czytaj dalej</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a href="o-nas.html" class="hub-cta-link" id="hub-cta-link"><span id="hub-cta-text" data-i18n="btnReadMoreHub">Czytaj dalej</span> <i class="fa-solid fa-arrow-right"></i></a>
               
-              <!-- Lower Action Box: Phone & Mail buttons + direct mail and web link -->
+              <!-- Lower Action Box: Phone & Mail buttons -->
               <div class="hub-action-box" id="hub-action-box">
                 <div class="hub-action-row" id="hub-action-row">
-                  <a href="tel:+48607241090" class="hub-action-btn hub-btn-phone" id="hub-phone-btn" title="Zadzwoń bezpośrednio">
+                  <a href="tel:+48607241090" class="hub-action-btn hub-btn-phone" id="hub-phone-btn" title="Zadzwoń: +48 607 241 090" aria-label="Zadzwoń">
                     <i class="fa-solid fa-phone"></i>
                   </a>
-                  <a href="mailto:biuro@radlight.pl" class="hub-action-btn hub-btn-mail" id="hub-mail-btn" title="Napisz e-mail">
+                  <a href="mailto:biuro@radlight.pl" class="hub-action-btn hub-btn-mail" id="hub-mail-btn" title="Napisz: biuro@radlight.pl" aria-label="Napisz e-mail">
                     <i class="fa-solid fa-envelope"></i>
-                  </a>
-                </div>
-
-                <!-- Email & Website Display Info -->
-                <div class="hub-contact-details" id="hub-contact-details">
-                  <a href="mailto:biuro@radlight.pl" class="hub-detail-item" id="hub-contact-email" title="Napisz e-mail">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span id="hub-email-text">biuro@radlight.pl</span>
-                  </a>
-                  <a href="uslugi.html" class="hub-detail-item" id="hub-contact-web" title="Przejdź do strony">
-                    <i class="fa-solid fa-globe"></i>
-                    <span id="hub-web-text">www.radlight.pl</span>
                   </a>
                 </div>
               </div>
@@ -439,7 +434,7 @@
 
         </div>
 
-        <!-- Apple-Style "Sprawdź Ofertę" CTA & Pulsing Scroll Down Arrow -->
+        <!-- Bottom CTA & Pulsing Scroll Down Arrow (Navigates to services below) -->
         <div class="hero-bottom-cta-wrap">
           <a href="#uslugi" class="btn-explore-offer" id="btn-explore-offer">
             <span data-i18n="btnExploreOffer">Sprawdź ofertę</span>
@@ -478,9 +473,8 @@
 
         <!-- Card 1: Apartamenty -->
         <div class="service-card" id="card-apartamenty" data-category="turystyka">
-          <div class="service-media">
+          <div class="service-image">
             <img src="images/stranda_hero_jacuzzi.webp" alt="Apartamenty Mazury Holiday Radlight">
-            <span class="service-tag">Mazury Holiday</span>
           </div>
           <div class="service-body">
             <h3 class="service-title" data-i18n="srvCardTitle1">Apartamenty, domki i pokoje</h3>
@@ -724,17 +718,17 @@
                 <input type="email" id="contact-email" class="form-control" placeholder="np. jan@example.com" data-i18n-placeholder="lblEmail" required>
               </div>
               <div class="form-group">
-                <label for="contact-topic" data-i18n="lblService">Temat Zapytania</label>
+                <label for="contact-topic" data-i18n="lblTopic">Temat Zapytania</label>
                 <select id="contact-topic" class="form-control">
-                  <option value="apartamenty">Apartamenty i Noclegi</option>
-                  <option value="najem">Obsługa i Zarządzanie Najmem</option>
-                  <option value="pralnia">Pralnia Przemysłowa</option>
-                  <option value="sprzatanie">Usługi Sprzątające</option>
-                  <option value="magazyny">Hale, Magazyny & Lokale</option>
-                  <option value="helipad">Helipad Mazury</option>
-                  <option value="zimowanie">Zimowanie Jachtów</option>
-                  <option value="czarter">Czarter Jachtów</option>
-                  <option value="ogolny">Inny temat ogólny</option>
+                  <option value="apartamenty" data-i18n="optApartments">Apartamenty i Noclegi</option>
+                  <option value="najem" data-i18n="optRentMgmt">Obsługa i Zarządzanie Najmem</option>
+                  <option value="pralnia" data-i18n="optLaundry">Pralnia Przemysłowa</option>
+                  <option value="sprzatanie" data-i18n="optCleaning">Usługi Sprzątające</option>
+                  <option value="magazyny" data-i18n="optStorage">Hale, Magazyny & Lokale</option>
+                  <option value="helipad" data-i18n="optHelipad">Helipad Mazury</option>
+                  <option value="zimowanie" data-i18n="optWinter">Zimowanie Jachtów</option>
+                  <option value="czarter" data-i18n="optCharter">Czarter Jachtów</option>
+                  <option value="ogolny" data-i18n="optGeneral">Inny temat ogólny</option>
                 </select>
               </div>
             </div>
@@ -746,7 +740,7 @@
 
             <button type="submit" class="btn-submit-form">
               <i class="fa-solid fa-paper-plane"></i>
-              <span data-i18n="btnSubmit">Wyślij Wiadomość</span>
+              <span data-i18n="btnSubmit">Wyślij e-mail</span>
             </button>
           </form>
         </div>
@@ -757,7 +751,7 @@
           <a href="tel:+48607241090" class="contact-dept-card">
             <div class="dept-info">
               <strong data-i18n="cOfficeTitle">Biuro Główne & Apartamenty</strong>
-              <span>Rezerwacje i umowy najmu: +48 607 241 090</span>
+              <span data-i18n="cOfficeDesc">Rezerwacje i umowy najmu: +48 607 241 090</span>
             </div>
             <i class="fa-solid fa-chevron-right dept-arrow"></i>
           </a>
@@ -765,7 +759,7 @@
           <a href="tel:+48730064044" class="contact-dept-card">
             <div class="dept-info">
               <strong data-i18n="cLaundryTitle">Pralnia Giżycko</strong>
-              <span>Zlecenia pralnicze i transport: +48 730 064 044</span>
+              <span data-i18n="cLaundryDesc">Zlecenia pralnicze i transport: +48 730 064 044</span>
             </div>
             <i class="fa-solid fa-chevron-right dept-arrow"></i>
           </a>
@@ -773,7 +767,7 @@
           <a href="tel:+48730067027" class="contact-dept-card">
             <div class="dept-info">
               <strong data-i18n="cCleaningTitle">Usługi Sprzątające</strong>
-              <span>Serwis czystości: +48 730 067 027</span>
+              <span data-i18n="cCleaningDesc">Serwis czystości: +48 730 067 027</span>
             </div>
             <i class="fa-solid fa-chevron-right dept-arrow"></i>
           </a>
@@ -781,7 +775,7 @@
           <a href="tel:+48607241090" class="contact-dept-card">
             <div class="dept-info">
               <strong data-i18n="cStorageTitle">Hale, Magazyny & Powierzchnie Użytkowe</strong>
-              <span>Hale, slipowanie i lądowisko: +48 607 241 090</span>
+              <span data-i18n="cStorageDesc">Hale, slipowanie i lądowisko: +48 607 241 090</span>
             </div>
             <i class="fa-solid fa-chevron-right dept-arrow"></i>
           </a>
@@ -888,8 +882,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="translations.js?v=41"></script>
-  <script src="app.js?v=41"></script>
+  <script src="translations.js?v=60"></script>
+  <script src="app.js?v=60"></script>
 </body>
 
 </html>

@@ -160,6 +160,17 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+  const dockBrandCenter = document.querySelector('.dock-brand-center');
+  if (dockBrandCenter) {
+    dockBrandCenter.addEventListener('click', (e) => {
+      const isIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || !window.location.pathname.includes('.html');
+      if (isIndex) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+
   // ==========================================================================
   // 3. MOBILE NAVIGATION DRAWER
   // ==========================================================================
@@ -224,139 +235,255 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 4. DATA FOR THE 8 SERVICES ON THE 360° WHEEL
+  // 4. DATA FOR SERVICES ON THE 360° WHEEL (DESKTOP & MOBILE)
   // ==========================================================================
 
-  const servicesData = [
+  // 8 Services for Desktop (PC)
+  const desktopServicesData = [
     {
       index: 0,
       title: "Poznaj Radlight",
-      sub: "wiele możliwości",
-      desc: "Centralna baza usług w Giżycku. Łączymy luksusowe apartamenty, pralnię przemysłową, obsługę najmu, magazyny self-storage, helipad oraz marinę z zimowaniem jachtów przy ul. Myśliwskiej 3.",
+      sub: "",
+      desc: "Centralna baza usług w Giżycku. Łączymy luksusowe apartamenty, pralnię przemysłową, obsługę najmu, magazyny self-storage, helipad oraz marinę z zimowaniem jachtów w Giżycku (baza centralna ul. Myśliwska 3).",
       img: "images/radlight-r-symbol.png",
-      bgImg: "images/DJI_0101-1536x864.jpg",
       phone: "tel:+48607241090",
       phoneDisplay: "+48 607 241 090",
       email: "mailto:biuro@radlight.pl",
       emailDisplay: "biuro@radlight.pl",
-      link: "uslugi.html",
-      cardId: "uslugi",
+      link: "o-nas.html",
+      linkTarget: "o-nas.html",
+      linkText: "o-nas.html",
       category: "RADLIGHT CENTRUM",
       tag: "CENTRUM RADLIGHT"
     },
     {
       index: 1,
-      title: "Apartamenty, Domki, Pokoje",
-      sub: "www.mazury.holiday",
+      title: "Apartamenty, domki, pokoje",
+      sub: "",
       desc: "Luksusowy wynajem całorocznych apartamentów, domków letniskowych i pokoi w centrum Giżycka i nad mazurskimi jeziorami. Klimatyzacja, szybkie Wi-Fi, pościel hotelowa z naszej pralni oraz dedykowany parking.",
       img: "images/512X512-mh.png",
-      bgImg: "images/IMG_6185-1536x1152.jpg",
       phone: "tel:+48607241090",
       phoneDisplay: "+48 607 241 090",
       email: "mailto:rezerwacje@mazury.holiday",
       emailDisplay: "rezerwacje@mazury.holiday",
       link: "apartamenty.html",
-      cardId: "card-apartamenty",
+      linkTarget: "apartamenty.html",
+      linkText: "apartamenty.html",
       category: "TURYSTYKA & NOCLEGI",
       tag: "APARTAMENTY & DOMKI"
     },
     {
       index: 2,
-      title: "Zarządzanie Najmem",
-      sub: "Kompleksowa obsługa apartamentów",
-      desc: "Zajmujemy się wszystkim: od profesjonalnej sesji zdjęciowej i marketingu na Booking/Airbnb, po zameldowanie gości, pranie pościeli, sprzątanie pobytowe i terminowe rozliczenia.",
-      img: "images/103761_7.jpg",
-      bgImg: "images/103779_7.jpg",
+      title: "Obsługa najmu",
+      sub: "",
+      desc: "Kompleksowa opieka nad apartamentem: marketing na Booking i Airbnb, meldunek gości kodem PIN, sprzątanie, wymiana i pranie pościeli oraz pełne rozliczenia finansowe.",
+      img: "images/real-estate-agent-holding-key-with-house-shaped-keychain--1536x1024.jpg",
       phone: "tel:+48607241090",
       phoneDisplay: "+48 607 241 090",
       email: "mailto:biuro@radlight.pl",
       emailDisplay: "biuro@radlight.pl",
       link: "zarzadzanie-najmem.html",
-      cardId: "card-zarzadzanie",
-      category: "OBSŁUGA NIERUCHOMOŚCI",
-      tag: "ZARZĄDZANIE NAJMEM"
+      linkTarget: "zarzadzanie-najmem.html",
+      linkText: "zarzadzanie-najmem.html",
+      category: "NIERUCHOMOŚCI",
+      tag: "OBSŁUGA NAJMU"
     },
     {
       index: 3,
-      title: "Własna Pralnia",
-      sub: "ul. Sybiraków 15 • www.pralniagizycko.pl",
+      title: "Pralnia przemysłowa",
+      sub: "",
       desc: "Nowoczesny park pralniczy dla hoteli, pensjonatów, jachtów, restauracji i klientów indywidualnych w Giżycku. Odbiór i dowóz prania własnym transportem w promieniu 50 km.",
       img: "images/logo-kwadrat.jpg",
-      bgImg: "images/pralnia-industrial-plant.jpg",
       phone: "tel:+48730064044",
       phoneDisplay: "+48 730 064 044",
-      email: "mailto:biuro@pralniagizycko.pl",
-      emailDisplay: "biuro@pralniagizycko.pl",
+      email: "mailto:pralnia@radlight.pl",
+      emailDisplay: "pralnia@radlight.pl",
       link: "pralnia.html",
-      cardId: "card-pralnia",
+      linkTarget: "pralnia.html",
+      linkText: "pralnia.html",
       category: "PRALNIA PRZEMYSŁOWA",
       tag: "PARK PRALNICZY"
     },
     {
       index: 4,
-      title: "Usługi Sprzątające",
-      sub: "Domy, biura, apartamenty i jachty",
-      desc: "Certyfikowany zespół, profesjonalny sprzęt Kärcher i ekologiczne środki czystości. Kompleksowe sprzątanie cykliczne, poremontowe oraz doczyszczanie jachtów po sezonie.",
+      title: "Usługi sprzątające",
+      sub: "",
+      desc: "Doświadczony zespół, profesjonalny sprzęt Kärcher i ekologiczne środki czystości. Sprzątanie cykliczne, poremontowe, mycie okien oraz doczyszczanie jachtów.",
       img: "images/modern-office-2025-02-22-16-24-55-utc-2048x1365.jpg",
-      bgImg: "images/modern-office-2025-02-22-16-24-55-utc-2048x1365.jpg",
       phone: "tel:+48730067027",
       phoneDisplay: "+48 730 067 027",
-      email: "mailto:biuro@radlight.pl",
-      emailDisplay: "biuro@radlight.pl",
+      email: "mailto:sprzatanie@radlight.pl",
+      emailDisplay: "sprzatanie@radlight.pl",
       link: "sprzatanie.html",
-      cardId: "card-sprzatanie",
-      category: "SERWIS CZYSTOŚCI",
-      tag: "SPRZĄTANIE OBIEKTÓW"
+      linkTarget: "sprzatanie.html",
+      linkText: "sprzatanie.html",
+      category: "USŁUGI PORZĄDKOWE",
+      tag: "SERWIS CZYSTOŚCI"
     },
     {
       index: 5,
-      title: "Hale, Magazyny & Lokale",
-      sub: "ul. Sybiraków 15 • Powierzchnie Użytkowe",
-      desc: "Nowoczesne hale produkcyjno-magazynowe, boksy magazynowe self-storage, powierzchnie użytkowe i komercyjne oraz utwardzone place składowe przy ul. Sybiraków 15. Monitoring CCTV 24/7, bramy z poziomu 0 i dogodny dojazd TIR.",
+      title: "Hale, magazyny & lokale",
+      sub: "",
+      desc: "Nowoczesne hale produkcyjno-magazynowe, boksy samoobsługowe self-storage, powierzchnie użytkowe i komercyjne oraz place składowe w Giżycku. Monitoring 24/7, dostęp PIN i dojazd TIR.",
       img: "images/DJI_0121small-1536x1171.jpg",
-      bgImg: "images/hala-zimowanie-3.jpg",
       phone: "tel:+48607241090",
       phoneDisplay: "+48 607 241 090",
-      email: "mailto:biuro@radlight.pl",
-      emailDisplay: "biuro@radlight.pl",
+      email: "mailto:magazyny@radlight.pl",
+      emailDisplay: "magazyny@radlight.pl",
       link: "magazyny.html",
-      cardId: "card-magazyny",
-      category: "INFRASTRUKTURA & HALE",
+      linkTarget: "magazyny.html",
+      linkText: "magazyny.html",
+      category: "MAGAZYNY & PLACE",
       tag: "HALE & MAGAZYNY"
     },
     {
       index: 6,
       title: "Helipad Mazury",
-      sub: "www.helipadmazury.pl",
-      desc: "Certyfikowane lądowisko dla śmigłowców w Giżycku z pełnym oświetleniem nawigacyjnym, zapleczem hangarowym, tankowaniem i profesjonalną logistyką VIP / LPR.",
+      sub: "",
+      desc: "Certyfikowane lądowisko dla śmigłowców w Giżycku. Oświetlenie nawigacyjne do lotów nocnych, hangarowanie, tankowanie oraz transfery VIP i medyczne LPR.",
       img: "images/512X512-heli.png",
-      bgImg: "images/air-rescue-service-1536x1024.jpg",
       phone: "tel:+48607241090",
       phoneDisplay: "+48 607 241 090",
-      email: "mailto:biuro@helipadmazury.pl",
-      emailDisplay: "biuro@helipadmazury.pl",
+      email: "mailto:helipad@radlight.pl",
+      emailDisplay: "helipad@radlight.pl",
       link: "helipad.html",
-      cardId: "card-helipad",
-      category: "LOTNICTWO & LOGISTYKA",
+      linkTarget: "helipad.html",
+      linkText: "helipad.html",
+      category: "LOTNICTWO",
       tag: "LĄDOWISKO HELI"
     },
     {
       index: 7,
-      title: "Zimowanie Jachtów",
-      sub: "AllBoat Service & Marina",
-      desc: "Nowoczesna ogrzewana hala, strzeżony plac, slipowanie dźwigiem, transport specjalistyczny, mycie dna, zabezpieczenie antyporostowe i autoryzowany serwis silników jachtowych.",
+      title: "Zimowanie jachtów",
+      sub: "",
+      desc: "Całoroczne bezpieczne zimowanie łodzi w ogrzewanej hali lub na strzeżonym placu. Slipowanie dźwigiem, mycie dna, serwis silników oraz czarter jachtu motorowego Stillo 30.",
       img: "images/LOGO-ALL-BOAT.jpg",
-      bgImg: "images/hero-yard-evening-v3.jpg",
+      phone: "tel:+48607241090",
+      phoneDisplay: "+48 607 241 090",
+      email: "mailto:zimowanie@radlight.pl",
+      emailDisplay: "zimowanie@radlight.pl",
+      link: "zimowanie-jachtow.html",
+      linkTarget: "zimowanie-jachtow.html",
+      linkText: "zimowanie-jachtow.html",
+      category: "SEKTOR MORSKI",
+      tag: "ZIMOWANIE & CZARTER"
+    }
+  ];
+
+  // 9 Services for Mobile (1:1 with radlight.pl)
+  const mobileServicesData = [
+    {
+      index: 0,
+      title: "Poznaj Radlight",
+      sub: "",
+      desc: "Centralna baza usług w Giżycku. Łączymy luksusowe apartamenty, pralnię przemysłową, obsługę najmu, magazyny self-storage, helipad oraz marinę z zimowaniem jachtów w Giżycku.",
+      img: "images/radlight-r-symbol.png",
       phone: "tel:+48607241090",
       phoneDisplay: "+48 607 241 090",
       email: "mailto:biuro@radlight.pl",
       emailDisplay: "biuro@radlight.pl",
-      link: "zimowanie-jachtow.html",
-      cardId: "card-zimowanie",
-      category: "MARINE & ŻEGLARSTWO",
-      tag: "ZIMOWANIE & SERWIS"
+      link: "o-nas.html"
+    },
+    {
+      index: 1,
+      title: "Apartamenty",
+      sub: "",
+      desc: "Luksusowy wynajem całorocznych apartamentów, domków letniskowych i pokoi w centrum Giżycka.",
+      img: "images/stranda_hero_jacuzzi.webp",
+      phone: "tel:+48607241090",
+      phoneDisplay: "+48 607 241 090",
+      email: "mailto:rezerwacje@mazury.holiday",
+      emailDisplay: "rezerwacje@mazury.holiday",
+      link: "apartamenty.html"
+    },
+    {
+      index: 2,
+      title: "Zarządzanie najmem",
+      sub: "",
+      desc: "Kompleksowa opieka nad apartamentem: marketing na Booking i Airbnb, meldunek gości kodem PIN.",
+      img: "images/103761_7.jpg",
+      phone: "tel:+48607241090",
+      phoneDisplay: "+48 607 241 090",
+      email: "mailto:biuro@radlight.pl",
+      emailDisplay: "biuro@radlight.pl",
+      link: "zarzadzanie-najmem.html"
+    },
+    {
+      index: 3,
+      title: "Własna pralnia",
+      sub: "",
+      desc: "Nowoczesny park pralniczy dla hoteli, pensjonatów, jachtów i restauracji w Giżycku.",
+      img: "images/work-in-laundry-2025-03-17-04-27-23-utc-1536x1024.jpg",
+      phone: "tel:+48730064044",
+      phoneDisplay: "+48 730 064 044",
+      email: "mailto:biuro@pralniagizycko.pl",
+      emailDisplay: "biuro@pralniagizycko.pl",
+      link: "pralnia.html"
+    },
+    {
+      index: 4,
+      title: "Profesjonalne usługi sprzątające",
+      sub: "",
+      desc: "Doświadczony zespół, profesjonalny sprzęt Kärcher i ekologiczne środki czystości.",
+      img: "images/modern-office-2025-02-22-16-24-55-utc-2048x1365.jpg",
+      phone: "tel:+48730067027",
+      phoneDisplay: "+48 730 067 027",
+      email: "mailto:biuro@radlight.pl",
+      emailDisplay: "biuro@radlight.pl",
+      link: "sprzatanie.html"
+    },
+    {
+      index: 5,
+      title: "Powierzchnie usługowo magazynowe",
+      sub: "",
+      desc: "Nowoczesne hale produkcyjno-magazynowe, boksy samoobsługowe self-storage i place składowe.",
+      img: "images/hala-zimowanie-3.jpg",
+      phone: "tel:+48607241090",
+      phoneDisplay: "+48 607 241 090",
+      email: "mailto:biuro@radlight.pl",
+      emailDisplay: "biuro@radlight.pl",
+      link: "magazyny.html"
+    },
+    {
+      index: 6,
+      title: "Lądowisko dla śmigłowców",
+      sub: "",
+      desc: "Certyfikowane lądowisko dla śmigłowców w Giżycku z pełnym oświetleniem nawigacyjnym.",
+      img: "images/air-rescue-service-1536x1024.jpg",
+      phone: "tel:+48607241090",
+      phoneDisplay: "+48 607 241 090",
+      email: "mailto:biuro@helipadmazury.pl",
+      emailDisplay: "biuro@helipadmazury.pl",
+      link: "helipad.html"
+    },
+    {
+      index: 7,
+      title: "Czarter Stillo30 VIP",
+      sub: "",
+      desc: "Luksusowy czarter nowoczesnych jednostek motorowych typu Houseboat bez patentu po Szlaku Wielkich Jezior Mazurskich.",
+      img: "images/hero-yard-evening-v3.jpg",
+      phone: "tel:+48607241090",
+      phoneDisplay: "+48 607 241 090",
+      email: "mailto:biuro@radlight.pl",
+      emailDisplay: "biuro@radlight.pl",
+      link: "czarter.html"
+    },
+    {
+      index: 8,
+      title: "Zimowanie łodzi",
+      sub: "",
+      desc: "Całoroczne bezpieczne zimowanie łodzi w ogrzewanej hali lub na strzeżonym placu.",
+      img: "images/DJI_0101-1536x864.jpg",
+      phone: "tel:+48607241090",
+      phoneDisplay: "+48 607 241 090",
+      email: "mailto:biuro@radlight.pl",
+      emailDisplay: "biuro@radlight.pl",
+      link: "zimowanie-jachtow.html"
     }
   ];
+
+  // Default servicesData reference
+  let servicesData = desktopServicesData;
 
   // ==========================================================================
   // 5. 360° INTERACTIVE WHEEL & SHOWCASE SYNCHRONIZATION
@@ -364,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const wheelContainer = document.getElementById('interactive-wheel');
   const wheelOrbit = document.getElementById('wheel-orbit');
-  const nodes = document.querySelectorAll('.wheel-node');
+  let nodes = document.querySelectorAll('.wheel-node');
   const centerHub = document.getElementById('wheel-center-hub');
 
   // Center Hub DOM Elements
@@ -378,38 +505,60 @@ document.addEventListener('DOMContentLoaded', () => {
   const hubContactWeb = document.getElementById('hub-contact-web');
   const hubWebText = document.getElementById('hub-web-text');
 
-  // Position nodes radially on the orbit ring (285px desktop radius)
+  // Position nodes radially on the orbit ring (perfectly aligned with SVG concentric tracks)
   function positionNodes() {
-    if (!wheelContainer || nodes.length === 0) return;
-    const total = nodes.length;
     const isMobile = window.innerWidth <= 768;
+    const currentNodes = isMobile 
+      ? document.querySelectorAll('.wheel-node')
+      : document.querySelectorAll('.wheel-node:not(.wheel-node-mobile-only)');
+    
+    if (!wheelContainer || currentNodes.length === 0) return;
+    const total = currentNodes.length;
     const containerW = wheelContainer.offsetWidth || (isMobile ? 350 : 760);
-    const radius = isMobile ? Math.round(containerW * 0.405) : 285;
+    // Exact mathematical alignment with SVG orbit rings (r=308 outer, r=262 inner, center = 285 in 760 viewBox)
+    const radius = Math.round(containerW * (285 / 760));
 
-    nodes.forEach((node, i) => {
+    currentNodes.forEach((node, i) => {
       const angle = ((i * (360 / total)) - 90) * (Math.PI / 180);
       const x = Math.round(radius * Math.cos(angle));
       const y = Math.round(radius * Math.sin(angle));
+      node.style.left = '50%';
+      node.style.top = '50%';
+      node.style.position = 'absolute';
       node.style.transform = `translate(${x}px, ${y}px)`;
     });
   }
 
   // Update Center Hub with smooth animation & multi-language support
   function updateShowcase(index) {
-    const data = servicesData[index];
+    const isMobile = window.innerWidth <= 768;
+    const sData = isMobile ? mobileServicesData : desktopServicesData;
+    const data = sData[index] || sData[0];
     if (!data) return;
 
-    const langData = (typeof translations !== 'undefined' && translations[currentLang] && translations[currentLang].servicesWheel)
-      ? translations[currentLang].servicesWheel[index]
-      : null;
+    let langData = null;
+    if (typeof translations !== 'undefined' && translations[currentLang]) {
+      if (isMobile && translations[currentLang].servicesWheelMobile) {
+        langData = translations[currentLang].servicesWheelMobile[index];
+      } else if (translations[currentLang].servicesWheel) {
+        langData = translations[currentLang].servicesWheel[index];
+      }
+    }
 
     const displayTitle = langData ? langData.title : data.title;
     const displaySub = langData ? langData.sub : data.sub;
 
-    // 1. Update Center Hub (Standalone large logo for index 0 / Radlight Central)
+    const hubInner = document.getElementById('hub-inner-core');
+    if (hubInner && isMobile) {
+      hubInner.classList.remove('animate-in');
+      void hubInner.offsetWidth;
+      hubInner.classList.add('animate-in');
+    }
+
+    // Update Center Hub
     const hubAvatar = document.getElementById('hub-avatar') || document.querySelector('.hub-avatar');
     const hubAvatarCircle = document.querySelector('.hub-avatar-circle');
-    const isStandalone = (index === 0) || (data.img && data.img.includes('radlight-r-symbol'));
+    const isStandalone = (index === 0);
 
     if (hubAvatar) {
       hubAvatar.classList.toggle('is-standalone-logo', isStandalone);
@@ -419,14 +568,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (hubAvatarImg) {
-      hubAvatarImg.src = data.img;
+      hubAvatarImg.src = isMobile 
+        ? (index === 0 ? 'images/na-strone-Radlight.pl-Logo-pomarancz-czarny.png' : data.img)
+        : (index === 0 ? 'images/radlight-r-symbol.png' : data.img);
       hubAvatarImg.alt = displayTitle;
-      const isLogo = data.img.includes('Logo') || data.img.includes('logo') || data.img.includes('512X512') || data.img.includes('LOGO') || isStandalone;
+      const isLogo = isStandalone || data.img.includes('Logo') || data.img.includes('logo') || data.img.includes('512X512') || data.img.includes('LOGO');
       if (hubAvatarCircle) {
         hubAvatarCircle.classList.toggle('logo-type', isLogo);
       }
     }
     if (hubTitle) hubTitle.textContent = displayTitle;
+    if (hubSub) hubSub.textContent = displaySub;
     
     const hubCtaLink = document.getElementById('hub-cta-link');
     const hubCtaText = document.getElementById('hub-cta-text');
@@ -434,6 +586,11 @@ document.addEventListener('DOMContentLoaded', () => {
       hubCtaLink.href = data.link;
       const ctaLabel = (typeof translations !== 'undefined' && translations[currentLang] && translations[currentLang].btnReadMoreHub) ? translations[currentLang].btnReadMoreHub : 'Czytaj dalej';
       if (hubCtaText) hubCtaText.textContent = ctaLabel;
+      if (isMobile && index === 0) {
+        hubCtaLink.style.display = 'none';
+      } else {
+        hubCtaLink.style.display = 'inline-flex';
+      }
     }
     if (hubPhoneBtn) {
       hubPhoneBtn.href = data.phone;
@@ -458,12 +615,21 @@ document.addEventListener('DOMContentLoaded', () => {
       hubWebText.textContent = (displaySub && displaySub.startsWith('www.')) ? displaySub : 'www.radlight.pl';
     }
 
-    // 2. Highlight Active Node & Update Tooltips in Current Language
-    nodes.forEach((n, idx) => {
+    // Highlight Active Node
+    const currentNodes = isMobile 
+      ? document.querySelectorAll('.wheel-node')
+      : document.querySelectorAll('.wheel-node:not(.wheel-node-mobile-only)');
+
+    currentNodes.forEach((n, idx) => {
       n.classList.toggle('active', idx === index);
-      const nodeLang = (typeof translations !== 'undefined' && translations[currentLang] && translations[currentLang].servicesWheel)
-        ? translations[currentLang].servicesWheel[idx]
-        : null;
+      let nodeLang = null;
+      if (typeof translations !== 'undefined' && translations[currentLang]) {
+        if (isMobile && translations[currentLang].servicesWheelMobile) {
+          nodeLang = translations[currentLang].servicesWheelMobile[idx];
+        } else if (translations[currentLang].servicesWheel) {
+          nodeLang = translations[currentLang].servicesWheel[idx];
+        }
+      }
       if (nodeLang) {
         if (nodeLang.tooltip) n.setAttribute('title', nodeLang.tooltip);
         if (nodeLang.title) n.setAttribute('aria-label', nodeLang.title);
@@ -472,31 +638,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function setActiveIndex(newIndex) {
-    const total = nodes.length;
+    const isMobile = window.innerWidth <= 768;
+    const total = isMobile ? 9 : 8;
     activeIndex = (newIndex + total) % total;
 
-    // Rotate Orbit
-    const rotationAngle = -activeIndex * (360 / total);
-    if (wheelOrbit) {
-      wheelOrbit.style.transform = `rotate(${rotationAngle}deg)`;
-    }
-
-    // Counter-rotate node contents so they stay perfectly upright
-    nodes.forEach((n) => {
-      const innerBox = n.querySelector('.node-icon-box');
-      if (innerBox) {
-        innerBox.style.setProperty('--counter-rotation', `${-rotationAngle}deg`);
+    if (!isMobile) {
+      // Desktop: rotate orbit & counter-rotate icons
+      const rotationAngle = -activeIndex * (360 / total);
+      if (wheelOrbit) {
+        wheelOrbit.style.transform = `rotate(${rotationAngle}deg)`;
       }
-    });
+
+      const currentNodes = document.querySelectorAll('.wheel-node:not(.wheel-node-mobile-only)');
+      currentNodes.forEach((n) => {
+        const innerBox = n.querySelector('.node-icon-box');
+        if (innerBox) {
+          innerBox.style.setProperty('--counter-rotation', `${-rotationAngle}deg`);
+        }
+      });
+    } else {
+      // Mobile: fixed orbit
+      if (wheelOrbit) {
+        wheelOrbit.style.transform = 'none';
+      }
+    }
 
     updateShowcase(activeIndex);
   }
 
   function startAutoRotate() {
     stopAutoRotate();
-    autoRotateTimer = setInterval(() => {
-      setActiveIndex(activeIndex + 1);
-    }, 6000);
+    if (window.innerWidth > 768) {
+      autoRotateTimer = setInterval(() => {
+        setActiveIndex(activeIndex + 1);
+      }, 6000);
+    }
   }
 
   function stopAutoRotate() {
@@ -507,14 +683,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Node Click Handlers
-  nodes.forEach((node, i) => {
+  nodes = document.querySelectorAll('.wheel-node');
+  nodes.forEach((node) => {
     node.addEventListener('click', (e) => {
       e.preventDefault();
       stopAutoRotate();
 
+      const i = parseInt(node.getAttribute('data-index'), 10);
+      const isMobile = window.innerWidth <= 768;
+
       if (activeIndex === i) {
-        // Second click on active node -> go to subpage or scroll to card
-        const data = servicesData[i];
+        // Click on already active node -> navigate to subpage or scroll to target
+        const data = isMobile ? mobileServicesData[i] : desktopServicesData[i];
         if (data && data.link) {
           if (data.link.startsWith('#')) {
             scrollToTargetCard(data.link);
@@ -526,22 +706,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } else {
         setActiveIndex(i);
-        startAutoRotate();
+        if (!isMobile) startAutoRotate();
       }
     });
   });
 
-  // Center Hub Click Handler
+  // Center Hub Click Handler (navigates to service subpage on mobile & desktop)
   if (centerHub) {
     centerHub.addEventListener('click', (e) => {
-      // If clicking any link or button (phone, email mailto, web link or CTA button), allow default browser action
-      if (e.target.closest('a, button, .hub-action-btn, #hub-contact-email, #hub-phone-btn, #hub-mail-btn, #hub-cta-link, #hub-contact-web')) {
+      // If clicking phone or email direct action buttons, allow normal action
+      if (e.target.closest('.hub-action-btn, #hub-phone-btn, #hub-mail-btn, #hub-contact-email')) {
         stopAutoRotate();
         return;
       }
       e.preventDefault();
       stopAutoRotate();
-      const data = servicesData[activeIndex];
+
+      const isMobile = window.innerWidth <= 768;
+      const data = isMobile ? mobileServicesData[activeIndex] : desktopServicesData[activeIndex];
       if (data && data.link) {
         if (data.link.startsWith('#')) {
           scrollToTargetCard(data.link);
