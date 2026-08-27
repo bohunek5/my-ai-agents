@@ -4,12 +4,20 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import { DayPicker, DateRange } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import { format, differenceInDays } from "date-fns";
+import { format, startOfToday } from "date-fns";
 import { pl as localePl, enGB as localeEn, de as localeDe } from "date-fns/locale";
-import { Ship, Calendar, Plus, Minus, CreditCard, CheckCircle2, Lock, AlertCircle, X, ArrowLeft } from "lucide-react";
+import { Ship, Calendar, Plus, Minus, CreditCard, Lock, AlertCircle, X, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import SubpageHero from "@/components/SubpageHero";
+import {
+  DEFAULT_PRICES,
+  availabilityMatchers,
+  boatPriceForRange,
+  rentalDays,
+  type AvailabilityRange,
+  type SeasonalPrice,
+} from "@/lib/booking";
 
 export default function ReservationPage() {
   const { t, language } = useLanguage();
@@ -19,6 +27,9 @@ export default function ReservationPage() {
   const [supPrice, setSupPrice] = useState(50);
   const [bikePrice, setBikePrice] = useState(50);
   const [ebikePrice, setEbikePrice] = useState(150);
+  const [seasonalPrices, setSeasonalPrices] = useState<SeasonalPrice[]>([]);
+  const [reservedRanges, setReservedRanges] = useState<AvailabilityRange[]>([]);
+  const [configError, setConfigError] = useState("");
 
   // States
   const [supCount, setSupCount] = useState(0);
@@ -27,40 +38,50 @@ export default function ReservationPage() {
   const [range, setRange] = useState<DateRange | undefined>();
   const [showPayment, setShowPayment] = useState(false);
   const [isPaying, setIsPaying] = useState(false);
-  const [paySuccess, setPaySuccess] = useState(false);
+  const [paymentError, setPaymentError] = useState("");
 
   // Form states
   const [cardName, setCardName] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
-  const [cardExpiry, setCardExpiry] = useState("");
-  const [cardCvc, setCardCvc] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
 
-  // Load prices from LocalStorage
+  // Load shared prices and availability from the server.
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedBoat = localStorage.getItem("price_boat");
-      const savedSup = localStorage.getItem("price_sup");
-      const savedBike = localStorage.getItem("price_bike");
-      const savedEbike = localStorage.getItem("price_ebike");
-      if (savedBoat) setBoatPrice(Number(savedBoat));
-      if (savedSup) setSupPrice(Number(savedSup));
-      if (savedBike) setBikePrice(Number(savedBike));
-      if (savedEbike) setEbikePrice(Number(savedEbike));
-    }
+    let cancelled = false;
+    fetch("/payments/availability.php", { cache: "no-store" })
+      .then(async (response) => {
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw new Error(result.message || "Nie udało się pobrać kalendarza.");
+        return result;
+      })
+      .then((result) => {
+        if (cancelled) return;
+        const prices = result.prices || DEFAULT_PRICES;
+        setBoatPrice(Number(prices.boat ?? DEFAULT_PRICES.boat));
+        setSupPrice(Number(prices.sup ?? DEFAULT_PRICES.sup));
+        setBikePrice(Number(prices.bike ?? DEFAULT_PRICES.bike));
+        setEbikePrice(Number(prices.ebike ?? DEFAULT_PRICES.ebike));
+        setSeasonalPrices(Array.isArray(result.seasonal_prices) ? result.seasonal_prices : []);
+        setReservedRanges(Array.isArray(result.ranges) ? result.ranges : []);
+        setConfigError("");
+      })
+      .catch((error) => {
+        if (!cancelled) setConfigError(error instanceof Error ? error.message : "Nie udało się pobrać danych rezerwacji.");
+      });
+    return () => { cancelled = true; };
   }, []);
 
-  // Calculate rental duration in days
-  const days = range?.from && range?.to ? differenceInDays(range.to, range.from) + 1 : 0;
+  // The end date is the return date: 28-29 is one charter night.
+  const days = rentalDays(range);
 
   // Costs calculations
-  const totalBoat = boatPrice * days;
+  const totalBoat = boatPriceForRange(range, boatPrice, seasonalPrices);
   const totalSup = supPrice * supCount * days;
   const totalBikes = bikePrice * bikeCount * days;
   const totalEbikes = ebikePrice * ebikeCount * days;
   const total = totalBoat + totalSup + totalBikes + totalEbikes;
+  const minimumBoatPrice = Math.min(boatPrice, ...seasonalPrices.map((period) => period.price));
 
   // Date locale resolver
   const getLocale = () => {
@@ -74,62 +95,44 @@ export default function ReservationPage() {
       alert(t("Reservation", "selectDatesAlert"));
       return;
     }
+    setPaymentError("");
     setShowPayment(true);
   };
 
-  const handlePaySubmit = (e: React.FormEvent) => {
+  const handlePaySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!cardName || !cardNumber || !cardExpiry || !cardCvc || !clientEmail || !clientPhone) {
-      alert("Proszę wypełnić wszystkie dane, e-mail i telefon.");
+    if (!range?.from || !cardName || !clientEmail || !clientPhone || !acceptTerms) {
+      setPaymentError("Uzupełnij dane kontaktowe i zaakceptuj regulamin.");
       return;
     }
 
     setIsPaying(true);
-
-    setTimeout(() => {
+    setPaymentError("");
+    try {
+      const endDate = range.to ?? range.from;
+      const response = await fetch("/payments/start.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({
+          name: cardName,
+          email: clientEmail,
+          phone: clientPhone,
+          startDate: format(range.from, "dd.MM.yyyy"),
+          endDate: format(endDate, "dd.MM.yyyy"),
+          sup: supCount,
+          bike: bikeCount,
+          ebike: ebikeCount,
+          terms: acceptTerms,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.redirect_url) throw new Error(result.message || "Nie udało się uruchomić płatności.");
+      window.location.assign(result.redirect_url);
+    } catch (error) {
       setIsPaying(false);
-      setPaySuccess(true);
-      
-      // Save reservation to local storage for Admin Panel
-      if (typeof window !== "undefined") {
-        const existingBookingsStr = localStorage.getItem("mazury_bookings");
-        const existingBookings = existingBookingsStr ? JSON.parse(existingBookingsStr) : [];
-        
-        const bookingDatesStr = range?.from && range?.to 
-          ? `${format(range.from, "dd.MM.yyyy")} - ${format(range.to, "dd.MM.yyyy")}`
-          : "";
-
-        const addonsList = [];
-        if (supCount > 0) addonsList.push(`SUP x ${supCount}`);
-        if (bikeCount > 0) addonsList.push(`Rower tradycyjny x ${bikeCount}`);
-        if (ebikeCount > 0) addonsList.push(`Rower elektryczny x ${ebikeCount}`);
-
-        const newBooking = {
-          id: `MA-${Math.floor(10000 + Math.random() * 90000)}`,
-          dates: bookingDatesStr,
-          days: days,
-          addons: addonsList.join(", ") || "Brak",
-          total: total,
-          status: "Paid",
-          clientName: cardName,
-          clientEmail: clientEmail,
-          clientPhone: clientPhone,
-          created_at: new Date().toISOString()
-        };
-
-        localStorage.setItem("mazury_bookings", JSON.stringify([newBooking, ...existingBookings]));
-      }
-
-      setTimeout(() => {
-        setShowPayment(false);
-        setPaySuccess(false);
-        setRange(undefined);
-        setSupCount(0);
-        setBikeCount(0);
-        setEbikeCount(0);
-      }, 3000);
-
-    }, 2000);
+      setPaymentError(error instanceof Error ? error.message : "Nie udało się połączyć z Przelewy24.");
+    }
   };
 
   return (
@@ -182,7 +185,7 @@ export default function ReservationPage() {
                     <p className="text-xs text-gray-300">Luksusowy jacht motorowy • Bez patentu</p>
                   </div>
                   <div className="text-right">
-                    <span className="text-xl font-black text-blue-400">{boatPrice} {t("Reservation", "pricePerDay")}</span>
+                    <span className="text-xl font-black text-blue-400">od {minimumBoatPrice} {t("Reservation", "pricePerDay")}</span>
                   </div>
                 </div>
               </div>
@@ -299,6 +302,12 @@ export default function ReservationPage() {
                 <span>{t("Reservation", "step3Title")}</span>
               </h2>
 
+              {configError && (
+                <div className="mb-5 p-4 rounded-xl border border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-200 text-sm flex items-center gap-2">
+                  <AlertCircle size={18} className="shrink-0" /> {configError}
+                </div>
+              )}
+
               <div className="flex flex-col items-center overflow-x-auto pb-4 w-full">
                 <div className="min-w-max flex flex-col items-center">
                   <DayPicker
@@ -307,9 +316,10 @@ export default function ReservationPage() {
                     onSelect={setRange}
                     locale={getLocale()}
                     min={1}
+                    excludeDisabled
                     disabled={[
-                      { before: new Date(2026, 8, 7) }, // Zablokowane do 6 września włącznie
-                      { after: new Date(2026, 9, 31) }  // Zablokowane od 1 listopada
+                      { before: startOfToday() },
+                      ...availabilityMatchers(reservedRanges),
                     ]}
                     className="mx-auto border border-gray-150 dark:border-gray-700 p-2 sm:p-4 rounded-2xl dark:bg-gray-900 bg-white"
                   />
@@ -356,7 +366,7 @@ export default function ReservationPage() {
                 <div className="flex justify-between">
                   <span className="font-semibold">{t("Reservation", "endDate")}:</span>
                   <span className="font-bold text-gray-900 dark:text-white">
-                    {range?.to ? format(range.to, "dd.MM.yyyy") : "-"}
+                    {range?.to ? format(range.to, "dd.MM.yyyy") : range?.from ? format(range.from, "dd.MM.yyyy") : "-"}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -429,7 +439,7 @@ export default function ReservationPage() {
 
       </div>
 
-      {/* STRIPE / PRZELEWY24 MOCK GATEWAY MODAL */}
+      {/* Secure Przelewy24 hand-off */}
       {showPayment && (
         <div 
           className="fixed inset-0 z-[250] bg-black/40 backdrop-blur-md flex items-center justify-center p-3 sm:p-4"
@@ -448,169 +458,73 @@ export default function ReservationPage() {
               <X size={18} />
             </button>
 
-            {paySuccess ? (
-              <div className="text-center py-8 space-y-4 flex flex-col items-center">
-                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 dark:bg-emerald-950/30 dark:text-emerald-400 rounded-full flex items-center justify-center">
-                  <CheckCircle2 size={36} />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                  {t("Reservation", "paySuccess")}
-                </h3>
-                <p className="text-xs text-gray-400">
-                  Potwierdzenie wysłano na e-mail. Przekierowywanie...
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-xl font-black text-gray-900 dark:text-white">Bezpieczna płatność Przelewy24</h3>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  Po zapisaniu danych przejdziesz na stronę Przelewy24, gdzie wybierzesz BLIK, szybki przelew lub kartę.
                 </p>
               </div>
-            ) : (
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-black text-gray-900 dark:text-white">
-                    {t("Reservation", "paymentTitle")}
-                  </h3>
-                  <p className="text-xs text-gray-400 mt-1">
-                    {t("Reservation", "paymentSim")}
-                  </p>
-                </div>
 
-                <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-2xl flex justify-between items-center text-sm font-semibold border border-gray-100 dark:border-gray-800">
-                  <span className="text-gray-500">Kwota do zapłaty:</span>
-                  <span className="text-lg font-black text-blue-600 dark:text-blue-400">{total} PLN</span>
-                </div>
-                <form onSubmit={handlePaySubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1" htmlFor="card-name">
-                      {t("Reservation", "cardHolder")}
-                    </label>
-                    <input 
-                      type="text" 
-                      id="card-name"
-                      required
-                      value={cardName}
-                      onChange={(e) => setCardName(e.target.value)}
-                      placeholder="Jan Kowalski"
-                      className="w-full p-4 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 dark:border-gray-800 dark:focus:border-blue-500 dark:bg-gray-950 text-sm font-semibold transition-all outline-none"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1" htmlFor="client-email">
-                        E-mail
-                      </label>
-                      <input 
-                        type="email" 
-                        id="client-email"
-                        required
-                        value={clientEmail}
-                        onChange={(e) => setClientEmail(e.target.value)}
-                        placeholder="jan@example.com"
-                        className="w-full p-4 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 dark:border-gray-800 dark:focus:border-blue-500 dark:bg-gray-950 text-sm font-semibold transition-all outline-none"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1" htmlFor="client-phone">
-                        Telefon
-                      </label>
-                      <input 
-                        type="tel" 
-                        id="client-phone"
-                        required
-                        value={clientPhone}
-                        onChange={(e) => setClientPhone(e.target.value)}
-                        placeholder="+48 123 456 789"
-                        className="w-full p-4 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 dark:border-gray-800 dark:focus:border-blue-500 dark:bg-gray-950 text-sm font-semibold transition-all outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1" htmlFor="card-number">
-                      {t("Reservation", "cardNumber")}
-                    </label>
-                    <div className="relative">
-                      <input 
-                        type="text" 
-                        id="card-number"
-                        required
-                        value={cardNumber}
-                        onChange={(e) => setCardNumber(e.target.value.replace(/\s?/g, '').replace(/(\d{4})/g, '$1 ').trim())}
-                        placeholder="0000 0000 0000 0000"
-                        maxLength={19}
-                        className="w-full p-4 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 dark:border-gray-800 dark:focus:border-blue-500 dark:bg-gray-950 text-sm font-semibold transition-all outline-none pl-12"
-                      />
-                      <CreditCard className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1" htmlFor="card-expiry">
-                        Ważność (MM/RR)
-                      </label>
-                      <input 
-                        type="text" 
-                        id="card-expiry"
-                        required
-                        value={cardExpiry}
-                        onChange={(e) => setCardExpiry(e.target.value)}
-                        placeholder="MM/YY"
-                        maxLength={5}
-                        className="w-full p-4 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 dark:border-gray-800 dark:focus:border-blue-500 dark:bg-gray-950 text-sm font-semibold transition-all outline-none text-center"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1" htmlFor="card-cvc">
-                        CVC
-                      </label>
-                      <input 
-                        type="password" 
-                        id="card-cvc"
-                        required
-                        value={cardCvc}
-                        onChange={(e) => setCardCvc(e.target.value)}
-                        placeholder="123"
-                        maxLength={3}
-                        className="w-full p-4 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 dark:border-gray-800 dark:focus:border-blue-500 dark:bg-gray-950 text-sm font-semibold transition-all outline-none text-center"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Mandatory Terms Agreement Checkbox for Przelewy24 / RODO Compliance */}
-                  <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/60 rounded-2xl border border-gray-150 dark:border-gray-800">
-                    <input 
-                      type="checkbox" 
-                      id="accept-terms"
-                      required
-                      checked={acceptTerms}
-                      onChange={(e) => setAcceptTerms(e.target.checked)}
-                      className="mt-0.5 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer shrink-0"
-                    />
-                    <label htmlFor="accept-terms" className="text-xs text-gray-600 dark:text-gray-300 leading-snug cursor-pointer select-none">
-                      Oświadczam, że zapoznałem się i akceptuję <Link href="/polityka-prywatnosci" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Regulamin i Politykę Prywatności</Link> oraz <Link href="/rodo" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Klauzulę RODO</Link>.
-                    </label>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isPaying || !acceptTerms}
-                    className="w-full py-4 mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-95"
-                  >
-                    {isPaying ? (
-                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    ) : (
-                      <>
-                        <ShieldCheck size={18} />
-                        <span className="text-lg">Zapłać przez Przelewy24 / Kartę</span>
-                      </>
-                    )}
-                  </button>
-                </form>
-
-                  <div className="flex justify-center items-center gap-1.5 text-[10px] text-gray-400 mt-4">
-                    <ShieldCheck size={12} />
-                    <span>Zgodne z certyfikacją PCI-DSS</span>
-                  </div>
+              <div className="bg-gray-50 dark:bg-gray-900 p-4 rounded-2xl flex justify-between items-center text-sm font-semibold border border-gray-100 dark:border-gray-800">
+                <span className="text-gray-500">Kwota do zapłaty:</span>
+                <span className="text-lg font-black text-blue-600 dark:text-blue-400">{total} PLN</span>
               </div>
-            )}
+
+              <div className="p-4 rounded-2xl bg-emerald-50 text-emerald-800 dark:bg-emerald-500/10 dark:text-emerald-200 text-xs leading-relaxed border border-emerald-200 dark:border-emerald-500/20">
+                Nie wpisujesz danych karty na tej stronie. Formularz zapisuje rezerwację na serwerze, a płatność odbywa się bezpośrednio u operatora Przelewy24.
+              </div>
+
+              <form onSubmit={handlePaySubmit} className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1" htmlFor="client-name">Imię i nazwisko</label>
+                  <input 
+                    type="text" 
+                    id="client-name"
+                    required
+                    maxLength={40}
+                    autoComplete="name"
+                    value={cardName}
+                    onChange={(e) => setCardName(e.target.value)}
+                    placeholder="Jan Kowalski"
+                    className="w-full p-4 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 dark:border-gray-800 dark:focus:border-blue-500 dark:bg-gray-950 text-sm font-semibold transition-all outline-none"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1" htmlFor="client-email">E-mail</label>
+                    <input type="email" id="client-email" required maxLength={50} autoComplete="email" value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} placeholder="jan@example.com" className="w-full p-4 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 dark:border-gray-800 dark:focus:border-blue-500 dark:bg-gray-950 text-sm font-semibold transition-all outline-none" />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 pl-1" htmlFor="client-phone">Telefon</label>
+                    <input type="tel" id="client-phone" required maxLength={20} autoComplete="tel" value={clientPhone} onChange={(e) => setClientPhone(e.target.value)} placeholder="+48 123 456 789" className="w-full p-4 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 dark:border-gray-800 dark:focus:border-blue-500 dark:bg-gray-950 text-sm font-semibold transition-all outline-none" />
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-900/60 rounded-2xl border border-gray-150 dark:border-gray-800">
+                  <input type="checkbox" id="accept-terms" required checked={acceptTerms} onChange={(e) => setAcceptTerms(e.target.checked)} className="mt-0.5 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer shrink-0" />
+                  <label htmlFor="accept-terms" className="text-xs text-gray-600 dark:text-gray-300 leading-snug cursor-pointer select-none">
+                    Oświadczam, że zapoznałem się i akceptuję <Link href="/polityka-prywatnosci" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Regulamin i Politykę Prywatności</Link> oraz <Link href="/rodo" target="_blank" className="text-blue-600 dark:text-blue-400 font-bold underline hover:text-blue-700">Klauzulę RODO</Link>.
+                  </label>
+                </div>
+
+                {paymentError && (
+                  <div className="p-3 rounded-xl bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-200 text-xs flex gap-2" role="alert">
+                    <AlertCircle size={16} className="shrink-0" /> {paymentError}
+                  </div>
+                )}
+
+                <button type="submit" disabled={isPaying || !acceptTerms} className="w-full py-4 mt-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-95">
+                  {isPaying ? <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <><ShieldCheck size={18} /><span className="text-lg">Przejdź do Przelewy24</span></>}
+                </button>
+              </form>
+
+              <div className="flex justify-center items-center gap-1.5 text-[10px] text-gray-400 mt-4">
+                    <ShieldCheck size={12} />
+                <span>Płatność obsługuje PayPro S.A. (Przelewy24)</span>
+              </div>
+            </div>
 
           </div>
         </div>

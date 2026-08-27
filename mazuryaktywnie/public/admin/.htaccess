@@ -1,0 +1,7 @@
+DirectoryIndex index.php
+
+<Files "index.html">
+    Require all denied
+    Deny from all
+</Files>
+

@@ -1,0 +1,40 @@
+.p24-safe-note {
+  border: 1px solid rgba(16, 116, 174, .18);
+  background: rgba(232, 247, 255, .75);
+  color: #24516b;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.dark .p24-safe-note { background: rgba(14, 74, 112, .24); color: #b9e6ff; border-color: rgba(125, 211, 252, .18); }
+.p24-error { display: none; padding: 11px 13px; border-radius: 14px; background: #fff0f0; color: #b42318; font-size: 13px; line-height: 1.45; }
+.p24-error[data-visible="true"] { display: block; }
+.p24-field label { display: block; margin: 0 0 8px 4px; color: #8a93a4; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.p24-field input { width: 100%; padding: 15px 16px; border: 2px solid #edf0f4; border-radius: 16px; outline: none; background: #fff; color: #172033; font-size: 14px; font-weight: 650; transition: border-color .15s, box-shadow .15s; }
+.p24-field input:focus { border-color: #2581d9; box-shadow: 0 0 0 4px rgba(37,129,217,.14); }
+.dark .p24-field input { background: #080b10; border-color: #252a34; color: #fff; }
+.p24-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.p24-terms { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border-radius: 16px; background: #f6f8fa; color: #5c6472; font-size: 12px; line-height: 1.45; }
+.dark .p24-terms { background: rgba(18,22,30,.75); color: #c5cbd5; }
+.p24-terms input { margin-top: 2px; }
+.p24-terms a { color: #1266c4; font-weight: 750; text-decoration: underline; }
+.p24-submit { width: 100%; padding: 15px 18px; border: 0; border-radius: 16px; background: linear-gradient(90deg,#1268c9,#3746c9); color: #fff; font-size: 17px; font-weight: 800; cursor: pointer; box-shadow: 0 10px 22px rgba(31,94,190,.24); }
+.p24-submit:disabled { opacity: .58; cursor: wait; }
+@media (max-width: 480px) { .p24-grid { grid-template-columns: 1fr; } }
+
+[role="grid"] button.p24-reserved-day,
+[role="grid"] button.p24-reserved-day:disabled {
+  background: #fee2e2 !important;
+  color: #b91c1c !important;
+  border: 1px solid #ef4444 !important;
+  opacity: .78 !important;
+  text-decoration: line-through;
+  cursor: not-allowed !important;
+}
+.dark [role="grid"] button.p24-reserved-day,
+.dark [role="grid"] button.p24-reserved-day:disabled {
+  background: rgba(127, 29, 29, .42) !important;
+  color: #fca5a5 !important;
+  border-color: #ef4444 !important;
+}

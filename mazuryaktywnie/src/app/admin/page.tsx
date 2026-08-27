@@ -1,6 +1,5 @@
 "use client";
 
-import { useLanguage } from "@/contexts/LanguageContext";
 import { useState, useEffect } from "react";
 import { 
   LayoutDashboard, 
@@ -27,10 +26,16 @@ import {
   Ban, 
   AlertCircle, 
   User, 
-  Phone,
   Calendar as CalendarIcon
 } from "lucide-react";
 import Image from "next/image";
+import {
+  DEFAULT_PRICES,
+  normalizeLegacyDate,
+  type AvailabilityRange,
+  type PriceConfig,
+  type SeasonalPrice,
+} from "@/lib/booking";
 
 type Booking = {
   id: string;
@@ -44,16 +49,49 @@ type Booking = {
   clientPhone?: string;
   clientName?: string;
   notes?: string;
+  startDate?: string;
+  endDate?: string;
 };
 
-export default function AdminPage() {
-  const { t } = useLanguage();
+type AdminData = {
+  ok: boolean;
+  prices: PriceConfig;
+  seasonal_prices: SeasonalPrice[];
+  orders: Booking[];
+  blocked_ranges: AvailabilityRange[];
+  manual_blocked_ranges: AvailabilityRange[];
+  gateway: { name: string; enabled: boolean; merchant_id: number };
+  message?: string;
+};
 
+async function adminRequest<T extends Record<string, unknown> = AdminData>(body?: Record<string, unknown>): Promise<T> {
+  const csrf = document.querySelector<HTMLMetaElement>('meta[name="p24-admin-csrf"]')?.content ?? "";
+  const response = await fetch("/payments/admin-api.php", body ? {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "X-CSRF-Token": csrf,
+    },
+    credentials: "same-origin",
+    body: JSON.stringify(body),
+  } : {
+    credentials: "same-origin",
+    cache: "no-store",
+  });
+  const result = await response.json();
+  if (!response.ok || !result.ok) {
+    if (response.status === 401) window.location.assign("/admin/");
+    throw new Error(result.message || "Operacja nie powiodła się.");
+  }
+  return result as T;
+}
+
+export default function AdminPage() {
   // Authentication states
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [loginError, setLoginError] = useState(false);
 
   // Active Tab
   const [activeTab, setActiveTab] = useState<"dashboard" | "bookings" | "payments" | "settings" | "cms" | "gallery">("dashboard");
@@ -95,6 +133,11 @@ export default function AdminPage() {
   const [ebikePrice, setEbikePrice] = useState(150);
   const [depositAmount, setDepositAmount] = useState(2000);
   const [settingsSaved, setSettingsSaved] = useState(false);
+  const [seasonalPrices, setSeasonalPrices] = useState<SeasonalPrice[]>([]);
+  const [manualBlockedRanges, setManualBlockedRanges] = useState<AvailabilityRange[]>([]);
+  const [adminDataError, setAdminDataError] = useState("");
+  const [isSavingSettings, setIsSavingSettings] = useState(false);
+  const [isSavingBlock, setIsSavingBlock] = useState(false);
 
   // Payment Gateways settings
   const [p24Enabled, setP24Enabled] = useState(true);
@@ -150,84 +193,57 @@ const ALL_FULL_GALLERY_IMAGES = [
     if (typeof window !== "undefined") {
       const authSession = sessionStorage.getItem("admin_auth_token");
       if (authSession === "true") {
-        setIsAuthenticated(true);
+        queueMicrotask(() => setIsAuthenticated(true));
       }
     }
   }, []);
 
-  // Initialize and load data from local storage
+  // Load the shared server state after the PHP login gate has authenticated the user.
   useEffect(() => {
-    if (typeof window !== "undefined" && isAuthenticated) {
-      // 1. Load Prices
-      const savedBoat = localStorage.getItem("price_boat");
-      const savedSup = localStorage.getItem("price_sup");
-      const savedBike = localStorage.getItem("price_bike");
-      const savedEbike = localStorage.getItem("price_ebike");
-      const savedDeposit = localStorage.getItem("price_deposit");
-      
-      if (savedBoat) setBoatPrice(Number(savedBoat));
-      if (savedSup) setSupPrice(Number(savedSup));
-      if (savedBike) setBikePrice(Number(savedBike));
-      if (savedEbike) setEbikePrice(Number(savedEbike));
-      if (savedDeposit) setDepositAmount(Number(savedDeposit));
+    if (typeof window === "undefined" || !isAuthenticated) return;
+    let cancelled = false;
 
-      // 2. Load Bookings (or seed initial mock data)
-      const savedBookingsStr = localStorage.getItem("mazury_bookings");
-      if (savedBookingsStr) {
-        setBookings(JSON.parse(savedBookingsStr));
-      } else {
-        const seedBookings: Booking[] = [
-          {
-            id: "MA-74921",
-            dates: "14.07.2026 - 21.07.2026",
-            days: 8,
-            addons: "SUP x 2, Rower tradycyjny x 2",
-            total: 10400,
-            status: "Confirmed",
-            created_at: new Date(Date.now() - 86400000 * 2).toISOString(),
-            clientName: "Jan Kowalski",
-            clientEmail: "jan.kowalski@example.com",
-            clientPhone: "601 234 567",
-            notes: "Zaliczka wpłacona, odbiór w Sztynort o 15:00"
-          },
-          {
-            id: "MA-18503",
-            dates: "25.07.2026 - 28.07.2026",
-            days: 4,
-            addons: "Rower elektryczny x 2",
-            total: 6000,
-            status: "Paid",
-            created_at: new Date(Date.now() - 86400000 * 4).toISOString(),
-            clientName: "Anna Nowak",
-            clientEmail: "anna.nowak@example.com",
-            clientPhone: "502 987 654",
-            notes: "Płatność kartą Stripe online"
-          },
-          {
-            id: "MA-30219",
-            dates: "01.08.2026 - 07.08.2026",
-            days: 7,
-            addons: "Deska SUP x 1",
-            total: 8750,
-            status: "Pending",
-            created_at: new Date(Date.now() - 86400000 * 1).toISOString(),
-            clientName: "Marek Wiśniewski",
-            clientEmail: "m.wisniewski@example.com",
-            clientPhone: "790 112 233",
-            notes: "Oczekuje na potwierdzenie przelewu tradycyjnego"
+    const loadAdminData = async () => {
+      try {
+        const result = await adminRequest<AdminData>();
+        if (cancelled) return;
+        setBoatPrice(result.prices.boat ?? DEFAULT_PRICES.boat);
+        setSupPrice(result.prices.sup ?? DEFAULT_PRICES.sup);
+        setBikePrice(result.prices.bike ?? DEFAULT_PRICES.bike);
+        setEbikePrice(result.prices.ebike ?? DEFAULT_PRICES.ebike);
+        setDepositAmount(result.prices.deposit ?? DEFAULT_PRICES.deposit);
+        setSeasonalPrices(Array.isArray(result.seasonal_prices) ? result.seasonal_prices : []);
+        setBookings(Array.isArray(result.orders) ? result.orders : []);
+        setManualBlockedRanges(Array.isArray(result.manual_blocked_ranges) ? result.manual_blocked_ranges : []);
+        setP24Enabled(Boolean(result.gateway?.enabled));
+        setP24MerchantId(String(result.gateway?.merchant_id || ""));
+        setStripeEnabled(false);
+
+        // One-time migration of blocks created by the old browser-only panel.
+        if (!localStorage.getItem("server_blocks_migrated_v2")) {
+          const legacy = JSON.parse(localStorage.getItem("blocked_dates") || "[]") as Array<Record<string, unknown>>;
+          const migrated = legacy.flatMap((item) => {
+            if (item.status && item.status !== "blocked") return [];
+            const from = normalizeLegacyDate(String(item.from || ""));
+            const to = normalizeLegacyDate(String(item.to || ""));
+            if (!from || !to) return [];
+            return [{ from, to, status: "blocked" as const, reason: String(item.reason || "Blokada administratora") }];
+          });
+          if (migrated.length > 0 && result.manual_blocked_ranges.length === 0) {
+            const saved = await adminRequest<{ ok: boolean; manual_blocked_ranges: AvailabilityRange[] }>({
+              action: "save_blocked_ranges",
+              blocked_ranges: migrated,
+            });
+            if (!cancelled) setManualBlockedRanges(saved.manual_blocked_ranges);
           }
-        ];
-        localStorage.setItem("mazury_bookings", JSON.stringify(seedBookings));
-        setBookings(seedBookings);
+          localStorage.setItem("server_blocks_migrated_v2", "true");
+        }
+        setAdminDataError("");
+      } catch (error) {
+        if (!cancelled) setAdminDataError(error instanceof Error ? error.message : "Nie udało się wczytać danych z serwera.");
       }
 
-      // 3. Load Payment Gateway configs
-      const savedP24 = localStorage.getItem("payment_p24");
-      if (savedP24) setP24Enabled(savedP24 === "true");
-      const savedStripe = localStorage.getItem("payment_stripe");
-      if (savedStripe) setStripeEnabled(savedStripe === "true");
-
-      // 4. Load Gallery & Virtual Tour
+      // Gallery/CMS remain separate from the booking system for now.
       const savedGallery = localStorage.getItem("cms_gallery");
       if (savedGallery) {
         try {
@@ -241,7 +257,7 @@ const ALL_FULL_GALLERY_IMAGES = [
           } else {
             setGalleryImages(ALL_FULL_GALLERY_IMAGES);
           }
-        } catch(e) {
+        } catch {
           setGalleryImages(ALL_FULL_GALLERY_IMAGES);
         }
       } else {
@@ -249,48 +265,57 @@ const ALL_FULL_GALLERY_IMAGES = [
       }
       const savedTour = localStorage.getItem("virtual_tour_url");
       if (savedTour) setVirtualTourUrl(savedTour);
-    }
-  }, [isAuthenticated]);
+    };
 
-  // Handle Login submission
-  const handleLoginSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (loginUsername === "admin" && loginPassword === "!2026!") {
-      setIsAuthenticated(true);
-      setLoginError(false);
-      sessionStorage.setItem("admin_auth_token", "true");
-    } else {
-      setLoginError(true);
-    }
-  };
+    loadAdminData();
+    return () => { cancelled = true; };
+  }, [isAuthenticated]);
 
   // Handle Logout
   const handleLogout = () => {
-    setIsAuthenticated(false);
     sessionStorage.removeItem("admin_auth_token");
-    setLoginUsername("");
-    setLoginPassword("");
+    window.location.assign("/admin/?logout=1");
   };
 
   // Save Settings (Pricing)
-  const handleSaveSettings = (e: React.FormEvent) => {
+  const handleSaveSettings = async (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem("price_boat", String(boatPrice));
-    localStorage.setItem("price_sup", String(supPrice));
-    localStorage.setItem("price_bike", String(bikePrice));
-    localStorage.setItem("price_ebike", String(ebikePrice));
-    localStorage.setItem("price_deposit", String(depositAmount));
-    setSettingsSaved(true);
-    setTimeout(() => setSettingsSaved(false), 3000);
+    setIsSavingSettings(true);
+    setAdminDataError("");
+    try {
+      const pricesResult = await adminRequest<{ ok: boolean; prices: PriceConfig }>({
+        action: "save_prices",
+        prices: { boat: boatPrice, sup: supPrice, bike: bikePrice, ebike: ebikePrice, deposit: depositAmount },
+      });
+      const seasonalResult = await adminRequest<{ ok: boolean; seasonal_prices: SeasonalPrice[] }>({
+        action: "save_seasonal_prices",
+        seasonal_prices: seasonalPrices,
+      });
+      setBoatPrice(pricesResult.prices.boat);
+      setSupPrice(pricesResult.prices.sup);
+      setBikePrice(pricesResult.prices.bike);
+      setEbikePrice(pricesResult.prices.ebike);
+      setDepositAmount(pricesResult.prices.deposit);
+      setSeasonalPrices(seasonalResult.seasonal_prices);
+      setSettingsSaved(true);
+      setTimeout(() => setSettingsSaved(false), 3000);
+    } catch (error) {
+      setAdminDataError(error instanceof Error ? error.message : "Nie udało się zapisać cennika.");
+    } finally {
+      setIsSavingSettings(false);
+    }
   };
 
   // Save Payment Settings
-  const handleSavePayments = (e: React.FormEvent) => {
+  const handleSavePayments = async (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem("payment_p24", String(p24Enabled));
-    localStorage.setItem("payment_stripe", String(stripeEnabled));
-    setPaymentsSaved(true);
-    setTimeout(() => setPaymentsSaved(false), 3000);
+    try {
+      await adminRequest({ action: "test_p24" });
+      setPaymentsSaved(true);
+      setTimeout(() => setPaymentsSaved(false), 3000);
+    } catch (error) {
+      setAdminDataError(error instanceof Error ? error.message : "Nie udało się połączyć z Przelewy24.");
+    }
   };
 
   // CMS handling
@@ -311,18 +336,24 @@ const ALL_FULL_GALLERY_IMAGES = [
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          setCmsHeroText(parsed.subtitle || def.subtitle);
-          setCmsHeroTitle(parsed.title || def.title);
-          setCmsHeroImage(parsed.image || def.image);
-        } catch (e) {
-          setCmsHeroText(saved);
-          setCmsHeroTitle(def.title);
-          setCmsHeroImage(def.image);
+          queueMicrotask(() => {
+            setCmsHeroText(parsed.subtitle || def.subtitle);
+            setCmsHeroTitle(parsed.title || def.title);
+            setCmsHeroImage(parsed.image || def.image);
+          });
+        } catch {
+          queueMicrotask(() => {
+            setCmsHeroText(saved);
+            setCmsHeroTitle(def.title);
+            setCmsHeroImage(def.image);
+          });
         }
       } else {
-        setCmsHeroText(def.subtitle);
-        setCmsHeroTitle(def.title);
-        setCmsHeroImage(def.image);
+        queueMicrotask(() => {
+          setCmsHeroText(def.subtitle);
+          setCmsHeroTitle(def.title);
+          setCmsHeroImage(def.image);
+        });
       }
     }
   }, [selectedPage, isAuthenticated]);
@@ -354,34 +385,61 @@ const ALL_FULL_GALLERY_IMAGES = [
     localStorage.setItem("cms_gallery", JSON.stringify(updated));
   };
 
+  const addSeasonalPrice = () => {
+    const year = new Date().getFullYear();
+    setSeasonalPrices((current) => [
+      ...current,
+      {
+        id: `period-${Date.now()}`,
+        name: "Nowy okres",
+        from: `${year}-05-01`,
+        to: `${year}-05-31`,
+        price: boatPrice,
+      },
+    ]);
+  };
+
+  const updateSeasonalPrice = (id: string, patch: Partial<SeasonalPrice>) => {
+    setSeasonalPrices((current) => current.map((period) => period.id === id ? { ...period, ...patch } : period));
+  };
+
+  const removeSeasonalPrice = (id: string) => {
+    setSeasonalPrices((current) => current.filter((period) => period.id !== id));
+  };
+
   // Booking Actions
-  const handleUpdateStatus = (id: string, nextStatus: Booking["status"]) => {
-    const updated = bookings.map((b) => {
-      if (b.id === id) return { ...b, status: nextStatus };
-      return b;
-    });
-    setBookings(updated);
-    localStorage.setItem("mazury_bookings", JSON.stringify(updated));
-    if (selectedBooking && selectedBooking.id === id) {
-      setSelectedBooking({ ...selectedBooking, status: nextStatus });
+  const handleUpdateStatus = async (id: string, nextStatus: Booking["status"]) => {
+    const booking = bookings.find((item) => item.id === id);
+    if (!booking || nextStatus === "Blocked") return;
+    try {
+      const result = await adminRequest<{ ok: boolean; orders: Booking[] }>({
+        action: "save_booking",
+        booking: { ...booking, status: nextStatus },
+      });
+      setBookings(result.orders);
+      if (selectedBooking?.id === id) setSelectedBooking({ ...selectedBooking, status: nextStatus });
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Nie udało się zmienić statusu.");
     }
   };
   
-  const handleDeleteBooking = (id: string) => {
+  const handleDeleteBooking = async (id: string) => {
     if (confirm("Czy na pewno chcesz usunąć tę rezerwację z systemu?")) {
-      const updated = bookings.filter((b) => b.id !== id);
-      setBookings(updated);
-      localStorage.setItem("mazury_bookings", JSON.stringify(updated));
-      if (selectedBooking?.id === id) setSelectedBooking(null);
+      try {
+        const result = await adminRequest<{ ok: boolean; orders: Booking[] }>({ action: "delete_booking", booking_id: id });
+        setBookings(result.orders);
+        if (selectedBooking?.id === id) setSelectedBooking(null);
+      } catch (error) {
+        alert(error instanceof Error ? error.message : "Nie udało się usunąć rezerwacji.");
+      }
     }
   };
 
   // Add Manual Booking
-  const handleCreateManualBooking = (e: React.FormEvent) => {
+  const handleCreateManualBooking = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newId = `MA-${Math.floor(10000 + Math.random() * 90000)}`;
     const createdBooking: Booking = {
-      id: newId,
+      id: "",
       dates: newBooking.dates || "Termin ustalić",
       days: Number(newBooking.days) || 1,
       addons: newBooking.addons || "Brak",
@@ -394,58 +452,63 @@ const ALL_FULL_GALLERY_IMAGES = [
       notes: newBooking.notes || "Rezerwacja wprowadzona ręcznie przez administratora"
     };
 
-    const updated = [createdBooking, ...bookings];
-    setBookings(updated);
-    localStorage.setItem("mazury_bookings", JSON.stringify(updated));
-    setShowAddModal(false);
-    setNewBooking({
-      status: "Confirmed",
-      days: 1,
-      total: 1200,
-      addons: "Brak",
-      dates: "",
-      clientName: "",
-      clientEmail: "",
-      clientPhone: "",
-      notes: ""
-    });
+    try {
+      const result = await adminRequest<{ ok: boolean; orders: Booking[] }>({ action: "save_booking", booking: createdBooking });
+      setBookings(result.orders);
+      setShowAddModal(false);
+      setNewBooking({
+        status: "Confirmed", days: 1, total: 1200, addons: "Brak", dates: "",
+        clientName: "", clientEmail: "", clientPhone: "", notes: "",
+      });
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Nie udało się dodać rezerwacji.");
+    }
   };
 
   // Block Dates in Calendar
-  const handleBlockDates = (e: React.FormEvent) => {
+  const handleBlockDates = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!blockStartDate || !blockEndDate) {
       alert("Proszę podać datę początkową i końcową blokady.");
       return;
     }
-    const blockId = `BLOCK-${Math.floor(1000 + Math.random() * 9000)}`;
-    const blockedBooking: Booking = {
-      id: blockId,
-      dates: `${blockStartDate} - ${blockEndDate}`,
-      days: 1,
-      addons: "ZABLOKOWANE",
-      total: 0,
-      status: "Blocked",
-      created_at: new Date().toISOString(),
-      clientName: "BLOKADA SYSTEMOWA",
-      clientEmail: "kontakt@mazuryaktywnie.com.pl",
-      clientPhone: "-",
-      notes: `Przyczyna blokady: ${blockReason}`
-    };
+    if (blockEndDate < blockStartDate) {
+      alert("Data końcowa nie może być wcześniejsza niż początkowa.");
+      return;
+    }
+    setIsSavingBlock(true);
+    try {
+      const next = [
+        ...manualBlockedRanges,
+        { from: blockStartDate, to: blockEndDate, status: "blocked" as const, reason: blockReason },
+      ];
+      const result = await adminRequest<{ ok: boolean; manual_blocked_ranges: AvailabilityRange[] }>({
+        action: "save_blocked_ranges",
+        blocked_ranges: next,
+      });
+      setManualBlockedRanges(result.manual_blocked_ranges);
+      setShowBlockModal(false);
+      setBlockStartDate("");
+      setBlockEndDate("");
+      alert("Termin został zapisany na serwerze i jest już niedostępny w publicznym kalendarzu.");
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Nie udało się zapisać blokady.");
+    } finally {
+      setIsSavingBlock(false);
+    }
+  };
 
-    const updated = [blockedBooking, ...bookings];
-    setBookings(updated);
-    localStorage.setItem("mazury_bookings", JSON.stringify(updated));
-
-    // Store in blocked_dates for public calendar
-    const existingBlocked = JSON.parse(localStorage.getItem("blocked_dates") || "[]");
-    existingBlocked.push({ from: blockStartDate, to: blockEndDate, reason: blockReason });
-    localStorage.setItem("blocked_dates", JSON.stringify(existingBlocked));
-
-    setShowBlockModal(false);
-    setBlockStartDate("");
-    setBlockEndDate("");
-    alert(`Pomyślnie zablokowano termin ${blockStartDate} - ${blockEndDate} w systemie!`);
+  const handleRemoveBlockedRange = async (index: number) => {
+    const next = manualBlockedRanges.filter((_, rangeIndex) => rangeIndex !== index);
+    try {
+      const result = await adminRequest<{ ok: boolean; manual_blocked_ranges: AvailabilityRange[] }>({
+        action: "save_blocked_ranges",
+        blocked_ranges: next,
+      });
+      setManualBlockedRanges(result.manual_blocked_ranges);
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Nie udało się usunąć blokady.");
+    }
   };
 
   // Export Bookings to CSV
@@ -479,38 +542,32 @@ const ALL_FULL_GALLERY_IMAGES = [
   };
 
   // Email Notification to Client
-  const handleSendEmail = () => {
+  const handleSendEmail = async () => {
     if (!selectedBooking) return;
     setIsSendingEmail(true);
-    const subject = encodeURIComponent(`Potwierdzenie Rezerwacji Stillo 31 - Mazury Aktywnie (ID: ${selectedBooking.id})`);
-    const body = encodeURIComponent(`Dzień dobry ${selectedBooking.clientName || 'Szanowny Kliencie'},\n\nInformujemy o aktualizacji statusu Twojej rezerwacji w serwisie Mazury Aktywnie:\n\n` +
-      `ID Rezerwacji: ${selectedBooking.id}\n` +
-      `Status: ${selectedBooking.status === 'Paid' ? 'Opłacona (Potwierdzona)' : selectedBooking.status === 'Confirmed' ? 'Potwierdzona' : selectedBooking.status === 'Pending' ? 'Oczekująca na wpłatę' : selectedBooking.status}\n` +
-      `Termin czarteru: ${selectedBooking.dates}\n` +
-      `Wybrane dodatki: ${selectedBooking.addons}\n` +
-      `Łączna kwota: ${selectedBooking.total} PLN\n` +
-      `Kaucja zwrotna na miejscu: ${depositAmount} PLN\n\n` +
-      `Miejsce odbioru jachtu: Port Sztynort, Sztynort 10, 11-600 Węgorzewo.\n\n` +
-      `W razie pytań prosimy o kontakt pod numerem telefonu lub adresem e-mail kontakt@mazuryaktywnie.com.pl.\n\n` +
-      `Pozdrawiamy serdecznie,\nZespół Mazury Aktywnie`);
-
-    window.location.href = `mailto:${selectedBooking.clientEmail || ''}?subject=${subject}&body=${body}`;
-    
-    setTimeout(() => {
+    try {
+      await adminRequest({ action: "send_booking_email", booking_id: selectedBooking.id });
       setIsSendingEmail(false);
       setEmailSent(true);
       setTimeout(() => setEmailSent(false), 3000);
-    }, 500);
+    } catch (error) {
+      setIsSendingEmail(false);
+      alert(error instanceof Error ? error.message : "Nie udało się wysłać wiadomości.");
+    }
   };
 
   // Save Booking Edits from Modal
-  const saveBookingEdits = (e: React.FormEvent) => {
+  const saveBookingEdits = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedBooking) return;
-    const updated = bookings.map(b => b.id === selectedBooking.id ? selectedBooking : b);
-    setBookings(updated);
-    localStorage.setItem("mazury_bookings", JSON.stringify(updated));
-    alert("Zapisano zmiany w rezerwacji!");
+    try {
+      const result = await adminRequest<{ ok: boolean; orders: Booking[] }>({ action: "save_booking", booking: selectedBooking });
+      setBookings(result.orders);
+      setSelectedBooking(result.orders.find((booking) => booking.id === selectedBooking.id) || null);
+      alert("Zapisano zmiany w rezerwacji na serwerze.");
+    } catch (error) {
+      alert(error instanceof Error ? error.message : "Nie udało się zapisać rezerwacji.");
+    }
   };
 
   // Filtered Bookings list
@@ -564,20 +621,14 @@ const ALL_FULL_GALLERY_IMAGES = [
             </p>
           </div>
 
-          <form onSubmit={handleLoginSubmit} className="space-y-5">
-            {loginError && (
-              <div className="p-4 bg-rose-50 dark:bg-rose-500/20 border border-rose-200 dark:border-rose-500/40 rounded-2xl flex items-center gap-3 text-rose-700 dark:text-rose-200 text-xs font-semibold animate-in shake">
-                <AlertCircle size={20} className="shrink-0 text-rose-500 dark:text-rose-400" />
-                <span>Nieprawidłowy login lub hasło. Spróbuj ponownie.</span>
-              </div>
-            )}
-
+          <form action="/admin/" method="post" className="space-y-5">
             <div>
               <label className="block text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-2">Login</label>
               <div className="relative">
                 <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-400" />
                 <input 
                   type="text" 
+                  name="username"
                   required
                   placeholder="admin"
                   value={loginUsername} 
@@ -593,6 +644,7 @@ const ALL_FULL_GALLERY_IMAGES = [
                 <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-400" />
                 <input 
                   type="password" 
+                  name="password"
                   required
                   placeholder="••••••••"
                   value={loginPassword} 
@@ -662,6 +714,13 @@ const ALL_FULL_GALLERY_IMAGES = [
             </button>
           </div>
         </div>
+
+        {adminDataError && (
+          <div className="mb-6 p-4 rounded-2xl border border-rose-300 bg-rose-50 text-rose-700 dark:border-rose-500/40 dark:bg-rose-500/10 dark:text-rose-200 text-sm font-semibold flex items-center gap-3">
+            <AlertCircle size={20} className="shrink-0" />
+            <span>{adminDataError}</span>
+          </div>
+        )}
 
         {/* Navigation Tabs */}
         <div className="flex overflow-x-auto pb-4 mb-8 gap-2 scrollbar-hide border-b border-gray-200 dark:border-white/10">
@@ -826,7 +885,7 @@ const ALL_FULL_GALLERY_IMAGES = [
                   <CreditCard size={18} />
                   <span>System Płatności</span>
                 </div>
-                <p className="text-sm font-semibold text-gray-900 dark:text-white">Przelewy24 & Stripe</p>
+                <p className="text-sm font-semibold text-gray-900 dark:text-white">Przelewy24</p>
                 <div className="flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
                   <span>Bramki aktywne w trybie live</span>
@@ -1004,7 +1063,7 @@ const ALL_FULL_GALLERY_IMAGES = [
                 <span>Konfiguracja Bramek Płatności Online</span>
               </h2>
               <p className="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
-                Wybierz aktywne bramki do przyjmowania szybkich płatności od klientów podczas procesu rezerwacji Stillo 31.
+                Płatności są obsługiwane po stronie serwera przez Przelewy24. Klucze nie są wyświetlane ani zapisywane w przeglądarce.
               </p>
 
               <form onSubmit={handleSavePayments} className="space-y-6">
@@ -1017,8 +1076,9 @@ const ALL_FULL_GALLERY_IMAGES = [
                     <input 
                       type="checkbox" 
                       checked={p24Enabled} 
-                      onChange={(e) => setP24Enabled(e.target.checked)} 
-                      className="w-5 h-5 accent-blue-600 cursor-pointer"
+                      readOnly
+                      disabled
+                      className="w-5 h-5 accent-blue-600"
                     />
                   </div>
                   {p24Enabled && (
@@ -1028,8 +1088,8 @@ const ALL_FULL_GALLERY_IMAGES = [
                         <input 
                           type="text" 
                           value={p24MerchantId}
-                          onChange={(e) => setP24MerchantId(e.target.value)}
-                          className="w-full p-3 rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 text-xs text-gray-900 dark:text-white font-medium"
+                          readOnly
+                          className="w-full p-3 rounded-xl bg-gray-100 dark:bg-slate-900 border border-gray-200 dark:border-white/10 text-xs text-gray-900 dark:text-white font-medium"
                         />
                       </div>
                     </div>
@@ -1040,13 +1100,14 @@ const ALL_FULL_GALLERY_IMAGES = [
                   <div className="flex items-center justify-between">
                     <div>
                       <h4 className="font-bold text-sm text-gray-900 dark:text-white">Stripe Payments</h4>
-                      <p className="text-xs text-gray-500 dark:text-slate-400">Międzynarodowe karty płatnicze Visa / Mastercard</p>
+                      <p className="text-xs text-gray-500 dark:text-slate-400">Wyłączone — karta i BLIK są dostępne w Przelewy24</p>
                     </div>
                     <input 
                       type="checkbox" 
                       checked={stripeEnabled} 
-                      onChange={(e) => setStripeEnabled(e.target.checked)} 
-                      className="w-5 h-5 accent-blue-600 cursor-pointer"
+                      readOnly
+                      disabled
+                      className="w-5 h-5 accent-blue-600"
                     />
                   </div>
                   {stripeEnabled && (
@@ -1069,7 +1130,7 @@ const ALL_FULL_GALLERY_IMAGES = [
                   className="px-6 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider cursor-pointer"
                 >
                   {paymentsSaved ? <Check size={18} /> : <Settings size={18} />}
-                  <span>{paymentsSaved ? "Zapisano Ustawienia!" : "Zapisz Ustawienia Bramek"}</span>
+                  <span>{paymentsSaved ? "Połączenie działa" : "Sprawdź połączenie z Przelewy24"}</span>
                 </button>
               </form>
             </div>
@@ -1078,7 +1139,7 @@ const ALL_FULL_GALLERY_IMAGES = [
 
         {/* TAB 4: SETTINGS (PRICING & DEPOSIT) */}
         {activeTab === "settings" && (
-          <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl p-8 animate-in fade-in duration-300 max-w-2xl">
+          <div className="bg-white dark:bg-slate-900/80 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl p-8 animate-in fade-in duration-300 max-w-5xl">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
               <DollarSign className="text-emerald-600 dark:text-emerald-400" size={24} />
               <span>Konfiguracja Cennika i Kaucji (PLN / doba)</span>
@@ -1107,9 +1168,55 @@ const ALL_FULL_GALLERY_IMAGES = [
                 </div>
               </div>
 
-              <button type="submit" className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl shadow-lg shadow-blue-600/30 transition-all cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider text-xs">
+              <div className="border-t border-gray-200 dark:border-white/10 pt-6 space-y-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div>
+                    <h3 className="font-black text-gray-900 dark:text-white">Ceny dla okresów sezonu</h3>
+                    <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
+                      Cena okresowa zastępuje cenę bazową jachtu w podanych dniach. Okresy nie mogą na siebie nachodzić.
+                    </p>
+                  </div>
+                  <button type="button" onClick={addSeasonalPrice} className="px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer">
+                    <Plus size={16} /> Dodaj okres
+                  </button>
+                </div>
+
+                {seasonalPrices.length === 0 ? (
+                  <div className="p-4 rounded-2xl border border-dashed border-gray-300 dark:border-white/15 text-sm text-gray-500 dark:text-slate-400">
+                    Brak wyjątków — przez cały sezon obowiązuje cena bazowa {boatPrice} PLN za dobę.
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {seasonalPrices.map((period) => (
+                      <div key={period.id} className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr_1fr_.8fr_auto] gap-3 items-end p-4 rounded-2xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10">
+                        <label className="text-[10px] font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                          Nazwa
+                          <input type="text" maxLength={60} required value={period.name} onChange={(event) => updateSeasonalPrice(period.id, { name: event.target.value })} className="mt-1 w-full p-3 rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 text-sm text-gray-900 dark:text-white" />
+                        </label>
+                        <label className="text-[10px] font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                          Od
+                          <input type="date" required value={period.from} onChange={(event) => updateSeasonalPrice(period.id, { from: event.target.value })} className="mt-1 w-full p-3 rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 text-sm text-gray-900 dark:text-white" />
+                        </label>
+                        <label className="text-[10px] font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                          Do
+                          <input type="date" required value={period.to} onChange={(event) => updateSeasonalPrice(period.id, { to: event.target.value })} className="mt-1 w-full p-3 rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 text-sm text-gray-900 dark:text-white" />
+                        </label>
+                        <label className="text-[10px] font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider">
+                          PLN / doba
+                          <input type="number" min={1} required value={period.price} onChange={(event) => updateSeasonalPrice(period.id, { price: Number(event.target.value) })} className="mt-1 w-full p-3 rounded-xl bg-white dark:bg-slate-900 border border-gray-200 dark:border-white/10 text-sm font-bold text-gray-900 dark:text-white" />
+                        </label>
+                        <button type="button" onClick={() => removeSeasonalPrice(period.id)} aria-label={`Usuń okres ${period.name}`} className="p-3 rounded-xl border border-rose-200 bg-rose-50 text-rose-600 hover:bg-rose-100 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300 cursor-pointer">
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <button type="submit" disabled={isSavingSettings} className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl shadow-lg shadow-blue-600/30 transition-all cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider text-xs disabled:opacity-60 disabled:cursor-wait">
                 {settingsSaved ? <Check size={18} /> : <Settings size={18} />}
-                <span>{settingsSaved ? "Zapisano!" : "Zapisz Cennik w Systemie"}</span>
+                <span>{isSavingSettings ? "Zapisywanie..." : settingsSaved ? "Zapisano na serwerze!" : "Zapisz cały cennik w systemie"}</span>
               </button>
             </form>
           </div>
@@ -1356,7 +1463,7 @@ const ALL_FULL_GALLERY_IMAGES = [
                   <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Status</label>
                   <select 
                     value={newBooking.status}
-                    onChange={(e) => setNewBooking({...newBooking, status: e.target.value as any})}
+                    onChange={(e) => setNewBooking({...newBooking, status: e.target.value as Booking["status"]})}
                     className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
                   >
                     <option value="Confirmed">Potwierdzona</option>
@@ -1406,11 +1513,10 @@ const ALL_FULL_GALLERY_IMAGES = [
 
             <form onSubmit={handleBlockDates} className="space-y-4 text-xs">
               <div>
-                <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Data Od (dd.mm.yyyy)</label>
+                <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Data od</label>
                 <input 
-                  type="text" 
+                  type="date" 
                   required
-                  placeholder="15.08.2026"
                   value={blockStartDate}
                   onChange={(e) => setBlockStartDate(e.target.value)}
                   className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
@@ -1418,11 +1524,10 @@ const ALL_FULL_GALLERY_IMAGES = [
               </div>
 
               <div>
-                <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Data Do (dd.mm.yyyy)</label>
+                <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Data do</label>
                 <input 
-                  type="text" 
+                  type="date" 
                   required
-                  placeholder="20.08.2026"
                   value={blockEndDate}
                   onChange={(e) => setBlockEndDate(e.target.value)}
                   className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-xs font-semibold"
@@ -1441,11 +1546,31 @@ const ALL_FULL_GALLERY_IMAGES = [
 
               <button 
                 type="submit" 
-                className="w-full py-4 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl shadow-lg transition-all mt-4 uppercase tracking-wider cursor-pointer"
+                disabled={isSavingBlock}
+                className="w-full py-4 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl shadow-lg transition-all mt-4 uppercase tracking-wider cursor-pointer disabled:opacity-60 disabled:cursor-wait"
               >
-                Zablokuj Wybrany Termin
+                {isSavingBlock ? "Zapisywanie..." : "Zablokuj wybrany termin"}
               </button>
             </form>
+
+            {manualBlockedRanges.length > 0 && (
+              <div className="mt-6 pt-5 border-t border-gray-200 dark:border-white/10">
+                <h4 className="text-xs font-black uppercase tracking-wider text-gray-700 dark:text-slate-200 mb-3">Aktywne blokady</h4>
+                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                  {manualBlockedRanges.map((blocked, index) => (
+                    <div key={`${blocked.from}-${blocked.to}-${index}`} className="flex items-center justify-between gap-3 p-3 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10">
+                      <div className="min-w-0">
+                        <p className="text-xs font-black text-gray-900 dark:text-white">{blocked.from} – {blocked.to}</p>
+                        <p className="text-[11px] text-gray-500 dark:text-slate-400 truncate">{blocked.reason || "Blokada administratora"}</p>
+                      </div>
+                      <button type="button" onClick={() => handleRemoveBlockedRange(index)} className="p-2 rounded-lg text-rose-600 hover:bg-rose-50 dark:text-rose-300 dark:hover:bg-rose-500/10 cursor-pointer" aria-label="Usuń blokadę">
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -1466,13 +1591,12 @@ const ALL_FULL_GALLERY_IMAGES = [
                   <label className="block font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Status</label>
                   <select 
                     value={selectedBooking.status}
-                    onChange={(e) => setSelectedBooking({ ...selectedBooking, status: e.target.value as any })}
+                    onChange={(e) => setSelectedBooking({ ...selectedBooking, status: e.target.value as Booking["status"] })}
                     className="w-full p-3.5 rounded-xl bg-gray-50 dark:bg-slate-950 border border-gray-200 dark:border-white/10 font-bold text-gray-900 dark:text-white text-xs"
                   >
                     <option value="Pending">Oczekująca (Pending)</option>
                     <option value="Paid">Opłacona (Paid)</option>
                     <option value="Confirmed">Potwierdzona (Confirmed)</option>
-                    <option value="Blocked">Zablokowana (Blocked)</option>
                     <option value="Cancelled">Anulowana (Cancelled)</option>
                   </select>
                 </div>
