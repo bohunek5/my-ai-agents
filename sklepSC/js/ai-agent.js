@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     profileProducts = catalog.filter(p => {
       const cat = (p.category || '').toLowerCase();
       const title = (p.title || '').toLowerCase();
-      return title.includes('profil') || (cat.includes('akcesoria') && title.includes('profil'));
+      return title.includes('profil') || title.includes('pds') || title.includes('mocow') || (cat.includes('akcesoria') && (title.includes('profil') || title.includes('uchwyt') || title.includes('kluś') || title.includes('klusz')));
     });
 
     accessoryProducts = catalog.filter(p => {
@@ -553,20 +553,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function findMatchingProfile(appType) {
-    if (!profileProducts.length) return null;
+    if (!profileProducts.length && !accessoryProducts.length) return null;
+    const pool = profileProducts.length > 0 ? profileProducts : accessoryProducts;
     if (appType === 'kitchen') {
-      const podszafkowy = profileProducts.find(p => /podszafk|nawierzchniow|płaski/i.test(p.title));
-      return podszafkowy || profileProducts[0];
+      const podszafkowy = pool.find(p => /podszafk|nawierzchniow|płaski|pds|mocow/i.test(p.title));
+      return podszafkowy || pool[0];
     }
     if (appType === 'stairs') {
-      const schodowy = profileProducts.find(p => /kątow|narożn|schod/i.test(p.title));
-      return schodowy || profileProducts[0];
+      const schodowy = pool.find(p => /kątow|narożn|schod|stop/i.test(p.title));
+      return schodowy || pool[0];
     }
     if (appType === 'living') {
-      const sufitowy = profileProducts.find(p => /wpuszczan|g-k|architektoniczn/i.test(p.title));
-      return sufitowy || profileProducts[0];
+      const sufitowy = pool.find(p => /wpuszczan|g-k|architektoniczn|sufit/i.test(p.title));
+      return sufitowy || pool[0];
     }
-    return profileProducts[0];
+    return pool[0] || null;
   }
 
   function findMatchingController(controlType, lightColor) {

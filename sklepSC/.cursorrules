@@ -1,0 +1,13 @@
+# ACTIVE TASK FOR CODEX / CURSOR AGENT:
+
+Twoim zadaniem jest audyt i weryfikacja wdrożenia wykonanego w `sklepSC` w commitcie `829845d5` zgodnie z `TASK_AI_SHOPPING_AND_CHECKOUT.md`.
+
+## Zakres weryfikacji:
+1. **Zakupy AI (`ai-shopping.html` i `js/ai-agent.js`):**
+   - Sprawdź czy "rozmawiające filtry" bezbłędnie filtrują 1323 produkty z `products-data.js`.
+   - Sprawdź czy karty produktów są równe, nie mają "placków", pustych bloków i mają prawidłowe placeholdery zdjęć.
+   - Sprawdź czy dodawanie do koszyka `prescot_cart` działa prawidłowo.
+2. **Mobilny Checkout (`checkout.html` i `js/shared-popups.js`):**
+   - Upewnij się, że dolny pasek nawigacji (`.config-bottom-nav`, `.mobile-bottom-nav`) na mobilce jest w 100% ukryty i nie zasłania widgetu InPostu, formularza oraz przycisku płatności.
+3. **Synchronizacja `dist/`:**
+   - Upewnij się, że katalog `dist/` jest w 100% zsynchronizowany ze źródłem.
