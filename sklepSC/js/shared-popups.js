@@ -650,6 +650,17 @@ customStyles.innerHTML = `
     }
 
     /* Shared five-item mobile navigation. */
+    body.checkout-page .config-bottom-nav,
+    body.checkout-page .mobile-bottom-nav,
+    body:has(.checkout-wrapper) .config-bottom-nav,
+    body:has(.checkout-wrapper) .mobile-bottom-nav,
+    .checkout-wrapper ~ .config-bottom-nav,
+    .checkout-wrapper ~ .mobile-bottom-nav {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+
     body .config-bottom-nav {
       position: fixed !important;
       inset: auto 0 0 !important;
@@ -2944,6 +2955,20 @@ function injectMobileCategoriesDrawer() {
 
 function upgradeMobileCommerceNavigation() {
   const path = window.location.pathname.split('/').pop() || 'index.html';
+  const isCheckoutPage = path === 'checkout.html' || 
+    document.body.classList.contains('checkout-page') || 
+    !!document.querySelector('.checkout-wrapper') ||
+    !!document.querySelector('#checkoutForm') ||
+    window.location.href.includes('checkout.html');
+
+  if (isCheckoutPage) {
+    document.querySelectorAll('.config-bottom-nav, .mobile-bottom-nav').forEach((el) => {
+      el.style.setProperty('display', 'none', 'important');
+      el.remove();
+    });
+    document.documentElement.classList.remove('mobile-nav-ready');
+    return;
+  }
   const icon = (content) => `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${content}</svg>`;
   const homePatternIcon = '<img class="mobile-home-pattern" src="images/prescot-pattern.png" alt="" aria-hidden="true">';
   const entries = [

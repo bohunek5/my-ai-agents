@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="pl">
 
 <head>
-  <link rel="icon" type="image/svg+xml" href="/assets/PRESCOT_pattern2-B7-uF5zG.svg">
+  <link rel="icon" type="image/svg+xml" href="images/PRESCOT_pattern2.svg">
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <script>if (window.matchMedia('(max-width: 768px)').matches) document.write('<script src="js/mobile-app-shell.js"><\/script>');</script>
@@ -17,6 +17,8 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800&amp;display=swap"
     rel="stylesheet" />
   <!-- Theme CSS -->
+  <link href="assets/xo-webcomponents.min.css" rel="stylesheet" />
+  <link href="assets/main.min.css" rel="stylesheet" />
   <!-- InPost GeoWidget -->
   <link rel="stylesheet" href="https://geowidget.inpost.pl/inpost-geowidget.css" />
   <script src="https://geowidget.inpost.pl/inpost-geowidget.js" defer></script>
@@ -2160,6 +2162,7 @@
 
     /* --- ULTIMATE DROPDOWN OVERRIDE END --- */
   </style>
+  <link rel="stylesheet" href="css/prescot-responsive.css">
 
   <style id="scrolled-nav-visibility-override">
     /* Guaranteed 100% Contrast for Scrolled Header Navigation */
@@ -2366,6 +2369,7 @@
 </style>
 
 
+  <link rel="stylesheet" href="css/configurator.css">
 
 <style id="global-premium-overrides">
 /* Premium Footer CSS */
@@ -2507,14 +2511,13 @@
 }
 </style>
 
+  <link rel="stylesheet" href="css/custom-buttons.css">
 
 
 
-  <link rel="stylesheet" crossorigin href="/assets/main-s0ab0Jqi.css">
-  <link rel="stylesheet" crossorigin href="/assets/custom-buttons-AzkvWn4v.css">
 </head>
 
-<body>
+<body class="checkout-page">
   <div class="checkout-wrapper">
     <!-- Left panel: Form details -->
     <section class="checkout-form-panel">
@@ -2605,7 +2608,7 @@
                     wskazany adres (1-2 dni)</span>
                 </div>
               </label>
-              <img alt="DPD Kurier" src="/assets/kurier_dpd-BGiw1bLI.png"
+              <img alt="DPD Kurier" src="images/kurier_dpd.png"
                 style="height: 56px; max-width: 100px; margin-right: -12px; mix-blend-mode: multiply; object-fit: contain; display: block;" />
             </div>
             <!-- Option 4: Kurier InPost -->
@@ -2621,7 +2624,7 @@
                     na Twój adres (1-2 dni)</span>
                 </div>
               </label>
-              <img alt="InPost" src="/assets/kurier_inpost-CQIXm37g.png"
+              <img alt="InPost" src="images/kurier_inpost.png"
                 style="height: 56px; max-width: 100px; margin-right: -12px; mix-blend-mode: multiply; object-fit: contain; display: block;" />
             </div>
             <!-- Option 5: SUUS Logistics Dłużyca -->
@@ -2658,7 +2661,7 @@
                     Paczkomatu (1-2 dni)</span>
                 </div>
               </label>
-              <img alt="InPost" src="/assets/inpost_logo-DsbKsEDx.svg"
+              <img alt="InPost" src="images/inpost_logo.svg"
                 style="height: 38px; object-fit: contain; display: block;" />
             </div>
             <!-- Option 2: DPD Paczkomaty / Punkty -->
@@ -2674,7 +2677,7 @@
                     paczkowych i punktach DPD (1-2 dni)</span>
                 </div>
               </label>
-              <img alt="DPD" src="/assets/dpd_logo-DV2-HzHG.svg"
+              <img alt="DPD" src="images/dpd_logo.svg"
                 style="height: 30px; max-width: 100px; object-fit: contain; display: block;" />
             </div>
             <!-- Option 6: Odbiór osobisty w salonie -->
@@ -2726,7 +2729,7 @@
                 <input checked="" id="payCard" name="paymentMethod" type="radio" value="card" />
                 Karta płatnicza (Credit Card)
               </label>
-              <img alt="Karty" src="/assets/payu_cards-Cq0T8Ugp.png" style="height: 24px; object-fit: contain;" />
+              <img alt="Karty" src="images/payu_cards.png" style="height: 24px; object-fit: contain;" />
             </div>
             <div class="payment-option-content active" id="contentCard">
               <div class="form-group">
@@ -2743,7 +2746,7 @@
                 <input id="payBlik" name="paymentMethod" type="radio" value="blik" />
                 BLIK
               </label>
-              <img alt="BLIK" src="/assets/blik-DIyGa5LY.png" style="height: 24px; object-fit: contain;" />
+              <img alt="BLIK" src="images/blik.png" style="height: 24px; object-fit: contain;" />
             </div>
             <div class="payment-option-content" id="contentBlik">
               <div class="form-group">
@@ -2756,7 +2759,7 @@
                 <input id="payPaypal" name="paymentMethod" type="radio" value="paypal" />
                 PayPal
               </label>
-              <img alt="PayPal" src="/assets/paypal-C6K-c6Sd.svg" style="height: 24px; object-fit: contain;" />
+              <img alt="PayPal" src="images/paypal.svg" style="height: 24px; object-fit: contain;" />
             </div>
             <div class="payment-option-content" id="contentPaypal">
               <p style="font-size: 13px; color: #777;">Po kliknięciu "Kupuję i płacę", zostaniesz przekierowany do
@@ -2774,7 +2777,7 @@
           <span>Powrót na stronę główną</span>
         </a>
         <div class="checkout-logo">
-          <a href="index.html"><img alt="Prescot Logo" src="/assets/logo-Chzy8Kmh.png" /></a>
+          <a href="index.html"><img alt="Prescot Logo" src="images/logo.png" /></a>
         </div>
         <div class="checkout-breadcrumbs">
           <button class="checkout-cart-breadcrumb" id="checkoutCartBreadcrumb" type="button">Koszyk</button>
@@ -3338,8 +3341,8 @@
     <a href="ai-shopping.html" ><i class="ph ph-sparkle" aria-hidden="true"></i><span>Zakup AI</span></a>
     <button id="mobileCartButton" type="button"  onclick="openCartDrawer && openCartDrawer()"><i class="ph ph-shopping-cart-simple" aria-hidden="true"></i><span>Koszyk</span></button>
   </nav>
-  <script src="js/products-data.js"></script>
-  <script src="js/shared-popups.js"></script>
+  <script src="js/products-data.js" defer></script>
+  <script src="js/shared-popups.js" defer></script>
   <script>
     initSharedPopups();
 
@@ -3453,7 +3456,7 @@
     });
   </script>
 
-  <script src="js/smart-search.js"></script>
+  <script src="js/smart-search.js" defer></script>
 
 
 
@@ -3713,17 +3716,23 @@ body.index-page .site-header:not(.scrolled) {
 
 
 <style id="global-config-nav-css">
-.config-bottom-nav { display: none; }
-/* Exact bottom nav styles from led-configurator.css */
+
+
+  100% { --nav-angle: 360deg; }
+}
+
+.config-bottom-nav, .mobile-bottom-nav { display: none !important; }
 @media (max-width: 768px) {
-  .config-bottom-nav { position: fixed; inset: auto 0 0; z-index: 950; height: 76px; display: grid; grid-template-columns: repeat(5,1fr); padding: 7px 8px calc(6px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,0.1); background: rgba(6,16,28,.98); backdrop-filter: blur(20px); }
-  .config-bottom-nav a, .config-bottom-nav button { min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; border: 0; color: rgba(255,255,255,.5); background: transparent; text-decoration: none; font-size: 8px; font-weight: 600; cursor: pointer; }
-  .config-bottom-nav i { font-size: 20px; }
-  .config-bottom-nav .active { color: #fff; }
-  .bottom-main-icon { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; margin-top: -20px; border: 2px solid #00e5ff; border-radius: 50%; color: #00e5ff; background: #10233a; box-shadow: 0 0 22px rgba(40,215,255,.2); }
-  .bottom-main-icon i { font-size: 21px; }
+  .config-bottom-nav, .mobile-bottom-nav { 
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
   
-  /* Only force dark icons on white headers (scrolled) */
+  .checkout-wrapper {
+    padding-bottom: calc(30px + env(safe-area-inset-bottom)) !important;
+  }
+  
   .site-header.scrolled .header-icon svg, .mockup-header.scrolled .header-icon svg {
     stroke: #0b1a30 !important;
   }
